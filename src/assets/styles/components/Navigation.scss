@@ -1,0 +1,145 @@
+// Navigation component
+//
+// Usage:
+// <Nav className="Nav">
+//   <ListItem className="Nav__item Nav__item--is-active">
+//     <Arrow className="Nav__arrow" />
+//     <Icon className="Nav__icon" />
+//       <ListItem className="Nav__nested-item">
+//       </ListItem>
+//   </ListItem>
+// </Nav>
+
+.Nav {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  height: 100vh;
+
+  &:hover,
+  &.Nav--is-open {
+    .Nav__top-item .Nav__text {
+      margin-left: 2.4rem;
+    }
+
+    .Nav__item .Nav__icon {
+      margin-right: 1.2rem;
+    }
+
+    .Nav__item .Nav__text,
+    .Nav__nested-item .Nav__text {
+      opacity: 1;
+    }
+
+    .Nav__nested-item .Nav__text {
+      padding-left: 3.5rem;
+    }
+
+    .Nav__item .Nav__avatar-icon {
+      width: 48px;
+      height: 48px;
+      font-size: 14px;
+    }
+  }
+}
+
+.Nav .Nav__item,
+.Nav .Nav__nested-item {
+  &:hover,
+  &.Nav__item--is-open,
+  &.Nav__item--is-active {
+    color: $color-white;
+
+    .Nav__icon path,
+    .Nav__arrow path {
+      fill: $color-white;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  &:before {
+    content: '';
+    background: transparent;
+    height: 100%;
+    width: 2px;
+    position: absolute;
+    left: 0;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:hover:before {
+    content: '';
+    background: $color-b-300;
+  }
+
+  &.Nav__item--is-open {
+    .Nav__text {
+      padding-left: 1rem;
+    }
+
+    .Nav__arrow {
+      transform: rotate(0);
+    }
+  }
+}
+
+.Nav .Nav__nested-item .Nav__text {
+  padding-left: 5rem;
+  transition: padding 0.2s ease-in-out;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+.Nav .Nav__item .Nav__icon {
+  fill: $color-g-300;
+  width: 20px;
+  min-width: 20px;
+  margin-right: 1.5rem;
+  transition: all 0.2s ease-in-out;
+
+  & path {
+    fill: $color-g-300;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.Nav .Nav__item .Nav__avatar-icon {
+  margin-left: -4px;
+  width: 32px;
+  height: 32px;
+  font-size: 8px;
+  font-weight: $weight-bold;
+}
+
+.Nav .Nav__item .Nav__arrow {
+  fill: $color-g-300;
+  width: 16px;
+  position: absolute;
+  left: 2px;
+  transform: rotate(-90deg);
+  transition: all 0.2s ease-in-out;
+}
+
+.Nav .Nav__item .Nav__text,
+.Nav .Nav__nested-item .Nav__text {
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.Nav .Nav__top-item {
+  height: 3rem;
+  margin-bottom: 1rem;
+  transition: none;
+
+  .Nav__icon {
+    position: absolute;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .Nav__text {
+    margin-left: 2.7rem;
+  }
+}
