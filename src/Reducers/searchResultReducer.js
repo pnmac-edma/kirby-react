@@ -5,6 +5,9 @@ const searchReducer = (state = initialState.searchResult, action) => {
     case 'SEARCH_HANDLE_INPUT': {
       return { ...state, searchInput: action.payload };
     }
+    case 'HANDLE_KEY_PRESS': {
+      return { ...state };
+    }
     case 'SEARCH_RESULT_REQUEST': {
       return {
         ...state,
@@ -23,7 +26,8 @@ const searchReducer = (state = initialState.searchResult, action) => {
         searchResult: action.payload,
         isLoading: false,
         searchResultCopy: searchResultCopy,
-        displaySearchResult: true
+        displaySearchResult: true,
+        isSearchClicked: false
       };
     }
     case 'SEARCH_RESULT_FAILURE': {
@@ -158,6 +162,18 @@ const searchReducer = (state = initialState.searchResult, action) => {
         isLoading: false,
         selectedAll: false,
         searchResultCopy: searchResultCopy
+      };
+    }
+    case 'HANDLE_SEARCH_CLICK': {
+      return {
+        ...state,
+        isSearchClicked: true
+      };
+    }
+    case 'HANDLE_SEARCH_CLOSE': {
+      return {
+        ...state,
+        isSearchClosed: true
       };
     }
     default:
