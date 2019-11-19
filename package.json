@@ -61,5 +61,10 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!@edma\/(design-tokens|blocks))"
+    ]
   }
 }
