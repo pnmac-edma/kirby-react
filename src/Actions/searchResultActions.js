@@ -5,6 +5,11 @@ export const searchHandleInput = e => ({
   payload: e.target.value
 });
 
+export const handleKeyPress = e => ({
+  type: types.HANDLE_KEY_PRESS,
+  payload: e
+});
+
 export const searchResultRequest = () => ({
   type: types.SEARCH_RESULT_REQUEST
 });
@@ -40,4 +45,8 @@ export const handleFilterClick = () => ({
 export const handleRemoveChip = id => ({
   type: types.HANDLE_REMOVE_CHIP,
   payload: id
+});
+
+export const handleSearchClick = () => ({
+  type: types.HANDLE_SEARCH_CLICK
 });
