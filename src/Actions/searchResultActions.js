@@ -5,6 +5,11 @@ export const searchHandleInput = e => ({
   payload: e.target.value
 });
 
+export const handleKeyPress = e => ({
+  type: types.HANDLE_KEY_PRESS,
+  payload: e
+});
+
 export const searchResultRequest = () => ({
   type: types.SEARCH_RESULT_REQUEST
 });

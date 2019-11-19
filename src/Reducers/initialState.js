@@ -28,12 +28,14 @@ const initialState = {
       filterBy: '',
       contain: '',
       filterTerm: ''
-    }
+    },
+    isSearchClicked: false
   },
   requestAssets: {
     selectedSearchResultCopy: [],
     selectedAll: false,
-    isRequestAssetssButtonClicked: false
+    requestedFor: [],
+    selectedOption: []
   }
 };
 
