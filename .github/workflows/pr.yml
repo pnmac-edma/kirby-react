@@ -1,0 +1,26 @@
+name: Node CI
+
+on:
+  pull_request:
+    branches:
+    - master
+    - dev
+
+jobs:
+  build:
+    name: PR Gate
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build & Test
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: npm install, build, and test
+      run: |
+        npm i
+        npm run build --if-present
+        npm test
+      env:
+        CI: true
