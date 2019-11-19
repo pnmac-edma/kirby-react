@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, Drawer, List } from '@material-ui/core';
-import PageContainer from '../PageContainer';
+import PageWrapper from '../../Scenes/Chrome/PageWrapper/PageWrapper-Container';
 import color from '@edma/design-tokens/js/color';
 import UserGroup from '../../Scenes/SideNavigation/UserGroupListItem/UserGroupListItem';
 import DashboardListItem from '../../Scenes/SideNavigation/DashboardListItem/DashboardListItem';
 import AccessListItem from '../../Scenes/SideNavigation/AccessListItem/AccessListItem';
 import GovernanceListItem from '../../Scenes/SideNavigation/GovernanceListItem/GovernanceListItem-Container';
 import HydrationListItem from '../../Scenes/SideNavigation/HydrationListItem/HydrationListItem-Container';
-import RequestListItem from '../../Scenes/SideNavigation/RequestListItem/RquestListItem-Container';
+import RequestListItem from '../../Scenes/SideNavigation/RequestListItem/RequestListItem-Container';
 import KeysListItem from '../../Scenes/SideNavigation/KeysListItem/KeysListItem';
 import AwsAthenaListItem from '../../Scenes/SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
 import AvatarListItem from '../../Scenes/SideNavigation/AvatarListItem/AvatarListItem';
@@ -26,10 +26,13 @@ const navStyle = makeStyles(theme => ({
   drawer: {
     width: navWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    position: 'relative',
+    overflow: 'hidden'
   },
   drawerOpen: {
-    overflow: 'hidden',
+    overflowY: 'auto',
+    overflowX: 'hidden',
     color: color.g300,
     backgroundColor: color.black,
     borderRight: 'none',
@@ -40,7 +43,7 @@ const navStyle = makeStyles(theme => ({
     })
   },
   drawerClose: {
-    overflow: 'hidden',
+    overflow: 'auto',
     color: color.g300,
     backgroundColor: color.black,
     borderRight: 'none',
@@ -53,6 +56,9 @@ const navStyle = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(7)
     }
+  },
+  customList: {
+    marginBottom: 72
   }
 }));
 const Navigation = () => {
@@ -79,7 +85,7 @@ const Navigation = () => {
         }}
         open={open}
       >
-        <List>
+        <List className={classes.customList}>
           <UserGroup />
           <DashboardListItem />
           <AccessListItem />
@@ -92,7 +98,7 @@ const Navigation = () => {
         <AvatarListItem />
       </Drawer>
       <main>
-        <PageContainer />
+        <PageWrapper />
       </main>
     </div>
   );

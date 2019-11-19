@@ -46,3 +46,7 @@ export const handleRemoveChip = id => ({
   type: types.HANDLE_REMOVE_CHIP,
   payload: id
 });
+
+export const handleSearchClick = () => ({
+  type: types.HANDLE_SEARCH_CLICK
+});
