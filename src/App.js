@@ -3,6 +3,10 @@ import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import color from '@edma/design-tokens/js/color';
 import Navigation from './Components/Presentational/Chrome/Navigation';
+// import AppBar from './Components/Presentational/AppBar';
+import SearchResultContainer from './Components/Scenes/SearchResults/TableSection/TableSection-Container';
+import RequestAssetsContainer from './Components/Scenes/RequestAssets/RequestAsset/RequestAsset-Container';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export default function App() {
   // Define Kirby theme colors using EDMA Design Tokens in a hook,
@@ -62,6 +66,10 @@ export default function App() {
       <div className="App">
         <CssBaseline />
         <Navigation themeToggle={toggleDarkMode} />
+        <Switch>
+          <Route exact path="/" component={SearchResultContainer} />
+          <Route path="/RequestAsset" component={RequestAssetsContainer} />
+        </Switch>
       </div>
     </ThemeProvider>
   );
