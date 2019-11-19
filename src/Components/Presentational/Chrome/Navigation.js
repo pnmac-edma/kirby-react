@@ -30,7 +30,7 @@ const navStyle = makeStyles(theme => ({
   },
   drawerOpen: {
     overflow: 'hidden',
-    color: color.g300,
+    color: color.g400,
     backgroundColor: color.black,
     borderRight: 'none',
     width: navWidth,
@@ -41,7 +41,7 @@ const navStyle = makeStyles(theme => ({
   },
   drawerClose: {
     overflow: 'hidden',
-    color: color.g300,
+    color: color.g400,
     backgroundColor: color.black,
     borderRight: 'none',
     transition: theme.transitions.create('width', {

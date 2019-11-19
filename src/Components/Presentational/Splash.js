@@ -12,12 +12,12 @@ const useStyles = makeStyles(theme => ({
     marginTop: '32px'
   },
   heading: {
-    color: theme.palette.type === 'light' ? color.g500 : color.g200,
+    color: theme.palette.type === 'light' ? color.g700 : color.g200,
     marginTop: 24
   },
   paragraph: {
     margin: '16px auto',
-    color: theme.palette.type === 'light' ? color.g400 : color.g300,
+    color: theme.palette.type === 'light' ? color.g600 : color.g400,
     maxWidth: 270
   }
 }));
@@ -27,8 +27,8 @@ export default function Splash() {
   const theme = useTheme();
 
   theme.palette.type === 'light'
-    ? (document.body.style.backgroundColor = color.t200)
-    : (document.body.style.backgroundColor = color.g700);
+    ? (document.body.style.backgroundColor = color.c50)
+    : (document.body.style.backgroundColor = color.g900);
 
   return (
     <>
