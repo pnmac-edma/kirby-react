@@ -10,9 +10,13 @@ const randomColor = color.color[randomIndex];
 
 const avatarListItem = makeStyles(theme => ({
   listItemSettings: {
-    bottom: '8px',
-    position: 'absolute',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    cursor: 'pointer',
+    position: 'fixed',
+    bottom: 0,
+    width: 'inherit',
+    backgroundColor: colorObj.black.value,
+    padding: theme.spacing(2)
   },
   avatar: {
     color: randomColor.against,
