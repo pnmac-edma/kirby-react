@@ -31,7 +31,8 @@ const navStyle = makeStyles(theme => ({
     overflow: 'hidden'
   },
   drawerOpen: {
-    overflow: 'hidden',
+    overflowY: 'auto',
+    overflowX: 'hidden',
     color: color.g400,
     backgroundColor: color.black,
     borderRight: 'none',
