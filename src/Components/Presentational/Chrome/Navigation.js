@@ -100,7 +100,6 @@ const Navigation = () => {
         <AvatarListItem />
       </Drawer>
       <main>
-        <PageWrapper />
         <Switch>
           <Route exact path="/" component={PageWrapper} />
           <Route path="/RequestAsset" component={RequestAssetsContainer} />
