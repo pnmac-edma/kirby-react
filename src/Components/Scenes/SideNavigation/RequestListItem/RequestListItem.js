@@ -25,7 +25,11 @@ const requestListItem = makeStyles(theme => ({
   }
 }));
 
-const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
+const RequestListItem = ({
+  closeAllArrows,
+  requestListItemsName,
+  requestInboxAlert
+}) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
 
@@ -70,6 +74,7 @@ const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
         <List component="div" disablePadding>
           {requestListItemText}
         </List>
+        <button onClick={() => requestInboxAlert()}>Test</button>
       </Collapse>
     </>
   );

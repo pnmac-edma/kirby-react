@@ -36,6 +36,9 @@ const initialState = {
     selectedAll: false,
     requestedFor: [],
     selectedOption: []
+  },
+  requestInboxAlert: {
+    alert: []
   }
 };
 
