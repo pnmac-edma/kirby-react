@@ -5,6 +5,7 @@ import RequestedForContainer from '../RequestedFor/RequestedFor-Container';
 import AppBarContainer from '../../Chrome/AppBar/AppBar-Container';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
@@ -16,13 +17,6 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
     background: 'rgba(0, 0, 0, 0.09)',
     fontSize: '0.65em'
-    // position: 'absolute',
-    // display: 'flex',
-    // flexDirection: 'column',
-    // backgroundColor: 'rgba(0, 0, 0, 0.09)',
-    // width: '31.21%',
-    // height: '100vh',
-    // color: color.white
   },
   pageContainer: {
     position: 'absolute',
@@ -34,12 +28,13 @@ const useStyles = makeStyles(theme => ({
     color: color.white
   },
   sideTable: {
-    width: '60%',
+    width: '62%',
     marginLeft: '50vh'
   },
   dropdown: {
-    width: '60%',
-    marginLeft: '50vh'
+    marginRight: '50vh',
+    marginTop: '20vh',
+    marginLeft: '1vh'
   }
 }));
 
@@ -55,6 +50,7 @@ const RequestAsset = props => {
         </div>
         <div className={classes.sidebar}>
           <div className={classes.dropdown}>
+            <h2>Request Assets</h2>
             <RequestedForContainer />
           </div>
         </div>
@@ -63,15 +59,3 @@ const RequestAsset = props => {
   );
 };
 export default RequestAsset;
-// <RequestAssetTableContainer />
-// <RequestAssetJustificationContainer />
-// <div className={classes.pageContainer}>
-//       <AppBarContainer />
-//       {isLoading ? (
-//         <TableSkeleton />
-//       ) : displaySearchResult ? (
-//         <TableSectionContainer />
-//       ) : null}
-//       {!searchResultCopy.length > 0 ? <Splash /> : null}
-//       {isSearchClicked ? <SearchContainer /> : null}
-//     </div>
