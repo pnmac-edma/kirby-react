@@ -11,11 +11,11 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap'
   },
   sidebar: {
-    // position: 'fixed',
-    // width: '31.21%',
-    // height: '100vh',
-    // background: 'rgba(0, 0, 0, 0.09)',
-    // fontSize: '0.65em'
+    position: 'fixed',
+    width: '31.21%',
+    height: '100vh',
+    background: 'rgba(0, 0, 0, 0.09)',
+    fontSize: '0.65em'
     // position: 'absolute',
     // display: 'flex',
     // flexDirection: 'column',
@@ -32,6 +32,14 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100vh',
     color: color.white
+  },
+  sideTable: {
+    width: '60%',
+    marginLeft: '50vh'
+  },
+  dropdown: {
+    width: '60%',
+    marginLeft: '50vh'
   }
 }));
 
@@ -41,10 +49,14 @@ const RequestAsset = props => {
     <>
       <div className={classes.pageContainer}>
         <AppBarContainer />
-        <div className={classes.sidebar}>
-          <RequestedForContainer />
+        <div className={classes.sideTable}>
           <RequestAssetTableContainer />
           <RequestAssetJustificationContainer />
+        </div>
+        <div className={classes.sidebar}>
+          <div className={classes.dropdown}>
+            <RequestedForContainer />
+          </div>
         </div>
       </div>
     </>
