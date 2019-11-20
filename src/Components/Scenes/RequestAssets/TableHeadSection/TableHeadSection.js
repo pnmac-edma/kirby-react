@@ -3,6 +3,7 @@ import { TableCell, TableRow, TableHead, Checkbox } from '@material-ui/core';
 
 const TableHeadSection = props => {
   const { selectedAll, requestCheckBoxSelect } = props;
+
   return (
     <React.Fragment>
       <TableHead>
