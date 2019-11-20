@@ -1,7 +1,7 @@
 import React from 'react';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
-import InboxContainer from '../../../Presentational/InboxContainer';
+import InboxContainer from '../../ViewRequests/InboxContainer';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import TableSectionContainer from '../../SearchResults/TableSection/TableSection-Container';
