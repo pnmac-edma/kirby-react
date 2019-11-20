@@ -26,6 +26,7 @@ const RequestTableFooter = props => {
     onChangeRowsPerPage
   } = props;
   const classes = footerStyles();
+
   return (
     <Table className={classes.table} size="small">
       <TableBody>

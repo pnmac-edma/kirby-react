@@ -13,6 +13,7 @@ const titleStyles = makeStyles(theme => ({
 
 const RequestTableTitle = ({ title }) => {
   const classes = titleStyles();
+
   return (
     <Typography className={classes.typography} variant="h5">
       {title}

@@ -25,7 +25,9 @@ const RequestTableHeader = props => {
     numSelected,
     rowCount
   } = props;
+
   const classes = headerStyles();
+
   const createSortHandler = property => event => {
     onSort(event, property);
   };
