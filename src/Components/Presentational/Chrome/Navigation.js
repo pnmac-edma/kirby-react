@@ -13,7 +13,7 @@ import KeysListItem from '../../Scenes/SideNavigation/KeysListItem/KeysListItem'
 import AwsAthenaListItem from '../../Scenes/SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
 import AvatarListItem from '../../Scenes/SideNavigation/AvatarListItem/AvatarListItem';
 import RequestAssetsContainer from '../../Scenes/RequestAssets/RequestAsset/RequestAsset-Container';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 const navWidth = 250;
 
