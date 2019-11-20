@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestAsset = props => {
+const RequestAsset = () => {
   const classes = useStyles();
   return (
     <>
