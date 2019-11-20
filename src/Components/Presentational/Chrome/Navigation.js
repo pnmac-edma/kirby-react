@@ -110,11 +110,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-// <main>
-// <PageWrapper />
-// <Switch>
-//   <Route exact path='/' component={PageWrapper} />
-//   <Route path='/RequestAsset' component={RequestAssetsContainer} />
-// </Switch>
-// </main>
