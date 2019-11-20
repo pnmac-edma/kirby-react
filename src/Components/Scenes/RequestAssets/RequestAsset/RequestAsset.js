@@ -1,7 +1,6 @@
 import React from 'react';
 import RequestAssetTableContainer from '../RequestAssetTable/RequestAssetTable-Container';
 import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
-import RequestedForContainer from '../RequestedFor/RequestedFor-Container';
 import AppBarContainer from '../../Chrome/AppBar/AppBar-Container';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
@@ -49,7 +48,6 @@ const RequestAsset = () => {
         <div className="sidebar">
           <div className={classes.sideBarPostion}>
             <h1>Request Assets</h1>
-            <RequestedForContainer />
           </div>
         </div>
       </div>
