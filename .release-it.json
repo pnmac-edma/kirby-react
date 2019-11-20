@@ -4,6 +4,11 @@
     "assets": ["dist/*.zip"],
     "draft": true
   },
+  "git": {
+    "commit": false,
+    "tag": true,
+    "push": true
+  },
   "npm": false,
   "hooks": {
     "after:bump": "npm run build && rimraf dist && mkdir dist && cd build/ && bestzip ../dist/kirby-v${version}.zip * && cd ..",
