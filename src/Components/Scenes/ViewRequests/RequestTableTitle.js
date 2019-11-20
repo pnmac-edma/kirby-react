@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const titleStyles = makeStyles(theme => ({
   typography: {
-    color: 'black',
+    color: theme.palette.common.black,
     textAlign: 'left',
     margin: 14
   }
@@ -18,6 +18,10 @@ const RequestTableTitle = ({ title }) => {
       {title}
     </Typography>
   );
+};
+
+RequestTableTitle.propTypes = {
+  title: PropTypes.string.isRequired
 };
 
 export default RequestTableTitle;

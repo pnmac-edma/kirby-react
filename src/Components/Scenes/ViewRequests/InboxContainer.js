@@ -8,31 +8,25 @@ import {
   TableBody,
   TableRow
 } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import inboundRequests from '../../../mockData';
 import RequestTableTitle from './RequestTableTitle';
 import RequestTableHeader from './RequestTableHeader';
 import RequestTableFooter from './RequestTableFooter';
-import clsx from 'clsx';
+
 const useStyles = makeStyles(theme => ({
-  root: {
+  paper: {
     width: '96%',
     marginLeft: 8,
     marginRight: 8
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    width: '100%',
-    overflowX: 'auto',
-    marginBottom: theme.spacing(4)
   },
   table: {
     minWidth: 6
   },
   tableWrapper: {
     maxHeight: 776,
-    overflowX: 'auto'
+    overflowX: 'auto',
+    borderRadius: 'inherit'
   }
 }));
 
@@ -131,7 +125,7 @@ const InboxContainer = props => {
   return (
     <>
       <RequestTableTitle title="Requests Inbox" />
-      <Paper className={classes.root}>
+      <Paper className={classes.paper}>
         <div className={classes.tableWrapper}>
           <Table className={classes.table} size="medium" stickyHeader>
             <RequestTableHeader
@@ -144,30 +138,40 @@ const InboxContainer = props => {
               rowCount={reqs.length}
             />
             <TableBody>
-              {stableSort(reqs, getSorting(order, orderBy)).map(request => {
-                const isChecked = isSelected(request.Id);
-                return (
-                  <TableRow key={request.Id}>
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={isChecked}
-                        onClick={event =>
-                          handleToggleCheckbox(event, request.Id)
-                        }
-                      />
-                    </TableCell>
-                    <TableCell align="left">{request.databasename}</TableCell>
-                    <TableCell align="left">{request.description}</TableCell>
-                    <TableCell align="left" style={{ width: '200px' }}>
-                      {request.createddate}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+              {stableSort(reqs, getSorting(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(request => {
+                  const isChecked = isSelected(request.Id);
+                  return (
+                    <TableRow key={request.Id}>
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          checked={isChecked}
+                          onClick={e => handleToggleCheckbox(e, request.Id)}
+                        />
+                      </TableCell>
+                      <TableCell align="left">{request.databasename}</TableCell>
+                      <TableCell align="left">{request.description}</TableCell>
+                      <TableCell align="left" style={{ width: '200px' }}>
+                        {request.createddate}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
             </TableBody>
           </Table>
         </div>
-        <RequestTableFooter classes={classes}>
+        <RequestTableFooter
+          count={reqs.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={(e, newPage) => setPage(newPage)}
+          onChangeRowsPerPage={e => {
+            console.log(e.target.value);
+            setRowsPerPage(parseInt(e.target.value), 10);
+            setPage(0);
+          }}
+        >
           <Button variant="contained" color="primary">
             Custom Button
           </Button>

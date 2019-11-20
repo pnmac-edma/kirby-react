@@ -6,10 +6,26 @@ import {
   TableRow,
   TablePagination
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 
-const RequestTableFooter = ({ classes, children }) => {
+const footerStyles = makeStyles(theme => ({
+  table: {
+    minWidth: 6,
+    borderTop: `1px solid ${theme.palette.grey['300']}`
+  }
+}));
+
+const RequestTableFooter = props => {
+  const {
+    children,
+    count,
+    rowsPerPage,
+    page,
+    onChangePage,
+    onChangeRowsPerPage
+  } = props;
+  const classes = footerStyles();
   return (
     <Table className={classes.table} size="small">
       <TableBody>
@@ -19,23 +35,27 @@ const RequestTableFooter = ({ classes, children }) => {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={10}
-              rowsPerPage={5}
-              page={0}
+              count={count}
+              rowsPerPage={rowsPerPage}
+              page={page}
               backIconButtonProps={{
                 'aria-label': 'previous page'
               }}
               nextIconButtonProps={{
                 'aria-label': 'next page'
               }}
-              onChangePage={() => {}}
-              onChangeRowsPerPage={() => {}}
+              onChangePage={onChangePage}
+              onChangeRowsPerPage={onChangeRowsPerPage}
             />
           </TableCell>
         </TableRow>
       </TableBody>
     </Table>
   );
+};
+
+RequestTableFooter.propTypes = {
+  children: PropTypes.node
 };
 
 export default RequestTableFooter;

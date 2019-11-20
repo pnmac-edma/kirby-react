@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const headerStyles = makeStyles(theme => ({
   cell: {
-    backgroundColor: 'transparent'
+    backgroundColor: theme.palette.common.white
   }
 }));
 
@@ -32,7 +32,7 @@ const RequestTableHeader = props => {
 
   return (
     <TableHead>
-      <TableRow>
+      <TableRow className={classes.row}>
         <TableCell padding="checkbox" className={classes.cell}>
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
