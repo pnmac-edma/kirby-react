@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   },
   sidebar: {
     position: 'fixed',
-    width: '25%',
+    width: '31.21%',
     height: '100vh',
     background: 'rgba(0, 0, 0, 0.09)',
     fontSize: '0.65em'
@@ -18,11 +18,8 @@ const useStyles = makeStyles(theme => ({
 
 const RequestAsset = props => {
   const classes = useStyles();
-  return (
-    <div className={(classes.container, classes.sidebar)}>
-      <RequestAssetTableContainer />
-      <RequestAssetJustificationContainer />
-    </div>
-  );
+  return <div className={(classes.container, classes.sidebar)}></div>;
 };
 export default RequestAsset;
+// <RequestAssetTableContainer />
+// <RequestAssetJustificationContainer />
