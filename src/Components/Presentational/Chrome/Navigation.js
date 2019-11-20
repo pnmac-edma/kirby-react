@@ -12,6 +12,9 @@ import RequestListItem from '../../Scenes/SideNavigation/RequestListItem/Request
 import KeysListItem from '../../Scenes/SideNavigation/KeysListItem/KeysListItem';
 import AwsAthenaListItem from '../../Scenes/SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
 import AvatarListItem from '../../Scenes/SideNavigation/AvatarListItem/AvatarListItem';
+//import SearchResultContainer from './Components/Scenes/SearchResults/SearchResult/SearchResult-Container';
+import RequestAssetsContainer from '../../Scenes/RequestAssets/RequestAsset/RequestAsset-Container';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const navWidth = 250;
 
@@ -98,9 +101,21 @@ const Navigation = () => {
       </Drawer>
       <main>
         <PageWrapper />
+        <Switch>
+          <Route exact path="/" component={PageWrapper} />
+          <Route path="/RequestAsset" component={RequestAssetsContainer} />
+        </Switch>
       </main>
     </div>
   );
 };
 
 export default Navigation;
+
+// <main>
+// <PageWrapper />
+// <Switch>
+//   <Route exact path='/' component={PageWrapper} />
+//   <Route path='/RequestAsset' component={RequestAssetsContainer} />
+// </Switch>
+// </main>

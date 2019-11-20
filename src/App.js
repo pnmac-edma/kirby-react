@@ -66,10 +66,6 @@ export default function App() {
       <div className="App">
         <CssBaseline />
         <Navigation themeToggle={toggleDarkMode} />
-        <Switch>
-          <Route exact path="/" component={SearchResultContainer} />
-          <Route path="/RequestAsset" component={RequestAssetsContainer} />
-        </Switch>
       </div>
     </ThemeProvider>
   );

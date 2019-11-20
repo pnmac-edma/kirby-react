@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -21,19 +22,21 @@ const CheckBoxButton = props => {
 
   return (
     <React.Fragment>
-      <Button
-        color="primary"
-        variant="contained"
-        disabled={searchResultChecked.length <= 0}
-        className={classes.button}
-        onClick={() => requestAssetsClick(searchResultChecked)}
-      >
-        {searchResultChecked.length === 1
-          ? `Request ${searchResultChecked.length} Asset`
-          : searchResultChecked.length > 1
-          ? `Request ${searchResultChecked.length} Assets`
-          : 'Request Asset'}
-      </Button>
+      <Link to="/RequestAsset" className={classes.underline}>
+        <Button
+          color="primary"
+          variant="contained"
+          disabled={searchResultChecked.length <= 0}
+          className={classes.button}
+          onClick={() => requestAssetsClick(searchResultChecked)}
+        >
+          {searchResultChecked.length === 1
+            ? `Request ${searchResultChecked.length} Asset`
+            : searchResultChecked.length > 1
+            ? `Request ${searchResultChecked.length} Assets`
+            : 'Request Asset'}
+        </Button>
+      </Link>
     </React.Fragment>
   );
 };
