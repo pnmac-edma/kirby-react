@@ -1,0 +1,14 @@
+// BEM = Block - Element - Modifier
+// .Sidebar = block
+// .Sidebar__title = element
+// .Sidebar__input =- element
+// .Sidebar__checkbox = element
+// .Sidebar__input--is-selected
+
+.sidebar {
+  position: fixed;
+  width: 31.21%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.09);
+  font-size: 0.65em;
+}
