@@ -1,11 +1,11 @@
 import React from 'react';
 import Select, { createFilter } from 'react-select';
 import { makeStyles } from '@material-ui/core/styles';
-import UserList from './UserList';
+import EmployeeList from './EmployeeList';
 
 const useStyles = makeStyles({
   table: {
-    width: 400
+    width: 440
   }
 });
 
@@ -18,7 +18,7 @@ const RequestingFor = props => {
         className={('basic-multi-select', classes.table)}
         filterOption={createFilter({ ignoreAccents: false })}
         isMulti
-        components={{ UserList }}
+        components={{ EmployeeList }}
         options={requestedFor}
         onChange={val => requestSelectValues(val)}
       />

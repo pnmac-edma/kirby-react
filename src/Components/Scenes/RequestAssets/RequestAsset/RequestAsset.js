@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import RequestAssetTableContainer from '../RequestAssetTable/RequestAssetTable-Container';
 import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
 import AppBarContainer from '../../Chrome/AppBar/AppBar-Container';
+import RequestingForContainer from '../RequestingFor/RequestingFor-Container';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 
@@ -35,8 +36,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestAsset = () => {
+const RequestAsset = props => {
+  const { employeeAssetsRequest } = props;
   const classes = useStyles();
+  useEffect(() => {
+    employeeAssetsRequest();
+  }, [employeeAssetsRequest]);
+
   return (
     <>
       <div className={classes.pageContainer}>
@@ -44,6 +50,7 @@ const RequestAsset = () => {
         <div className={classes.sideTable}>
           <RequestAssetTableContainer />
           <RequestAssetJustificationContainer />
+          <RequestingForContainer />
         </div>
         <div className="sidebar">
           <div className={classes.sideBarPostion}>

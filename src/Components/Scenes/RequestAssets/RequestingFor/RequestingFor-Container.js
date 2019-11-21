@@ -3,7 +3,7 @@ import {
   employeeAssetsRequest,
   requestSelectValues
 } from '../../../../Actions/requestAssetActions';
-import RequestedFor from './RequestedFor';
+import RequestingFor from './RequestingFor';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RequestedFor);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestingFor);

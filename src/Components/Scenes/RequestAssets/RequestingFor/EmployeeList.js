@@ -1,8 +1,9 @@
 import React from 'react';
 import { FixedSizeList as List } from 'react-window';
 
-const UserList = props => {
+const EmployeeList = props => {
   const { options, children, maxHeight, getValue } = props;
+  console.log('maxhieght', props);
   const [value] = getValue();
   const initialOffset = options.indexOf(value) * 35;
 
@@ -18,4 +19,4 @@ const UserList = props => {
   );
 };
 
-export default UserList;
+export default EmployeeList;
