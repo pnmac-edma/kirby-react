@@ -4,6 +4,7 @@ import {
   requestSelectValues
 } from '../../../../Actions/requestAssetActions';
 import RequestingFor from './RequestingFor';
+import MenuList from './MenuList';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {
@@ -19,4 +20,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RequestingFor);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  RequestingFor,
+  MenuList
+);
