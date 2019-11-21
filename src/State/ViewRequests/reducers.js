@@ -15,6 +15,7 @@ export const initialState = {
 const userRequestsReducer = (state = initialState.viewRequests, action) => {
   switch (action.type) {
     case types.USER_REQUESTS_FETCH: {
+      console.log('user reqs fetch');
       return { ...state, isLoading: true };
     }
     case types.USER_REQUESTS_SUCCESS: {

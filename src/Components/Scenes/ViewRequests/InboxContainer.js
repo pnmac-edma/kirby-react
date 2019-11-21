@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import {
   Button,
   Checkbox,
@@ -13,6 +14,7 @@ import inboundRequests from '../../../mockData';
 import RequestTableTitle from './RequestTableTitle';
 import RequestTableHeader from './RequestTableHeader';
 import RequestTableFooter from './RequestTableFooter';
+import { approverRequestsFetch } from '../../../State/ViewRequests/actions';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -40,6 +42,37 @@ let reqs = inboundRequests.map(request => {
   };
 });
 
+const requests = [
+  {
+    Id: 2,
+    createddate: '2019-08-24 17:08:45',
+    createdbyemail: 'jonathan.delarosa@pnmac.com',
+    databasename: 'new_api_test',
+    requesttype: 'Database',
+    requestaction: 'Create',
+    requeststatus: 'Approved',
+    updateddate: '2019-08-24 17:08:56',
+    updatedbyemail: null,
+    approver: 'jonathan.delarosa@pnmac.com',
+    requestdata:
+      '{"owner": "jonathan.delarosa@pnmac.com", "kw": {}, "mod_id": null, "gov": true, "updatedbyemail": "jonathan.delarosa@pnmac.com", "updateddate": null, "sensitivity": "non-sensitive", "justification": "test", "description": "test", "domain": "demo_jon", "databasename": "new_api_test", "createdbyemail": "jonathan.delarosa@pnmac.com"}'
+  },
+  {
+    Id: 3,
+    createddate: '2019-08-26 00:42:29',
+    createdbyemail: 'jonathan.delarosa@pnmac.com',
+    databasename: 'test1',
+    requesttype: 'Database',
+    requestaction: 'Create',
+    requeststatus: 'Approved',
+    updateddate: '2019-08-26 00:43:10',
+    updatedbyemail: null,
+    approver: 'jonathan.delarosa@pnmac.com',
+    requestdata:
+      '{"owner": "jonathan.delarosa@pnmac.com", "kw": {}, "mod_id": null, "gov": true, "updatedbyemail": "jonathan.delarosa@pnmac.com", "updateddate": null, "sensitivity": "non-sensitive", "justification": "sfdg", "description": "dfgertg", "domain": "demo_jon", "databasename": "test1", "createdbyemail": "jonathan.delarosa@pnmac.com"}'
+  }
+];
+
 const InboxContainer = props => {
   const classes = useStyles();
   const [order, setOrder] = useState('asc');
@@ -47,6 +80,13 @@ const InboxContainer = props => {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const { approverRequestsFetch } = props;
+
+  useEffect(() => {
+    console.log('effect!');
+    approverRequestsFetch();
+  });
 
   const tableColumns = [
     { name: 'Request', id: 0 },
@@ -181,4 +221,17 @@ const InboxContainer = props => {
   );
 };
 
-export default InboxContainer;
+const mapStateToProps = ({ searchResult }) => {
+  return {
+    searchInput: searchResult.searchInput,
+    isSearchClicked: searchResult.isSearchClicked
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    approverRequestsFetch: () => dispatch(approverRequestsFetch())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InboxContainer);
