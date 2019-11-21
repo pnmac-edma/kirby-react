@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import * as types from './types';
 
 export const initialState = {
@@ -59,58 +58,5 @@ const viewRequestsReducer = (state = initialState.viewRequests, action) => {
       return state;
   }
 };
-
-// const approverRequestsReducer = (state = initialState.viewRequests, action) => {
-//   switch (action.type) {
-//     case types.APPROVER_REQUESTS_FETCH: {
-//       return { ...state, isLoading: true };
-//     }
-//     case types.APPROVER_REQUESTS_SUCCESS: {
-//       return { ...state, outboundRequests: action.payload };
-//     }
-//     case types.APPROVER_REQUESTS_FAILURE: {
-//       return { ...state, error: action.payload };
-//     }
-//     default:
-//       return state;
-//   }
-// };
-
-// const pendingRequestsReducer = (state = initialState.viewRequests, action) => {
-//   switch (action.type) {
-//     case types.PENDING_REQUESTS_FETCH: {
-//       return { ...state, isLoading: true };
-//     }
-//     case types.PENDING_REQUESTS_SUCCESS: {
-//       return { ...state, outboundRequests: action.payload };
-//     }
-//     case types.PENDING_REQUESTS_FAILURE: {
-//       return { ...state, error: action.payload };
-//     }
-//     default:
-//       return state;
-//   }
-// };
-
-// const selectedRequestsReducer = (state = initialState.viewRequests, action) => {
-//   switch (action.type) {
-//     case types.SELECT_REQUEST: {
-//       return {
-//         ...state,
-//         selectedRequests: [...state.selectedRequests, action.payload]
-//       };
-//     }
-//     case types.UNSELECT_REQUEST: {
-//       return {
-//         ...state,
-//         selectedRequests: state.selectedRequests.filter(
-//           request => request.id !== action.payload
-//         )
-//       };
-//     }
-//     default:
-//       return state;
-//   }
-// };
 
 export default viewRequestsReducer;
