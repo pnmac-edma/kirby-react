@@ -1,10 +1,10 @@
 import * as types from './types';
+import { takeEvery, put, call } from 'redux-saga/effects';
 import {
   getUserRequests,
   getApproverRequests,
   getPendingRequests
 } from './api';
-import { takeEvery, put, call } from 'redux-saga/effects';
 
 function* handleUserRequests(action) {
   try {

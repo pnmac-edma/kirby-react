@@ -12,7 +12,7 @@ export const initialState = {
   }
 };
 
-const userRequestsReducer = (state = initialState, action) => {
+const userRequestsReducer = (state = initialState.viewRequests, action) => {
   switch (action.type) {
     case types.USER_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
@@ -28,7 +28,7 @@ const userRequestsReducer = (state = initialState, action) => {
   }
 };
 
-const approverRequestsReducer = (state = initialState, action) => {
+const approverRequestsReducer = (state = initialState.viewRequests, action) => {
   switch (action.type) {
     case types.APPROVER_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
@@ -44,7 +44,7 @@ const approverRequestsReducer = (state = initialState, action) => {
   }
 };
 
-const pendingRequestsReducer = (state = initialState, action) => {
+const pendingRequestsReducer = (state = initialState.viewRequests, action) => {
   switch (action.type) {
     case types.PENDING_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
@@ -60,7 +60,7 @@ const pendingRequestsReducer = (state = initialState, action) => {
   }
 };
 
-const selectedRequestsReducer = (state = initialState, action) => {
+const selectedRequestsReducer = (state = initialState.viewRequests, action) => {
   switch (action.type) {
     case types.SELECT_REQUEST: {
       return {
