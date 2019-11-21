@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
+import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -28,7 +29,12 @@ const PageWrapper = ({ isSearchClicked }) => {
 
       <Switch>
         <Route exact path="/" component={Splash} />
-        <Route path="/Search" component={SearchResultsContainer} />
+        <Route exact path="/search" component={SearchResultsContainer} />
+        <Route path="/search/access" component={RequestAssetContainer} />
+        <Route
+          path="/requests/archive"
+          component={null /* will implement later */}
+        />
       </Switch>
 
       {isSearchClicked ? <SearchContainer /> : null}

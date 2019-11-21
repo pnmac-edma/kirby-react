@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Button,
   TextField,
@@ -18,6 +18,16 @@ const SearchInput = props => {
     handleKeyPress,
     isSearchClicked
   } = props;
+
+  const history = useHistory();
+
+  const keyPressWrapper = e => {
+    if (e.key === 'Enter') {
+      searchResultRequest();
+      history.push('/search');
+    }
+  };
+
   return (
     <React.Fragment>
       <Dialog open={isSearchClicked} aria-labelledby="form-dialog-title">
@@ -35,9 +45,7 @@ const SearchInput = props => {
             value={searchInput}
             onChange={e => searchHandleInput(e)}
             fullWidth
-            onKeyPress={e =>
-              handleKeyPress(e.key === 'Enter' ? searchResultRequest() : null)
-            }
+            onKeyPress={e => handleKeyPress(keyPressWrapper(e))}
           />
         </DialogContent>
         <DialogActions>
@@ -45,7 +53,7 @@ const SearchInput = props => {
             onClick={() => searchResultRequest()}
             color="primary"
             component={Link}
-            to="Search"
+            to="/search"
           >
             Close
           </Button>

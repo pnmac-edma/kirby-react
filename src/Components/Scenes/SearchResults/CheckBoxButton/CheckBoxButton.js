@@ -16,24 +16,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CheckBoxButton = props => {
-  const classes = useStyles();
   const { searchResultCopy, requestAssetsClick } = props;
+  const classes = useStyles();
   const searchResultChecked = searchResultCopy.filter(obj => obj.checked);
-  const searchResultLenght = searchResultChecked.length;
+  const searchResultLength = searchResultChecked.length;
   const buttonText =
-    searchResultLenght === 1
-      ? `Request ${searchResultLenght} Asset`
-      : searchResultLenght > 1
-      ? `Request ${searchResultLenght} Assets`
+    searchResultLength === 1
+      ? `Request ${searchResultLength} Asset`
+      : searchResultLength > 1
+      ? `Request ${searchResultLength} Assets`
       : 'Request Asset';
 
   return (
     <>
-      <Link to="/RequestAsset" className={classes.underline}>
+      <Link to="/search/access" className={classes.underline}>
         <Button
           color="primary"
           variant="contained"
-          disabled={searchResultLenght <= 0}
+          disabled={searchResultLength <= 0}
           className={classes.button}
           onClick={() => requestAssetsClick(searchResultChecked)}
         >
