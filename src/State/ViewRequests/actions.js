@@ -38,18 +38,18 @@ export const approverRequestsFailure = error => {
 
 export const pendingRequestsFetch = () => {
   return {
-    type: types.SENT_REQUESTS_FETCH
+    type: types.PENDING_REQUESTS_FETCH
   };
 };
 export const pendingRequestsSuccess = response => {
   return {
-    type: types.SENT_REQUESTS_SUCCESS,
+    type: types.PENDING_REQUESTS_SUCCESS,
     payload: response
   };
 };
 export const pendingRequestsFailure = error => {
   return {
-    type: types.SENT_REQUESTS_FAILURE,
+    type: types.PENDING_REQUESTS_FAILURE,
     payload: error
   };
 };
