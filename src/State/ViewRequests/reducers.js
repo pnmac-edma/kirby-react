@@ -72,10 +72,12 @@ const selectedRequestsReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedRequests: selectedRequests.filter(
-          request => request.id !== action.payload.requestId
+          request => request.id !== action.payload
         )
       };
     }
+    default:
+      return state;
   }
 };
 

@@ -61,9 +61,9 @@ export const selectRequest = request => {
   };
 };
 
-export const unselectRequest = request => {
+export const unselectRequest = requestId => {
   return {
     type: types.SELECT_REQUEST,
-    payload: request
+    payload: requestId
   };
 };
