@@ -29,12 +29,13 @@ const PageWrapper = ({ isSearchClicked }) => {
 
       <Switch>
         <Route exact path="/" component={Splash} />
+        {/* search pages */}
         <Route exact path="/search" component={SearchResultsContainer} />
         <Route path="/search/access" component={RequestAssetContainer} />
-        <Route
-          path="/requests/archive"
-          component={null /* will implement later */}
-        />
+        {/* requests pages - will be implemented and hooked in soon */}
+        <Route exact path="/requests" component={null} />
+        <Route path="/requests/archive" component={null} />
+        <Route path="/requests/sent" component={null} />
       </Switch>
 
       {isSearchClicked ? <SearchContainer /> : null}
