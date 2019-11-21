@@ -8,10 +8,18 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const sagaMiddleware = createSagaMiddleware();
 
+const logger = store => next => action => {
+  console.log('CURRENT STATE:', store.getState());
+  console.log('DISPATCHING:', action);
+  let result = next(action);
+  console.log('NEXT STATE:', store.getState());
+  return result;
+};
+
 const store = createStore(
   rootReducer,
   initialState,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
+  composeEnhancers(applyMiddleware(sagaMiddleware, logger))
 );
 
 sagaMiddleware.run(rootSaga);

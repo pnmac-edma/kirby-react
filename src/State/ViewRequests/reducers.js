@@ -65,13 +65,13 @@ const selectedRequestsReducer = (state = initialState, action) => {
     case types.SELECT_REQUEST: {
       return {
         ...state,
-        selectedRequests: [...selectedRequests, action.payload]
+        selectedRequests: [...state.selectedRequests, action.payload]
       };
     }
     case types.UNSELECT_REQUEST: {
       return {
         ...state,
-        selectedRequests: selectedRequests.filter(
+        selectedRequests: state.selectedRequests.filter(
           request => request.id !== action.payload
         )
       };
