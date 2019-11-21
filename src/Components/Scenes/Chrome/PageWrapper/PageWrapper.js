@@ -1,11 +1,11 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
-import TableSectionContainer from '../../SearchResults/TableSection/TableSection-Container';
-import TableSkeleton from '../../SearchResults/TableSkeleton/TableSkeleton';
 import SearchContainer from '../Search/Search-Container';
+import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -19,23 +19,18 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = props => {
-  const {
-    searchResultCopy,
-    isLoading,
-    displaySearchResult,
-    isSearchClicked
-  } = props;
+const PageWrapper = ({ isSearchClicked }) => {
   const classes = pageContainerStyle();
+
   return (
     <div className={classes.pageContainer}>
       <AppBarContainer />
-      {isLoading ? (
-        <TableSkeleton />
-      ) : displaySearchResult ? (
-        <TableSectionContainer />
-      ) : null}
-      {!searchResultCopy.length > 0 ? <Splash /> : null}
+
+      <Switch>
+        <Route exact path="/" component={Splash} />
+        <Route path="/Search" component={SearchResultsContainer} />
+      </Switch>
+
       {isSearchClicked ? <SearchContainer /> : null}
     </div>
   );

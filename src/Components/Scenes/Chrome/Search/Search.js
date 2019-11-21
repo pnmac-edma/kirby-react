@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   TextField,
@@ -40,7 +41,12 @@ const SearchInput = props => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => searchResultRequest()} color="primary">
+          <Button
+            onClick={() => searchResultRequest()}
+            color="primary"
+            component={Link}
+            to="Search"
+          >
             Close
           </Button>
         </DialogActions>

@@ -2,7 +2,7 @@ import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles, IconButton } from '@material-ui/core';
 
-const searchModalStyles = makeStyles(theme => ({
+const searchButtonStyles = makeStyles(theme => ({
   iconButton: {
     position: 'absolute',
     right: 0,
@@ -10,9 +10,9 @@ const searchModalStyles = makeStyles(theme => ({
   }
 }));
 
-const SearchModal = props => {
+const SearchButton = props => {
   const { handleSearchClick } = props;
-  const classes = searchModalStyles();
+  const classes = searchButtonStyles();
 
   return (
     <div>
@@ -27,4 +27,4 @@ const SearchModal = props => {
   );
 };
 
-export default SearchModal;
+export default SearchButton;
