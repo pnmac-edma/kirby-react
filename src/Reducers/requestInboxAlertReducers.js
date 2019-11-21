@@ -9,10 +9,11 @@ const requestInboxAlertReducers = (
       return { ...state };
     }
     case 'REQUEST_INBOX_ALERT_SUCCESS': {
-      console.log(
-        action.payload.filter(alerts => alerts.govstatus === 'Pending').length
-      );
-      return { ...state, requestInboxAlert: action.payload };
+      const newAlerts = action.payload.filter(
+        alerts => alerts.govstatus === 'Pending'
+      ).length;
+
+      return { ...state, alert: newAlerts };
     }
     default:
       return state;

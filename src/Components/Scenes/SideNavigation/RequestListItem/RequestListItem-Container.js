@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import RequestListItem from './RequestListItem';
 import { requestInboxAlert } from '../../../../Actions/requestInboxAlertActions';
 
-const mapStateToProps = () => {
+const mapStateToProps = state => {
   return {
-    requestListItemsName: ['Inbox', 'Sent', 'Archive']
+    requestListItemsName: ['Inbox', 'Sent', 'Archive'],
+    newAlerts: state.requestInboxAlert.alert
   };
 };
 const mapDispatchToProps = dispatch => {

@@ -28,10 +28,12 @@ const requestListItem = makeStyles(theme => ({
 const RequestListItem = ({
   closeAllArrows,
   requestListItemsName,
-  requestInboxAlert
+  requestInboxAlert,
+  newAlerts
 }) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
+  const [newAlert, setAlert] = useState([]);
 
   useEffect(() => {
     if (closeAllArrows === false && openIconThree === true) {
@@ -39,13 +41,20 @@ const RequestListItem = ({
     }
   }, [closeAllArrows, openIconThree]);
 
+  useEffect(() => {
+    requestInboxAlert();
+    setAlert(newAlerts);
+  }, [requestInboxAlert, newAlerts]);
+
   const requestListItemText = requestListItemsName.map(text => (
     <ListItem key={text} button className="Nav__nested-item">
       <ListItemText className="Nav__text">
         {text === 'Inbox' ? (
           <>
             {text}
-            <span className={classes.newInbox}> (3 new)</span>
+            {newAlert > 0 ? (
+              <span className={classes.newInbox}> ({newAlert} new)</span>
+            ) : null}
           </>
         ) : (
           text
@@ -67,14 +76,13 @@ const RequestListItem = ({
       >
         <ArrowDropDown className="Nav__arrow" />
         <InboxOutlined className="Nav__icon" />
-        <div className={classes.newRequestCircle}></div>
+        {newAlert > 0 ? <div className={classes.newRequestCircle}></div> : null}
         <ListItemText className="Nav__text">Requests</ListItemText>
       </ListItem>
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {requestListItemText}
         </List>
-        <button onClick={() => requestInboxAlert()}>Test</button>
       </Collapse>
     </>
   );
