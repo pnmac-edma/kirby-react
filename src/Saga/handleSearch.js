@@ -8,14 +8,13 @@ import {
 import { searchResultApiCall } from '../Api/searchResult';
 
 function* handleSearch() {
-  const searchInput = yield select(getSearchInput);
-  if (searchInput) {
-    try {
-      const response = yield call(searchResultApiCall, searchInput);
-      yield put({ type: types.SEARCH_RESULT_SUCCESS, payload: response });
-    } catch (error) {
-      yield put({ type: types.SEARCH_RESULT_FAILURE, payload: error });
-    }
+  const searchInput = yield select(getSearchInput) || '';
+
+  try {
+    const response = yield call(searchResultApiCall, searchInput);
+    yield put({ type: types.SEARCH_RESULT_SUCCESS, payload: response });
+  } catch (error) {
+    yield put({ type: types.SEARCH_RESULT_FAILURE, payload: error });
   }
 }
 

@@ -10,19 +10,21 @@ import NotFoundFilterContainer from '../NotFoundFilter/NotFoundFilter-Container'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%'
+    width: '96%',
+    marginLeft: 8,
+    marginRight: 8
   },
   paper: {
     marginTop: theme.spacing(3),
     width: '100%',
     overflowX: 'auto',
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(4)
   },
   table: {
-    minWidth: 656
+    minWidth: 6
   },
   tableWrapper: {
-    maxHeight: 800,
+    maxHeight: 776,
     overflowX: 'auto'
   }
 }));

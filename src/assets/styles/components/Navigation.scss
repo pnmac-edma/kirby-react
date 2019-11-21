@@ -70,7 +70,7 @@
 
   &:hover:before {
     content: '';
-    background: $color-b-300;
+    background: $color-b-400;
   }
 
   &.Nav__item--is-open {
@@ -94,14 +94,14 @@
 }
 
 .Nav .Nav__item .Nav__icon {
-  fill: $color-g-300;
+  fill: $color-g-400;
   width: 20px;
   min-width: 20px;
   margin-right: 1.5rem;
   transition: all 0.2s ease-in-out;
 
   & path {
-    fill: $color-g-300;
+    fill: $color-g-400;
     transition: all 0.2s ease-in-out;
   }
 }
@@ -115,7 +115,7 @@
 }
 
 .Nav .Nav__item .Nav__arrow {
-  fill: $color-g-300;
+  fill: $color-g-400;
   width: 16px;
   position: absolute;
   left: 2px;
