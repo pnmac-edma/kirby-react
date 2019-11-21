@@ -12,7 +12,7 @@ export const initialState = {
   }
 };
 
-const userRequestsReducer = (state = initialState.viewRequests, action) => {
+const viewRequestsReducer = (state = initialState.viewRequests, action) => {
   switch (action.type) {
     case types.USER_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
@@ -23,13 +23,6 @@ const userRequestsReducer = (state = initialState.viewRequests, action) => {
     case types.USER_REQUESTS_FAILURE: {
       return { ...state, error: action.payload };
     }
-    default:
-      return state;
-  }
-};
-
-const approverRequestsReducer = (state = initialState.viewRequests, action) => {
-  switch (action.type) {
     case types.APPROVER_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
     }
@@ -39,13 +32,6 @@ const approverRequestsReducer = (state = initialState.viewRequests, action) => {
     case types.APPROVER_REQUESTS_FAILURE: {
       return { ...state, error: action.payload };
     }
-    default:
-      return state;
-  }
-};
-
-const pendingRequestsReducer = (state = initialState.viewRequests, action) => {
-  switch (action.type) {
     case types.PENDING_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
     }
@@ -55,13 +41,6 @@ const pendingRequestsReducer = (state = initialState.viewRequests, action) => {
     case types.PENDING_REQUESTS_FAILURE: {
       return { ...state, error: action.payload };
     }
-    default:
-      return state;
-  }
-};
-
-const selectedRequestsReducer = (state = initialState.viewRequests, action) => {
-  switch (action.type) {
     case types.SELECT_REQUEST: {
       return {
         ...state,
@@ -81,11 +60,57 @@ const selectedRequestsReducer = (state = initialState.viewRequests, action) => {
   }
 };
 
-const reducer = combineReducers({
-  userRequests: userRequestsReducer,
-  approverRequests: approverRequestsReducer,
-  pendingRequests: pendingRequestsReducer,
-  selectedRequests: selectedRequestsReducer
-});
+// const approverRequestsReducer = (state = initialState.viewRequests, action) => {
+//   switch (action.type) {
+//     case types.APPROVER_REQUESTS_FETCH: {
+//       return { ...state, isLoading: true };
+//     }
+//     case types.APPROVER_REQUESTS_SUCCESS: {
+//       return { ...state, outboundRequests: action.payload };
+//     }
+//     case types.APPROVER_REQUESTS_FAILURE: {
+//       return { ...state, error: action.payload };
+//     }
+//     default:
+//       return state;
+//   }
+// };
 
-export default reducer;
+// const pendingRequestsReducer = (state = initialState.viewRequests, action) => {
+//   switch (action.type) {
+//     case types.PENDING_REQUESTS_FETCH: {
+//       return { ...state, isLoading: true };
+//     }
+//     case types.PENDING_REQUESTS_SUCCESS: {
+//       return { ...state, outboundRequests: action.payload };
+//     }
+//     case types.PENDING_REQUESTS_FAILURE: {
+//       return { ...state, error: action.payload };
+//     }
+//     default:
+//       return state;
+//   }
+// };
+
+// const selectedRequestsReducer = (state = initialState.viewRequests, action) => {
+//   switch (action.type) {
+//     case types.SELECT_REQUEST: {
+//       return {
+//         ...state,
+//         selectedRequests: [...state.selectedRequests, action.payload]
+//       };
+//     }
+//     case types.UNSELECT_REQUEST: {
+//       return {
+//         ...state,
+//         selectedRequests: state.selectedRequests.filter(
+//           request => request.id !== action.payload
+//         )
+//       };
+//     }
+//     default:
+//       return state;
+//   }
+// };
+
+export default viewRequestsReducer;

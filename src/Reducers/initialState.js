@@ -1,3 +1,7 @@
+import { initialState as viewRequestsState } from '../State/ViewRequests/reducers';
+
+const viewRequests = viewRequestsState.viewRequests;
+
 const initialState = {
   searchResult: {
     searchInput: '',
@@ -36,7 +40,8 @@ const initialState = {
     selectedAll: false,
     requestedFor: [],
     selectedOption: []
-  }
+  },
+  viewRequests
 };
 
 export default initialState;

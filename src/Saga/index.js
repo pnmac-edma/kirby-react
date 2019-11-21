@@ -4,5 +4,5 @@ import requestAsset from './requestAsset';
 import { viewRequestsSagas } from '../State/ViewRequests/index';
 
 export default function* rootSaga() {
-  yield all([handleSearch(), requestAsset(), viewRequestsSagas()]);
+  yield all([handleSearch(), requestAsset(), viewRequestsSagas]);
 }

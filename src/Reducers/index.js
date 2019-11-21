@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import searchResultReducer from './searchResultReducer';
 import requestAssetsReducer from './requestAssetsReducers';
-import viewRequestsReducer from '../State/ViewRequests/index';
+import viewRequestsReducer from '../State/ViewRequests/reducers';
 
 const rootReducer = combineReducers({
   searchResult: searchResultReducer,
