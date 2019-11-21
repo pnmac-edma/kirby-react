@@ -53,3 +53,17 @@ export const pendingRequestsFailure = error => {
     payload: error
   };
 };
+
+export const selectRequest = request => {
+  return {
+    type: types.SELECT_REQUEST,
+    payload: request
+  };
+};
+
+export const unselectRequest = request => {
+  return {
+    type: types.SELECT_REQUEST,
+    payload: request
+  };
+};
