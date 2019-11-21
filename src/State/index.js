@@ -1,14 +1,16 @@
-// gathers all reducers and sagas to make a rootSaga and rootReducer
-import viewRequestsReducer, { viewRequestsSagas } from './ViewRequests/index';
-import { all } from 'redux-saga/effects';
-import { combineReducers } from 'redux';
+// If we implement this structure, this would gather all reducers and sagas to make a rootSaga and rootReducer
+// for now, we are just importing our reducers and sagas into the current rootSaga and rootReducer
 
-function* rootSaga() {
-  yield all([viewRequestsSagas]);
-}
+// import viewRequestsReducer, { viewRequestsSagas } from './ViewRequests/index';
+// import { all } from 'redux-saga/effects';
+// import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({
-  sentRequestsReducer
-});
+// function* rootSaga() {
+//   yield all([viewRequestsSagas]);
+// }
 
-export { rootSaga, rootReducer };
+// const rootReducer = combineReducers({
+//   sentRequestsReducer
+// });
+
+// export { rootSaga, rootReducer };
