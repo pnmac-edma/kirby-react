@@ -5,14 +5,15 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    background: '#e6e6e6'
   }
 }));
 
 const Justification = props => {
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <div>
       <TextField
         className={classes.textField}
         placeholder="Request Justification"
@@ -22,7 +23,7 @@ const Justification = props => {
         rowsMax={6}
         variant="filled"
       />
-    </React.Fragment>
+    </div>
   );
 };
 

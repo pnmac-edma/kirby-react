@@ -31,8 +31,7 @@ const useStyles = makeStyles(theme => ({
     color: 'black'
   },
   title: {
-    flex: '0 0 auto',
-    width: '100%'
+    width: 'max-content'
   }
 }));
 
@@ -53,7 +52,7 @@ const RequestAsset = props => {
         </div>
         <div className="sidebar">
           <div className={classes.sideBarPostion}>
-            <h1>Request Assets</h1>
+            <h1 className={classes.title}>Request Assets</h1>
             <RequestingForContainer />
           </div>
         </div>
