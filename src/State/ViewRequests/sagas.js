@@ -3,7 +3,7 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import {
   getUserRequests,
   getApproverRequests,
-  getPendingRequests
+  getGovernanceRequests
 } from './api';
 
 function* handleUserRequests(action) {
@@ -24,17 +24,17 @@ function* handleApproverRequests(action) {
   }
 }
 
-function* handlePendingRequests(action) {
+function* handleGovernanceRequests(action) {
   try {
-    const response = yield call(getPendingRequests, ...action.payload);
-    yield put({ type: types.PENDING_REQUESTS_SUCCESS, payload: response });
+    const response = yield call(getGovernanceRequests, ...action.payload);
+    yield put({ type: types.GOVERNANCE_REQUESTS_SUCCESS, payload: response });
   } catch (error) {
-    yield put({ type: types.PENDING_REQUESTS_FAILURE, payload: error });
+    yield put({ type: types.GOVERNANCE_REQUESTS_FAILURE, payload: error });
   }
 }
 
 export default function* actionWatcher() {
   yield takeEvery(types.USER_REQUESTS_FETCH, handleUserRequests);
   yield takeEvery(types.APPROVER_REQUESTS_FETCH, handleApproverRequests);
-  yield takeEvery(types.PENDING_REQUESTS_FETCH, handlePendingRequests);
+  yield takeEvery(types.GOVERNANCE_REQUESTS_FETCH, handleGovernanceRequests);
 }

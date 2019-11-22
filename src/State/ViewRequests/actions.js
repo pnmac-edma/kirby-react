@@ -36,35 +36,25 @@ export const approverRequestsFailure = error => {
     payload: error
   };
 };
-
-export const pendingRequestsFetch = () => {
+export const governanceRequestsFetch = () => {
   return {
-    type: types.PENDING_REQUESTS_FETCH
+    type: types.GOVERNANCE_REQUESTS_FETCH
   };
 };
-export const pendingRequestsSuccess = response => {
+export const governanceRequestsSuccess = response => {
   return {
-    type: types.PENDING_REQUESTS_SUCCESS,
+    type: types.GOVERNANCE_REQUESTS_SUCCESS,
     payload: response
   };
 };
-export const pendingRequestsFailure = error => {
+export const governanceRequestsFailure = error => {
   return {
-    type: types.PENDING_REQUESTS_FAILURE,
+    type: types.GOVERNANCE_REQUESTS_FAILURE,
     payload: error
   };
 };
-
-export const selectRequest = request => {
+export const getArchivedRequests = () => {
   return {
-    type: types.SELECT_REQUEST,
-    payload: request
-  };
-};
-
-export const unselectRequest = requestId => {
-  return {
-    type: types.SELECT_REQUEST,
-    payload: requestId
+    type: types.GET_ARCHIVED_REQUESTS
   };
 };
