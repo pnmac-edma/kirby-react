@@ -8,54 +8,38 @@ import RequestTableBody from './RequestTableBody';
 
 const tableStyles = makeStyles(theme => ({
   paper: {
-    width: '96%',
-    marginLeft: 8,
-    marginRight: 8
+    marginLeft: 12,
+    marginRight: 12
   },
   table: {
     minWidth: 6
   },
   tableWrapper: {
-    maxHeight: 776,
+    maxHeight: 500,
     overflowX: 'auto',
     borderRadius: 'inherit'
   }
 }));
 
 const RequestTable = props => {
-  const { tableColumns, requests } = props;
+  const {
+    tableColumns,
+    requests,
+    selected,
+    footerButtonText,
+    handleFooterButtonClick,
+    handleToggleAllCheckbox,
+    handleToggleCheckbox
+  } = props;
 
   const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState(0);
-  const [selected, setSelected] = useState([]);
+  const [orderBy, setOrderBy] = useState(tableColumns[0].property);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const classes = tableStyles();
 
   const isSelected = id => selected.indexOf(id) !== -1;
-
-  const handleToggleCheckbox = (event, id) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [...selected];
-
-    if (selectedIndex === -1) {
-      newSelected.push(id);
-    } else {
-      newSelected.splice(selectedIndex, 1);
-    }
-    setSelected(newSelected);
-  };
-
-  const handleToggleAllCheckbox = event => {
-    if (selected.length === 0) {
-      const newSelecteds = requests.map(request => request.Id);
-      setSelected(newSelecteds);
-      return;
-    } else {
-      setSelected([]);
-    }
-  };
 
   const handleSortClick = (event, property) => {
     const isDesc = orderBy === property && order === 'desc';
@@ -77,6 +61,7 @@ const RequestTable = props => {
             rowCount={requests.length}
           />
           <RequestTableBody
+            columns={tableColumns}
             requests={requests}
             isSelected={isSelected}
             page={page}
@@ -97,8 +82,13 @@ const RequestTable = props => {
           setPage(0);
         }}
       >
-        <Button variant="contained" color="primary">
-          Custom Button
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleFooterButtonClick}
+          disabled={selected.length === 0}
+        >
+          {`archive ${selected.length} requests`}
         </Button>
       </RequestTableFooter>
     </Paper>

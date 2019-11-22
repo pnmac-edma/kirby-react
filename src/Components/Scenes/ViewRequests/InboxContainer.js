@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 import RequestTableTitle from './RequestTableTitle';
 import RequestTable from './RequestTable';
 import { approverRequestsFetch } from '../../../State/ViewRequests/actions';
@@ -10,37 +11,56 @@ const InboxContainer = props => {
 
   // Fetch all inbound requests given for approver's email
   useEffect(() => {
-    approverRequestsFetch('eric.barrow@pnmac.com');
+    approverRequestsFetch('jonathan.delarosa@pnmac.com');
   }, []);
-
-  // TODO: Move this to the reducer or saga call
-  // What data do we need to keep from this?
-
-  // const reqs = requests.map(request => {
-  //   const reqData = JSON.parse(request.requestdata);
-  //   return {
-  //     ...request,
-  //     databasename: request.databasename || '',
-  //     requestdata: reqData,
-  //     description: reqData.description || ''
-  //   };
-  // });
 
   const reqs = transformRequests(requests);
 
   console.log(reqs);
 
   const tableColumns = [
-    { name: 'Request', id: 0 },
-    { name: 'Description', id: 1 },
-    { name: 'Status', id: 2 },
-    { name: 'Date Requested', id: 3 }
+    { name: 'Request', property: 'databasename' },
+    { name: 'Description', property: 'description' },
+    { name: 'Status', property: 'requeststatus' },
+    { name: 'Date Requested', property: 'createddate' }
   ];
+
+  const [selected, setSelected] = useState([]);
+
+  const handleToggleCheckbox = (event, id) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected = [...selected];
+
+    if (selectedIndex === -1) {
+      newSelected.push(id);
+    } else {
+      newSelected.splice(selectedIndex, 1);
+    }
+    setSelected(newSelected);
+  };
+
+  const handleToggleAllCheckbox = event => {
+    if (selected.length === 0) {
+      const newSelecteds = requests.map(request => request.Id);
+      setSelected(newSelecteds);
+      return;
+    } else {
+      setSelected([]);
+    }
+  };
 
   return (
     <>
       <RequestTableTitle title="Requests Inbox" />
-      <RequestTable tableColumns={tableColumns} requests={reqs} />
+      <RequestTable
+        tableColumns={tableColumns}
+        requests={reqs}
+        selected={selected}
+        footerButtonText={`${selected.length} requests`}
+        handleFooterButtonClick={() => alert('hello!')}
+        handleToggleCheckbox={handleToggleCheckbox}
+        handleToggleAllCheckbox={handleToggleAllCheckbox}
+      />
     </>
   );
 };

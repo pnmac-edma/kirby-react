@@ -11,8 +11,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const headerStyles = makeStyles(theme => ({
   cell: {
-    backgroundColor: theme.palette.common.white
-  }
+    backgroundColor: theme.palette.common.white,
+    whiteSpace: 'nowrap'
+  },
+  row: {}
 }));
 
 const RequestTableHeader = props => {
@@ -37,6 +39,7 @@ const RequestTableHeader = props => {
       <TableRow className={classes.row}>
         <TableCell padding="checkbox" className={classes.cell}>
           <Checkbox
+            color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
             onClick={onSelectAllClick}
@@ -47,13 +50,13 @@ const RequestTableHeader = props => {
           <TableCell
             className={classes.cell}
             key={col.id}
-            sortDirection={orderBy === col.id ? order : false}
+            sortDirection={orderBy === col.property ? order : false}
           >
             <TableSortLabel
               className={classes.label}
-              active={orderBy === col.id}
+              active={orderBy === col.property}
               direction={order}
-              onClick={createSortHandler(col.id)}
+              onClick={createSortHandler(col.property)}
             >
               <strong>{col.name}</strong>
             </TableSortLabel>
@@ -75,7 +78,7 @@ RequestTableHeader.propTypes = {
   onSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-  orderBy: PropTypes.number.isRequired,
+  orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired
 };
 

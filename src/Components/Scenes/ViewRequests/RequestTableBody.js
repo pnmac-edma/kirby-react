@@ -1,5 +1,7 @@
 import React from 'react';
 import { Checkbox, TableCell, TableBody, TableRow } from '@material-ui/core';
+import colors from '@edma/design-tokens/js/color';
+import { makeStyles } from '@material-ui/core/styles';
 
 const stableSort = (array, cmp) => {
   const stabilizedThis = array.map((el, index) => [el, index]);
@@ -12,20 +14,13 @@ const stableSort = (array, cmp) => {
 };
 
 const desc = (a, b, orderBy) => {
-  const p = {
-    0: 'databasename',
-    1: 'description',
-    2: 'requeststatus',
-    3: 'createddate'
-  }[orderBy];
-
-  let val1 = a[p];
-  let val2 = b[p];
+  let val1 = a[orderBy];
+  let val2 = b[orderBy];
   if (typeof val1 === 'string' || typeof val2 === 'string') {
     val1 = val1.toLowerCase();
     val2 = val2.toLowerCase();
     // need to convert any date string to date type to sort properly
-    if (p.includes('date')) {
+    if (orderBy.toLowerCase().includes('date')) {
       val1 = new Date(val1);
       val2 = new Date(val2);
     }
@@ -46,7 +41,33 @@ const getSorting = (order, orderBy) => {
 };
 
 const RequestTableBody = props => {
+  const tableStyles = makeStyles(theme => ({
+    cell: {
+      color: theme.palette.primary.dark,
+      fontWeight: 'bold'
+    },
+    firstCol: {
+      minWidth: '15vw',
+      maxWidth: '15vw',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    },
+    descCol: {
+      width: '60%'
+    },
+    statusRejected: {
+      color: colors['r800']
+    },
+    statusPending: {
+      fontStyle: 'italic',
+      color: colors['g600']
+    },
+    selectedRow: {
+      backgroundColor: colors['b50']
+    }
+  }));
   const {
+    columns,
     page,
     rowsPerPage,
     requests,
@@ -55,6 +76,7 @@ const RequestTableBody = props => {
     orderBy,
     handleCheckboxClick
   } = props;
+  const classes = tableStyles();
 
   return (
     <TableBody>
@@ -62,20 +84,38 @@ const RequestTableBody = props => {
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map(request => {
           return (
-            <TableRow key={request.Id}>
+            <TableRow
+              key={request.Id}
+              className={isSelected(request.Id) ? classes.selectedRow : null}
+            >
               <TableCell padding="checkbox">
                 <Checkbox
+                  color="primary"
                   checked={isSelected(request.Id)}
                   onClick={e => handleCheckboxClick(e, request.Id)}
                 />
               </TableCell>
-              {/* TODO: How to make this dynamically choose fields? */}
-              <TableCell align="left">{request.databasename}</TableCell>
-              <TableCell align="left">{request.description}</TableCell>
-              <TableCell align="left">{request.requeststatus}</TableCell>
-              <TableCell align="left" style={{ width: '200px' }}>
-                {request.createddate}
-              </TableCell>
+              {columns.map((col, i) => {
+                let className;
+                if (i === 0) className = classes.firstCol;
+                if (i === 1) className = classes.descCol;
+                if (col.name === 'Status')
+                  className =
+                    request[col.property].toLowerCase() === 'rejected'
+                      ? classes.statusRejected
+                      : request[col.property].toLowerCase() === 'pending'
+                      ? classes.statusPending
+                      : null;
+                return (
+                  <TableCell
+                    className={className}
+                    align="left"
+                    key={request[col.property]}
+                  >
+                    {request[col.property]}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           );
         })}

@@ -13,8 +13,9 @@ const pageContainerStyle = makeStyles(theme => ({
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'stretch',
     backgroundColor: theme.palette.type === 'light' ? 'dark' : 'light',
-    width: '100%',
+    width: 'calc(100% - 56px)', // width of side nav?
     height: '100vh',
     color: color.white
   }
