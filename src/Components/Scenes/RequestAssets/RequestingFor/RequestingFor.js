@@ -3,6 +3,7 @@ import Select, { createFilter } from 'react-select';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuList from './MenuList';
 import { Typography } from '@material-ui/core';
+import fontSize from '@edma/design-tokens/js/fontSize';
 
 const useStyles = makeStyles({
   table: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
 const customStyles = {
   option: (provided, state) => ({
     ...provided,
-    fontSize: 12
+    fontSize: fontSize[0]
   }),
 
   control: (provided, state) => ({
@@ -28,7 +29,7 @@ const customStyles = {
     borderRadius: 0,
     backgroundColor: 'transparent',
     boxShadow: 'none',
-    fontSize: 14
+    fontSize: fontSize[0]
   })
 };
 
