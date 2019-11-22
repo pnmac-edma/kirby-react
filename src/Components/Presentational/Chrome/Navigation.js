@@ -12,8 +12,6 @@ import RequestListItem from '../../Scenes/SideNavigation/RequestListItem/Request
 import KeysListItem from '../../Scenes/SideNavigation/KeysListItem/KeysListItem';
 import AwsAthenaListItem from '../../Scenes/SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
 import AvatarListItem from '../../Scenes/SideNavigation/AvatarListItem/AvatarListItem';
-import RequestAssetsContainer from '../../Scenes/RequestAssets/RequestAsset/RequestAsset-Container';
-import { Switch, Route } from 'react-router-dom';
 
 const navWidth = 250;
 
@@ -100,10 +98,7 @@ const Navigation = () => {
         <AvatarListItem />
       </Drawer>
       <main>
-        <Switch>
-          <Route exact path="/" component={PageWrapper} />
-          <Route path="/RequestAsset" component={RequestAssetsContainer} />
-        </Switch>
+        <PageWrapper />
       </main>
     </div>
   );
