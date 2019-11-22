@@ -36,11 +36,11 @@ const RequestAsset = props => {
       <div className={classes.sideTable}>
         <RequestAssetTableContainer />
         <RequestAssetJustificationContainer />
-        <RequestingForContainer />
       </div>
       <div className="sidebar">
         <div className={classes.sideBarPostion}>
-          <h1>Request Assets</h1>
+          <h1 className={classes.title}>Request Assets</h1>
+          <RequestingForContainer />
         </div>
       </div>
     </>
