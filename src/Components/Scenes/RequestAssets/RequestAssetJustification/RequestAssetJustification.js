@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 const Justification = props => {
   const classes = useStyles();
   return (
-    <div>
+    <React.Fragment>
       <TextField
         className={classes.textField}
         placeholder="Request Justification"
@@ -23,7 +23,7 @@ const Justification = props => {
         rowsMax={6}
         variant="filled"
       />
-    </div>
+    </React.Fragment>
   );
 };
 

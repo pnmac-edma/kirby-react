@@ -24,8 +24,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestAsset = props => {
-  const { employeeAssetsRequest } = props;
+const RequestAsset = ({ employeeAssetsRequest }) => {
   const classes = useStyles();
   useEffect(() => {
     employeeAssetsRequest();
