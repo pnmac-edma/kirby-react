@@ -37,20 +37,20 @@ export const approverRequestsFailure = error => {
   };
 };
 
-export const pendingRequestsFetch = () => {
+export const governanceRequestsFetch = () => {
   return {
-    type: types.PENDING_REQUESTS_FETCH
+    type: types.GOVERNANCE_REQUESTS_FETCH
   };
 };
-export const pendingRequestsSuccess = response => {
+export const governanceRequestsSuccess = response => {
   return {
-    type: types.PENDING_REQUESTS_SUCCESS,
+    type: types.GOVERNANCE_REQUESTS_SUCCESS,
     payload: response
   };
 };
-export const pendingRequestsFailure = error => {
+export const governanceRequestsFailure = error => {
   return {
-    type: types.PENDING_REQUESTS_FAILURE,
+    type: types.GOVERNANCE_REQUESTS_FAILURE,
     payload: error
   };
 };

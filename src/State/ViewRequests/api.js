@@ -27,7 +27,7 @@ export function getApproverRequests(approveremail) {
     .then(error => error);
 }
 
-export function getPendingRequests(pages, size, status) {
+export function getGovernanceRequests(pages, size, status = '') {
   const params = {
     pages,
     size,

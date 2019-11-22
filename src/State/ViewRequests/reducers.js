@@ -31,13 +31,13 @@ const viewRequestsReducer = (state = initialState.viewRequests, action) => {
     case types.APPROVER_REQUESTS_FAILURE: {
       return { ...state, error: action.payload };
     }
-    case types.PENDING_REQUESTS_FETCH: {
+    case types.GOVERNANCE_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
     }
-    case types.PENDING_REQUESTS_SUCCESS: {
+    case types.GOVERNANCE_REQUESTS_SUCCESS: {
       return { ...state, outboundRequests: action.payload };
     }
-    case types.PENDING_REQUESTS_FAILURE: {
+    case types.GOVERNANCE_REQUESTS_FAILURE: {
       return { ...state, error: action.payload };
     }
     case types.SELECT_REQUEST: {
