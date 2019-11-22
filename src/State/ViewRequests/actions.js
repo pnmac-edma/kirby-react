@@ -18,9 +18,10 @@ export const userRequestsFailure = error => {
   };
 };
 
-export const approverRequestsFetch = () => {
+export const approverRequestsFetch = approverEmail => {
   return {
-    type: types.APPROVER_REQUESTS_FETCH
+    type: types.APPROVER_REQUESTS_FETCH,
+    payload: approverEmail
   };
 };
 export const approverRequestsSuccess = response => {

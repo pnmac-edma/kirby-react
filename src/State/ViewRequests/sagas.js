@@ -17,7 +17,7 @@ function* handleUserRequests(action) {
 
 function* handleApproverRequests(action) {
   try {
-    const response = yield call(getApproverRequests, ...action.payload);
+    const response = yield call(getApproverRequests, action.payload);
     yield put({ type: types.APPROVER_REQUESTS_SUCCESS, payload: response });
   } catch (error) {
     yield put({ type: types.APPROVER_REQUESTS_FAILURE, payload: error });

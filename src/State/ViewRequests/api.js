@@ -14,12 +14,17 @@ export function getUserRequests(createdbyemail) {
 }
 
 export function getApproverRequests(approveremail) {
-  const params = {
-    approveremail
+  const fetchBody = {
+    params: {
+      approveremail
+    }
   };
   return axios
-    .get(`${BASE_URL}/approver/requests`, params)
-    .then(response => response.data)
+    .get(`${BASE_URL}/approver/requests`, fetchBody)
+    .then(response => {
+      console.log(response);
+      return response.data;
+    })
     .then(error => error);
 }
 

@@ -14,7 +14,6 @@ export const initialState = {
 const viewRequestsReducer = (state = initialState.viewRequests, action) => {
   switch (action.type) {
     case types.USER_REQUESTS_FETCH: {
-      console.log('user reqs fetch');
       return { ...state, isLoading: true };
     }
     case types.USER_REQUESTS_SUCCESS: {
@@ -27,7 +26,7 @@ const viewRequestsReducer = (state = initialState.viewRequests, action) => {
       return { ...state, isLoading: true };
     }
     case types.APPROVER_REQUESTS_SUCCESS: {
-      return { ...state, outboundRequests: action.payload };
+      return { ...state, inboundRequests: action.payload };
     }
     case types.APPROVER_REQUESTS_FAILURE: {
       return { ...state, error: action.payload };
