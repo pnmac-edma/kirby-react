@@ -1,8 +1,9 @@
 import * as types from './types';
 
-export const userRequestsFetch = () => {
+export const userRequestsFetch = createdbyemail => {
   return {
-    type: types.USER_REQUESTS_FETCH
+    type: types.USER_REQUESTS_FETCH,
+    payload: createdbyemail
   };
 };
 export const userRequestsSuccess = response => {

@@ -4,12 +4,16 @@ import axios from 'axios';
 const BASE_URL = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
 
 export function getUserRequests(createdbyemail) {
-  const params = {
-    createdbyemail
+  const fetchBody = {
+    params: {
+      createdbyemail
+    }
   };
   return axios
-    .get(`${BASE_URL}/users/requests`, params)
-    .then(response => response.data)
+    .get(`${BASE_URL}/users/requests`, fetchBody)
+    .then(response => {
+      return response.data;
+    })
     .then(error => error);
 }
 
@@ -28,13 +32,17 @@ export function getApproverRequests(approveremail) {
 }
 
 export function getGovernanceRequests(pages, size, status = '') {
-  const params = {
-    pages,
-    size,
-    status
+  const fetchBody = {
+    params: {
+      pages,
+      size,
+      status
+    }
   };
   return axios
-    .get(`${BASE_URL}/governance/requests`, params)
-    .then(response => response.data)
+    .get(`${BASE_URL}/governance/requests`, fetchBody)
+    .then(response => {
+      return response.data;
+    })
     .then(error => error);
 }

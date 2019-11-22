@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
 import RequestTableTitle from './RequestTableTitle';
 import RequestTable from './RequestTable';
 import { approverRequestsFetch } from '../../../State/ViewRequests/actions';

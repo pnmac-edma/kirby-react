@@ -8,7 +8,7 @@ import {
 
 function* handleUserRequests(action) {
   try {
-    const response = yield call(getUserRequests, ...action.payload);
+    const response = yield call(getUserRequests, action.payload);
     yield put({ type: types.USER_REQUESTS_SUCCESS, payload: response });
   } catch (error) {
     yield put({ type: types.USER_REQUESTS_FAILURE, payload: error });
@@ -26,7 +26,7 @@ function* handleApproverRequests(action) {
 
 function* handleGovernanceRequests(action) {
   try {
-    const response = yield call(getGovernanceRequests, ...action.payload);
+    const response = yield call(getGovernanceRequests, action.payload);
     yield put({ type: types.GOVERNANCE_REQUESTS_SUCCESS, payload: response });
   } catch (error) {
     yield put({ type: types.GOVERNANCE_REQUESTS_FAILURE, payload: error });
