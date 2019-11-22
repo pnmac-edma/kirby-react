@@ -22,7 +22,6 @@ export function getApproverRequests(approveremail) {
   return axios
     .get(`${BASE_URL}/approver/requests`, fetchBody)
     .then(response => {
-      console.log(response);
       return response.data;
     })
     .then(error => error);

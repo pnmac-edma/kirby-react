@@ -15,7 +15,8 @@ const desc = (a, b, orderBy) => {
   const p = {
     0: 'databasename',
     1: 'description',
-    2: 'createddate'
+    2: 'requeststatus',
+    3: 'createddate'
   }[orderBy];
 
   let val1 = a[p];
@@ -23,6 +24,11 @@ const desc = (a, b, orderBy) => {
   if (typeof val1 === 'string' || typeof val2 === 'string') {
     val1 = val1.toLowerCase();
     val2 = val2.toLowerCase();
+    // need to convert any date string to date type to sort properly
+    if (p.includes('date')) {
+      val1 = new Date(val1);
+      val2 = new Date(val2);
+    }
   }
   if (val2 > val1) {
     return -1;

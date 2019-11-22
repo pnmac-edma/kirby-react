@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import RequestTableTitle from './RequestTableTitle';
 import RequestTable from './RequestTable';
 import { approverRequestsFetch } from '../../../State/ViewRequests/actions';
+import { transformRequests } from '../../../State/helpers';
 
 const InboxContainer = props => {
   const { approverRequestsFetch, requests } = props;
@@ -14,15 +15,20 @@ const InboxContainer = props => {
 
   // TODO: Move this to the reducer or saga call
   // What data do we need to keep from this?
-  const reqs = requests.map(request => {
-    const reqData = JSON.parse(request.requestdata);
-    return {
-      ...request,
-      databasename: request.databasename || '',
-      requestdata: reqData,
-      description: reqData.description || ''
-    };
-  });
+
+  // const reqs = requests.map(request => {
+  //   const reqData = JSON.parse(request.requestdata);
+  //   return {
+  //     ...request,
+  //     databasename: request.databasename || '',
+  //     requestdata: reqData,
+  //     description: reqData.description || ''
+  //   };
+  // });
+
+  const reqs = transformRequests(requests);
+
+  console.log(reqs);
 
   const tableColumns = [
     { name: 'Request', id: 0 },
