@@ -5,7 +5,6 @@ export const initialState = {
     inboundRequests: [],
     outboundRequests: [],
     error: {},
-    showStatus: false,
     isLoading: false
   }
 };
