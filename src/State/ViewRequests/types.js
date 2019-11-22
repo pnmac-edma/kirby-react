@@ -16,3 +16,7 @@ export const GOVERNANCE_REQUESTS_FAILURE = 'GOVERNANCE_REQUESTS_FAILURE';
 // handling selected requests
 export const SELECT_REQUEST = 'SELECT_REQUEST';
 export const UNSELECT_REQUEST = 'UNSELECT_REQUESTS';
+
+// actions pertaining to filtering incoming request data
+export const GET_ARCHIVED_REQUESTS = 'GET_ARCHIVED_REQUESTS';
+export const GET_PENDING_REQUESTS = 'GET_PENDING_REQUESTS';

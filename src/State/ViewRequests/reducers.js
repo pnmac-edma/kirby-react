@@ -54,6 +54,22 @@ const viewRequestsReducer = (state = initialState.viewRequests, action) => {
         )
       };
     }
+    case types.GET_ARCHIVED_REQUESTS: {
+      return {
+        ...state,
+        inboundRequests: state.inboundRequests.filter(
+          request => request.archived
+        )
+      };
+    }
+    case types.GET_PENDING_REQUESTS: {
+      return {
+        ...state,
+        inboundRequests: state.inboundRequests.filter(
+          request => request.requeststatus === 'Pending'
+        )
+      };
+    }
     default:
       return state;
   }
