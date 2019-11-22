@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import RequestTable from './RequestAsset';
+import RequestAsset from './RequestAsset';
 
 const mapStateToProps = state => {
   return {
@@ -7,4 +7,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(RequestTable);
+export default connect(mapStateToProps)(RequestAsset);

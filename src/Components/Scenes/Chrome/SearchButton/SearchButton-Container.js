@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { handleSearchClick } from '../../../../Actions/searchResultActions';
-import SearchModal from './SearchModal';
+import SearchButton from './SearchButton';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -8,4 +8,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SearchModal);
+export default connect(null, mapDispatchToProps)(SearchButton);
