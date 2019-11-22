@@ -36,7 +36,6 @@ export const approverRequestsFailure = error => {
     payload: error
   };
 };
-
 export const governanceRequestsFetch = () => {
   return {
     type: types.GOVERNANCE_REQUESTS_FETCH
@@ -54,17 +53,8 @@ export const governanceRequestsFailure = error => {
     payload: error
   };
 };
-
-export const selectRequest = request => {
+export const getArchivedRequests = () => {
   return {
-    type: types.SELECT_REQUEST,
-    payload: request
-  };
-};
-
-export const unselectRequest = requestId => {
-  return {
-    type: types.SELECT_REQUEST,
-    payload: requestId
+    type: types.GET_ARCHIVED_REQUESTS
   };
 };

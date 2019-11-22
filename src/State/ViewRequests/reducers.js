@@ -4,7 +4,6 @@ export const initialState = {
   viewRequests: {
     inboundRequests: [],
     outboundRequests: [],
-    selectedRequests: [],
     error: {},
     showStatus: false,
     isLoading: false
@@ -40,33 +39,11 @@ const viewRequestsReducer = (state = initialState.viewRequests, action) => {
     case types.GOVERNANCE_REQUESTS_FAILURE: {
       return { ...state, error: action.payload };
     }
-    case types.SELECT_REQUEST: {
-      return {
-        ...state,
-        selectedRequests: [...state.selectedRequests, action.payload]
-      };
-    }
-    case types.UNSELECT_REQUEST: {
-      return {
-        ...state,
-        selectedRequests: state.selectedRequests.filter(
-          request => request.id !== action.payload
-        )
-      };
-    }
     case types.GET_ARCHIVED_REQUESTS: {
       return {
         ...state,
         inboundRequests: state.inboundRequests.filter(
           request => request.archived
-        )
-      };
-    }
-    case types.GET_PENDING_REQUESTS: {
-      return {
-        ...state,
-        inboundRequests: state.inboundRequests.filter(
-          request => request.requeststatus === 'Pending'
         )
       };
     }
