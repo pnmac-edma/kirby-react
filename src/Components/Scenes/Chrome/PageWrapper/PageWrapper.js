@@ -1,12 +1,13 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
 import InboxContainer from '../../ViewRequests/InboxContainer';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
-import TableSectionContainer from '../../SearchResults/TableSection/TableSection-Container';
-import TableSkeleton from '../../SearchResults/TableSkeleton/TableSkeleton';
 import SearchContainer from '../Search/Search-Container';
+import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
+import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -21,25 +22,25 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = props => {
-  const {
-    searchResultCopy,
-    isLoading,
-    displaySearchResult,
-    isSearchClicked
-  } = props;
+const PageWrapper = ({ isSearchClicked }) => {
   const classes = pageContainerStyle();
+
   return (
     <div className={classes.pageContainer}>
       <AppBarContainer />
-      <InboxContainer />
-      {/* {isLoading ? (
-        <TableSkeleton />
-      ) : displaySearchResult ? (
-        <TableSectionContainer />
-      ) : null}
-      {!searchResultCopy.length > 0 ? <Splash /> : null}
-      {isSearchClicked ? <SearchContainer /> : null} */}
+
+      <Switch>
+        <Route exact path="/" component={Splash} />
+        {/* search pages */}
+        <Route exact path="/search" component={SearchResultsContainer} />
+        <Route path="/search/access" component={RequestAssetContainer} />
+        {/* requests pages - will be implemented and hooked in soon */}
+        <Route exact path="/requests" component={null} />
+        <Route path="/requests/archive" component={null} />
+        <Route path="/requests/sent" component={null} />
+      </Switch>
+
+      {isSearchClicked ? <SearchContainer /> : null}
     </div>
   );
 };
