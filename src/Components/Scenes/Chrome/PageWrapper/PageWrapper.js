@@ -35,7 +35,7 @@ const PageWrapper = ({ isSearchClicked }) => {
         <Route exact path="/search" component={SearchResultsContainer} />
         <Route path="/search/access" component={RequestAssetContainer} />
         {/* requests pages - will be implemented and hooked in soon */}
-        <Route exact path="/requests" component={null} />
+        <Route exact path="/requests" component={InboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={null} />
       </Switch>

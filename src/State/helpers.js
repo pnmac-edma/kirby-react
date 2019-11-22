@@ -8,7 +8,10 @@ export const transformRequests = requests => {
       ...request,
       databasename: request.databasename || '',
       requestdata: reqData,
-      description: reqData.description || ''
+      description: reqData.description || '',
+      requeststatus:
+        request.requeststatus.charAt(0).toUpperCase() +
+        request.requeststatus.slice(1)
     };
   });
 };

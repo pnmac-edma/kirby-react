@@ -14,7 +14,9 @@ const headerStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.white,
     whiteSpace: 'nowrap'
   },
-  row: {}
+  indeterminate: {
+    color: theme.palette.primary.main
+  }
 }));
 
 const RequestTableHeader = props => {
@@ -30,15 +32,12 @@ const RequestTableHeader = props => {
 
   const classes = headerStyles();
 
-  const createSortHandler = property => event => {
-    onSort(event, property);
-  };
-
   return (
     <TableHead>
       <TableRow className={classes.row}>
         <TableCell padding="checkbox" className={classes.cell}>
           <Checkbox
+            classes={{ indeterminate: classes.indeterminate }}
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
@@ -49,14 +48,14 @@ const RequestTableHeader = props => {
         {columns.map(col => (
           <TableCell
             className={classes.cell}
-            key={col.id}
+            key={col.property}
             sortDirection={orderBy === col.property ? order : false}
           >
             <TableSortLabel
               className={classes.label}
               active={orderBy === col.property}
               direction={order}
-              onClick={createSortHandler(col.property)}
+              onClick={e => onSort(e, col.property)}
             >
               <strong>{col.name}</strong>
             </TableSortLabel>

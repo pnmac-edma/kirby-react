@@ -19,7 +19,7 @@ const desc = (a, b, orderBy) => {
   if (typeof val1 === 'string' || typeof val2 === 'string') {
     val1 = val1.toLowerCase();
     val2 = val2.toLowerCase();
-    // need to convert any date string to date type to sort properly
+
     if (orderBy.toLowerCase().includes('date')) {
       val1 = new Date(val1);
       val2 = new Date(val2);
@@ -52,7 +52,7 @@ const RequestTableBody = props => {
       overflow: 'hidden',
       textOverflow: 'ellipsis'
     },
-    descCol: {
+    descriptionCol: {
       width: '60%'
     },
     statusRejected: {
@@ -74,7 +74,8 @@ const RequestTableBody = props => {
     isSelected,
     order,
     orderBy,
-    handleCheckboxClick
+    handleCheckboxClick,
+    handleRequestClick
   } = props;
   const classes = tableStyles();
 
@@ -98,19 +99,19 @@ const RequestTableBody = props => {
               {columns.map((col, i) => {
                 let className;
                 if (i === 0) className = classes.firstCol;
-                if (i === 1) className = classes.descCol;
+                if (i === 1) className = classes.descriptionCol;
                 if (col.name === 'Status')
                   className =
-                    request[col.property].toLowerCase() === 'rejected'
-                      ? classes.statusRejected
-                      : request[col.property].toLowerCase() === 'pending'
-                      ? classes.statusPending
-                      : null;
+                    {
+                      rejected: classes.statusRejected,
+                      pending: classes.statusPending
+                    }[request[col.property].toLowerCase()] || null;
                 return (
                   <TableCell
                     className={className}
                     align="left"
                     key={request[col.property]}
+                    onClick={e => handleRequestClick(e, request.Id)}
                   >
                     {request[col.property]}
                   </TableCell>

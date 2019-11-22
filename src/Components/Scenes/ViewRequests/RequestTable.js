@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Table, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RequestTableHeader from './RequestTableHeader';
@@ -68,6 +68,9 @@ const RequestTable = props => {
             order={order}
             orderBy={orderBy}
             handleCheckboxClick={handleToggleCheckbox}
+            handleRequestClick={(e, id) => {
+              console.log(id);
+            }}
           />
         </Table>
       </div>
@@ -87,7 +90,7 @@ const RequestTable = props => {
           onClick={handleFooterButtonClick}
           disabled={selected.length === 0}
         >
-          {`archive ${selected.length} requests`}
+          {footerButtonText}
         </Button>
       </RequestTableFooter>
     </Paper>

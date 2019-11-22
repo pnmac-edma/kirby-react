@@ -11,11 +11,9 @@ const InboxContainer = props => {
   // Fetch all inbound requests given for approver's email
   useEffect(() => {
     approverRequestsFetch('jonathan.delarosa@pnmac.com');
-  }, []);
+  }, [approverRequestsFetch]);
 
   const reqs = transformRequests(requests);
-
-  console.log(reqs);
 
   const tableColumns = [
     { name: 'Request', property: 'databasename' },
@@ -55,8 +53,9 @@ const InboxContainer = props => {
         tableColumns={tableColumns}
         requests={reqs}
         selected={selected}
-        footerButtonText={`${selected.length} requests`}
+        footerButtonText={`${selected.length} requests selected`}
         handleFooterButtonClick={() => alert('hello!')}
+        //handleRequestClick={() => console.log('request clicked!')}
         handleToggleCheckbox={handleToggleCheckbox}
         handleToggleAllCheckbox={handleToggleAllCheckbox}
       />
