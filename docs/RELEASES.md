@@ -13,16 +13,17 @@ To create a new release, follow the steps below after completing your local setu
 1. Pull latest on the **dev** branch locally to your machine, and ensure you have a clean working directory.
 2. Run ```npm run release```
 3. You will be prompted to select the type of [semantic version](https://semver.org/) bump.
-4. You will then have prompts, answer yes or hit enter for each when prompted
-  1. ```Tag (x.y.z)? (Y/n)```  This will create the new git tag locally.
-  2. ```Push? (Y/n)``` This will push your tag to origin  (currently GitHub). You have to press enter twice.
-  3. ```Create a release on GitHub (Release x.y.z)? (Y/n)``` This will create a GitHub release in a draft state, and attach the zipped deployment assets.
-5. When Release-It complete it will output a direct link to the draft release it created.  
+4. You will then have a few prompts, answer yes or hit enter for each when prompted:
+   1. ```Tag (x.y.z)? (Y/n)```  This will create the new git tag locally.
+   2. ```Push? (Y/n)``` This will push your tag to origin  (currently GitHub). You have to press enter twice.
+   3. ```Create a release on GitHub (Release x.y.z)? (Y/n)``` This will create a GitHub release in a draft state, and attach the zipped deployment assets.
+5. When Release-It completes, it will output a direct link to the draft release it created.  
+
 You can then add any desired release notes and publish the draft release on GitHub.
 
 ## GitLab Considerations
 The release-it library does support GitLab, but it hasn't been setup yet. 
-If you have setup gitlab runners for CI/CD, the commands currently used Release-It to package the build 
+If you have setup GitLab runners for CI/CD, the commands currently used Release-It to package the build 
 into a zip is located in the ```.release-it.json``` configuration file as the ```after:bump``` hook.
 These package commands should run on all platforms with npm installed.  And could be moved to either a npm
 script, or bash commands on a GitLab Runner.
