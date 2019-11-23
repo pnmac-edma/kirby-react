@@ -35,7 +35,7 @@ const desc = (a, b, orderBy) => {
 };
 
 const getSorting = (order, orderBy) => {
-  return order === 'desc'
+  return order[orderBy] === 'desc'
     ? (a, b) => desc(a, b, orderBy)
     : (a, b) => -desc(a, b, orderBy);
 };

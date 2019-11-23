@@ -49,12 +49,12 @@ const RequestTableHeader = props => {
           <TableCell
             className={classes.cell}
             key={col.property}
-            sortDirection={orderBy === col.property ? order : false}
+            sortDirection={order[col.property]}
           >
             <TableSortLabel
               className={classes.label}
               active={orderBy === col.property}
-              direction={order}
+              direction={order[col.property]}
               onClick={e => onSort(e, col.property)}
             >
               <strong>{col.name}</strong>
@@ -76,7 +76,7 @@ RequestTableHeader.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  //order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired
 };

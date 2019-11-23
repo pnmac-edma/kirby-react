@@ -31,8 +31,15 @@ const RequestTable = props => {
     handleToggleCheckbox
   } = props;
 
-  const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState(tableColumns[0].property);
+  const [order, setOrder] = useState(
+    tableColumns.reduce((acc, column) => {
+      return {
+        ...acc,
+        [column.property]: 'asc'
+      };
+    }, {})
+  );
+  const [orderBy, setOrderBy] = useState(tableColumns[0].name);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -41,9 +48,19 @@ const RequestTable = props => {
   const isSelected = id => selected.indexOf(id) !== -1;
 
   const handleSortClick = (event, property) => {
-    const isDesc = orderBy === property && order === 'desc';
-    setOrder(isDesc ? 'asc' : 'desc');
+    if (orderBy === property) {
+      setOrder({
+        ...order,
+        [property]: order[property] === 'asc' ? 'desc' : 'asc'
+      });
+      return;
+    }
     setOrderBy(property);
+  };
+
+  const handleChangeRowsPerPage = e => {
+    setRowsPerPage(parseInt(e.target.value), 10);
+    setPage(0);
   };
 
   return (
@@ -79,10 +96,7 @@ const RequestTable = props => {
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={(e, newPage) => setPage(newPage)}
-        onChangeRowsPerPage={e => {
-          setRowsPerPage(parseInt(e.target.value), 10);
-          setPage(0);
-        }}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
       >
         <Button
           variant="contained"
