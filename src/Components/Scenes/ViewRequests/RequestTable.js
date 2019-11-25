@@ -16,14 +16,14 @@ const tableStyles = makeStyles(theme => ({
   },
   tableWrapper: {
     //maxHeight: 500,
-
     overflowX: 'auto',
     borderRadius: 'inherit'
   },
   button: {
     textTransform: 'none',
     fontWeight: 'bold',
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    whiteSpace: 'nowrap'
   }
 }));
 
@@ -31,12 +31,9 @@ const RequestTable = props => {
   const {
     tableColumns,
     requests,
-    selected,
-    footerButtonText,
+    setFooterButtonText,
     handleFooterButtonClick,
-    handleRequestClick,
-    handleToggleAllCheckbox,
-    handleToggleCheckbox
+    handleRequestClick
   } = props;
 
   const [order, setOrder] = useState(
@@ -50,6 +47,7 @@ const RequestTable = props => {
   const [orderBy, setOrderBy] = useState(tableColumns[0].name);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [selected, setSelected] = useState([]);
 
   const classes = tableStyles();
 
@@ -69,6 +67,28 @@ const RequestTable = props => {
   const handleChangeRowsPerPage = e => {
     setRowsPerPage(parseInt(e.target.value), 10);
     setPage(0);
+  };
+
+  const handleToggleCheckbox = (event, id) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected = [...selected];
+
+    if (selectedIndex === -1) {
+      newSelected.push(id);
+    } else {
+      newSelected.splice(selectedIndex, 1);
+    }
+    setSelected(newSelected);
+  };
+
+  const handleToggleAllCheckbox = event => {
+    if (selected.length === 0) {
+      const newSelecteds = requests.map(request => request.Id);
+      setSelected(newSelecteds);
+      return;
+    } else {
+      setSelected([]);
+    }
   };
 
   return (
@@ -111,7 +131,7 @@ const RequestTable = props => {
           onClick={handleFooterButtonClick}
           disabled={selected.length === 0}
         >
-          {footerButtonText}
+          {setFooterButtonText(selected)}
         </Button>
       </RequestTableFooter>
     </Paper>

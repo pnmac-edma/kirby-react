@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
-import InboxContainer from '../../ViewRequests/InboxContainer';
+import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import SearchContainer from '../Search/Search-Container';
@@ -35,7 +35,7 @@ const PageWrapper = ({ isSearchClicked }) => {
         <Route exact path="/search" component={SearchResultsContainer} />
         <Route path="/search/access" component={RequestAssetContainer} />
         {/* requests pages - will be implemented and hooked in soon */}
-        <Route exact path="/requests" component={InboxContainer} />
+        <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={null} />
       </Switch>
