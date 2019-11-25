@@ -1,5 +1,10 @@
 import * as types from './types';
 
+export const searchResultPageLoad = params => ({
+  type: types.SEARCH_RESULT_PAGE_LOAD,
+  payload: params
+});
+
 export const searchHandleInput = e => ({
   type: types.SEARCH_HANDLE_INPUT,
   payload: e.target.value
@@ -49,4 +54,8 @@ export const handleRemoveChip = id => ({
 
 export const handleSearchClick = () => ({
   type: types.HANDLE_SEARCH_CLICK
+});
+
+export const searchHandleClose = () => ({
+  type: types.HANDLE_SEARCH_CLOSE
 });

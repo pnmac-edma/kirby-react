@@ -1,15 +1,16 @@
 import initialState from './initialState';
+import * as types from '../Actions/types';
 
 const requestAssetsReducers = (state = initialState.requestAssets, action) => {
   switch (action.type) {
-    case 'REQUEST_ASSETS_CLICK': {
+    case types.REQUEST_ASSETS_CLICK: {
       const searchResultCopy = action.payload.map(value => {
         value.chec = false;
         return value;
       });
       return { ...state, selectedSearchResultCopy: searchResultCopy };
     }
-    case 'REQUEST_CHECKBOX_SELECT': {
+    case types.REQUEST_CHECKBOX_SELECT: {
       let ap = action.payload;
       let selectedCheckBoxes;
       let selectedAll;
@@ -42,10 +43,10 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
         selectedAll: selectedAll
       };
     }
-    case 'EMPLOYEE_ASSETS_REQUEST': {
+    case types.EMPLOYEE_ASSETS_REQUEST: {
       return { ...state };
     }
-    case 'EMPLOYEE_ASSETS_SUCCESS': {
+    case types.EMPLOYEE_ASSETS_SUCCESS: {
       const requestedFor = action.payload.reduce((acc, user) => {
         acc.push({
           value: user.displayname,
@@ -56,10 +57,10 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       }, []);
       return { ...state, requestedFor: requestedFor };
     }
-    case 'EMPLOYEE_ASSETS_FAILURE': {
+    case types.EMPLOYEE_ASSETS_FAILURE: {
       return { ...state, requestedFor: ['Server Error'] };
     }
-    case 'REQUEST_SELECT_VALUES': {
+    case types.REQUEST_SELECT_VALUES: {
       return { ...state, selectedOption: action.payload };
     }
 

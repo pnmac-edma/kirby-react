@@ -30,8 +30,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TableSection = props => {
-  const classes = useStyles();
   const { searchResult, isFilterQueriesEmpty } = props;
+  const classes = useStyles();
+
   return (
     <div>
       {searchResult.results === undefined ? (

@@ -40,7 +40,7 @@ const TableHeadTitle = props => {
       <Toolbar>
         <div className={classes.title}>
           <Typography variant="h6" id="tableTitle">
-            Search result for {searchInput}
+            Search results for {searchInput}
           </Typography>
         </div>
 

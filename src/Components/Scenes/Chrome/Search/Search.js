@@ -12,19 +12,21 @@ import {
 
 const SearchInput = props => {
   const {
-    searchHandleInput,
     searchInput,
+    isSearchClicked,
+    searchHandleInput,
     searchResultRequest,
     handleKeyPress,
-    isSearchClicked
+    searchHandleClose
   } = props;
 
   const history = useHistory();
+  const urlWithParams = `/search?params=${searchInput}`;
 
   const keyPressWrapper = e => {
     if (e.key === 'Enter') {
       searchResultRequest();
-      history.push('/search');
+      history.push(urlWithParams);
     }
   };
 
@@ -49,13 +51,16 @@ const SearchInput = props => {
           />
         </DialogContent>
         <DialogActions>
+          <Button onClick={() => searchHandleClose()} color="secondary">
+            Cancel
+          </Button>
           <Button
             onClick={() => searchResultRequest()}
             color="primary"
             component={Link}
-            to="/search"
+            to={urlWithParams}
           >
-            Close
+            Search
           </Button>
         </DialogActions>
       </Dialog>

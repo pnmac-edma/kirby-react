@@ -4,7 +4,7 @@ import {
   searchHandleInput,
   searchResultRequest,
   handleKeyPress,
-  handleSearchClick
+  searchHandleClose
 } from '../../../../Actions/searchResultActions';
 
 const mapStateToProps = ({ searchResult }) => {
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
     searchHandleInput: e => dispatch(searchHandleInput(e)),
     searchResultRequest: () => dispatch(searchResultRequest()),
     handleKeyPress: e => dispatch(handleKeyPress(e)),
-    handleSearchClick: () => dispatch(handleSearchClick())
+    searchHandleClose: () => dispatch(searchHandleClose())
   };
 };
 
