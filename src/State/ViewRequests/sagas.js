@@ -6,7 +6,7 @@ import {
   getGovernanceRequests
 } from './api';
 
-function* handleUserRequests(action) {
+export function* handleUserRequests(action) {
   try {
     const response = yield call(getUserRequests, action.payload);
     yield put({ type: types.USER_REQUESTS_SUCCESS, payload: response });
@@ -15,7 +15,7 @@ function* handleUserRequests(action) {
   }
 }
 
-function* handleApproverRequests(action) {
+export function* handleApproverRequests(action) {
   try {
     const response = yield call(getApproverRequests, action.payload);
     yield put({ type: types.APPROVER_REQUESTS_SUCCESS, payload: response });
@@ -24,7 +24,7 @@ function* handleApproverRequests(action) {
   }
 }
 
-function* handleGovernanceRequests(action) {
+export function* handleGovernanceRequests(action) {
   try {
     const response = yield call(getGovernanceRequests, action.payload);
     yield put({ type: types.GOVERNANCE_REQUESTS_SUCCESS, payload: response });
