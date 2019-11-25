@@ -97,8 +97,12 @@ const RequestTableBody = props => {
                 />
               </TableCell>
               {columns.map((col, i) => {
-                let className;
-                if (i === 0) className = classes.firstCol;
+                let className, onClick;
+                if (i === 0) {
+                  className = classes.firstCol;
+                  onClick = e => handleRequestClick(e, request.Id);
+                }
+
                 if (i === 1) className = classes.descriptionCol;
                 if (col.name === 'Status')
                   className =
@@ -111,7 +115,7 @@ const RequestTableBody = props => {
                     className={className}
                     align="left"
                     key={request[col.property]}
-                    onClick={e => handleRequestClick(e, request.Id)}
+                    onClick={onClick}
                   >
                     {request[col.property]}
                   </TableCell>
