@@ -1,6 +1,4 @@
-import { initialState as viewRequestsState } from '../State/ViewRequests/reducers';
-
-const viewRequests = viewRequestsState.viewRequests;
+import { initialState as viewRequests } from '../State/ViewRequests/reducers';
 
 const initialState = {
   searchResult: {

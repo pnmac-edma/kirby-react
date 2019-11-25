@@ -1,15 +1,13 @@
 import * as types from './types';
 
 export const initialState = {
-  viewRequests: {
-    inboundRequests: [], // for elevated users, this would be approver or governance requests
-    outboundRequests: [], // stores all user requests
-    error: {},
-    isLoading: false
-  }
+  inboundRequests: [], // for elevated users, this would be approver or governance requests
+  outboundRequests: [], // stores all user requests
+  error: {},
+  isLoading: false
 };
 
-const viewRequestsReducer = (state = initialState.viewRequests, action) => {
+const viewRequestsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.USER_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
