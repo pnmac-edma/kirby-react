@@ -7,6 +7,7 @@ import RequestTableBody from './RequestTableBody';
 
 const tableStyles = makeStyles(theme => ({
   paper: {
+    flexGrow: 1,
     marginLeft: 12,
     marginRight: 12
   },
@@ -14,9 +15,15 @@ const tableStyles = makeStyles(theme => ({
     minWidth: 6
   },
   tableWrapper: {
-    maxHeight: 500,
+    //maxHeight: 500,
+
     overflowX: 'auto',
     borderRadius: 'inherit'
+  },
+  button: {
+    textTransform: 'none',
+    fontWeight: 'bold',
+    color: theme.palette.common.white
   }
 }));
 
@@ -27,6 +34,7 @@ const RequestTable = props => {
     selected,
     footerButtonText,
     handleFooterButtonClick,
+    handleRequestClick,
     handleToggleAllCheckbox,
     handleToggleCheckbox
   } = props;
@@ -85,9 +93,7 @@ const RequestTable = props => {
             order={order}
             orderBy={orderBy}
             handleCheckboxClick={handleToggleCheckbox}
-            handleRequestClick={(e, id) => {
-              console.log(id);
-            }}
+            handleRequestClick={handleRequestClick}
           />
         </Table>
       </div>
@@ -99,6 +105,7 @@ const RequestTable = props => {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       >
         <Button
+          className={classes.button}
           variant="contained"
           color="primary"
           onClick={handleFooterButtonClick}

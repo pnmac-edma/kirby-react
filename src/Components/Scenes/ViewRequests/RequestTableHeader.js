@@ -34,7 +34,7 @@ const RequestTableHeader = props => {
 
   return (
     <TableHead>
-      <TableRow className={classes.row}>
+      <TableRow>
         <TableCell padding="checkbox" className={classes.cell}>
           <Checkbox
             classes={{ indeterminate: classes.indeterminate }}
@@ -52,7 +52,6 @@ const RequestTableHeader = props => {
             sortDirection={order[col.property]}
           >
             <TableSortLabel
-              className={classes.label}
               active={orderBy === col.property}
               direction={order[col.property]}
               onClick={e => onSort(e, col.property)}

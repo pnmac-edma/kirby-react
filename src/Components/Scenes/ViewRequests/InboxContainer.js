@@ -5,12 +5,14 @@ import RequestTable from './RequestTable';
 import { approverRequestsFetch } from '../../../State/ViewRequests/actions';
 import { transformRequests } from '../../../State/helpers';
 
+const STATIC_APPROVER_EMAIL = 'jonathan.delarosa@pnmac.com';
+
 const InboxContainer = props => {
   const { approverRequestsFetch, requests } = props;
 
   // Fetch all inbound requests given for approver's email
   useEffect(() => {
-    approverRequestsFetch('jonathan.delarosa@pnmac.com');
+    approverRequestsFetch(STATIC_APPROVER_EMAIL);
   }, [approverRequestsFetch]);
 
   const reqs = transformRequests(requests);
@@ -53,9 +55,11 @@ const InboxContainer = props => {
         tableColumns={tableColumns}
         requests={reqs}
         selected={selected}
-        footerButtonText={`${selected.length} requests selected`}
-        handleFooterButtonClick={() => alert('hello!')}
-        //handleRequestClick={() => console.log('request clicked!')}
+        footerButtonText={`${selected.length} request${
+          selected.length !== 1 ? 's' : ''
+        } selected`}
+        handleFooterButtonClick={() => console.log('footer button clicked!')}
+        handleRequestClick={(e, id) => console.log(`request ${id} clicked!`)}
         handleToggleCheckbox={handleToggleCheckbox}
         handleToggleAllCheckbox={handleToggleAllCheckbox}
       />
