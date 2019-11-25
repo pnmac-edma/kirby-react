@@ -1,7 +1,7 @@
 import React from 'react';
 import Select, { createFilter } from 'react-select';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuList from './MenuList';
+import EmployeesList from './EmployeesList';
 import { Typography } from '@material-ui/core';
 import fontSize from '@edma/design-tokens/js/fontSize';
 
@@ -34,7 +34,7 @@ const customStyles = {
 };
 
 const RequestingFor = props => {
-  const { requestedFor, requestSelectValues } = props;
+  const { employees, handleSelectedEmployees } = props;
   const classes = useStyles();
 
   return (
@@ -46,9 +46,9 @@ const RequestingFor = props => {
         isMulti
         placeholder={'Select name(s) from the list'}
         styles={customStyles}
-        components={{ MenuList }}
-        options={requestedFor}
-        onChange={val => requestSelectValues(val)}
+        components={{ MenuList: EmployeesList }}
+        options={employees}
+        onChange={val => handleSelectedEmployees(val)}
       />
     </React.Fragment>
   );

@@ -24,11 +24,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestAsset = ({ employeeAssetsRequest }) => {
+const RequestAsset = ({ getEmployeesFetch }) => {
   const classes = useStyles();
   useEffect(() => {
-    employeeAssetsRequest();
-  }, [employeeAssetsRequest]);
+    getEmployeesFetch();
+  }, [getEmployeesFetch]);
 
   return (
     <>

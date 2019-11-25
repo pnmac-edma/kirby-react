@@ -34,8 +34,8 @@ const initialState = {
   requestAssets: {
     selectedSearchResultCopy: [],
     selectedAll: false,
-    requestedFor: [],
-    selectedOption: []
+    employees: [],
+    selectedEmployees: []
   }
 };
 

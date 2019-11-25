@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 import {
-  employeeAssetsRequest,
-  requestSelectValues
+  getEmployeesFetch,
+  handleSelectedEmployees
 } from '../../../../Actions/requestAssetActions';
 import RequestingFor from './RequestingFor';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {
-    requestedFor: requestAssets.requestedFor,
-    selectedOption: requestAssets.selectedOption
+    employees: requestAssets.employees,
+    selectedEmployees: requestAssets.selectedEmployees
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    employeeAssetsRequest: () => dispatch(employeeAssetsRequest()),
-    requestSelectValues: val => dispatch(requestSelectValues(val))
+    getEmployeesFetch: () => dispatch(getEmployeesFetch()),
+    handleSelectedEmployees: val => dispatch(handleSelectedEmployees(val))
   };
 };
 

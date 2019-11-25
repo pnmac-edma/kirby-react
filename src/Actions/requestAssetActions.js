@@ -10,11 +10,11 @@ export const requestCheckBoxSelect = e => ({
   payload: e.target
 });
 
-export const employeeAssetsRequest = () => ({
-  type: types.EMPLOYEE_ASSETS_REQUEST
+export const getEmployeesFetch = () => ({
+  type: types.GET_EMPLOYEES_FETCH
 });
 
-export const requestSelectValues = selectedValues => ({
-  type: types.REQUEST_SELECT_VALUES,
+export const handleSelectedEmployees = selectedValues => ({
+  type: types.HANDLE_SELECTED_EMPLOYEES,
   payload: selectedValues
 });

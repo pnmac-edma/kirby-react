@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import RequestTable from './RequestAsset';
-import { employeeAssetsRequest } from '../../../../Actions/requestAssetActions';
+import { getEmployeesFetch } from '../../../../Actions/requestAssetActions';
 
 const mapStateToProps = state => {
   return {
@@ -10,7 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    employeeAssetsRequest: () => dispatch(employeeAssetsRequest())
+    getEmployeesFetch: () => dispatch(getEmployeesFetch())
   };
 };
 
