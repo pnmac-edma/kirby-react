@@ -11,6 +11,6 @@
   },
   "npm": false,
   "hooks": {
-    "after:bump": "npm run build && rimraf dist && mkdir dist && cd build/ && bestzip ../dist/kirby-v${version}.zip * && cd ..",
+    "after:bump": "npm run build && rimraf dist && mkdir dist && cd build/ && bestzip ../dist/kirby-v${version}.zip * && cd .."
   }
 }
