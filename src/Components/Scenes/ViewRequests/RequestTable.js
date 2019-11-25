@@ -36,20 +36,17 @@ const RequestTable = props => {
     handleRequestClick
   } = props;
 
+  const classes = tableStyles();
+
+  const [selected, setSelected] = useState([]);
   const [order, setOrder] = useState(
     tableColumns.reduce((acc, column) => {
-      return {
-        ...acc,
-        [column.property]: 'asc'
-      };
+      return { ...acc, [column.property]: 'asc' };
     }, {})
   );
   const [orderBy, setOrderBy] = useState(tableColumns[0].name);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [selected, setSelected] = useState([]);
-
-  const classes = tableStyles();
 
   const isSelected = id => selected.indexOf(id) !== -1;
 
@@ -97,12 +94,12 @@ const RequestTable = props => {
         <Table className={classes.table} size="medium" stickyHeader>
           <RequestTableHeader
             columns={tableColumns}
-            onSelectAllClick={handleToggleAllCheckbox}
-            onSort={handleSortClick}
             order={order}
             orderBy={orderBy}
             numSelected={selected.length}
             rowCount={requests.length}
+            onSelectAllClick={handleToggleAllCheckbox}
+            onSort={handleSortClick}
           />
           <RequestTableBody
             columns={tableColumns}
@@ -128,8 +125,8 @@ const RequestTable = props => {
           className={classes.button}
           variant="contained"
           color="primary"
-          onClick={handleFooterButtonClick}
           disabled={selected.length === 0}
+          onClick={handleFooterButtonClick}
         >
           {setFooterButtonText(selected)}
         </Button>

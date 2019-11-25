@@ -22,12 +22,12 @@ const headerStyles = makeStyles(theme => ({
 const RequestTableHeader = props => {
   const {
     columns,
-    onSelectAllClick,
-    onSort,
     order,
     orderBy,
     numSelected,
-    rowCount
+    rowCount,
+    onSelectAllClick,
+    onSort
   } = props;
 
   const classes = headerStyles();
@@ -69,15 +69,15 @@ RequestTableHeader.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      id: PropTypes.number
+      property: PropTypes.string
     })
-  ).isRequired,
-  numSelected: PropTypes.number.isRequired,
-  onSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
-  //order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired
+  ),
+  order: PropTypes.any,
+  orderBy: PropTypes.string,
+  numSelected: PropTypes.number,
+  rowCount: PropTypes.number,
+  onSelectAllClick: PropTypes.func,
+  onSort: PropTypes.func
 };
 
 export default RequestTableHeader;

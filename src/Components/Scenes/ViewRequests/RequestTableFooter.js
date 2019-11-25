@@ -56,7 +56,12 @@ const RequestTableFooter = props => {
 };
 
 RequestTableFooter.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  count: PropTypes.number,
+  rowsPerPage: PropTypes.number,
+  page: PropTypes.number,
+  onChangePage: PropTypes.func,
+  onChangeRowsPerPage: PropTypes.func
 };
 
 export default RequestTableFooter;
