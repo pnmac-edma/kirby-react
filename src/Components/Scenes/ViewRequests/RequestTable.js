@@ -8,15 +8,17 @@ import RequestTableBody from './RequestTableBody';
 
 const tableStyles = makeStyles(theme => ({
   paper: {
+    margin: 12,
     flexGrow: 1,
-    marginLeft: 12,
-    marginRight: 12
+    display: 'flex',
+    flexDirection: 'column'
   },
   table: {
     minWidth: 6
   },
   tableWrapper: {
-    //maxHeight: 500,
+    flexGrow: 1,
+    height: '1px',
     overflowX: 'auto',
     borderRadius: 'inherit'
   },

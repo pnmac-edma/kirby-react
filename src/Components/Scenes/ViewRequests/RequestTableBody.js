@@ -145,7 +145,14 @@ RequestTableBody.propTypes = {
   ),
   page: PropTypes.number,
   rowsPerPage: PropTypes.number,
-  requests: PropTypes.any,
+  requests: PropTypes.arrayOf(
+    PropTypes.shape({
+      // placeholder for name property
+      description: PropTypes.string,
+      requeststatus: PropTypes.string,
+      createddate: PropTypes.string
+    })
+  ),
   isSelected: PropTypes.func,
   order: PropTypes.any,
   orderBy: PropTypes.string,
