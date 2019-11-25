@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import RequestTableTitle from '../RequestTableTitle';
 import RequestTable from '../RequestTable';
 import { transformRequests } from '../../../../State/helpers';
 
-const APPROVER_EMAIL = 'jonathan.delarosa@pnmac.com';
+// Approver email is hard-coded until authentication is implemented
+const approverEmail = 'jonathan.delarosa@pnmac.com';
 const requestsInboxTableColumns = [
-  { name: 'Request', property: 'databasename' },
+  { name: 'Request', property: 'databasename' }, // placeholder from name property
   { name: 'Description', property: 'description' },
   { name: 'Status', property: 'requeststatus' },
   { name: 'Date Requested', property: 'createddate' }
@@ -16,7 +18,7 @@ const RequestsInbox = props => {
 
   // Fetch all inbound requests given for approver's email
   useEffect(() => {
-    approverRequestsFetch(APPROVER_EMAIL);
+    approverRequestsFetch(approverEmail);
   }, [approverRequestsFetch]);
 
   const reqs = transformRequests(requests);
@@ -36,6 +38,18 @@ const RequestsInbox = props => {
       />
     </>
   );
+};
+
+RequestsInbox.propTypes = {
+  requests: PropTypes.arrayOf(
+    PropTypes.shape({
+      // placeholder for name property
+      description: PropTypes.string,
+      requeststatus: PropTypes.string,
+      createddate: PropTypes.string
+    })
+  ),
+  approverRequestsFetch: PropTypes.func
 };
 
 export default RequestsInbox;

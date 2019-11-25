@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Table, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import RequestTableHeader from './RequestTableHeader';
 import RequestTableFooter from './RequestTableFooter';
 import RequestTableBody from './RequestTableBody';
@@ -41,10 +42,10 @@ const RequestTable = props => {
   const [selected, setSelected] = useState([]);
   const [order, setOrder] = useState(
     tableColumns.reduce((acc, column) => {
-      return { ...acc, [column.property]: 'asc' };
+      return { ...acc, [column.property]: 'desc' };
     }, {})
   );
-  const [orderBy, setOrderBy] = useState(tableColumns[0].name);
+  const [orderBy, setOrderBy] = useState(tableColumns[0].property);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -133,6 +134,19 @@ const RequestTable = props => {
       </RequestTableFooter>
     </Paper>
   );
+};
+
+RequestTable.propTypes = {
+  tableColumns: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      property: PropTypes.string
+    })
+  ),
+  requests: PropTypes.any,
+  setFooterButtonText: PropTypes.func,
+  handleFooterButtonClick: PropTypes.func,
+  handleRequestClick: PropTypes.func
 };
 
 export default RequestTable;

@@ -6,7 +6,7 @@ export const transformRequests = requests => {
     const reqData = JSON.parse(request.requestdata);
     return {
       ...request,
-      databasename: request.databasename || '',
+      databasename: request.databasename || '', // placeholder for name property
       requestdata: reqData,
       description: reqData.description || '',
       requeststatus:
