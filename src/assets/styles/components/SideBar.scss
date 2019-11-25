@@ -4,11 +4,13 @@
 // .Sidebar__input =- element
 // .Sidebar__checkbox = element
 // .Sidebar__input--is-selected
+// .Need Update with Design Token Color gray
+@import '~@edma/design-tokens/_scss/variables';
 
 .sidebar {
   position: fixed;
   width: 31.21%;
   height: 100vh;
   background: #e6e6e6;
-  font-size: 0.65em;
+  font-size: $font-size-0;
 }
