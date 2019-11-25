@@ -2,8 +2,8 @@
   If we decide that the ducks structure is the way to go, 
   the store would be configured here (see example below)
 
-  For now, the sagas and reducers from our duck will be c
-  ombined with the existing ones.
+  For now, the sagas and reducers from our duck will be 
+  combined with the existing ones.
 */
 
 // import { createStore, applyMiddleware, compose, combineReducers } from 'redux';

@@ -2,8 +2,8 @@ import * as types from './types';
 
 export const initialState = {
   viewRequests: {
-    inboundRequests: [],
-    outboundRequests: [],
+    inboundRequests: [], // for elevated users, this would be approver or governance requests
+    outboundRequests: [], // stores all user requests
     error: {},
     isLoading: false
   }
