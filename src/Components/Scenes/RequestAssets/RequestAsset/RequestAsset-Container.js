@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import RequestTable from './RequestAsset';
+import RequestAsset from './RequestAsset';
 import { getEmployeesFetch } from '../../../../Actions/requestAssetActions';
 
 const mapStateToProps = state => {
@@ -14,4 +14,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RequestTable);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestAsset);
