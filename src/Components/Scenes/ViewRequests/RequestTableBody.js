@@ -40,17 +40,17 @@ const getSorting = (order, orderBy) => {
 
 const tableStyles = makeStyles(theme => ({
   cell: {
-    color: theme.palette.primary.dark,
     fontWeight: 'bold'
   },
   firstCol: {
+    color: theme.palette.primary.dark,
     minWidth: '15vw',
     maxWidth: '15vw',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
   },
   descriptionCol: {
-    width: '60%'
+    width: '50%'
   },
   statusRejected: {
     color: colors['r800']
@@ -104,6 +104,11 @@ const RequestTableBody = props => {
   return (
     <TableBody>
       {sortedSlicedRequests.map(request => {
+        console.log(
+          request.requestaction,
+          request.requesttype,
+          request.requestdata.sensitivity
+        );
         return (
           <TableRow
             key={request.Id}
@@ -147,7 +152,7 @@ RequestTableBody.propTypes = {
   rowsPerPage: PropTypes.number,
   requests: PropTypes.arrayOf(
     PropTypes.shape({
-      // placeholder for name property
+      name: PropTypes.string,
       description: PropTypes.string,
       requeststatus: PropTypes.string,
       createddate: PropTypes.string

@@ -145,7 +145,14 @@ RequestTable.propTypes = {
       property: PropTypes.string
     })
   ),
-  requests: PropTypes.any,
+  requests: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      description: PropTypes.string,
+      requeststatus: PropTypes.string,
+      createddate: PropTypes.string
+    })
+  ),
   setFooterButtonText: PropTypes.func,
   handleFooterButtonClick: PropTypes.func,
   handleRequestClick: PropTypes.func

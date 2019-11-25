@@ -7,7 +7,7 @@ import { transformRequests } from '../../../../State/helpers';
 // Approver email is hard-coded until authentication is implemented
 const approverEmail = 'jonathan.delarosa@pnmac.com';
 const requestsInboxTableColumns = [
-  { name: 'Request', property: 'databasename' }, // placeholder from name property
+  { name: 'Request', property: 'name' }, // placeholder from name property
   { name: 'Description', property: 'description' },
   { name: 'Status', property: 'requeststatus' },
   { name: 'Date Requested', property: 'createddate' }
@@ -43,7 +43,7 @@ const RequestsInbox = props => {
 RequestsInbox.propTypes = {
   requests: PropTypes.arrayOf(
     PropTypes.shape({
-      // placeholder for name property
+      name: PropTypes.string,
       description: PropTypes.string,
       requeststatus: PropTypes.string,
       createddate: PropTypes.string
