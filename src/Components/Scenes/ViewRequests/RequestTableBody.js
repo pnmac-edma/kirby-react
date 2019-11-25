@@ -103,8 +103,9 @@ const RequestTableBody = props => {
                   onClick = e => handleRequestClick(e, request.Id);
                 }
 
-                if (i === 1) className = classes.descriptionCol;
-                if (col.name === 'Status')
+                if (col.name.toLowerCase() === 'description')
+                  className = classes.descriptionCol;
+                if (col.name.toLowerCase() === 'status')
                   className =
                     {
                       rejected: classes.statusRejected,
