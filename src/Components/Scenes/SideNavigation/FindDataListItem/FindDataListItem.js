@@ -4,16 +4,18 @@ import { Search } from '@material-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
 
 const FindDataListItem = props => {
-  const { handleSearchClick } = props;
+  const { handleSearchClick, isSearchClicked } = props;
   const activeLink = useLocation();
+  console.log('Clicked', isSearchClicked);
+
   return (
     <ListItem
-      onClick={() => handleSearchClick()}
       component={Link}
       to="/search"
+      onClick={() => handleSearchClick()}
       button
       className={
-        '/search' === activeLink.pathname
+        isSearchClicked === true || '/search' === activeLink.pathname
           ? 'Nav__item Nav__item--is-active'
           : 'Nav__item'
       }
