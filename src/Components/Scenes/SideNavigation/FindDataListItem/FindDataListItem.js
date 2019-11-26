@@ -1,25 +1,27 @@
 import React from 'react';
 import { ListItem, ListItemText } from '@material-ui/core';
-import { Equalizer } from '@material-ui/icons/';
+import { Search } from '@material-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
 
-const DashboardListItem = () => {
+const FindDataListItem = props => {
+  const { handleSearchClick } = props;
   const activeLink = useLocation();
   return (
     <ListItem
+      onClick={() => handleSearchClick()}
       component={Link}
-      to="/"
+      to="/search"
       button
       className={
-        '/' === activeLink.pathname
+        '/search' === activeLink.pathname
           ? 'Nav__item Nav__item--is-active'
           : 'Nav__item'
       }
     >
-      <Equalizer className="Nav__icon" />
-      <ListItemText className="Nav__text" primary="Dashboard" />
+      <Search className="Nav__icon" />
+      <ListItemText className="Nav__text" primary="Find Data" />
     </ListItem>
   );
 };
 
-export default DashboardListItem;
+export default FindDataListItem;
