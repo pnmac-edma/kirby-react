@@ -4,9 +4,9 @@ import RequestListItem from './RequestListItem';
 const mapStateToProps = () => {
   return {
     requestListItemsName: [
-      { label: 'inbox', link: '/requests' },
-      { label: 'sent', link: '/requests/sent' },
-      { label: 'archive', link: '/requests/archive' }
+      { label: 'Inbox', link: '/requests' },
+      { label: 'Sent', link: '/requests/sent' },
+      { label: 'Archive', link: '/requests/archive' }
     ]
   };
 };
