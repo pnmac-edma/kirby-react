@@ -3,9 +3,11 @@ import clsx from 'clsx';
 import { List, ListItem, Collapse, ListItemText } from '@material-ui/core';
 import { ArrowDropDown } from '@material-ui/icons/';
 import { ReactComponent as DropIcon } from '@edma/design-tokens/img/dropIcon.svg';
+import { Link, useLocation } from 'react-router-dom';
 
 const HydrationListItem = ({ closeAllArrows, hydrationListItemsName }) => {
   const [openIconTwo, setOpenIconTwo] = useState(false);
+  const activeLink = useLocation();
 
   useEffect(() => {
     if (closeAllArrows === false && openIconTwo === true) {
@@ -13,11 +15,23 @@ const HydrationListItem = ({ closeAllArrows, hydrationListItemsName }) => {
     }
   }, [closeAllArrows, openIconTwo]);
 
-  const hydrationListItemText = hydrationListItemsName.map(text => (
-    <ListItem key={text} button className="Nav__nested-item">
-      <ListItemText className="Nav__text" primary={text} />
-    </ListItem>
-  ));
+  const hydrationListItemText = hydrationListItemsName.map(
+    ({ label, link }) => (
+      <ListItem
+        component={Link}
+        to={link}
+        key={label}
+        button
+        className={
+          link === activeLink.pathname
+            ? 'Nav__nested-item Nav__item--is-active'
+            : 'Nav__nested-item'
+        }
+      >
+        <ListItemText className="Nav__text" primary={label} />
+      </ListItem>
+    )
+  );
 
   return (
     <>
