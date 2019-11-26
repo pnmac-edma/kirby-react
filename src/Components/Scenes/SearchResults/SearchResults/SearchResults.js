@@ -12,18 +12,14 @@ const SearchResults = props => {
     searchResultPageLoad,
     searchResultRequest
   } = props;
-  const query = useQuery('search');
+  const query = useQuery('search', 'params');
 
   useEffect(() => {
-    const params = query.get('params');
-
-    if (params) {
-      searchResultPageLoad(params);
+    if (query) {
+      searchResultPageLoad(query);
       searchResultRequest();
     }
-  }, []); //eslint-disable-line
-  // Above suppression is to simply and clearly recreate `componentDidMount()`;
-  // for more info see  https://github.com/facebook/create-react-app/issues/6880#issuecomment-485963251
+  }, [query, searchResultPageLoad, searchResultRequest]);
 
   return (
     <>
