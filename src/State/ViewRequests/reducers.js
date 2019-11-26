@@ -31,7 +31,7 @@ const viewRequestsReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
     }
     case types.GOVERNANCE_REQUESTS_SUCCESS: {
-      return { ...state, outboundRequests: action.payload };
+      return { ...state, inboundRequests: action.payload };
     }
     case types.GOVERNANCE_REQUESTS_FAILURE: {
       return { ...state, error: action.payload };
