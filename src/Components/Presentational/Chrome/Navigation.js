@@ -5,7 +5,7 @@ import PageWrapper from '../../Scenes/Chrome/PageWrapper/PageWrapper-Container';
 import color from '@edma/design-tokens/js/color';
 import UserGroup from '../../Scenes/SideNavigation/UserGroupListItem/UserGroupListItem';
 import DashboardListItem from '../../Scenes/SideNavigation/DashboardListItem/DashboardListItem';
-import FindDataListItem from '../../Scenes/SideNavigation/FindDataListItem/FindDataListItem-Container';
+import SearchAssetsListItem from '../../Scenes/SideNavigation/SearchAssetsListItem/SearchAssetsListItem-Container';
 import GovernanceListItem from '../../Scenes/SideNavigation/GovernanceListItem/GovernanceListItem-Container';
 import HydrationListItem from '../../Scenes/SideNavigation/HydrationListItem/HydrationListItem-Container';
 import RequestListItem from '../../Scenes/SideNavigation/RequestListItem/RequestListItem-Container';
@@ -88,7 +88,7 @@ const Navigation = () => {
         <List className={classes.customList}>
           <UserGroup />
           <DashboardListItem />
-          <FindDataListItem />
+          <SearchAssetsListItem />
           <GovernanceListItem closeAllArrows={open} />
           <HydrationListItem closeAllArrows={open} />
           <RequestListItem closeAllArrows={open} />

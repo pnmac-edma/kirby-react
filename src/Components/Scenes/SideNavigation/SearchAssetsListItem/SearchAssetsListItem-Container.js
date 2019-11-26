@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { handleSearchClick } from '../../../../Actions/searchResultActions';
-import FindDataListItem from './FindDataListItem';
+import SearchAssetsListItem from './SearchAssetsListItem';
 
 const mapStateToProps = ({ searchResult }) => {
   return {
@@ -14,4 +14,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FindDataListItem);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchAssetsListItem);

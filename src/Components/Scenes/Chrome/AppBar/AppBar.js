@@ -2,7 +2,6 @@ import React from 'react';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import SearchButton from '../SearchButton/SearchButton-Container';
 import color from '@edma/design-tokens/js/color';
 import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.svg';
 
@@ -42,9 +41,6 @@ const Appbar = props => {
     <AppBar position="relative" color="default" className={classes.appBar}>
       <div className={classes.logoContainer}>
         <KirbyLogo className={classes.Logo} />
-      </div>
-      <div className={classes.searchButton}>
-        <SearchButton />
       </div>
       <div className={classes.themeToggleContainer}>
         <ThemeToggle />
