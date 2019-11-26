@@ -1,3 +1,5 @@
+import { initialState as viewRequests } from '../State/ViewRequests/reducers';
+
 const initialState = {
   searchResult: {
     searchInput: '',
@@ -36,7 +38,8 @@ const initialState = {
     selectedAll: false,
     employees: [],
     selectedEmployees: []
-  }
+  },
+  viewRequests
 };
 
 export default initialState;
