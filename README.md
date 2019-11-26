@@ -33,6 +33,13 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run release`
+
+Packages the output of the build process into a zip for deployment.  Handles major/minor/patch version bumping and tagging in Git.  Additionally while on GitHub it will upload the deployable artifact as part of a GitHub release.
+Please see more detailed documentation linked below.
+
+[Packaging and Releasing](docs/RELEASES.md)
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**

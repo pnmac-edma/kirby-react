@@ -42,11 +42,11 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
         selectedAll: selectedAll
       };
     }
-    case 'EMPLOYEE_ASSETS_REQUEST': {
+    case 'GET_EMPLOYEES_FETCH': {
       return { ...state };
     }
-    case 'EMPLOYEE_ASSETS_SUCCESS': {
-      const requestedFor = action.payload.reduce((acc, user) => {
+    case 'GET_EMPLOYEES_SUCCESS': {
+      const employees = action.payload.reduce((acc, user) => {
         acc.push({
           value: user.displayname,
           label: user.displayname,
@@ -54,13 +54,13 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
         });
         return acc;
       }, []);
-      return { ...state, requestedFor: requestedFor };
+      return { ...state, employees: employees };
     }
-    case 'EMPLOYEE_ASSETS_FAILURE': {
-      return { ...state, requestedFor: ['Server Error'] };
+    case 'GET_EMPLOYEES_FAILURE': {
+      return { ...state, employees: action.payload };
     }
-    case 'REQUEST_SELECT_VALUES': {
-      return { ...state, selectedOption: action.payload };
+    case 'HANDLE_SELECTED_EMPLOYEES': {
+      return { ...state, selectedEmployees: action.payload };
     }
 
     default:
