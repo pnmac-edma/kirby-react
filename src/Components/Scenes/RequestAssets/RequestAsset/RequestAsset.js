@@ -38,7 +38,7 @@ const RequestAsset = ({ getEmployeesFetch }) => {
       </div>
       <div className="sidebar">
         <div className={classes.sideBarPostion}>
-          <h1 className={classes.title}>Request Assets</h1>
+          <p className={classes.title}>Request Assets</p>
           <RequestingForContainer />
         </div>
       </div>
