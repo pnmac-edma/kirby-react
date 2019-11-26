@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import RequestsInbox from './RequestsInbox';
-import { approverRequestsFetch } from '../../../../State/ViewRequests/actions';
+import {
+  approverRequestsFetch,
+  governanceRequestsFetch
+} from '../../../../State/ViewRequests/actions';
 
 const mapStateToProps = ({ viewRequests }) => {
   return {
@@ -11,7 +14,8 @@ const mapStateToProps = ({ viewRequests }) => {
 const mapDispatchToProps = dispatch => {
   return {
     approverRequestsFetch: approverEmail =>
-      dispatch(approverRequestsFetch(approverEmail))
+      dispatch(approverRequestsFetch(approverEmail)),
+    governanceRequestsFetch: () => dispatch(governanceRequestsFetch())
   };
 };
 

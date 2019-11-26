@@ -104,11 +104,6 @@ const RequestTableBody = props => {
   return (
     <TableBody>
       {sortedSlicedRequests.map(request => {
-        console.log(
-          request.requestaction,
-          request.requesttype,
-          request.requestdata.sensitivity
-        );
         return (
           <TableRow
             key={request.Id}
@@ -128,9 +123,8 @@ const RequestTableBody = props => {
                   key={request[col.property]}
                   className={className}
                   align="left"
-                  onClick={onClickFunc}
                 >
-                  {request[col.property]}
+                  <span onClick={onClickFunc}>{request[col.property]}</span>
                 </TableCell>
               );
             })}

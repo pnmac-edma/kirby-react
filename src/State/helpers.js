@@ -6,7 +6,9 @@ export const transformRequests = requests => {
     const reqData = JSON.parse(request.requestdata);
     return {
       ...request,
-      name: `${request.requestaction} ${request.requesttype}: ${reqData.sensitivity}`,
+      name: `${request.requestaction} ${request.requesttype}${
+        reqData.sensitivity ? ': ' + reqData.sensitivity : ''
+      }`,
       requestdata: reqData,
       description: reqData.description || '',
       requeststatus:

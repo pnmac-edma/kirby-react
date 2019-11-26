@@ -2,12 +2,13 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
-import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
+import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
+import ArchivedRequestsContainer from '../../ViewRequests/ArchivedRequests/ArchivedRequests-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -36,7 +37,7 @@ const PageWrapper = ({ isSearchClicked }) => {
         <Route path="/search/access" component={RequestAssetContainer} />
         {/* requests pages - will be implemented and hooked in soon */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
-        <Route path="/requests/archive" component={null} />
+        <Route path="/requests/archive" component={ArchivedRequestsContainer} />
         <Route path="/requests/sent" component={null} />
       </Switch>
 
