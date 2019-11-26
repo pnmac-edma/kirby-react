@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import { InboxOutlined, ArrowDropDown } from '@material-ui/icons/';
 import color from '@edma/design-tokens/js/color';
+import { Link, useLocation } from 'react-router-dom';
 
 const requestListItem = makeStyles(theme => ({
   newInbox: {
@@ -28,6 +29,7 @@ const requestListItem = makeStyles(theme => ({
 const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
+  const activeLink = useLocation();
 
   useEffect(() => {
     if (closeAllArrows === false && openIconThree === true) {
@@ -35,16 +37,26 @@ const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
     }
   }, [closeAllArrows, openIconThree]);
 
-  const requestListItemText = requestListItemsName.map(text => (
-    <ListItem key={text} button className="Nav__nested-item">
+  const requestListItemText = requestListItemsName.map(({ label, link }) => (
+    <ListItem
+      component={Link}
+      to={link}
+      key={label}
+      button
+      className={
+        link === activeLink.pathname
+          ? 'Nav__nested-item Nav__item--is-active'
+          : 'Nav__nested-item'
+      }
+    >
       <ListItemText className="Nav__text">
-        {text === 'Inbox' ? (
+        {label === 'Inbox' ? (
           <>
-            {text}
+            {label}
             <span className={classes.newInbox}> (3 new)</span>
           </>
         ) : (
-          text
+          label
         )}
       </ListItemText>
     </ListItem>

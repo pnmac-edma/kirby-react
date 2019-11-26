@@ -37,7 +37,6 @@ const PageWrapper = ({ isSearchClicked }) => {
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={null} />
       </Switch>
-
       {isSearchClicked ? <SearchContainer /> : null}
     </div>
   );
