@@ -14,7 +14,7 @@ const FindDataListItem = props => {
       onClick={() => handleSearchClick()}
       button
       className={
-        isSearchClicked === true || '/search' === activeLink.pathname
+        isSearchClicked || '/search' === activeLink.pathname
           ? 'Nav__item Nav__item--is-active'
           : 'Nav__item'
       }
