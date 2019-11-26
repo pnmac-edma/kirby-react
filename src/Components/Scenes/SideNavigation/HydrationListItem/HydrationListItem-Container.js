@@ -3,7 +3,10 @@ import HydrationListItem from './HydrationListItem';
 
 const mapStateToProps = () => {
   return {
-    hydrationListItemsName: ['Add / Transform', 'Destinations']
+    hydrationListItemsName: [
+      { label: 'Add / Transform', link: '/hydration/add-transform' },
+      { label: 'Destinations', link: '/hydration/destinations' }
+    ]
   };
 };
 
