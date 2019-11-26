@@ -3,7 +3,8 @@ import PageWrapper from './PageWrapper';
 
 const mapStateToProps = ({ searchResult }) => {
   return {
-    isSearchClicked: searchResult.isSearchClicked
+    isSearchClicked: searchResult.isSearchClicked,
+    isSearchClosed: searchResult.isSearchClosed
   };
 };
 

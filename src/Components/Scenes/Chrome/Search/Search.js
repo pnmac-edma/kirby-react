@@ -16,8 +16,7 @@ const SearchInput = props => {
     isSearchClicked,
     searchHandleInput,
     searchResultRequest,
-    handleKeyPress,
-    searchHandleClose
+    handleKeyPress
   } = props;
 
   const history = useHistory();
@@ -51,16 +50,13 @@ const SearchInput = props => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => searchHandleClose()} color="secondary">
-            Cancel
-          </Button>
           <Button
             onClick={() => searchResultRequest()}
             color="primary"
             component={Link}
             to={urlWithParams}
           >
-            Search
+            Close
           </Button>
         </DialogActions>
       </Dialog>

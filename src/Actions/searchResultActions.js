@@ -55,7 +55,3 @@ export const handleRemoveChip = id => ({
 export const handleSearchClick = () => ({
   type: types.HANDLE_SEARCH_CLICK
 });
-
-export const searchHandleClose = () => ({
-  type: types.HANDLE_SEARCH_CLOSE
-});

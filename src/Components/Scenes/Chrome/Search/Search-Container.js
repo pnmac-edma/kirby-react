@@ -3,8 +3,7 @@ import Search from './Search';
 import {
   searchHandleInput,
   searchResultRequest,
-  handleKeyPress,
-  searchHandleClose
+  handleKeyPress
 } from '../../../../Actions/searchResultActions';
 
 const mapStateToProps = ({ searchResult }) => {
@@ -18,8 +17,7 @@ const mapDispatchToProps = dispatch => {
   return {
     searchHandleInput: e => dispatch(searchHandleInput(e)),
     searchResultRequest: () => dispatch(searchResultRequest()),
-    handleKeyPress: e => dispatch(handleKeyPress(e)),
-    searchHandleClose: () => dispatch(searchHandleClose())
+    handleKeyPress: e => dispatch(handleKeyPress(e))
   };
 };
 
