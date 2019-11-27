@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import RequestAssetTableContainer from '../RequestAssetTable/RequestAssetTable-Container';
 import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
+import RequestingForContainer from '../RequestingFor/RequestingFor-Container';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -19,13 +20,16 @@ const useStyles = makeStyles(theme => ({
     color: 'black'
   },
   title: {
-    flex: '0 0 auto',
-    width: '100%'
+    width: 'max-content'
   }
 }));
 
-const RequestAsset = () => {
+const RequestAsset = ({ getEmployeesFetch }) => {
   const classes = useStyles();
+  useEffect(() => {
+    getEmployeesFetch();
+  }, [getEmployeesFetch]);
+
   return (
     <>
       <div className={classes.sideTable}>
@@ -34,7 +38,8 @@ const RequestAsset = () => {
       </div>
       <div className="sidebar">
         <div className={classes.sideBarPostion}>
-          <h1>Request Assets</h1>
+          <p className={classes.title}>Request Assets</p>
+          <RequestingForContainer />
         </div>
       </div>
     </>

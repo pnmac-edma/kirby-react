@@ -1,10 +1,21 @@
 import React from 'react';
 import { ListItem, ListItemText } from '@material-ui/core';
 import { VpnKeyOutlined } from '@material-ui/icons/';
+import { Link, useLocation } from 'react-router-dom';
 
 const KeysListItem = () => {
+  const activeLink = useLocation();
   return (
-    <ListItem button className="Nav__item">
+    <ListItem
+      component={Link}
+      to="/keys"
+      button
+      className={
+        '/keys' === activeLink.pathname
+          ? 'Nav__item Nav__item--is-active'
+          : 'Nav__item'
+      }
+    >
       <VpnKeyOutlined className="Nav__icon" />
       <ListItemText className="Nav__text" primary="Keys" />
     </ListItem>

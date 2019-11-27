@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const requestAssetApiCall = args => {
+export const getEmployees = args => {
   const url = `https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com/dev/users`;
   const fetchBody = {
     function: 'get_users',
