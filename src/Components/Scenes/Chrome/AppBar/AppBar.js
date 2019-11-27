@@ -12,7 +12,7 @@ const appBarStyle = makeStyles(theme => ({
   },
   themeToggleContainer: {
     position: 'absolute',
-    right: '7px'
+    right: '8px'
   },
   Logo: {
     height: '56px',
