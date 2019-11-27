@@ -10,14 +10,9 @@ const appBarStyle = makeStyles(theme => ({
     marginLeft: '16px',
     display: 'flex'
   },
-  searchButton: {
-    position: 'absolute',
-    right: '104px',
-    top: '-2px'
-  },
   themeToggleContainer: {
     position: 'absolute',
-    right: '72px'
+    right: '7px'
   },
   Logo: {
     height: '56px',
