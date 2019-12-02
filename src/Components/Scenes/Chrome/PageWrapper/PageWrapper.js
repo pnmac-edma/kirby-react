@@ -8,6 +8,7 @@ import color from '@edma/design-tokens/js/color';
 import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
+import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -37,7 +38,7 @@ const PageWrapper = ({ isSearchClicked }) => {
         {/* requests pages - will be implemented and hooked in soon */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
-        <Route path="/requests/sent" component={null} />
+        <Route path="/requests/sent" component={SentRequestsContainer} />
       </Switch>
 
       {isSearchClicked ? <SearchContainer /> : null}
