@@ -2,9 +2,14 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 
 const RemoveSelectedButton = props => {
-  const { textField, count } = props;
+  const { textField, selectedSearchResultCopy, handleModalOpen } = props;
   return (
-    <Button color="primary" variant="contained" disabled={count <= 0}>
+    <Button
+      color="primary"
+      variant="contained"
+      disabled={selectedSearchResultCopy <= 0}
+      onClick={() => handleModalOpen()}
+    >
       {textField}
     </Button>
   );

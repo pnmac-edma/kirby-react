@@ -18,3 +18,16 @@ export const handleSelectedEmployees = selectedValues => ({
   type: types.HANDLE_SELECTED_EMPLOYEES,
   payload: selectedValues
 });
+
+export const handleModalOpen = () => ({
+  type: types.HANDLE_MODAL_OPEN
+});
+
+export const handleModalClose = obj => ({
+  type: types.HANDLE_MODAL_CLOSE,
+  payload: obj
+});
+
+export const handleRemoveNotification = () => ({
+  type: types.HANDLE_REMOVE_NOTIFICATION
+});

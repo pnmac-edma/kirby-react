@@ -37,7 +37,9 @@ const initialState = {
     selectedSearchResultCopy: [],
     selectedAll: false,
     employees: [],
-    selectedEmployees: []
+    selectedEmployees: [],
+    openModal: false,
+    notification: false
   },
   viewRequests
 };

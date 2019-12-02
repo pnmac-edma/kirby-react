@@ -62,7 +62,27 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
     case 'HANDLE_SELECTED_EMPLOYEES': {
       return { ...state, selectedEmployees: action.payload };
     }
-
+    case 'HANDLE_MODAL_OPEN': {
+      return { ...state, openModal: !state.openModal };
+    }
+    case 'HANDLE_MODAL_CLOSE': {
+      const searchResultCopy = state.selectedSearchResultCopy.reduce(
+        (acc, value) => {
+          if (!value.chec) acc.push(value);
+          return acc;
+        },
+        []
+      );
+      return {
+        ...state,
+        selectedSearchResultCopy: searchResultCopy,
+        openModal: !state.openModal,
+        notification: !state.notification
+      };
+    }
+    case 'HANDLE_REMOVE_NOTIFICATION': {
+      return { ...state, notification: !state.notification };
+    }
     default:
       return state;
   }
