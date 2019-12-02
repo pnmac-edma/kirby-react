@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ListItem } from '@material-ui/core';
-import RemoveModal from './RemoveModal';
+import RemoveModal from '../../../Presentational/RequestAssets/RemoveModal';
 import {
   handleModalOpen,
   handleModalClose
