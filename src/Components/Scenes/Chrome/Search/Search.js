@@ -24,7 +24,6 @@ const SearchInput = props => {
 
   const keyPressWrapper = e => {
     if (e.key === 'Enter') {
-      searchResultRequest();
       history.push(urlWithParams);
     }
   };
