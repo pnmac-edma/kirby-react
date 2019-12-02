@@ -2,10 +2,9 @@ import { connect } from 'react-redux';
 import SnackBar from '../../../Presentational/RequestAssets/SnackBar';
 import { handleRemoveNotification } from '../../../../Actions/requestAssetActions';
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ requestAssets }) => {
   return {
-    searchResultCopy: state.searchResult.searchResultCopy,
-    notification: state.requestAssets.notification,
+    notification: requestAssets.notification,
     message: `The Assets in your request were updated successfully.`
   };
 };

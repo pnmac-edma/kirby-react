@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ListItem } from '@material-ui/core';
+import weight from '@edma/design-tokens/js/weight';
 import RemoveModal from '../../../Presentational/RequestAssets/RemoveModal';
 import {
   handleModalOpen,
@@ -24,14 +25,14 @@ const mapStateToProps = ({ requestAssets }) => {
       }, []),
     openModal: requestAssets.openModal,
     modalTitle: `Removing Assets`,
-    renderStyle: { textTransform: 'capitalize', fontWeight: 'bold' }
+    renderStyle: { textTransform: 'capitalize', fontWeight: weight['bold'] }
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleModalOpen: val => dispatch(handleModalOpen(val)),
-    handleModalClose: val => dispatch(handleModalClose(val))
+    handleModalOpen: () => dispatch(handleModalOpen()),
+    handleModalClose: () => dispatch(handleModalClose())
   };
 };
 
