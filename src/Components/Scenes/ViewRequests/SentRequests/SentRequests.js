@@ -6,7 +6,7 @@ import { transformRequests } from '../../../../State/helpers';
 
 // Approver email is hard-coded until authentication is implemented
 const userEmail = 'jonathan.delarosa@pnmac.com';
-const requestsInboxTableColumns = [
+const sentRequestsTableColumns = [
   { name: 'Request', property: 'databasename' },
   { name: 'Description', property: 'description' },
   { name: 'Status', property: 'requeststatus' },
@@ -16,7 +16,7 @@ const requestsInboxTableColumns = [
 const SentRequests = props => {
   const { requests, userRequestsFetch } = props;
 
-  // Fetch all inbound requests given for approver's email
+  // Fetch all outbound requests for a user
   useEffect(() => {
     userRequestsFetch(userEmail);
   }, [userRequestsFetch]);
@@ -30,7 +30,7 @@ const SentRequests = props => {
     <>
       <RequestTableTitle title="Sent Requests" />
       <RequestTable
-        tableColumns={requestsInboxTableColumns}
+        tableColumns={sentRequestsTableColumns}
         requests={reqs}
         handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
         setFooterButtonText={setFooterButtonText}
