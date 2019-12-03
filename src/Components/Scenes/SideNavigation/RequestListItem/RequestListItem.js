@@ -10,6 +10,7 @@ import {
 import { InboxOutlined, ArrowDropDown } from '@material-ui/icons/';
 import color from '@edma/design-tokens/js/color';
 import { Link, useLocation } from 'react-router-dom';
+import initialState from '../../../../Reducers/initialState';
 
 const requestListItem = makeStyles(theme => ({
   newInbox: {
@@ -29,13 +30,22 @@ const requestListItem = makeStyles(theme => ({
 const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
+  const [isApprover, setApprover] = useState({
+    approver: ''
+  });
+
   const activeLink = useLocation();
+  const approvedUser = initialState.currentUser.role.approver;
 
   useEffect(() => {
     if (closeAllArrows === false && openIconThree === true) {
       setOpenIconThree(false);
     }
   }, [closeAllArrows, openIconThree]);
+
+  useEffect(() => {
+    setApprover(approvedUser);
+  }, [approvedUser]);
 
   const requestListItemText = requestListItemsName.map(({ label, link }) => (
     <ListItem
@@ -80,7 +90,9 @@ const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
       </ListItem>
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {requestListItemText}
+          {isApprover === true
+            ? requestListItemText
+            : requestListItemText.slice(1, -1)}
         </List>
       </Collapse>
     </>
