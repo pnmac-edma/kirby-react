@@ -6,19 +6,19 @@ import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.sv
 
 const headerStyles = makeStyles(theme => ({
   header: {
-    marginLeft: 6,
+    marginLeft: theme.spacing(1),
     display: 'flex',
     alignItems: 'center',
-    padding: 12
+    padding: theme.spacing(1.5)
   },
   breadcrumbs: {
     whiteSpace: 'nowrap',
     color: theme.palette.common.black
   },
   mark: {
-    height: '56px',
+    height: theme.spacing(7),
     flexShrink: 0,
-    marginRight: 14,
+    marginRight: theme.spacing(1.5),
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
     }
