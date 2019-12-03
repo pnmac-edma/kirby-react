@@ -15,7 +15,6 @@ const chromeStyles = makeStyles(theme => ({
   canvas: {
     background:
       'repeating-linear-gradient(45deg, #EDF5FF, #EDF5FF 15px, #FFFFFF 5px, #FFFFFF 20px)',
-    height: 'inherit',
     flexGrow: 1
   },
   toolbar: {
