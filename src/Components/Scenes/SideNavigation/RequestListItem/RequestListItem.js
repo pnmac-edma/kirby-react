@@ -26,16 +26,33 @@ const requestListItem = makeStyles(theme => ({
   }
 }));
 
-const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
+const RequestListItem = ({
+  closeAllArrows,
+  requestListItemsName,
+  inboxAlerts
+}) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
   const activeLink = useLocation();
+  const [alerts, setAlerts] = useState();
+
+  alerts > 0
+    ? (document.title = `(${alerts} new)`)
+    : (document.title = `Kirby`);
+
+  const newAlertsInbox = inboxAlerts.filter(
+    alert => alert.requeststatus === 'Pending'
+  ).length;
 
   useEffect(() => {
     if (closeAllArrows === false && openIconThree === true) {
       setOpenIconThree(false);
     }
   }, [closeAllArrows, openIconThree]);
+
+  useEffect(() => {
+    setAlerts(newAlertsInbox);
+  }, [newAlertsInbox]);
 
   const requestListItemText = requestListItemsName.map(({ label, link }) => (
     <ListItem
@@ -53,7 +70,9 @@ const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
         {label === 'Inbox' ? (
           <>
             {label}
-            <span className={classes.newInbox}> (3 new)</span>
+            {alerts > 0 ? (
+              <span className={classes.newInbox}> ({alerts} new)</span>
+            ) : null}
           </>
         ) : (
           label
@@ -75,7 +94,7 @@ const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
       >
         <ArrowDropDown className="Nav__arrow" />
         <InboxOutlined className="Nav__icon" />
-        <div className={classes.newRequestCircle}></div>
+        {alerts > 0 ? <div className={classes.newRequestCircle}></div> : null}
         <ListItemText className="Nav__text">Requests</ListItemText>
       </ListItem>
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
