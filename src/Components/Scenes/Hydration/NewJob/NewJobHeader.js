@@ -29,14 +29,12 @@ const NewJobHeader = props => {
   const classes = headerStyles();
   const { jobName } = props;
 
-  const slash = <Typography variant="h5">/</Typography>;
-
   return (
     <Box className={classes.header}>
       <KirbyMark className={classes.mark} />
       <Breadcrumbs
         aria-label="breadcrumb"
-        separator={slash}
+        separator={<Typography variant="h5">/</Typography>}
         className={classes.breadcrumbs}
       >
         <Link href="/hydration/view-jobs" variant="h5">
