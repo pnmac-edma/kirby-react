@@ -37,7 +37,7 @@ const PageWrapper = ({ isSearchClicked }) => {
         <Route path="/search/access" component={RequestAssetContainer} />
         <Route path="/search" component={SearchResultsContainer} />
         {/* hydration pages */}
-        <Route path="/hydration/add-transform" component={HydrationChrome} />
+        <Route path="/hydration/new-job" component={HydrationChrome} />
         {/* requests pages - will be implemented and hooked in soon */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
