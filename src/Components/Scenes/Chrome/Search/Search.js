@@ -24,6 +24,10 @@ const SearchInput = props => {
 
   const keyPressWrapper = e => {
     if (e.key === 'Enter') {
+      // TODO: reconsider how to search while updating URL params.
+      // Currently, this updates the URL, and when we render `Search`,
+      // it looks at the URL, extracts the params, and then performs the request.
+      // This isn't necessarily bad, but potentially could be made cleaner
       history.push(urlWithParams);
     }
   };
