@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import color from '@edma/design-tokens/js/color';
@@ -26,9 +26,10 @@ export default function Splash() {
   const classes = useStyles();
   const theme = useTheme();
 
-  theme.palette.type === 'light'
-    ? (document.body.style.backgroundColor = color.c50)
-    : (document.body.style.backgroundColor = color.g900);
+  useEffect(() => {
+    document.body.className = theme.palette.type === 'light' ? 'splash' : 'splash-dark';
+    return () => { document.body.className = ''; }
+  });
 
   return (
     <>
