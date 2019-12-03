@@ -1,6 +1,19 @@
 import { initialState as viewRequests } from '../State/ViewRequests/reducers';
 
 const initialState = {
+  currentUser: {
+    role: {
+      governance: true,
+      approver: true
+    },
+    // Authorization: initial state, based off of SAML token
+    AccessKeyID: null,
+    EmpEmail: 'jonathan.delarosa@pnmac.com',
+    SamlHash: null,
+    SecretKey: null,
+    SessionToken: null,
+    UserKey: null
+  },
   searchResult: {
     searchInput: '',
     isLoading: false,
