@@ -6,7 +6,7 @@ import NewJobHeader from './NewJobHeader';
 const chromeStyles = makeStyles(theme => ({
   container: {
     position: 'fixed',
-    zIndex: 1101, // Positions container on top of original nav bar
+    zIndex: 1101, // Positions container on top of original header bar
     height: '100%',
     width: '100%',
     display: 'flex'
