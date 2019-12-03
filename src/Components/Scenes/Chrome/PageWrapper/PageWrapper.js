@@ -9,7 +9,7 @@ import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
-import HydrationChrome from '../../Hydration/HydrationChrome';
+import NewJob from '../../Hydration/NewJob/NewJob';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -37,11 +37,11 @@ const PageWrapper = ({ isSearchClicked }) => {
         <Route path="/search/access" component={RequestAssetContainer} />
         <Route path="/search" component={SearchResultsContainer} />
         {/* hydration pages */}
-        <Route path="/hydration/new-job" component={HydrationChrome} />
+        <Route path="/hydration/new-job" component={NewJob} />
         {/* requests pages - will be implemented and hooked in soon */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
-        <Route path="/requests/sent" component={SentRequestsContainer} />
         <Route path="/requests/archive" component={null} />
+        <Route path="/requests/sent" component={SentRequestsContainer} />
       </Switch>
 
       {isSearchClicked ? <SearchContainer /> : null}
