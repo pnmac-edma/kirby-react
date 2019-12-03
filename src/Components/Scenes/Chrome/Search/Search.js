@@ -12,19 +12,23 @@ import {
 
 const SearchInput = props => {
   const {
-    searchHandleInput,
     searchInput,
+    isSearchClicked,
+    searchHandleInput,
     searchResultRequest,
-    handleKeyPress,
-    isSearchClicked
+    handleKeyPress
   } = props;
 
   const history = useHistory();
+  const urlWithParams = `/search?params=${searchInput}`;
 
   const keyPressWrapper = e => {
     if (e.key === 'Enter') {
-      searchResultRequest();
-      history.push('/search');
+      // TODO: reconsider how to search while updating URL params.
+      // Currently, this updates the URL, and when we render `Search`,
+      // it looks at the URL, extracts the params, and then performs the request.
+      // This isn't necessarily bad, but potentially could be made cleaner
+      history.push(urlWithParams);
     }
   };
 
@@ -53,7 +57,7 @@ const SearchInput = props => {
             onClick={() => searchResultRequest()}
             color="primary"
             component={Link}
-            to="/search"
+            to={urlWithParams}
           >
             Close
           </Button>

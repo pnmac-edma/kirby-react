@@ -15,11 +15,11 @@ const pageContainerStyle = makeStyles(theme => ({
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
+    backgroundColor: theme.palette.type,
     alignItems: 'stretch',
-    backgroundColor: theme.palette.type === 'light' ? 'dark' : 'light',
     width: `calc(100% - ${theme.spacing(7)}px)`,
     height: '100vh',
-    color: color.white
+    color: theme.palette.type === 'light' ? color.black : color.white
   }
 }));
 
@@ -33,13 +33,14 @@ const PageWrapper = ({ isSearchClicked }) => {
       <Switch>
         <Route exact path="/" component={Splash} />
         {/* search pages */}
-        <Route exact path="/search" component={SearchResultsContainer} />
         <Route path="/search/access" component={RequestAssetContainer} />
+        <Route path="/search" component={SearchResultsContainer} />
         {/* requests pages - will be implemented and hooked in soon */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
       </Switch>
+
       {isSearchClicked ? <SearchContainer /> : null}
     </div>
   );

@@ -1,14 +1,18 @@
 import initialState from './initialState';
+import * as types from '../Actions/types';
 
 const searchReducer = (state = initialState.searchResult, action) => {
   switch (action.type) {
-    case 'SEARCH_HANDLE_INPUT': {
+    case types.SEARCH_RESULT_PAGE_LOAD: {
       return { ...state, searchInput: action.payload };
     }
-    case 'HANDLE_KEY_PRESS': {
+    case types.SEARCH_HANDLE_INPUT: {
+      return { ...state, searchInput: action.payload };
+    }
+    case types.HANDLE_KEY_PRESS: {
       return { ...state };
     }
-    case 'SEARCH_RESULT_REQUEST': {
+    case types.SEARCH_RESULT_REQUEST: {
       return {
         ...state,
         isLoading: true,
@@ -16,7 +20,7 @@ const searchReducer = (state = initialState.searchResult, action) => {
         displaySearchResult: true
       };
     }
-    case 'SEARCH_RESULT_SUCCESS': {
+    case types.SEARCH_RESULT_SUCCESS: {
       const searchResultCopy = action.payload.results.map(val => {
         val.checked = false;
         return val;
@@ -30,10 +34,10 @@ const searchReducer = (state = initialState.searchResult, action) => {
         isSearchClicked: false
       };
     }
-    case 'SEARCH_RESULT_FAILURE': {
+    case types.SEARCH_RESULT_FAILURE: {
       return { ...state, searchResult: action.payload, isLoading: false };
     }
-    case 'HANDLE_CHECKBOX_SELECT': {
+    case types.HANDLE_CHECKBOX_SELECT: {
       let ap = action.payload;
       let selectedCheckBoxes;
       let selectedAll;
@@ -66,7 +70,7 @@ const searchReducer = (state = initialState.searchResult, action) => {
         selectedAll: selectedAll
       };
     }
-    case 'SEARCH_RESULT_SORT_SUCCESS': {
+    case types.SEARCH_RESULT_SORT_SUCCESS: {
       const searchResultCopy = action.searchResult.results.map(val => {
         val.checked = false;
         return val;
@@ -81,7 +85,7 @@ const searchReducer = (state = initialState.searchResult, action) => {
         sortBy: { ...state.sortBy, [action.columnName]: action.sortDirection }
       };
     }
-    case 'HANDLE_FILTER_SELECT': {
+    case types.HANDLE_FILTER_SELECT: {
       return {
         ...state,
         filter: {
@@ -90,13 +94,13 @@ const searchReducer = (state = initialState.searchResult, action) => {
         }
       };
     }
-    case 'HANDLE_FILTER_CLICK': {
+    case types.HANDLE_FILTER_CLICK: {
       return {
         ...state,
         isFilterClick: !state.isFilterClick
       };
     }
-    case 'HANDLE_FILTER_REQUEST': {
+    case types.HANDLE_FILTER_REQUEST: {
       const filterQueriesCopy = [...state.filterQueries];
       let containCopy = state.filter.contain;
       if (containCopy === 'contain') {
@@ -121,7 +125,7 @@ const searchReducer = (state = initialState.searchResult, action) => {
       }
       return { ...state, filterQueries: filterQueriesCopy };
     }
-    case 'HANDLE_FILTER_SUCCESS': {
+    case types.HANDLE_FILTER_SUCCESS: {
       if (typeof action.payload === 'string') {
         return {
           ...state,
@@ -142,7 +146,7 @@ const searchReducer = (state = initialState.searchResult, action) => {
         searchResultCopy: searchResultCopy
       };
     }
-    case 'HANDLE_REMOVE_CHIP': {
+    case types.HANDLE_REMOVE_CHIP: {
       const filterQueries = [...state.filterQueries];
       filterQueries.splice(action.payload, 1);
       return {
@@ -151,7 +155,7 @@ const searchReducer = (state = initialState.searchResult, action) => {
         isFilterQueriesEmpty: false
       };
     }
-    case 'HANDLE_REMOVE_CHIP_SUCCESS': {
+    case types.HANDLE_REMOVE_CHIP_SUCCESS: {
       const searchResultCopy = action.payload.results.map(val => {
         val.checked = false;
         return val;
@@ -164,16 +168,16 @@ const searchReducer = (state = initialState.searchResult, action) => {
         searchResultCopy: searchResultCopy
       };
     }
-    case 'HANDLE_SEARCH_CLICK': {
+    case types.HANDLE_SEARCH_CLICK: {
       return {
         ...state,
         isSearchClicked: true
       };
     }
-    case 'HANDLE_SEARCH_CLOSE': {
+    case types.HANDLE_SEARCH_CLOSE: {
       return {
         ...state,
-        isSearchClosed: true
+        isSearchClicked: false
       };
     }
     default:

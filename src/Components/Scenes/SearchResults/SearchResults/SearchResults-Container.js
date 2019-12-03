@@ -1,5 +1,9 @@
 import { connect } from 'react-redux';
 import SearchResults from './SearchResults';
+import {
+  searchResultPageLoad,
+  searchResultRequest
+} from '../../../../Actions/searchResultActions';
 
 const mapStateToProps = ({ searchResult }) => {
   return {
@@ -9,4 +13,11 @@ const mapStateToProps = ({ searchResult }) => {
   };
 };
 
-export default connect(mapStateToProps)(SearchResults);
+const mapDispatchToProps = dispatch => {
+  return {
+    searchResultPageLoad: params => dispatch(searchResultPageLoad(params)),
+    searchResultRequest: () => dispatch(searchResultRequest())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
