@@ -6,11 +6,12 @@ import NewJobHeader from './NewJobHeader';
 const chromeStyles = makeStyles(theme => ({
   container: {
     position: 'fixed',
-    zIndex: 1101,
+    zIndex: 1101, // Positions container on top of original nav bar
     height: '100%',
     width: '100%',
     display: 'flex'
   },
+  // Placeholder pattern until canvas is implemented
   canvas: {
     background:
       'repeating-linear-gradient(45deg, #EDF5FF, #EDF5FF 15px, #FFFFFF 5px, #FFFFFF 20px)',
@@ -31,6 +32,7 @@ const HydrationChrome = props => {
       <Box className={classes.canvas}>
         <NewJobHeader jobName="My New Job"></NewJobHeader>
       </Box>
+      {/* Placeholder box until toolbar is implemented */}
       <Box className={classes.toolbar}>Toolbar Placeholder</Box>
     </Box>
   );
