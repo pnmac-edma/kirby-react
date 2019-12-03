@@ -27,7 +27,7 @@ export default function Splash() {
   const theme = useTheme();
 
   useEffect(() => {
-    document.body.className = 'splash';
+    document.body.className = theme.palette.type === 'light' ? 'splash' : 'splash-dark';
     return () => { document.body.className = ''; }
   });
 
