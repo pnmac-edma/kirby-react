@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import Splash from '../../../Presentational/Splash';
 import TableSectionContainer from '../../SearchResults/TableSection/TableSection-Container';
 import TableSkeleton from '../../SearchResults/TableSkeleton/TableSkeleton';
 import { useQuery } from '../../../../Hooks/customHooks';
 
 const SearchResults = props => {
   const {
-    searchResultCopy,
     isLoading,
     displaySearchResult,
     searchResultPageLoad,
@@ -28,7 +26,6 @@ const SearchResults = props => {
       ) : displaySearchResult ? (
         <TableSectionContainer />
       ) : null}
-      {!searchResultCopy.length ? <Splash /> : null}
     </>
   );
 };
