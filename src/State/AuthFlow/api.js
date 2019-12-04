@@ -6,7 +6,7 @@ const COGNITO_URL =
 export function authenticate(token) {
   const fetchBody = {
     token: 'SAMLResponse=' + token,
-    AccessKeyID: null,
+    AccessKeyId: null,
     EmpEmail: null,
     UserKey: null,
     SessionToken: null,

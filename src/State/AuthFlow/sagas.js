@@ -3,7 +3,6 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import { authenticate } from './api';
 
 export function* handleAuthenticate(action) {
-  console.log('in the saga');
   try {
     const response = yield call(authenticate, action.payload);
     yield put({ type: types.AUTHENTICATE_SUCCESS, payload: response });
