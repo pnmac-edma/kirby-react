@@ -50,7 +50,8 @@ const initialState = {
     selectedSearchResultCopy: [],
     selectedAll: false,
     employees: [],
-    selectedEmployees: []
+    selectedEmployees: [],
+    openModal: false
   },
   viewRequests
 };
