@@ -74,7 +74,7 @@ const Navigation = () => {
     <div className={classes.root}>
       <Drawer
         onMouseEnter={() => setOpen(true)}
-        // onMouseLeave={closeDrawer}
+        onMouseLeave={() => setOpen(false)}
         variant="permanent"
         className={clsx('Nav', classes.drawer, {
           'Nav--is-open': open,
@@ -91,12 +91,12 @@ const Navigation = () => {
         open={open}
       >
         <List className={classes.customList}>
-          <UserGroup closeDrawer={closeDrawer} />
+          <UserGroup />
           <DashboardListItem />
           <SearchAssetsListItem />
-          <GovernanceListItem closeAllArrows={open} />
-          <HydrationListItem closeAllArrows={open} />
-          <RequestListItem closeAllArrows={open} />
+          <GovernanceListItem closeAllArrows={open} closeDrawer={closeDrawer} />
+          <HydrationListItem closeAllArrows={open} closeDrawer={closeDrawer} />
+          <RequestListItem closeAllArrows={open} closeDrawer={closeDrawer} />
           <KeysListItem />
           <AwsAthenaListItem />
         </List>
