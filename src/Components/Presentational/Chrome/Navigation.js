@@ -66,11 +66,15 @@ const Navigation = () => {
   const classes = navStyle();
   const [open, setOpen] = useState(false);
 
+  const closeDrawer = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className={classes.root}>
       <Drawer
         onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
+        // onMouseLeave={closeDrawer}
         variant="permanent"
         className={clsx('Nav', classes.drawer, {
           'Nav--is-open': open,
@@ -87,7 +91,7 @@ const Navigation = () => {
         open={open}
       >
         <List className={classes.customList}>
-          <UserGroup />
+          <UserGroup closeDrawer={closeDrawer} />
           <DashboardListItem />
           <SearchAssetsListItem />
           <GovernanceListItem closeAllArrows={open} />
