@@ -10,7 +10,9 @@ const headerStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(1.5)
+    padding: theme.spacing(1.5),
+    position: 'absolute',
+    zIndex: 1
   },
   breadcrumbs: {
     whiteSpace: 'nowrap',

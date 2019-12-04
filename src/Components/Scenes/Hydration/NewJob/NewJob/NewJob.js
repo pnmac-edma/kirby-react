@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import NewJobHeader from '../NewJobHeader';
+import Canvas from '../Canvas';
 
 const chromeStyles = makeStyles(theme => ({
   container: {
@@ -33,6 +34,9 @@ const NewJob = props => {
         {/* TODO: Move jobName to Redux */}
         <NewJobHeader jobName={newJobName}></NewJobHeader>
         {/* TODO: Add ETL canvas */}
+        <div style={{ height: '100%' }}>
+          <Canvas />
+        </div>
       </Box>
       {/* TODO: Implement toolbar component */}
       <Box className={classes.toolbar}>Toolbar Placeholder</Box>
