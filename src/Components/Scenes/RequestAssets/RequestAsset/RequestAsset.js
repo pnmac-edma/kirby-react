@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import { Divider } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import RequestAssetTableContainer from '../RequestAssetTable/RequestAssetTable-Container';
 import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
 import RequestingForContainer from '../RequestingFor/RequestingFor-Container';
 import RequestedByContainer from '../RequestedBy/RequestedBy-Container';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Divider, List, ListItem } from '@material-ui/core';
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
@@ -23,11 +24,10 @@ const useStyles = makeStyles(theme => ({
   title: {
     width: 'max-content'
   },
-  div: {
-    left: -0.57,
-    right: '-13.43%',
-    top: '98.41%',
-    bottom: 0
+  dividerStyle: {
+    width: 400,
+    marginBottom: 32,
+    marginTop: 24
   }
 }));
 
@@ -47,11 +47,7 @@ const RequestAsset = ({ getEmployeesFetch }) => {
         <div className={classes.sideBarPostion}>
           <p className={classes.title}>Request Assets</p>
           <RequestedByContainer />
-          <List component="nav">
-            <ListItem>
-              <Divider absolute={true} className={classes.div} />
-            </ListItem>
-          </List>
+          <Divider className={classes.dividerStyle} />
           <RequestingForContainer />
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Divider, List, ListItem } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   title: {
@@ -9,18 +9,15 @@ const useStyles = makeStyles(theme => ({
     width: 'max-content',
     textTransform: 'uppercase',
     marginBottom: 8
-  },
-  tit: {
-    marginBottom: 36
   }
 }));
 
 const RequestedBy = props => {
-  const classes = useStyles();
   const { requestedBy } = props;
+  const classes = useStyles();
   return (
     <>
-      <Typography className={classes.menuStyle}>Requested For</Typography>
+      <Typography className={classes.menuStyle}>Requested By</Typography>
       <Typography className={classes.title}>{requestedBy}</Typography>
     </>
   );
