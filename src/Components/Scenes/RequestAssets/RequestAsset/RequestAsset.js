@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import RequestAssetTableContainer from '../RequestAssetTable/RequestAssetTable-Container';
 import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
 import RequestingForContainer from '../RequestingFor/RequestingFor-Container';
-import { makeStyles } from '@material-ui/core/styles';
+import SnackBarContainer from '../SnackBar/SnackBar-Container';
+import RemoveModalContainer from '../RemoveModal/RemoveModal-Container';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -24,17 +26,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestAsset = ({ getEmployeesFetch }) => {
+const RequestAsset = ({ getEmployeesFetch, openModal }) => {
   const classes = useStyles();
   useEffect(() => {
     getEmployeesFetch();
   }, [getEmployeesFetch]);
 
+  const [notification, setNotification] = React.useState(false);
+
+  const handleOpenNotification = () => {
+    setNotification(true);
+  };
+
+  const handleCloseNotification = () => {
+    setNotification(false);
+  };
+
   return (
     <>
       <div className={classes.sideTable}>
         <RequestAssetTableContainer />
+        {openModal ? (
+          <RemoveModalContainer
+            handleOpenNotification={handleOpenNotification}
+          />
+        ) : null}
         <RequestAssetJustificationContainer />
+        <SnackBarContainer
+          handleCloseNotification={handleCloseNotification}
+          notification={notification}
+        />
       </div>
       <div className="sidebar">
         <div className={classes.sideBarPostion}>
