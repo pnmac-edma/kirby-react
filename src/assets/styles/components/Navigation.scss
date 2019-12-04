@@ -99,6 +99,7 @@
   min-width: 20px;
   margin-right: 1.5rem;
   transition: all 0.2s ease-in-out;
+  transition-delay: 500ms;
 
   & path {
     fill: $color-g-400;
