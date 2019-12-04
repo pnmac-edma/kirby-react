@@ -9,6 +9,8 @@ import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
+import NewJobContainer from '../../Hydration/NewJob/NewJob/NewJob-Container';
+import { useLocation } from 'react-router-dom';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -25,16 +27,19 @@ const pageContainerStyle = makeStyles(theme => ({
 
 const PageWrapper = ({ isSearchClicked }) => {
   const classes = pageContainerStyle();
+  const curPath = useLocation().pathname;
 
   return (
     <div className={classes.pageContainer}>
-      <AppBarContainer />
+      {curPath === '/hydration/new-job' ? null : <AppBarContainer />}
 
       <Switch>
         <Route exact path="/" component={Splash} />
         {/* search pages */}
         <Route path="/search/access" component={RequestAssetContainer} />
         <Route path="/search" component={SearchResultsContainer} />
+        {/* hydration pages */}
+        <Route path="/hydration/new-job" component={NewJobContainer} />
         {/* requests pages - will be implemented and hooked in soon */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
