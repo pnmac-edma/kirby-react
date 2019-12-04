@@ -92,12 +92,12 @@ const Navigation = () => {
       >
         <List className={classes.customList}>
           <UserGroup />
-          <DashboardListItem />
+          <DashboardListItem closeDrawer={closeDrawer} />
           <SearchAssetsListItem />
           <GovernanceListItem closeAllArrows={open} closeDrawer={closeDrawer} />
           <HydrationListItem closeAllArrows={open} closeDrawer={closeDrawer} />
           <RequestListItem closeAllArrows={open} closeDrawer={closeDrawer} />
-          <KeysListItem />
+          <KeysListItem closeDrawer={closeDrawer} />
           <AwsAthenaListItem />
         </List>
         <AvatarListItem />
