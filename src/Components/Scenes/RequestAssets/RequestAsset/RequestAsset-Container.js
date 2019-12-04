@@ -5,7 +5,6 @@ import { getEmployeesFetch } from '../../../../Actions/requestAssetActions';
 const mapStateToProps = state => {
   return {
     searchResultCopy: state.searchResult.searchResultCopy,
-    notification: state.requestAssets.notification,
     openModal: state.requestAssets.openModal
   };
 };

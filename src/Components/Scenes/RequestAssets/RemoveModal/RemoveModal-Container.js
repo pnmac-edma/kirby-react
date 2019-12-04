@@ -4,15 +4,14 @@ import { ListItem } from '@material-ui/core';
 import weight from '@edma/design-tokens/js/weight';
 import RemoveModal from '../../../Presentational/RequestAssets/RemoveModal';
 import {
-  handleModalOpen,
-  handleModalClose
+  handleModalToggle,
+  handleRemoveSelected
 } from '../../../../Actions/requestAssetActions';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {
     modalText:
       'Are you sure that you want to remove the following assets from your request?',
-    selectedSearchResultCopy: requestAssets.selectedSearchResultCopy,
     render: requestAssets.selectedSearchResultCopy
       .filter(value => value.chec)
       .reduce((acc, value) => {
@@ -31,8 +30,8 @@ const mapStateToProps = ({ requestAssets }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleModalOpen: () => dispatch(handleModalOpen()),
-    handleModalClose: () => dispatch(handleModalClose())
+    handleModalToggle: () => dispatch(handleModalToggle()),
+    handleRemoveSelected: () => dispatch(handleRemoveSelected())
   };
 };
 

@@ -26,21 +26,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestAsset = ({ getEmployeesFetch, notification, openModal }) => {
+const RequestAsset = ({ getEmployeesFetch, openModal }) => {
   const classes = useStyles();
   useEffect(() => {
     getEmployeesFetch();
   }, [getEmployeesFetch]);
 
+  const [notification, setNotification] = React.useState(false);
+
+  const handleOpenNotification = () => {
+    setNotification(true);
+  };
+
+  const handleCloseNotification = () => {
+    setNotification(false);
+  };
+
   return (
     <>
       <div className={classes.sideTable}>
         <RequestAssetTableContainer />
-        {openModal ? <RemoveModalContainer /> : null}
-        <RequestAssetJustificationContainer />
-        {notification ? (
-          <SnackBarContainer notification={notification} />
+        {openModal ? (
+          <RemoveModalContainer
+            handleOpenNotification={handleOpenNotification}
+          />
         ) : null}
+        <RequestAssetJustificationContainer />
+        <SnackBarContainer
+          handleCloseNotification={handleCloseNotification}
+          notification={notification}
+        />
       </div>
       <div className="sidebar">
         <div className={classes.sideBarPostion}>

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import RemoveSelectedButton from './RemoveSelectedButton';
-import { handleModalOpen } from '../../../../Actions/requestAssetActions';
+import { handleModalToggle } from '../../../../Actions/requestAssetActions';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = ({ requestAssets }) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    handleModalOpen: () => dispatch(handleModalOpen())
+    handleModalToggle: () => dispatch(handleModalToggle())
   };
 };
 

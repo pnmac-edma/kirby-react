@@ -15,8 +15,9 @@ const RemoveModal = props => {
     modalTitle,
     modalText,
     openModal,
-    handleModalOpen,
-    handleModalClose
+    handleModalToggle,
+    handleRemoveSelected,
+    handleOpenNotification
   } = props;
 
   return (
@@ -32,10 +33,17 @@ const RemoveModal = props => {
           <DialogContentText style={renderStyle}>{render}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleModalOpen()} color="primary">
+          <Button onClick={() => handleModalToggle()} color="primary">
             Cancel
           </Button>
-          <Button color="primary" onClick={() => handleModalClose()} autoFocus>
+          <Button
+            color="primary"
+            onClick={() => {
+              handleRemoveSelected();
+              handleOpenNotification();
+            }}
+            autoFocus
+          >
             Confirm & Remove
           </Button>
         </DialogActions>
