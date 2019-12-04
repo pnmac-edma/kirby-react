@@ -18,3 +18,12 @@ export const handleSelectedEmployees = selectedValues => ({
   type: types.HANDLE_SELECTED_EMPLOYEES,
   payload: selectedValues
 });
+
+export const handleModalToggle = () => ({
+  type: types.HANDLE_MODAL_TOGGLE
+});
+
+export const handleRemoveSelected = obj => ({
+  type: types.HANDLE_REMOVE_SELECTED,
+  payload: obj
+});
