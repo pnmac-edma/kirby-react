@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// TODO: load from the env config once implemented
 const COGNITO_URL =
   'https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com/dev';
 
