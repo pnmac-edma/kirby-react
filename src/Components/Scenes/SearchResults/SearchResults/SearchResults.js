@@ -10,14 +10,14 @@ const SearchResults = props => {
     searchResultPageLoad,
     searchResultRequest
   } = props;
-  const query = useQuery('params');
+  const params = useQuery('params');
 
   useEffect(() => {
-    if (query) {
-      searchResultPageLoad(query);
+    if (params) {
+      searchResultPageLoad(params);
       searchResultRequest();
     }
-  }, [query, searchResultPageLoad, searchResultRequest]);
+  }, [params, searchResultPageLoad, searchResultRequest]);
 
   return (
     <>
