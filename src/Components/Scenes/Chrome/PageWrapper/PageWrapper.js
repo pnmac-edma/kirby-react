@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
 import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
@@ -10,6 +11,7 @@ import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResu
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
 import { useQuery } from '../../../../Hooks/customHooks';
+import NewJobContainer from '../../Hydration/NewJob/NewJob/NewJob-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -40,21 +42,29 @@ const PageWrapper = ({ isSearchClicked }) => {
       }
     }
   }, [samlResponse]);
+  const curPath = useLocation().pathname;
 
   return (
     <div className={classes.pageContainer}>
-      <AppBarContainer />
+      {curPath === '/hydration/new-job' ? null : <AppBarContainer />}
 
-      <Switch>
+      <AnimatedSwitch
+        atEnter={{ opacity: 0 }}
+        atLeave={{ opacity: 0 }}
+        atActive={{ opacity: 1 }}
+        className="switch-wrapper"
+      >
         <Route exact path="/" component={Splash} />
         {/* search pages */}
         <Route path="/search/access" component={RequestAssetContainer} />
         <Route path="/search" component={SearchResultsContainer} />
+        {/* hydration pages */}
+        <Route path="/hydration/new-job" component={NewJobContainer} />
         {/* requests pages - will be implemented and hooked in soon */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
-      </Switch>
+      </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}
     </div>
