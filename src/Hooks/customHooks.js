@@ -5,6 +5,6 @@ import { useLocation } from 'react-router-dom';
 // only on a text input (i.e. someone might want a shareable URL)
 // `param` is the key of the query parameter whose value we want
 export const useQuery = param => {
-  const path = useLocation().search;
-  return new URLSearchParams(path).get(param);
+  const queryParams = useLocation().search;
+  return new URLSearchParams(queryParams).get(param);
 };
