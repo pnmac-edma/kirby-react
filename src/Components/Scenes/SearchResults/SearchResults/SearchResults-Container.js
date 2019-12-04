@@ -7,7 +7,6 @@ import {
 
 const mapStateToProps = ({ searchResult }) => {
   return {
-    searchResultCopy: searchResult.searchResultCopy,
     isLoading: searchResult.isLoading,
     displaySearchResult: searchResult.displaySearchResult
   };
