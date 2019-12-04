@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
 
 const headerStyles = makeStyles(theme => ({
@@ -42,6 +43,7 @@ const NewJobHeader = props => {
         </Link>
         <Typography variant="h5">{jobName}</Typography>
       </Breadcrumbs>
+      <KeyboardArrowDownIcon />
     </Box>
   );
 };
