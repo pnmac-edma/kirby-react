@@ -15,8 +15,9 @@ export const authenticateSuccess = response => {
   };
 };
 
-export const authenticateFailure = () => {
+export const authenticateFailure = error => {
   return {
-    type: types.AUTHENTICATE_FAILURE
+    type: types.AUTHENTICATE_FAILURE,
+    payload: error
   };
 };

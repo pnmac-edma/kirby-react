@@ -1,11 +1,17 @@
 import axios from 'axios';
 
 const COGNITO_URL =
-  'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877995';
+  'https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com/dev';
 
 export function authenticate(token) {
   const fetchBody = {
-    token: JSON.stringify(token)
+    token: 'SAMLResponse=' + token,
+    AccessKeyID: null,
+    EmpEmail: null,
+    UserKey: null,
+    SessionToken: null,
+    SamlHash: null,
+    SecretKey: null
   };
   return axios
     .post(`${COGNITO_URL}/authenticate`, fetchBody)

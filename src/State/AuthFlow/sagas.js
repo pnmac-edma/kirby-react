@@ -3,6 +3,7 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import { authenticate } from './api';
 
 export function* handleAuthenticate(action) {
+  console.log('in the saga');
   try {
     const response = yield call(authenticate, action.payload);
     yield put({ type: types.AUTHENTICATE_SUCCESS, payload: response });
@@ -12,5 +13,5 @@ export function* handleAuthenticate(action) {
 }
 
 export default function* actionWatcher() {
-  yield takeLatest(types.AUTHENTICATE_FETCH, handleAuthenticate);
+  yield takeEvery(types.AUTHENTICATE_FETCH, handleAuthenticate);
 }

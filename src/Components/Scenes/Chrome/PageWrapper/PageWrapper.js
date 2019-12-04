@@ -24,22 +24,23 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({ isSearchClicked }) => {
+const PageWrapper = ({ isSearchClicked, authenticateFetch }) => {
   const classes = pageContainerStyle();
   const samlResponse = useQuery('SAMLResponse');
 
   useEffect(() => {
     if (samlResponse) {
       try {
-        const samlToken = atob(samlResponse);
-        console.log(samlToken);
+        // const samlToken = atob(samlResponse);
+        // console.log(samlResponse);
+        authenticateFetch(samlResponse);
         // TODO: dispatch Abby's action for cognito auth
       } catch (error) {
         // TODO: consider how to handle bad SAML redirects
         console.log(error.message);
       }
     }
-  }, [samlResponse]);
+  }, [samlResponse, authenticateFetch]);
 
   return (
     <div className={classes.pageContainer}>
