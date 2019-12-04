@@ -10,7 +10,7 @@ const SearchResults = props => {
     searchResultPageLoad,
     searchResultRequest
   } = props;
-  const query = useQuery('search', 'params');
+  const query = useQuery('params');
 
   useEffect(() => {
     if (query) {
