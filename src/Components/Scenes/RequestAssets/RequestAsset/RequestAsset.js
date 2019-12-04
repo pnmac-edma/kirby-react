@@ -5,6 +5,7 @@ import RequestAssetJustificationContainer from '../RequestAssetJustification/Req
 import RequestingForContainer from '../RequestingFor/RequestingFor-Container';
 import SnackBarContainer from '../SnackBar/SnackBar-Container';
 import RemoveModalContainer from '../RemoveModal/RemoveModal-Container';
+import MakeRequestsContainer from '../MakeRequests/MakeRequests-Container';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -52,6 +53,7 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
           />
         ) : null}
         <RequestAssetJustificationContainer />
+        <MakeRequestsContainer />
         <SnackBarContainer
           handleCloseNotification={handleCloseNotification}
           notification={notification}
