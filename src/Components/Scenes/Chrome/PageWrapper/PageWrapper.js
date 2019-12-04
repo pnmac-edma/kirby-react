@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
@@ -9,6 +9,7 @@ import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
+import { useQuery } from '../../../../Hooks/customHooks';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -25,6 +26,20 @@ const pageContainerStyle = makeStyles(theme => ({
 
 const PageWrapper = ({ isSearchClicked }) => {
   const classes = pageContainerStyle();
+  const samlResponse = useQuery('SAMLResponse');
+
+  useEffect(() => {
+    if (samlResponse) {
+      try {
+        const samlToken = atob(samlResponse);
+        console.log(samlToken);
+        // TODO: dispatch Abby's action for cognito auth
+      } catch (error) {
+        // TODO: consider how to handle bad SAML redirects
+        console.log(error.message);
+      }
+    }
+  }, [samlResponse]);
 
   return (
     <div className={classes.pageContainer}>
