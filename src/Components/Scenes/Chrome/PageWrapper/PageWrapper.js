@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
 import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
@@ -33,7 +34,11 @@ const PageWrapper = ({ isSearchClicked }) => {
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? null : <AppBarContainer />}
 
-      <Switch>
+      <AnimatedSwitch
+        atEnter={{ opacity: 0 }}
+        atLeave={{ opacity: 0 }}
+        atActive={{ opacity: 1 }}
+        className="switch-wrapper">
         <Route exact path="/" component={Splash} />
         {/* search pages */}
         <Route path="/search/access" component={RequestAssetContainer} />
@@ -44,7 +49,7 @@ const PageWrapper = ({ isSearchClicked }) => {
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
-      </Switch>
+      </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}
     </div>
