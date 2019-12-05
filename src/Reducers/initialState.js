@@ -7,9 +7,8 @@ const initialState = {
       governance: true,
       approver: true
     },
-    // Authorization: initial state, based off of SAML token
-    AccessKeyID: null,
-    EmpEmail: 'jonathan.delarosa@pnmac.com',
+    AccessKeyId: null,
+    EmpEmail: null,
     SamlHash: null,
     SecretKey: null,
     SessionToken: null,
@@ -33,16 +32,16 @@ const initialState = {
       'Description',
       'Domain',
       'Owner',
-      'Contain',
-      'Not Contain',
-      'Equal'
+      'Contains',
+      'Doesn\'t contain',
+      'Equals'
     ],
     isFilterClick: false,
     filterQueries: [],
     isFilterQueriesEmpty: false,
     filter: {
       filterBy: '',
-      contain: '',
+      filterType: '',
       filterTerm: ''
     },
     isSearchClicked: false

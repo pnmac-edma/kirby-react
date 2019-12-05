@@ -5,7 +5,11 @@ import { ArrowDropDown } from '@material-ui/icons/';
 import { ReactComponent as DropIcon } from '@edma/design-tokens/img/dropIcon.svg';
 import { Link, useLocation } from 'react-router-dom';
 
-const HydrationListItem = ({ closeAllArrows, hydrationListItemsName }) => {
+const HydrationListItem = ({
+  closeAllArrows,
+  hydrationListItemsName,
+  closeDrawer
+}) => {
   const [openIconTwo, setOpenIconTwo] = useState(false);
   const activeLink = useLocation();
 
@@ -18,6 +22,7 @@ const HydrationListItem = ({ closeAllArrows, hydrationListItemsName }) => {
   const hydrationListItemText = hydrationListItemsName.map(
     ({ label, link }) => (
       <ListItem
+        onClick={closeDrawer}
         component={Link}
         to={link}
         key={label}

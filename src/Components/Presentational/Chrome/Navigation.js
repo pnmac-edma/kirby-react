@@ -66,6 +66,10 @@ const Navigation = () => {
   const classes = navStyle();
   const [open, setOpen] = useState(false);
 
+  const closeDrawer = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className={classes.root}>
       <Drawer
@@ -88,12 +92,12 @@ const Navigation = () => {
       >
         <List className={classes.customList}>
           <UserGroup />
-          <DashboardListItem />
+          <DashboardListItem closeDrawer={closeDrawer} />
           <SearchAssetsListItem />
-          <GovernanceListItem closeAllArrows={open} />
-          <HydrationListItem closeAllArrows={open} />
-          <RequestListItem closeAllArrows={open} />
-          <KeysListItem />
+          <GovernanceListItem closeAllArrows={open} closeDrawer={closeDrawer} />
+          <HydrationListItem closeAllArrows={open} closeDrawer={closeDrawer} />
+          <RequestListItem closeAllArrows={open} closeDrawer={closeDrawer} />
+          <KeysListItem closeDrawer={closeDrawer} />
           <AwsAthenaListItem />
         </List>
         <AvatarListItem />
