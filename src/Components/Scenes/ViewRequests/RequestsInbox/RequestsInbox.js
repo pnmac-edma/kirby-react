@@ -14,12 +14,21 @@ const requestsInboxTableColumns = [
 ];
 
 const RequestsInbox = props => {
-  const { requests, approverRequestsFetch } = props;
+  const {
+    userEmail,
+    userRole,
+    requests,
+    approverRequestsFetch,
+    governanceRequestsFetch
+  } = props;
 
-  // Fetch all inbound requests given for approver's email
   useEffect(() => {
-    approverRequestsFetch(approverEmail);
-  }, [approverRequestsFetch]);
+    if (userRole.governance) {
+      governanceRequestsFetch(4, 200, '');
+    } else {
+      approverRequestsFetch(userEmail);
+    }
+  }, [approverRequestsFetch, governanceRequestsFetch, userEmail, userRole]);
 
   const reqs = transformRequests(requests);
 
