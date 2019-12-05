@@ -7,9 +7,8 @@ const initialState = {
       governance: true,
       approver: true
     },
-    // Authorization: initial state, based off of SAML token
-    AccessKeyID: null,
-    EmpEmail: 'jonathan.delarosa@pnmac.com',
+    AccessKeyId: null,
+    EmpEmail: null,
     SamlHash: null,
     SecretKey: null,
     SessionToken: null,

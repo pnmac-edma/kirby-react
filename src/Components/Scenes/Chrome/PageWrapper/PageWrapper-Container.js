@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import PageWrapper from './PageWrapper';
+import { authenticateFetch } from '../../../../State/AuthFlow/actions';
 
 const mapStateToProps = ({ searchResult }) => {
   return {
@@ -8,4 +9,10 @@ const mapStateToProps = ({ searchResult }) => {
   };
 };
 
-export default connect(mapStateToProps)(PageWrapper);
+const mapDispatchToProps = dispatch => {
+  return {
+    authenticateFetch: token => dispatch(authenticateFetch(token))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageWrapper);
