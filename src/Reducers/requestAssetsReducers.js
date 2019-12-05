@@ -76,6 +76,10 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
         openModal: !state.openModal
       };
     }
+    case types.MAKE_REQUESTS_FETCH: {
+      console.log('are we here');
+      return { ...state };
+    }
     default:
       return state;
   }

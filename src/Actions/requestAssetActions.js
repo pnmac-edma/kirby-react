@@ -27,3 +27,7 @@ export const handleRemoveSelected = obj => ({
   type: types.HANDLE_REMOVE_SELECTED,
   payload: obj
 });
+
+export const makeRequestsFetch = () => ({
+  type: types.MAKE_REQUESTS_FETCH
+});

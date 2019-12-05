@@ -14,11 +14,17 @@ const tableStyles = makeStyles(theme => ({
 }));
 
 const MakeRequests = props => {
+  const { makeRequestsFetch } = props;
   const classes = tableStyles();
   let history = useHistory();
   return (
     <>
-      <Button className={classes.button} variant="contained" color="primary">
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        onClick={() => makeRequestsFetch()}
+      >
         Requests Assets
       </Button>
       <Button
