@@ -102,16 +102,16 @@ const searchReducer = (state = initialState.searchResult, action) => {
     }
     case types.HANDLE_FILTER_REQUEST: {
       const filterQueriesCopy = [...state.filterQueries];
-      let containCopy = state.filter.contain;
-      if (containCopy === 'contain') {
-        containCopy = 'in';
-      } else if (containCopy === 'equal') {
-        containCopy = 'eq';
+      let filterTypeCopy = state.filter.filterType;
+      if (filterTypeCopy === 'contains') {
+        filterTypeCopy = 'in';
+      } else if (filterTypeCopy === 'equals') {
+        filterTypeCopy = 'eq';
       } else {
-        containCopy = 'notin';
+        filterTypeCopy = 'notin';
       }
       const filterValue = {
-        [state.filter.filterBy]: [state.filter.filterTerm, containCopy]
+        [state.filter.filterBy]: [state.filter.filterTerm, filterTypeCopy]
       };
       if (state.filterQueries.length === 0) {
         filterQueriesCopy.push(filterValue);
@@ -123,7 +123,11 @@ const searchReducer = (state = initialState.searchResult, action) => {
           filterQueriesCopy.push(filterValue);
         }
       }
-      return { ...state, filterQueries: filterQueriesCopy };
+      return {
+        ...state,
+        isFilterClick: !state.isFilterClick,
+        filterQueries: filterQueriesCopy
+      };
     }
     case types.HANDLE_FILTER_SUCCESS: {
       if (typeof action.payload === 'string') {

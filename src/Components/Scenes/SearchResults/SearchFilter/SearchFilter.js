@@ -37,7 +37,7 @@ const SearchFilter = props => {
   const {
     handleFilterSelect,
     filterBy,
-    contain,
+    filterType,
     filterTerm,
     handleFilterRequest,
     selectors
@@ -66,8 +66,8 @@ const SearchFilter = props => {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="that">That</InputLabel>
           <Select
-            name="contain"
-            value={contain}
+            name="filterType"
+            value={filterType}
             onChange={e => handleFilterSelect(e)}
           >
             {selected.slice(4, selected.length)}
@@ -90,7 +90,7 @@ const SearchFilter = props => {
           variant="contained"
           color="primary"
           className={classes.button}
-          disabled={!filterTerm || !filterBy || !contain}
+          disabled={!filterTerm || !filterBy || !filterType}
           onClick={() => handleFilterRequest()}
         >
           Submit
