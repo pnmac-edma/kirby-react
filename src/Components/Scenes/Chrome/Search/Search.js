@@ -8,7 +8,6 @@ import {
   DialogContent,
   Grid
 } from '@material-ui/core';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 
