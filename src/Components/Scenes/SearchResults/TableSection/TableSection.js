@@ -26,6 +26,9 @@ const useStyles = makeStyles(theme => ({
   tableWrapper: {
     maxHeight: 776,
     overflowX: 'auto'
+  },
+  footerTd: {
+    textAlign: 'left'
   }
 }));
 
@@ -50,7 +53,7 @@ const TableSection = props => {
               )}
               <TableFooter>
                 <TableRow>
-                  <td>
+                  <td colspan="2" className={classes.footerTd}>
                     <CheckBoxButtonContainer />
                   </td>
                 </TableRow>
