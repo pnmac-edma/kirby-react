@@ -28,46 +28,36 @@
       transparent
     );
   background-size: 50px 50px;
-
-  .pointui {
-    fill: rgba(white, 0.5);
-  }
 }
 
 .body {
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
   min-height: 100%;
 
-  .content {
-    display: flex;
+  .diagram-layer {
+    position: relative;
     flex-grow: 1;
+  }
 
-    .diagram-layer {
-      position: relative;
-      flex-grow: 1;
-    }
+  .toolbar {
+    min-width: 300px;
+    border: solid #d4d4d4 1px;
+    padding: 5px;
+    background-color: white;
+    flex-grow: 0;
+    flex-shrink: 0;
 
-    .tray {
-      min-width: 300px;
-      border: solid #d4d4d4 1px;
-      padding: 5px;
+    .toolbar-item {
+      color: black;
       background-color: white;
-      flex-grow: 0;
-      flex-shrink: 0;
-
-      .tray-item {
-        color: black;
-        background-color: white;
-        padding: 5px;
-        margin: 10px 10px;
-        border: solid 2px;
-        border-radius: 5px;
-        margin-bottom: 2px;
-        cursor: pointer;
-        text-align: center;
-      }
+      padding: 5px;
+      margin: 10px 10px;
+      border: solid 2px;
+      border-radius: 5px;
+      margin-bottom: 2px;
+      cursor: pointer;
+      text-align: center;
     }
   }
 }

@@ -11,7 +11,7 @@ export const ToolbarItemWidget = props => {
       onDragStart={event => {
         event.dataTransfer.setData('storm-diagram-node', JSON.stringify(model));
       }}
-      className="tray-item"
+      className="toolbar-item"
       onClick={onClick}
     >
       {name}
@@ -22,7 +22,7 @@ export const ToolbarItemWidget = props => {
 export const ToolbarWidget = props => {
   const { children } = props;
   return (
-    <div className="tray">
+    <div className="toolbar">
       <Typography style={{ textAlign: 'center' }}>Toolbar</Typography>
       {children}
     </div>
