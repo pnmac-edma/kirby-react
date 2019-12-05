@@ -9,7 +9,7 @@ const mapStateToProps = ({ searchResult }) => {
   return {
     isFilterClick: searchResult.isFilterClick,
     filterBy: searchResult.filter.filterBy,
-    contain: searchResult.filter.contain,
+    filterType: searchResult.filter.filterType,
     filterTerm: searchResult.filter.filterTerm,
     selectors: searchResult.selecters
   };
