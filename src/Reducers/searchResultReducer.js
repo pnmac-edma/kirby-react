@@ -123,7 +123,11 @@ const searchReducer = (state = initialState.searchResult, action) => {
           filterQueriesCopy.push(filterValue);
         }
       }
-      return { ...state, filterQueries: filterQueriesCopy };
+      return {
+        ...state,
+        isFilterClick: !state.isFilterClick,
+        filterQueries: filterQueriesCopy
+      };
     }
     case types.HANDLE_FILTER_SUCCESS: {
       if (typeof action.payload === 'string') {
