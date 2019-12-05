@@ -53,7 +53,7 @@ const TableSection = props => {
               )}
               <TableFooter>
                 <TableRow>
-                  <td colspan="2" className={classes.footerTd}>
+                  <td colSpan="2" className={classes.footerTd}>
                     <CheckBoxButtonContainer />
                   </td>
                 </TableRow>
