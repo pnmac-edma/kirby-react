@@ -8,19 +8,7 @@ const chromeStyles = makeStyles(theme => ({
   container: {
     position: 'fixed',
     height: '100%',
-    width: '100%',
-    display: 'flex'
-  },
-  // Placeholder pattern until canvas is implemented
-  canvas: {
-    background:
-      'repeating-linear-gradient(45deg, #EDF5FF, #EDF5FF 15px, #FFFFFF 5px, #FFFFFF 20px)',
-    flexGrow: 1
-  },
-  // Placeholder column until toolbar is implemented
-  toolbar: {
-    minWidth: '350px',
-    backgroundColor: 'white'
+    width: 'calc(100% - 56px)'
   }
 }));
 
@@ -30,16 +18,11 @@ const NewJob = props => {
 
   return (
     <Box className={classes.container}>
-      <Box className={classes.canvas}>
-        {/* TODO: Move jobName to Redux */}
-        <NewJobHeader jobName={newJobName}></NewJobHeader>
-        {/* TODO: Add ETL canvas */}
-        <div style={{ height: '100%' }}>
-          <Canvas />
-        </div>
-      </Box>
-      {/* TODO: Implement toolbar component */}
-      <Box className={classes.toolbar}>Toolbar Placeholder</Box>
+      {/* TODO: Move jobName to Redux */}
+      <NewJobHeader jobName={newJobName}></NewJobHeader>
+      <div style={{ height: '100%' }}>
+        <Canvas />
+      </div>
     </Box>
   );
 };

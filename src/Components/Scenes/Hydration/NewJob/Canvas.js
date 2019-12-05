@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import * as _ from 'lodash';
 import * as SRD from '@projectstorm/react-diagrams';
+import { ToolbarWidget, ToolbarItemWidget } from './Toolbar';
 require('@projectstorm/react-diagrams/dist/style.min.css');
 
 class Application {
@@ -40,40 +41,20 @@ class Application {
   }
 }
 
-const TrayItemWidget = props => {
-  const { model, color, name, onClick } = props;
-
-  return (
-    <div
-      style={{ borderColor: color }}
-      draggable={true}
-      onDragStart={event => {
-        event.dataTransfer.setData('storm-diagram-node', JSON.stringify(model));
-      }}
-      className="tray-item"
-      onClick={onClick}
-    >
-      {name}
-    </div>
-  );
-};
-
-const TrayWidget = props => {
-  const { children } = props;
-  return <div className="tray">{children}</div>;
-};
-
 const BodyWidget = props => {
   const { app } = props;
 
-  const createNode = type => {
-    var node = null;
-    var nodesCount = _.keys(
+  const getNumNodes = () =>
+    _.keys(
       app
         .getDiagramEngine()
         .getDiagramModel()
         .getNodes()
     ).length;
+
+  const createNode = type => {
+    var node = null;
+    const nodesCount = getNumNodes();
 
     if (type === 'in') {
       node = new SRD.DefaultNodeModel(
@@ -109,14 +90,9 @@ const BodyWidget = props => {
             var data = JSON.parse(
               event.dataTransfer.getData('storm-diagram-node')
             );
-            var nodesCount = _.keys(
-              app
-                .getDiagramEngine()
-                .getDiagramModel()
-                .getNodes()
-            ).length;
+            const nodesCount = getNumNodes();
 
-            var node = null;
+            let node = null;
             if (data.type === 'in') {
               node = new SRD.DefaultNodeModel(
                 'Node ' + (nodesCount + 1),
@@ -130,7 +106,7 @@ const BodyWidget = props => {
               );
               node.addOutPort('Out');
             }
-            var points = app.getDiagramEngine().getRelativeMousePoint(event);
+            const points = app.getDiagramEngine().getRelativeMousePoint(event);
             node.x = points.x;
             node.y = points.y;
             app
@@ -148,8 +124,8 @@ const BodyWidget = props => {
             diagramEngine={app.getDiagramEngine()}
           />
         </div>
-        <TrayWidget>
-          <TrayItemWidget
+        <ToolbarWidget>
+          <ToolbarItemWidget
             model={{ type: 'out' }}
             name="Out Node"
             color="rgb(0,192,255)"
@@ -157,7 +133,7 @@ const BodyWidget = props => {
               createNode('out');
             }}
           />
-          <TrayItemWidget
+          <ToolbarItemWidget
             model={{ type: 'in' }}
             name="In Node"
             color="rgb(192,255,0)"
@@ -165,7 +141,7 @@ const BodyWidget = props => {
               createNode('in');
             }}
           />
-        </TrayWidget>
+        </ToolbarWidget>
       </div>
     </div>
   );
