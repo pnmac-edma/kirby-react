@@ -33,16 +33,16 @@ const initialState = {
       'Description',
       'Domain',
       'Owner',
-      'Contain',
-      'Not Contain',
-      'Equal'
+      'Contains',
+      'Doesn\'t contain',
+      'Equals'
     ],
     isFilterClick: false,
     filterQueries: [],
     isFilterQueriesEmpty: false,
     filter: {
       filterBy: '',
-      contain: '',
+      filterType: '',
       filterTerm: ''
     },
     isSearchClicked: false

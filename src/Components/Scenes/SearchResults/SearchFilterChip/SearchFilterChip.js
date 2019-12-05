@@ -4,9 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+    display: 'block',
+    textAlign: 'right',
     '& > *': {
       margin: theme.spacing(0.5)
     }
@@ -19,21 +18,22 @@ const SearchFilterChip = props => {
   const chips = [];
   filterQueries.forEach((filteredChip, id) => {
     const filteredBy = Object.keys(filteredChip)[0];
-    let shortNamesforContain = filteredChip[filteredBy][1];
-    let contain;
-    if (shortNamesforContain === 'in') {
-      contain = 'contain';
-    } else if (shortNamesforContain === 'eq') {
-      contain = 'equal';
+    const filteredByCap = filteredBy.charAt(0).toUpperCase() + filteredBy.slice(1);
+    let shortNamesforType = filteredChip[filteredBy][1];
+    let filterType;
+    if (shortNamesforType === 'in') {
+      filterType = 'contains';
+    } else if (shortNamesforType === 'eq') {
+      filterType = '=';
     } else {
-      contain = 'not contain';
+      filterType = 'doesn\'t contain';
     }
 
     const searchTerm = filteredChip[filteredBy][0];
     chips.push(
       <Chip
         key={id}
-        label={`${filteredBy} ${contain} ${searchTerm}`}
+        label={`${filteredByCap} ${filterType} "${searchTerm}"`}
         onDelete={() => handleRemoveChip(id)}
       />
     );
