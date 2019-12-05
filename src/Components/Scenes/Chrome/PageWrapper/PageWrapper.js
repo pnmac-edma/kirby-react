@@ -26,16 +26,23 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({ isSearchClicked, authenticateFetch }) => {
+const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken }) => {
   const classes = pageContainerStyle();
   const samlResponse = useQuery('SAMLResponse');
-
-  useEffect(() => {
-    if (samlResponse) {
-      authenticateFetch(samlResponse);
-    }
-  }, [samlResponse, authenticateFetch]);
   const curPath = useLocation().pathname;
+
+  // Case 1: there is a SAML response but no session token, so authenticate real quick
+  // Case 2: (not seen here) there may or may not be a SAML response,
+  //         but there is a session token, so relax until an hour later
+  //         when we get a 4xx code from some request, then redirect
+  // Case 3: there is neither a SAML response nor a session token, so redirect
+  useEffect(() => {
+    if (samlResponse && !sessionToken) {
+      authenticateFetch(samlResponse);
+    } else if (!sessionToken) {
+      window.location.replace('https://pennymac.onelogin.com/portal/');
+    }
+  }, [samlResponse, authenticateFetch, sessionToken]);
 
   return (
     <div className={classes.pageContainer}>
