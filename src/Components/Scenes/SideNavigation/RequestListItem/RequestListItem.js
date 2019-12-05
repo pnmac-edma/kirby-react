@@ -30,26 +30,18 @@ const RequestListItem = ({
   closeAllArrows,
   requestListItemsName,
   closeDrawer,
-  initialState
+  currentRole
 }) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
-  const [isApprover, setApprover] = useState({
-    approver: ''
-  });
 
   const activeLink = useLocation();
-  const approvedUser = initialState;
 
   useEffect(() => {
     if (closeAllArrows === false && openIconThree === true) {
       setOpenIconThree(false);
     }
   }, [closeAllArrows, openIconThree]);
-
-  useEffect(() => {
-    setApprover(approvedUser);
-  }, [approvedUser]);
 
   const requestListItemText = requestListItemsName.map(({ label, link }) => (
     <ListItem
@@ -95,7 +87,7 @@ const RequestListItem = ({
       </ListItem>
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {isApprover === true
+          {currentRole === true
             ? requestListItemText
             : requestListItemText.slice(1, -1)}
         </List>
