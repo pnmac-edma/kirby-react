@@ -10,12 +10,12 @@ export const getEmployees = args => {
 };
 
 export const makeRequest = args => {
-  const url = `https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com/dev/assets/requests/access/`;
+  const url = `https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev/assets/requests/access/`;
   const fetchBody = {
     createdbyemail: 'selcuk.ates@pnmac.com',
     requestedfor: ['scott.cox@pnmac.com'],
     assets: [{ database: 'ELEPHANT' }],
     justification: 'This is postman test'
   };
-  return axios.post(url, fetchBody).then(response => response.message);
+  return axios.post(url, fetchBody).then(response => response.data);
 };

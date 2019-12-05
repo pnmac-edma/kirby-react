@@ -11,9 +11,9 @@ function* requestAsset() {
   }
 }
 
-function* makeRequest() {
+function* makeRequests() {
   try {
-    const response = yield call(makeRequests);
+    const response = yield call(makeRequest);
     yield put({ type: types.MAKE_REQUESTS_SUCCESS, payload: response });
   } catch (error) {
     yield put({ type: types.MAKE_REQUESTS_FAILURE, payload: error });

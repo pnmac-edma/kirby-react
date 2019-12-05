@@ -53,7 +53,10 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
           />
         ) : null}
         <RequestAssetJustificationContainer />
-        <MakeRequestsContainer />
+        <MakeRequestsContainer
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+        />
         <SnackBarContainer
           handleCloseNotification={handleCloseNotification}
           notification={notification}

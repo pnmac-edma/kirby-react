@@ -52,7 +52,8 @@ const initialState = {
     selectedAll: false,
     employees: [],
     selectedEmployees: [],
-    openModal: false
+    openModal: false,
+    notificationMessage: ''
   },
   viewRequests
 };
