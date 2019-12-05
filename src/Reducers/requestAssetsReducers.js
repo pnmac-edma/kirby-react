@@ -80,6 +80,14 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       console.log('are we here');
       return { ...state };
     }
+    case types.MAKE_REQUESTS_SUCCESS: {
+      console.log('You  are in sucess');
+      return { ...state };
+    }
+    case types.MAKE_REQUESTS_ERROR: {
+      console.log('you are in error');
+      return { ...state };
+    }
     default:
       return state;
   }
