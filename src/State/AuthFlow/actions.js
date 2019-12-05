@@ -1,6 +1,5 @@
 import * as types from './types';
 
-// assuming that the token is encoded?
 export const authenticateFetch = token => {
   return {
     type: types.AUTHENTICATE_FETCH,

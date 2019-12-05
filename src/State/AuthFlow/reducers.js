@@ -9,12 +9,7 @@ const authReducer = (state = initialState.currentUser, action) => {
     case types.AUTHENTICATE_SUCCESS: {
       return {
         ...state,
-        AccessKeyId: action.payload.AccessKeyId,
-        EmpEmail: action.payload.EmpEmail,
-        SamlHash: action.payload.SamlHash,
-        SecretKey: action.payload.SecretKey,
-        SessionToken: action.payload.SessionToken,
-        UserKey: action.payload.UserKey
+        ...action.payload
       };
     }
     case types.AUTHENTICATE_FAILURE: {
