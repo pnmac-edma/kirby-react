@@ -10,7 +10,6 @@ import {
 import { InboxOutlined, ArrowDropDown } from '@material-ui/icons/';
 import color from '@edma/design-tokens/js/color';
 import { Link, useLocation } from 'react-router-dom';
-import initialState from '../../../../Reducers/initialState';
 
 const requestListItem = makeStyles(theme => ({
   newInbox: {
@@ -30,7 +29,8 @@ const requestListItem = makeStyles(theme => ({
 const RequestListItem = ({
   closeAllArrows,
   requestListItemsName,
-  closeDrawer
+  closeDrawer,
+  initialState
 }) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
@@ -39,7 +39,7 @@ const RequestListItem = ({
   });
 
   const activeLink = useLocation();
-  const approvedUser = initialState.currentUser.role.approver;
+  const approvedUser = initialState;
 
   useEffect(() => {
     if (closeAllArrows === false && openIconThree === true) {
