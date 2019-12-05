@@ -19,7 +19,7 @@ const SearchFilterChip = props => {
   filterQueries.forEach((filteredChip, id) => {
     const filteredBy = Object.keys(filteredChip)[0];
     const filteredByCap = filteredBy.charAt(0).toUpperCase() + filteredBy.slice(1);
-    let shortNamesforType = filteredChip[filteredBy][1];
+    const shortNamesforType = filteredChip[filteredBy][1];
     let filterType;
     if (shortNamesforType === 'in') {
       filterType = 'contains';
