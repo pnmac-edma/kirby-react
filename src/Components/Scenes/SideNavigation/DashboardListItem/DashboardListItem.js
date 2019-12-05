@@ -3,10 +3,11 @@ import { ListItem, ListItemText } from '@material-ui/core';
 import { Equalizer } from '@material-ui/icons/';
 import { Link, useLocation } from 'react-router-dom';
 
-const DashboardListItem = () => {
+const DashboardListItem = ({ closeDrawer }) => {
   const activeLink = useLocation();
   return (
     <ListItem
+      onClick={closeDrawer}
       component={Link}
       to="/"
       button
