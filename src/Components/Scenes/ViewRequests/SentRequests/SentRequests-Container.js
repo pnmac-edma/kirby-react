@@ -4,7 +4,8 @@ import { userRequestsFetch } from '../../../../State/ViewRequests/actions';
 
 const mapStateToProps = ({ viewRequests }) => {
   return {
-    requests: viewRequests.outboundRequests
+    requests: viewRequests.outboundRequests,
+    isLoading: viewRequests.isLoading
   };
 };
 
