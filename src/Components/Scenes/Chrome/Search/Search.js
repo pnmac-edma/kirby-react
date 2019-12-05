@@ -6,9 +6,10 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
-  DialogTitle
+  Grid
 } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 
 const SearchInput = props => {
   const {
@@ -34,23 +35,33 @@ const SearchInput = props => {
 
   return (
     <React.Fragment>
-      <Dialog open={isSearchClicked} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Search</DialogTitle>
+      <Dialog
+        open={isSearchClicked}
+        aria-labelledby="form-dialog-title"
+        className="search-modal"
+      >
         <DialogContent>
-          <DialogContentText>
-            Find and request access to data in Kirby.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Start Typing..."
-            type="text"
-            value={searchInput}
-            onChange={e => searchHandleInput(e)}
-            fullWidth
-            onKeyPress={e => handleKeyPress(keyPressWrapper(e))}
-          />
+          <Grid container spacing={1} alignItems="flex-end">
+            <Grid item>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Start Typing..."
+                helperText="Find and request access to data in Kirby."
+                type="text"
+                value={searchInput}
+                onChange={e => searchHandleInput(e)}
+                fullWidth
+                onKeyPress={e => handleKeyPress(keyPressWrapper(e))}
+              />
+            </Grid>
+            <Grid item>
+              <Button onClick={() => searchResultRequest()}>
+                <SearchIcon />
+              </Button>
+            </Grid>
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button
@@ -58,8 +69,9 @@ const SearchInput = props => {
             color="primary"
             component={Link}
             to={urlWithParams}
+            className="search-modal__close-btn"
           >
-            Close
+            <CloseIcon />
           </Button>
         </DialogActions>
       </Dialog>

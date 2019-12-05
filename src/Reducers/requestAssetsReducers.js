@@ -63,7 +63,19 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
     case types.HANDLE_SELECTED_EMPLOYEES: {
       return { ...state, selectedEmployees: action.payload };
     }
-
+    case 'HANDLE_MODAL_TOGGLE': {
+      return { ...state, openModal: !state.openModal };
+    }
+    case 'HANDLE_REMOVE_SELECTED': {
+      const searchResultCopy = state.selectedSearchResultCopy.filter(
+        value => !value.chec
+      );
+      return {
+        ...state,
+        selectedSearchResultCopy: searchResultCopy,
+        openModal: !state.openModal
+      };
+    }
     default:
       return state;
   }

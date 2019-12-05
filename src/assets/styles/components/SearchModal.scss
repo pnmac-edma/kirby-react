@@ -1,0 +1,44 @@
+// Search Modal Component
+
+// MUI overrides
+.search-modal {
+  .MuiPaper-root {
+    background: transparent;
+    color: $color-white;
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 6rem);
+    max-width: 100%;
+    height: 100%;
+  }
+  .MuiFormLabel-root,
+  .MuiFormHelperText-root,
+  .MuiInputBase-input,
+  .MuiFormLabel-root.Mui-focused {
+    color: $color-white;
+  }
+  .MuiInput-underline:before,
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom-color: rgba($color-white, 0.87);
+  }
+  .MuiDialog-container {
+    background: rgba($color-g-900, 0.9);
+  }
+  .MuiDialogContent-root {
+    margin: 0 auto;
+  }
+  .MuiSvgIcon-root {
+    fill: $color-white;
+  }
+}
+
+// Kirby classes
+.search-modal {
+  .search-modal__close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useLocation } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
 import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
@@ -9,8 +10,8 @@ import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
+import { useQuery } from '../../../../Hooks/customHooks';
 import NewJobContainer from '../../Hydration/NewJob/NewJob/NewJob-Container';
-import { useLocation } from 'react-router-dom';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -27,13 +28,32 @@ const pageContainerStyle = makeStyles(theme => ({
 
 const PageWrapper = ({ isSearchClicked }) => {
   const classes = pageContainerStyle();
+  const samlResponse = useQuery('SAMLResponse');
+
+  useEffect(() => {
+    if (samlResponse) {
+      try {
+        const samlToken = atob(samlResponse);
+        console.log(samlToken);
+        // TODO: dispatch Abby's action for cognito auth
+      } catch (error) {
+        // TODO: consider how to handle bad SAML redirects
+        console.log(error.message);
+      }
+    }
+  }, [samlResponse]);
   const curPath = useLocation().pathname;
 
   return (
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? null : <AppBarContainer />}
 
-      <Switch>
+      <AnimatedSwitch
+        atEnter={{ opacity: 0 }}
+        atLeave={{ opacity: 0 }}
+        atActive={{ opacity: 1 }}
+        className="switch-wrapper"
+      >
         <Route exact path="/" component={Splash} />
         {/* search pages */}
         <Route path="/search/access" component={RequestAssetContainer} />
@@ -44,7 +64,7 @@ const PageWrapper = ({ isSearchClicked }) => {
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
-      </Switch>
+      </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}
     </div>
