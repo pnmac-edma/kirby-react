@@ -4,7 +4,11 @@ import { List, ListItem, Collapse, ListItemText } from '@material-ui/core';
 import { AccountBalanceOutlined, ArrowDropDown } from '@material-ui/icons/';
 import { Link, useLocation } from 'react-router-dom';
 
-const GovernanceListItem = ({ closeAllArrows, governanceListItemsName }) => {
+const GovernanceListItem = ({
+  closeAllArrows,
+  governanceListItemsName,
+  closeDrawer
+}) => {
   const activeLink = useLocation();
   const [openIconOne, setOpenIconOne] = useState(false);
 
@@ -17,6 +21,7 @@ const GovernanceListItem = ({ closeAllArrows, governanceListItemsName }) => {
   const governanceListItemText = governanceListItemsName.map(
     ({ label, link }) => (
       <ListItem
+        onClick={closeDrawer}
         component={Link}
         to={link}
         key={label}

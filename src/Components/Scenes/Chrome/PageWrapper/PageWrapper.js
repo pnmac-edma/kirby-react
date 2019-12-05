@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useLocation } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import Splash from '../../../Presentational/Splash';
@@ -10,8 +10,8 @@ import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
+import { useQuery } from '../../../../Hooks/customHooks';
 import NewJobContainer from '../../Hydration/NewJob/NewJob/NewJob-Container';
-import { useLocation } from 'react-router-dom';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -26,8 +26,15 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({ isSearchClicked }) => {
+const PageWrapper = ({ isSearchClicked, authenticateFetch }) => {
   const classes = pageContainerStyle();
+  const samlResponse = useQuery('SAMLResponse');
+
+  useEffect(() => {
+    if (samlResponse) {
+      authenticateFetch(samlResponse);
+    }
+  }, [samlResponse, authenticateFetch]);
   const curPath = useLocation().pathname;
 
   return (
@@ -38,7 +45,8 @@ const PageWrapper = ({ isSearchClicked }) => {
         atEnter={{ opacity: 0 }}
         atLeave={{ opacity: 0 }}
         atActive={{ opacity: 1 }}
-        className="switch-wrapper">
+        className="switch-wrapper"
+      >
         <Route exact path="/" component={Splash} />
         {/* search pages */}
         <Route path="/search/access" component={RequestAssetContainer} />

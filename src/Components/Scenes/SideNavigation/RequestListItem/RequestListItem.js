@@ -26,7 +26,11 @@ const requestListItem = makeStyles(theme => ({
   }
 }));
 
-const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
+const RequestListItem = ({
+  closeAllArrows,
+  requestListItemsName,
+  closeDrawer
+}) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
   const activeLink = useLocation();
@@ -39,6 +43,7 @@ const RequestListItem = ({ closeAllArrows, requestListItemsName }) => {
 
   const requestListItemText = requestListItemsName.map(({ label, link }) => (
     <ListItem
+      onClick={closeDrawer}
       component={Link}
       to={link}
       key={label}

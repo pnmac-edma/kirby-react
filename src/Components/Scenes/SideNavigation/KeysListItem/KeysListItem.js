@@ -3,10 +3,11 @@ import { ListItem, ListItemText } from '@material-ui/core';
 import { VpnKeyOutlined } from '@material-ui/icons/';
 import { Link, useLocation } from 'react-router-dom';
 
-const KeysListItem = () => {
+const KeysListItem = ({ closeDrawer }) => {
   const activeLink = useLocation();
   return (
     <ListItem
+      onClick={closeDrawer}
       component={Link}
       to="/keys"
       button
