@@ -7,10 +7,15 @@ import {
 } from 'storm-react-diagrams';
 
 // import custom models
+import { SimplePortFactory } from './SimplePortFactory';
+
 import { SourceNodeModel } from './SourceNode/SourceNodeModel';
 import { SourceNodeFactory } from './SourceNode/SourceNodeFactory';
-import { SimplePortFactory } from './SourceNode/SimplePortFactory';
 import { SourcePortModel } from './SourceNode/SourcePortModel';
+
+import { DestNodeModel } from './DestNode/DestNodeModel';
+import { DestNodeFactory } from './DestNode/DestNodeFactory';
+import { DestPortModel } from './DestNode/DestPortModel';
 
 import { ToolbarWidget, ToolbarItemWidget } from './Toolbar';
 require('storm-react-diagrams/dist/style.min.css');
@@ -24,7 +29,12 @@ class Application {
     this.diagramEngine.registerPortFactory(
       new SimplePortFactory('source', config => new SourcePortModel())
     );
+    this.diagramEngine.registerPortFactory(
+      new SimplePortFactory('dest', config => new DestPortModel())
+    );
+
     this.diagramEngine.registerNodeFactory(new SourceNodeFactory());
+    this.diagramEngine.registerNodeFactory(new DestNodeFactory());
 
     this.newDiagramModel();
   }
@@ -33,25 +43,21 @@ class Application {
     this.activeDiagramModel = new DiagramModel();
     this.diagramEngine.setDiagramModel(this.activeDiagramModel);
 
-    // create a default node
-    var node1 = new DefaultNodeModel('Node 1', 'rgb(0,192,255)');
-    let port = node1.addOutPort('Out');
-    node1.setPosition(100, 100);
+    // create custom source node
+    let sourceNode = new SourceNodeModel();
+    //let sourcePort = sourceNode.addPort();
+    sourceNode.setPosition(200, 100);
 
-    // create another default node
-    var node2 = new DefaultNodeModel('Node 2', 'rgb(192,255,0)');
-    let port2 = node2.addInPort('In');
-    node2.setPosition(400, 100);
-
-    // create custom node
-    var sourceNode = new SourceNodeModel();
-    sourceNode.setPosition(700, 100);
+    // create custom destination node
+    let destNode = new DestNodeModel();
+    //let destPort = destNode.addPort();
+    destNode.setPosition(600, 100);
 
     // link the ports
-    let link1 = port.link(port2);
+    let link = sourceNode.getPort('right').link(destNode.getPort('left'));
 
     // add to the diagram
-    this.activeDiagramModel.addAll(node1, node2, sourceNode, link1);
+    this.activeDiagramModel.addAll(sourceNode, destNode, link);
   }
 
   getActiveDiagram() {
@@ -69,25 +75,11 @@ const BodyWidget = props => {
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
-  const getNumNodes = () =>
-    Object.keys(
-      app
-        .getDiagramEngine()
-        .getDiagramModel()
-        .getNodes()
-    ).length;
-
   const addNodeToDiagram = (type, x, y) => {
-    const nodesCount = getNumNodes();
     let node = null;
 
-    if (type === 'in') {
-      node = new DefaultNodeModel('Node ' + (nodesCount + 1), 'rgb(192,255,0)');
-      node.addInPort('In');
-    } else {
-      node = new DefaultNodeModel('Node ' + (nodesCount + 1), 'rgb(0,192,255)');
-      node.addOutPort('Out');
-    }
+    if (type === 'source') node = new SourceNodeModel();
+    else if (type === 'dest') node = new DestNodeModel();
     node.x = x;
     node.y = y;
     app
@@ -117,16 +109,16 @@ const BodyWidget = props => {
       </div>
       <ToolbarWidget>
         <ToolbarItemWidget
-          model={{ type: 'out' }}
-          name="Out Node"
-          color="rgb(0,192,255)"
-          onClick={() => addNodeToDiagram('out', 400, 400)}
+          model={{ type: 'source' }}
+          name="Source Node"
+          color="#31AFDF"
+          onClick={() => addNodeToDiagram('source', 400, 400)}
         />
         <ToolbarItemWidget
-          model={{ type: 'in' }}
-          name="In Node"
-          color="rgb(192,255,0)"
-          onClick={() => addNodeToDiagram('in', 400, 400)}
+          model={{ type: 'dest' }}
+          name="Destination Node"
+          color="#EF736E"
+          onClick={() => addNodeToDiagram('dest', 400, 400)}
         />
       </ToolbarWidget>
     </div>

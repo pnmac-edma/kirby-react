@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 import { PortModel, DefaultLinkModel } from 'storm-react-diagrams';
 
-export class SourcePortModel extends PortModel {
+export class DestPortModel extends PortModel {
   constructor(pos = 'top') {
-    super(pos, 'source');
+    super(pos, 'dest');
     this.position = pos;
   }
 
@@ -20,12 +20,5 @@ export class SourcePortModel extends PortModel {
 
   createLinkModel() {
     return new DefaultLinkModel();
-  }
-
-  link(port) {
-    let link = this.createLinkModel();
-    link.setSourcePort(this);
-    link.setTargetPort(port);
-    return link;
   }
 }
