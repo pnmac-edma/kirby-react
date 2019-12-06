@@ -1,17 +1,30 @@
 import React, { useState, useCallback } from 'react';
 import {
-  DefaultNodeModel,
   DiagramEngine,
   DiagramModel,
+  DefaultNodeModel,
   DiagramWidget
-} from '@projectstorm/react-diagrams';
+} from 'storm-react-diagrams';
+
+// import custom models
+import { SourceNodeModel } from './SourceNode/SourceNodeModel';
+import { SourceNodeFactory } from './SourceNode/SourceNodeFactory';
+import { SimplePortFactory } from './SourceNode/SimplePortFactory';
+import { SourcePortModel } from './SourceNode/SourcePortModel';
+
 import { ToolbarWidget, ToolbarItemWidget } from './Toolbar';
-require('@projectstorm/react-diagrams/dist/style.min.css');
+require('storm-react-diagrams/dist/style.min.css');
 
 class Application {
   constructor() {
     this.diagramEngine = new DiagramEngine();
     this.diagramEngine.installDefaultFactories();
+
+    // register custom factories
+    this.diagramEngine.registerPortFactory(
+      new SimplePortFactory('source', config => new SourcePortModel())
+    );
+    this.diagramEngine.registerNodeFactory(new SourceNodeFactory());
 
     this.newDiagramModel();
   }
@@ -30,11 +43,15 @@ class Application {
     let port2 = node2.addInPort('In');
     node2.setPosition(400, 100);
 
+    // create custom node
+    var sourceNode = new SourceNodeModel();
+    sourceNode.setPosition(700, 100);
+
     // link the ports
     let link1 = port.link(port2);
 
     // add to the diagram
-    this.activeDiagramModel.addAll(node1, node2, link1);
+    this.activeDiagramModel.addAll(node1, node2, sourceNode, link1);
   }
 
   getActiveDiagram() {
