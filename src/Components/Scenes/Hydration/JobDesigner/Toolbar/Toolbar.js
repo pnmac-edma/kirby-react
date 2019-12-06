@@ -23,7 +23,9 @@ export const ToolbarWidget = props => {
   const { children } = props;
   return (
     <div className="toolbar">
-      <Typography style={{ textAlign: 'center' }}>Toolbar</Typography>
+      <Typography variant="h5" style={{ textAlign: 'center' }}>
+        Pick A Node, Any Node
+      </Typography>
       {children}
     </div>
   );
