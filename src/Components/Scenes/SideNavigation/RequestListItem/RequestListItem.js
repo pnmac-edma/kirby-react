@@ -88,7 +88,7 @@ const RequestListItem = ({
         <List component="div" disablePadding>
           {currentRole.governance || currentRole.approver
             ? requestListItemText
-            : requestListItemText.slice(1, -1)}
+            : [requestListItemText[1]]}
         </List>
       </Collapse>
     </>
