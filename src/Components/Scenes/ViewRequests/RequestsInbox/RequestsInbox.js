@@ -29,7 +29,7 @@ const RequestsInbox = props => {
       // since we are doing client-side pagination, I am just passing in the defaults
       governanceRequestsFetch(4, 200, '');
     } else {
-      console.log('you are an approver: ', userEmail);
+      approverRequestsFetch(userEmail);
     }
   }, [approverRequestsFetch, governanceRequestsFetch, userEmail, userRole]);
 
