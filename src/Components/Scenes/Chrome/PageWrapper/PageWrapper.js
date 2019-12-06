@@ -35,7 +35,7 @@ const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken }) => {
   // Case 2: (not seen here) there may or may not be a SAML response,
   //         but there is a session token, so relax until an hour later
   //         when we get a 4xx code from some request, then redirect
-  // Case 3: there is neither a SAML response nor a session token, so redirect
+  // Case 3: there is neither a SAML response nor a session token, so redirect to OneLogin
   useEffect(() => {
     if (samlResponse && !sessionToken) {
       authenticateFetch(samlResponse);
