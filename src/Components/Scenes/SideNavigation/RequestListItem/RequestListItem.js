@@ -86,7 +86,7 @@ const RequestListItem = ({
       </ListItem>
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {currentRole === true
+          {currentRole.governance || currentRole.approver === true
             ? requestListItemText
             : requestListItemText.slice(1, -1)}
         </List>

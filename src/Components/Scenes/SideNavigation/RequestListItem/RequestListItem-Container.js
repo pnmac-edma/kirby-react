@@ -8,7 +8,7 @@ const mapStateToProps = ({ currentUser }) => {
       { label: 'Sent', link: '/requests/sent' },
       { label: 'Archive', link: '/requests/archive' }
     ],
-    currentRole: currentUser.role.approver
+    currentRole: currentUser.role
   };
 };
 
