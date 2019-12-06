@@ -4,15 +4,6 @@ import RequestTableTitle from '../RequestTableTitle';
 import RequestTable from '../RequestTable';
 import { transformRequests } from '../../../../State/helpers';
 
-// Approver email is hard-coded until authentication is implemented
-const approverEmail = 'jonathan.delarosa@pnmac.com';
-const requestsInboxTableColumns = [
-  { name: 'Request', property: 'databasename' }, // placeholder from name property
-  { name: 'Description', property: 'description' },
-  { name: 'Status', property: 'requeststatus' },
-  { name: 'Date Requested', property: 'createddate' }
-];
-
 const RequestsInbox = props => {
   const {
     userEmail,
@@ -21,16 +12,26 @@ const RequestsInbox = props => {
     approverRequestsFetch,
     governanceRequestsFetch
   } = props;
+  const requestsInboxTableColumns = [
+    { name: 'Request', property: 'databasename' }, // placeholder from name property
+    { name: 'Description', property: 'description' },
+    {
+      name: 'Status',
+      property: userRole.governance ? 'govstatus' : 'requeststatus'
+    },
+    { name: 'Date Requested', property: 'createddate' }
+  ];
 
   useEffect(() => {
     if (userRole.governance) {
+      // since we are doing client-side pagination, I am just passing in the defaults
       governanceRequestsFetch(4, 200, '');
     } else {
-      approverRequestsFetch(userEmail);
+      console.log('you are an approver: ', userEmail);
     }
   }, [approverRequestsFetch, governanceRequestsFetch, userEmail, userRole]);
 
-  const reqs = transformRequests(requests);
+  const reqs = transformRequests(requests, userRole);
 
   const setFooterButtonText = selected =>
     `${selected.length} request${selected.length !== 1 ? 's' : ''} selected`;
@@ -50,6 +51,11 @@ const RequestsInbox = props => {
 };
 
 RequestsInbox.propTypes = {
+  userEmail: PropTypes.string,
+  userRole: PropTypes.shape({
+    governance: PropTypes.bool,
+    approver: PropTypes.bool
+  }),
   requests: PropTypes.arrayOf(
     PropTypes.shape({
       // placeholder for name property
@@ -58,7 +64,8 @@ RequestsInbox.propTypes = {
       createddate: PropTypes.string
     })
   ),
-  approverRequestsFetch: PropTypes.func
+  approverRequestsFetch: PropTypes.func,
+  governanceRequestsFetch: PropTypes.func
 };
 
 export default RequestsInbox;
