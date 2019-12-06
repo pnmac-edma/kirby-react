@@ -4,7 +4,8 @@ import { approverRequestsFetch } from '../../../../State/ViewRequests/actions';
 
 const mapStateToProps = ({ viewRequests }) => {
   return {
-    requests: viewRequests.inboundRequests
+    requests: viewRequests.inboundRequests,
+    isLoading: viewRequests.isLoading
   };
 };
 
