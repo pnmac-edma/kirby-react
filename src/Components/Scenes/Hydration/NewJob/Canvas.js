@@ -57,7 +57,14 @@ class Application {
     let link = sourceNode.getPort('right').link(destNode.getPort('left'));
 
     // add to the diagram
-    this.activeDiagramModel.addAll(sourceNode, destNode, link);
+    let models = this.activeDiagramModel.addAll(sourceNode, destNode, link);
+
+    // add a listener to each model
+    models.forEach(model => {
+      model.addListener({
+        selectionChanged: event => console.log(event)
+      });
+    });
   }
 
   getActiveDiagram() {
