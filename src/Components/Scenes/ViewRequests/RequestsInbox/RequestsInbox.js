@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import RequestTableTitle from '../RequestTableTitle';
 import RequestTable from '../RequestTable';
 import { transformRequests } from '../../../../State/helpers';
+import TableSkeleton from '../../../Presentational/TableSkeleton/TableSkeleton';
 
 const RequestsInbox = props => {
   const {
     userEmail,
     userRole,
     requests,
+    isLoading,
     approverRequestsFetch,
     governanceRequestsFetch
   } = props;
@@ -39,13 +41,17 @@ const RequestsInbox = props => {
   return (
     <>
       <RequestTableTitle title="Requests Inbox" />
-      <RequestTable
-        tableColumns={requestsInboxTableColumns}
-        requests={reqs}
-        handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
-        setFooterButtonText={setFooterButtonText}
-        handleFooterButtonClick={() => console.log('footer button clicked')}
-      />
+      {isLoading ? (
+        <TableSkeleton />
+      ) : (
+        <RequestTable
+          tableColumns={requestsInboxTableColumns}
+          requests={reqs}
+          handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
+          setFooterButtonText={setFooterButtonText}
+          handleFooterButtonClick={() => console.log('footer button clicked')}
+        />
+      )}
     </>
   );
 };
@@ -64,6 +70,7 @@ RequestsInbox.propTypes = {
       createddate: PropTypes.string
     })
   ),
+  isLoading: PropTypes.bool,
   approverRequestsFetch: PropTypes.func,
   governanceRequestsFetch: PropTypes.func
 };
