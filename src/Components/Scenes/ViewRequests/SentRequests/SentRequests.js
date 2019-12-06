@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RequestTableTitle from '../RequestTableTitle';
 import RequestTable from '../RequestTable';
 import { transformRequests } from '../../../../State/helpers';
+import TableSkeleton from '../../../Presentational/TableSkeleton/TableSkeleton';
 
 // Approver email is hard-coded until authentication is implemented
 const userEmail = 'jonathan.delarosa@pnmac.com';
@@ -14,7 +15,7 @@ const sentRequestsTableColumns = [
 ];
 
 const SentRequests = props => {
-  const { requests, userRequestsFetch } = props;
+  const { isLoading, requests, userRequestsFetch } = props;
 
   // Fetch all outbound requests for a user
   useEffect(() => {
@@ -29,13 +30,17 @@ const SentRequests = props => {
   return (
     <>
       <RequestTableTitle title="Sent Requests" />
-      <RequestTable
-        tableColumns={sentRequestsTableColumns}
-        requests={reqs}
-        handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
-        setFooterButtonText={setFooterButtonText}
-        handleFooterButtonClick={() => console.log('footer button clicked')}
-      />
+      {isLoading ? (
+        <TableSkeleton />
+      ) : (
+        <RequestTable
+          tableColumns={sentRequestsTableColumns}
+          requests={reqs}
+          handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
+          setFooterButtonText={setFooterButtonText}
+          handleFooterButtonClick={() => console.log('footer button clicked')}
+        />
+      )}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import TableSectionContainer from '../../SearchResults/TableSection/TableSection-Container';
-import TableSkeleton from '../../SearchResults/TableSkeleton/TableSkeleton';
+import TableSkeleton from '../../../Presentational/TableSkeleton/TableSkeleton';
 import { useQuery } from '../../../../Hooks/customHooks';
 
 const SearchResults = props => {

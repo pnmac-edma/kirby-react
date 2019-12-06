@@ -13,28 +13,28 @@ const viewRequestsReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
     }
     case types.USER_REQUESTS_SUCCESS: {
-      return { ...state, outboundRequests: action.payload };
+      return { ...state, isLoading: false, outboundRequests: action.payload };
     }
     case types.USER_REQUESTS_FAILURE: {
-      return { ...state, error: action.payload };
+      return { ...state, isLoading: false, error: action.payload };
     }
     case types.APPROVER_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
     }
     case types.APPROVER_REQUESTS_SUCCESS: {
-      return { ...state, inboundRequests: action.payload };
+      return { ...state, isLoading: false, inboundRequests: action.payload };
     }
     case types.APPROVER_REQUESTS_FAILURE: {
-      return { ...state, error: action.payload };
+      return { ...state, isLoading: false, error: action.payload };
     }
     case types.GOVERNANCE_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
     }
     case types.GOVERNANCE_REQUESTS_SUCCESS: {
-      return { ...state, inboundRequests: action.payload };
+      return { ...state, isLoading: false, inboundRequests: action.payload };
     }
     case types.GOVERNANCE_REQUESTS_FAILURE: {
-      return { ...state, error: action.payload };
+      return { ...state, isLoading: false, error: action.payload };
     }
     case types.GET_ARCHIVED_REQUESTS: {
       return {
