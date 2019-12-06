@@ -34,7 +34,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestAsset = ({ getEmployeesFetch, openModal }) => {
+const RequestAsset = ({
+  getEmployeesFetch,
+  openModal,
+  notificationMessage
+}) => {
   const classes = useStyles();
   useEffect(() => {
     getEmployeesFetch();
@@ -60,10 +64,7 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
           />
         ) : null}
         <RequestAssetJustificationContainer />
-        <MakeRequestsContainer
-          handleOpenNotification={handleOpenNotification}
-          handleCloseNotification={handleCloseNotification}
-        />
+        <MakeRequestsContainer />
         <SnackBarContainer
           handleCloseNotification={handleCloseNotification}
           notification={notification}

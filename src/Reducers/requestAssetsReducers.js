@@ -77,11 +77,9 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       };
     }
     case types.MAKE_REQUESTS_FETCH: {
-      console.log('are we here', action.payload);
       return { ...state };
     }
     case types.MAKE_REQUESTS_SUCCESS: {
-      console.log('are we here', action.payload);
       return { ...state, notificationMessage: action.payload.message };
     }
     case types.MAKE_REQUESTS_FAILURE: {

@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
 
 const SnackBar = props => {
   const classes = useStyles();
-  console.log('llllll i hope', props);
   const { message, notification, handleCloseNotification } = props;
 
   return (

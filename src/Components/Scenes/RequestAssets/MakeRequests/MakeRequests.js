@@ -3,7 +3,6 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import SnackBar from '../../../Presentational/RequestAssets/SnackBar';
-import SnackBarContainer from '../SnackBar/SnackBar-Container';
 
 const tableStyles = makeStyles(theme => ({
   button: {
@@ -16,21 +15,30 @@ const tableStyles = makeStyles(theme => ({
 }));
 
 const MakeRequests = props => {
-  console.log('propskskdkskdfkjsdfkj', props);
-  const {
-    makeRequestsFetch,
-    notificationMessage,
-    handleOpenNotification
-  } = props;
+  const { makeRequestsFetch, notificationMessage } = props;
   const classes = tableStyles();
   let history = useHistory();
+
+  const [notification, setNotification] = React.useState(false);
+
+  const handleOpenNotification = () => {
+    setNotification(true);
+  };
+
+  const handleCloseNotification = () => {
+    setNotification(false);
+  };
+
   return (
     <>
       <Button
         className={classes.button}
         variant="contained"
         color="primary"
-        onClick={(() => makeRequestsFetch(), handleOpenNotification)}
+        onClick={() => {
+          makeRequestsFetch();
+          handleOpenNotification();
+        }}
       >
         Requests Assets
       </Button>
@@ -42,9 +50,11 @@ const MakeRequests = props => {
       >
         Cancel
       </Button>
-      {notificationMessage ? (
-        <SnackBar messagekkkk={notificationMessage} />
-      ) : null}
+      <SnackBar
+        message={notificationMessage}
+        notification={notification}
+        handleCloseNotification={handleCloseNotification}
+      />
     </>
   );
 };
