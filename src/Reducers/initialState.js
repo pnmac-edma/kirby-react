@@ -33,7 +33,7 @@ const initialState = {
       'Domain',
       'Owner',
       'Contains',
-      'Doesn\'t contain',
+      "Doesn't contain",
       'Equals'
     ],
     isFilterClick: false,
@@ -52,7 +52,9 @@ const initialState = {
     employees: [],
     selectedEmployees: [],
     openModal: false,
-    notificationMessage: ''
+    justification: 'This is Just test',
+    notificationMessage: '',
+    isLoading: false
   },
   viewRequests
 };

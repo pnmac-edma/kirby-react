@@ -9,13 +9,13 @@ export const getEmployees = args => {
   return axios.post(url, fetchBody).then(response => response.data.users);
 };
 
-export const makeRequest = args => {
+export const makeRequest = (requestAssets, justification, requestedFor) => {
   const url = `https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev/assets/requests/access/`;
   const fetchBody = {
     createdbyemail: 'selcuk.ates@pnmac.com',
-    requestedfor: ['scott.cox@pnmac.com'],
-    assets: [{ database: 'ELEPHANT' }],
-    justification: 'This is postman test'
+    requestedfor: requestedFor,
+    assets: requestAssets,
+    justification: justification
   };
   return axios.post(url, fetchBody).then(response => response.data);
 };

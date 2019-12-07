@@ -5,7 +5,8 @@ import { makeRequestsFetch } from '../../../../Actions/requestAssetActions';
 const mapStateToProps = ({ requestAssets }) => {
   return {
     TextButton: 'Hello',
-    notificationMessage: requestAssets.notificationMessage
+    notificationMessage: requestAssets.notificationMessage,
+    isLoading: requestAssets.isLoading
   };
 };
 

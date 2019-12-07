@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
@@ -15,11 +15,11 @@ const tableStyles = makeStyles(theme => ({
 }));
 
 const MakeRequests = props => {
-  const { makeRequestsFetch, notificationMessage } = props;
+  var { makeRequestsFetch, notificationMessage, isLoading } = props;
   const classes = tableStyles();
   let history = useHistory();
 
-  const [notification, setNotification] = React.useState(false);
+  var [notification, setNotification] = React.useState(false);
 
   const handleOpenNotification = () => {
     setNotification(true);
@@ -50,11 +50,13 @@ const MakeRequests = props => {
       >
         Cancel
       </Button>
-      <SnackBar
-        message={notificationMessage}
-        notification={notification}
-        handleCloseNotification={handleCloseNotification}
-      />
+      {isLoading ? (
+        <SnackBar
+          message={notificationMessage}
+          notification={notification}
+          handleCloseNotification={handleCloseNotification}
+        />
+      ) : null}
     </>
   );
 };
