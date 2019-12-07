@@ -1,48 +1,67 @@
 // All API calls that have to do with viewing requests
 import axios from 'axios';
+import { signApiCall } from '../helpers';
 
-const BASE_URL = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
+const BASE_URL = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com';
 
 export function getUserRequests(createdbyemail) {
-  const fetchBody = {
+  let request = {
+    host: BASE_URL.slice(8), // host doesn't include https://
+    method: 'GET',
+    url: `${BASE_URL}/dev/users/requests`,
+    path: '/dev/users/requests',
     params: {
       createdbyemail
     }
   };
-  return axios
-    .get(`${BASE_URL}/users/requests`, fetchBody)
+
+  let signedRequest = signApiCall(request);
+
+  return axios(signedRequest)
     .then(response => {
       return response.data;
     })
-    .then(error => error);
+    .catch(error => error);
 }
 
 export function getApproverRequests(approveremail) {
-  const fetchBody = {
+  let request = {
+    host: BASE_URL.slice(8),
+    method: 'GET',
+    url: `${BASE_URL}/dev/approver/requests`,
+    path: '/dev/approver/requests',
     params: {
       approveremail
     }
   };
-  return axios
-    .get(`${BASE_URL}/approver/requests`, fetchBody)
+
+  let signedRequest = signApiCall(request);
+
+  return axios(signedRequest)
     .then(response => {
       return response.data;
     })
-    .then(error => error);
+    .catch(error => error);
 }
 
 export function getGovernanceRequests(pages, size, status = '') {
-  const fetchBody = {
+  let request = {
+    host: BASE_URL.slice(8),
+    method: 'GET',
+    url: `${BASE_URL}/dev/governance/requests`,
+    path: '/dev/governance/requests',
     params: {
       pages,
       size,
       status
     }
   };
-  return axios
-    .get(`${BASE_URL}/governance/requests`, fetchBody)
+
+  let signedRequest = signApiCall(request);
+
+  return axios(signedRequest)
     .then(response => {
       return response.data;
     })
-    .then(error => error);
+    .catch(error => error);
 }

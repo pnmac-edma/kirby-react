@@ -6,7 +6,7 @@ import { transformRequests } from '../../../../State/helpers';
 import TableSkeleton from '../../../Presentational/TableSkeleton/TableSkeleton';
 
 // Approver email is hard-coded until authentication is implemented
-const userEmail = 'jonathan.delarosa@pnmac.com';
+const userEmail = 'abby.bashore@pnmac.com';
 const sentRequestsTableColumns = [
   { name: 'Request', property: 'databasename' },
   { name: 'Description', property: 'description' },
