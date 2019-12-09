@@ -56,7 +56,6 @@ export default function App() {
   };
 
   const kirby = createMuiTheme(theme);
-
   return (
     <ThemeProvider theme={kirby}>
       <div className="App">
