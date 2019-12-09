@@ -10,12 +10,15 @@ export const getEmployees = args => {
 };
 
 export const makeRequest = (requestAssets, justification, requestedFor) => {
-  const url = `https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev/assets/requests/access/`;
+  const url = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
   const fetchBody = {
+    // TODO needs update have aticket already
     createdbyemail: 'selcuk.ates@pnmac.com',
     requestedfor: requestedFor,
     assets: requestAssets,
     justification: justification
   };
-  return axios.post(url, fetchBody).then(response => response.data);
+  return axios
+    .post(`${url}/assets/requests/access/`, fetchBody)
+    .then(response => response.data);
 };
