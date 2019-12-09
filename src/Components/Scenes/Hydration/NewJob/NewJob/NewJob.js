@@ -17,7 +17,10 @@ const chromeStyles = makeStyles(theme => ({
     backgroundColor: color.g50,
     backgroundSize: '96px 96px, 96px 96px, 16px 16px, 16px 16px',
     backgroundPosition: '0 0, 0 0, 0 0, 0 0',
-    backgroundImage: `linear-gradient(${lighten(color.g100, 0.4)} 1px, transparent 1px), linear-gradient(90deg, ${lighten(color.g100, 0.4)} 1px, transparent 1px), linear-gradient(${lighten(color.g100, 0.4)} 1px, transparent 1px), linear-gradient(90deg, ${lighten(color.g100, 0.4)} 1px, transparent 1px)`,
+    backgroundImage: `linear-gradient(${lighten(color.g100, 0.4)} 1px, transparent 1px), `
+    + `linear-gradient(90deg, ${lighten(color.g100, 0.4)} 1px, transparent 1px), `
+    + `linear-gradient(${lighten(color.g100, 0.4)} 1px, transparent 1px), `
+    + `linear-gradient(90deg, ${lighten(color.g100, 0.4)} 1px, transparent 1px)`,
     flexGrow: 1
   },
   // Placeholder column until toolbar is implemented
