@@ -33,7 +33,7 @@ const initialState = {
       'Domain',
       'Owner',
       'Contains',
-      'Doesn\'t contain',
+      "Doesn't contain",
       'Equals'
     ],
     isFilterClick: false,
