@@ -6,6 +6,6 @@ export default class SourceNodeModel extends NodeModel {
     super('source');
     this.name = name;
     this.size = size;
-    this.addPort(new SourcePortModel('left'));
+    this.addPort(new SourcePortModel('right'));
   }
 }
