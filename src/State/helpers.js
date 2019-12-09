@@ -28,21 +28,84 @@ export const transformRequests = (requests, role) => {
   });
 };
 
-// take in a API request object, and signs it
-export const signApiCall = request => {
-  const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
+export const constructRequest = (host, method, path, params, data) => {
+  const {
+    AccessKeyId,
+    EmpEmail,
+    SamlHash,
+    SecretKey,
+    SessionToken,
+    UserKey
+  } = store.getState().currentUser;
 
-  let signedRequest = aws4.sign(request, {
-    accessKeyId: AccessKeyId,
-    secretAccessKey: SecretKey,
-    sessionToken: SessionToken
-  });
+  let userSession = {
+    AccessKeyId,
+    EmpEmail,
+    SamlHash,
+    SecretKey,
+    SessionToken,
+    UserKey
+  };
 
-  // axios screams at you if you don't delete these
-  delete signedRequest.headers['Host'];
-  delete signedRequest.headers['Content-Length'];
+  // construct request
+  let request = {
+    host,
+    method,
+    url: `${host}${path}`,
+    path,
+    data: { ...userSession }, // data paramter needed for axios
+    body: JSON.stringify({ ...userSession }) // body parameter needed for aws
+  };
 
-  console.log(signedRequest);
+  /* NOTE:
+   * Adding these headers violates CORS policies!
+   * For now, this will be commented out, but once the API
+   * is refactored to allow these headers, not pass these
+   * through the body of the request, this can be uncommented
+   */
+
+  // request.headers["AccessKeyId"] = AccessKeyId;
+  // request.headers["EmpEmail"] = EmpEmail;
+  // request.headers["SamlHash"] = SamlHash;
+  // request.headers["SecretKey"] = SecretKey;
+  // request.headers["SessionToken"] = SessionToken;
+  // request.headers["UserKey"] = UserKey;
+
+  // add params if needed
+  if (params) {
+    request.params = params;
+  }
+
+  // tack on additional data if needed
+  if (data) {
+    request.data = { ...request.data, ...data };
+    request.body = JSON.stringify(request.data);
+  }
+
+  // sign the API call
+  let signedRequest = signApiCall(request);
 
   return signedRequest;
+};
+
+// take in a API request object, and signs i
+const signApiCall = request => {
+  const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
+
+  if (AccessKeyId && SecretKey && SessionToken) {
+    let signedRequest = aws4.sign(request, {
+      accessKeyId: AccessKeyId,
+      secretAccessKey: SecretKey,
+      sessionToken: SessionToken
+    });
+
+    // delete for security purposes
+    delete signedRequest.headers['Host'];
+    delete signedRequest.headers['Content-Length'];
+
+    // console.log(signedRequest);
+
+    return signedRequest;
+  }
+  return request;
 };
