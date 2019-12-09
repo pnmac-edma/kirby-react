@@ -34,7 +34,7 @@ const initialState = {
       'Owner',
       'Contains',
       // prettier-ignore
-      'Doesn\'t contain',
+      'Doesn\'t contain', // eslint-disable-line
       'Equals'
     ],
     isFilterClick: false,
