@@ -1,5 +1,6 @@
 import React from 'react';
 import { TransPortWidget } from '.';
+import color from '@edma/design-tokens/js/color';
 
 export default class TransNodeWidget extends React.Component {
   constructor(props) {
@@ -18,9 +19,9 @@ export default class TransNodeWidget extends React.Component {
           height: size * 0.6,
           backgroundColor: 'white',
           borderRadius: '5%',
-          border: 'solid #CA4ABE 1px',
-          borderLeft: 'solid #CA4ABE 5px',
-          borderRight: 'solid #CA4ABE 5px',
+          border: `solid ${color['v400']} 1px`,
+          borderLeft: `solid ${color['v400']} 5px`,
+          borderRight: `solid ${color['v400']} 5px`,
           textAlign: 'center',
           padding: '10px'
         }}

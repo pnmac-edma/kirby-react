@@ -1,4 +1,5 @@
 import React from 'react';
+import color from '@edma/design-tokens/js/color';
 import { DestPortWidget } from '.';
 
 export default class DestNodeWidget extends React.Component {
@@ -16,12 +17,11 @@ export default class DestNodeWidget extends React.Component {
           position: 'relative',
           width: size,
           height: size * 0.6,
-          backgroundColor: 'white',
+          backgroundColor: color.white,
           borderRadius: '5%',
-          border: 'solid #EF736E 1px',
-          borderLeft: 'solid #EF736E 5px',
-          textAlign: 'center',
-          padding: '10px'
+          border: `solid ${color['r300']} 1px`,
+          borderLeft: `solid ${color['r300']} 5px`,
+          textAlign: 'center'
         }}
       >
         Destination Node {name}

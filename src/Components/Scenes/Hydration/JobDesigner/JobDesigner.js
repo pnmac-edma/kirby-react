@@ -7,7 +7,7 @@ import DiagramApp from './DiagramApp/DiagramApp';
 import { SourceNodeModel } from './DiagramApp/SourceNode';
 import { DestNodeModel } from './DiagramApp/DestNode';
 import { TransNodeModel } from './DiagramApp/TransNode';
-require('storm-react-diagrams/dist/style.min.css');
+import 'storm-react-diagrams/dist/style.min.css';
 
 const JobDesigner = props => {
   const { app } = props;
@@ -35,9 +35,7 @@ const JobDesigner = props => {
           setSelectedNode(null);
         }
       },
-      entityRemoved: event => {
-        setSelectedNode(null);
-      }
+      entityRemoved: event => setSelectedNode(null)
     });
     forceUpdate();
   };

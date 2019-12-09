@@ -1,5 +1,6 @@
 import React from 'react';
 import { SourcePortWidget } from '.';
+import color from '@edma/design-tokens/js/color';
 
 export default class SourceNodeWidget extends React.Component {
   constructor(props) {
@@ -16,12 +17,11 @@ export default class SourceNodeWidget extends React.Component {
           position: 'relative',
           width: size,
           height: size * 0.6,
-          backgroundColor: 'white',
+          backgroundColor: color.white,
           borderRadius: '5%',
-          border: 'solid #31AFDF 1px',
-          borderRight: 'solid #31AFDF 5px',
-          textAlign: 'center',
-          padding: '10px'
+          border: `solid ${color['c400']} 1px`,
+          borderRight: `solid ${color['c400']} 5px`,
+          textAlign: 'center'
         }}
       >
         Source Node {name}

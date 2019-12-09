@@ -1,7 +1,15 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import color from '@edma/design-tokens/js/color';
 
-export const ToolbarItemWidget = props => {
+const toolbarStyles = makeStyles(theme => ({
+  typography: {
+    textAlign: 'center'
+  }
+}));
+
+const ToolbarItemWidget = props => {
   const { model, color, name, onClick } = props;
 
   return (
@@ -19,11 +27,12 @@ export const ToolbarItemWidget = props => {
   );
 };
 
-export const ToolbarWidget = props => {
+const ToolbarWidget = props => {
+  const classes = toolbarStyles();
   const { children } = props;
   return (
     <div className="toolbar">
-      <Typography variant="h5" style={{ textAlign: 'center' }}>
+      <Typography variant="h5" className={classes.typography}>
         Pick A Node, Any Node
       </Typography>
       {children}
@@ -32,6 +41,7 @@ export const ToolbarWidget = props => {
 };
 
 export const Toolbar = props => {
+  const classes = toolbarStyles();
   const { selectedNode, addNodeToDiagram } = props;
   if (selectedNode !== null) {
     const toolbarType = {
@@ -41,11 +51,9 @@ export const Toolbar = props => {
     }[selectedNode.type];
     return (
       <div className="toolbar">
-        <Typography style={{ textAlign: 'center' }} variant="h5">
+        <Typography className={classes.typography} variant="h5">
           Toolbar for {toolbarType}
-        </Typography>
-        <Typography style={{ textAlign: 'center' }}>
-          Node ID:
+          <br /> Node ID:
           <br /> {selectedNode.id}
         </Typography>
       </div>
@@ -56,19 +64,19 @@ export const Toolbar = props => {
         <ToolbarItemWidget
           model={{ type: 'source' }}
           name="Source Node"
-          color="#31AFDF"
+          color={color['c400']}
           onClick={() => addNodeToDiagram('source', 400, 400)}
         />
         <ToolbarItemWidget
           model={{ type: 'trans' }}
           name="Transformation Node"
-          color="#CA4ABE"
+          color={color['v400']}
           onClick={() => addNodeToDiagram('trans', 400, 400)}
         />
         <ToolbarItemWidget
           model={{ type: 'dest' }}
           name="Destination Node"
-          color="#EF736E"
+          color={color['r300']}
           onClick={() => addNodeToDiagram('dest', 400, 400)}
         />
       </ToolbarWidget>
