@@ -7,15 +7,18 @@ export const initialState = {
   isLoading: false
 };
 
-// TODO: Abby / Libbey: how do we want to handle resetting the error prooperty?
-// How do you envision it being used in the future?
 const viewRequestsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.USER_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
     }
     case types.USER_REQUESTS_SUCCESS: {
-      return { ...state, isLoading: false, outboundRequests: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        outboundRequests: action.payload,
+        error: {}
+      };
     }
     case types.USER_REQUESTS_FAILURE: {
       return { ...state, isLoading: false, error: action.payload };
@@ -24,7 +27,12 @@ const viewRequestsReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
     }
     case types.APPROVER_REQUESTS_SUCCESS: {
-      return { ...state, isLoading: false, inboundRequests: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        inboundRequests: action.payload,
+        error: {}
+      };
     }
     case types.APPROVER_REQUESTS_FAILURE: {
       return { ...state, isLoading: false, error: action.payload };
@@ -33,7 +41,12 @@ const viewRequestsReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
     }
     case types.GOVERNANCE_REQUESTS_SUCCESS: {
-      return { ...state, isLoading: false, inboundRequests: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        inboundRequests: action.payload,
+        error: {}
+      };
     }
     case types.GOVERNANCE_REQUESTS_FAILURE: {
       return { ...state, isLoading: false, error: action.payload };

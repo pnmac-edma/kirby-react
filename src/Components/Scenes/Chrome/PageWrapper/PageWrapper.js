@@ -61,12 +61,14 @@ const PageWrapper = props => {
         className="switch-wrapper"
       >
         <Route exact path="/" component={Splash} />
+        <Route exact path="/index.html" component={Splash} />{' '}
+        {/* hosted version lands users at index.html */}
         {/* search pages */}
         <Route path="/search/access" component={RequestAssetContainer} />
         <Route path="/search" component={SearchResultsContainer} />
         {/* hydration pages */}
         <Route path="/hydration/new-job" component={NewJobContainer} />
-        {/* requests pages - will be implemented and hooked in soon */}
+        {/* requests pages */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
