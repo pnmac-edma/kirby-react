@@ -33,7 +33,8 @@ const initialState = {
       'Domain',
       'Owner',
       'Contains',
-      `Doesn\'t contain`,
+      // prettier-ignore
+      "Doesn\'t contain",
       'Equals'
     ],
     isFilterClick: false,
