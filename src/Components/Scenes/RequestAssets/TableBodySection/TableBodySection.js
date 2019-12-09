@@ -17,6 +17,7 @@ const TableBodySection = props => {
           <span>{next.name.toUpperCase()}</span>
         </TableCell>
         <TableCell align="left">{next.domain}</TableCell>
+        <TableCell align="left">{next.createddate}</TableCell>
       </TableRow>
     );
     return acc;
