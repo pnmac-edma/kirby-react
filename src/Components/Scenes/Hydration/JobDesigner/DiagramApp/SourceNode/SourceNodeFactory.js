@@ -1,8 +1,8 @@
-import * as SRD from 'storm-react-diagrams';
+import { AbstractNodeFactory } from 'storm-react-diagrams';
 import { SourceNodeModel, SourceNodeWidget } from '.';
 import React from 'react';
 
-export default class SourceNodeFactory extends SRD.AbstractNodeFactory {
+export default class SourceNodeFactory extends AbstractNodeFactory {
   constructor() {
     super('source');
   }

@@ -1,8 +1,8 @@
-import * as SRD from 'storm-react-diagrams';
+import { AbstractNodeFactory } from 'storm-react-diagrams';
 import { TransNodeModel, TransNodeWidget } from '.';
 import React from 'react';
 
-export default class TransNodeFactory extends SRD.AbstractNodeFactory {
+export default class TransNodeFactory extends AbstractNodeFactory {
   constructor() {
     super('trans');
   }
