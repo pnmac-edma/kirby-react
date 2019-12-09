@@ -5,24 +5,35 @@ import RequestTable from '../RequestTable';
 import { transformRequests } from '../../../../State/helpers';
 import TableSkeleton from '../../../Presentational/TableSkeleton/TableSkeleton';
 
-// Approver email is hard-coded until authentication is implemented
-const approverEmail = 'jonathan.delarosa@pnmac.com';
-const requestsInboxTableColumns = [
-  { name: 'Request', property: 'databasename' }, // placeholder from name property
-  { name: 'Description', property: 'description' },
-  { name: 'Status', property: 'requeststatus' },
-  { name: 'Date Requested', property: 'createddate' }
-];
-
 const RequestsInbox = props => {
-  const { isLoading, requests, approverRequestsFetch } = props;
+  const {
+    userEmail,
+    userRole,
+    requests,
+    isLoading,
+    approverRequestsFetch,
+    governanceRequestsFetch
+  } = props;
+  const requestsInboxTableColumns = [
+    { name: 'Request', property: 'databasename' }, // placeholder from name property
+    { name: 'Description', property: 'description' },
+    {
+      name: 'Status',
+      property: userRole.governance ? 'govstatus' : 'requeststatus'
+    },
+    { name: 'Date Requested', property: 'createddate' }
+  ];
 
-  // Fetch all inbound requests given for approver's email
   useEffect(() => {
-    approverRequestsFetch(approverEmail);
-  }, [approverRequestsFetch]);
+    if (userRole.governance) {
+      // since we are doing client-side pagination, I am just passing in the defaults
+      governanceRequestsFetch(4, 200, '');
+    } else {
+      approverRequestsFetch(userEmail);
+    }
+  }, [approverRequestsFetch, governanceRequestsFetch, userEmail, userRole]);
 
-  const reqs = transformRequests(requests);
+  const reqs = transformRequests(requests, userRole);
 
   const setFooterButtonText = selected =>
     `${selected.length} request${selected.length !== 1 ? 's' : ''} selected`;
@@ -46,6 +57,11 @@ const RequestsInbox = props => {
 };
 
 RequestsInbox.propTypes = {
+  userEmail: PropTypes.string,
+  userRole: PropTypes.shape({
+    governance: PropTypes.bool,
+    approver: PropTypes.bool
+  }),
   requests: PropTypes.arrayOf(
     PropTypes.shape({
       // placeholder for name property
@@ -54,7 +70,9 @@ RequestsInbox.propTypes = {
       createddate: PropTypes.string
     })
   ),
-  approverRequestsFetch: PropTypes.func
+  isLoading: PropTypes.bool,
+  approverRequestsFetch: PropTypes.func,
+  governanceRequestsFetch: PropTypes.func
 };
 
 export default RequestsInbox;
