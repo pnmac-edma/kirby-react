@@ -1,15 +1,9 @@
 import { DiagramEngine, DiagramModel } from 'storm-react-diagrams';
 
 import { SimplePortFactory } from './SimplePortFactory';
-
-import { SourceNodeFactory } from './SourceNode/SourceNodeFactory';
-import { SourcePortModel } from './SourceNode/SourcePortModel';
-
-import { DestNodeFactory } from './DestNode/DestNodeFactory';
-import { DestPortModel } from './DestNode/DestPortModel';
-
-import { TransNodeFactory } from './TransNode/TransNodeFactory';
-import { TransPortModel } from './TransNode/TransPortModel';
+import { SourceNodeFactory, SourcePortModel } from './SourceNode';
+import { DestNodeFactory, DestPortModel } from './DestNode';
+import { TransNodeFactory, TransPortModel } from './TransNode';
 
 export default class DiagramApp {
   constructor() {
@@ -31,10 +25,6 @@ export default class DiagramApp {
     this.diagramEngine.registerNodeFactory(new DestNodeFactory());
     this.diagramEngine.registerNodeFactory(new TransNodeFactory());
 
-    this.newDiagramModel();
-  }
-
-  newDiagramModel() {
     this.activeDiagramModel = new DiagramModel();
     this.diagramEngine.setDiagramModel(this.activeDiagramModel);
   }

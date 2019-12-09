@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { PortModel, DefaultLinkModel } from 'storm-react-diagrams';
 
-export class TransPortModel extends PortModel {
+export default class TransPortModel extends PortModel {
   constructor(pos = 'top') {
     super(pos, 'trans');
     this.position = pos;

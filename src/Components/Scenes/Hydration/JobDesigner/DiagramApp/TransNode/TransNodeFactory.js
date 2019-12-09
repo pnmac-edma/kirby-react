@@ -1,15 +1,14 @@
 import * as SRD from 'storm-react-diagrams';
-import { TransNodeWidget } from './TransNodeWidget';
-import { TransNodeModel } from './TransNodeModel';
+import { TransNodeModel, TransNodeWidget } from '.';
 import React from 'react';
 
-export class TransNodeFactory extends SRD.AbstractNodeFactory {
+export default class TransNodeFactory extends SRD.AbstractNodeFactory {
   constructor() {
     super('trans');
   }
 
-  generateReactWidget(diagramEngine, node) {
-    return <TransNodeWidget node={node} size={150} />;
+  generateReactWidget(diagramEngine, node, name, size) {
+    return <TransNodeWidget node={node} name={name} size={size} />;
   }
 
   getNewInstance() {

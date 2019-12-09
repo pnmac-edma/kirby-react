@@ -1,20 +1,21 @@
 import React from 'react';
-import { TransPortWidget } from './TransPortWidget';
+import { TransPortWidget } from '.';
 
-export class TransNodeWidget extends React.Component {
+export default class TransNodeWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
+    const { name, size } = this.props.node;
     return (
       <div
         className={'transNode'}
         style={{
           position: 'relative',
-          width: this.props.size,
-          height: this.props.size * 0.6,
+          width: size,
+          height: size * 0.6,
           backgroundColor: 'white',
           borderRadius: '5%',
           border: 'solid #CA4ABE 1px',
@@ -24,14 +25,14 @@ export class TransNodeWidget extends React.Component {
           padding: '10px'
         }}
       >
-        Transformation Node
+        Transformation Node {name}
         <div
           style={{
             position: 'absolute',
-            height: this.props.size,
+            height: size,
             zIndex: 10,
-            right: this.props.size - 7,
-            top: (this.props.size * 0.6) / 2 - 8
+            right: size - 7,
+            top: (size * 0.6) / 2 - 8
           }}
         >
           <TransPortWidget name="left" node={this.props.node} />
@@ -39,10 +40,10 @@ export class TransNodeWidget extends React.Component {
         <div
           style={{
             position: 'absolute',
-            height: this.props.size,
+            height: size,
             zIndex: 10,
-            left: this.props.size - 7,
-            top: (this.props.size * 0.6) / 2 - 8
+            left: size - 7,
+            top: (size * 0.6) / 2 - 8
           }}
         >
           <TransPortWidget name="right" node={this.props.node} />

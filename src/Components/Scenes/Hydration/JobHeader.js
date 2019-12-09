@@ -28,7 +28,7 @@ const headerStyles = makeStyles(theme => ({
   }
 }));
 
-const NewJobHeader = props => {
+const JobHeader = props => {
   const classes = headerStyles();
   const { jobName } = props;
 
@@ -50,4 +50,4 @@ const NewJobHeader = props => {
   );
 };
 
-export default NewJobHeader;
+export default JobHeader;

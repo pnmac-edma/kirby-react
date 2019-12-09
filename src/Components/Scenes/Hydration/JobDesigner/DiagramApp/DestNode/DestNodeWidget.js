@@ -1,20 +1,21 @@
 import React from 'react';
-import { DestPortWidget } from './DestPortWidget';
+import { DestPortWidget } from '.';
 
-export class DestNodeWidget extends React.Component {
+export default class DestNodeWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
+    const { name, size } = this.props.node;
     return (
       <div
         className={'destNode'}
         style={{
           position: 'relative',
-          width: this.props.size,
-          height: this.props.size * 0.6,
+          width: size,
+          height: size * 0.6,
           backgroundColor: 'white',
           borderRadius: '5%',
           border: 'solid #EF736E 1px',
@@ -23,14 +24,14 @@ export class DestNodeWidget extends React.Component {
           padding: '10px'
         }}
       >
-        Destination Node
+        Destination Node {name}
         <div
           style={{
             position: 'absolute',
-            height: this.props.size,
+            height: size,
             zIndex: 10,
-            right: this.props.size - 7,
-            top: (this.props.size * 0.6) / 2 - 8
+            right: size - 7,
+            top: (size * 0.6) / 2 - 8
           }}
         >
           <DestPortWidget name="left" node={this.props.node} />

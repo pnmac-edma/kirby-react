@@ -1,17 +1,10 @@
 import React from 'react';
 import { PortWidget } from 'storm-react-diagrams';
 
-export class TransPortWidget extends PortWidget {
+export default class TransPortWidget extends PortWidget {
   render() {
     return (
       <div
-        style={
-          {
-            //height: '20px',
-            //width: '5px',
-            //backgroundColor: '#31AFDF',
-          }
-        }
         {...this.getProps()}
         onMouseEnter={() => {
           this.setState({ selected: true });
