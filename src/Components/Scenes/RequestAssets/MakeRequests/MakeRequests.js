@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
@@ -9,13 +9,19 @@ const tableStyles = makeStyles(theme => ({
     textTransform: 'none',
     fontWeight: 'bold',
     color: theme.palette.common.white,
-    whiteSpace: 'nowrap',
-    margin: 10
+    margin: 8
   }
 }));
 
 const MakeRequests = props => {
-  var { makeRequestsFetch, notificationMessage, isLoading } = props;
+  var {
+    makeRequestsFetch,
+    notificationMessage,
+    isLoading,
+    selectedEmployees,
+    selectedSearchResultCopy,
+    justification
+  } = props;
   const classes = tableStyles();
   let history = useHistory();
 
@@ -28,13 +34,17 @@ const MakeRequests = props => {
   const handleCloseNotification = () => {
     setNotification(false);
   };
-
   return (
-    <>
+    <div className={classes.buttonStyle}>
       <Button
         className={classes.button}
         variant="contained"
         color="primary"
+        disabled={
+          !selectedSearchResultCopy > 0 ||
+          !selectedEmployees > 0 ||
+          !justification > 0
+        }
         onClick={() => {
           makeRequestsFetch();
           handleOpenNotification();
@@ -57,7 +67,7 @@ const MakeRequests = props => {
           handleCloseNotification={handleCloseNotification}
         />
       ) : null}
-    </>
+    </div>
   );
 };
 

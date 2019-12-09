@@ -4,9 +4,11 @@ import { makeRequestsFetch } from '../../../../Actions/requestAssetActions';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {
-    TextButton: 'Hello',
     notificationMessage: requestAssets.notificationMessage,
-    isLoading: requestAssets.isLoading
+    isLoading: requestAssets.isLoading,
+    selectedEmployees: requestAssets.selectedEmployees.length,
+    justification: requestAssets.justification.length,
+    selectedSearchResultCopy: requestAssets.selectedSearchResultCopy.length
   };
 };
 

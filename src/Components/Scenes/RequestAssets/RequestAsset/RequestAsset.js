@@ -31,14 +31,11 @@ const useStyles = makeStyles(theme => ({
     width: 400,
     marginBottom: 32,
     marginTop: 24
-  }
+  },
+  buttonStyle: { marginRight: '84vh', marginTop: 40 }
 }));
 
-const RequestAsset = ({
-  getEmployeesFetch,
-  openModal,
-  notificationMessage
-}) => {
+const RequestAsset = ({ getEmployeesFetch, openModal }) => {
   const classes = useStyles();
   useEffect(() => {
     getEmployeesFetch();
@@ -64,7 +61,9 @@ const RequestAsset = ({
           />
         ) : null}
         <RequestAssetJustificationContainer />
-        <MakeRequestsContainer />
+        <div className={classes.buttonStyle}>
+          <MakeRequestsContainer />
+        </div>
         <SnackBarContainer
           handleCloseNotification={handleCloseNotification}
           notification={notification}
