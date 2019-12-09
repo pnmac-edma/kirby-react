@@ -28,6 +28,13 @@ export const transformRequests = (requests, role) => {
   });
 };
 
+/* constructs a request config, then passing that to aws4 to sign
+ * host: the base url of the API
+ * method: the HTTP method of the request
+ * path: the specific path to be appended to the host (e.g. /users/requests)
+ * params: any query paramters the request needs. Pass in null if there is no query string parameters
+ * data: the body of the request. Pass in null if there is no body
+ */
 export const constructRequest = (host, method, path, params, data) => {
   const {
     AccessKeyId,
