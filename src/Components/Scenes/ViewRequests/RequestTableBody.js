@@ -91,7 +91,7 @@ const RequestTableBody = props => {
     const [className, onClickFunc] = getCellProps(request, col, i);
     return (
       <TableCell
-        key={request[col.property]}
+        key={i}
         className={className}
         align="left"
         onClick={onClickFunc}
@@ -122,6 +122,7 @@ RequestTableBody.propTypes = {
       // placeholder for name property
       description: PropTypes.string,
       requeststatus: PropTypes.string,
+      govstatus: PropTypes.string,
       createddate: PropTypes.string
     })
   ),

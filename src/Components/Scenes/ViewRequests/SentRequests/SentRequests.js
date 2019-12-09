@@ -5,8 +5,6 @@ import RequestTable from '../RequestTable';
 import { transformRequests } from '../../../../State/helpers';
 import TableSkeleton from '../../../Presentational/TableSkeleton/TableSkeleton';
 
-// Approver email is hard-coded until authentication is implemented
-const userEmail = 'abby.bashore@pnmac.com';
 const sentRequestsTableColumns = [
   { name: 'Request', property: 'databasename' },
   { name: 'Description', property: 'description' },
@@ -15,14 +13,13 @@ const sentRequestsTableColumns = [
 ];
 
 const SentRequests = props => {
-  const { isLoading, requests, userRequestsFetch } = props;
+  const { userEmail, userRole, isLoading, requests, userRequestsFetch } = props;
 
-  // Fetch all outbound requests for a user
   useEffect(() => {
     userRequestsFetch(userEmail);
-  }, [userRequestsFetch]);
+  }, [userRequestsFetch, userEmail]);
 
-  const reqs = transformRequests(requests);
+  const reqs = transformRequests(requests, userRole);
 
   const setFooterButtonText = selected =>
     `Cancel ${selected.length} request${selected.length !== 1 ? 's' : ''}`;
@@ -46,6 +43,12 @@ const SentRequests = props => {
 };
 
 SentRequests.propTypes = {
+  userEmail: PropTypes.string,
+  userRole: PropTypes.shape({
+    governance: PropTypes.bool,
+    approver: PropTypes.bool
+  }),
+  isLoading: PropTypes.bool,
   requests: PropTypes.arrayOf(
     PropTypes.shape({
       // placeholder for name property
