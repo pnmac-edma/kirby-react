@@ -3,6 +3,7 @@ import { initialState as viewRequests } from '../State/ViewRequests/reducers';
 const initialState = {
   // TODO: Replace Stub Data (role and EmpEmail) with Real Data
   currentUser: {
+    error: {},
     role: {
       governance: true,
       approver: true
@@ -33,7 +34,7 @@ const initialState = {
       'Domain',
       'Owner',
       'Contains',
-      'Doesn\'t contain',
+      "Doesn't contain",
       'Equals'
     ],
     isFilterClick: false,

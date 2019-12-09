@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { Route, useLocation } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
-import AppBarContainer from '../AppBar/AppBar-Container';
-import Splash from '../../../Presentational/Splash';
-import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
+import Splash from '../../../Presentational/Splash';
+import AppBarContainer from '../AppBar/AppBar-Container';
+import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
 import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
-import { useQuery } from '../../../../Hooks/customHooks';
 import NewJobContainer from '../../Hydration/NewJob/NewJob/NewJob-Container';
+import { useQuery } from '../../../../Hooks/customHooks';
+import { isEmptyObject } from '../../../../Utilities/utils';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -26,7 +27,9 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken }) => {
+const PageWrapper = props => {
+  const { isSearchClicked, sessionToken, error, authenticateFetch } = props;
+
   const classes = pageContainerStyle();
   const samlResponse = useQuery('SAMLResponse');
   const curPath = useLocation().pathname;
@@ -46,6 +49,9 @@ const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken }) => {
 
   return (
     <div className={classes.pageContainer}>
+      {isEmptyObject(error) ? null : (
+        <span>OH NO AN AUTH ERROR! haha damn that sucks</span>
+      )}
       {curPath === '/hydration/new-job' ? null : <AppBarContainer />}
 
       <AnimatedSwitch

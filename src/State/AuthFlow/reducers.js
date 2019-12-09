@@ -9,11 +9,12 @@ const authReducer = (state = initialState.currentUser, action) => {
     case types.AUTHENTICATE_SUCCESS: {
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
+        error: {}
       };
     }
     case types.AUTHENTICATE_FAILURE: {
-      return { ...state /* JAKE: needs to put an error somewhere */ };
+      return { ...state, error: action.payload };
     }
     default: {
       return state;

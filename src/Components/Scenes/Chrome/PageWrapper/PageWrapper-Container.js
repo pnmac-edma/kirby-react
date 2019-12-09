@@ -6,8 +6,8 @@ const mapStateToProps = ({ searchResult, currentUser }) => {
   return {
     isSearchClicked: searchResult.isSearchClicked,
     isSearchClosed: searchResult.isSearchClosed,
-    sessionToken: currentUser.SessionToken
-    // JAKE: detect any errors? agh
+    sessionToken: currentUser.SessionToken,
+    error: currentUser.error
   };
 };
 

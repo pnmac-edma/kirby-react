@@ -7,6 +7,8 @@ export const initialState = {
   isLoading: false
 };
 
+// TODO: Abby / Libbey: how do we want to handle resetting the error prooperty?
+// How do you envision it being used in the future?
 const viewRequestsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.USER_REQUESTS_FETCH: {
