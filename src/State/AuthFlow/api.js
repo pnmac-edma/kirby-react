@@ -10,7 +10,7 @@ export function authenticate(token) {
     token: 'SAMLResponse=' + token
   };
 
-  let request = constructRequest(
+  const request = constructRequest(
     BASE_URL,
     'POST',
     '/authenticate',

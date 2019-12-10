@@ -2,6 +2,7 @@ import axios from 'axios';
 import { constructRequest } from '../State/helpers';
 
 export const searchResultApiCall = (...args) => {
+  // TODO: Pull url from env config once implemented
   const url = `https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev`;
   const searchTerm = args[0] || '';
   const filterQueries = args[2] ? undefined : args[1];
@@ -14,7 +15,7 @@ export const searchResultApiCall = (...args) => {
     filters: filterQueries
   };
 
-  let request = constructRequest(
+  const request = constructRequest(
     url,
     'POST',
     '/assets/search',

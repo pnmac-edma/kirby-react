@@ -6,7 +6,7 @@ import { constructRequest } from '../helpers';
 const BASE_URL = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
 
 export function getUserRequests(createdbyemail) {
-  let request = constructRequest(
+  const request = constructRequest(
     BASE_URL,
     'GET',
     '/users/requests',
@@ -21,7 +21,7 @@ export function getUserRequests(createdbyemail) {
 }
 
 export function getApproverRequests(approveremail) {
-  let request = constructRequest(
+  const request = constructRequest(
     BASE_URL,
     'GET',
     '/approver/requests',
@@ -36,7 +36,7 @@ export function getApproverRequests(approveremail) {
 }
 
 export function getGovernanceRequests(pages, size, status = '') {
-  let request = constructRequest(
+  const request = constructRequest(
     BASE_URL,
     'GET',
     '/governance/requests',
