@@ -34,7 +34,7 @@ const RequestTableFooter = props => {
           <TableCell>{children}</TableCell>
           <TableCell>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
+              rowsPerPageOptions={[10, 25, 50]}
               component="div"
               count={count}
               rowsPerPage={rowsPerPage}
