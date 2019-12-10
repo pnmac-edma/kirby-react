@@ -35,7 +35,7 @@ export const transformRequests = (requests, role) => {
  * params: any query paramters the request needs. Pass in null if there is no query string parameters
  * data: the body of the request. Pass in null if there is no body
  */
-export const constructRequest = (host, method, path, params, data) => {
+export const constructRequest = (url, method, path, params, data) => {
   const {
     AccessKeyId,
     EmpEmail,
@@ -53,12 +53,15 @@ export const constructRequest = (host, method, path, params, data) => {
     SessionToken,
     UserKey
   };
+  // regex to match on a hostname
+  let hostRegex = new RegExp(/([(\w(\-?)\.]+)com/g);
 
+  let hostname = hostRegex.exec(url)[0];
   // construct request
   let request = {
-    host,
+    host: hostname,
     method,
-    url: `${host}${path}`,
+    url: `${url}${path}`,
     path,
     data: { ...userSession }, // data paramter needed for axios
     body: JSON.stringify({ ...userSession }) // body parameter needed for aws
@@ -107,8 +110,11 @@ const signApiCall = request => {
     });
 
     // delete for security purposes
-    delete signedRequest.headers['Host'];
-    delete signedRequest.headers['Content-Length'];
+
+    // TODO: Confirm that deleting these headers is messing up the signature
+
+    // delete signedRequest.headers['Host'];
+    // delete signedRequest.headers['Content-Length'];
 
     // console.log(signedRequest);
 
