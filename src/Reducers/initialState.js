@@ -33,7 +33,8 @@ const initialState = {
       'Domain',
       'Owner',
       'Contains',
-      "Doesn't contain",
+      // prettier-ignore
+      "Doesn't contain", // eslint-disable-line
       'Equals'
     ],
     isFilterClick: false,
@@ -54,7 +55,7 @@ const initialState = {
     openModal: false,
     justification: 'This is Just test',
     notificationMessage: '',
-    isLoading: false
+    isWaiting: false
   },
   viewRequests
 };

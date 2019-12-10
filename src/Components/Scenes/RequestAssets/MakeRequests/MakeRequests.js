@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
@@ -14,18 +14,18 @@ const tableStyles = makeStyles(theme => ({
 }));
 
 const MakeRequests = props => {
-  var {
+  const {
     makeRequestsFetch,
     notificationMessage,
-    isLoading,
-    selectedEmployees,
-    selectedSearchResultCopy,
-    justification
+    isWaiting,
+    selectedEmployeesLength,
+    selectedSearchResultCopyLength,
+    justificationLength
   } = props;
   const classes = tableStyles();
-  let history = useHistory();
+  const history = useHistory();
 
-  var [notification, setNotification] = React.useState(false);
+  const [notification, setNotification] = useState(false);
 
   const handleOpenNotification = () => {
     setNotification(true);
@@ -34,6 +34,7 @@ const MakeRequests = props => {
   const handleCloseNotification = () => {
     setNotification(false);
   };
+
   return (
     <div className={classes.buttonStyle}>
       <Button
@@ -41,9 +42,9 @@ const MakeRequests = props => {
         variant="contained"
         color="primary"
         disabled={
-          !selectedSearchResultCopy > 0 ||
-          !selectedEmployees > 0 ||
-          !justification > 0
+          !selectedSearchResultCopyLength > 0 ||
+          !selectedEmployeesLength > 0 ||
+          !justificationLength > 0
         }
         onClick={() => {
           makeRequestsFetch();
@@ -60,7 +61,7 @@ const MakeRequests = props => {
       >
         Cancel
       </Button>
-      {isLoading ? (
+      {isWaiting ? (
         <SnackBar
           message={notificationMessage}
           notification={notification}

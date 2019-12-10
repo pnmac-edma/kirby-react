@@ -61,7 +61,7 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       return { ...state, employees: action.payload };
     }
     case types.HANDLE_SELECTED_EMPLOYEES: {
-      return { ...state, selectedEmployees: action.payload };
+      return { ...state, selectedEmployees: action.payload || [] };
     }
     case 'HANDLE_MODAL_TOGGLE': {
       return { ...state, openModal: !state.openModal };
@@ -77,20 +77,20 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       };
     }
     case types.MAKE_REQUESTS_FETCH: {
-      return { ...state, isLoading: false };
+      return { ...state, isWaiting: false };
     }
     case types.MAKE_REQUESTS_SUCCESS: {
       return {
         ...state,
         notificationMessage: action.payload.message,
-        isLoading: true
+        isWaiting: true
       };
     }
     case types.MAKE_REQUESTS_FAILURE: {
       return {
         ...state,
         notificationMessage: action.payload.message,
-        isLoading: true
+        isWaiting: true
       };
     }
     default:
