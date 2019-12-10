@@ -3,7 +3,10 @@ import axios from 'axios';
 import { constructRequest } from '../helpers';
 
 // TODO: Pull base url from the env config object once implemented
-const BASE_URL = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
+// const BASE_URL = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
+
+// the URL jon created that's supposed to require signing
+const BASE_URL = 'https://vtc55uxuy5.execute-api.us-west-2.amazonaws.com/dev';
 
 export function getUserRequests(createdbyemail) {
   const request = constructRequest(
@@ -13,8 +16,12 @@ export function getUserRequests(createdbyemail) {
     { createdbyemail },
     null
   );
+
+  console.log(request);
+
   return axios(request)
     .then(response => {
+      console.log(response);
       return response.data;
     })
     .catch(error => error);
@@ -35,7 +42,7 @@ export function getApproverRequests(approveremail) {
     .catch(error => error);
 }
 
-export function getGovernanceRequests(pages, size, status = '') {
+export function getGovernanceRequests(pages, size, status) {
   const request = constructRequest(
     BASE_URL,
     'GET',
