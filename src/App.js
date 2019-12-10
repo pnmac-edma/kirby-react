@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import color from '@edma/design-tokens/js/color';
 import Navigation from './Components/Presentational/Chrome/Navigation';
+import kirbyConfig from './config';
 
 export default function App() {
   // Define Kirby theme colors using EDMA Design Tokens in a hook,
@@ -27,6 +28,10 @@ export default function App() {
       }
     }
   });
+
+  useEffect(() => {
+    kirbyConfig();
+  }, []);
 
   // Toggles between light and dark modes.
   // This uses all the values defined above, except for palette type.
