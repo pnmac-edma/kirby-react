@@ -85,7 +85,7 @@ const PageWrapper = props => {
     </>
   );
 
-  // TODO: replace <span> with proper error view once it has landed
+  // TODO: replace <span> with proper error splash once it's landed
   return (
     <div className={classes.pageContainer}>
       {!isRedirecting ? (
@@ -97,6 +97,13 @@ const PageWrapper = props => {
       ) : null}
     </div>
   );
+
+  // Uncomment to ignore auth
+  // return (
+  //   <div className={classes.pageContainer}>
+  //     authenticatedContent
+  //   </div>
+  // );
 };
 
 export default PageWrapper;
