@@ -51,7 +51,7 @@ const MakeRequests = props => {
           handleOpenNotification();
         }}
       >
-        Requests Assets
+        Request Assets
       </Button>
       <Button
         onClick={() => history.goBack()}
