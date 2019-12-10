@@ -1,17 +1,26 @@
 import { connect } from 'react-redux';
 import RequestsInbox from './RequestsInbox';
-import { approverRequestsFetch } from '../../../../State/ViewRequests/actions';
+import {
+  approverRequestsFetch,
+  governanceRequestsFetch
+} from '../../../../State/ViewRequests/actions';
 
-const mapStateToProps = ({ viewRequests }) => {
+const mapStateToProps = ({ viewRequests, currentUser }) => {
   return {
-    requests: viewRequests.inboundRequests
+    requests: viewRequests.inboundRequests,
+    userEmail: currentUser.EmpEmail,
+    userRole: currentUser.role,
+    isLoading: viewRequests.isLoading
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     approverRequestsFetch: approverEmail =>
-      dispatch(approverRequestsFetch(approverEmail))
+      dispatch(approverRequestsFetch(approverEmail)),
+    governanceRequestsFetch: (page, size, status) => {
+      dispatch(governanceRequestsFetch(page, size, status));
+    }
   };
 };
 
