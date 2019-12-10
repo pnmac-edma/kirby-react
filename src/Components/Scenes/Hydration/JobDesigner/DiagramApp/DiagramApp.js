@@ -10,7 +10,7 @@ export default class DiagramApp {
     this.diagramEngine = new DiagramEngine();
     this.diagramEngine.installDefaultFactories();
 
-    // register custom factories
+    // register custom port and node factories
     this.diagramEngine.registerPortFactory(
       new SimplePortFactory('source', config => new SourcePortModel())
     );
@@ -20,7 +20,6 @@ export default class DiagramApp {
     this.diagramEngine.registerPortFactory(
       new SimplePortFactory('trans', config => new TransPortModel())
     );
-
     this.diagramEngine.registerNodeFactory(new SourceNodeFactory());
     this.diagramEngine.registerNodeFactory(new DestNodeFactory());
     this.diagramEngine.registerNodeFactory(new TransNodeFactory());
