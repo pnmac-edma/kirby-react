@@ -1,48 +1,39 @@
 const kirbyConfig = () => {
+  const baseApiUrl = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/';
+  // prettier-ignore
+  const baseCogConUrl ='https://pennymac.onelogin.com/trust/saml2/http-post/sso/';
+
   const envSettings = {
     prd: {
-      url: 'https://kirby.pennymacusa.com/index.html',
       hostname: 'kirby.pennymac.com',
-      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/prod',
-      cognitoUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/965273',
-      consoleUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/965275'
+      apiUrl: `${baseApiUrl}prod`,
+      cognitoUrl: `${baseCogConUrl}965273`,
+      consoleUrl: `${baseCogConUrl}965275`
     },
     stg: {
-      url: 'd14zq0f3jiu0zb.cloudfront.net/index.html',
       hostname: 'd14zq0f3jiu0zb.cloudfront.net',
-      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/stg',
-      cognitoUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/964944',
-      consoleUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/965269'
+      apiUrl: `${baseApiUrl}stg`,
+      cognitoUrl: `${baseCogConUrl}964944`,
+      consoleUrl: `${baseCogConUrl}965269`
     },
     dev: {
-      url: 'd14zq0f3jiu0zb.cloudfront.net/index.html',
       hostname: 'd1n1yc8ym1y64x.cloudfront.net',
       apiUrl: 'https://kirby-api.execute-api.us-west-2.amazonaws.com/dev',
-      cognitoUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877995',
-      consoleUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877999'
+      cognitoUrl: `${baseCogConUrl}877995`,
+      consoleUrl: `${baseCogConUrl}877999`
     },
-    ltr: {
-      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev',
-      hostname: 'e6b8r4dht6',
-      cognitoUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877995',
-      consoleUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877999'
-    },
+    // Litter Box is currently gettting redirected to localhost so not sure about this one
+    // ltr: {
+    //   hostname: 'e6b8r4dht6',
+    //   apiUrl: `${baseApiUrl}dev`,
+    //   cognitoUrl: `${baseCogConUrl}877995`,
+    //   consoleUrl: `${baseCogConUrl}877999`
+    // },
     offline: {
-      url: 'http://localhost:3000',
       hostname: 'localhost',
-      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev',
-      cognitoUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877995',
-      consoleUrl:
-        'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877999'
+      apiUrl: `${baseApiUrl}dev`,
+      cognitoUrl: `${baseCogConUrl}877995`,
+      consoleUrl: `${baseCogConUrl}877999`
     }
   };
   const hostname = window && window.location && window.location.hostname;
@@ -56,9 +47,9 @@ const kirbyConfig = () => {
       break;
     case envSettings.dev.hostname:
       env = envSettings.dev;
-      break;
-    case envSettings.ltr.hostname:
-      env = envSettings.ltr;
+      //   break;
+      // case envSettings.ltr.hostname:
+      //   env = envSettings.ltr;
       break;
     default:
       env = envSettings.offline;

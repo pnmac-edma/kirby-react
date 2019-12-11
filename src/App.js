@@ -33,7 +33,7 @@ export default function App() {
   useEffect(() => {
     setnewEnv(kirbyConfig());
   }, []);
-  console.log(newEnv);
+  console.log(newEnv.apiUrl);
   // Toggles between light and dark modes.
   // This uses all the values defined above, except for palette type.
   const toggleDarkMode = () => {
