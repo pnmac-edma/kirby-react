@@ -8,6 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.27",
     "husky": "^3.0.5",
     "lint-staged": "^9.2.5",
+    "lodash": "^4.17.15",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
