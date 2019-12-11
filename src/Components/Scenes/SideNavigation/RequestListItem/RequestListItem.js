@@ -29,7 +29,8 @@ const requestListItem = makeStyles(theme => ({
 const RequestListItem = ({
   closeAllArrows,
   requestListItemsName,
-  closeDrawer
+  closeDrawer,
+  currentRole
 }) => {
   const classes = requestListItem();
   const [openIconThree, setOpenIconThree] = useState(false);
@@ -85,7 +86,9 @@ const RequestListItem = ({
       </ListItem>
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {requestListItemText}
+          {currentRole.governance || currentRole.approver
+            ? requestListItemText
+            : [requestListItemText[1]]}
         </List>
       </Collapse>
     </>

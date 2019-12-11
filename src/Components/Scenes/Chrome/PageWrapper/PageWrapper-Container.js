@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 import PageWrapper from './PageWrapper';
 import { authenticateFetch } from '../../../../State/AuthFlow/actions';
 
-const mapStateToProps = ({ searchResult }) => {
+const mapStateToProps = ({ searchResult, currentUser }) => {
   return {
     isSearchClicked: searchResult.isSearchClicked,
-    isSearchClosed: searchResult.isSearchClosed
+    isSearchClosed: searchResult.isSearchClosed,
+    sessionToken: currentUser.SessionToken
   };
 };
 
