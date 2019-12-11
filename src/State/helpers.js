@@ -28,27 +28,6 @@ export const transformRequests = (requests, role) => {
   });
 };
 
-// Attempts to load in the state from session storage if it's there
-// (https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
-export const loadState = () => {
-  try {
-    const sessionState = sessionStorage.getItem('kirbyState');
-    return sessionState !== null ? JSON.parse(sessionState) : undefined;
-  } catch (error) {
-    return undefined;
-  }
-};
-
-// Persists the state to session storage to avoid losing it on refresh
-export const saveState = state => {
-  try {
-    const sessionState = JSON.stringify(state);
-    sessionStorage.setItem('kirbyState', sessionState);
-  } catch (error) {
-    // Prevents a crash, but state save failures are not critical to handle further
-  }
-};
-
 /* constructs a request config, then passing that to aws4 to sign
  * host: the base url of the API
  * method: the HTTP method of the request
@@ -75,6 +54,7 @@ export const constructRequest = (url, method, path, params, data) => {
     UserKey
   };
   // regex to match on a hostname
+  // eslint-disable-next-line
   let hostRegex = new RegExp(/([(\w(\-?)\.]+)com/g);
 
   let hostname = hostRegex.exec(url)[0];
@@ -87,7 +67,6 @@ export const constructRequest = (url, method, path, params, data) => {
     data: { ...userSession }, // data paramter needed for axios
     body: JSON.stringify({ ...userSession }) // body parameter needed for aws
   };
-
   /* NOTE:
    * Adding these headers violates CORS policies!
    * For now, this will be commented out, but once the API
@@ -118,27 +97,21 @@ export const constructRequest = (url, method, path, params, data) => {
 
   return signedRequest;
 };
-
 // take in a API request object, and signs i
 const signApiCall = request => {
   const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
 
   if (AccessKeyId && SecretKey && SessionToken) {
+    delete request.headers['Content-Length'];
     let signedRequest = aws4.sign(request, {
       accessKeyId: AccessKeyId,
       secretAccessKey: SecretKey,
       sessionToken: SessionToken
     });
 
-    // delete for security purposes
+    delete signedRequest.headers['Host'];
 
-    // TODO: Confirm that deleting these headers is messing up the signature
-
-    // delete signedRequest.headers['Host'];
-    // delete signedRequest.headers['Content-Length'];
-
-    // console.log(signedRequest);
-
+    console.log(signedRequest);
     return signedRequest;
   }
   return request;

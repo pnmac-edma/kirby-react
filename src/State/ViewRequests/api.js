@@ -3,9 +3,9 @@ import axios from 'axios';
 import { constructRequest } from '../helpers';
 
 // TODO: Pull base url from the env config object once implemented
-const BASE_URL = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
+// const BASE_URL = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
 
-// const BASE_URL = 'https://vtc55uxuy5.execute-api.us-west-2.amazonaws.com/dev';
+const BASE_URL = 'https://vtc55uxuy5.execute-api.us-west-2.amazonaws.com/dev';
 
 export function getUserRequests(createdbyemail) {
   const request = constructRequest(
@@ -16,7 +16,7 @@ export function getUserRequests(createdbyemail) {
     null
   );
 
-  console.log(request);
+  console.log('here');
 
   return axios(request)
     .then(response => {

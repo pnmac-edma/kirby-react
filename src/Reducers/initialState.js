@@ -4,8 +4,8 @@ const initialState = {
   // TODO: Replace Stub Data (role and EmpEmail) with Real Data
   currentUser: {
     role: {
-      governance: true,
-      approver: true
+      governance: false,
+      approver: false
     },
     AccessKeyId: null,
     EmpEmail: null,
