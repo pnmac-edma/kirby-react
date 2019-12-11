@@ -1,5 +1,5 @@
 const kirbyConfig = () => {
-  const envSettigns = {
+  const envSettings = {
     prd: {
       url: 'https://kirby.pennymacusa.com/index.html',
       hostname: 'kirby.pennymac.com',
@@ -28,9 +28,8 @@ const kirbyConfig = () => {
         'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877999'
     },
     ltr: {
+      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev',
       hostname: 'e6b8r4dht6',
-      apiUrl: 'https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com/dev',
-      apiNew: 'j8nhpla4d3',
       cognitoUrl:
         'https://pennymac.onelogin.com/trust/saml2/http-post/sso/877995',
       consoleUrl:
@@ -49,21 +48,22 @@ const kirbyConfig = () => {
   const hostname = window && window.location && window.location.hostname;
   let env = null;
   switch (hostname) {
-    case envSettigns.prd.hostname:
-      env = envSettigns.prd;
+    case envSettings.prd.hostname:
+      env = envSettings.prd;
       break;
-    case envSettigns.stg.url:
-      env = envSettigns.stg;
+    case envSettings.stg.url:
+      env = envSettings.stg;
       break;
-    case envSettigns.dev.hostname:
-      env = envSettigns.dev;
+    case envSettings.dev.hostname:
+      env = envSettings.dev;
       break;
-    case envSettigns.ltr.hostname:
-      env = envSettigns.ltr;
+    case envSettings.ltr.hostname:
+      env = envSettings.ltr;
       break;
     default:
-      env = envSettigns.offline;
+      env = envSettings.offline;
   }
   return env;
 };
+
 export default kirbyConfig;
