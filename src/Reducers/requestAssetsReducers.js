@@ -77,20 +77,20 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       };
     }
     case types.MAKE_REQUESTS_FETCH: {
-      return { ...state, isWaiting: false };
+      return { ...state, isLoading: true };
     }
     case types.MAKE_REQUESTS_SUCCESS: {
       return {
         ...state,
         notificationMessage: action.payload.message,
-        isWaiting: true
+        isLoading: false
       };
     }
     case types.MAKE_REQUESTS_FAILURE: {
       return {
         ...state,
         notificationMessage: action.payload.message,
-        isWaiting: true
+        isLoading: false
       };
     }
     default:

@@ -17,7 +17,7 @@ const MakeRequests = props => {
   const {
     makeRequestsFetch,
     notificationMessage,
-    isWaiting,
+    isLoading,
     selectedEmployeesLength,
     selectedSearchResultCopyLength,
     justificationLength
@@ -61,7 +61,7 @@ const MakeRequests = props => {
       >
         Cancel
       </Button>
-      {isWaiting ? (
+      {!isLoading ? (
         <SnackBar
           message={notificationMessage}
           notification={notification}

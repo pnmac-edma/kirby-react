@@ -55,7 +55,7 @@ const initialState = {
     openModal: false,
     justification: 'This is Just test',
     notificationMessage: '',
-    isWaiting: false
+    isLoading: false
   },
   viewRequests
 };

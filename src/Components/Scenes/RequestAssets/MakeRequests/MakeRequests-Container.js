@@ -5,7 +5,7 @@ import { makeRequestsFetch } from '../../../../Actions/requestAssetActions';
 const mapStateToProps = ({ requestAssets }) => {
   return {
     notificationMessage: requestAssets.notificationMessage,
-    isWaiting: requestAssets.isWaiting,
+    isLoading: requestAssets.isLoading,
     selectedEmployeesLength: requestAssets.selectedEmployees.length,
     justificationLength: requestAssets.justification.length,
     selectedSearchResultCopyLength:
