@@ -23,7 +23,10 @@ export function getUserRequests(createdbyemail) {
       console.log(response);
       return response.data;
     })
-    .catch(error => error);
+    .catch(error => {
+      console.log(error);
+      return error;
+    });
 }
 
 export function getApproverRequests(approveremail) {

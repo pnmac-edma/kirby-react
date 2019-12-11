@@ -1,5 +1,5 @@
 // ideally, would like to have methods that all ducks will need here
-import aws4 from 'aws4';
+import aws4 from 'aws4-browser';
 import store from '../setupStore';
 
 // takes in requests data from api results and returns parseable data
@@ -104,17 +104,21 @@ const signApiCall = request => {
   const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
 
   if (AccessKeyId && SecretKey && SessionToken) {
-    delete request.headers['Content-Length'];
-    let signedRequest = aws4.sign(request, {
+    // if(typeof request.headers !== undefined) {
+    //   console.log('this request has a Content-Length header', request.headers['Content-Length'])
+    //   // delete request.headers['Content-Length'];
+    //   console.log('deleted the header', request);
+    // }
+    // delete request.headers['Content-Length'];
+    aws4.sign(request, {
       accessKeyId: AccessKeyId,
       secretAccessKey: SecretKey,
       sessionToken: SessionToken
     });
 
-    delete signedRequest.headers['Host'];
-
-    console.log(signedRequest);
-    return signedRequest;
+    delete request.headers['Host'];
+    delete request.headers['Content-Length'];
   }
+  debugger;
   return request;
 };
