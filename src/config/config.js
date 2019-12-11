@@ -18,6 +18,7 @@ const kirbyConfig = () => {
     },
     dev: {
       hostname: 'd1n1yc8ym1y64x.cloudfront.net',
+      // Still not completly sure about this one
       apiUrl: 'https://kirby-api.execute-api.us-west-2.amazonaws.com/dev',
       cognitoUrl: `${baseCogConUrl}877995`,
       consoleUrl: `${baseCogConUrl}877999`
