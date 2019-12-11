@@ -28,6 +28,27 @@ export const transformRequests = (requests, role) => {
   });
 };
 
+// Attempts to load in the state from session storage if it's there
+// (https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
+export const loadState = () => {
+  try {
+    const sessionState = sessionStorage.getItem('kirbyState');
+    return sessionState !== null ? JSON.parse(sessionState) : undefined;
+  } catch (error) {
+    return undefined;
+  }
+};
+
+// Persists the state to session storage to avoid losing it on refresh
+export const saveState = state => {
+  try {
+    const sessionState = JSON.stringify(state);
+    sessionStorage.setItem('kirbyState', sessionState);
+  } catch (error) {
+    // Prevents a crash, but state save failures are not critical to handle further
+  }
+};
+
 /* constructs a request config, then passing that to aws4 to sign
  * host: the base url of the API
  * method: the HTTP method of the request
