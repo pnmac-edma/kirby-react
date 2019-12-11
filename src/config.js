@@ -3,7 +3,7 @@ const kirbyConfig = () => {
     prd: {
       url: 'https://kirby.pennymacusa.com/index.html',
       hostname: 'kirby.pennymac.com',
-      apiUrl: 'kirby-api',
+      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/prod',
       cognitoUrl:
         'https://pennymac.onelogin.com/trust/saml2/http-post/sso/965273',
       consoleUrl:
@@ -12,7 +12,7 @@ const kirbyConfig = () => {
     stg: {
       url: 'd14zq0f3jiu0zb.cloudfront.net/index.html',
       hostname: 'd14zq0f3jiu0zb.cloudfront.net',
-      apiUrl: 'kirby-api',
+      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/stg',
       cognitoUrl:
         'https://pennymac.onelogin.com/trust/saml2/http-post/sso/964944',
       consoleUrl:
@@ -63,7 +63,7 @@ const kirbyConfig = () => {
       break;
     default:
       env = envSettigns.offline;
-      console.log('default case', env);
   }
+  return env;
 };
 export default kirbyConfig;

@@ -6,6 +6,7 @@ import Navigation from './Components/Presentational/Chrome/Navigation';
 import kirbyConfig from './config';
 
 export default function App() {
+  const [newEnv, setnewEnv] = useState({});
   // Define Kirby theme colors using EDMA Design Tokens in a hook,
   // so that we can let users customize them later.
   const [theme, setTheme] = useState({
@@ -30,9 +31,9 @@ export default function App() {
   });
 
   useEffect(() => {
-    kirbyConfig();
+    setnewEnv(kirbyConfig());
   }, []);
-
+  console.log(newEnv.apiUrl);
   // Toggles between light and dark modes.
   // This uses all the values defined above, except for palette type.
   const toggleDarkMode = () => {
