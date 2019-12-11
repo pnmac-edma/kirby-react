@@ -8,7 +8,8 @@ import RequestTableBodyContainer from '../../ViewRequests/RequestTableBody';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    margin: 12,
+    marginTop: 0,
+    marginBottom: 16,
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column'
@@ -17,8 +18,9 @@ const useStyles = makeStyles(theme => ({
     minWidth: 10
   },
   tableWrapper: {
-    maxHeight: 440,
-    overflow: 'auto'
+    overflow: 'auto',
+    height: '40vh',
+    width: '112vm'
   },
   typography: {
     color: theme.palette.common.black,

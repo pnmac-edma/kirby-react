@@ -15,12 +15,12 @@ const useStyles = makeStyles(theme => ({
   },
   sideTable: {
     width: '62%',
-    marginLeft: '64vh'
+    marginLeft: '34rem'
   },
   sideBarPostion: {
-    marginRight: '50vh',
-    marginTop: '12vh',
-    marginLeft: '1vh',
+    marginRight: '3rem',
+    marginTop: '2rem',
+    marginLeft: '1rem',
     color: 'black'
   },
   title: {
