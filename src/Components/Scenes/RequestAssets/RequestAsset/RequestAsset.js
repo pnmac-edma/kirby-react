@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap'
   },
   sideTable: {
-    width: '62%',
-    marginLeft: '34rem'
+    marginLeft: '32rem',
+    marginRight: '1rem'
   },
   sideBarPostion: {
     marginRight: '3rem',
