@@ -53,6 +53,8 @@ export const constructRequest = (url, method, path, params, data) => {
     SessionToken,
     UserKey
   };
+
+  console.log(userSession);
   // regex to match on a hostname
   // eslint-disable-next-line
   let hostRegex = new RegExp(/([(\w(\-?)\.]+)com/g);
