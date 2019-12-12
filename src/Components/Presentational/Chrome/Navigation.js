@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import axios from 'axios';
 import { makeStyles, Drawer, List } from '@material-ui/core';
 import PageWrapper from '../../Scenes/Chrome/PageWrapper/PageWrapper-Container';
 import color from '@edma/design-tokens/js/color';
@@ -12,6 +13,8 @@ import RequestListItem from '../../Scenes/SideNavigation/RequestListItem/Request
 import KeysListItem from '../../Scenes/SideNavigation/KeysListItem/KeysListItem';
 import AwsAthenaListItem from '../../Scenes/SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
 import AvatarListItem from '../../Scenes/SideNavigation/AvatarListItem/AvatarListItem';
+import ExpiredAuth from '../ErrorSplashes/ExpiredAuth';
+import store from '../../../setupStore';
 
 const navWidth = 250;
 
@@ -62,9 +65,24 @@ const navStyle = makeStyles(theme => ({
     marginBottom: 72
   }
 }));
+
 const Navigation = () => {
   const classes = navStyle();
   const [open, setOpen] = useState(false);
+  const [apiError, setApiError] = useState(null);
+
+  useEffect(() => {
+    axios.interceptors.response.use(
+      response => {
+        setApiError(null);
+        return response;
+      },
+      error => {
+        setApiError(error.response.status);
+        return Promise.reject(error);
+      }
+    );
+  });
 
   const closeDrawer = () => {
     setOpen(!open);
@@ -72,39 +90,57 @@ const Navigation = () => {
 
   return (
     <div className={classes.root}>
-      <Drawer
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
-        variant="permanent"
-        className={clsx('Nav', classes.drawer, {
-          'Nav--is-open': open,
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open
-        })}
-        classes={{
-          paper: clsx({
-            'Nav--is-open': open,
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open
-          })
-        }}
-        open={open}
-      >
-        <List className={classes.customList}>
-          <UserGroup />
-          <DashboardListItem closeDrawer={closeDrawer} />
-          <SearchAssetsListItem />
-          <GovernanceListItem closeAllArrows={open} closeDrawer={closeDrawer} />
-          <HydrationListItem closeAllArrows={open} closeDrawer={closeDrawer} />
-          <RequestListItem closeAllArrows={open} closeDrawer={closeDrawer} />
-          <KeysListItem closeDrawer={closeDrawer} />
-          <AwsAthenaListItem />
-        </List>
-        <AvatarListItem />
-      </Drawer>
-      <main>
-        <PageWrapper />
-      </main>
+      {apiError === null && (
+        <>
+          <Drawer
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+            variant="permanent"
+            className={clsx('Nav', classes.drawer, {
+              'Nav--is-open': open,
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open
+            })}
+            classes={{
+              paper: clsx({
+                'Nav--is-open': open,
+                [classes.drawerOpen]: open,
+                [classes.drawerClose]: !open
+              })
+            }}
+            open={open}
+          >
+            <List className={classes.customList}>
+              <UserGroup />
+              <DashboardListItem closeDrawer={closeDrawer} />
+              <SearchAssetsListItem />
+              <GovernanceListItem
+                closeAllArrows={open}
+                closeDrawer={closeDrawer}
+              />
+              <HydrationListItem
+                closeAllArrows={open}
+                closeDrawer={closeDrawer}
+              />
+              <RequestListItem
+                closeAllArrows={open}
+                closeDrawer={closeDrawer}
+              />
+              <KeysListItem closeDrawer={closeDrawer} />
+              <AwsAthenaListItem />
+            </List>
+            <AvatarListItem />
+          </Drawer>
+          <main>
+            <PageWrapper />
+          </main>
+        </>
+      )}
+      {(apiError === 401 || apiError === 403) && (
+        <main>
+          <ExpiredAuth />
+        </main>
+      )}
     </div>
   );
 };
