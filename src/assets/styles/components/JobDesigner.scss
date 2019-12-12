@@ -40,24 +40,14 @@
     flex-grow: 1;
   }
 
-  .toolbar {
-    min-width: 350px;
-    border: solid $color-g-300 1px;
-    padding: 5px;
+  .toolbar-item {
+    color: $color-black;
     background-color: $color-white;
-    flex-grow: 0;
-    flex-shrink: 0;
-
-    .toolbar-item {
-      color: $color-black;
-      background-color: $color-white;
-      padding: 5px;
-      margin: 10px 10px;
-      border: solid 2px;
-      border-radius: 5px;
-      margin-bottom: 2px;
-      cursor: pointer;
-      text-align: center;
-    }
+    padding: 5px;
+    margin: 6px;
+    border: solid 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
   }
 }
