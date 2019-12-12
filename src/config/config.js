@@ -1,5 +1,7 @@
 const kirbyConfig = () => {
   const baseApiUrl = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/';
+  const baseOldApiUrl =
+    'https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com/';
   const baseCogConUrl =
     'https://pennymac.onelogin.com/trust/saml2/http-post/sso/';
 
@@ -19,18 +21,22 @@ const kirbyConfig = () => {
     dev: {
       hostname: 'd1n1yc8ym1y64x.cloudfront.net',
       apiUrl: 'https://kirby-api.execute-api.us-west-2.amazonaws.com/dev',
+      oldApiUrl: `${baseOldApiUrl}dev`,
       cognitoUrl: `${baseCogConUrl}877995`,
       consoleUrl: `${baseCogConUrl}877999`
     },
     offline: {
       hostname: 'localhost',
       apiUrl: `${baseApiUrl}dev`,
+      oldApiUrl: `${baseOldApiUrl}dev`,
       cognitoUrl: `${baseCogConUrl}877995`,
       consoleUrl: `${baseCogConUrl}877999`
     }
   };
+
   const hostname = window && window.location && window.location.hostname;
   let env = null;
+
   switch (hostname) {
     case envSettings.prd.hostname:
       env = envSettings.prd;
