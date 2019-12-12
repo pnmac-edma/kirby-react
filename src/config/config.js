@@ -1,7 +1,7 @@
 const kirbyConfig = () => {
   const baseApiUrl = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/';
-  // prettier-ignore
-  const baseCogConUrl ='https://pennymac.onelogin.com/trust/saml2/http-post/sso/';
+  const baseCogConUrl =
+    'https://pennymac.onelogin.com/trust/saml2/http-post/sso/';
 
   const envSettings = {
     prd: {
@@ -18,18 +18,10 @@ const kirbyConfig = () => {
     },
     dev: {
       hostname: 'd1n1yc8ym1y64x.cloudfront.net',
-      // Still not completly sure about this one
       apiUrl: 'https://kirby-api.execute-api.us-west-2.amazonaws.com/dev',
       cognitoUrl: `${baseCogConUrl}877995`,
       consoleUrl: `${baseCogConUrl}877999`
     },
-    // Litter Box is currently gettting redirected to localhost so not sure about this one
-    // ltr: {
-    //   hostname: 'e6b8r4dht6',
-    //   apiUrl: `${baseApiUrl}dev`,
-    //   cognitoUrl: `${baseCogConUrl}877995`,
-    //   consoleUrl: `${baseCogConUrl}877999`
-    // },
     offline: {
       hostname: 'localhost',
       apiUrl: `${baseApiUrl}dev`,
@@ -48,14 +40,11 @@ const kirbyConfig = () => {
       break;
     case envSettings.dev.hostname:
       env = envSettings.dev;
-      //   break;
-      // case envSettings.ltr.hostname:
-      //   env = envSettings.ltr;
       break;
     default:
       env = envSettings.offline;
   }
+
   return env;
 };
-
-export default kirbyConfig;
+export default kirbyConfig();
