@@ -13,11 +13,11 @@ export default class DestNodeWidget extends React.Component {
     const { name, size } = this.props.node;
     return (
       <div
-        className={'destNode'}
+        className={'dest-node'}
         style={{
           position: 'relative',
           width: size,
-          height: size * 0.6,
+          height: size * 0.5,
           backgroundColor: color.white,
           borderRadius: '5%',
           border: `solid ${color['g500']} 1px`,
@@ -33,7 +33,7 @@ export default class DestNodeWidget extends React.Component {
             height: size,
             zIndex: 10,
             right: size - 7,
-            top: (size * 0.6) / 2 - 8
+            top: (size * 0.5) / 2 - 8
           }}
         >
           <DestPortWidget name="left" node={this.props.node} />

@@ -1,5 +1,6 @@
-// Import design tokens
+// Import design tokens and react-diagrams
 @import '~@edma/design-tokens/_scss/variables';
+@import '~storm-react-diagrams/dist/style.min';
 
 // Import component styles
 @import 'components/App';
@@ -7,5 +8,3 @@
 @import 'components/Navigation';
 @import 'components/SearchModal';
 @import 'components/SideBar';
-
-@import '~storm-react-diagrams/dist/style.min';
