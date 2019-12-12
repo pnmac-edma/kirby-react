@@ -7,7 +7,6 @@ import DiagramApp from './DiagramApp/DiagramApp';
 import { SourceNodeModel } from './DiagramApp/SourceNode';
 import { DestNodeModel } from './DiagramApp/DestNode';
 import { TransNodeModel } from './DiagramApp/TransNode';
-import 'storm-react-diagrams/dist/style.min.css';
 
 const JobDesigner = props => {
   const { app } = props;
