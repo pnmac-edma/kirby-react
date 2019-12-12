@@ -1,5 +1,6 @@
 import React from 'react';
 import { TransPortWidget } from '.';
+import { Typography } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 
 export default class TransNodeWidget extends React.Component {
@@ -17,16 +18,15 @@ export default class TransNodeWidget extends React.Component {
           position: 'relative',
           width: size,
           height: size * 0.6,
-          backgroundColor: 'white',
+          backgroundColor: color.white,
           borderRadius: '5%',
-          border: `solid ${color['v400']} 1px`,
-          borderLeft: `solid ${color['v400']} 5px`,
-          borderRight: `solid ${color['v400']} 5px`,
-          textAlign: 'center',
-          padding: '10px'
+          border: `solid ${color['g500']} 1px`,
+          borderLeft: `solid ${color['g500']} 5px`,
+          padding: '8px'
         }}
       >
-        Transformation Node {name}
+        <span style={{ color: color['v400'] }}>Transform</span>
+        <Typography variant="h6">{name}</Typography>
         <div
           style={{
             position: 'absolute',

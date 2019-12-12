@@ -10,18 +10,17 @@ const ToolbarItemWidget = props => {
   const { model, color, name, onClick } = props;
 
   return (
-    <Box style={{ display: 'flex', alignItems: 'center' }}>
+    <Box
+      style={{ display: 'flex', alignItems: 'center' }}
+      draggable={true}
+      onDragStart={event => {
+        event.dataTransfer.setData('storm-diagram-node', JSON.stringify(model));
+      }}
+      onClick={onClick}
+    >
       <div
         style={{ borderColor: color, height: '20px', width: '30px' }}
-        draggable={true}
-        onDragStart={event => {
-          event.dataTransfer.setData(
-            'storm-diagram-node',
-            JSON.stringify(model)
-          );
-        }}
         className="toolbar-item"
-        onClick={onClick}
       ></div>
       {name}
     </Box>
@@ -68,7 +67,7 @@ const DestinationsList = props => {
         <ToolbarItemWidget
           model={{ type: 'dest' }}
           name="Destination Node"
-          color={color['r300']}
+          color={color['t800']}
           onClick={() => addNodeToDiagram('dest', 400, 400)}
         />
       </ListItem>
@@ -103,15 +102,24 @@ export const DefaultToolbar = props => {
       color: color['v400']
     },
     destSelected: {
-      color: color['r300']
+      color: color['t800']
     }
   }));
   const classes = tabStyles();
   return (
     <Box>
-      <Box>
-        <UndoIcon />
-        <RedoIcon />
+      <Box
+        style={{
+          padding: '15px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
+        <Box>
+          <UndoIcon style={{ marginRight: '10px' }} />
+          <RedoIcon />
+        </Box>
         <PlayArrowIcon />
       </Box>
       <Divider />

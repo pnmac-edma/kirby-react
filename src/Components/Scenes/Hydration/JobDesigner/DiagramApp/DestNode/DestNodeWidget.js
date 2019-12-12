@@ -1,5 +1,6 @@
 import React from 'react';
 import color from '@edma/design-tokens/js/color';
+import { Typography } from '@material-ui/core';
 import { DestPortWidget } from '.';
 
 export default class DestNodeWidget extends React.Component {
@@ -19,12 +20,13 @@ export default class DestNodeWidget extends React.Component {
           height: size * 0.6,
           backgroundColor: color.white,
           borderRadius: '5%',
-          border: `solid ${color['r300']} 1px`,
-          borderLeft: `solid ${color['r300']} 5px`,
-          textAlign: 'center'
+          border: `solid ${color['g500']} 1px`,
+          borderLeft: `solid ${color['g500']} 5px`,
+          padding: '8px'
         }}
       >
-        Destination Node {name}
+        <span style={{ color: color['t800'] }}>Destination</span>
+        <Typography variant="h6">{name}</Typography>
         <div
           style={{
             position: 'absolute',

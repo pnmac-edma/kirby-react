@@ -1,5 +1,6 @@
 import React from 'react';
 import { SourcePortWidget } from '.';
+import { Typography } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 
 export default class SourceNodeWidget extends React.Component {
@@ -19,12 +20,13 @@ export default class SourceNodeWidget extends React.Component {
           height: size * 0.6,
           backgroundColor: color.white,
           borderRadius: '5%',
-          border: `solid ${color['c400']} 1px`,
-          borderRight: `solid ${color['c400']} 5px`,
-          textAlign: 'center'
+          border: `solid ${color['g500']} 1px`,
+          borderLeft: `solid ${color['g500']} 5px`,
+          padding: '8px'
         }}
       >
-        Source Node {name}
+        <span style={{ color: color['c400'] }}>Source</span>
+        <Typography variant="h6">{name}</Typography>
         <div
           style={{
             position: 'absolute',
