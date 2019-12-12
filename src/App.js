@@ -27,6 +27,7 @@ export default function App() {
       }
     }
   });
+
   // Toggles between light and dark modes.
   // This uses all the values defined above, except for palette type.
   const toggleDarkMode = () => {
