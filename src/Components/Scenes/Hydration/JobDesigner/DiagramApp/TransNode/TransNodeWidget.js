@@ -1,6 +1,6 @@
 import React from 'react';
 import color from '@edma/design-tokens/js/color';
-import { PortModelAlignment, PortWidget } from '@projectstorm/react-diagrams';
+import { PortWidget } from '@projectstorm/react-diagrams';
 
 export default class TransNodeWidget extends React.Component {
   constructor(props) {
