@@ -8,19 +8,26 @@ const kirbyConfig = () => {
   const envSettings = {
     prd: {
       hostname: 'kirby.pennymac.com',
-      apiUrl: `${baseApiUrl}prod`,
+      apiUrl: `https://kirby-api.pnmac.com`,
       cognitoUrl: `${baseCogConUrl}965273`,
       consoleUrl: `${baseCogConUrl}965275`
     },
     stg: {
       hostname: 'd14zq0f3jiu0zb.cloudfront.net',
-      apiUrl: `${baseApiUrl}stg`,
+      apiUrl: `https://kirby-api-stg.pnmac.com`,
       cognitoUrl: `${baseCogConUrl}964944`,
       consoleUrl: `${baseCogConUrl}965269`
     },
     dev: {
       hostname: 'd1n1yc8ym1y64x.cloudfront.net',
-      apiUrl: 'https://kirby-api.execute-api.us-west-2.amazonaws.com/dev',
+      apiUrl: 'https://kirby-api-dev.pnmac.com',
+      oldApiUrl: `${baseOldApiUrl}dev`,
+      cognitoUrl: `${baseCogConUrl}877995`,
+      consoleUrl: `${baseCogConUrl}877999`
+    },
+    ltr: {
+      hostname: 'kirby-website-litter.s3-website-us-west-2.amazonaws.com',
+      apiUrl: `${baseApiUrl}dev`,
       oldApiUrl: `${baseOldApiUrl}dev`,
       cognitoUrl: `${baseCogConUrl}877995`,
       consoleUrl: `${baseCogConUrl}877999`
@@ -47,10 +54,14 @@ const kirbyConfig = () => {
     case envSettings.dev.hostname:
       env = envSettings.dev;
       break;
+    case envSettings.ltr.hostname:
+      env = envSettings.ltr;
+      break;
     default:
       env = envSettings.offline;
   }
 
   return env;
 };
+
 export default kirbyConfig();
