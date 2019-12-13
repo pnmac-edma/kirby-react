@@ -5,9 +5,9 @@ export const requestAssetsClick = obj => ({
   payload: obj
 });
 
-export const requestCheckBoxSelect = e => ({
+export const requestCheckBoxSelect = ({ target }) => ({
   type: types.REQUEST_CHECKBOX_SELECT,
-  payload: e.target
+  payload: { id: target.id, checked: target.checked }
 });
 
 export const getEmployeesFetch = () => ({
