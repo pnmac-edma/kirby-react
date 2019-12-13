@@ -15,6 +15,7 @@ import AwsAthenaListItem from '../../SideNavigation/AwsAthenaListItem/AwsAthenaL
 import AvatarListItem from '../../SideNavigation/AvatarListItem/AvatarListItem';
 import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
 import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
+import GenericError from '../../../Presentational/ErrorSplashes/GenericError';
 import { useQuery } from '../../../../Hooks/customHooks';
 
 const navWidth = 250;
@@ -71,6 +72,22 @@ const Navigation = props => {
   const { sessionToken, authenticateFetch } = props;
   const classes = navStyle();
 
+  const [apiError, setApiError] = useState(null);
+  useEffect(() => {
+    axios.interceptors.response.use(
+      response => {
+        console.log('good response');
+        setApiError(null);
+        return response;
+      },
+      error => {
+        console.log('bad response');
+        setApiError(error.response.status);
+        return Promise.reject(error);
+      }
+    );
+  });
+
   // Case 1: there is a SAML response but no session token, so authenticate real quick
   // Case 2: there is neither a SAML response nor a session token, so redirect to OneLogin
   // Case 3: there may or may not be a SAML response,
@@ -90,28 +107,12 @@ const Navigation = props => {
     }
   }, [samlResponse, authenticateFetch, sessionToken]);
 
-  const [apiError, setApiError] = useState(null);
-  useEffect(() => {
-    axios.interceptors.response.use(
-      response => {
-        console.log('good response');
-        setApiError(null);
-        return response;
-      },
-      error => {
-        console.log('bad response');
-        setApiError(error.response.status);
-        return Promise.reject(error);
-      }
-    );
-  });
-
   const [open, setOpen] = useState(false);
   const closeDrawer = () => {
     setOpen(!open);
   };
 
-  return (
+  return !isRedirecting ? (
     <div className={classes.root}>
       {apiError === null && (
         <>
@@ -161,8 +162,9 @@ const Navigation = props => {
       )}
       {apiError === 400 && <BadRequest />}
       {(apiError === 401 || apiError === 403) && <ExpiredAuth />}
+      {apiError > 299 && <GenericError />}
     </div>
-  );
+  ) : null;
 };
 
 export default Navigation;

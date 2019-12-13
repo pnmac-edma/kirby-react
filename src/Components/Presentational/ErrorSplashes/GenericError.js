@@ -2,8 +2,8 @@
 // own simple components in this folder
 import React from 'react';
 
-const ExpiredAuth = () => {
-  return <>go back to onelogin, pls! ┌། ☯ _ʖ ☯ །┐</>;
+const GenericError = () => {
+  return <>something went wrong, but we don't know what!</>;
 };
 
-export default ExpiredAuth;
+export default GenericError;
