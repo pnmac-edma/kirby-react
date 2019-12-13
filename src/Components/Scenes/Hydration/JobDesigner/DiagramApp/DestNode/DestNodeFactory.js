@@ -8,7 +8,7 @@ export default class DestNodeFactory extends AbstractNodeFactory {
   }
 
   generateReactWidget(diagramEngine, node) {
-    return <DestNodeWidget node={node} diagramEngine={diagramEngine} />;
+    return <DestNodeWidget node={node} />;
   }
 
   getNewInstance(initialConfig) {

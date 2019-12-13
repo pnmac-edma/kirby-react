@@ -1,12 +1,12 @@
-import { AbstractModelFactory } from '@projectstorm/react-canvas-core';
+import { AbstractPortFactory } from '@projectstorm/react-diagrams';
 
-export class SimplePortFactory extends AbstractModelFactory {
+export class SimplePortFactory extends AbstractPortFactory {
   constructor(type, cb) {
     super(type);
     this.cb = cb;
   }
 
-  generateModel(event) {
-    return this.cb(event.initialConfig);
+  generateModel(initialConfig) {
+    return this.cb(initialConfig);
   }
 }

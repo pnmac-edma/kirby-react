@@ -8,7 +8,7 @@ export default class TransNodeFactory extends AbstractNodeFactory {
   }
 
   generateReactWidget(diagramEngine, node) {
-    return <TransNodeWidget node={node} diagramEngine={diagramEngine} />;
+    return <TransNodeWidget node={node} />;
   }
 
   getNewInstance(initialConfig) {

@@ -8,7 +8,7 @@ export default class SourceNodeFactory extends AbstractNodeFactory {
   }
 
   generateReactWidget(diagramEngine, node) {
-    return <SourceNodeWidget node={node} diagramEngine={diagramEngine} />;
+    return <SourceNodeWidget node={node} />;
   }
 
   getNewInstance(initialConfig) {

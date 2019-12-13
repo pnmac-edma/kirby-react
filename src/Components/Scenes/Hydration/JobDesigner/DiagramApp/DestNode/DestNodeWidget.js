@@ -9,23 +9,35 @@ export default class DestNodeWidget extends React.Component {
   }
 
   render() {
-    const { name, size } = this.props;
+    const { name, size } = this.props.node;
+    const height = size * 0.5;
     return (
-      <div
-        className={'dest-node'}
-        style={{
-          position: 'relative',
-          width: size,
-          height: size * 0.6,
-          backgroundColor: color.white,
-          borderRadius: '5%',
-          border: `solid ${color['r300']} 1px`,
-          borderLeft: `solid ${color['r300']} 5px`,
-          textAlign: 'center'
-        }}
-      >
-        Destination Node {name}
-        <PortWidget node={this.props.node} />
+      <div>
+        <div
+          className={'dest-node'}
+          style={{
+            position: 'relative',
+            width: size,
+            height,
+            backgroundColor: color.white,
+            borderRadius: '5%',
+            border: `solid ${color['r300']} 1px`,
+            borderLeft: `solid ${color['r300']} 5px`,
+            textAlign: 'center'
+          }}
+        >
+          Destination Node {name}
+        </div>
+        <div
+          style={{
+            position: 'absolute',
+            zIndex: 10,
+            top: height / 2 - 8,
+            left: -8
+          }}
+        >
+          <PortWidget name="left" node={this.props.node} />
+        </div>
       </div>
     );
   }

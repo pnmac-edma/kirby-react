@@ -9,62 +9,45 @@ export default class TransNodeWidget extends React.Component {
   }
 
   render() {
-    const { name, size } = this.props;
+    const { name, size } = this.props.node;
+    const height = size * 0.5;
     return (
-      <div
-        className={'trans-node'}
-        style={{
-          position: 'relative',
-          width: size,
-          height: size * 0.6,
-          backgroundColor: color.white,
-          borderRadius: '5%',
-          border: `solid ${color['r300']} 1px`,
-          borderLeft: `solid ${color['r300']} 5px`,
-          textAlign: 'center'
-        }}
-      >
-        Transform Node {name}
-        <PortWidget
+      <div>
+        <div
+          className={'trans-node'}
           style={{
-            top: this.props.size / 2 - 8,
-            left: -8,
-            position: 'absolute'
+            position: 'relative',
+            width: size,
+            height,
+            backgroundColor: color.white,
+            borderRadius: '5%',
+            border: `solid ${color['v400']} 1px`,
+            borderLeft: `solid ${color['v400']} 5px`,
+            textAlign: 'center'
           }}
-          port={this.props.node.getPort(PortModelAlignment.LEFT)}
-          engine={this.props.engine}
         >
-          <div
-            style={{
-              width: '16px',
-              height: '16px',
-              zIndex: 10,
-              background: 'white',
-              borderRadius: '8px',
-              cursor: 'pointer'
-            }}
-          />
-        </PortWidget>
-        <PortWidget
+          Transform Node {name}
+        </div>
+        <div
           style={{
-            top: this.props.size / 2 - 8,
-            left: -8,
-            position: 'absolute'
+            position: 'absolute',
+            zIndex: 10,
+            top: height / 2 - 8,
+            left: -8
           }}
-          port={this.props.node.getPort(PortModelAlignment.RIGHT)}
-          engine={this.props.engine}
         >
-          <div
-            style={{
-              width: '16px',
-              height: '16px',
-              zIndex: 10,
-              background: 'white',
-              borderRadius: '8px',
-              cursor: 'pointer'
-            }}
-          />
-        </PortWidget>
+          <PortWidget name="left" node={this.props.node} />
+        </div>
+        <div
+          style={{
+            position: 'absolute',
+            zIndex: 10,
+            top: height / 2 - 8,
+            left: size - 8
+          }}
+        >
+          <PortWidget name="right" node={this.props.node} />
+        </div>
       </div>
     );
   }

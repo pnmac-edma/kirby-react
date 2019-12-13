@@ -8,8 +8,7 @@ import { TransNodeFactory, TransPortModel } from './TransNode';
 export default class DiagramApp {
   constructor() {
     this.engine = new DiagramEngine();
-    console.log(this.engine);
-    //this.diagramEngine.installDefaultFactories();
+    this.engine.installDefaultFactories();
 
     // register custom port and node factories
     this.engine.registerPortFactory(
