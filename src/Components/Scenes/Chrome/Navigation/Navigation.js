@@ -15,7 +15,6 @@ import AwsAthenaListItem from '../../SideNavigation/AwsAthenaListItem/AwsAthenaL
 import AvatarListItem from '../../SideNavigation/AvatarListItem/AvatarListItem';
 import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
 import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
-import GenericError from '../../../Presentational/ErrorSplashes/GenericError';
 import { useQuery } from '../../../../Hooks/customHooks';
 
 const navWidth = 250;
@@ -162,7 +161,6 @@ const Navigation = props => {
       )}
       {apiError === 400 && <BadRequest />}
       {(apiError === 401 || apiError === 403) && <ExpiredAuth />}
-      {apiError > 299 && <GenericError />}
     </div>
   ) : null;
 };
