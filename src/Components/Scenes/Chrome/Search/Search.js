@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   TextField,
@@ -17,7 +17,8 @@ const SearchInput = props => {
     isSearchClicked,
     searchHandleInput,
     searchResultRequest,
-    handleKeyPress
+    handleKeyPress,
+    handleSearchClose
   } = props;
 
   const history = useHistory();
@@ -65,10 +66,8 @@ const SearchInput = props => {
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={() => searchResultRequest()}
+            onClick={() => handleSearchClose()}
             color="primary"
-            component={Link}
-            to={urlWithParams}
             className="search-modal__close-btn"
           >
             <CloseIcon />
