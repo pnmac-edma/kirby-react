@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import axios from 'axios';
 import { makeStyles, Drawer, List } from '@material-ui/core';
-import PageWrapper from '../../Scenes/Chrome/PageWrapper/PageWrapper-Container';
+import PageWrapper from '../PageWrapper/PageWrapper-Container';
 import color from '@edma/design-tokens/js/color';
-import UserGroup from '../../Scenes/SideNavigation/UserGroupListItem/UserGroupListItem';
-import DashboardListItem from '../../Scenes/SideNavigation/DashboardListItem/DashboardListItem';
-import SearchAssetsListItem from '../../Scenes/SideNavigation/SearchAssetsListItem/SearchAssetsListItem-Container';
-import GovernanceListItem from '../../Scenes/SideNavigation/GovernanceListItem/GovernanceListItem-Container';
-import HydrationListItem from '../../Scenes/SideNavigation/HydrationListItem/HydrationListItem-Container';
-import RequestListItem from '../../Scenes/SideNavigation/RequestListItem/RequestListItem-Container';
-import KeysListItem from '../../Scenes/SideNavigation/KeysListItem/KeysListItem';
-import AwsAthenaListItem from '../../Scenes/SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
-import AvatarListItem from '../../Scenes/SideNavigation/AvatarListItem/AvatarListItem';
-import ExpiredAuth from '../ErrorSplashes/ExpiredAuth';
-import store from '../../../setupStore';
+import UserGroup from '../../SideNavigation/UserGroupListItem/UserGroupListItem';
+import DashboardListItem from '../../SideNavigation/DashboardListItem/DashboardListItem';
+import SearchAssetsListItem from '../../SideNavigation/SearchAssetsListItem/SearchAssetsListItem-Container';
+import GovernanceListItem from '../../SideNavigation/GovernanceListItem/GovernanceListItem-Container';
+import HydrationListItem from '../../SideNavigation/HydrationListItem/HydrationListItem-Container';
+import RequestListItem from '../../SideNavigation/RequestListItem/RequestListItem-Container';
+import KeysListItem from '../../SideNavigation/KeysListItem/KeysListItem';
+import AwsAthenaListItem from '../../SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
+import AvatarListItem from '../../SideNavigation/AvatarListItem/AvatarListItem';
+import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
+import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
+import { useQuery } from '../../../../Hooks/customHooks';
 
 const navWidth = 250;
 
@@ -66,24 +67,46 @@ const navStyle = makeStyles(theme => ({
   }
 }));
 
-const Navigation = () => {
+const Navigation = props => {
+  const { sessionToken, authenticateFetch } = props;
   const classes = navStyle();
-  const [open, setOpen] = useState(false);
-  const [apiError, setApiError] = useState(null);
 
+  // Case 1: there is a SAML response but no session token, so authenticate real quick
+  // Case 2: there is neither a SAML response nor a session token, so redirect to OneLogin
+  // Case 3: there may or may not be a SAML response,
+  //         but there is a session token, so relax until an hour later
+  //         when we get a 4xx code from some request, then redirect
+  const samlResponse = useQuery('SAMLResponse');
+  const [isRedirecting, setIsRedirecting] = useState(true);
+  useEffect(() => {
+    if (samlResponse && !sessionToken) {
+      setIsRedirecting(false);
+      authenticateFetch(samlResponse);
+    } else if (!sessionToken) {
+      setIsRedirecting(true);
+      window.location.replace('https://pennymac.onelogin.com/portal/');
+    } else {
+      setIsRedirecting(false);
+    }
+  }, [samlResponse, authenticateFetch, sessionToken]);
+
+  const [apiError, setApiError] = useState(null);
   useEffect(() => {
     axios.interceptors.response.use(
       response => {
+        console.log('good response');
         setApiError(null);
         return response;
       },
       error => {
+        console.log('bad response');
         setApiError(error.response.status);
         return Promise.reject(error);
       }
     );
   });
 
+  const [open, setOpen] = useState(false);
   const closeDrawer = () => {
     setOpen(!open);
   };
@@ -136,11 +159,8 @@ const Navigation = () => {
           </main>
         </>
       )}
-      {(apiError === 401 || apiError === 403) && (
-        <main>
-          <ExpiredAuth />
-        </main>
-      )}
+      {apiError === 400 && <BadRequest />}
+      {(apiError === 401 || apiError === 403) && <ExpiredAuth />}
     </div>
   );
 };

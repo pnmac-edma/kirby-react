@@ -30,6 +30,3 @@ export const getSorting = (order, orderBy) => {
     ? (a, b) => desc(a, b, orderBy)
     : (a, b) => -desc(a, b, orderBy);
 };
-
-export const isEmptyObject = obj =>
-  Object.entries(obj).length === 0 && obj.constructor === Object;
