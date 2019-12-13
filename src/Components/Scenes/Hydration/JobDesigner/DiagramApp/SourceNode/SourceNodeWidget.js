@@ -1,5 +1,5 @@
 import React from 'react';
-import { SourcePortWidget } from '.';
+import { PortWidget } from '@projectstorm/react-diagrams';
 import { Typography } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 
@@ -11,32 +11,34 @@ export default class SourceNodeWidget extends React.Component {
 
   render() {
     const { name, size } = this.props.node;
+    const height = size * 0.5;
     return (
-      <div
-        className={'source-node'}
-        style={{
-          position: 'relative',
-          width: size,
-          height: size * 0.5,
-          backgroundColor: color.white,
-          borderRadius: '5%',
-          border: `solid ${color['g500']} 1px`,
-          borderLeft: `solid ${color['g500']} 5px`,
-          padding: '8px'
-        }}
-      >
-        <span style={{ color: color['c400'] }}>Source</span>
-        <Typography variant="h6">{name}</Typography>
+      <div>
+        <div
+          className={'source-node'}
+          style={{
+            position: 'relative',
+            width: size,
+            height,
+            backgroundColor: color.white,
+            borderRadius: '5%',
+            border: `solid ${color['g500']} 1px`,
+            borderLeft: `solid ${color['g500']} 5px`,
+            padding: '8px'
+          }}
+        >
+          <span style={{ color: color['c400'] }}>Source</span>
+          <Typography variant="h6">{name}</Typography>
+        </div>
         <div
           style={{
             position: 'absolute',
-            height: size,
             zIndex: 10,
-            left: size - 7,
-            top: (size * 0.5) / 2 - 8
+            top: height / 2 - 8,
+            left: size - 8
           }}
         >
-          <SourcePortWidget name="right" node={this.props.node} />
+          <PortWidget name="right" node={this.props.node} />
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { useState, useReducer } from 'react';
-import { DiagramWidget } from 'storm-react-diagrams';
+import { DiagramWidget } from '@projectstorm/react-diagrams';
+
 import { Toolbar } from './Toolbar/Toolbar';
 import DiagramApp from './DiagramApp/DiagramApp';
 

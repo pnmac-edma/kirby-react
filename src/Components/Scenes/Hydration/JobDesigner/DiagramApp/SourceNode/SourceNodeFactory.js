@@ -1,4 +1,4 @@
-import { AbstractNodeFactory } from 'storm-react-diagrams';
+import { AbstractNodeFactory } from '@projectstorm/react-diagrams';
 import { SourceNodeModel, SourceNodeWidget } from '.';
 import React from 'react';
 
@@ -7,11 +7,11 @@ export default class SourceNodeFactory extends AbstractNodeFactory {
     super('source');
   }
 
-  generateReactWidget(diagramEngine, node, name, size) {
-    return <SourceNodeWidget node={node} name={name} size={size} />;
+  generateReactWidget(diagramEngine, node) {
+    return <SourceNodeWidget node={node} />;
   }
 
-  getNewInstance() {
+  getNewInstance(initialConfig) {
     return new SourceNodeModel();
   }
 }
