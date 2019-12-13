@@ -30,7 +30,6 @@ const useStyles = makeStyles(theme => ({
 }));
 const tableColumns = [
   { name: 'Name', property: 'name' },
-  { name: 'Domain', property: 'domain' },
   { name: 'Date Created', property: 'createddate' }
 ];
 
