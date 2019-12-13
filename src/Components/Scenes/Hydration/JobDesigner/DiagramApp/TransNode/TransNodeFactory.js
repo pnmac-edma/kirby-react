@@ -1,4 +1,4 @@
-import { AbstractNodeFactory } from 'storm-react-diagrams';
+import { AbstractNodeFactory } from '@projectstorm/react-diagrams';
 import { TransNodeModel, TransNodeWidget } from '.';
 import React from 'react';
 
@@ -7,11 +7,11 @@ export default class TransNodeFactory extends AbstractNodeFactory {
     super('trans');
   }
 
-  generateReactWidget(diagramEngine, node, name, size) {
-    return <TransNodeWidget node={node} name={name} size={size} />;
+  generateReactWidget(diagramEngine, node) {
+    return <TransNodeWidget node={node} diagramEngine={diagramEngine} />;
   }
 
-  getNewInstance() {
+  getNewInstance(initialConfig) {
     return new TransNodeModel();
   }
 }

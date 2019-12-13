@@ -1,6 +1,6 @@
 import React from 'react';
 import color from '@edma/design-tokens/js/color';
-import { DestPortWidget } from '.';
+import { PortWidget } from '@projectstorm/react-diagrams';
 
 export default class DestNodeWidget extends React.Component {
   constructor(props) {
@@ -9,10 +9,10 @@ export default class DestNodeWidget extends React.Component {
   }
 
   render() {
-    const { name, size } = this.props.node;
+    const { name, size } = this.props;
     return (
       <div
-        className={'destNode'}
+        className={'dest-node'}
         style={{
           position: 'relative',
           width: size,
@@ -25,17 +25,7 @@ export default class DestNodeWidget extends React.Component {
         }}
       >
         Destination Node {name}
-        <div
-          style={{
-            position: 'absolute',
-            height: size,
-            zIndex: 10,
-            right: size - 7,
-            top: (size * 0.6) / 2 - 8
-          }}
-        >
-          <DestPortWidget name="left" node={this.props.node} />
-        </div>
+        <PortWidget node={this.props.node} />
       </div>
     );
   }

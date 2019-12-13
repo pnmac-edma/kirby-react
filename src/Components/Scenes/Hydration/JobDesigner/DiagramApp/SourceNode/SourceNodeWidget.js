@@ -1,6 +1,6 @@
 import React from 'react';
-import { SourcePortWidget } from '.';
 import color from '@edma/design-tokens/js/color';
+import { PortModelAlignment, PortWidget } from '@projectstorm/react-diagrams';
 
 export default class SourceNodeWidget extends React.Component {
   constructor(props) {
@@ -9,33 +9,42 @@ export default class SourceNodeWidget extends React.Component {
   }
 
   render() {
-    const { name, size } = this.props.node;
+    const { name, size } = this.props;
     return (
       <div
-        className={'sourceNode'}
+        className={'source-node'}
         style={{
           position: 'relative',
           width: size,
           height: size * 0.6,
           backgroundColor: color.white,
           borderRadius: '5%',
-          border: `solid ${color['c400']} 1px`,
-          borderRight: `solid ${color['c400']} 5px`,
+          border: `solid ${color['r300']} 1px`,
+          borderLeft: `solid ${color['r300']} 5px`,
           textAlign: 'center'
         }}
       >
         Source Node {name}
-        <div
+        <PortWidget
           style={{
-            position: 'absolute',
-            height: size,
-            zIndex: 10,
-            left: size - 7,
-            top: (size * 0.6) / 2 - 8
+            top: this.props.size / 2 - 8,
+            left: -8,
+            position: 'absolute'
           }}
+          port={this.props.node.getPort(PortModelAlignment.RIGHT)}
+          engine={this.props.engine}
         >
-          <SourcePortWidget name="right" node={this.props.node} />
-        </div>
+          <div
+            style={{
+              width: '16px',
+              height: '16px',
+              zIndex: 10,
+              background: 'white',
+              borderRadius: '8px',
+              cursor: 'pointer'
+            }}
+          />
+        </PortWidget>
       </div>
     );
   }

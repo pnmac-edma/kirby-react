@@ -1,4 +1,4 @@
-import { DiagramEngine, DiagramModel } from 'storm-react-diagrams';
+import { DiagramEngine, DiagramModel } from '@projectstorm/react-diagrams';
 
 import { SimplePortFactory } from './SimplePortFactory';
 import { SourceNodeFactory, SourcePortModel } from './SourceNode';
@@ -7,28 +7,29 @@ import { TransNodeFactory, TransPortModel } from './TransNode';
 
 export default class DiagramApp {
   constructor() {
-    this.diagramEngine = new DiagramEngine();
-    this.diagramEngine.installDefaultFactories();
+    this.engine = new DiagramEngine();
+    console.log(this.engine);
+    //this.diagramEngine.installDefaultFactories();
 
     // register custom port and node factories
-    this.diagramEngine.registerPortFactory(
+    this.engine.registerPortFactory(
       new SimplePortFactory('source', config => new SourcePortModel())
     );
-    this.diagramEngine.registerPortFactory(
+    this.engine.registerPortFactory(
       new SimplePortFactory('dest', config => new DestPortModel())
     );
-    this.diagramEngine.registerPortFactory(
+    this.engine.registerPortFactory(
       new SimplePortFactory('trans', config => new TransPortModel())
     );
-    this.diagramEngine.registerNodeFactory(new SourceNodeFactory());
-    this.diagramEngine.registerNodeFactory(new DestNodeFactory());
-    this.diagramEngine.registerNodeFactory(new TransNodeFactory());
+    this.engine.registerNodeFactory(new SourceNodeFactory());
+    this.engine.registerNodeFactory(new DestNodeFactory());
+    this.engine.registerNodeFactory(new TransNodeFactory());
 
-    this.activeDiagramModel = new DiagramModel();
-    this.diagramEngine.setDiagramModel(this.activeDiagramModel);
+    this.activeModel = new DiagramModel();
+    this.engine.setDiagramModel(this.activeModel);
   }
 
   getDiagramEngine() {
-    return this.diagramEngine;
+    return this.engine;
   }
 }

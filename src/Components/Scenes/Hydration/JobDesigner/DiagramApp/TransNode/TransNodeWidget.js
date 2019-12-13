@@ -1,6 +1,6 @@
 import React from 'react';
-import { TransPortWidget } from '.';
 import color from '@edma/design-tokens/js/color';
+import { PortModelAlignment, PortWidget } from '@projectstorm/react-diagrams';
 
 export default class TransNodeWidget extends React.Component {
   constructor(props) {
@@ -9,46 +9,62 @@ export default class TransNodeWidget extends React.Component {
   }
 
   render() {
-    const { name, size } = this.props.node;
+    const { name, size } = this.props;
     return (
       <div
-        className={'transNode'}
+        className={'trans-node'}
         style={{
           position: 'relative',
           width: size,
           height: size * 0.6,
-          backgroundColor: 'white',
+          backgroundColor: color.white,
           borderRadius: '5%',
-          border: `solid ${color['v400']} 1px`,
-          borderLeft: `solid ${color['v400']} 5px`,
-          borderRight: `solid ${color['v400']} 5px`,
-          textAlign: 'center',
-          padding: '10px'
+          border: `solid ${color['r300']} 1px`,
+          borderLeft: `solid ${color['r300']} 5px`,
+          textAlign: 'center'
         }}
       >
-        Transformation Node {name}
-        <div
+        Transform Node {name}
+        <PortWidget
           style={{
-            position: 'absolute',
-            height: size,
-            zIndex: 10,
-            right: size - 7,
-            top: (size * 0.6) / 2 - 8
+            top: this.props.size / 2 - 8,
+            left: -8,
+            position: 'absolute'
           }}
+          port={this.props.node.getPort(PortModelAlignment.LEFT)}
+          engine={this.props.engine}
         >
-          <TransPortWidget name="left" node={this.props.node} />
-        </div>
-        <div
+          <div
+            style={{
+              width: '16px',
+              height: '16px',
+              zIndex: 10,
+              background: 'white',
+              borderRadius: '8px',
+              cursor: 'pointer'
+            }}
+          />
+        </PortWidget>
+        <PortWidget
           style={{
-            position: 'absolute',
-            height: size,
-            zIndex: 10,
-            left: size - 7,
-            top: (size * 0.6) / 2 - 8
+            top: this.props.size / 2 - 8,
+            left: -8,
+            position: 'absolute'
           }}
+          port={this.props.node.getPort(PortModelAlignment.RIGHT)}
+          engine={this.props.engine}
         >
-          <TransPortWidget name="right" node={this.props.node} />
-        </div>
+          <div
+            style={{
+              width: '16px',
+              height: '16px',
+              zIndex: 10,
+              background: 'white',
+              borderRadius: '8px',
+              cursor: 'pointer'
+            }}
+          />
+        </PortWidget>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import { AbstractNodeFactory } from 'storm-react-diagrams';
+import { AbstractNodeFactory } from '@projectstorm/react-diagrams';
 import { DestNodeModel, DestNodeWidget } from '.';
 import React from 'react';
 
@@ -7,11 +7,11 @@ export default class DestNodeFactory extends AbstractNodeFactory {
     super('dest');
   }
 
-  generateReactWidget(diagramEngine, node, name, size) {
-    return <DestNodeWidget node={node} name={name} size={size} />;
+  generateReactWidget(diagramEngine, node) {
+    return <DestNodeWidget node={node} diagramEngine={diagramEngine} />;
   }
 
-  getNewInstance() {
+  getNewInstance(initialConfig) {
     return new DestNodeModel();
   }
 }
