@@ -28,10 +28,6 @@ export const handleRemoveSelected = obj => ({
   payload: obj
 });
 
-export const makeRequestsFetch = () => ({
-  type: types.MAKE_REQUESTS_FETCH
-});
-
 export const justificationHandleInput = e => ({
   type: types.JUSTIFICATION_HANDLE_INPUT,
   payload: e.target.value

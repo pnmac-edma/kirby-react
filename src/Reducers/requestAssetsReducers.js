@@ -76,23 +76,6 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
         openModal: !state.openModal
       };
     }
-    case types.MAKE_REQUESTS_FETCH: {
-      return { ...state, isLoading: true };
-    }
-    case types.MAKE_REQUESTS_SUCCESS: {
-      return {
-        ...state,
-        notificationMessage: action.payload.message,
-        isLoading: false
-      };
-    }
-    case types.MAKE_REQUESTS_FAILURE: {
-      return {
-        ...state,
-        notificationMessage: action.payload.message,
-        isLoading: false
-      };
-    }
     case types.JUSTIFICATION_HANDLE_INPUT: {
       return {
         ...state,
