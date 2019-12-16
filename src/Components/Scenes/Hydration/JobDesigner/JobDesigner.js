@@ -13,6 +13,9 @@ const JobDesigner = props => {
   const { app } = props;
 
   const [selectedNode, setSelectedNode] = useState(null);
+  // Use an incrementing counter to force a re-render of canvas
+  // even if React state has not explicitly changed
+  // https://reactjs.org/docs/hooks-faq.html#is-there-something-like-forceupdate
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const addNodeToDiagram = (type, x, y) => {

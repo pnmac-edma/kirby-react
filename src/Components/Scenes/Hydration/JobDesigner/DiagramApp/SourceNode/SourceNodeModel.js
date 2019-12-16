@@ -1,5 +1,5 @@
 import { NodeModel } from '@projectstorm/react-diagrams';
-import * as _ from 'lodash';
+import merge from 'lodash/merge';
 import { SourcePortModel } from '.';
 
 export default class SourceNodeModel extends NodeModel {
@@ -17,7 +17,7 @@ export default class SourceNodeModel extends NodeModel {
   }
 
   serialize() {
-    return _.merge(super.serialize(), {
+    return merge(super.serialize(), {
       name: this.name,
       size: this.size
     });

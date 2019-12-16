@@ -1,5 +1,5 @@
 import { NodeModel } from '@projectstorm/react-diagrams';
-import * as _ from 'lodash';
+import merge from 'lodash/merge';
 import { TransPortModel } from '.';
 
 export default class TransNodeModel extends NodeModel {
@@ -18,7 +18,7 @@ export default class TransNodeModel extends NodeModel {
   }
 
   serialize() {
-    return _.merge(super.serialize(), {
+    return merge(super.serialize(), {
       name: this.name,
       size: this.size
     });

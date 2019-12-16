@@ -1,5 +1,5 @@
 import { NodeModel } from '@projectstorm/react-diagrams';
-import * as _ from 'lodash';
+import merge from 'lodash/merge';
 import { DestPortModel } from '.';
 
 export default class DestNodeModel extends NodeModel {
@@ -17,7 +17,7 @@ export default class DestNodeModel extends NodeModel {
   }
 
   serialize() {
-    return _.merge(super.serialize(), {
+    return merge(super.serialize(), {
       name: this.name,
       size: this.size
     });
