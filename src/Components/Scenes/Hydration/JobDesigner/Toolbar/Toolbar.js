@@ -17,7 +17,7 @@ export const Toolbar = props => {
     renderDefault = false;
   }
   return (
-    <Box>
+    <Box className="toolbar">
       <ToolbarHeader />
       {renderDefault ? (
         <DefaultToolbarBody addNodeToDiagram={addNodeToDiagram} />
