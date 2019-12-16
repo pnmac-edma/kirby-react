@@ -53,7 +53,7 @@ const initialState = {
     employees: [],
     selectedEmployees: [],
     openModal: false,
-    justification: 'This is Just test',
+    justification: '',
     notificationMessage: '',
     isLoading: false
   },

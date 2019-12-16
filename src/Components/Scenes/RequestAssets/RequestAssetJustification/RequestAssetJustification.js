@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
 const Justification = props => {
   const classes = useStyles();
   const { justification, justificationHandleInput } = props;
-  console.log('jjjsjsjs', justification);
   return (
     <React.Fragment>
       <TextField

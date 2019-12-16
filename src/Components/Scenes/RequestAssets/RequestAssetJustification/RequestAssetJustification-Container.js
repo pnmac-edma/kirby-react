@@ -10,7 +10,7 @@ const mapStateToProps = ({ requestAssets }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    justificationHandleInput: () => dispatch(justificationHandleInput())
+    justificationHandleInput: e => dispatch(justificationHandleInput(e))
   };
 };
 
