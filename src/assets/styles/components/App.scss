@@ -7,6 +7,7 @@ body {
   font-family: $font-body;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
   transition: all 0.2s ease-in-out;
 }
 
@@ -14,10 +15,6 @@ code {
   font-family: $font-mono;
   padding: $spacing-1;
   border-radius: $border-radius-1;
-}
-
-.App {
-  text-align: center;
 }
 
 .switch-wrapper {

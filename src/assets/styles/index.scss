@@ -3,6 +3,9 @@
 
 // Import component styles
 @import 'components/App';
+@import 'components/JobDesigner';
 @import 'components/Navigation';
-@import 'components/SideBar';
 @import 'components/SearchModal';
+@import 'components/SideBar';
+
+@import '~@projectstorm/react-diagrams/dist/style.min';
