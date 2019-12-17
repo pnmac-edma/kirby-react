@@ -14,10 +14,4 @@
   min-height: 300px;
   $color: rgba($color-black, 0.05);
   background-color: $color-g-50;
-  background-size: 96px 96px, 96px 96px, 16px 16px, 16px 16px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
-  background-image: linear-gradient(lighten($color-g-100, 4%) 1px, transparent 1px),
-    linear-gradient(90deg, lighten($color-g-100, 4%) 1px, transparent 1px),
-    linear-gradient(lighten($color-g-100, 4%) 1px, transparent 1px),
-    linear-gradient(90deg, lighten($color-g-100, 4%) 1px, transparent 1px);
 }

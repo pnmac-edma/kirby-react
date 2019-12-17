@@ -13,20 +13,9 @@ export default class SourceNodeWidget extends React.Component {
     const height = size * 0.5;
     return (
       <div>
-        <div
-          className={'source-node'}
-          style={{
-            position: 'relative',
-            width: size,
-            height,
-            backgroundColor: color.white,
-            borderRadius: '5%',
-            border: `solid ${color['c400']} 1px`,
-            borderLeft: `solid ${color['c400']} 5px`,
-            textAlign: 'center'
-          }}
-        >
-          Source Node {name}
+        <div className={'Tile'}>
+          <div className="Tile__source-title">Source Node</div>
+          <div>{name}</div>
         </div>
         <div
           style={{

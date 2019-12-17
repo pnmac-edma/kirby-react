@@ -13,20 +13,9 @@ export default class TransNodeWidget extends React.Component {
     const height = size * 0.5;
     return (
       <div>
-        <div
-          className={'trans-node'}
-          style={{
-            position: 'relative',
-            width: size,
-            height,
-            backgroundColor: color.white,
-            borderRadius: '5%',
-            border: `solid ${color['v400']} 1px`,
-            borderLeft: `solid ${color['v400']} 5px`,
-            textAlign: 'center'
-          }}
-        >
-          Transform Node {name}
+        <div className={'Tile'}>
+          <div className="Tile__transform-title">Transform Node</div>
+          <div>{name}</div>
         </div>
         <div
           style={{

@@ -58,7 +58,7 @@ const options = [
   {
     value: 'option_4',
     label: 'Option 4'
-  },
+  }
 ];
 
 export const Toolbar = props => {
@@ -90,19 +90,19 @@ export const Toolbar = props => {
       <ToolbarWidget>
         <ToolbarItemWidget
           model={{ type: 'source' }}
-          name="Source Node"
+          name="Source"
           color={color['c400']}
           onClick={() => addNodeToDiagram('source', 400, 400)}
         />
         <ToolbarItemWidget
           model={{ type: 'trans' }}
-          name="Transformation Node"
+          name="Transformation"
           color={color['v400']}
           onClick={() => addNodeToDiagram('trans', 400, 400)}
         />
         <ToolbarItemWidget
           model={{ type: 'dest' }}
-          name="Destination Node"
+          name="Destination"
           color={color['r300']}
           onClick={() => addNodeToDiagram('dest', 400, 400)}
         />

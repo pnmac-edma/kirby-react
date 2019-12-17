@@ -1,0 +1,24 @@
+// Hydration Tile Styles
+
+.Tile {
+  position: relative;
+  width: 158px;
+  height: 74px;
+  background-color: $color-white;
+  border-radius: $border-radius-1;
+  border: solid $color-g-600 1px;
+  border-left: solid $color-g-600 5px;
+  text-align: center;
+}
+
+.Tile__source-title {
+  color: $color-c-600;
+}
+
+.Tile__transform-title {
+  color: $color-v-400;
+}
+
+.Tile__destination-title {
+  color: $color-t-800;
+}
