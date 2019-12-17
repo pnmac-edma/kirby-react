@@ -43,6 +43,7 @@ const RequestTableHeader = props => {
             checked={numSelected === rowCount}
             onClick={onSelectAllClick}
             inputProps={{ 'aria-label': 'select all requests' }}
+            id="all"
           />
         </TableCell>
         {columns.map(col => (
