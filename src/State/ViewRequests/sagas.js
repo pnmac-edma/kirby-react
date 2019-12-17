@@ -11,6 +11,7 @@ export function* handleUserRequests(action) {
     const response = yield call(getUserRequests, action.payload);
     yield put({ type: types.USER_REQUESTS_SUCCESS, payload: response });
   } catch (error) {
+    console.log(error);
     yield put({ type: types.USER_REQUESTS_FAILURE, payload: error });
   }
 }
