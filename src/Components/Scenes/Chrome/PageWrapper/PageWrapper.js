@@ -10,7 +10,7 @@ import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
-import NewJobContainer from '../../Hydration/NewJob/NewJob/NewJob-Container';
+import NewJobContainer from '../../Hydration/NewJob/NewJob-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
