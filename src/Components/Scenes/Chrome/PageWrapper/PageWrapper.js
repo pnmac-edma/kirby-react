@@ -26,7 +26,12 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken, newJobName }) => {
+const PageWrapper = ({
+  isSearchClicked,
+  authenticateFetch,
+  sessionToken,
+  newJobName
+}) => {
   const classes = pageContainerStyle();
   const samlResponse = useQuery('SAMLResponse');
   const curPath = useLocation().pathname;
@@ -36,17 +41,21 @@ const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken, newJobN
   //         but there is a session token, so relax until an hour later
   //         when we get a 4xx code from some request, then redirect
   // Case 3: there is neither a SAML response nor a session token, so redirect to OneLogin
-  // useEffect(() => {
-  //   if (samlResponse && !sessionToken) {
-  //     authenticateFetch(samlResponse);
-  //   } else if (!sessionToken) {
-  //     window.location.replace('https://pennymac.onelogin.com/portal/');
-  //   }
-  // }, [samlResponse, authenticateFetch, sessionToken]);
+  useEffect(() => {
+    if (samlResponse && !sessionToken) {
+      authenticateFetch(samlResponse);
+    } else if (!sessionToken) {
+      window.location.replace('https://pennymac.onelogin.com/portal/');
+    }
+  }, [samlResponse, authenticateFetch, sessionToken]);
 
   return (
     <div className={classes.pageContainer}>
-      {curPath === '/hydration/new-job' ? <AppBarContainer hydration jobName={newJobName} /> : <AppBarContainer />}
+      {curPath === '/hydration/new-job' ? (
+        <AppBarContainer hydration jobName={newJobName} />
+      ) : (
+        <AppBarContainer />
+      )}
 
       <AnimatedSwitch
         atEnter={{ opacity: 0 }}
