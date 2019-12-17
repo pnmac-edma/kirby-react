@@ -8,9 +8,13 @@
 @import '~@edma/design-tokens/_scss/variables';
 
 .sidebar {
-  position: fixed;
-  width: 31.21%;
+  position: absolute;
   height: 100vh;
   background: $color-g-200;
   font-size: $font-size-3;
+  margin-top: -10rem;
+  top: 0;
+  z-index: 0;
+  padding-top: 10rem;
+  height: calc(100% + 10rem);
 }
