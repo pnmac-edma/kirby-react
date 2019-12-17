@@ -34,9 +34,16 @@ const SearchInput = props => {
     }
   };
 
+  const handleEscClose = e => {
+    if (e.key === 'Escape') {
+      handleSearchClose();
+    }
+  };
+
   return (
     <React.Fragment>
       <Dialog
+        onKeyDown={handleEscClose}
         open={isSearchClicked}
         aria-labelledby="form-dialog-title"
         className="search-modal"
