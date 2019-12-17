@@ -95,23 +95,17 @@ export const constructRequest = (url, method, path, params, data) => {
   }
 
   // TODO: Implement aws4 signing
-  // let signedRequest = signApiCall(request);
+  // let signedRequest = signApiCall(request, {AccessKeyId, SecretKey, SessionToken});
 
   return request;
 };
 
 // TODO: implement signing. The aws4 package is not signing correctly
 // so signing will have to be done manually
-// const signApiCall = request => {
-//   const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
+// const signApiCall = request = credentials => {
+//   const { AccessKeyId, SecretKey, SessionToken } = credentials;
 
 //   if (AccessKeyId && SecretKey && SessionToken) {
-//     // if(typeof request.headers !== undefined) {
-//     //   console.log('this request has a Content-Length header', request.headers['Content-Length'])
-//     //   // delete request.headers['Content-Length'];
-//     //   console.log('deleted the header', request);
-//     // }
-//     // delete request.headers['Content-Length'];
 //     aws4.sign(request, {
 //       accessKeyId: AccessKeyId,
 //       secretAccessKey: SecretKey,
@@ -121,5 +115,7 @@ export const constructRequest = (url, method, path, params, data) => {
 //     delete request.headers['Host'];
 //     delete request.headers['Content-Length'];
 //   }
+//   console.log(request);
+//
 //   return request;
 // };
