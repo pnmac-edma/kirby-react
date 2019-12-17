@@ -61,7 +61,7 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       return { ...state, employees: action.payload };
     }
     case types.HANDLE_SELECTED_EMPLOYEES: {
-      return { ...state, selectedEmployees: action.payload || [] };
+      return { ...state, selectedEmployees: action.payload };
     }
     case 'HANDLE_MODAL_TOGGLE': {
       return { ...state, openModal: !state.openModal };
