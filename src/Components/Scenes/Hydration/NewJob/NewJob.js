@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import JobHeader from '../JobHeader';
 import JobDesignerApp from '../JobDesigner/JobDesigner';
 
 const chromeStyles = makeStyles(theme => ({
@@ -18,8 +17,6 @@ const NewJob = props => {
 
   return (
     <Box className={classes.container}>
-      {/* TODO: Move jobName to Redux */}
-      <JobHeader jobName={newJobName}></JobHeader>
       <div style={{ height: '100%' }}>
         <JobDesignerApp />;
       </div>

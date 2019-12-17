@@ -116,6 +116,7 @@ export const Toolbar = props => {
         <div>
           <TextField
             select
+            className="Toolbar__select"
             id="select-example"
             label="Example Select"
             value={value}

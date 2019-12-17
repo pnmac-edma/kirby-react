@@ -26,7 +26,7 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken }) => {
+const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken, newJobName }) => {
   const classes = pageContainerStyle();
   const samlResponse = useQuery('SAMLResponse');
   const curPath = useLocation().pathname;
@@ -46,7 +46,7 @@ const PageWrapper = ({ isSearchClicked, authenticateFetch, sessionToken }) => {
 
   return (
     <div className={classes.pageContainer}>
-      {curPath === '/hydration/new-job' ? null : <AppBarContainer />}
+      {curPath === '/hydration/new-job' ? <AppBarContainer hydration jobName={newJobName} /> : <AppBarContainer />}
 
       <AnimatedSwitch
         atEnter={{ opacity: 0 }}

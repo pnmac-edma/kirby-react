@@ -6,7 +6,8 @@ const mapStateToProps = ({ searchResult, currentUser }) => {
   return {
     isSearchClicked: searchResult.isSearchClicked,
     isSearchClosed: searchResult.isSearchClosed,
-    sessionToken: currentUser.SessionToken
+    sessionToken: currentUser.SessionToken,
+    newJobName: 'My New Job'
   };
 };
 

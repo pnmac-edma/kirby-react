@@ -24,7 +24,8 @@
     text-align: center;
 }
 
-.Toolbar__textfield {
+.Toolbar__textfield,
+.Toolbar__select {
 
     // MUI Overrides
     .MuiFormLabel-root {
@@ -60,5 +61,5 @@
 }
 
 .Toolbar__select {
-
+    width: 100%;
 }
