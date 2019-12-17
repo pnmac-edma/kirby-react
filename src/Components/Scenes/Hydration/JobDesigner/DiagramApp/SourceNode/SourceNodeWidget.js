@@ -12,9 +12,11 @@ export default class SourceNodeWidget extends React.Component {
     const height = size * 0.5;
     return (
       <div>
-        <div className={'Tile'}>
-          <div className="Tile__source-title">Source Node</div>
-          <div>{name}</div>
+        <div className={'Tile Tile__source'}>
+          <div className="Tile__inner">
+            <div className="Tile__source-title">Source</div>
+            <div>{name}</div>
+          </div>
         </div>
         <div
           style={{

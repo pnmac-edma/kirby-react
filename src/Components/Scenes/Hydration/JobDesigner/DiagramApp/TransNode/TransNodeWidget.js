@@ -12,9 +12,11 @@ export default class TransNodeWidget extends React.Component {
     const height = size * 0.5;
     return (
       <div>
-        <div className={'Tile'}>
-          <div className="Tile__transform-title">Transform Node</div>
-          <div>{name}</div>
+        <div className={'Tile Tile__transform'}>
+          <div className="Tile__inner">
+            <div className="Tile__transform-title">Transform</div>
+            <div>{name}</div>
+          </div>
         </div>
         <div
           style={{

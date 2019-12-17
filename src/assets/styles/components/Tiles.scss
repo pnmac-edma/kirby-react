@@ -4,11 +4,48 @@
   position: relative;
   width: 158px;
   height: 74px;
-  background-color: $color-white;
-  border-radius: $border-radius-1;
+  background-color: $color-g-600;
+  border-radius: 5px;
   border: solid $color-g-600 1px;
-  border-left: solid $color-g-600 5px;
-  text-align: center;
+  text-align: left;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $color-black;
+    border-color: $color-black;
+  }
+}
+.srd-node--selected {
+  & > * > .Tile__source {
+    background-color: $color-c-600;
+    border-color: $color-c-600;
+  }
+
+  & > * > .Tile__transform {
+    background-color: $color-v-400;
+    border-color: $color-v-400;
+  }
+
+  & > * > .Tile__destination {
+    background-color: $color-t-800;
+    border-color: $color-t-800;
+  }
+}
+
+.Tile__inner {
+  background-color: $color-white;
+  border-radius: 5px 0 0 5px;
+  margin-left: 4px;
+  height: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.Tile__source-title,
+.Tile__transform-title,
+.Tile__destination-title {
+  font-size: 12px;
 }
 
 .Tile__source-title {

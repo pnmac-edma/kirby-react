@@ -12,9 +12,11 @@ export default class DestNodeWidget extends React.Component {
     const height = size * 0.5;
     return (
       <div>
-        <div className={'Tile'}>
-          <div className="Tile__destination-title">Destination Node</div>
-          <div>{name}</div>
+        <div className={'Tile Tile__destination'}>
+          <div className="Tile__inner">
+            <div className="Tile__destination-title">Destination</div>
+            <div>{name}</div>
+          </div>
         </div>
         <div
           style={{
