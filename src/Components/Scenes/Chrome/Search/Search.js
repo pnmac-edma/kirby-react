@@ -40,6 +40,12 @@ const SearchInput = props => {
     }
   };
 
+  const handleBlurError = () => {
+    if (!searchInput) {
+      console.log('you blured me');
+    }
+  };
+
   return (
     <React.Fragment>
       <Dialog
@@ -56,12 +62,13 @@ const SearchInput = props => {
                 margin="dense"
                 id="name"
                 label="Start Typing..."
-                helperText="Find and request access to data in Kirby."
+                helperText={'Find and request access to data in Kirby.'}
                 type="text"
                 value={searchInput}
                 onChange={e => searchHandleInput(e)}
                 fullWidth
                 onKeyPress={e => handleKeyPress(keyPressWrapper(e))}
+                onBlur={handleBlurError}
               />
             </Grid>
             <Grid item>
