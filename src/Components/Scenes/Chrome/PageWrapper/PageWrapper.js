@@ -41,13 +41,13 @@ const PageWrapper = ({
   //         but there is a session token, so relax until an hour later
   //         when we get a 4xx code from some request, then redirect
   // Case 3: there is neither a SAML response nor a session token, so redirect to OneLogin
-  useEffect(() => {
-    if (samlResponse && !sessionToken) {
-      authenticateFetch(samlResponse);
-    } else if (!sessionToken) {
-      window.location.replace('https://pennymac.onelogin.com/portal/');
-    }
-  }, [samlResponse, authenticateFetch, sessionToken]);
+  // useEffect(() => {
+  //   if (samlResponse && !sessionToken) {
+  //     authenticateFetch(samlResponse);
+  //   } else if (!sessionToken) {
+  //     window.location.replace('https://pennymac.onelogin.com/portal/');
+  //   }
+  // }, [samlResponse, authenticateFetch, sessionToken]);
 
   return (
     <div className={classes.pageContainer}>
