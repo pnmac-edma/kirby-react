@@ -11,7 +11,7 @@ import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResu
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
 import { useQuery } from '../../../../Hooks/customHooks';
-import NewJobContainer from '../../Hydration/NewJob/NewJob/NewJob-Container';
+import NewJobContainer from '../../Hydration/NewJob/NewJob-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {

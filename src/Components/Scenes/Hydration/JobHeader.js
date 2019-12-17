@@ -3,14 +3,16 @@ import { Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
+import { ReactComponent as KirbyMark } from '../../../assets/img/kirbyMark.svg';
 
 const headerStyles = makeStyles(theme => ({
   header: {
     marginLeft: theme.spacing(1),
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(1.5)
+    padding: theme.spacing(1.5),
+    position: 'absolute',
+    zIndex: 1
   },
   breadcrumbs: {
     whiteSpace: 'nowrap',
@@ -26,7 +28,7 @@ const headerStyles = makeStyles(theme => ({
   }
 }));
 
-const NewJobHeader = props => {
+const JobHeader = props => {
   const classes = headerStyles();
   const { jobName } = props;
 
@@ -48,4 +50,4 @@ const NewJobHeader = props => {
   );
 };
 
-export default NewJobHeader;
+export default JobHeader;

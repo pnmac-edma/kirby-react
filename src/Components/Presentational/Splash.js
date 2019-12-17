@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { Box, Typography } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 import DashboardLight from '../../assets/img/dashboardGraphicLight.svg';
 import DashboardDark from '../../assets/img/dashboardGraphicDark.svg';
 
 // Define custom component styles
 const useStyles = makeStyles(theme => ({
+  container: {
+    textAlign: 'center'
+  },
   graphic: {
     maxWidth: '100%',
     marginTop: '32px'
@@ -27,12 +30,15 @@ export default function Splash() {
   const theme = useTheme();
 
   useEffect(() => {
-    document.body.className = theme.palette.type === 'light' ? 'splash' : 'splash-dark';
-    return () => { document.body.className = ''; }
+    document.body.className =
+      theme.palette.type === 'light' ? 'splash' : 'splash-dark';
+    return () => {
+      document.body.className = '';
+    };
   });
 
   return (
-    <>
+    <Box className={classes.container}>
       {theme.palette.type === 'light' ? (
         <div>
           <img
@@ -58,6 +64,6 @@ export default function Splash() {
         Use the menu on the left to find data in the PennyMac lake, build ETLs,
         and get swol!
       </Typography>
-    </>
+    </Box>
   );
 }
