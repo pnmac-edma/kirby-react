@@ -1,6 +1,8 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 import color from '@edma/design-tokens/js/color';
 
 const toolbarStyles = makeStyles(theme => ({
@@ -19,7 +21,7 @@ const ToolbarItemWidget = props => {
       onDragStart={event => {
         event.dataTransfer.setData('storm-diagram-node', JSON.stringify(model));
       }}
-      className="toolbar-item"
+      className="Toolbar__nodetype"
       onClick={onClick}
     >
       {name}
@@ -31,7 +33,7 @@ const ToolbarWidget = props => {
   const classes = toolbarStyles();
   const { children } = props;
   return (
-    <div className="toolbar">
+    <div className="Toolbar">
       <Typography variant="h5" className={classes.typography}>
         Pick A Node, Any Node
       </Typography>
@@ -40,9 +42,34 @@ const ToolbarWidget = props => {
   );
 };
 
+const options = [
+  {
+    value: 'option_1',
+    label: 'Option 1'
+  },
+  {
+    value: 'option_2',
+    label: 'Option 2'
+  },
+  {
+    value: 'option_3',
+    label: 'Option 3'
+  },
+  {
+    value: 'option_4',
+    label: 'Option 4'
+  },
+];
+
 export const Toolbar = props => {
   const classes = toolbarStyles();
   const { selectedNode, addNodeToDiagram } = props;
+  const [value, setValue] = React.useState('option_1');
+
+  const handleSelectChange = e => {
+    setValue(e.target.value);
+  };
+
   if (selectedNode !== null) {
     const toolbarType = {
       source: 'Source',
@@ -50,7 +77,7 @@ export const Toolbar = props => {
       dest: 'Destination'
     }[selectedNode.type];
     return (
-      <div className="toolbar">
+      <div className="Toolbar">
         <Typography className={classes.typography} variant="h5">
           Toolbar for {toolbarType}
           <br /> Node ID:
@@ -79,6 +106,28 @@ export const Toolbar = props => {
           color={color['r300']}
           onClick={() => addNodeToDiagram('dest', 400, 400)}
         />
+        <div>
+          <TextField
+            id="example"
+            label="Example TextField"
+            className="Toolbar__textfield"
+          />
+        </div>
+        <div>
+          <TextField
+            select
+            id="select-example"
+            label="Example Select"
+            value={value}
+            onChange={handleSelectChange}
+          >
+            {options.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
       </ToolbarWidget>
     );
   }

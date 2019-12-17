@@ -1,0 +1,64 @@
+// Hydration ToolBar styles
+//
+//      These styles are applied to the right side toolbar
+//      in the hydration flow.
+
+.Toolbar {
+    background: $color-white;
+    width: 260px;
+    height: 100vh;
+    overflow-x: wrap;
+    padding: 16px;
+    border-left: 1px solid $color-g-100;
+}
+
+.Toolbar__nodetype {
+    color: $color-black;
+    background-color: $color-white;
+    padding: 5px;
+    margin: 10px 10px;
+    border: solid 2px;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.Toolbar__textfield {
+
+    // MUI Overrides
+    .MuiFormLabel-root {
+        background: $color-y-50;
+        padding: 0.2rem;
+
+        &.MuiInputLabel-formControl {
+            transform: translate(0, 14px) scale(1);
+        }
+
+        &.MuiInputLabel-shrink {
+            transform: translate(0, 1.5px) scale(0.75);
+        }
+
+        &.Mui-focused,
+        &.MuiFormLabel-filled {
+            background: transparent;
+            color: $color-g-600;
+            padding: 0;
+        }
+    }
+
+    .MuiInput-root {
+        margin-top: 8px;
+    }
+
+    .MuiInput-underline {
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.Toolbar__select {
+
+}

@@ -1,11 +1,13 @@
 // Import design tokens
 @import '~@edma/design-tokens/_scss/variables';
 
+// Import vendor styles
+@import '~@projectstorm/react-diagrams/dist/style.min';
+
 // Import component styles
 @import 'components/App';
 @import 'components/JobDesigner';
 @import 'components/Navigation';
 @import 'components/SearchModal';
 @import 'components/SideBar';
-
-@import '~@projectstorm/react-diagrams/dist/style.min';
+@import 'components/Toolbar';

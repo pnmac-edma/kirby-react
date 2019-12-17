@@ -37,13 +37,13 @@ const JobHeader = props => {
       <KirbyMark className={classes.mark} />
       <Breadcrumbs
         aria-label="breadcrumb"
-        separator={<Typography variant="h5">/</Typography>}
+        separator={<Typography variant="body1">/</Typography>}
         className={classes.breadcrumbs}
       >
-        <Link href="/hydration/view-jobs" variant="h5">
+        <Link href="/hydration/view-jobs" variant="body1">
           Jobs
         </Link>
-        <Typography variant="h5">{jobName}</Typography>
+        <Typography variant="body1">{jobName}</Typography>
       </Breadcrumbs>
       <KeyboardArrowDownIcon />
     </Box>
