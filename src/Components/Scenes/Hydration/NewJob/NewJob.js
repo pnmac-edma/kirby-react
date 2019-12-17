@@ -13,7 +13,6 @@ const chromeStyles = makeStyles(theme => ({
 
 const NewJob = props => {
   const classes = chromeStyles();
-  const { newJobName } = props;
 
   return (
     <Box className={classes.container}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import color from '@edma/design-tokens/js/color';
 import { PortWidget } from '@projectstorm/react-diagrams';
 
 export default class DestNodeWidget extends React.Component {
