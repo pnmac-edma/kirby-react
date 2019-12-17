@@ -1,5 +1,3 @@
-// ideally, would like to have methods that all ducks will need here
-import aws4 from 'aws4-browser';
 import store from '../setupStore';
 
 // takes in requests data from api results and returns parseable data
@@ -28,8 +26,8 @@ export const transformRequests = (requests, role) => {
   });
 };
 
-/* constructs a request config, then passing that to aws4 to sign
- * host: the base url of the API
+/* constructs a request object to be passed to axios
+ * url: the base url of the API (pulled from the config in most ways)
  * method: the HTTP method of the request
  * path: the specific path to be appended to the host (e.g. /users/requests)
  * params: any query paramters the request needs. Pass in null if there is no query string parameters
@@ -54,7 +52,6 @@ export const constructRequest = (url, method, path, params, data) => {
     UserKey
   };
 
-  console.log(userSession);
   // regex to match on a hostname
   // eslint-disable-next-line
   let hostRegex = new RegExp(/([(\w(\-?)\.]+)com/g);
@@ -69,11 +66,14 @@ export const constructRequest = (url, method, path, params, data) => {
     data: { ...userSession }, // data paramter needed for axios
     body: JSON.stringify({ ...userSession }) // body parameter needed for aws
   };
+
+  console.log(request);
+
   /* NOTE:
    * Adding these headers violates CORS policies!
-   * For now, this will be commented out, but once the API
-   * is refactored to allow these headers, not pass these
-   * through the body of the request, this can be uncommented
+   * For now, this will be commented out, but once
+   * we are able to get signing implemented correctly
+   * this can be implemented
    */
 
   // request.headers["AccessKeyId"] = AccessKeyId;
@@ -94,31 +94,32 @@ export const constructRequest = (url, method, path, params, data) => {
     request.body = JSON.stringify(request.data);
   }
 
-  // sign the API call
-  let signedRequest = signApiCall(request);
+  // TODO: Implement aws4 signing
+  // let signedRequest = signApiCall(request);
 
-  return signedRequest;
-};
-// take in a API request object, and signs i
-const signApiCall = request => {
-  const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
-
-  if (AccessKeyId && SecretKey && SessionToken) {
-    // if(typeof request.headers !== undefined) {
-    //   console.log('this request has a Content-Length header', request.headers['Content-Length'])
-    //   // delete request.headers['Content-Length'];
-    //   console.log('deleted the header', request);
-    // }
-    // delete request.headers['Content-Length'];
-    aws4.sign(request, {
-      accessKeyId: AccessKeyId,
-      secretAccessKey: SecretKey,
-      sessionToken: SessionToken
-    });
-
-    delete request.headers['Host'];
-    delete request.headers['Content-Length'];
-  }
-  debugger;
   return request;
 };
+
+// TODO: implement signing. The aws4 package is not signing correctly
+// so signing will have to be done manually
+// const signApiCall = request => {
+//   const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
+
+//   if (AccessKeyId && SecretKey && SessionToken) {
+//     // if(typeof request.headers !== undefined) {
+//     //   console.log('this request has a Content-Length header', request.headers['Content-Length'])
+//     //   // delete request.headers['Content-Length'];
+//     //   console.log('deleted the header', request);
+//     // }
+//     // delete request.headers['Content-Length'];
+//     aws4.sign(request, {
+//       accessKeyId: AccessKeyId,
+//       secretAccessKey: SecretKey,
+//       sessionToken: SessionToken
+//     });
+
+//     delete request.headers['Host'];
+//     delete request.headers['Content-Length'];
+//   }
+//   return request;
+// };
