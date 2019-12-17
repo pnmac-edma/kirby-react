@@ -14,13 +14,13 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap'
   },
   sideTable: {
-    width: '62%',
-    marginLeft: '64vh'
+    marginLeft: '32rem',
+    marginRight: '1rem'
   },
   sideBarPostion: {
-    marginRight: '50vh',
-    marginTop: '12vh',
-    marginLeft: '1vh',
+    marginRight: '3rem',
+    marginTop: '2rem',
+    marginLeft: '1rem',
     color: 'black'
   },
   title: {

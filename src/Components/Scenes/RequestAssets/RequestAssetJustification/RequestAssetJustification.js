@@ -1,12 +1,12 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import color from '@edma/design-tokens/js/color';
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    background: '#e6e6e6'
+    color: color.g200
   }
 }));
 
