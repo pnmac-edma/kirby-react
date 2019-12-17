@@ -25,14 +25,22 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = props => {
-  const { isSearchClicked } = props;
+const PageWrapper = ({
+  isSearchClicked,
+  authenticateFetch,
+  sessionToken,
+  newJobName
+}) => {
   const classes = pageContainerStyle();
   const curPath = useLocation().pathname;
 
   return (
     <div className={classes.pageContainer}>
-      {curPath === '/hydration/new-job' ? null : <AppBarContainer />}
+      {curPath === '/hydration/new-job' ? (
+        <AppBarContainer hydration jobName={newJobName} />
+      ) : (
+        <AppBarContainer />
+      )}
 
       <AnimatedSwitch
         atEnter={{ opacity: 0 }}

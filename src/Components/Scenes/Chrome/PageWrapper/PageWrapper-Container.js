@@ -4,7 +4,9 @@ import PageWrapper from './PageWrapper';
 const mapStateToProps = ({ searchResult }) => {
   return {
     isSearchClicked: searchResult.isSearchClicked,
-    isSearchClosed: searchResult.isSearchClosed
+    isSearchClosed: searchResult.isSearchClosed,
+    sessionToken: currentUser.SessionToken,
+    newJobName: 'My New Job'
   };
 };
 
