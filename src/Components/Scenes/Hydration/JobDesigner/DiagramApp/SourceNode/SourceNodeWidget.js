@@ -1,5 +1,4 @@
 import React from 'react';
-import color from '@edma/design-tokens/js/color';
 import { PortWidget } from '@projectstorm/react-diagrams';
 
 export default class SourceNodeWidget extends React.Component {
@@ -13,20 +12,11 @@ export default class SourceNodeWidget extends React.Component {
     const height = size * 0.5;
     return (
       <div>
-        <div
-          className={'source-node'}
-          style={{
-            position: 'relative',
-            width: size,
-            height,
-            backgroundColor: color.white,
-            borderRadius: '5%',
-            border: `solid ${color['c400']} 1px`,
-            borderLeft: `solid ${color['c400']} 5px`,
-            textAlign: 'center'
-          }}
-        >
-          Source Node {name}
+        <div className={'Tile Tile__source'}>
+          <div className="Tile__inner">
+            <div className="Tile__source-title">Source</div>
+            <div>{name}</div>
+          </div>
         </div>
         <div
           style={{

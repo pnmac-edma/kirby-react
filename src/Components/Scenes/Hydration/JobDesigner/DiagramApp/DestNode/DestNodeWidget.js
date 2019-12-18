@@ -1,5 +1,4 @@
 import React from 'react';
-import color from '@edma/design-tokens/js/color';
 import { PortWidget } from '@projectstorm/react-diagrams';
 
 export default class DestNodeWidget extends React.Component {
@@ -13,20 +12,11 @@ export default class DestNodeWidget extends React.Component {
     const height = size * 0.5;
     return (
       <div>
-        <div
-          className={'dest-node'}
-          style={{
-            position: 'relative',
-            width: size,
-            height,
-            backgroundColor: color.white,
-            borderRadius: '5%',
-            border: `solid ${color['r300']} 1px`,
-            borderLeft: `solid ${color['r300']} 5px`,
-            textAlign: 'center'
-          }}
-        >
-          Destination Node {name}
+        <div className={'Tile Tile__destination'}>
+          <div className="Tile__inner">
+            <div className="Tile__destination-title">Destination</div>
+            <div>{name}</div>
+          </div>
         </div>
         <div
           style={{

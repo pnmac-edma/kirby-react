@@ -44,9 +44,9 @@ const JobDesigner = props => {
   };
 
   return (
-    <div className="body">
+    <div className="Diagram">
       <div
-        className="diagram-layer"
+        className="Diagram__layer"
         onDrop={event => {
           const data = JSON.parse(
             event.dataTransfer.getData('storm-diagram-node')
@@ -57,7 +57,7 @@ const JobDesigner = props => {
         onDragOver={event => event.preventDefault()}
       >
         <DiagramWidget
-          className="srd-demo-canvas"
+          className="Diagram__canvas"
           diagramEngine={app.getDiagramEngine()}
         />
       </div>

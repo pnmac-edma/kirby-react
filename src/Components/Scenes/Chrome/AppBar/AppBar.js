@@ -1,9 +1,11 @@
 import React from 'react';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import { AppBar, Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import color from '@edma/design-tokens/js/color';
 import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.svg';
+import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
 
 const appBarStyle = makeStyles(theme => ({
   logoContainer: {
@@ -14,8 +16,17 @@ const appBarStyle = makeStyles(theme => ({
     position: 'absolute',
     right: '8px'
   },
-  Logo: {
+  logo: {
     height: '56px',
+
+    '& path': {
+      fill: theme.palette.type === 'light' ? color.black : color.white
+    }
+  },
+  mark: {
+    height: theme.spacing(7),
+    flexShrink: 0,
+    marginRight: theme.spacing(1.5),
 
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
@@ -26,16 +37,58 @@ const appBarStyle = makeStyles(theme => ({
     boxShadow: 'none',
     height: 56,
     marginTop: 32
+  },
+  appBarHydration: {
+    position: 'absolute',
+    marginTop: 8,
+    zIndex: 1
+  },
+  header: {
+    marginLeft: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+    position: 'absolute',
+    zIndex: 999
+  },
+  breadcrumbs: {
+    whiteSpace: 'nowrap',
+    color: theme.palette.common.black,
+    marginLeft: 24
   }
 }));
 
 const Appbar = props => {
   const classes = appBarStyle();
+  const { jobName } = props;
 
   return (
-    <AppBar position="relative" color="default" className={classes.appBar}>
+    <AppBar
+      position="relative"
+      color="default"
+      className={props.hydration ? `${classes.appBar} ${classes.appBarHydration}` : classes.appBar}
+    >
       <div className={classes.logoContainer}>
-        <KirbyLogo className={classes.Logo} />
+        { props.hydration ?
+          <>
+            <KirbyMark className={classes.mark} />
+            <Box className={classes.header}>
+              <Breadcrumbs
+                aria-label="breadcrumb"
+                separator={<Typography variant="body1">/</Typography>}
+                className={classes.breadcrumbs}
+              >
+                <Link href="/hydration/view-jobs" variant="body1">
+                  Jobs
+                </Link>
+                <Typography variant="body1">{jobName}</Typography>
+              </Breadcrumbs>
+              <KeyboardArrowDownIcon />
+            </Box>
+          </>
+        :
+          <KirbyLogo className={classes.logo} />
+        }
       </div>
       <div className={classes.themeToggleContainer}>
         <ThemeToggle />
