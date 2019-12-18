@@ -64,7 +64,7 @@ const ToolbarWidget = props => {
 
   return (
     <div className="Toolbar">
-      <div class="Toolbar__top">
+      <div className="Toolbar__top">
         <IconButton disabled aria-label="Undo" className={classes.iconButton}>
           <UndoIcon fontSize="small" />
         </IconButton>
@@ -77,7 +77,7 @@ const ToolbarWidget = props => {
           </Button>
         </span>
       </div>
-      <div class="Toolbar__tabs">
+      <div className="Toolbar__tabs">
         <Tabs
           value={tab}
           indicatorColor="primary"
