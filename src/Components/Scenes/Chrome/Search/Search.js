@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Button,
@@ -23,6 +23,10 @@ const SearchInput = props => {
 
   const history = useHistory();
   const urlWithParams = `/search?params=${searchInput}`;
+  const [validate, setValidate] = useState({
+    helperText: `Find and request access to data in Kirby.`,
+    error: false
+  });
 
   const keyPressWrapper = e => {
     if (e.key === 'Enter') {
@@ -41,9 +45,10 @@ const SearchInput = props => {
   };
 
   const handleBlurError = () => {
-    if (!searchInput) {
-      console.log('you blured me');
-    }
+    setValidate({
+      helperText: 'This must be filled out before we can find your data.',
+      error: true
+    });
   };
 
   return (
@@ -62,17 +67,25 @@ const SearchInput = props => {
                 margin="dense"
                 id="name"
                 label="Start Typing..."
-                helperText={'Find and request access to data in Kirby.'}
                 type="text"
                 value={searchInput}
                 onChange={e => searchHandleInput(e)}
                 fullWidth
                 onKeyPress={e => handleKeyPress(keyPressWrapper(e))}
+                helperText={
+                  searchInput < 1
+                    ? validate.helperText
+                    : 'Find and request access to data in Kirby.'
+                }
+                error={searchInput < 1 ? validate.error : false}
                 onBlur={handleBlurError}
               />
             </Grid>
             <Grid item>
-              <Button onClick={() => searchResultRequest()}>
+              <Button
+                disabled={searchInput < 1}
+                onClick={() => searchResultRequest()}
+              >
                 <SearchIcon />
               </Button>
             </Grid>
