@@ -12,12 +12,15 @@ const useStyles = makeStyles(theme => ({
 
 const Justification = props => {
   const classes = useStyles();
+  const { justification, justificationHandleInput } = props;
   return (
     <React.Fragment>
       <TextField
         className={classes.textField}
         placeholder="Request Justification"
+        value={justification}
         multiline={true}
+        onChange={e => justificationHandleInput(e)}
         fullWidth
         rows={6}
         rowsMax={6}

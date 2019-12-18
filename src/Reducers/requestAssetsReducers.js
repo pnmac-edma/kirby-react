@@ -76,6 +76,12 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
         openModal: !state.openModal
       };
     }
+    case types.JUSTIFICATION_HANDLE_INPUT: {
+      return {
+        ...state,
+        justification: action.payload
+      };
+    }
     default:
       return state;
   }
