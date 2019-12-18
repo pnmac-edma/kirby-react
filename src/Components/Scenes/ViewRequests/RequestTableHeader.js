@@ -29,7 +29,6 @@ const RequestTableHeader = props => {
     onSelectAllClick,
     onSort
   } = props;
-
   const classes = headerStyles();
 
   return (

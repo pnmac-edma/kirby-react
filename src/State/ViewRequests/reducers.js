@@ -59,6 +59,9 @@ const viewRequestsReducer = (state = initialState, action) => {
         )
       };
     }
+    case types.HANDLE_FUCK: {
+      return { ...state };
+    }
     default:
       return state;
   }

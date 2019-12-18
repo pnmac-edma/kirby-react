@@ -15,3 +15,6 @@ export const GOVERNANCE_REQUESTS_FAILURE = 'GOVERNANCE_REQUESTS_FAILURE';
 
 // actions pertaining to filtering incoming request data
 export const GET_ARCHIVED_REQUESTS = 'GET_ARCHIVED_REQUESTS';
+
+//HandleFuck
+export const HANDLE_FUCK = 'HANDLE_FUCK';

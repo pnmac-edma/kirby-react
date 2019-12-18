@@ -59,3 +59,9 @@ export const getArchivedRequests = () => {
     type: types.GET_ARCHIVED_REQUESTS
   };
 };
+export const handleFuck = selected => {
+  return {
+    type: types.HANDLE_FUCK,
+    payload: selected
+  };
+};

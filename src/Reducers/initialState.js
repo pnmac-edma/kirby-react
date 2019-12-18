@@ -45,7 +45,10 @@ const initialState = {
       filterType: '',
       filterTerm: ''
     },
-    isSearchClicked: false
+    isSearchClicked: false,
+    rowsPerPage: 10,
+    rowsPerPageOptions: [10, 25, 50],
+    selectedIds: []
   },
   requestAssets: {
     selectedSearchResultCopy: [],

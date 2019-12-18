@@ -4,9 +4,8 @@ import * as types from '../Actions/types';
 const requestAssetsReducers = (state = initialState.requestAssets, action) => {
   switch (action.type) {
     case types.REQUEST_ASSETS_CLICK: {
-      const searchResultCopy = action.payload.map(value => {
-        value.chec = false;
-        return value;
+      const searchResultCopy = action.payload.requests.filter(value => {
+        return action.payload.selected.includes(value.Id);
       });
       return { ...state, selectedSearchResultCopy: searchResultCopy };
     }
