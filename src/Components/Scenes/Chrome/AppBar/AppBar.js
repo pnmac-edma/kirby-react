@@ -41,15 +41,15 @@ const appBarStyle = makeStyles(theme => ({
   appBarHydration: {
     position: 'absolute',
     marginTop: 8,
-    zIndex: 1
+    zIndex: 1,
+    width: 'calc(100% - 260px)'
   },
   header: {
     marginLeft: theme.spacing(1),
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(2),
-    position: 'absolute',
-    zIndex: 999
+    position: 'absolute'
   },
   breadcrumbs: {
     whiteSpace: 'nowrap',
@@ -66,10 +66,14 @@ const Appbar = props => {
     <AppBar
       position="relative"
       color="default"
-      className={props.hydration ? `${classes.appBar} ${classes.appBarHydration}` : classes.appBar}
+      className={
+        props.hydration
+          ? `${classes.appBar} ${classes.appBarHydration}`
+          : classes.appBar
+      }
     >
       <div className={classes.logoContainer}>
-        { props.hydration ?
+        {props.hydration ? (
           <>
             <KirbyMark className={classes.mark} />
             <Box className={classes.header}>
@@ -86,9 +90,9 @@ const Appbar = props => {
               <KeyboardArrowDownIcon />
             </Box>
           </>
-        :
+        ) : (
           <KirbyLogo className={classes.logo} />
-        }
+        )}
       </div>
       <div className={classes.themeToggleContainer}>
         <ThemeToggle />

@@ -59,6 +59,11 @@
       margin-right: 0.5rem;
       height: 8px;
       width: 8px;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        box-shadow: 0 0 0 10px rgba($color-g-200, 0.5);
+      }
     }
   }
 }
@@ -91,4 +96,14 @@
 
 .Tile__destination-title {
   color: $color-t-800;
+}
+
+// Tile link overrides
+
+.srd-default-link path {
+  stroke: $color-c-600;
+}
+
+.srd-link-layer {
+  z-index: 1;
 }
