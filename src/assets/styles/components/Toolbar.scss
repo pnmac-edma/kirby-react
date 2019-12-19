@@ -4,62 +4,101 @@
 //      in the hydration flow.
 
 .Toolbar {
-    background: $color-white;
-    width: 260px;
-    height: 100vh;
-    overflow-x: wrap;
-    padding: 16px;
-    border-left: 1px solid $color-g-100;
+  width: 260px;
+  height: 100vh;
+  border-left: 1px solid;
+  z-index: 999;
+}
+
+.Toolbar__top {
+  padding: 8px;
+  border-bottom: 1px solid;
+}
+
+.Toolbar__tabs {
+  border-bottom: 1px solid;
+
+  // MUI Overrides
+  .MuiTab-root {
+    min-width: auto;
+    min-height: 40px;
+    font-variant: small-caps;
+    font-size: 12px;
+    padding: 0 10px;
+  }
+
+  .MuiTabs-root {
+    min-height: 40px;
+  }
+
+  .MuiTabs-indicator {
+    background: transparent;
+    height: 0;
+  }
+}
+
+.Toolbar__sources-tab.MuiTab-textColorPrimary.Mui-selected,
+.Toolbar__sources-tab:hover {
+  color: $color-c-600;
+}
+
+.Toolbar__transforms-tab.MuiTab-textColorPrimary.Mui-selected,
+.Toolbar__transforms-tab:hover {
+  color: $color-v-400;
+}
+
+.Toolbar__destinations-tab.MuiTab-textColorPrimary.Mui-selected,
+.Toolbar__destinations-tab:hover {
+  color: $color-t-800;
 }
 
 .Toolbar__nodetype {
-    color: $color-black;
-    background-color: $color-white;
-    padding: 5px;
-    margin: 10px 10px;
-    border: solid 2px;
-    border-radius: 5px;
-    margin-bottom: 2px;
-    cursor: pointer;
-    text-align: center;
+  padding: 5px;
+  margin: 10px 10px;
+  border: solid 2px;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  text-align: center;
 }
+
+// Hydration form elements
 
 .Toolbar__textfield,
 .Toolbar__select {
+  // MUI Overrides
+  .MuiFormLabel-root {
+    background: $color-y-50;
+    padding: 0.2rem;
 
-    // MUI Overrides
-    .MuiFormLabel-root {
-        background: $color-y-50;
-        padding: 0.2rem;
-
-        &.MuiInputLabel-formControl {
-            transform: translate(0, 14px) scale(1);
-        }
-
-        &.MuiInputLabel-shrink {
-            transform: translate(0, 1.5px) scale(0.75);
-        }
-
-        &.Mui-focused,
-        &.MuiFormLabel-filled {
-            background: transparent;
-            color: $color-g-600;
-            padding: 0;
-        }
+    &.MuiInputLabel-formControl {
+      transform: translate(0, 14px) scale(1);
     }
 
-    .MuiInput-root {
-        margin-top: 8px;
+    &.MuiInputLabel-shrink {
+      transform: translate(0, 1.5px) scale(0.75);
     }
 
-    .MuiInput-underline {
-        &:before,
-        &:after {
-            display: none;
-        }
+    &.Mui-focused,
+    &.MuiFormLabel-filled {
+      background: transparent;
+      color: $color-g-600;
+      padding: 0;
     }
+  }
+
+  .MuiInput-root {
+    margin-top: 8px;
+  }
+
+  .MuiInput-underline {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
 }
 
 .Toolbar__select {
-    width: 100%;
+  width: 100%;
 }
