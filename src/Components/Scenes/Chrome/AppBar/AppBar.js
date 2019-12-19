@@ -36,7 +36,8 @@ const appBarStyle = makeStyles(theme => ({
     backgroundColor: 'transparent',
     boxShadow: 'none',
     height: 56,
-    marginTop: 32
+    marginTop: 32,
+    transition: 'margin .2s ease-in-out'
   },
   appBarHydration: {
     position: 'absolute',
