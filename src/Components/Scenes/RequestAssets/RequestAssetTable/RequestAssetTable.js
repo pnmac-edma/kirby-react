@@ -28,18 +28,13 @@ const useStyles = makeStyles(theme => ({
     margin: 14
   }
 }));
+const tableColumns = [
+  { name: 'Name', property: 'name' },
+  { name: 'Date Created', property: 'createddate' }
+];
 
 const TableSection = props => {
-  const {
-    selectedSearchResultCopy,
-    requestCheckBoxSelect,
-    handleModalToggle
-  } = props;
-
-  const tableColumns = [
-    { name: 'Name', property: 'name' },
-    { name: 'Date Created', property: 'createddate' }
-  ];
+  const { selectedSearchResultCopy, requestCheckBoxSelect } = props;
   const classes = useStyles();
   const [selected, setSelected] = useState([]);
   const [order, setOrder] = useState(
@@ -62,12 +57,8 @@ const TableSection = props => {
     }
     setOrderBy(property);
   };
-  const handleChangeRowsPerPage = e => {
+  const handleChangeRowsPerPage = (e, id) => {
     setRowsPerPage(parseInt(e.target.value), 10);
-    setPage(0);
-  };
-
-  const handleToggleCheckbox = (event, id) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected = [...selected];
 
@@ -77,20 +68,10 @@ const TableSection = props => {
       newSelected.splice(selectedIndex, 1);
     }
     setSelected(newSelected);
-  };
-
-  const handleToggleAllCheckbox = event => {
-    if (selectedSearchResultCopy.length === 0) {
-      const newSelecteds = selectedSearchResultCopy.map(request => request.Id);
-      setSelected(newSelecteds);
-      return;
-    } else {
-      setSelected([]);
-    }
+    setPage(0);
   };
 
   const numSelected = selectedSearchResultCopy.filter(val => val.chec).length;
-
   return (
     <Paper className={classes.paper}>
       <Typography className={classes.typography} variant="h5">
@@ -109,7 +90,7 @@ const TableSection = props => {
             orderBy={orderBy}
             numSelected={numSelected}
             rowCount={selectedSearchResultCopy.length}
-            onSelectAllClick={requestCheckBoxSelect && handleToggleAllCheckbox}
+            onSelectAllClick={requestCheckBoxSelect}
             onSort={handleSortClick}
           />
           <RequestTableBodyContainer
