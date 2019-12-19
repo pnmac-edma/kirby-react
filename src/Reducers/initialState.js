@@ -53,6 +53,8 @@ const initialState = {
     employees: [],
     selectedEmployees: [],
     openModal: false,
+    notificationMessage: '',
+    isLoading: false,
     justification: ''
   },
   viewRequests
