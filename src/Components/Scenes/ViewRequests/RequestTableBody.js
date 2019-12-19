@@ -87,7 +87,6 @@ const RequestTableBody = props => {
       </TableRow>
     );
   };
-  console.log('request for assets', requests);
   const createRowCells = (request, col, i) => {
     const [className, onClickFunc] = getCellProps(request, col, i);
     return (
