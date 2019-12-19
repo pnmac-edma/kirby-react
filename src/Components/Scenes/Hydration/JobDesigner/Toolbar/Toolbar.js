@@ -6,7 +6,8 @@ import {
   MenuItem,
   IconButton,
   Tab,
-  Tabs
+  Tabs,
+  Tooltip
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import UndoIcon from '@material-ui/icons/Undo';
@@ -65,16 +66,37 @@ const ToolbarWidget = props => {
   return (
     <div className="Toolbar">
       <div className="Toolbar__top">
-        <IconButton disabled aria-label="Undo" className={classes.iconButton}>
-          <UndoIcon fontSize="small" />
-        </IconButton>
-        <IconButton disabled aria-label="Redo" className={classes.iconButton}>
-          <RedoIcon fontSize="small" />
-        </IconButton>
+        <Tooltip
+          title="Undo"
+          aria-label="Undo"
+          enterDelay={500}
+          leaveDelay={200}
+        >
+          <IconButton disabled aria-label="Undo" className={classes.iconButton}>
+            <UndoIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip
+          title="Redo"
+          aria-label="Redo"
+          enterDelay={500}
+          leaveDelay={200}
+        >
+          <IconButton disabled aria-label="Redo" className={classes.iconButton}>
+            <RedoIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
         <span className={classes.toolbarTopRight}>
-          <Button disabled className={classes.playButton}>
-            <PlayIcon aria-label="Schedule Job" fontSize="small" />
-          </Button>
+          <Tooltip
+            title="Schedule Job"
+            aria-label="Schedule Job"
+            enterDelay={500}
+            leaveDelay={200}
+          >
+            <Button disabled className={classes.playButton}>
+              <PlayIcon aria-label="Schedule Job" fontSize="small" />
+            </Button>
+          </Tooltip>
         </span>
       </div>
       <div className="Toolbar__tabs">
@@ -156,7 +178,7 @@ export const Toolbar = props => {
         <ToolbarItemWidget
           model={{ type: 'dest' }}
           name="Destination"
-          color={color['r300']}
+          color={color['t600']}
           onClick={() => addNodeToDiagram('dest', 400, 400)}
         />
         <div className={classes.typography}>

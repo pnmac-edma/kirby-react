@@ -102,4 +102,11 @@
 
 .srd-default-link path {
   stroke: $color-c-600;
+  stroke-dasharray: 10, 2;
+  animation: dash 1s linear infinite;
+}
+
+.srd-default-link--path-selected {
+  animation: none;
+  stroke-dasharray: 0, 0;
 }
