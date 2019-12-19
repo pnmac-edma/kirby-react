@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import color from '@edma/design-tokens/js/color';
-import Navigation from './Components/Presentational/Chrome/Navigation';
+import NavigationContainer from './Components/Scenes/Chrome/Navigation/Navigation-Container';
 
 export default function App() {
   // Define Kirby theme colors using EDMA Design Tokens in a hook,
@@ -11,19 +11,19 @@ export default function App() {
     palette: {
       type: 'light',
       primary: {
-        light: color.b100,
-        main: color.b300,
-        dark: color.b500
+        light: color.b300,
+        main: color.b700,
+        dark: color.b900
       },
       secondary: {
-        light: color.p100,
-        main: color.p300,
-        dark: color.p500
+        light: color.p300,
+        main: color.p600,
+        dark: color.p800
       },
       error: {
-        light: color.r100,
-        main: color.r300,
-        dark: color.r500
+        light: color.r300,
+        main: color.r600,
+        dark: color.r900
       }
     }
   });
@@ -60,7 +60,7 @@ export default function App() {
     <ThemeProvider theme={kirby}>
       <div className="App">
         <CssBaseline />
-        <Navigation themeToggle={toggleDarkMode} />
+        <NavigationContainer themeToggle={toggleDarkMode} />
       </div>
     </ThemeProvider>
   );

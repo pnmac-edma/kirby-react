@@ -78,7 +78,8 @@ const RequestTableBody = props => {
         <TableCell padding="checkbox">
           <Checkbox
             color="primary"
-            checked={isSelected(request.Id)}
+            id={`${request.Id}`}
+            checked={request.chec || isSelected(request.Id)}
             onClick={e => handleCheckboxClick(e, request.Id)}
           />
         </TableCell>

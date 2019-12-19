@@ -24,9 +24,9 @@ export const searchResultSuccess = response => ({
   payload: response
 });
 
-export const handleCheckBoxSelect = e => ({
+export const handleCheckBoxSelect = ({ target }) => ({
   type: types.HANDLE_CHECKBOX_SELECT,
-  payload: e.target
+  payload: { id: target.id, checked: target.checked }
 });
 
 export const searchResultSortRequest = columnName => ({
@@ -54,4 +54,8 @@ export const handleRemoveChip = id => ({
 
 export const handleSearchClick = () => ({
   type: types.HANDLE_SEARCH_CLICK
+});
+
+export const handleSearchClose = () => ({
+  type: types.HANDLE_SEARCH_CLOSE
 });

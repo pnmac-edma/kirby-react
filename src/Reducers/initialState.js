@@ -34,7 +34,7 @@ const initialState = {
       'Owner',
       'Contains',
       // prettier-ignore
-      "Doesn't contain", // eslint-disable-line
+      'Doesn\'t contain', // eslint-disable-line
       'Equals'
     ],
     isFilterClick: false,
@@ -53,9 +53,9 @@ const initialState = {
     employees: [],
     selectedEmployees: [],
     openModal: false,
-    justification: 'This is Just test',
     notificationMessage: '',
-    isLoading: false
+    isLoading: false,
+    justification: ''
   },
   viewRequests
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   TextField,
@@ -17,7 +17,8 @@ const SearchInput = props => {
     isSearchClicked,
     searchHandleInput,
     searchResultRequest,
-    handleKeyPress
+    handleKeyPress,
+    handleSearchClose
   } = props;
 
   const history = useHistory();
@@ -35,7 +36,11 @@ const SearchInput = props => {
 
   return (
     <React.Fragment>
-      <Dialog open={isSearchClicked} aria-labelledby="form-dialog-title" className="search-modal">
+      <Dialog
+        open={isSearchClicked}
+        aria-labelledby="form-dialog-title"
+        className="search-modal"
+      >
         <DialogContent>
           <Grid container spacing={1} alignItems="flex-end">
             <Grid item>
@@ -53,16 +58,16 @@ const SearchInput = props => {
               />
             </Grid>
             <Grid item>
-              <Button onClick={() => searchResultRequest()}><SearchIcon /></Button>
+              <Button onClick={() => searchResultRequest()}>
+                <SearchIcon />
+              </Button>
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={() => searchResultRequest()}
+            onClick={() => handleSearchClose()}
             color="primary"
-            component={Link}
-            to={urlWithParams}
             className="search-modal__close-btn"
           >
             <CloseIcon />

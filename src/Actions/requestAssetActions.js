@@ -5,9 +5,9 @@ export const requestAssetsClick = obj => ({
   payload: obj
 });
 
-export const requestCheckBoxSelect = e => ({
+export const requestCheckBoxSelect = ({ target }) => ({
   type: types.REQUEST_CHECKBOX_SELECT,
-  payload: e.target
+  payload: { id: target.id, checked: target.checked }
 });
 
 export const getEmployeesFetch = () => ({
@@ -26,6 +26,11 @@ export const handleModalToggle = () => ({
 export const handleRemoveSelected = obj => ({
   type: types.HANDLE_REMOVE_SELECTED,
   payload: obj
+});
+
+export const justificationHandleInput = e => ({
+  type: types.JUSTIFICATION_HANDLE_INPUT,
+  payload: e.target.value
 });
 
 export const makeRequestsFetch = () => ({

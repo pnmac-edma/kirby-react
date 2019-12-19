@@ -13,7 +13,12 @@ const viewRequestsReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
     }
     case types.USER_REQUESTS_SUCCESS: {
-      return { ...state, isLoading: false, outboundRequests: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        outboundRequests: action.payload,
+        error: {}
+      };
     }
     case types.USER_REQUESTS_FAILURE: {
       return { ...state, isLoading: false, error: action.payload };
@@ -22,7 +27,12 @@ const viewRequestsReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
     }
     case types.APPROVER_REQUESTS_SUCCESS: {
-      return { ...state, isLoading: false, inboundRequests: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        inboundRequests: action.payload,
+        error: {}
+      };
     }
     case types.APPROVER_REQUESTS_FAILURE: {
       return { ...state, isLoading: false, error: action.payload };
@@ -31,7 +41,12 @@ const viewRequestsReducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
     }
     case types.GOVERNANCE_REQUESTS_SUCCESS: {
-      return { ...state, isLoading: false, inboundRequests: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        inboundRequests: action.payload,
+        error: {}
+      };
     }
     case types.GOVERNANCE_REQUESTS_FAILURE: {
       return { ...state, isLoading: false, error: action.payload };
