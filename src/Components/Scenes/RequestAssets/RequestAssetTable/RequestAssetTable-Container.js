@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import RequestAssetTable from './RequestAssetTable';
-import { requestCheckBoxSelect } from '../../../../Actions/requestAssetActions';
+import {
+  requestCheckBoxSelect,
+  handleModalToggle
+} from '../../../../Actions/requestAssetActions';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {
@@ -11,7 +14,8 @@ const mapStateToProps = ({ requestAssets }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestCheckBoxSelect: e => dispatch(requestCheckBoxSelect(e))
+    requestCheckBoxSelect: e => dispatch(requestCheckBoxSelect(e)),
+    handleModalToggle: e => dispatch(handleModalToggle(e))
   };
 };
 
