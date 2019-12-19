@@ -16,6 +16,16 @@ import PlayIcon from '@material-ui/icons/PlayArrow';
 import color from '@edma/design-tokens/js/color';
 
 const toolbarStyles = makeStyles(theme => ({
+  toolbar: {
+    background: theme.palette.type === 'light' ? color.white : color.black,
+    borderLeftColor: theme.palette.type === 'light' ? color.g100 : color.g700
+  },
+  toolbarBottomBorder: {
+    borderBottomColor: theme.palette.type === 'light' ? color.g100 : color.g700
+  },
+  toolbarTabs: {
+    extends: 'toolbarTop'
+  },
   typography: {
     textAlign: 'left',
     padding: '8px 16px 16px'
@@ -64,8 +74,8 @@ const ToolbarWidget = props => {
   };
 
   return (
-    <div className="Toolbar">
-      <div className="Toolbar__top">
+    <div className={`${classes.toolbar} Toolbar`}>
+      <div className={`${classes.toolbarBottomBorder} Toolbar__top`}>
         <Tooltip
           title="Undo"
           aria-label="Undo"
@@ -99,7 +109,7 @@ const ToolbarWidget = props => {
           </Tooltip>
         </span>
       </div>
-      <div className="Toolbar__tabs">
+      <div className={`${classes.toolbarBottomBorder} Toolbar__tabs`}>
         <Tabs
           value={tab}
           indicatorColor="primary"

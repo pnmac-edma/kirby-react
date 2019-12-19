@@ -4,20 +4,19 @@
 //      in the hydration flow.
 
 .Toolbar {
-  background: $color-white;
   width: 260px;
   height: 100vh;
-  border-left: 1px solid $color-g-100;
+  border-left: 1px solid;
   z-index: 999;
 }
 
 .Toolbar__top {
   padding: 8px;
-  border-bottom: 1px solid $color-g-100;
+  border-bottom: 1px solid;
 }
 
 .Toolbar__tabs {
-  border-bottom: 1px solid $color-g-100;
+  border-bottom: 1px solid;
 
   // MUI Overrides
   .MuiTab-root {
@@ -54,8 +53,6 @@
 }
 
 .Toolbar__nodetype {
-  color: $color-black;
-  background-color: $color-white;
   padding: 5px;
   margin: 10px 10px;
   border: solid 2px;

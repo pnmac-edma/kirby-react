@@ -1,4 +1,6 @@
 import React, { useState, useReducer } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import color from '@edma/design-tokens/js/color';
 import { DiagramWidget } from '@projectstorm/react-diagrams';
 
 import { Toolbar } from './Toolbar/Toolbar';
@@ -9,8 +11,15 @@ import { SourceNodeModel } from './DiagramApp/SourceNode';
 import { DestNodeModel } from './DiagramApp/DestNode';
 import { TransNodeModel } from './DiagramApp/TransNode';
 
+const diagramStyles = makeStyles(theme => ({
+  diagramCanvas: {
+    background: theme.palette.type === 'light' ? color.g50 : color.g900
+  }
+}));
+
 const JobDesigner = props => {
   const { app } = props;
+  const classes = diagramStyles();
 
   const [selectedNode, setSelectedNode] = useState(null);
   // Use an incrementing counter to force a re-render of canvas
@@ -44,7 +53,7 @@ const JobDesigner = props => {
   };
 
   return (
-    <div className="Diagram">
+    <div className={`Diagram`}>
       <div
         className="Diagram__layer"
         onDrop={event => {
@@ -57,7 +66,7 @@ const JobDesigner = props => {
         onDragOver={event => event.preventDefault()}
       >
         <DiagramWidget
-          className="Diagram__canvas"
+          className={`${classes.diagramCanvas} Diagram__canvas`}
           diagramEngine={app.getDiagramEngine()}
         />
       </div>

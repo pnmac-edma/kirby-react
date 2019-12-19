@@ -53,7 +53,7 @@ const appBarStyle = makeStyles(theme => ({
   },
   breadcrumbs: {
     whiteSpace: 'nowrap',
-    color: theme.palette.common.black,
+    color: theme.palette.type === 'light' ? color.black : color.white,
     marginLeft: 24
   }
 }));
