@@ -16,6 +16,9 @@ const tileStyles = makeStyles(theme => ({
   },
   tileInner: {
     backgroundColor: theme.palette.type === 'light' ? color.white : color.g800
+  },
+  tileTitle: {
+    color: theme.palette.type === 'light' ? color.c600 : color.c400
   }
 }));
 
@@ -28,7 +31,9 @@ const SourceNodeWidget = props => {
     <div>
       <div className={`${classes.tile} Tile Tile__source`}>
         <div className={`${classes.tileInner} Tile__inner`}>
-          <div className="Tile__source-title">Source</div>
+          <div className={`${classes.tileTitle} Tile__source-title`}>
+            Source
+          </div>
           <div>{name}</div>
         </div>
       </div>

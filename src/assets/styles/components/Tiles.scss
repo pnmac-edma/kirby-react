@@ -50,7 +50,7 @@
 
     & > .port:not([data-name='left']) {
       border-radius: 50%;
-      background: $color-white;
+      background: transparent;
       border: 2px solid;
       margin-right: 0.5rem;
       height: 8px;
@@ -80,18 +80,6 @@
 .Tile__transform-title,
 .Tile__destination-title {
   font-size: 12px;
-}
-
-.Tile__source-title {
-  color: $color-c-600;
-}
-
-.Tile__transform-title {
-  color: $color-v-400;
-}
-
-.Tile__destination-title {
-  color: $color-t-800;
 }
 
 // Tile link overrides

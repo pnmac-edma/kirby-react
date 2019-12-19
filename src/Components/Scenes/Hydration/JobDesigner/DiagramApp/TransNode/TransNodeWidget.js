@@ -16,6 +16,9 @@ const tileStyles = makeStyles(theme => ({
   },
   tileInner: {
     backgroundColor: theme.palette.type === 'light' ? color.white : color.g800
+  },
+  tileTitle: {
+    color: theme.palette.type === 'light' ? color.v400 : color.v300
   }
 }));
 
@@ -28,7 +31,9 @@ const TransNodeWidget = props => {
     <div>
       <div className={`${classes.tile} Tile Tile__transform`}>
         <div className={`${classes.tileInner} Tile__inner`}>
-          <div className="Tile__transform-title">Transform</div>
+          <div className={`${classes.tileTitle} Tile__transform-title`}>
+            Transform
+          </div>
           <div>{name}</div>
         </div>
       </div>
