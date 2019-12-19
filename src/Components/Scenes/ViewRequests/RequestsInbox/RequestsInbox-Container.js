@@ -3,7 +3,7 @@ import RequestsInbox from './RequestsInbox';
 import {
   approverRequestsFetch,
   governanceRequestsFetch,
-  handleFuck
+  handleFooterButtonClick
 } from '../../../../State/ViewRequests/actions';
 
 const mapStateToProps = ({ viewRequests, currentUser }) => {
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
     governanceRequestsFetch: (page, size, status) => {
       dispatch(governanceRequestsFetch(page, size, status));
     },
-    handleFuck: e => dispatch(handleFuck(e))
+    handleFooterButtonClick: e => dispatch(handleFooterButtonClick(e))
   };
 };
 

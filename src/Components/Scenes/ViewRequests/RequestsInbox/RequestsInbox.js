@@ -13,7 +13,7 @@ const RequestsInbox = props => {
     isLoading,
     approverRequestsFetch,
     governanceRequestsFetch,
-    handleFuck
+    handleFooterButtonClick
   } = props;
   const requestsInboxTableColumns = [
     { name: 'Request', property: 'databasename' }, // placeholder from name property
@@ -51,7 +51,7 @@ const RequestsInbox = props => {
             requests={reqs}
             handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
             setFooterButtonText={setFooterButtonText}
-            handleFooterButtonClick={handleFuck}
+            handleFooterButtonClick={handleFooterButtonClick}
           />
         </>
       )}
