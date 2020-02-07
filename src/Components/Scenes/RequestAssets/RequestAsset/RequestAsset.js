@@ -7,6 +7,7 @@ import RequestingForContainer from '../RequestingFor/RequestingFor-Container';
 import RequestedByContainer from '../RequestedBy/RequestedBy-Container';
 import SnackBarContainer from '../SnackBar/SnackBar-Container';
 import RemoveModalContainer from '../RemoveModal/RemoveModal-Container';
+import MakeRequestsContainer from '../MakeRequests/MakeRequests-Container';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -30,7 +31,8 @@ const useStyles = makeStyles(theme => ({
     width: 400,
     marginBottom: 32,
     marginTop: 24
-  }
+  },
+  buttonStyle: { textAlign: 'left', marginTop: 40 }
 }));
 
 const RequestAsset = ({ getEmployeesFetch, openModal }) => {
@@ -59,6 +61,9 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
           />
         ) : null}
         <RequestAssetJustificationContainer />
+        <div className={classes.buttonStyle}>
+          <MakeRequestsContainer />
+        </div>
         <SnackBarContainer
           handleCloseNotification={handleCloseNotification}
           notification={notification}
