@@ -11,6 +11,7 @@ import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResu
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
 import NewJobContainer from '../../Hydration/NewJob/NewJob-Container';
+import NewDestinationContainer from '../../Hydration/NewDestination/NewDestination-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -55,6 +56,10 @@ const PageWrapper = ({
         <Route path="/search/access" component={RequestAssetContainer} />
         <Route path="/search" component={SearchResultsContainer} />
         {/* hydration pages */}
+        <Route
+          path="/hydration/new-destination"
+          component={NewDestinationContainer}
+        />
         <Route path="/hydration/new-job" component={NewJobContainer} />
         {/* requests pages */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
