@@ -45,7 +45,7 @@ const navStyle = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
     }),
-    transitionDelay: '500ms'
+    transitionDelay: '200ms'
   },
   drawerClose: {
     overflow: 'hidden',
