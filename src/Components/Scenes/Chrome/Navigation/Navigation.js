@@ -111,7 +111,7 @@ const Navigation = props => {
     setOpen(!open);
   };
 
-  return (
+  return !isRedirecting ? (
     <div className={classes.root}>
       {apiError === null && (
         <>
@@ -162,7 +162,7 @@ const Navigation = props => {
       {apiError === 400 && <BadRequest />}
       {(apiError === 401 || apiError === 403) && <ExpiredAuth />}
     </div>
-  );
+  ) : null;
 };
 
 export default Navigation;
