@@ -3,6 +3,7 @@ import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import color from '@edma/design-tokens/js/color';
 import fontSize from '@edma/design-tokens/js/fontSize';
+import font from '@edma/design-tokens/js/font';
 import weight from '@edma/design-tokens/js/weight';
 import spacing from '@edma/design-tokens/js/spacing';
 import NavigationContainer from './Components/Scenes/Chrome/Navigation/Navigation-Container';
@@ -13,14 +14,14 @@ export default function App() {
   const [theme, setTheme] = useState({
     typography: {
       body1: {
-        fontFamily: 'Open Sans',
+        fontFamily: font.body,
         maxWidth: 600
       },
       body2: {
-        fontFamily: 'Open Sans'
+        fontFamily: font.body
       },
       h1: {
-        fontFamily: 'Gilroy',
+        fontFamily: font.heading,
         fontSize: fontSize['h1'],
         fontWeight: weight['bold'],
         '&:after': {
@@ -34,7 +35,7 @@ export default function App() {
         }
       },
       h2: {
-        fontFamily: 'Gilroy',
+        fontFamily: font.heading,
         fontSize: fontSize['h2'],
         fontWeight: weight['bold'],
         maxWidth: 600,
@@ -57,7 +58,7 @@ export default function App() {
         }
       },
       h3: {
-        fontFamily: 'Open Sans',
+        fontFamily: font.body,
         fontWeight: 'normal',
         color: color.g700,
         minWidth: 260,
@@ -67,15 +68,15 @@ export default function App() {
         letterSpacing: 0
       },
       h4: {
-        fontFamily: 'Gilroy',
+        fontFamily: font.heading,
         maxWidth: 600
       },
       h5: {
-        fontFamily: 'Gilroy',
+        fontFamily: font.heading,
         maxWidth: 600
       },
       h6: {
-        fontFamily: 'Gilroy',
+        fontFamily: font.heading,
         letterSpacing: 1.5,
         fontSize: fontSize['body1'],
         maxWidth: 600,
@@ -116,7 +117,7 @@ export default function App() {
         h1: theme.typography.h1,
         h2: theme.typography.h2,
         h3: {
-          fontFamily: 'Open Sans',
+          fontFamily: font.body,
           fontWeight: 'normal',
           color: theme.palette.type === 'light' ? color.g300 : color.g700,
           minWidth: 260,
