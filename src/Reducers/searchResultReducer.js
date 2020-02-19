@@ -17,7 +17,8 @@ const searchReducer = (state = initialState.searchResult, action) => {
         ...state,
         isLoading: true,
         selectedAll: false,
-        displaySearchResult: true
+        displaySearchResult: true,
+        isSearchClicked: false
       };
     }
     case types.SEARCH_RESULT_SUCCESS: {

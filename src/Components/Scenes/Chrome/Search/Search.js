@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import {
   Button,
   TextField,
@@ -58,9 +58,9 @@ const SearchInput = props => {
               />
             </Grid>
             <Grid item>
-              <Button onClick={() => searchResultRequest()}>
+              <Link to="/search" onClick={() => searchResultRequest()}>
                 <SearchIcon />
-              </Button>
+              </Link>
             </Grid>
           </Grid>
         </DialogContent>
