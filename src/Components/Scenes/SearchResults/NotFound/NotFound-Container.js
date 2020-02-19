@@ -3,7 +3,7 @@ import NotFound from './NotFound';
 
 const mapStateToProps = ({ searchResult }) => {
   return {
-    searchInput: searchResult.searchInput
+    searchedInput: searchResult.searchedInput
   };
 };
 

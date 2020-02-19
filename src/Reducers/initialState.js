@@ -16,6 +16,7 @@ const initialState = {
   },
   searchResult: {
     searchInput: '',
+    searchedInput: '',
     isLoading: false,
     displaySearchResult: false,
     searchResult: [],

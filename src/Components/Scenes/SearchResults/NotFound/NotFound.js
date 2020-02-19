@@ -2,15 +2,15 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 const NotFound = props => {
-  const { searchInput } = props;
+  const { searchedInput } = props;
   return (
     <React.Fragment>
       <Typography variant="h6" id="tableTitle">
-        Search results for {searchInput}
+        Search results for {searchedInput}
       </Typography>
       <Typography>
-        We couldn't find anything matching <strong>{searchInput}</strong> in the
-        lake
+        We couldn't find anything matching <strong>{searchedInput}</strong> in
+        the lake
       </Typography>
     </React.Fragment>
   );

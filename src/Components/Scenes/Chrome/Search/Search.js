@@ -58,7 +58,10 @@ const SearchInput = props => {
               />
             </Grid>
             <Grid item>
-              <Link to="/search" onClick={() => searchResultRequest()}>
+              <Link
+                to="/search"
+                onClick={() => searchResultRequest(searchInput)}
+              >
                 <SearchIcon />
               </Link>
             </Grid>

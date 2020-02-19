@@ -18,7 +18,8 @@ const searchReducer = (state = initialState.searchResult, action) => {
         isLoading: true,
         selectedAll: false,
         displaySearchResult: true,
-        isSearchClicked: false
+        isSearchClicked: false,
+        searchedInput: action.payload
       };
     }
     case types.SEARCH_RESULT_SUCCESS: {

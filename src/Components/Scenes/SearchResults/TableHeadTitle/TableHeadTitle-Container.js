@@ -4,7 +4,7 @@ import { handleFilterClick } from '../../../../Actions/searchResultActions';
 
 const mapStateToProps = ({ searchResult }) => {
   return {
-    searchInput: searchResult.searchInput,
+    searchedInput: searchResult.searchedInput,
     isFilterClick: searchResult.isFilterClick
   };
 };
@@ -14,7 +14,4 @@ const mapDispatchToProps = dispatch => {
     handleFilterClick: () => dispatch(handleFilterClick())
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TableHeadTitle);
+export default connect(mapStateToProps, mapDispatchToProps)(TableHeadTitle);
