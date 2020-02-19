@@ -15,3 +15,6 @@ export const GOVERNANCE_REQUESTS_FAILURE = 'GOVERNANCE_REQUESTS_FAILURE';
 
 // actions pertaining to filtering incoming request data
 export const GET_ARCHIVED_REQUESTS = 'GET_ARCHIVED_REQUESTS';
+
+//handleFooterButtonClick
+export const HANDLE_FOOTER_BUTTON_CLICK = 'HANDLE_FOOTER_BUTTON_CLICK';
