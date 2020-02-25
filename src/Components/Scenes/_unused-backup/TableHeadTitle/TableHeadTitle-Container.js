@@ -14,7 +14,4 @@ const mapDispatchToProps = dispatch => {
     handleFilterClick: () => dispatch(handleFilterClick())
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TableHeadTitle);
+export default connect(mapStateToProps, mapDispatchToProps)(TableHeadTitle);

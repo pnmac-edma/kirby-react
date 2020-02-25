@@ -9,14 +9,14 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 
-const footerStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 6,
     borderTop: `1px solid ${theme.palette.grey['300']}`
   }
 }));
 
-const RequestTableFooter = props => {
+const TableWrapperFooter = props => {
   const {
     children,
     count,
@@ -25,7 +25,7 @@ const RequestTableFooter = props => {
     onChangePage,
     onChangeRowsPerPage
   } = props;
-  const classes = footerStyles();
+  const classes = useStyles();
 
   return (
     <Table className={classes.table} size="small">
@@ -55,7 +55,7 @@ const RequestTableFooter = props => {
   );
 };
 
-RequestTableFooter.propTypes = {
+TableWrapperFooter.propTypes = {
   children: PropTypes.node,
   count: PropTypes.number,
   rowsPerPage: PropTypes.number,
@@ -64,4 +64,4 @@ RequestTableFooter.propTypes = {
   onChangeRowsPerPage: PropTypes.func
 };
 
-export default RequestTableFooter;
+export default TableWrapperFooter;

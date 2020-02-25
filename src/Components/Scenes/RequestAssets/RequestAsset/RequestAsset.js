@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { Divider } from '@material-ui/core';
+import color from '@edma/design-tokens/js/color';
+import fontSize from '@edma/design-tokens/js/fontSize';
 import { makeStyles } from '@material-ui/core/styles';
 import RequestAssetTableContainer from '../RequestAssetTable/RequestAssetTable-Container';
 import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
@@ -10,29 +12,30 @@ import RemoveModalContainer from '../RemoveModal/RemoveModal-Container';
 import MakeRequestsContainer from '../MakeRequests/MakeRequests-Container';
 
 const useStyles = makeStyles(theme => ({
-  container: {
+  flexStructure: {
     display: 'flex',
-    flexWrap: 'wrap'
+    justifyContent: 'center'
+  },
+  sidebar: {
+    background: color.g200,
+    fontSize: fontSize[1],
+    marginTop: '-10rem',
+    marginBottom: '-10rem',
+    overflow: 'hidden',
+    paddingTop: '10rem'
   },
   sideTable: {
-    marginLeft: '32rem',
-    marginRight: '1rem'
+    width: '70%'
   },
   sideBarPostion: {
-    marginRight: '3rem',
-    marginTop: '2rem',
-    marginLeft: '1rem',
+    margin: '2rem 3rem 0rem 1rem',
     color: 'black'
-  },
-  title: {
-    width: 'max-content'
   },
   dividerStyle: {
     width: 400,
     marginBottom: 32,
     marginTop: 24
-  },
-  buttonStyle: { textAlign: 'left', marginTop: 40 }
+  }
 }));
 
 const RequestAsset = ({ getEmployeesFetch, openModal }) => {
@@ -52,32 +55,31 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
   };
 
   return (
-    <>
-      <div className={classes.sideTable}>
-        <RequestAssetTableContainer />
-        {openModal ? (
-          <RemoveModalContainer
-            handleOpenNotification={handleOpenNotification}
-          />
-        ) : null}
-        <RequestAssetJustificationContainer />
-        <div className={classes.buttonStyle}>
-          <MakeRequestsContainer />
-        </div>
-        <SnackBarContainer
-          handleCloseNotification={handleCloseNotification}
-          notification={notification}
-        />
-      </div>
-      <div className="sidebar">
+    <div className={classes.flexStructure}>
+      <div className={classes.sidebar}>
         <div className={classes.sideBarPostion}>
-          <p className={classes.title}>Request Assets</p>
+          <p>Request Assets</p>
           <RequestedByContainer />
           <Divider className={classes.dividerStyle} />
           <RequestingForContainer />
         </div>
       </div>
-    </>
+
+      <div className={classes.sideTable}>
+        <RequestAssetTableContainer />
+        {openModal && (
+          <RemoveModalContainer
+            handleOpenNotification={handleOpenNotification}
+          />
+        )}
+        <RequestAssetJustificationContainer />
+        <MakeRequestsContainer />
+        <SnackBarContainer
+          handleCloseNotification={handleCloseNotification}
+          notification={notification}
+        />
+      </div>
+    </div>
   );
 };
 export default RequestAsset;

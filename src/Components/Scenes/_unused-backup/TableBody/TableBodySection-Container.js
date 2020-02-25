@@ -17,7 +17,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TableBodySection);
+export default connect(mapStateToProps, mapDispatchToProps)(TableBodySection);

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RequestTableTitle from '../RequestTableTitle';
-import RequestTable from '../RequestTable';
+import TableWrapper from '../../../Presentational/Table/TableWrapper';
 import { transformRequests } from '../../../../State/helpers';
-import TableSkeleton from '../../../Presentational/TableSkeleton/TableSkeleton';
 
 const RequestsInbox = props => {
   const {
@@ -12,16 +11,29 @@ const RequestsInbox = props => {
     requests,
     isLoading,
     approverRequestsFetch,
-    governanceRequestsFetch
+    governanceRequestsFetch,
+    selected,
+    setToggleViewCheckbox,
+    setToggleViewAllCheckbox
   } = props;
-  const requestsInboxTableColumns = [
-    { name: 'Request', property: 'databasename' }, // placeholder from name property
-    { name: 'Description', property: 'description' },
+
+  const columns = [
+    {
+      name: 'Request',
+      property: 'databasename'
+    }, // placeholder from name property
+    {
+      name: 'Description',
+      property: 'description'
+    },
     {
       name: 'Status',
       property: userRole.governance ? 'govstatus' : 'requeststatus'
     },
-    { name: 'Date Requested', property: 'createddate' }
+    {
+      name: 'Date Requested',
+      property: 'createddate'
+    }
   ];
 
   useEffect(() => {
@@ -35,23 +47,24 @@ const RequestsInbox = props => {
 
   const reqs = transformRequests(requests, userRole);
 
-  const setFooterButtonText = selected =>
-    `${selected.length} request${selected.length !== 1 ? 's' : ''} selected`;
+  const footerButtonText = `${selected.length} request${
+    selected.length !== 1 ? 's' : ''
+  } selected`;
 
   return (
     <>
       <RequestTableTitle title="Requests Inbox" />
-      {isLoading ? (
-        <TableSkeleton />
-      ) : (
-        <RequestTable
-          tableColumns={requestsInboxTableColumns}
-          requests={reqs}
-          handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
-          setFooterButtonText={setFooterButtonText}
-          handleFooterButtonClick={() => console.log('footer button clicked')}
-        />
-      )}
+      <TableWrapper
+        isLoading={isLoading}
+        selected={selected}
+        columns={columns}
+        data={reqs}
+        setToggleCheckbox={setToggleViewCheckbox}
+        setToggleAllCheckbox={setToggleViewAllCheckbox}
+        handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
+        footerButtonText={footerButtonText}
+        handleFooterButtonClick={() => console.log('footer button clicked')}
+      />
     </>
   );
 };

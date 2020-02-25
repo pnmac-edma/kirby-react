@@ -19,15 +19,17 @@ const headerStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestTableHeader = props => {
+const TableWrapperColumnHeaders = props => {
   const {
     columns,
+    data,
     order,
     orderBy,
     numSelected,
     rowCount,
     onSelectAllClick,
-    onSort
+    onSort,
+    selected
   } = props;
 
   const classes = headerStyles();
@@ -41,7 +43,7 @@ const RequestTableHeader = props => {
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
-            onClick={onSelectAllClick}
+            onClick={() => onSelectAllClick(selected, data)}
             inputProps={{ 'aria-label': 'select all requests' }}
             id="all"
           />
@@ -66,7 +68,7 @@ const RequestTableHeader = props => {
   );
 };
 
-RequestTableHeader.propTypes = {
+TableWrapperColumnHeaders.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -81,4 +83,4 @@ RequestTableHeader.propTypes = {
   onSort: PropTypes.func
 };
 
-export default RequestTableHeader;
+export default TableWrapperColumnHeaders;

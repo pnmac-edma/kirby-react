@@ -1,0 +1,19 @@
+import React from 'react';
+import { Typography } from '@material-ui/core';
+
+const TableWrapperNotFound = props => {
+  const { searchInput } = props;
+  return (
+    <React.Fragment>
+      <Typography variant="h6" id="tableTitle">
+        Search results for {searchInput}
+      </Typography>
+      <Typography>
+        We couldn't find anything matching <strong>{searchInput}</strong> in the
+        lake
+      </Typography>
+    </React.Fragment>
+  );
+};
+
+export default TableWrapperNotFound;

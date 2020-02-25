@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 
-const titleStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   typography: {
     color: theme.palette.common.black,
     textAlign: 'left',
@@ -12,7 +12,7 @@ const titleStyles = makeStyles(theme => ({
 }));
 
 const RequestTableTitle = ({ title }) => {
-  const classes = titleStyles();
+  const classes = useStyles();
 
   return (
     <Typography className={classes.typography} variant="h5">

@@ -50,6 +50,7 @@ const SearchFilter = props => {
       </MenuItem>
     );
   });
+
   return (
     <React.Fragment>
       <form className={classes.root} autoComplete="off">
