@@ -39,33 +39,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-/**
- * redux state: {
- *  data: [],
- *  selectedData: [],
- *  searchInput: '',
- * }
- *
- * 2 actions must be provided
- * - setToggleCheckbox (this changes selectedData)
- * - setToggleAllCheckbox (this also changes selectedData)
- *
- * main dynamic choice options
- * - title
- * - filter
- * - footer
- *
- * // if you want filtering, you must provide the following
- * filter: []
- *
- * TODO:
- * - implement table for the last table
- * - fix the request assets
- * - fix the styling of table on /search/access page
- * - create table documentation and usage examples
- * - fix select all checkbox button when you have a filter going
- * - fix the PropTypes
- */
 const TableWrapper = props => {
   const {
     columns,
