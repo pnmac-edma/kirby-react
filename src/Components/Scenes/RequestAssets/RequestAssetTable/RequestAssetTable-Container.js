@@ -18,11 +18,11 @@ const mapStateToProps = ({ requestAssets }) => {
 const mapDispatchToProps = dispatch => {
   return {
     requestCheckBoxSelect: e => dispatch(requestCheckBoxSelect(e)),
-    handleModalToggle: () => dispatch(handleModalToggle()),
     setToggleAssetCheckbox: (selected, id) =>
       dispatch(setToggleAssetCheckbox(selected, id)),
     setToggleAssetAllCheckbox: (selected, data) =>
-      dispatch(setToggleAssetAllCheckbox(selected, data))
+      dispatch(setToggleAssetAllCheckbox(selected, data)),
+    handleModalToggle: e => dispatch(handleModalToggle(e))
   };
 };
 

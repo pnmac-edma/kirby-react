@@ -83,3 +83,10 @@ export const setToggleSentAllCheckbox = (selected, data) => ({
   selected,
   data
 });
+
+export const handleFooterButtonClick = selected => {
+  return {
+    type: types.HANDLE_FOOTER_BUTTON_CLICK,
+    payload: selected
+  };
+};

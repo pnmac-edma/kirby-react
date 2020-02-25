@@ -119,6 +119,9 @@ const viewRequestsReducer = (state = initialState, action) => {
         selectedSentRequests: newSelecteds
       };
     }
+    case types.HANDLE_FOOTER_BUTTON_CLICK: {
+      return { ...state };
+    }
     default:
       return state;
   }

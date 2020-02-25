@@ -31,7 +31,6 @@ const TableWrapperColumnHeaders = props => {
     onSort,
     selected
   } = props;
-
   const classes = headerStyles();
 
   return (

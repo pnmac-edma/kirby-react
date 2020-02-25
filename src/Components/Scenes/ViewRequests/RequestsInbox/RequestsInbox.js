@@ -15,6 +15,7 @@ const RequestsInbox = props => {
     selected,
     setToggleViewCheckbox,
     setToggleViewAllCheckbox
+    // handleFooterButtonClick // TODO: check if this doing something
   } = props;
 
   const columns = [
