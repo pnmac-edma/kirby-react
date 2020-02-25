@@ -19,7 +19,9 @@ describe('ViewRequests Reducers', () => {
       inboundRequests: [],
       outboundRequests: [],
       error: {},
-      isLoading: false
+      isLoading: false,
+      selectedRequests: [],
+      selectedSentRequests: []
     };
   });
 
