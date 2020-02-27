@@ -2,14 +2,9 @@ import React, { useState, useReducer } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import { DiagramWidget } from '@projectstorm/react-diagrams';
-
-import { Toolbar } from './Toolbar/Toolbar';
-import DiagramApp from './DiagramApp/DiagramApp';
-
-// import custom models
-import { SourceNodeModel } from './DiagramApp/SourceNode';
-import { DestNodeModel } from './DiagramApp/DestNode';
-import { TransNodeModel } from './DiagramApp/TransNode';
+import { Toolbar } from '../AppToolbar/Toolbar';
+import Diagram from './Diagram';
+import { DestNodeModel, SourceNodeModel, TransNodeModel } from '../AppNodes';
 
 const diagramStyles = makeStyles(theme => ({
   diagramCanvas: {
@@ -78,6 +73,6 @@ const JobDesigner = props => {
   );
 };
 
-const JobDesignerApp = () => <JobDesigner app={new DiagramApp()} />;
+const JobApp = () => <JobDesigner app={new Diagram()} />;
 
-export default JobDesignerApp;
+export default JobApp;

@@ -1,11 +1,15 @@
 import { DiagramEngine, DiagramModel } from '@projectstorm/react-diagrams';
+import {
+  DestNodeFactory,
+  DestPortModel,
+  SimplePortFactory,
+  SourceNodeFactory,
+  SourcePortModel,
+  TransNodeFactory,
+  TransPortModel
+} from '../AppNodes';
 
-import { SimplePortFactory } from './SimplePortFactory';
-import { SourceNodeFactory, SourcePortModel } from './SourceNode';
-import { DestNodeFactory, DestPortModel } from './DestNode';
-import { TransNodeFactory, TransPortModel } from './TransNode';
-
-export default class DiagramApp {
+export default class Diagram {
   constructor() {
     this.engine = new DiagramEngine();
     this.engine.installDefaultFactories();
