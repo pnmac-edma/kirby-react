@@ -1,31 +1,17 @@
 import React, { useState } from 'react';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
-import color from '@edma/design-tokens/js/color';
+import kirbyTheme from './Theme';
 import NavigationContainer from './Components/Scenes/Chrome/Navigation/Navigation-Container';
 
 export default function App() {
   // Define Kirby theme colors using EDMA Design Tokens in a hook,
   // so that we can let users customize them later.
+  const typography = kirbyTheme.typography;
+  const palette = kirbyTheme.palette;
   const [theme, setTheme] = useState({
-    palette: {
-      type: 'light',
-      primary: {
-        light: color.b300,
-        main: color.b700,
-        dark: color.b900
-      },
-      secondary: {
-        light: color.p300,
-        main: color.p600,
-        dark: color.p800
-      },
-      error: {
-        light: color.r300,
-        main: color.r600,
-        dark: color.r900
-      }
-    }
+    typography,
+    palette
   });
 
   // Toggles between light and dark modes.
@@ -34,6 +20,7 @@ export default function App() {
     let newPaletteType = theme.palette.type === 'light' ? 'dark' : 'light';
 
     setTheme({
+      typography,
       palette: {
         type: newPaletteType,
         primary: {

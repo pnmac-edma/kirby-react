@@ -57,7 +57,7 @@ export default function Splash() {
         </div>
       )}
 
-      <Typography variant="h6" className={classes.heading}>
+      <Typography variant="h1" className={classes.heading}>
         Welcome To Kirby
       </Typography>
       <Typography variant="body1" className={classes.paragraph}>
