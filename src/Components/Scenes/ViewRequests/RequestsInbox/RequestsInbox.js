@@ -12,7 +12,8 @@ const RequestsInbox = props => {
     requests,
     isLoading,
     approverRequestsFetch,
-    governanceRequestsFetch
+    governanceRequestsFetch,
+    handleFooterButtonClick
   } = props;
   const requestsInboxTableColumns = [
     { name: 'Request', property: 'databasename' }, // placeholder from name property
@@ -40,17 +41,19 @@ const RequestsInbox = props => {
 
   return (
     <>
-      <RequestTableTitle title="Requests Inbox" />
       {isLoading ? (
         <TableSkeleton />
       ) : (
-        <RequestTable
-          tableColumns={requestsInboxTableColumns}
-          requests={reqs}
-          handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
-          setFooterButtonText={setFooterButtonText}
-          handleFooterButtonClick={() => console.log('footer button clicked')}
-        />
+        <>
+          <RequestTableTitle title="Requests Inbox" />
+          <RequestTable
+            tableColumns={requestsInboxTableColumns}
+            requests={reqs}
+            handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
+            setFooterButtonText={setFooterButtonText}
+            handleFooterButtonClick={handleFooterButtonClick}
+          />
+        </>
       )}
     </>
   );

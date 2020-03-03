@@ -36,7 +36,9 @@ const RequestTable = props => {
     requests,
     setFooterButtonText,
     handleFooterButtonClick,
-    handleRequestClick
+    handleRequestClick,
+    linkTo,
+    title
   } = props;
 
   const classes = tableStyles();
@@ -90,9 +92,9 @@ const RequestTable = props => {
       setSelected([]);
     }
   };
-
   return (
     <Paper className={classes.paper}>
+      {title}
       <div className={classes.tableWrapper}>
         <Table className={classes.table} size="medium" stickyHeader>
           <RequestTableHeader
@@ -123,13 +125,16 @@ const RequestTable = props => {
         page={page}
         onChangePage={(e, newPage) => setPage(newPage)}
         onChangeRowsPerPage={handleChangeRowsPerPage}
+        linkTo={linkTo}
       >
         <Button
           className={classes.button}
           variant="contained"
           color="primary"
           disabled={selected.length === 0}
-          onClick={handleFooterButtonClick}
+          onClick={() =>
+            handleFooterButtonClick({ requests: requests, selected: selected })
+          }
         >
           {setFooterButtonText(selected)}
         </Button>

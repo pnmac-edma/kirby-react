@@ -67,8 +67,6 @@ export const constructRequest = (url, method, path, params, data) => {
     body: JSON.stringify({ ...userSession }) // body parameter needed for aws
   };
 
-  console.log(request);
-
   /* NOTE:
    * Adding these headers violates CORS policies!
    * For now, this will be commented out, but once

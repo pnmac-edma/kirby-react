@@ -87,7 +87,6 @@ const RequestTableBody = props => {
       </TableRow>
     );
   };
-
   const createRowCells = (request, col, i) => {
     const [className, onClickFunc] = getCellProps(request, col, i);
     return (
