@@ -59,6 +59,9 @@ const viewRequestsReducer = (state = initialState, action) => {
         )
       };
     }
+    case types.HANDLE_FOOTER_BUTTON_CLICK: {
+      return { ...state };
+    }
     default:
       return state;
   }

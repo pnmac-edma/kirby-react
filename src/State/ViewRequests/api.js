@@ -17,15 +17,11 @@ export function getUserRequests(createdbyemail) {
     null
   );
 
-  console.log('here');
-
   return axios(request)
     .then(response => {
-      console.log(response);
       return response.data;
     })
     .catch(error => {
-      console.log(error);
       return error;
     });
 }

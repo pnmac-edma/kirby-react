@@ -2,10 +2,9 @@ import { connect } from 'react-redux';
 import Navigation from './Navigation';
 import { authenticateFetch } from '../../../../State/AuthFlow/actions';
 
-const mapStateToProps = ({ currentUser }, { themeToggle }) => {
+const mapStateToProps = ({ currentUser }) => {
   return {
-    sessionToken: currentUser.SessionToken,
-    themeToggle
+    sessionToken: currentUser.SessionToken
   };
 };
 

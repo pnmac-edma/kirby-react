@@ -45,7 +45,7 @@ const navStyle = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
     }),
-    transitionDelay: '500ms'
+    transitionDelay: '200ms'
   },
   drawerClose: {
     overflow: 'hidden',
@@ -68,7 +68,7 @@ const navStyle = makeStyles(theme => ({
 }));
 
 const Navigation = props => {
-  const { sessionToken, authenticateFetch } = props;
+  const { sessionToken, authenticateFetch, themeToggle } = props;
   const classes = navStyle();
 
   const [apiError, setApiError] = useState(null);
@@ -155,7 +155,7 @@ const Navigation = props => {
             <AvatarListItem />
           </Drawer>
           <main>
-            <PageWrapper />
+            <PageWrapper themeToggle={themeToggle} />
           </main>
         </>
       )}

@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import RequestsInbox from './RequestsInbox';
 import {
   approverRequestsFetch,
-  governanceRequestsFetch
+  governanceRequestsFetch,
+  handleFooterButtonClick
 } from '../../../../State/ViewRequests/actions';
 
 const mapStateToProps = ({ viewRequests, currentUser }) => {
@@ -20,7 +21,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(approverRequestsFetch(approverEmail)),
     governanceRequestsFetch: (page, size, status) => {
       dispatch(governanceRequestsFetch(page, size, status));
-    }
+    },
+    handleFooterButtonClick: e => dispatch(handleFooterButtonClick(e))
   };
 };
 

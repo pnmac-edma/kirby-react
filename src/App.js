@@ -1,108 +1,17 @@
 import React, { useState } from 'react';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
-import color from '@edma/design-tokens/js/color';
-import fontSize from '@edma/design-tokens/js/fontSize';
-import font from '@edma/design-tokens/js/font';
-import weight from '@edma/design-tokens/js/weight';
-import spacing from '@edma/design-tokens/js/spacing';
+import kirbyTheme from './Theme';
 import NavigationContainer from './Components/Scenes/Chrome/Navigation/Navigation-Container';
 
 export default function App() {
   // Define Kirby theme colors using EDMA Design Tokens in a hook,
   // so that we can let users customize them later.
+  const typography = kirbyTheme.typography;
+  const palette = kirbyTheme.palette;
   const [theme, setTheme] = useState({
-    typography: {
-      body1: {
-        fontFamily: font.body,
-        maxWidth: 600
-      },
-      body2: {
-        fontFamily: font.body
-      },
-      h1: {
-        fontFamily: font.heading,
-        fontSize: fontSize['h1'],
-        fontWeight: weight['bold'],
-        '&:after': {
-          content: '',
-          background: color.y400,
-          position: 'relative',
-          display: 'block',
-          marginBottom: spacing['2'],
-          width: 64,
-          height: 8
-        }
-      },
-      h2: {
-        fontFamily: font.heading,
-        fontSize: fontSize['h2'],
-        fontWeight: weight['bold'],
-        maxWidth: 600,
-        '& span': {
-          fontSize: 14,
-          textTransform: 'uppercase',
-          letterSpacing: 2,
-          display: 'block',
-          marginBottom: 8
-        },
-        '&:after': {
-          content: '',
-          background: color.y400,
-          position: 'relative',
-          display: 'block',
-          marginBottom: spacing['3'],
-          width: 64,
-          height: 4,
-          top: 8
-        }
-      },
-      h3: {
-        fontFamily: font.body,
-        fontWeight: 'normal',
-        color: color.g700,
-        minWidth: 260,
-        maxWidth: 600,
-        fontSize: fontSize['h3'],
-        lineHeight: 1.33,
-        letterSpacing: 0
-      },
-      h4: {
-        fontFamily: font.heading,
-        maxWidth: 600
-      },
-      h5: {
-        fontFamily: font.heading,
-        maxWidth: 600
-      },
-      h6: {
-        fontFamily: font.heading,
-        letterSpacing: 1.5,
-        fontSize: fontSize['body1'],
-        maxWidth: 600,
-        textTransform: 'uppercase',
-        fontWeight: weight['bold'],
-        marginTop: '0.3rem'
-      }
-    },
-    palette: {
-      type: 'light',
-      primary: {
-        light: color.b300,
-        main: color.b700,
-        dark: color.b900
-      },
-      secondary: {
-        light: color.p300,
-        main: color.p600,
-        dark: color.p800
-      },
-      error: {
-        light: color.r300,
-        main: color.r600,
-        dark: color.r900
-      }
-    }
+    typography,
+    palette
   });
 
   // Toggles between light and dark modes.
@@ -111,25 +20,7 @@ export default function App() {
     let newPaletteType = theme.palette.type === 'light' ? 'dark' : 'light';
 
     setTheme({
-      typography: {
-        body1: theme.typography.body1,
-        body2: theme.typography.body2,
-        h1: theme.typography.h1,
-        h2: theme.typography.h2,
-        h3: {
-          fontFamily: font.body,
-          fontWeight: 'normal',
-          color: theme.palette.type === 'light' ? color.g300 : color.g700,
-          minWidth: 260,
-          maxWidth: 600,
-          fontSize: fontSize['h3'],
-          lineHeight: 1.33,
-          letterSpacing: 0
-        },
-        h4: theme.typography.h4,
-        h5: theme.typography.h5,
-        h6: theme.typography.h6
-      },
+      typography,
       palette: {
         type: newPaletteType,
         primary: {

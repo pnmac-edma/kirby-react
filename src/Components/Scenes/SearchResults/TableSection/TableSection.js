@@ -1,68 +1,30 @@
 import React from 'react';
-import { Table, Paper, TableFooter, TableRow } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import TableHeadTitle from '../TableHeadTitle/TableHeadTitle-Container';
-import TableHeadSectionContainer from '../TableHeadSection/TableHeadSection-Container';
-import TableBodySectionContainer from './../TableBody/TableBodySection-Container';
-import NotFoundContainer from './../NotFound/NotFound-Container';
-import CheckBoxButtonContainer from '../CheckBoxButton/CheckBoxButton-Container';
-import NotFoundFilterContainer from '../NotFoundFilter/NotFoundFilter-Container';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '96%',
-    marginLeft: 8,
-    marginRight: 8
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    width: '100%',
-    overflowX: 'auto',
-    marginBottom: theme.spacing(4)
-  },
-  table: {
-    minWidth: 6
-  },
-  tableWrapper: {
-    maxHeight: 776,
-    overflowX: 'auto'
-  },
-  footerTd: {
-    textAlign: 'left'
-  }
-}));
+import RequestTableContainer from '../../ViewRequests/RequestTable';
 
 const TableSection = props => {
-  const { searchResult, isFilterQueriesEmpty } = props;
-  const classes = useStyles();
-
+  const { requestAssetsClick, searchResultCopy } = props;
+  const tableColumns = [
+    { name: 'Name', property: 'name' },
+    { name: 'Description', property: 'description' },
+    { name: 'Domain', property: 'domain' },
+    { name: 'owner', property: 'createdbyemail' },
+    { name: 'Date Requested', property: 'createddate' }
+  ];
+  const setFooterButtonText = searchResultCopy =>
+    `${searchResultCopy.length} request${
+      searchResultCopy.length !== 1 ? 's' : ''
+    } selected`;
   return (
-    <div>
-      {searchResult.results === undefined ? (
-        <NotFoundContainer />
-      ) : (
-        <Paper className={classes.root}>
-          <div className={classes.tableWrapper}>
-            <TableHeadTitle />
-            <Table className={classes.table} size="small" stickyHeader>
-              <TableHeadSectionContainer />
-              {isFilterQueriesEmpty ? (
-                <NotFoundFilterContainer />
-              ) : (
-                <TableBodySectionContainer />
-              )}
-              <TableFooter>
-                <TableRow>
-                  <td colSpan="2" className={classes.footerTd}>
-                    <CheckBoxButtonContainer />
-                  </td>
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </div>
-        </Paper>
-      )}
-    </div>
+    <RequestTableContainer
+      tableColumns={tableColumns}
+      title={<TableHeadTitle />}
+      linkTo={'/search/access'}
+      requests={searchResultCopy}
+      handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
+      setFooterButtonText={setFooterButtonText}
+      handleFooterButtonClick={requestAssetsClick}
+    />
   );
 };
 
