@@ -15,8 +15,9 @@ export const handleKeyPress = e => ({
   payload: e
 });
 
-export const searchResultRequest = () => ({
-  type: types.SEARCH_RESULT_REQUEST
+export const searchResultRequest = searchInput => ({
+  type: types.SEARCH_RESULT_REQUEST,
+  payload: searchInput
 });
 
 export const searchResultSuccess = response => ({
@@ -58,4 +59,16 @@ export const handleSearchClick = () => ({
 
 export const handleSearchClose = () => ({
   type: types.HANDLE_SEARCH_CLOSE
+});
+
+export const setToggleSearchCheckbox = (selected, id) => ({
+  type: types.SET_TOGGLE_SEARCH_CHECKBOX,
+  selected,
+  id
+});
+
+export const setToggleSearchAllCheckbox = (selected, data) => ({
+  type: types.SET_TOGGLE_SEARCH_ALL_CHECKBOX,
+  selected,
+  data
 });

@@ -4,10 +4,11 @@ import * as types from '../Actions/types';
 const requestAssetsReducers = (state = initialState.requestAssets, action) => {
   switch (action.type) {
     case types.REQUEST_ASSETS_CLICK: {
-      const searchResultCopy = action.payload.requests.filter(value => {
-        return action.payload.selected.includes(value.Id);
-      });
-      return { ...state, selectedSearchResultCopy: searchResultCopy };
+      const { selected, data } = action;
+      const selectedSearchResults = data.filter(({ Id }) =>
+        selected.some(id => id === Id)
+      );
+      return { ...state, selectedSearchResultCopy: selectedSearchResults };
     }
     case types.REQUEST_CHECKBOX_SELECT: {
       let ap = action.payload;
@@ -62,16 +63,19 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
     case types.HANDLE_SELECTED_EMPLOYEES: {
       return { ...state, selectedEmployees: action.payload || [] };
     }
-    case 'HANDLE_MODAL_TOGGLE': {
+    case types.HANDLE_MODAL_TOGGLE: {
       return { ...state, openModal: !state.openModal };
     }
-    case 'HANDLE_REMOVE_SELECTED': {
-      const searchResultCopy = state.selectedSearchResultCopy.filter(
-        value => !value.chec
+    case types.HANDLE_REMOVE_SELECTED: {
+      const { selectedSearchResultCopy, selected } = state;
+      const searchResultCopy = selectedSearchResultCopy.filter(
+        ({ Id }) => !selected.some(id => id === Id)
       );
+
       return {
         ...state,
         selectedSearchResultCopy: searchResultCopy,
+        selected: [],
         openModal: !state.openModal
       };
     }
@@ -96,6 +100,35 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       return {
         ...state,
         justification: action.payload
+      };
+    }
+    case types.SET_TOGGLE_ASSET_CHECKBOX: {
+      const { selected, id } = action;
+      const selectedIndex = selected.indexOf(id);
+      const newSelected = [...selected];
+
+      if (selectedIndex === -1) {
+        newSelected.push(id);
+      } else {
+        newSelected.splice(selectedIndex, 1);
+      }
+
+      return {
+        ...state,
+        selected: newSelected
+      };
+    }
+    case types.SET_TOGGLE_ASSET_ALL_CHECKBOX: {
+      const { selected, data } = action;
+
+      let newSelecteds = [];
+      if (selected.length === 0) {
+        newSelecteds = data.map(request => request.Id);
+      }
+
+      return {
+        ...state,
+        selected: newSelecteds
       };
     }
     default:

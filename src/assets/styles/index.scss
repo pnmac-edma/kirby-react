@@ -9,6 +9,87 @@
 @import 'components/JobDesigner';
 @import 'components/Navigation';
 @import 'components/SearchModal';
-@import 'components/SideBar';
 @import 'components/Toolbar';
 @import 'components/Tiles';
+
+// Import Fonts
+
+// Gilroy Regular
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Regular.ttf') format('truetype'),
+    url('../fonts/Gilroy-Regular.woff') format('woff'),
+    url('../fonts/Gilroy-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Gilroy Regular Italic
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-RegularItalic.ttf') format('truetype'),
+    url('../fonts/Gilroy-RegularItalic.woff') format('woff'),
+    url('../fonts/Gilroy-RegularItalic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+// Gilroy Medium
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Medium.ttf') format('truetype'),
+    url('../fonts/Gilroy-Medium.woff') format('woff'),
+    url('../fonts/Gilroy-Medium.woff2') format('woff2');
+  font-weight: medium;
+  font-style: normal;
+}
+
+// Gilroy Medium Italic
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-MediumItalic.ttf') format('truetype'),
+    url('../fonts/Gilroy-MediumItalic.woff') format('woff'),
+    url('../fonts/Gilroy-MediumItalic.woff2') format('woff2');
+  font-weight: medium;
+  font-style: italic;
+}
+
+// Gilroy Semi-Bold
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-SemiBold.ttf') format('truetype'),
+    url('../fonts/Gilroy-SemiBold.woff') format('woff'),
+    url('../fonts/Gilroy-SemiBold.woff2') format('woff2');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+// Gilroy Semi-Bold Italic
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-SemiBoldItalic.ttf') format('truetype'),
+    url('../fonts/Gilroy-SemiBoldItalic.woff') format('woff'),
+    url('../fonts/Gilroy-SemiBoldItalic.woff2') format('woff2');
+  font-weight: bolder;
+  font-style: italic;
+}
+
+// Gilroy Bold
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Bold.ttf') format('truetype'),
+    url('../fonts/Gilroy-Bold.woff') format('woff'),
+    url('../fonts/Gilroy-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Gilroy Bold Italic
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-BoldItalic.ttf') format('truetype'),
+    url('../fonts/Gilroy-BoldItalic.woff') format('woff'),
+    url('../fonts/Gilroy-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}

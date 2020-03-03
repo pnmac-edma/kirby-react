@@ -14,7 +14,7 @@ const themeToggle = makeStyles({
   }
 });
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ themeToggle: themeToggleFunction }) => {
   const classes = themeToggle();
   const theme = useTheme();
   return (
@@ -25,7 +25,7 @@ const ThemeToggle = () => {
           enterDelay={500}
           leaveDelay={200}
         >
-          <IconButton>
+          <IconButton onClick={() => themeToggleFunction()}>
             <LightBulbDark className={classes.themeToggleLogoLight} />
           </IconButton>
         </Tooltip>
@@ -35,7 +35,7 @@ const ThemeToggle = () => {
           enterDelay={500}
           leaveDelay={200}
         >
-          <IconButton>
+          <IconButton onClick={() => themeToggleFunction()}>
             <LightBulbLight className={classes.themeToggleLogoDark} />
           </IconButton>
         </Tooltip>

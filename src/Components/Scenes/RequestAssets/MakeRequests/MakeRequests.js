@@ -9,10 +9,11 @@ const tableStyles = makeStyles(theme => ({
     textTransform: 'none',
     fontWeight: 'bold',
     color: theme.palette.common.white,
-    margin: 8
+    margin: theme.spacing(1.5)
   }
 }));
 
+// TODO: api call for making requests doesn't work, need to fix
 const MakeRequests = props => {
   const {
     makeRequestsFetch,
@@ -42,9 +43,9 @@ const MakeRequests = props => {
         variant="contained"
         color="primary"
         disabled={
-          !selectedSearchResultCopyLength > 0 ||
-          !selectedEmployeesLength > 0 ||
-          !justificationLength > 0
+          !selectedSearchResultCopyLength ||
+          !selectedEmployeesLength ||
+          !justificationLength
         }
         onClick={() => {
           makeRequestsFetch();

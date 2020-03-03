@@ -6,11 +6,9 @@ import { Link, useLocation } from 'react-router-dom';
 const FindDataListItem = props => {
   const { handleSearchClick, isSearchClicked } = props;
   const activeLink = useLocation();
-
   return (
     <ListItem
       component={Link}
-      to="/search"
       onClick={() => handleSearchClick()}
       button
       className={

@@ -1,8 +1,9 @@
 import * as types from './types';
 
-export const requestAssetsClick = obj => ({
+export const requestAssetsClick = (selected, data) => ({
   type: types.REQUEST_ASSETS_CLICK,
-  payload: obj
+  selected,
+  data
 });
 
 export const requestCheckBoxSelect = ({ target }) => ({
@@ -35,4 +36,16 @@ export const justificationHandleInput = e => ({
 
 export const makeRequestsFetch = () => ({
   type: types.MAKE_REQUESTS_FETCH
+});
+
+export const setToggleAssetCheckbox = (selected, id) => ({
+  type: types.SET_TOGGLE_ASSET_CHECKBOX,
+  selected,
+  id
+});
+
+export const setToggleAssetAllCheckbox = (selected, data) => ({
+  type: types.SET_TOGGLE_ASSET_ALL_CHECKBOX,
+  selected,
+  data
 });

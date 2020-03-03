@@ -7,13 +7,15 @@ import Splash from '../../../Presentational/Splash';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
 import SearchContainer from '../Search/Search-Container';
-import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
+import SearchResultsContainer from '../../SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
 import NewJobContainer from '../../Hydration/NewJob/NewJob-Container';
+import NewDestinationContainer from '../../Hydration/NewDestination/NewDestination-Container';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
+    overflowY: 'scroll',
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
@@ -29,7 +31,8 @@ const PageWrapper = ({
   isSearchClicked,
   authenticateFetch,
   sessionToken,
-  newJobName
+  newJobName,
+  themeToggle
 }) => {
   const classes = pageContainerStyle();
   const curPath = useLocation().pathname;
@@ -39,7 +42,7 @@ const PageWrapper = ({
       {curPath === '/hydration/new-job' ? (
         <AppBarContainer hydration jobName={newJobName} />
       ) : (
-        <AppBarContainer />
+        <AppBarContainer themeToggle={themeToggle} />
       )}
 
       <AnimatedSwitch
@@ -55,6 +58,10 @@ const PageWrapper = ({
         <Route path="/search/access" component={RequestAssetContainer} />
         <Route path="/search" component={SearchResultsContainer} />
         {/* hydration pages */}
+        <Route
+          path="/hydration/new-destination"
+          component={NewDestinationContainer}
+        />
         <Route path="/hydration/new-job" component={NewJobContainer} />
         {/* requests pages */}
         <Route exact path="/requests" component={RequestsInboxContainer} />

@@ -61,7 +61,7 @@ const appBarStyle = makeStyles(theme => ({
 
 const Appbar = props => {
   const classes = appBarStyle();
-  const { jobName } = props;
+  const { jobName, themeToggle } = props;
 
   return (
     <AppBar
@@ -96,7 +96,7 @@ const Appbar = props => {
         )}
       </div>
       <div className={classes.themeToggleContainer}>
-        <ThemeToggle />
+        <ThemeToggle themeToggle={themeToggle} />
       </div>
     </AppBar>
   );

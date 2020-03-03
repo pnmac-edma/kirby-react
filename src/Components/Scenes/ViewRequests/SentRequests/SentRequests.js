@@ -1,19 +1,41 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RequestTableTitle from '../RequestTableTitle';
-import RequestTable from '../RequestTable';
 import { transformRequests } from '../../../../State/helpers';
-import TableSkeleton from '../../../Presentational/TableSkeleton/TableSkeleton';
+import TableWrapper from '../../../Presentational/Table/TableWrapper';
 
-const sentRequestsTableColumns = [
-  { name: 'Request', property: 'databasename' },
-  { name: 'Description', property: 'description' },
-  { name: 'Status', property: 'requeststatus' },
-  { name: 'Date Requested', property: 'createddate' }
-];
-
+// TODO: need to check if api is broken or request is broken
+//       table is currently not working
 const SentRequests = props => {
-  const { userEmail, userRole, isLoading, requests, userRequestsFetch } = props;
+  const {
+    userEmail,
+    userRole,
+    isLoading,
+    requests,
+    userRequestsFetch,
+    selected,
+    setToggleSentCheckbox,
+    setToggleSentAllCheckbox
+  } = props;
+
+  const columns = [
+    {
+      name: 'Request',
+      property: 'databasename'
+    },
+    {
+      name: 'Description',
+      property: 'description'
+    },
+    {
+      name: 'Status',
+      property: 'requeststatus'
+    },
+    {
+      name: 'Date Requested',
+      property: 'createddate'
+    }
+  ];
 
   useEffect(() => {
     userRequestsFetch(userEmail);
@@ -21,23 +43,24 @@ const SentRequests = props => {
 
   const reqs = transformRequests(requests, userRole);
 
-  const setFooterButtonText = selected =>
-    `Cancel ${selected.length} request${selected.length !== 1 ? 's' : ''}`;
+  const footerButtonText = `Cancel ${selected.length} request${
+    selected.length !== 1 ? 's' : ''
+  }`;
 
   return (
     <>
       <RequestTableTitle title="Sent Requests" />
-      {isLoading ? (
-        <TableSkeleton />
-      ) : (
-        <RequestTable
-          tableColumns={sentRequestsTableColumns}
-          requests={reqs}
-          handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
-          setFooterButtonText={setFooterButtonText}
-          handleFooterButtonClick={() => console.log('footer button clicked')}
-        />
-      )}
+      <TableWrapper
+        isLoading={isLoading}
+        selected={selected}
+        columns={columns}
+        data={reqs}
+        setToggleCheckbox={setToggleSentCheckbox}
+        setToggleAllCheckbox={setToggleSentAllCheckbox}
+        footerButtonText={footerButtonText}
+        handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
+        handleFooterButtonClick={() => console.log('footer button clicked')}
+      />
     </>
   );
 };

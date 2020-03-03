@@ -59,6 +59,31 @@ export const getArchivedRequests = () => {
     type: types.GET_ARCHIVED_REQUESTS
   };
 };
+
+export const setToggleViewCheckbox = (selected, id) => ({
+  type: types.SET_TOGGLE_VIEW_CHECKBOX,
+  selected,
+  id
+});
+
+export const setToggleViewAllCheckbox = (selected, data) => ({
+  type: types.SET_TOGGLE_VIEW_ALL_CHECKBOX,
+  selected,
+  data
+});
+
+export const setToggleSentCheckbox = (selected, id) => ({
+  type: types.SET_TOGGLE_SENT_CHECKBOX,
+  selected,
+  id
+});
+
+export const setToggleSentAllCheckbox = (selected, data) => ({
+  type: types.SET_TOGGLE_SENT_ALL_CHECKBOX,
+  selected,
+  data
+});
+
 export const handleFooterButtonClick = selected => {
   return {
     type: types.HANDLE_FOOTER_BUTTON_CLICK,
