@@ -39,6 +39,8 @@ const PageWrapper = ({
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? (
         <AppBarContainer hydration jobName={newJobName} />
+      ) : curPath === '/' ? (
+        <AppBarContainer home />
       ) : (
         <AppBarContainer />
       )}

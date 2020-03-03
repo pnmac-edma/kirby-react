@@ -3,6 +3,7 @@ import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import { useLocation } from 'react-router-dom';
 import color from '@edma/design-tokens/js/color';
 import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.svg';
 import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
@@ -36,12 +37,14 @@ const appBarStyle = makeStyles(theme => ({
     backgroundColor: 'transparent',
     boxShadow: 'none',
     height: 56,
-    marginTop: 32,
+    marginTop: 8,
     transition: 'margin .2s ease-in-out'
+  },
+  appBarHome: {
+    marginTop: 32
   },
   appBarHydration: {
     position: 'absolute',
-    marginTop: 8,
     zIndex: 1,
     width: 'calc(100% - 260px)'
   },
@@ -61,6 +64,7 @@ const appBarStyle = makeStyles(theme => ({
 
 const Appbar = props => {
   const classes = appBarStyle();
+  const curPath = useLocation().pathname;
   const { jobName } = props;
 
   return (
@@ -70,13 +74,17 @@ const Appbar = props => {
       className={
         props.hydration
           ? `${classes.appBar} ${classes.appBarHydration}`
+          : props.home
+          ? `${classes.appBar} ${classes.appBarHome}`
           : classes.appBar
       }
     >
       <div className={classes.logoContainer}>
         {props.hydration ? (
           <>
-            <KirbyMark className={classes.mark} />
+            <Link href="/">
+              <KirbyMark className={classes.mark} />
+            </Link>
             <Box className={classes.header}>
               <Breadcrumbs
                 aria-label="breadcrumb"
@@ -91,8 +99,12 @@ const Appbar = props => {
               <KeyboardArrowDownIcon />
             </Box>
           </>
-        ) : (
+        ) : curPath === '/' ? (
           <KirbyLogo className={classes.logo} />
+        ) : (
+          <Link href="/">
+            <KirbyLogo className={classes.logo} />
+          </Link>
         )}
       </div>
       <div className={classes.themeToggleContainer}>
