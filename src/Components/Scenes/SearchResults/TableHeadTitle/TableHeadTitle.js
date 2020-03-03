@@ -33,14 +33,14 @@ const useToolbarStyles = makeStyles(theme => ({
 }));
 
 const TableHeadTitle = props => {
-  const { searchInput, isFilterClick, handleFilterClick } = props;
+  const { searchedInput, isFilterClick, handleFilterClick } = props;
   const classes = useToolbarStyles();
   return (
     <React.Fragment>
       <Toolbar>
         <div className={classes.title}>
           <Typography variant="h6" id="tableTitle">
-            Search results for "{searchInput}"
+            Search results for "{searchedInput}"
           </Typography>
         </div>
 
