@@ -30,7 +30,8 @@ const PageWrapper = ({
   isSearchClicked,
   authenticateFetch,
   sessionToken,
-  newJobName
+  newJobName,
+  themeToggle
 }) => {
   const classes = pageContainerStyle();
   const curPath = useLocation().pathname;
@@ -42,7 +43,7 @@ const PageWrapper = ({
       ) : curPath === '/' ? (
         <AppBarContainer home />
       ) : (
-        <AppBarContainer />
+        <AppBarContainer themeToggle={themeToggle} />
       )}
 
       <AnimatedSwitch
