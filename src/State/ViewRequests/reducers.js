@@ -3,6 +3,8 @@ import * as types from './types';
 export const initialState = {
   inboundRequests: [], // for elevated users, this would be approver or governance requests
   outboundRequests: [], // stores all user requests
+  selectedRequests: [],
+  selectedSentRequests: [],
   error: {},
   isLoading: false
 };
@@ -57,6 +59,64 @@ const viewRequestsReducer = (state = initialState, action) => {
         inboundRequests: state.inboundRequests.filter(
           request => request.archived
         )
+      };
+    }
+    case types.SET_TOGGLE_VIEW_CHECKBOX: {
+      const { selected, id } = action;
+      const selectedIndex = selected.indexOf(id);
+      const newSelected = [...selected];
+
+      if (selectedIndex === -1) {
+        newSelected.push(id);
+      } else {
+        newSelected.splice(selectedIndex, 1);
+      }
+
+      return {
+        ...state,
+        selectedRequests: newSelected
+      };
+    }
+    case types.SET_TOGGLE_VIEW_ALL_CHECKBOX: {
+      const { selected, data } = action;
+
+      let newSelecteds = [];
+      if (selected.length === 0) {
+        newSelecteds = data.map(request => request.Id);
+      }
+
+      return {
+        ...state,
+        selectedRequests: newSelecteds
+      };
+    }
+    case types.SET_TOGGLE_SENT_CHECKBOX: {
+      const { selected, id } = action;
+      const selectedIndex = selected.indexOf(id);
+      const newSelected = [...selected];
+
+      if (selectedIndex === -1) {
+        newSelected.push(id);
+      } else {
+        newSelected.splice(selectedIndex, 1);
+      }
+
+      return {
+        ...state,
+        selectedSentRequests: newSelected
+      };
+    }
+    case types.SET_TOGGLE_SENT_ALL_CHECKBOX: {
+      const { selected, data } = action;
+
+      let newSelecteds = [];
+      if (selected.length === 0) {
+        newSelecteds = data.map(request => request.Id);
+      }
+
+      return {
+        ...state,
+        selectedSentRequests: newSelecteds
       };
     }
     case types.HANDLE_FOOTER_BUTTON_CLICK: {

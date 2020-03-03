@@ -21,6 +21,7 @@ const initialState = {
     displaySearchResult: false,
     searchResult: [],
     searchResultCopy: [],
+    selected: [],
     selectedAll: false,
     sortBy: {
       name: 'asc',
@@ -53,6 +54,7 @@ const initialState = {
   },
   requestAssets: {
     selectedSearchResultCopy: [],
+    selected: [],
     selectedAll: false,
     employees: [],
     selectedEmployees: [],

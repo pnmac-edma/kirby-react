@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
-const footerStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 6,
     borderTop: `1px solid ${theme.palette.grey['300']}`
@@ -21,7 +21,7 @@ const footerStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestTableFooter = props => {
+const TableWrapperFooter = props => {
   const {
     children,
     count,
@@ -31,7 +31,7 @@ const RequestTableFooter = props => {
     onChangeRowsPerPage,
     linkTo
   } = props;
-  const classes = footerStyles();
+  const classes = useStyles();
   const location = useLocation();
   return (
     <Table className={classes.table} size="small">
@@ -68,7 +68,7 @@ const RequestTableFooter = props => {
   );
 };
 
-RequestTableFooter.propTypes = {
+TableWrapperFooter.propTypes = {
   children: PropTypes.node,
   count: PropTypes.number,
   rowsPerPage: PropTypes.number,
@@ -77,4 +77,4 @@ RequestTableFooter.propTypes = {
   onChangeRowsPerPage: PropTypes.func
 };
 
-export default RequestTableFooter;
+export default TableWrapperFooter;

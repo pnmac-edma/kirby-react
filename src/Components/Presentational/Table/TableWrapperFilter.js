@@ -24,53 +24,54 @@ const useStyles = makeStyles(theme => ({
     width: 200,
     marginTop: theme.spacing(1)
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2)
-  },
   button: {
     margin: theme.spacing(1)
   }
 }));
 
-const SearchFilter = props => {
+const TableWrapperFilter = props => {
   const classes = useStyles();
-  const {
-    handleFilterSelect,
-    filterBy,
-    filterType,
-    filterTerm,
-    handleFilterRequest,
-    selectors
-  } = props;
-  const selected = [];
-  selectors.forEach((value, index) => {
-    selected.push(
-      <MenuItem key={index} value={value.toLowerCase()}>
+  const { filter, filterForm, setFilterForm, setSelectedFilters } = props;
+
+  const filterByOptions = filter.map((value, i) => {
+    return (
+      <MenuItem key={i} value={value}>
         {value}
       </MenuItem>
     );
   });
+
+  const filterTypeOptions = ['Contains', "Doesn't Contain", 'Equals'].map(
+    (value, i) => {
+      return (
+        <MenuItem key={i} value={value}>
+          {value}
+        </MenuItem>
+      );
+    }
+  );
+
   return (
-    <React.Fragment>
+    <>
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="filterBy">Filter By</InputLabel>
           <Select
             name="filterBy"
-            value={filterBy}
-            onChange={e => handleFilterSelect(e)}
+            value={filterForm.filterBy}
+            onChange={e => setFilterForm('filterBy', e.target.value)}
           >
-            {selected.slice(0, 4)}
+            {filterByOptions}
           </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="that">That</InputLabel>
           <Select
             name="filterType"
-            value={filterType}
-            onChange={e => handleFilterSelect(e)}
+            value={filterForm.filterType}
+            onChange={e => setFilterForm('filterType', e.target.value)}
           >
-            {selected.slice(4, selected.length)}
+            {filterTypeOptions}
           </Select>
         </FormControl>
         <TextField
@@ -79,25 +80,25 @@ const SearchFilter = props => {
           className={classes.textField}
           margin="normal"
           name="filterTerm"
-          value={filterTerm}
-          onChange={e =>
-            handleFilterSelect({
-              target: { value: e.target.value, name: e.target.name }
-            })
-          }
+          value={filterForm.filterTerm}
+          onChange={e => setFilterForm('filterTerm', e.target.value)}
         />
         <Button
           variant="contained"
           color="primary"
           className={classes.button}
-          disabled={!filterTerm || !filterBy || !filterType}
-          onClick={() => handleFilterRequest()}
+          disabled={
+            !filterForm.filterTerm ||
+            !filterForm.filterBy ||
+            !filterForm.filterType
+          }
+          onClick={() => setSelectedFilters()}
         >
           Submit
         </Button>
       </form>
-    </React.Fragment>
+    </>
   );
 };
 
-export default SearchFilter;
+export default TableWrapperFilter;

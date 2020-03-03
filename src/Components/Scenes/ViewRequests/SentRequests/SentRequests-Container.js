@@ -7,7 +7,8 @@ const mapStateToProps = ({ viewRequests, currentUser }) => {
     requests: viewRequests.outboundRequests,
     isLoading: viewRequests.isLoading,
     userEmail: currentUser.EmpEmail,
-    userRole: currentUser.role
+    userRole: currentUser.role,
+    selected: viewRequests.selectedSentRequests
   };
 };
 

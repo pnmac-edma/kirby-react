@@ -7,7 +7,7 @@ import Splash from '../../../Presentational/Splash';
 import AppBarContainer from '../AppBar/AppBar-Container';
 import RequestsInboxContainer from '../../ViewRequests/RequestsInbox/RequestsInbox-Container';
 import SearchContainer from '../Search/Search-Container';
-import SearchResultsContainer from '../../SearchResults/SearchResults/SearchResults-Container';
+import SearchResultsContainer from '../../SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
 import NewJobContainer from '../../Hydration/NewJob/NewJob-Container';
@@ -15,6 +15,7 @@ import NewDestinationContainer from '../../Hydration/NewDestination/NewDestinati
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
+    overflowY: 'scroll',
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',

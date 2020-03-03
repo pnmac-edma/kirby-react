@@ -60,3 +60,15 @@ export const handleSearchClick = () => ({
 export const handleSearchClose = () => ({
   type: types.HANDLE_SEARCH_CLOSE
 });
+
+export const setToggleSearchCheckbox = (selected, id) => ({
+  type: types.SET_TOGGLE_SEARCH_CHECKBOX,
+  selected,
+  id
+});
+
+export const setToggleSearchAllCheckbox = (selected, data) => ({
+  type: types.SET_TOGGLE_SEARCH_ALL_CHECKBOX,
+  selected,
+  data
+});

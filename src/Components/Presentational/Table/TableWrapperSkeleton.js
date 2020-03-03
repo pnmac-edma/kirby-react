@@ -1,7 +1,7 @@
 import React from 'react';
 import { Skeleton } from '@material-ui/lab';
 
-const TableSkeleton = () => {
+const TableWrapperSkeleton = () => {
   return (
     <React.Fragment>
       <Skeleton
@@ -50,4 +50,4 @@ const TableSkeleton = () => {
   );
 };
 
-export default TableSkeleton;
+export default TableWrapperSkeleton;

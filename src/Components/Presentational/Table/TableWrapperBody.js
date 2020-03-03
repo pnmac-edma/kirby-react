@@ -32,17 +32,18 @@ const tableStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestTableBody = props => {
+const TableWrapperBody = props => {
   const {
     columns,
-    page,
-    rowsPerPage,
-    requests,
+    handleCheckboxClick,
+    handleRequestClick,
     isSelected,
+    selected,
     order,
     orderBy,
-    handleCheckboxClick,
-    handleRequestClick
+    page,
+    data,
+    rowsPerPage
   } = props;
   const classes = tableStyles();
 
@@ -52,20 +53,21 @@ const RequestTableBody = props => {
       className = classes.firstCol;
       onClickFunc = e => handleRequestClick(e, request.Id);
     }
-    if (col.name.toLowerCase() === 'description')
+    if (col.name.toLowerCase() === 'description') {
       className = classes.descriptionCol;
-    if (col.name.toLowerCase() === 'status')
+    }
+    if (col.name.toLowerCase() === 'status') {
       className =
         {
           rejected: classes.statusRejected,
           pending: classes.statusPending
         }[request[col.property].toLowerCase()] || null;
-
+    }
     return [className, onClickFunc];
   };
 
   const sortedSlicedRequests = stableSort(
-    requests,
+    data,
     getSorting(order, orderBy)
   ).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
@@ -80,7 +82,7 @@ const RequestTableBody = props => {
             color="primary"
             id={`${request.Id}`}
             checked={request.chec || isSelected(request.Id)}
-            onClick={e => handleCheckboxClick(e, request.Id)}
+            onClick={() => handleCheckboxClick(selected, request.Id)}
           />
         </TableCell>
         {columns.map((col, i) => createRowCells(request, col, i))}
@@ -108,7 +110,7 @@ const RequestTableBody = props => {
   );
 };
 
-RequestTableBody.propTypes = {
+TableWrapperBody.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -117,7 +119,7 @@ RequestTableBody.propTypes = {
   ),
   page: PropTypes.number,
   rowsPerPage: PropTypes.number,
-  requests: PropTypes.arrayOf(
+  data: PropTypes.arrayOf(
     PropTypes.shape({
       // placeholder for name property
       description: PropTypes.string,
@@ -133,4 +135,4 @@ RequestTableBody.propTypes = {
   handleRequestClick: PropTypes.func
 };
 
-export default RequestTableBody;
+export default TableWrapperBody;

@@ -186,6 +186,35 @@ const searchReducer = (state = initialState.searchResult, action) => {
         isSearchClicked: false
       };
     }
+    case types.SET_TOGGLE_SEARCH_CHECKBOX: {
+      const { selected, id } = action;
+      const selectedIndex = selected.indexOf(id);
+      const newSelected = [...selected];
+
+      if (selectedIndex === -1) {
+        newSelected.push(id);
+      } else {
+        newSelected.splice(selectedIndex, 1);
+      }
+
+      return {
+        ...state,
+        selected: newSelected
+      };
+    }
+    case types.SET_TOGGLE_SEARCH_ALL_CHECKBOX: {
+      const { selected, data } = action;
+
+      let newSelecteds = [];
+      if (selected.length === 0) {
+        newSelecteds = data.map(request => request.Id);
+      }
+
+      return {
+        ...state,
+        selected: newSelecteds
+      };
+    }
     default:
       return state;
   }

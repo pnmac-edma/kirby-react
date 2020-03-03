@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableCell, TableRow, TableBody } from '@material-ui/core';
 
-const NotFoundFilter = props => {
+const TableWrapperNotFoundFilter = props => {
   const { searchInput, filterTerm } = props;
   return (
     <TableBody>
@@ -16,4 +16,4 @@ const NotFoundFilter = props => {
   );
 };
 
-export default NotFoundFilter;
+export default TableWrapperNotFoundFilter;
