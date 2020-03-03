@@ -31,7 +31,8 @@ const PageWrapper = ({
   isSearchClicked,
   authenticateFetch,
   sessionToken,
-  newJobName
+  newJobName,
+  themeToggle
 }) => {
   const classes = pageContainerStyle();
   const curPath = useLocation().pathname;
@@ -41,7 +42,7 @@ const PageWrapper = ({
       {curPath === '/hydration/new-job' ? (
         <AppBarContainer hydration jobName={newJobName} />
       ) : (
-        <AppBarContainer />
+        <AppBarContainer themeToggle={themeToggle} />
       )}
 
       <AnimatedSwitch

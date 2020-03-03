@@ -49,6 +49,7 @@ const TableWrapper = props => {
     handleRequestClick,
     isLoading,
     selected,
+    searchInput,
     footerButtonText,
     setTitleText,
     setToggleAllCheckbox,
@@ -120,7 +121,7 @@ const TableWrapper = props => {
   }
 
   if (!data) {
-    return <TableWrapperNotFound />;
+    return <TableWrapperNotFound searchInput={searchInput} />;
   }
 
   return (
@@ -163,7 +164,7 @@ const TableWrapper = props => {
               rowsPerPage={rowsPerPage}
             />
           ) : (
-            <TableWrapperNotFoundFilter />
+            <TableWrapperNotFoundFilter searchInput={searchInput} />
           )}
         </Table>
       </div>

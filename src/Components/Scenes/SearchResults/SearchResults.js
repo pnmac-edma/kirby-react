@@ -54,6 +54,7 @@ const SearchResults = props => {
       selected={selected}
       columns={columns}
       data={searchResult ? searchResult.results : searchResult}
+      searchInput={searchInput}
       setToggleCheckbox={setToggleSearchCheckbox}
       setToggleAllCheckbox={setToggleSearchAllCheckbox}
       footerButtonText={footerButtonText}

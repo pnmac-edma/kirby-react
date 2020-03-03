@@ -1,0 +1,20 @@
+// BEM = Block - Element - Modifier
+// .Sidebar = block
+// .Sidebar__title = element
+// .Sidebar__input =- element
+// .Sidebar__checkbox = element
+// .Sidebar__input--is-selected
+// .Need Update with Design Token Color gray
+@import '~@edma/design-tokens/_scss/variables';
+
+.sidebar {
+  position: absolute;
+  height: 100vh;
+  background: $color-g-200;
+  font-size: $font-size-body-1;
+  margin-top: -10rem;
+  top: 0;
+  z-index: 0;
+  padding-top: 10rem;
+  height: calc(100% + 10rem);
+}

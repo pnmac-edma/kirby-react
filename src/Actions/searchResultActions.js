@@ -15,8 +15,9 @@ export const handleKeyPress = e => ({
   payload: e
 });
 
-export const searchResultRequest = () => ({
-  type: types.SEARCH_RESULT_REQUEST
+export const searchResultRequest = searchInput => ({
+  type: types.SEARCH_RESULT_REQUEST,
+  payload: searchInput
 });
 
 export const searchResultSuccess = response => ({
