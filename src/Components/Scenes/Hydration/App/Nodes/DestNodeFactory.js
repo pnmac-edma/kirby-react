@@ -1,5 +1,5 @@
 import { AbstractNodeFactory } from '@projectstorm/react-diagrams';
-import { DestNodeModel, DestNodeWidget } from '../AppNodes';
+import { DestNodeModel, DestNodeWidget } from '.';
 import React from 'react';
 
 export default class DestNodeFactory extends AbstractNodeFactory {

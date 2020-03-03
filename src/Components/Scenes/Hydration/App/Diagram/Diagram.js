@@ -7,7 +7,7 @@ import {
   SourcePortModel,
   TransNodeFactory,
   TransPortModel
-} from '../AppNodes';
+} from '../Nodes';
 
 export default class Diagram {
   constructor() {

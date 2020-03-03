@@ -1,5 +1,5 @@
 import { AbstractNodeFactory } from '@projectstorm/react-diagrams';
-import { TransNodeModel, TransNodeWidget } from '../AppNodes';
+import { TransNodeModel, TransNodeWidget } from '.';
 import React from 'react';
 
 export default class TransNodeFactory extends AbstractNodeFactory {

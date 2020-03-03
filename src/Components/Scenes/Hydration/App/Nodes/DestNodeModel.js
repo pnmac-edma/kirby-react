@@ -1,6 +1,6 @@
 import { NodeModel } from '@projectstorm/react-diagrams';
 import merge from 'lodash/merge';
-import { DestPortModel } from '../AppNodes';
+import { DestPortModel } from '.';
 
 export default class DestNodeModel extends NodeModel {
   constructor(name = 'Untitled', size = 150) {

@@ -1,6 +1,6 @@
 import { NodeModel } from '@projectstorm/react-diagrams';
 import merge from 'lodash/merge';
-import { TransPortModel } from '../AppNodes';
+import { TransPortModel } from '.';
 
 export default class TransNodeModel extends NodeModel {
   constructor(name = 'Untitled', size = 150) {

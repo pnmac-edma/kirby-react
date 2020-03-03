@@ -1,6 +1,6 @@
 import { NodeModel } from '@projectstorm/react-diagrams';
 import merge from 'lodash/merge';
-import { SourcePortModel } from '../AppNodes';
+import { SourcePortModel } from '.';
 
 export default class SourceNodeModel extends NodeModel {
   constructor(name = 'Untitled', size = 150) {
