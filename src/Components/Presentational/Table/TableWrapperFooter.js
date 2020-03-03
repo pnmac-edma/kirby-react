@@ -8,8 +8,6 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -28,23 +26,14 @@ const TableWrapperFooter = props => {
     rowsPerPage,
     page,
     onChangePage,
-    onChangeRowsPerPage,
-    linkTo
+    onChangeRowsPerPage
   } = props;
   const classes = useStyles();
-  const location = useLocation();
   return (
     <Table className={classes.table} size="small">
       <TableBody>
         <TableRow>
-          <TableCell>
-            <Link
-              to={linkTo ? `${linkTo}` : location}
-              className={classes.underline}
-            >
-              {children}
-            </Link>
-          </TableCell>
+          <TableCell>{children}</TableCell>
           <TableCell>
             <TablePagination
               rowsPerPageOptions={[10, 25, 50]}

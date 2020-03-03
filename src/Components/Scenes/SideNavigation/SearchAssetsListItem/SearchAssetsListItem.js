@@ -9,6 +9,7 @@ const FindDataListItem = props => {
   return (
     <ListItem
       component={Link}
+      to={window.location.pathname}
       onClick={() => handleSearchClick()}
       button
       className={
