@@ -33,7 +33,7 @@ export const Toolbar = props => {
     return (
       <ToolbarWidget tab={tab} handleTabsChange={handleTabsChange}>
         {toolbarType === 'Source' && (
-          <Source id={selectedNode.id} sourceType={selectedNode.subtype} />
+          <Source id={selectedNode.id} sourceType={selectedNode.name} />
         )}
         {toolbarType === 'Destination' && (
           <Typography className={classes.typography} variant="h5">

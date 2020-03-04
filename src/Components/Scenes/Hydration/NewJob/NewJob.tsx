@@ -11,7 +11,7 @@ const chromeStyles = makeStyles(theme => ({
   }
 }));
 
-const NewJob = props => {
+const NewJob = () => {
   const classes = chromeStyles();
 
   return (

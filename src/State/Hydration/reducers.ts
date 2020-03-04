@@ -1,17 +1,7 @@
 import * as types from './types';
 
 export const initialState = {
-  jobName: '',
-  selectedNode: null,
-  sources: [],
-  transforms: [],
-  transformsFilter: '',
-  transformsCreate: {},
-  destinations: [],
-  destinationsFilterSens: [],
-  destinationsFilter: '',
-  destinationsCreate: {},
-  scheduleJob: {}
+  selectedNode: null
 };
 
 const viewRequestsReducer = (state = initialState, action: any) => {
