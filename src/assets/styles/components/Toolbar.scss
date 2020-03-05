@@ -65,19 +65,11 @@
 }
 
 // Hydration flow tile styles
-.Tile__delete svg path {
-  fill: $color-black;
-}
-
 .Tile__delete {
   position: absolute;
   display: inline;
   top: 0.7rem;
   right: 0.5rem;
-
-  &:hover > button span svg path {
-    fill: $color-r-600;
-  }
 }
 
 // Hydration flow input styles
@@ -136,4 +128,28 @@
 
 .Input__select .MuiSelect-select:focus {
   background-color: transparent;
+}
+
+// Dark mode input styles
+.dark {
+  .Input__textfield label,
+  .Input__select label {
+    color: $color-g-300;
+  }
+
+  .Input__textfield input:hover,
+  .Input__select .MuiSelect-select:hover {
+    border: 1px solid $color-g-600;
+  }
+
+  .Input__textfield .Mui-focused input,
+  .Input__select .Mui-focused .MuiSelect-select {
+    border: 1px solid $color-g-300;
+  }
+
+  .Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+  .Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+    background: $color-g-600;
+    color: $color-g-100;
+  }
 }

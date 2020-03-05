@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import { DiagramWidget } from '@projectstorm/react-diagrams';
 import { Toolbar } from '../Toolbar/Toolbar';
@@ -43,10 +43,18 @@ const diagramStyles = makeStyles(theme => ({
 }));
 
 const JobDesigner = (props: any) => {
+  const theme = useTheme();
   const { app, forceUpdate, selectedNode } = props;
   const { values, setFieldValue } = useFormikContext() as any;
   const classes = diagramStyles();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.body.className = theme.palette.type === 'light' ? 'light' : 'dark';
+    return () => {
+      document.body.className = '';
+    };
+  });
 
   const addNodeToDiagram = (
     type: string,
