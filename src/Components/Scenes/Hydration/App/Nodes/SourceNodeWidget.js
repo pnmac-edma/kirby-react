@@ -40,7 +40,6 @@ const SourceNodeWidget = props => {
       <div
         style={{
           position: 'absolute',
-          zIndex: 10,
           top: height / 2 - 8,
           left: size - 8
         }}
