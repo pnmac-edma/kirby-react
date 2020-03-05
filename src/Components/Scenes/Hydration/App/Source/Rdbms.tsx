@@ -5,10 +5,12 @@ import {
   InputLabel,
   MenuItem,
   TextField,
+  Tooltip,
   Select,
   Divider
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import CloseIcon from '@material-ui/icons/Close';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
 interface RdbmsProps {
@@ -23,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex'
   },
   formSection: {
+    position: 'relative',
     textAlign: 'left',
     padding: '8px 16px 16px'
   },
@@ -41,6 +44,11 @@ const Rdbms = (props: RdbmsProps) => {
     <div>
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>RDBMS</h4>
+        <div className={`Tile__delete`}>
+          <Tooltip title="Delete Tile" aria-label="delete-tile" placement="top">
+            <CloseIcon />
+          </Tooltip>
+        </div>
         <FormControl
           className={`Input__select Rdbms__source-version ${classes.selectFormControl}`}
         >

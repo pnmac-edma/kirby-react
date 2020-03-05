@@ -64,6 +64,24 @@
   text-align: center;
 }
 
+// Hydration flow tile styles
+.Tile__delete svg path {
+  fill: $color-black;
+}
+
+.Tile__delete {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  position: absolute;
+  display: inline;
+  top: 1.3rem;
+  right: 1.2rem;
+
+  &:hover > svg path {
+    fill: $color-r-600;
+  }
+}
+
 // Hydration flow input styles
 .Input__textfield,
 .Input__select {
