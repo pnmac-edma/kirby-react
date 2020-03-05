@@ -14,7 +14,8 @@
 
 export const initialValues = {
   test: '',
-  sources: {}
+  sources: {},
+  transforms: {}
 };
 
 export const rdbmsInitialState = {
@@ -43,4 +44,11 @@ export const apiInitialState = {
   url: '',
   isConnected: false,
   connectionType: ''
+};
+
+export const transformInitialState = {
+  name: '',
+  sqlScript: '',
+  tips: '',
+  queryResults: []
 };

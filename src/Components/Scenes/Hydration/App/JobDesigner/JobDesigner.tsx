@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { makeStyles } from '@material-ui/core/styles';
-import color from '@edma/design-tokens/js/color';
-import { DiagramWidget } from '@projectstorm/react-diagrams';
+import DiagramView from '../DiagramView/DiagramView';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { DestNodeModel, SourceNodeModel, TransNodeModel } from '../Nodes';
 import { setSelectedNode } from '../../../../../State/Hydration/actions';
+import Transform from '../Transform/Transform';
 import {
   rdbmsInitialState,
   sftpInitialState,
-  apiInitialState
+  apiInitialState,
+  transformInitialState
 } from '../../../../../State/Hydration/forms';
 
 const generateSourceInitialState = (
@@ -28,24 +28,30 @@ const generateSourceInitialState = (
   } else if (sourceType === 'API') {
     sourceForm = apiInitialState;
   }
-  sourceForm.sourceType = sourceType;
 
   return {
     ...formValues.sources,
-    [id]: sourceForm
+    [id]: { ...sourceForm, sourceType }
   };
 };
 
-const diagramStyles = makeStyles(theme => ({
-  diagramCanvas: {
-    background: theme.palette.type === 'light' ? color.g50 : color.g900
+const generateTransformInitialState = (id: string, formValues: any) => {
+  let transformForm: any;
+  if (formValues.transforms[id]) {
+    transformForm = formValues.transforms[id];
+  } else {
+    transformForm = transformInitialState;
   }
-}));
+
+  return {
+    ...formValues.transforms,
+    [id]: transformForm
+  };
+};
 
 const JobDesigner = (props: any) => {
   const { app, forceUpdate, selectedNode } = props;
   const { values, setFieldValue } = useFormikContext() as any;
-  const classes = diagramStyles();
   const dispatch = useDispatch();
 
   const addNodeToDiagram = (
@@ -65,12 +71,13 @@ const JobDesigner = (props: any) => {
     let formInitialState = {};
     if (type === 'source') {
       formInitialState = generateSourceInitialState(node.id, name, values);
+      setFieldValue('sources', formInitialState);
     } else if (type === 'trans') {
-      formInitialState = { ...values };
+      formInitialState = generateTransformInitialState(node.id, values);
+      setFieldValue('transforms', formInitialState);
     } else if (type === 'dest') {
       formInitialState = { ...values };
     }
-    setFieldValue('sources', formInitialState);
 
     app
       .getDiagramEngine()
@@ -84,25 +91,18 @@ const JobDesigner = (props: any) => {
     });
     forceUpdate();
   };
+  const [close, setClose] = useState(true); // TODO: set close and open editor properly
+  console.log(values);
 
   return (
     <div className={`Diagram`}>
-      <div
-        className="Diagram__layer"
-        onDrop={event => {
-          const data = JSON.parse(
-            event.dataTransfer.getData('storm-diagram-node')
-          );
-          const points = app.getDiagramEngine().getRelativeMousePoint(event);
-          addNodeToDiagram(data.type, points.x, points.y, data.name);
-        }}
-        onDragOver={event => event.preventDefault()}
-      >
-        <DiagramWidget
-          className={`${classes.diagramCanvas} Diagram__canvas`}
-          diagramEngine={app.getDiagramEngine()}
-        />
-      </div>
+      <button type="button" onClick={() => setClose(!close)}>
+        switch
+      </button>
+      {selectedNode && selectedNode.type === 'trans' && close && (
+        <Transform id={selectedNode.id} />
+      )}
+      <DiagramView app={app} addNodeToDiagram={addNodeToDiagram} />
       <Toolbar
         selectedNode={selectedNode}
         addNodeToDiagram={addNodeToDiagram}

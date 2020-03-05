@@ -1,7 +1,7 @@
 import React from 'react';
 import color from '@edma/design-tokens/js/color';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
-import mockSourcesData from '../../../../../State/__mockData__/mockSourcesMetadata.json';
+import mockSourcesData from '../../../../../State/__mockData__/mockSourcesMetadata.json'; // TODO: replace mockdata
 
 type SourcesProps = {
   addNodeToDiagram: (type: string, x: number, y: number, name: string) => void;
@@ -9,7 +9,7 @@ type SourcesProps = {
 
 const Sources = (props: SourcesProps) => {
   const { addNodeToDiagram } = props;
-  // TODO: this will change depending on how the non-mock data is structured
+
   const sourceItems = Object.entries(mockSourcesData).map(source => ({
     name: source[0]
   }));
@@ -18,7 +18,7 @@ const Sources = (props: SourcesProps) => {
     <div>
       {sourceItems.map((source, i) => (
         <ToolbarItemWidget
-          key={`${source.name}-i`}
+          key={`${source.name}-${i}`}
           model={{ type: 'source', name: source.name }}
           name={source.name}
           color={color['c400']}

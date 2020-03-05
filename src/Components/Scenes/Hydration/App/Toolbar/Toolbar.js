@@ -35,14 +35,14 @@ export const Toolbar = props => {
         {toolbarType === 'Source' && (
           <Source id={selectedNode.id} sourceType={selectedNode.name} />
         )}
-        {toolbarType === 'Destination' && (
+        {toolbarType === 'Transformation' && (
           <Typography className={classes.typography} variant="h5">
             Toolbar for {toolbarType}
             <br /> Node ID:
             <br /> {selectedNode.id}
           </Typography>
         )}
-        {toolbarType === 'Transformation' && (
+        {toolbarType === 'Destination' && (
           <Typography className={classes.typography} variant="h5">
             Toolbar for {toolbarType}
             <br /> Node ID:
