@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
   formTitle: {
     textDecoration: 'bold',
-    marginBottom: 0
+    marginBottom: '1rem'
   }
 }));
 
@@ -41,10 +41,11 @@ const Rdbms = (props: ApiProps) => {
     <div>
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>RDBMS</h4>
-        <FormControl className={classes.selectFormControl}>
+        <FormControl
+          className={`Input__select Api__type ${classes.selectFormControl}`}
+        >
           <InputLabel id="type">Type</InputLabel>
           <Field
-            className={`Toolbar__type`}
             id="type"
             name={`sources.${id}.type`}
             label="Type"
@@ -58,10 +59,11 @@ const Rdbms = (props: ApiProps) => {
             ))}
           </Field>
         </FormControl>
-        <FormControl className={classes.selectFormControl}>
+        <FormControl
+          className={`Input__select Api__http-method ${classes.selectFormControl}`}
+        >
           <InputLabel id="httpMethod">HTTP Method</InputLabel>
           <Field
-            className={`Toolbar__httpMethod`}
             id="httpMethod"
             name={`sources.${id}.httpMethod`}
             label="HTTP Method"
@@ -77,7 +79,7 @@ const Rdbms = (props: ApiProps) => {
         </FormControl>
         <Field
           name={`sources.${id}.url`}
-          className="Toolbar__url"
+          className="Input__textfield Api__url"
           label="URL"
           as={TextField}
         />
@@ -86,10 +88,11 @@ const Rdbms = (props: ApiProps) => {
 
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>Connection</h4>
-        <FormControl className={classes.selectFormControl}>
+        <FormControl
+          className={`Input__select Api__connection-type ${classes.selectFormControl}`}
+        >
           <InputLabel id="connection-type">Connection Type</InputLabel>
           <Field
-            className={`Toolbar__connectionType`}
             id="connection-type"
             name={`sources.${id}.connectionType`}
             label="Type"

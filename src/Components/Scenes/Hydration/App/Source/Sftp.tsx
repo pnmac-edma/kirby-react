@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
   formTitle: {
     textDecoration: 'bold',
-    marginBottom: 0
+    marginBottom: '1rem'
   }
 }));
 
@@ -43,19 +43,19 @@ const Sftp = (props: SftpProps) => {
         <h4 className={classes.formTitle}>SFTP</h4>
         <Field
           name={`sources.${id}.host`}
-          className="Toolbar__host"
+          className="Input__textfield Sftp__host"
           label="Host"
           as={TextField}
         />
         <Field
           name={`sources.${id}.port`}
-          className="Toolbar__port"
+          className="Input__textfield Sftp__port"
           label="Port"
           as={TextField}
         />
         <Field
           name={`sources.${id}.folder`}
-          className="Toolbar__folder"
+          className="Input__textfield Sftp__folder"
           label="Folder"
           as={TextField}
         />
@@ -64,10 +64,9 @@ const Sftp = (props: SftpProps) => {
 
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>Connection</h4>
-        <FormControl className={classes.selectFormControl}>
+        <FormControl className={`Input__select ${classes.selectFormControl}`}>
           <InputLabel id="connection-type">Connection Type</InputLabel>
           <Field
-            className={`Toolbar__connectionType`}
             id="connection-type"
             name={`sources.${id}.connectionType`}
             label="Type"
