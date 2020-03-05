@@ -2,6 +2,7 @@ import React from 'react';
 import { Field } from 'formik';
 import {
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   TextField,
@@ -45,8 +46,10 @@ const Sftp = (props: SftpProps) => {
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>SFTP</h4>
         <div className={`Tile__delete`}>
-          <Tooltip title="Delete Tile" aria-label="delete-tile" placement="top">
-            <CloseIcon />
+          <Tooltip title="Delete Tile" placement="top">
+            <IconButton aria-label="delete-tile">
+              <CloseIcon fontSize="small" />
+            </IconButton>
           </Tooltip>
         </div>
         <Field

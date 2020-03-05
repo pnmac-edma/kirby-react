@@ -70,14 +70,12 @@
 }
 
 .Tile__delete {
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
   position: absolute;
   display: inline;
-  top: 1.3rem;
-  right: 1.2rem;
+  top: 0.7rem;
+  right: 0.5rem;
 
-  &:hover > svg path {
+  &:hover > button span svg path {
     fill: $color-r-600;
   }
 }
