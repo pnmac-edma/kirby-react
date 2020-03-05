@@ -11,7 +11,7 @@ import {
   Divider
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CloseIcon from '@material-ui/icons/Close';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import { color } from '@edma/design-tokens/';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
@@ -58,7 +58,7 @@ const Rdbms = (props: RdbmsProps) => {
         <div className={`Tile__delete ${classes.tileDelete}`}>
           <Tooltip title="Delete Tile" placement="top">
             <IconButton aria-label="delete-tile">
-              <CloseIcon fontSize="small" />
+              <DeleteOutline fontSize="small" />
             </IconButton>
           </Tooltip>
         </div>
