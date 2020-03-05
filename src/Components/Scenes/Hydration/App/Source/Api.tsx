@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
+import { color } from '@edma/design-tokens/';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
 interface ApiProps {
@@ -33,6 +34,15 @@ const useStyles = makeStyles(theme => ({
   formTitle: {
     textDecoration: 'bold',
     marginBottom: '1rem'
+  },
+  tileDelete: {
+    '& button span svg path': {
+      fill: theme.palette.type === 'light' ? color.black : color.white
+    },
+
+    '&:hover > button span svg path': {
+      fill: theme.palette.type === 'light' ? color.r600 : color.r300
+    }
   }
 }));
 
@@ -45,7 +55,7 @@ const Rdbms = (props: ApiProps) => {
     <div>
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>RDBMS</h4>
-        <div className={`Tile__delete`}>
+        <div className={`Tile__delete ${classes.tileDelete}`}>
           <Tooltip title="Delete Tile" placement="top">
             <IconButton aria-label="delete-tile">
               <CloseIcon fontSize="small" />
