@@ -22,8 +22,10 @@
   .MuiTab-root {
     min-width: auto;
     min-height: 40px;
+    font-family: $font-heading;
     font-variant: small-caps;
-    font-size: 12px;
+    font-weight: $weight-bold;
+    font-size: 10px;
     padding: 0 10px;
   }
 
@@ -62,43 +64,60 @@
   text-align: center;
 }
 
-// Hydration form elements
+// Hydration flow input styles
+.Input__textfield,
+.Input__select {
+  margin-bottom: 0.5rem !important;
+  width: 100%;
+}
 
-.Toolbar__textfield,
-.Toolbar__select {
-  // MUI Overrides
-  .MuiFormLabel-root {
-    background: $color-y-50;
-    padding: 0.2rem;
+.Input__textfield label,
+.Input__select label {
+  color: $color-g-600;
+}
 
-    &.MuiInputLabel-formControl {
-      transform: translate(0, 14px) scale(1);
-    }
+.Input__textfield input,
+.Input__select .MuiSelect-select {
+  border-radius: $border-radius-1;
+  border: 1px solid transparent;
+  padding: 0.2rem;
 
-    &.MuiInputLabel-shrink {
-      transform: translate(0, 1.5px) scale(0.75);
-    }
-
-    &.Mui-focused,
-    &.MuiFormLabel-filled {
-      background: transparent;
-      color: $color-g-600;
-      padding: 0;
-    }
-  }
-
-  .MuiInput-root {
-    margin-top: 8px;
-  }
-
-  .MuiInput-underline {
-    &:before,
-    &:after {
-      display: none;
-    }
+  &:hover {
+    border: 1px solid $color-g-100;
   }
 }
 
-.Toolbar__select {
-  width: 100%;
+.Input__textfield .Mui-focused input,
+.Input__select .Mui-focused .MuiSelect-select {
+  border: 1px solid $color-g-300;
+  border-radius: $border-radius-1;
+}
+
+.Input__textfield div:before,
+.Input__textfield div:after,
+.Input__select div:before,
+.Input__select div:after,
+.Input__textfield div:hover:before,
+.Input__textfield div:hover:after {
+  content: '';
+  border-bottom: none !important;
+}
+
+.Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+.Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+  top: -7px;
+}
+
+.Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+.Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+  background: $color-y-50;
+  padding: 0.3rem;
+}
+
+.Input__select label {
+  color: $color-g-600;
+}
+
+.Input__select .MuiSelect-select:focus {
+  background-color: transparent;
 }
