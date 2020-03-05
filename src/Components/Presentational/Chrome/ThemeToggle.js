@@ -1,16 +1,20 @@
 import React from 'react';
-import { ReactComponent as LightBulbLight } from '@edma/blocks/src/assets/img/lightbulb-outline.svg';
-import { ReactComponent as LightBulbDark } from '@edma/blocks/src/assets/img/lightbulb.svg';
+import { ReactComponent as LightBulbLight } from '@edma/design-tokens/img/lightbulbOutlineIcon.svg';
+import { ReactComponent as LightBulbDark } from '@edma/design-tokens/img/lightbulbIcon.svg';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { IconButton, Tooltip } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 
 const themeToggle = makeStyles({
   themeToggleLogoDark: {
-    fill: color.white
+    '& path': {
+      fill: color.white
+    }
   },
   themeToggleLogoLight: {
-    fill: color.black
+    '& path': {
+      fill: color.black
+    }
   }
 });
 
