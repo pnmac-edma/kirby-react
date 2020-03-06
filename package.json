@@ -13,6 +13,7 @@
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
+    "@types/react-router": "^5.1.4",
     "aws4-browser": "^1.0.0",
     "closest": "0.0.1",
     "formik": "^2.1.4",
