@@ -55,17 +55,34 @@
 }
 
 .Toolbar__nodetype {
-  padding: 5px;
-  margin: 10px 10px;
-  border: solid 2px;
-  border-radius: 5px;
+  padding: 8px 16px;
   margin-bottom: 2px;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
+  color: $color-g-700;
+
+  &:hover {
+    background: $color-g-100;
+    color: $color-black;
+  }
+}
+
+.dark .Toolbar__nodetype {
+  color: $color-g-400;
+
+  &:hover {
+    background: $color-g-800;
+    color: $color-white;
+  }
 }
 
 .Toolbar__connection-type {
   margin-bottom: 1rem !important;
+}
+
+.Toolbar__item-icon {
+  width: 21px;
+  margin-right: 4px;
 }
 
 // Hydration tile styles
