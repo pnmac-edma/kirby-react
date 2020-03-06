@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field } from 'formik';
 import {
+  Button,
   FormControl,
   IconButton,
   InputLabel,
@@ -95,7 +96,7 @@ const Rdbms = (props: RdbmsProps) => {
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>Connection</h4>
         <FormControl
-          className={`${classes.selectFormControl} Input__select Rdbms__connection-type`}
+          className={`${classes.selectFormControl} Input__select Toolbar__connection-type`}
         >
           <InputLabel id="connection-type">Connection Type</InputLabel>
           <Field
@@ -112,6 +113,9 @@ const Rdbms = (props: RdbmsProps) => {
             ))}
           </Field>
         </FormControl>
+        <Button variant="outlined" color="primary">
+          Test Connection
+        </Button>
       </div>
       <Divider className={classes.divider} />
     </div>

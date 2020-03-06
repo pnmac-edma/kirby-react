@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field } from 'formik';
 import {
+  Button,
   FormControl,
   IconButton,
   InputLabel,
@@ -76,7 +77,9 @@ const Sftp = (props: SftpProps) => {
 
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>Connection</h4>
-        <FormControl className={`Input__select ${classes.selectFormControl}`}>
+        <FormControl
+          className={`Input__select Toolbar__connection-type ${classes.selectFormControl}`}
+        >
           <InputLabel id="connection-type">Connection Type</InputLabel>
           <Field
             id="connection-type"
@@ -92,6 +95,9 @@ const Sftp = (props: SftpProps) => {
             ))}
           </Field>
         </FormControl>
+        <Button variant="outlined" color="primary">
+          Test Connection
+        </Button>
       </div>
       <Divider className={classes.divider} />
     </div>
