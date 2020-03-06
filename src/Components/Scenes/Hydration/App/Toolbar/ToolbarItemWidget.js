@@ -40,6 +40,7 @@ const ToolbarItemWidget = props => {
             : ''
         }
         className={`Toolbar__item-icon`}
+        alt={`${name} icon`}
       />{' '}
       {name}
     </div>

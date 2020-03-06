@@ -13,7 +13,6 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import { color } from '@edma/design-tokens/';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
 interface SftpProps {
