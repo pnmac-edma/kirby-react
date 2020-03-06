@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, useLocation } from 'react-router-dom';
-// @ts-ignore
 import { AnimatedSwitch } from 'react-router-transition';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
