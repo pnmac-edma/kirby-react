@@ -34,15 +34,6 @@ const useStyles = makeStyles(theme => ({
   formTitle: {
     textDecoration: 'bold',
     marginBottom: '1rem'
-  },
-  tileDelete: {
-    '& button span svg path': {
-      fill: theme.palette.type === 'light' ? color.black : color.white
-    },
-
-    '&:hover > button span svg path': {
-      fill: theme.palette.type === 'light' ? color.r600 : color.r300
-    }
   }
 }));
 
@@ -55,7 +46,7 @@ const Rdbms = (props: RdbmsProps) => {
     <div>
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>RDBMS</h4>
-        <div className={`Tile__delete ${classes.tileDelete}`}>
+        <div className={`Tile__delete`}>
           <Tooltip title="Remove Tile" placement="top">
             <IconButton aria-label="remove-tile">
               <DeleteOutline fontSize="small" />
