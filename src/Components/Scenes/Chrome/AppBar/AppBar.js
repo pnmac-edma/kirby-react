@@ -67,6 +67,15 @@ const Appbar = props => {
   const curPath = useLocation().pathname;
   const { jobName, themeToggle } = props;
 
+  const LogoComponent =
+    curPath === '/' ? (
+      <KirbyLogo className={classes.logo} />
+    ) : (
+      <Link href="/">
+        <KirbyLogo className={classes.logo} />
+      </Link>
+    );
+
   return (
     <AppBar
       position="relative"
@@ -99,12 +108,8 @@ const Appbar = props => {
               <KeyboardArrowDownIcon />
             </Box>
           </>
-        ) : curPath === '/' ? (
-          <KirbyLogo className={classes.logo} />
         ) : (
-          <Link href="/">
-            <KirbyLogo className={classes.logo} />
-          </Link>
+          LogoComponent
         )}
       </div>
       <div className={classes.themeToggleContainer}>

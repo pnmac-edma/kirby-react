@@ -7,7 +7,11 @@ const styles = makeStyles(theme => ({
     margin: '1rem 0'
   },
   textfield: {
-    width: '100%'
+    width: '100%',
+
+    '& div': {
+      maxWidth: '100%'
+    }
   }
 }));
 
