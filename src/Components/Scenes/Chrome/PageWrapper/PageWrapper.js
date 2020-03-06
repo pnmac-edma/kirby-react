@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route, useLocation, Switch } from 'react-router-dom';
-// import { AnimatedSwitch } from 'react-router-transition';
+import { Route, useLocation } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import Splash from '../../../Presentational/Splash';
@@ -45,7 +45,7 @@ const PageWrapper = ({
         <AppBarContainer themeToggle={themeToggle} />
       )}
 
-      <Switch
+      <AnimatedSwitch
         atEnter={{ opacity: 0 }}
         atLeave={{ opacity: 0 }}
         atActive={{ opacity: 1 }}
@@ -67,7 +67,7 @@ const PageWrapper = ({
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
-      </Switch>
+      </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}
     </div>
