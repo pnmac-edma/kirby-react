@@ -64,7 +64,7 @@
   text-align: center;
 }
 
-// Hydration flow tile styles
+// Hydration tile styles
 .Tile__delete {
   position: absolute;
   display: inline;
@@ -72,7 +72,7 @@
   right: 0.5rem;
 }
 
-// Hydration flow input styles
+// Hydration input styles
 .Input__textfield,
 .Input__select {
   margin-top: 1rem !important;
@@ -92,6 +92,10 @@
 
   &:hover {
     border: 1px solid $color-g-100;
+
+    & ~ label {
+      background: transparent;
+    }
   }
 }
 
@@ -128,6 +132,11 @@
 
 .Input__select .MuiSelect-select:focus {
   background-color: transparent;
+}
+
+.Input__textfield label,
+.Input__select label {
+  transition: all 0.2s ease-in-out;
 }
 
 // Dark mode input styles

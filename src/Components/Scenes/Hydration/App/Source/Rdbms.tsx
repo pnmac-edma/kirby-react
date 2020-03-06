@@ -56,8 +56,8 @@ const Rdbms = (props: RdbmsProps) => {
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>RDBMS</h4>
         <div className={`Tile__delete ${classes.tileDelete}`}>
-          <Tooltip title="Delete Tile" placement="top">
-            <IconButton aria-label="delete-tile">
+          <Tooltip title="Remove Tile" placement="top">
+            <IconButton aria-label="remove-tile">
               <DeleteOutline fontSize="small" />
             </IconButton>
           </Tooltip>
