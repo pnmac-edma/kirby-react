@@ -3,6 +3,7 @@ import { useFormikContext } from 'formik';
 import Rdbms from './Rdbms';
 import Sftp from './Sftp';
 import Api from './Api';
+import { initialStateTypes } from '../../../../../State/Hydration/types';
 
 interface SourceProps {
   id: string;
@@ -11,7 +12,7 @@ interface SourceProps {
 
 const Source = (props: SourceProps) => {
   const { id, sourceType } = props;
-  const { values } = useFormikContext() as any;
+  const { values } = useFormikContext() as { values: initialStateTypes };
   const { sources } = values;
 
   return (

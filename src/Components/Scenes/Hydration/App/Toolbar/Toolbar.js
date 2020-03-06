@@ -6,6 +6,7 @@ import Destinations from '../Destinations/Destinations';
 import Sources from '../Sources/Sources';
 import Source from '../Source/Source';
 import Transforms from '../Transforms/Transforms';
+import Transform from '../Transform/Transform';
 
 const useStyles = makeStyles(theme => ({
   typography: {
@@ -35,13 +36,7 @@ export const Toolbar = props => {
         {toolbarType === 'Source' && (
           <Source id={selectedNode.id} sourceType={selectedNode.name} />
         )}
-        {toolbarType === 'Transformation' && (
-          <Typography className={classes.typography} variant="h5">
-            Toolbar for {toolbarType}
-            <br /> Node ID:
-            <br /> {selectedNode.id}
-          </Typography>
-        )}
+        {toolbarType === 'Transformation' && <Transform id={selectedNode.id} />}
         {toolbarType === 'Destination' && (
           <Typography className={classes.typography} variant="h5">
             Toolbar for {toolbarType}

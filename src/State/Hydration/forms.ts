@@ -13,7 +13,6 @@
  */
 
 export const initialValues = {
-  test: '',
   sources: {},
   transforms: {}
 };

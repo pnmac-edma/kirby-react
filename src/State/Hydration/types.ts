@@ -1,6 +1,7 @@
 // action constant types
 export const SET_SELECTED_NODE = 'SET_SELECTED_NODE';
 export const SET_REMOVE_NODE = 'SET_REMOVE_NODE';
+export const SET_IS_EDITOR_OPEN = 'SET_IS_EDITOR_OPEN';
 
 // types
 export interface RDBMS {
@@ -40,7 +41,18 @@ export interface Sources {
   [id: string]: Source;
 }
 
-export interface HydrationFormValues {
-  test: string;
+export interface initialStateTypes {
   sources: Sources;
+  transforms: Transforms;
+}
+
+export interface Transforms {
+  [id: string]: Transform;
+}
+
+export interface Transform {
+  name: string;
+  sqlScript: string;
+  tips: string;
+  queryReults: Array<any>;
 }

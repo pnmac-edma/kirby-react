@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { DestNodeModel, SourceNodeModel, TransNodeModel } from '../Nodes';
 import { setSelectedNode } from '../../../../../State/Hydration/actions';
-import Transform from '../Transform/Transform';
+import { initialStateTypes } from '../../../../../State/Hydration/types';
+import TransformEditor from '../Transform/TransformEditor';
 import {
   rdbmsInitialState,
   sftpInitialState,
@@ -51,7 +52,13 @@ const generateTransformInitialState = (id: string, formValues: any) => {
 
 const JobDesigner = (props: any) => {
   const { app, forceUpdate, selectedNode } = props;
-  const { values, setFieldValue } = useFormikContext() as any;
+  const { values, setFieldValue } = useFormikContext() as {
+    values: initialStateTypes;
+    setFieldValue: (field: string, value: any) => void;
+  };
+  const isEditorOpen = useSelector(
+    ({ hydration }: any) => hydration.isEditorOpen
+  );
   const dispatch = useDispatch();
 
   const addNodeToDiagram = (
@@ -59,7 +66,7 @@ const JobDesigner = (props: any) => {
     x: number,
     y: number,
     name: string = ''
-  ) => {
+  ): any => {
     let node: any;
     if (type === 'source') node = new SourceNodeModel(name);
     else if (type === 'trans') node = new TransNodeModel();
@@ -90,17 +97,13 @@ const JobDesigner = (props: any) => {
         dispatch(setSelectedNode(null))
     });
     forceUpdate();
+    return node;
   };
-  const [close, setClose] = useState(true); // TODO: set close and open editor properly
-  console.log(values);
 
   return (
     <div className={`Diagram`}>
-      <button type="button" onClick={() => setClose(!close)}>
-        switch
-      </button>
-      {selectedNode && selectedNode.type === 'trans' && close && (
-        <Transform id={selectedNode.id} />
+      {isEditorOpen && selectedNode && selectedNode.id && (
+        <TransformEditor id={selectedNode.id} />
       )}
       <DiagramView app={app} addNodeToDiagram={addNodeToDiagram} />
       <Toolbar

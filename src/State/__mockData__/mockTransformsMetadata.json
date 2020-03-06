@@ -42,21 +42,5 @@
   "random-id-9004": {
     "name": "I am some Script",
     "sqlScript": "I eat SQL for breakfast"
-  },
-  "power-level-over-9005": {
-    "name": "Some other SQL Script",
-    "sqlScript": "I'm an SQL, I join stuff, yeah"
-  },
-  "random-id-9005": {
-    "name": "I am some Script",
-    "sqlScript": "I eat SQL for breakfast"
-  },
-  "power-level-over-9006": {
-    "name": "Some other SQL Script",
-    "sqlScript": "I'm an SQL, I join stuff, yeah"
-  },
-  "random-id-9006": {
-    "name": "I am some Script",
-    "sqlScript": "I eat SQL for breakfast"
   }
 }

@@ -1,12 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { ControlledEditor } from '@monaco-editor/react';
+import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
+import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
+import { initialStateTypes } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
-  positioning: {
-    paddingTop: '5rem',
-    paddingBottom: '5rem'
+  typography: {
+    textAlign: 'left',
+    padding: '8px 16px 16px'
   }
 }));
 
@@ -16,22 +19,20 @@ interface TransformProps {
 
 const Transform = (props: TransformProps) => {
   const { id } = props;
-  const classes = useStyles();
-  const { values } = useFormikContext() as any;
+  const { values } = useFormikContext() as { values: initialStateTypes };
   const { transforms } = values;
+  const dispatch = useDispatch();
+  const classes = useStyles();
 
   return (
-    <div className={`Diagram__layer ${classes.positioning}`}>
-      <ControlledEditor
-        width="800"
-        height="90vh"
-        language="sql"
-        theme="vs-light"
-        value={transforms[id].value}
-        onChange={() => console.log('heyoo')}
-        // options={options}
-        // editorDidMount={() => editorDidMount()}
-      />
+    <div>
+      <Typography className={classes.typography} variant="h4">
+        {transforms[id].name}
+      </Typography>
+      <button type="button" onClick={() => dispatch(setIsEditorOpen(true))}>
+        Edit Script
+      </button>
+      <p>This is a description tag informational dump here</p>
     </div>
   );
 };
