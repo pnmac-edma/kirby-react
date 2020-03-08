@@ -88,7 +88,7 @@ const DiagramView = (props: DiagramViewProps) => {
     noClick: true
   });
 
-  // TODO: use isDragActive to provide highlighting functionality when dragging an item over
+  // TODO: potentially use isDragActive to provide highlighting functionality when dragging an item over
   return (
     <div
       className="Diagram__layer"

@@ -8,47 +8,9 @@ import { setSelectedNode } from '../../../../../State/Hydration/actions';
 import { initialStateTypes } from '../../../../../State/Hydration/types';
 import TransformEditor from '../Transform/TransformEditor';
 import {
-  rdbmsInitialState,
-  sftpInitialState,
-  apiInitialState,
-  transformInitialState
+  generateSourceInitialState,
+  generateTransformInitialState
 } from '../../../../../State/Hydration/forms';
-
-const generateSourceInitialState = (
-  id: string,
-  sourceType: string,
-  formValues: any
-) => {
-  let sourceForm: any;
-  if (formValues.sources[id]) {
-    sourceForm = formValues.sources[id];
-  } else if (sourceType === 'RDBMS') {
-    sourceForm = rdbmsInitialState;
-  } else if (sourceType === 'SFTP') {
-    sourceForm = sftpInitialState;
-  } else if (sourceType === 'API') {
-    sourceForm = apiInitialState;
-  }
-
-  return {
-    ...formValues.sources,
-    [id]: { ...sourceForm, sourceType }
-  };
-};
-
-const generateTransformInitialState = (id: string, formValues: any) => {
-  let transformForm: any;
-  if (formValues.transforms[id]) {
-    transformForm = formValues.transforms[id];
-  } else {
-    transformForm = transformInitialState;
-  }
-
-  return {
-    ...formValues.transforms,
-    [id]: transformForm
-  };
-};
 
 const JobDesigner = (props: any) => {
   const { app, forceUpdate, selectedNode } = props;
