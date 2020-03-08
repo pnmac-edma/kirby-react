@@ -1,29 +1,29 @@
-import DestNodeFactory from './DestNodeFactory';
-import DestNodeModel from './DestNodeModel';
-import DestNodeWidget from './DestNodeWidget';
-import DestPortModel from './DestPortModel';
+import DestinationNodeFactory from './DestinationNodeFactory';
+import DestinationNodeModel from './DestinationNodeModel';
+import DestinationNodeWidget from './DestinationNodeWidget';
+import DestinationPortModel from './DestinationPortModel';
 import SourceNodeFactory from './SourceNodeFactory';
 import SourceNodeModel from './SourceNodeModel';
 import SourceNodeWidget from './SourceNodeWidget';
 import SourcePortModel from './SourcePortModel';
-import TransNodeFactory from './TransNodeFactory';
-import TransNodeModel from './TransNodeModel';
-import TransNodeWidget from './TransNodeWidget';
-import TransPortModel from './TransPortModel';
+import TransformNodeFactory from './TransformNodeFactory';
+import TransformNodeModel from './TransformNodeModel';
+import TransformNodeWidget from './TransformNodeWidget';
+import TransformPortModel from './TransformPortModel';
 import SimplePortFactory from './SimplePortFactory';
 
 export {
-  DestNodeFactory,
-  DestNodeModel,
-  DestNodeWidget,
-  DestPortModel,
+  DestinationNodeFactory,
+  DestinationNodeModel,
+  DestinationNodeWidget,
+  DestinationPortModel,
   SimplePortFactory,
   SourceNodeFactory,
   SourceNodeModel,
   SourceNodeWidget,
   SourcePortModel,
-  TransNodeFactory,
-  TransNodeModel,
-  TransNodeWidget,
-  TransPortModel
+  TransformNodeFactory,
+  TransformNodeModel,
+  TransformNodeWidget,
+  TransformPortModel
 };

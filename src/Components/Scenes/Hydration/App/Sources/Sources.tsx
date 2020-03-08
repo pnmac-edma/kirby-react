@@ -2,9 +2,10 @@ import React from 'react';
 import color from '@edma/design-tokens/js/color';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
 import mockSourcesData from '../../../../../State/__mockData__/mockSourcesMetadata.json'; // TODO: replace mockdata
+import { AddNodeToDiagram } from '../../../../../State/Hydration/types';
 
 type SourcesProps = {
-  addNodeToDiagram: (type: string, x: number, y: number, name: string) => void;
+  addNodeToDiagram: AddNodeToDiagram;
 };
 
 const Sources = (props: SourcesProps) => {
@@ -22,7 +23,9 @@ const Sources = (props: SourcesProps) => {
           model={{ type: 'source', name: source.name }}
           name={source.name}
           color={color['c400']}
-          onClick={() => addNodeToDiagram('source', 400, 400, source.name)}
+          onClick={() =>
+            addNodeToDiagram(source.name, { x: 400, y: 400 }, 'source')
+          }
         />
       ))}
     </div>

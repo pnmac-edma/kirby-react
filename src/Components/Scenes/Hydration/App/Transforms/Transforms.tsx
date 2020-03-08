@@ -9,16 +9,17 @@ import {
   setIsEditorOpen
 } from '../../../../../State/Hydration/actions';
 import mockTransformsData from '../../../../../State/__mockData__/mockTransformsMetadata.json'; // TODO: change this to non-mock data when hitting the actual api
+import { AddNodeToDiagram } from '../../../../../State/Hydration/types';
 
 type TransformsProps = {
-  addNodeToDiagram: (type: string, x: number, y: number, name: string) => any;
+  addNodeToDiagram: AddNodeToDiagram;
 };
 
 const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
   const dispatch = useDispatch();
 
   const setAddTransform = (event: React.FormEvent<HTMLFormElement>) => {
-    const node = addNodeToDiagram('trans', 400, 400, 'Untitled');
+    const node = addNodeToDiagram('Untitled', { x: 400, y: 400 }, 'transform');
     node.selected = true;
     dispatch(setSelectedNode(event, node));
     dispatch(setIsEditorOpen(true));
@@ -29,10 +30,12 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
       {Object.values(mockTransformsData).map(({ name, sqlScript }, i) => (
         <ToolbarItemWidget
           key={`${name}-${i}`}
-          model={{ type: 'trans', name, sqlScript }}
+          model={{ type: 'transform', name, sqlScript }}
           name={name}
           color={color['c400']}
-          onClick={() => addNodeToDiagram('trans', 400, 400, name)}
+          onClick={() =>
+            addNodeToDiagram(name, { x: 400, y: 400 }, 'transform')
+          }
         />
       ))}
       <Button

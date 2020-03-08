@@ -56,3 +56,9 @@ export interface Transform {
   tips: string;
   queryReults: Array<any>;
 }
+
+export type AddNodeToDiagram = (
+  nodeTitle: string,
+  position: { x: number; y: number },
+  type: string
+) => any;

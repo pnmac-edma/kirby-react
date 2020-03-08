@@ -1,13 +1,14 @@
 import { NodeModel } from '@projectstorm/react-diagrams';
 import merge from 'lodash/merge';
-import { DestPortModel } from '.';
+import { TransformPortModel } from '.';
 
-export default class DestNodeModel extends NodeModel {
+export default class TransformNodeModel extends NodeModel {
   constructor(name = 'Untitled', size = 150) {
-    super('dest');
+    super('transform');
     this.name = name;
     this.size = size;
-    this.addPort(new DestPortModel('left'));
+    this.addPort(new TransformPortModel('left'));
+    this.addPort(new TransformPortModel('right'));
   }
 
   deSerialize(object, engine) {

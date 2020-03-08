@@ -18,21 +18,21 @@ const tileStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.type === 'light' ? color.white : color.g800
   },
   tileTitle: {
-    color: theme.palette.type === 'light' ? color.t800 : color.t600
+    color: theme.palette.type === 'light' ? color.v400 : color.v300
   }
 }));
 
-const DestNodeWidget = props => {
+const TransformNodeWidget = props => {
   const { name, size } = props.node;
   const height = size * 0.5;
   const classes = tileStyles();
 
   return (
     <div>
-      <div className={`${classes.tile} Tile Tile__destination`}>
+      <div className={`${classes.tile} Tile Tile__transform`}>
         <div className={`${classes.tileInner} Tile__inner`}>
-          <div className={`${classes.tileTitle} Tile__destination-title`}>
-            Destination
+          <div className={`${classes.tileTitle} Tile__transform-title`}>
+            Transform
           </div>
           <div>{name}</div>
         </div>
@@ -47,8 +47,18 @@ const DestNodeWidget = props => {
       >
         <PortWidget name="left" node={props.node} />
       </div>
+      <div
+        style={{
+          position: 'absolute',
+          zIndex: 10,
+          top: height / 2 - 8,
+          left: size - 8
+        }}
+      >
+        <PortWidget name="right" node={props.node} />
+      </div>
     </div>
   );
 };
 
-export default DestNodeWidget;
+export default TransformNodeWidget;

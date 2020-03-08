@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
 import { Toolbar } from '../Toolbar/Toolbar';
-import { DestNodeModel, SourceNodeModel, TransNodeModel } from '../Nodes';
+import {
+  DestinationNodeModel,
+  SourceNodeModel,
+  TransformNodeModel
+} from '../Nodes';
 import { setSelectedNode } from '../../../../../State/Hydration/actions';
 import { initialStateTypes } from '../../../../../State/Hydration/types';
 import TransformEditor from '../Transform/TransformEditor';
@@ -24,27 +28,26 @@ const JobDesigner = (props: any) => {
   const dispatch = useDispatch();
 
   const addNodeToDiagram = (
-    type: string,
-    x: number,
-    y: number,
-    name: string = ''
+    nodeTitle: string,
+    position: { x: number; y: number },
+    type: string
   ): any => {
     let node: any;
-    if (type === 'source') node = new SourceNodeModel(name);
-    else if (type === 'trans') node = new TransNodeModel();
-    else if (type === 'dest') node = new DestNodeModel();
-    node.x = x;
-    node.y = y;
-    node.name = name;
+    if (type === 'source') node = new SourceNodeModel(nodeTitle);
+    else if (type === 'transform') node = new TransformNodeModel();
+    else if (type === 'destination') node = new DestinationNodeModel();
+    node.x = position.x;
+    node.y = position.y;
+    node.name = nodeTitle;
 
     let formInitialState = {};
     if (type === 'source') {
-      formInitialState = generateSourceInitialState(node.id, name, values);
+      formInitialState = generateSourceInitialState(node.id, nodeTitle, values);
       setFieldValue('sources', formInitialState);
-    } else if (type === 'trans') {
+    } else if (type === 'transform') {
       formInitialState = generateTransformInitialState(node.id, values);
       setFieldValue('transforms', formInitialState);
-    } else if (type === 'dest') {
+    } else if (type === 'destination') {
       formInitialState = { ...values };
     }
 

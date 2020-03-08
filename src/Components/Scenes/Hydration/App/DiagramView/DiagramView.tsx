@@ -10,6 +10,7 @@ import {
   setIsEditorOpen
 } from '../../../../../State/Hydration/actions';
 import { initialStateTypes } from '../../../../../State/Hydration/types';
+import { AddNodeToDiagram } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
   diagramCanvas: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 interface DiagramViewProps {
   app: any;
-  addNodeToDiagram: (type: string, x: number, y: number, name: string) => any;
+  addNodeToDiagram: AddNodeToDiagram;
 }
 
 /**
@@ -45,7 +46,7 @@ const DiagramView = (props: DiagramViewProps) => {
     if (event.dataTransfer.types[0] === 'storm-diagram-node') {
       const data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
       const points = app.getDiagramEngine().getRelativeMousePoint(event);
-      addNodeToDiagram(data.type, points.x, points.y, data.name);
+      addNodeToDiagram(data.name, { x: points.x, y: points.y }, data.type);
     }
   };
 
@@ -66,7 +67,11 @@ const DiagramView = (props: DiagramViewProps) => {
       };
       const codeString = await convertFileToCodeString(files[0]);
 
-      const node = addNodeToDiagram('trans', 400, 400, 'Untitled');
+      const node = addNodeToDiagram(
+        'Untitled',
+        { x: 400, y: 400 },
+        'transform'
+      );
       node.selected = true;
       dispatch(setSelectedNode(null, node));
       dispatch(setIsEditorOpen(true));

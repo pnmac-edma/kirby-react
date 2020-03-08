@@ -25,21 +25,17 @@ export const Toolbar = props => {
   };
 
   if (selectedNode) {
-    const toolbarType = {
-      source: 'Source',
-      trans: 'Transformation',
-      dest: 'Destination'
-    }[selectedNode.type];
-
     return (
       <ToolbarWidget tab={tab} handleTabsChange={handleTabsChange}>
-        {toolbarType === 'Source' && (
+        {selectedNode.type === 'source' && (
           <Source id={selectedNode.id} sourceType={selectedNode.name} />
         )}
-        {toolbarType === 'Transformation' && <Transform id={selectedNode.id} />}
-        {toolbarType === 'Destination' && (
+        {selectedNode.type === 'transform' && (
+          <Transform id={selectedNode.id} />
+        )}
+        {selectedNode.type === 'destination' && (
           <Typography className={classes.typography} variant="h5">
-            Toolbar for {toolbarType}
+            Toolbar for {selectedNode.type}
             <br /> Node ID:
             <br /> {selectedNode.id}
           </Typography>
