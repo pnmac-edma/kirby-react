@@ -4,7 +4,7 @@ import { useFormikContext } from 'formik';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
-import { initialStateTypes } from '../../../../../State/Hydration/types';
+import { InitialStateTypes } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
   typography: {
@@ -19,7 +19,7 @@ interface TransformProps {
 
 const Transform = (props: TransformProps) => {
   const { id } = props;
-  const { values } = useFormikContext() as { values: initialStateTypes };
+  const { values } = useFormikContext() as { values: InitialStateTypes };
   const { transforms } = values;
   const dispatch = useDispatch();
   const classes = useStyles();

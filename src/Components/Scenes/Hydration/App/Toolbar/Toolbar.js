@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { setRemoveNode } from '../../../../../State/Hydration/actions';
 import ToolbarWidget from './ToolbarWidget';
 import Destinations from '../Destinations/Destinations';
 import Sources from '../Sources/Sources';
@@ -19,8 +21,10 @@ export const Toolbar = props => {
   const classes = useStyles();
   const { selectedNode, addNodeToDiagram } = props;
   const [tab, setTab] = React.useState(0);
+  const dispatch = useDispatch();
 
   const handleTabsChange = (event, newTab) => {
+    dispatch(setRemoveNode(selectedNode));
     setTab(newTab);
   };
 

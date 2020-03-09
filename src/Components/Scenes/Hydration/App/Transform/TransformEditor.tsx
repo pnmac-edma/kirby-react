@@ -4,7 +4,7 @@ import { useFormikContext } from 'formik';
 import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
 import { makeStyles } from '@material-ui/core';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
-import { initialStateTypes } from '../../../../../State/Hydration/types';
+import { InitialStateTypes } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
   positioning: {
@@ -20,7 +20,7 @@ interface TransformProps {
 const TransformEditor = (props: TransformProps) => {
   const { id } = props;
   const { values, setFieldValue } = useFormikContext() as {
-    values: initialStateTypes;
+    values: InitialStateTypes;
     setFieldValue: (field: string, value: any) => void;
   };
   const { transforms } = values;

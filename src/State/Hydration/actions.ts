@@ -2,7 +2,7 @@ import * as types from './types';
 
 export const setSelectedNode = (
   event: React.FormEvent<HTMLFormElement> | null,
-  node?: any
+  node?: types.NodeModel
 ): SetSelectedNodeAction => ({
   type: types.SET_SELECTED_NODE,
   event,
@@ -11,14 +11,18 @@ export const setSelectedNode = (
 interface SetSelectedNodeAction {
   type: typeof types.SET_SELECTED_NODE;
   event: React.FormEvent<HTMLFormElement> | null;
-  node: any;
+  node: types.NodeModel | undefined;
 }
 
-export const setRemoveNode = (): SetRemoveNodeAction => ({
-  type: types.SET_REMOVE_NODE
+export const setRemoveNode = (
+  node: types.NodeModel | null
+): SetRemoveNodeAction => ({
+  type: types.SET_REMOVE_NODE,
+  node
 });
 interface SetRemoveNodeAction {
   type: typeof types.SET_REMOVE_NODE;
+  node: types.NodeModel | null;
 }
 
 export const setIsEditorOpen = (value: boolean): SetIsEditorOpenAction => ({

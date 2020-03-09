@@ -1,3 +1,5 @@
+import { InitialStateTypes } from './types';
+import { node } from 'prop-types';
 /** EXPECTED FORM INITIAL STATE
  * jobName: '',
  * selectedNode: null,
@@ -74,16 +76,57 @@ export const generateSourceInitialState = (
   };
 };
 
-export const generateTransformInitialState = (id: string, formValues: any) => {
+export const generateTransformInitialState = (
+  id: string,
+  name: string,
+  formValues: any,
+  sqlScript: string
+) => {
   let transformForm: any;
   if (formValues.transforms[id]) {
     transformForm = formValues.transforms[id];
   } else {
     transformForm = transformInitialState;
   }
+  // console.log({
+  //   ...formValues.transforms,
+  //   [id]: {
+  //     ...transformForm,
+  //     name,
+  //     sqlScript
+  //   }
+  // });
 
   return {
     ...formValues.transforms,
-    [id]: transformForm
+    [id]: {
+      ...transformForm,
+      name,
+      sqlScript
+    }
   };
+};
+
+export const setFormInitialState = (
+  type: string,
+  nodeId: string,
+  nodeTitle: string,
+  values: InitialStateTypes,
+  setFieldValue: (field: string, value: any) => void,
+  sqlScript: string
+): any => {
+  if (type === 'source') {
+    setFieldValue(
+      'sources',
+      generateSourceInitialState(nodeId, nodeTitle, values)
+    );
+  } else if (type === 'transform') {
+    setFieldValue(
+      'transforms',
+      generateTransformInitialState(nodeId, nodeTitle, values, sqlScript)
+    );
+  } else if (type === 'destination') {
+    setFieldValue('destinations', { ...values });
+  }
+  return;
 };

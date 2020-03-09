@@ -1,3 +1,5 @@
+import { DiagramModel, DiagramEngine } from '@projectstorm/react-diagrams';
+
 // action constant types
 export const SET_SELECTED_NODE = 'SET_SELECTED_NODE';
 export const SET_REMOVE_NODE = 'SET_REMOVE_NODE';
@@ -41,7 +43,7 @@ export interface Sources {
   [id: string]: Source;
 }
 
-export interface initialStateTypes {
+export interface InitialStateTypes {
   sources: Sources;
   transforms: Transforms;
 }
@@ -60,5 +62,26 @@ export interface Transform {
 export type AddNodeToDiagram = (
   nodeTitle: string,
   position: { x: number; y: number },
-  type: string
-) => any;
+  type: string,
+  sqlScript?: string
+) => NodeModel;
+
+export interface AppEngine {
+  engine: DiagramEngine;
+  model: DiagramModel;
+  getDiagramEngine: Function;
+}
+
+export interface NodeModel {
+  listeners: any;
+  id: string;
+  locked: boolean;
+  type: string;
+  selected: boolean;
+  x: number;
+  y: number;
+  extras: Object;
+  ports: any;
+  name: string;
+  size: number;
+}

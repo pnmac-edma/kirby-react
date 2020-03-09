@@ -3,35 +3,49 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
 import { Toolbar } from '../Toolbar/Toolbar';
+import TransformEditor from '../Transform/TransformEditor';
+import { setSelectedNode } from '../../../../../State/Hydration/actions';
+import { setFormInitialState } from '../../../../../State/Hydration/forms';
 import {
   DestinationNodeModel,
   SourceNodeModel,
   TransformNodeModel
 } from '../Nodes';
-import { setSelectedNode } from '../../../../../State/Hydration/actions';
-import { initialStateTypes } from '../../../../../State/Hydration/types';
-import TransformEditor from '../Transform/TransformEditor';
 import {
-  generateSourceInitialState,
-  generateTransformInitialState
-} from '../../../../../State/Hydration/forms';
+  AppEngine,
+  InitialStateTypes,
+  NodeModel
+} from '../../../../../State/Hydration/types';
 
-const JobDesigner = (props: any) => {
+interface JobDesignerProps {
+  app: AppEngine;
+  forceUpdate: React.DispatchWithoutAction;
+  selectedNode: NodeModel;
+}
+
+const JobDesigner = (props: JobDesignerProps) => {
   const { app, forceUpdate, selectedNode } = props;
   const { values, setFieldValue } = useFormikContext() as {
-    values: initialStateTypes;
+    values: InitialStateTypes;
     setFieldValue: (field: string, value: any) => void;
   };
+
   const isEditorOpen = useSelector(
     ({ hydration }: any) => hydration.isEditorOpen
   );
   const dispatch = useDispatch();
 
+  // this function handles node being added to diagram:
+  // 1. sets up a node model dependent on the type
+  // 2. sets up the proper form initial states in formik dependent on the type
+  // 3. runs a few app internal functions and adds listeners
+  // 4. updates component and returns node
   const addNodeToDiagram = (
     nodeTitle: string,
     position: { x: number; y: number },
-    type: string
-  ): any => {
+    type: string,
+    sqlScript = ''
+  ): NodeModel => {
     let node: any;
     if (type === 'source') node = new SourceNodeModel(nodeTitle);
     else if (type === 'transform') node = new TransformNodeModel();
@@ -40,33 +54,33 @@ const JobDesigner = (props: any) => {
     node.y = position.y;
     node.name = nodeTitle;
 
-    let formInitialState = {};
-    if (type === 'source') {
-      formInitialState = generateSourceInitialState(node.id, nodeTitle, values);
-      setFieldValue('sources', formInitialState);
-    } else if (type === 'transform') {
-      formInitialState = generateTransformInitialState(node.id, values);
-      setFieldValue('transforms', formInitialState);
-    } else if (type === 'destination') {
-      formInitialState = { ...values };
-    }
+    setFormInitialState(
+      type,
+      node.id,
+      nodeTitle,
+      values,
+      setFieldValue,
+      sqlScript
+    );
 
     app
       .getDiagramEngine()
       .getDiagramModel()
       .addNode(node);
+
     node.addListener({
       selectionChanged: (event: React.FormEvent<HTMLFormElement>) =>
         dispatch(setSelectedNode(event)),
       entityRemoved: (event: React.FormEvent<HTMLFormElement>) =>
         dispatch(setSelectedNode(null))
     });
+
     forceUpdate();
     return node;
   };
 
   return (
-    <div className={`Diagram`}>
+    <div className="Diagram">
       {isEditorOpen && selectedNode && selectedNode.id && (
         <TransformEditor id={selectedNode.id} />
       )}

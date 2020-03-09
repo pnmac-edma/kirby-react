@@ -9,7 +9,7 @@ import {
   setSelectedNode,
   setIsEditorOpen
 } from '../../../../../State/Hydration/actions';
-import { initialStateTypes } from '../../../../../State/Hydration/types';
+import { InitialStateTypes } from '../../../../../State/Hydration/types';
 import { AddNodeToDiagram } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
@@ -35,21 +35,31 @@ interface DiagramViewProps {
 const DiagramView = (props: DiagramViewProps) => {
   const { addNodeToDiagram, app } = props;
   const { values, setFieldValue } = useFormikContext() as {
-    values: initialStateTypes;
+    values: InitialStateTypes;
     setFieldValue: (field: string, value: any) => void;
   };
   const { transforms } = values;
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  // this function handles when nodes are dropped
   const onDropNode = (event: any) => {
     if (event.dataTransfer.types[0] === 'storm-diagram-node') {
       const data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
       const points = app.getDiagramEngine().getRelativeMousePoint(event);
-      addNodeToDiagram(data.name, { x: points.x, y: points.y }, data.type);
+      addNodeToDiagram(
+        data.name,
+        { x: points.x, y: points.y },
+        data.type,
+        data.sqlScript
+      );
     }
   };
 
+  // this function handles file dropping with the following steps:
+  // 1. converts the file into a string that holds the code
+  // 2. adds node to diagram and makes sure it is selectedafter
+  // 3. adds/sets the form values in formik
   const onDrop = useCallback(
     async (files: Array<File>) => {
       const convertFileToCodeString = async (file: File) => {
@@ -75,6 +85,7 @@ const DiagramView = (props: DiagramViewProps) => {
       node.selected = true;
       dispatch(setSelectedNode(null, node));
       dispatch(setIsEditorOpen(true));
+
       const newTransformsValue = {
         ...transforms,
         [node.id]: {
