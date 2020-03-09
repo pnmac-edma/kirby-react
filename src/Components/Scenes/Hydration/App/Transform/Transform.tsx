@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core';
+import { Button, makeStyles, Typography } from '@material-ui/core';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
 
@@ -29,9 +28,13 @@ const Transform = (props: TransformProps) => {
       <Typography className={classes.typography} variant="h4">
         {transforms[id].name}
       </Typography>
-      <button type="button" onClick={() => dispatch(setIsEditorOpen(true))}>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => dispatch(setIsEditorOpen(true))}
+      >
         Edit Script
-      </button>
+      </Button>
       <p>This is a description tag informational dump here</p>
     </div>
   );

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
@@ -24,6 +25,7 @@ interface JobDesignerProps {
 }
 
 const JobDesigner = (props: JobDesignerProps) => {
+  const theme = useTheme();
   const { app, forceUpdate, selectedNode } = props;
   const { values, setFieldValue } = useFormikContext() as {
     values: InitialStateTypes;
@@ -34,6 +36,13 @@ const JobDesigner = (props: JobDesignerProps) => {
     ({ hydration }: any) => hydration.isEditorOpen
   );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.body.className = theme.palette.type === 'light' ? 'light' : 'dark';
+    return () => {
+      document.body.className = '';
+    };
+  });
 
   // this function handles node being added to diagram:
   // 1. sets up a node model dependent on the type

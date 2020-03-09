@@ -85,6 +85,26 @@
   margin-right: 4px;
 }
 
+.Toolbar__list {
+  border-bottom: 1px solid $color-g-100;
+  padding: 1rem 0 3rem;
+  margin: 0 0 3rem;
+  overflow-x: scroll;
+  height: calc(100% - 220px);
+}
+
+.dark .Toolbar__list {
+  border-color: $color-g-700;
+}
+
+.Toolbar__filters {
+  border-bottom: 1px solid $color-g-100;
+}
+
+.dark .Toolbar__filters {
+  border-color: $color-g-700;
+}
+
 // Hydration input styles
 .Input__textfield,
 .Input__select {
@@ -146,6 +166,26 @@
 .Input__textfield label,
 .Input__select label {
   transition: all 0.2s ease-in-out;
+}
+
+.Input__filter input {
+  background: $color-white;
+}
+
+.dark .Input__filter input {
+  background: $color-black;
+}
+
+.Input__filter .MuiFilledInput-underline:before,
+.Input__filter .MuiFilledInput-underline:after {
+  display: none;
+}
+
+.Icon__search {
+  position: relative;
+  top: 16px;
+  margin-left: 14px;
+  color: $color-g-400;
 }
 
 // Dark mode input styles

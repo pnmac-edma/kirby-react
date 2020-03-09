@@ -1,6 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Field } from 'formik';
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputLabel,
+  TextField
+} from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import { AddCircleOutline } from '@material-ui/icons';
 import color from '@edma/design-tokens/js/color';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
@@ -27,17 +35,29 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
 
   return (
     <>
-      {Object.values(mockTransformsData).map(({ name, sqlScript }, i) => (
-        <ToolbarItemWidget
-          key={`${name}-${i}`}
-          model={{ type: 'transform', name, sqlScript }}
-          name={name}
-          color={color['c400']}
-          onClick={() =>
-            addNodeToDiagram(name, { x: 400, y: 400 }, 'transform', sqlScript)
-          }
+      <div className="Toolbar__filters">
+        <SearchIcon className="Icon__search" />
+        <Field
+          name={`transforms.filter`}
+          className="Input__filter"
+          label="Filter"
+          as={TextField}
+          variant="filled"
         />
-      ))}
+      </div>
+      <div className="Toolbar__list">
+        {Object.values(mockTransformsData).map(({ name, sqlScript }, i) => (
+          <ToolbarItemWidget
+            key={`${name}-${i}`}
+            model={{ type: 'transform', name, sqlScript }}
+            name={name}
+            color={color['c400']}
+            onClick={() =>
+              addNodeToDiagram(name, { x: 400, y: 400 }, 'transform', sqlScript)
+            }
+          />
+        ))}
+      </div>
       <Button
         onClick={(event: any) => setAddTransform(event)}
         variant="contained"
