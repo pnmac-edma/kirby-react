@@ -40,7 +40,7 @@ const PageWrapper = ({ isSearchClicked, newJobName, themeToggle }) => {
           themeToggle={themeToggle}
         />
       ) : curPath === '/' ? (
-        <AppBarContainer home />
+        <AppBarContainer home themeToggle={themeToggle} />
       ) : (
         <AppBarContainer themeToggle={themeToggle} />
       )}
