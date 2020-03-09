@@ -1,14 +1,18 @@
 import React from 'react';
 import { Field } from 'formik';
 import {
+  Button,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   TextField,
+  Tooltip,
   Select,
   Divider
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
 interface SftpProps {
@@ -23,12 +27,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex'
   },
   formSection: {
+    position: 'relative',
     textAlign: 'left',
     padding: '8px 16px 16px'
   },
   formTitle: {
     textDecoration: 'bold',
-    marginBottom: 0
+    marginBottom: '1rem'
   }
 }));
 
@@ -41,21 +46,28 @@ const Sftp = (props: SftpProps) => {
     <div>
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>SFTP</h4>
+        <div className={`Tile__delete`}>
+          <Tooltip title="Remove Tile" placement="top">
+            <IconButton aria-label="remove-tile">
+              <DeleteOutline fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </div>
         <Field
           name={`sources.${id}.host`}
-          className="Toolbar__host"
+          className="Input__textfield Sftp__host"
           label="Host"
           as={TextField}
         />
         <Field
           name={`sources.${id}.port`}
-          className="Toolbar__port"
+          className="Input__textfield Sftp__port"
           label="Port"
           as={TextField}
         />
         <Field
           name={`sources.${id}.folder`}
-          className="Toolbar__folder"
+          className="Input__textfield Sftp__folder"
           label="Folder"
           as={TextField}
         />
@@ -64,10 +76,11 @@ const Sftp = (props: SftpProps) => {
 
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>Connection</h4>
-        <FormControl className={classes.selectFormControl}>
+        <FormControl
+          className={`Input__select Toolbar__connection-type ${classes.selectFormControl}`}
+        >
           <InputLabel id="connection-type">Connection Type</InputLabel>
           <Field
-            className={`Toolbar__connectionType`}
             id="connection-type"
             name={`sources.${id}.connectionType`}
             label="Type"
@@ -81,6 +94,9 @@ const Sftp = (props: SftpProps) => {
             ))}
           </Field>
         </FormControl>
+        <Button variant="outlined" color="primary">
+          Test Connection
+        </Button>
       </div>
       <Divider className={classes.divider} />
     </div>

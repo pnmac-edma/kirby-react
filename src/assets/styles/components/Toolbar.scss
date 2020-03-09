@@ -22,9 +22,11 @@
   .MuiTab-root {
     min-width: auto;
     min-height: 40px;
+    font-family: $font-heading;
     font-variant: small-caps;
-    font-size: 12px;
-    padding: 0 10px;
+    font-weight: $weight-bold;
+    font-size: 10px;
+    flex-grow: 1;
   }
 
   .MuiTabs-root {
@@ -53,52 +55,145 @@
 }
 
 .Toolbar__nodetype {
-  padding: 5px;
-  margin: 10px 10px;
-  border: solid 2px;
-  border-radius: 5px;
+  padding: 8px 16px;
   margin-bottom: 2px;
   cursor: pointer;
-  text-align: center;
-}
+  text-align: left;
+  color: $color-g-700;
 
-// Hydration form elements
-
-.Toolbar__textfield,
-.Toolbar__select {
-  // MUI Overrides
-  .MuiFormLabel-root {
-    background: $color-y-50;
-    padding: 0.2rem;
-
-    &.MuiInputLabel-formControl {
-      transform: translate(0, 14px) scale(1);
-    }
-
-    &.MuiInputLabel-shrink {
-      transform: translate(0, 1.5px) scale(0.75);
-    }
-
-    &.Mui-focused,
-    &.MuiFormLabel-filled {
-      background: transparent;
-      color: $color-g-600;
-      padding: 0;
-    }
-  }
-
-  .MuiInput-root {
-    margin-top: 8px;
-  }
-
-  .MuiInput-underline {
-    &:before,
-    &:after {
-      display: none;
-    }
+  &:hover {
+    background: $color-g-100;
+    color: $color-black;
   }
 }
 
-.Toolbar__select {
+.dark .Toolbar__nodetype {
+  color: $color-g-400;
+
+  &:hover {
+    background: $color-g-800;
+    color: $color-white;
+  }
+}
+
+.Toolbar__connection-type {
+  margin-bottom: 1rem !important;
+}
+
+.Toolbar__item-icon {
+  width: 21px;
+  margin-right: 4px;
+}
+
+// Hydration tile styles
+.Tile__delete {
+  position: absolute;
+  display: inline;
+  top: 0.7rem;
+  right: 0.5rem;
+
+  & button span svg path {
+    fill: $color-black;
+  }
+
+  &:hover > button span svg path {
+    fill: $color-r-600;
+  }
+}
+
+.dark .Tile__delete {
+  & button span svg path {
+    fill: $color-white;
+  }
+
+  &:hover > button span svg path {
+    fill: $color-r-500;
+  }
+}
+
+// Hydration input styles
+.Input__textfield,
+.Input__select {
+  margin-top: 1rem !important;
   width: 100%;
+}
+
+.Input__textfield label,
+.Input__select label {
+  color: $color-g-600;
+}
+
+.Input__textfield input,
+.Input__select .MuiSelect-select {
+  border-radius: $border-radius-1;
+  border: 1px solid transparent;
+  padding: 0.2rem;
+
+  &:hover {
+    border: 1px solid $color-g-100;
+  }
+}
+
+.Input__textfield .Mui-focused input,
+.Input__select .Mui-focused .MuiSelect-select {
+  border: 1px solid $color-g-300;
+  border-radius: $border-radius-1;
+}
+
+.Input__textfield div:before,
+.Input__textfield div:after,
+.Input__select div:before,
+.Input__select div:after,
+.Input__textfield div:hover:before,
+.Input__textfield div:hover:after {
+  content: '';
+  border-bottom: none !important;
+}
+
+.Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+.Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+  top: -7px;
+}
+
+.Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+.Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+  background: $color-y-50;
+  padding: 0.3rem;
+}
+
+.Input__select label {
+  color: $color-g-600;
+}
+
+.Input__select .MuiSelect-select:focus {
+  background-color: transparent;
+}
+
+.Input__textfield label,
+.Input__select label {
+  transition: all 0.2s ease-in-out;
+}
+
+// Dark mode input styles
+.dark {
+  .Input__textfield label,
+  .Input__select label {
+    color: $color-g-300;
+  }
+
+  .Input__textfield input:hover,
+  .Input__select .MuiSelect-select:hover {
+    border: 1px solid $color-g-600;
+  }
+
+  .Input__textfield .Mui-focused input,
+  .Input__select .Mui-focused .MuiSelect-select {
+    border: 1px solid $color-g-300;
+  }
+
+  .Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+  .Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+    background: $color-g-800;
+    color: $color-g-100;
+  }
 }

@@ -1,5 +1,5 @@
 import { InitialStateTypes } from './types';
-import { node } from 'prop-types';
+
 /** EXPECTED FORM INITIAL STATE
  * jobName: '',
  * selectedNode: null,
@@ -88,14 +88,6 @@ export const generateTransformInitialState = (
   } else {
     transformForm = transformInitialState;
   }
-  // console.log({
-  //   ...formValues.transforms,
-  //   [id]: {
-  //     ...transformForm,
-  //     name,
-  //     sqlScript
-  //   }
-  // });
 
   return {
     ...formValues.transforms,

@@ -10,7 +10,6 @@ type SourcesProps = {
 
 const Sources = (props: SourcesProps) => {
   const { addNodeToDiagram } = props;
-
   const sourceItems = Object.entries(mockSourcesData).map(source => ({
     name: source[0]
   }));

@@ -40,7 +40,6 @@ const TransformNodeWidget = props => {
       <div
         style={{
           position: 'absolute',
-          zIndex: 10,
           top: height / 2 - 8,
           left: -8
         }}
@@ -50,7 +49,6 @@ const TransformNodeWidget = props => {
       <div
         style={{
           position: 'absolute',
-          zIndex: 10,
           top: height / 2 - 8,
           left: size - 8
         }}

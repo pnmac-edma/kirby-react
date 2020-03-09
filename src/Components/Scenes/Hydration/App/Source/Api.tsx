@@ -1,14 +1,18 @@
 import React from 'react';
 import { Field } from 'formik';
 import {
+  Button,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   TextField,
+  Tooltip,
   Select,
   Divider
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
 interface ApiProps {
@@ -23,12 +27,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex'
   },
   formSection: {
+    position: 'relative',
     textAlign: 'left',
     padding: '8px 16px 16px'
   },
   formTitle: {
     textDecoration: 'bold',
-    marginBottom: 0
+    marginBottom: '1rem'
   }
 }));
 
@@ -41,10 +46,18 @@ const Rdbms = (props: ApiProps) => {
     <div>
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>RDBMS</h4>
-        <FormControl className={classes.selectFormControl}>
+        <div className={`Tile__delete`}>
+          <Tooltip title="Remove Tile" placement="top">
+            <IconButton aria-label="remove-tile">
+              <DeleteOutline fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </div>
+        <FormControl
+          className={`Input__select Api__type ${classes.selectFormControl}`}
+        >
           <InputLabel id="type">Type</InputLabel>
           <Field
-            className={`Toolbar__type`}
             id="type"
             name={`sources.${id}.type`}
             label="Type"
@@ -58,10 +71,11 @@ const Rdbms = (props: ApiProps) => {
             ))}
           </Field>
         </FormControl>
-        <FormControl className={classes.selectFormControl}>
+        <FormControl
+          className={`Input__select Api__http-method ${classes.selectFormControl}`}
+        >
           <InputLabel id="httpMethod">HTTP Method</InputLabel>
           <Field
-            className={`Toolbar__httpMethod`}
             id="httpMethod"
             name={`sources.${id}.httpMethod`}
             label="HTTP Method"
@@ -77,7 +91,7 @@ const Rdbms = (props: ApiProps) => {
         </FormControl>
         <Field
           name={`sources.${id}.url`}
-          className="Toolbar__url"
+          className="Input__textfield Api__url"
           label="URL"
           as={TextField}
         />
@@ -86,10 +100,11 @@ const Rdbms = (props: ApiProps) => {
 
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>Connection</h4>
-        <FormControl className={classes.selectFormControl}>
+        <FormControl
+          className={`Input__select Toolbar__connection-type ${classes.selectFormControl}`}
+        >
           <InputLabel id="connection-type">Connection Type</InputLabel>
           <Field
-            className={`Toolbar__connectionType`}
             id="connection-type"
             name={`sources.${id}.connectionType`}
             label="Type"
@@ -103,6 +118,9 @@ const Rdbms = (props: ApiProps) => {
             ))}
           </Field>
         </FormControl>
+        <Button variant="outlined" color="primary">
+          Test Connection
+        </Button>
       </div>
       <Divider className={classes.divider} />
     </div>

@@ -67,7 +67,6 @@ const JobDesigner = (props: JobDesignerProps) => {
       .getDiagramEngine()
       .getDiagramModel()
       .addNode(node);
-
     node.addListener({
       selectionChanged: (event: React.FormEvent<HTMLFormElement>) =>
         dispatch(setSelectedNode(event)),

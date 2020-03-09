@@ -42,9 +42,9 @@ const SearchResults = props => {
     }
   }, [params, searchResultPageLoad, searchResultRequest]);
 
-  const footerButtonText = `${selected.length} request${
-    selected.length !== 1 ? 's' : ''
-  } selected`;
+  const footerButtonText = selected
+    ? `${selected.length} request${selected.length !== 1 ? 's' : ''} selected`
+    : '';
 
   return (
     <TableWrapper
