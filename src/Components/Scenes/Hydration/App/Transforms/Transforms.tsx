@@ -62,6 +62,7 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
         onClick={(event: any) => setAddTransform(event)}
         variant="contained"
         color="primary"
+        className="Toolbar__btm-btn"
       >
         <AddCircleOutline />
         Add Transform
