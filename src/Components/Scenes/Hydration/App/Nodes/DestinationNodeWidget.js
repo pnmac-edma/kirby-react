@@ -34,7 +34,7 @@ const DestinationNodeWidget = props => {
           <div className={`${classes.tileTitle} Tile__destination-title`}>
             Destination
           </div>
-          <div>{name}</div>
+          <div className="Tile__destination-name Tile__name">{name}</div>
         </div>
       </div>
       <div
