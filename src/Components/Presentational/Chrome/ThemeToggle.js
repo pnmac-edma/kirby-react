@@ -7,10 +7,14 @@ import color from '@edma/design-tokens/js/color';
 
 const themeToggle = makeStyles({
   themeToggleLogoDark: {
-    fill: color.white
+    '& path': {
+      fill: color.white
+    }
   },
   themeToggleLogoLight: {
-    fill: color.black
+    '& path': {
+      fill: color.black
+    }
   }
 });
 

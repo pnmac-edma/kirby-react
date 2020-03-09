@@ -1,4 +1,5 @@
 import { initialState as viewRequests } from '../State/ViewRequests/reducers';
+import { initialState as hydration } from '../State/Hydration/reducers';
 
 const initialState = {
   // TODO: Replace Stub Data (role and EmpEmail) with Real Data
@@ -63,7 +64,8 @@ const initialState = {
     isLoading: false,
     justification: ''
   },
-  viewRequests
+  viewRequests,
+  hydration
 };
 
 export default initialState;

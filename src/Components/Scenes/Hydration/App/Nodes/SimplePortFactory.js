@@ -1,6 +1,6 @@
 import { AbstractPortFactory } from '@projectstorm/react-diagrams';
 
-export class SimplePortFactory extends AbstractPortFactory {
+export default class SimplePortFactory extends AbstractPortFactory {
   constructor(type, cb) {
     super(type);
     this.cb = cb;

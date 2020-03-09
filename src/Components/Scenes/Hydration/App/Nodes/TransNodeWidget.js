@@ -18,21 +18,21 @@ const tileStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.type === 'light' ? color.white : color.g800
   },
   tileTitle: {
-    color: theme.palette.type === 'light' ? color.c600 : color.c400
+    color: theme.palette.type === 'light' ? color.v400 : color.v300
   }
 }));
 
-const SourceNodeWidget = props => {
+const TransNodeWidget = props => {
   const { name, size } = props.node;
   const height = size * 0.5;
   const classes = tileStyles();
 
   return (
     <div>
-      <div className={`${classes.tile} Tile Tile__source`}>
+      <div className={`${classes.tile} Tile Tile__transform`}>
         <div className={`${classes.tileInner} Tile__inner`}>
-          <div className={`${classes.tileTitle} Tile__source-title`}>
-            Source
+          <div className={`${classes.tileTitle} Tile__transform-title`}>
+            Transform
           </div>
           <div>{name}</div>
         </div>
@@ -40,7 +40,15 @@ const SourceNodeWidget = props => {
       <div
         style={{
           position: 'absolute',
-          zIndex: 10,
+          top: height / 2 - 8,
+          left: -8
+        }}
+      >
+        <PortWidget name="left" node={props.node} />
+      </div>
+      <div
+        style={{
+          position: 'absolute',
           top: height / 2 - 8,
           left: size - 8
         }}
@@ -51,4 +59,4 @@ const SourceNodeWidget = props => {
   );
 };
 
-export default SourceNodeWidget;
+export default TransNodeWidget;

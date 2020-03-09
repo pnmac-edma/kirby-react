@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import JobDesignerApp from '../JobDesigner/JobDesigner';
+import JobApp from '../App/index';
 
 const chromeStyles = makeStyles(theme => ({
   container: {
@@ -11,13 +11,13 @@ const chromeStyles = makeStyles(theme => ({
   }
 }));
 
-const NewJob = props => {
+const NewJob = () => {
   const classes = chromeStyles();
 
   return (
     <Box className={classes.container}>
       <div style={{ height: '100%' }}>
-        <JobDesignerApp />;
+        <JobApp />;
       </div>
     </Box>
   );

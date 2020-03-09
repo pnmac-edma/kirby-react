@@ -1,0 +1,14 @@
+{
+  "RDBMS": {
+    "sourceVersions": ["MySQL", "MSSQL"],
+    "connectionTypes": ["Automatic", "Manual"]
+  },
+  "SFTP": {
+    "connectionTypes": ["SFTP", "Auto"]
+  },
+  "API": {
+    "types": ["Rest", "Soap", "Xml-Rpc"],
+    "httpMethods": ["GET", "POST", "PUT"],
+    "connectionTypes": ["Automatic", "Manual"]
+  }
+}

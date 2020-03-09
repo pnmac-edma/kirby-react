@@ -100,7 +100,11 @@ const Appbar = props => {
                 separator={<Typography variant="body1">/</Typography>}
                 className={classes.breadcrumbs}
               >
-                <Link href="/hydration/view-jobs" variant="body1">
+                <Link
+                  href="/hydration/view-jobs"
+                  to="/hydration/view-jobs"
+                  variant="body1"
+                >
                   Jobs
                 </Link>
                 <Typography variant="body1">{jobName}</Typography>
