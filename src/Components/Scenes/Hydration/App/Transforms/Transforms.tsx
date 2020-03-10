@@ -1,13 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Field } from 'formik';
-import {
-  Button,
-  FormControl,
-  IconButton,
-  InputLabel,
-  TextField
-} from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { AddCircleOutline } from '@material-ui/icons';
 import color from '@edma/design-tokens/js/color';
@@ -38,7 +32,7 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
       <div className="Toolbar__filters">
         <SearchIcon className="Icon__search" />
         <Field
-          name={`transforms.filter`}
+          name="transformsFilter"
           className="Input__filter"
           label="Filter"
           as={TextField}

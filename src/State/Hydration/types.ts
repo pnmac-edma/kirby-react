@@ -4,6 +4,7 @@ import { DiagramModel, DiagramEngine } from '@projectstorm/react-diagrams';
 export const SET_SELECTED_NODE = 'SET_SELECTED_NODE';
 export const SET_REMOVE_NODE = 'SET_REMOVE_NODE';
 export const SET_IS_EDITOR_OPEN = 'SET_IS_EDITOR_OPEN';
+export const SET_IS_DESTINATION_MODAL_OPEN = 'SET_IS_DESTINATION_MODAL_OPEN';
 
 // types
 export interface RDBMS {
@@ -46,6 +47,23 @@ export interface Sources {
 export interface InitialStateTypes {
   sources: Sources;
   transforms: Transforms;
+  transformsFilter: string;
+  destinations: Destinations;
+  destinationsFilterSens: string;
+  destinationsCreate: Destination;
+}
+
+export interface Destinations {
+  [id: string]: Destination;
+}
+
+export interface Destination {
+  name: string;
+  email: string;
+  sensitivity: string;
+  domain: string;
+  description: string;
+  justification: string;
 }
 
 export interface Transforms {

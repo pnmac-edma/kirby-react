@@ -6,18 +6,12 @@ import { InitialStateTypes } from './types';
  * sources: {},
  * transforms: {},
  * transformsFilter: '',
- * transformsCreate: {},
  * destinations: {},
  * destinationsFilterSens: [],
  * destinationsFilter: '',
  * destinationsCreate: {},
  * scheduleJob: {}
  */
-
-export const initialValues = {
-  sources: {},
-  transforms: {}
-};
 
 export const rdbmsInitialState = {
   sourceType: null,
@@ -52,6 +46,26 @@ export const transformInitialState = {
   sqlScript: '',
   tips: '',
   queryResults: []
+};
+
+export const destinationInitialState = {
+  name: '',
+  email: '',
+  description: '',
+  schedule: '',
+  domain: '',
+  justification: '',
+  sensitivity: ''
+};
+
+export const initialValues = {
+  sources: {},
+  transforms: {},
+  transformsFilter: '',
+  destinations: {},
+  destinationsFilter: '',
+  destinationsFilterSens: '',
+  destinationsCreate: { ...destinationInitialState }
 };
 
 export const generateSourceInitialState = (
@@ -99,6 +113,25 @@ export const generateTransformInitialState = (
   };
 };
 
+export const generateDestinationInitialState = (
+  id: string,
+  formValues: any
+) => {
+  let destinationForm: any;
+  if (formValues.destinations[id]) {
+    destinationForm = formValues.destinations[id];
+  } else {
+    destinationForm = destinationInitialState;
+  }
+
+  return {
+    ...formValues.destinations,
+    [id]: {
+      ...destinationForm
+    }
+  };
+};
+
 export const setFormInitialState = (
   type: string,
   nodeId: string,
@@ -118,7 +151,10 @@ export const setFormInitialState = (
       generateTransformInitialState(nodeId, nodeTitle, values, sqlScript)
     );
   } else if (type === 'destination') {
-    setFieldValue('destinations', { ...values });
+    setFieldValue(
+      'destinations',
+      generateDestinationInitialState(nodeId, values)
+    );
   }
   return;
 };

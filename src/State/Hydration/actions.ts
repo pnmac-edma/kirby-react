@@ -33,3 +33,14 @@ interface SetIsEditorOpenAction {
   type: typeof types.SET_IS_EDITOR_OPEN;
   value: boolean;
 }
+
+export const setIsDestinationModalOpen = (
+  value: boolean
+): SetIsDestinationModalOpenAction => ({
+  type: types.SET_IS_DESTINATION_MODAL_OPEN,
+  value
+});
+interface SetIsDestinationModalOpenAction {
+  type: typeof types.SET_IS_DESTINATION_MODAL_OPEN;
+  value: boolean;
+}
