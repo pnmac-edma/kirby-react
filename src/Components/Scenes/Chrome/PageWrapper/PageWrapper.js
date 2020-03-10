@@ -19,7 +19,7 @@ const pageContainerStyle = makeStyles(theme => ({
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: theme.palette.type,
+    backgroundColor: theme.palette.type === 'light' ? color.g50 : color.g900,
     alignItems: 'stretch',
     width: `calc(100% - ${theme.spacing(7)}px)`,
     height: '100vh',

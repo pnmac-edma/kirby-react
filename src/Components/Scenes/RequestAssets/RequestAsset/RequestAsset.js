@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   sidebar: {
-    background: color.g200,
+    background: theme.palette.type === 'light' ? color.g200 : color.g800,
     fontSize: fontSize[1],
     marginTop: '-10rem',
     marginBottom: '-10rem',
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
   sideBarPostion: {
     margin: '2rem 3rem 0rem 1rem',
-    color: 'black'
+    color: theme.palette.type === 'light' ? color.black : color.white
   },
   dividerStyle: {
     width: 400,
