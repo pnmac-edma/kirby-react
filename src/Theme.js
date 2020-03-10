@@ -86,7 +86,7 @@ const Kirby = {
       dark: color.b900
     },
     secondary: {
-      light: color.black,
+      light: color.b300,
       main: color.white,
       dark: color.b700
     },

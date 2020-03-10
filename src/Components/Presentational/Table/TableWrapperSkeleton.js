@@ -22,18 +22,6 @@ const TableWrapperSkeleton = () => {
         height={10}
         style={{ margin: '2.5rem 1rem', borderRadius: 50 }}
       />
-      <Skeleton
-        variant="rect"
-        width={600}
-        height={10}
-        style={{ margin: '2.5rem 1rem', borderRadius: 50 }}
-      />
-      <Skeleton
-        variant="rect"
-        width={600}
-        height={10}
-        style={{ margin: '2.5rem 1rem', borderRadius: 50 }}
-      />
     </React.Fragment>
   );
 };
