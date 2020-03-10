@@ -1,0 +1,51 @@
+// Table MUI overrides
+
+.MuiTableRow-root:hover {
+  background: $color-g-50;
+
+  &.Table__row--is-selected {
+    background: darken($color-b-50, 2%);
+  }
+}
+
+.MuiTableSortLabel-icon {
+  color: $color-black !important;
+}
+
+.MuiTableSortLabel-root {
+  color: $color-g-600 !important;
+}
+
+.MuiTableSortLabel-active {
+  color: $color-black !important;
+}
+
+.dark {
+  .MuiTableRow-root {
+    background: $color-g-700;
+
+    &:hover {
+      background: darken($color-g-700, 2%);
+    }
+
+    &.Table__row--is-selected {
+      background: $color-g-900;
+
+      &:hover {
+        background: lighten($color-g-900, 2%);
+      }
+    }
+  }
+
+  .MuiTableSortLabel-icon {
+    color: $color-white !important;
+  }
+
+  .MuiTableSortLabel-root {
+    color: $color-g-300 !important;
+  }
+
+  .MuiTableSortLabel-active {
+    color: $color-white !important;
+  }
+}

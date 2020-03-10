@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, TableCell, TableBody, TableRow } from '@material-ui/core';
-import colors from '@edma/design-tokens/js/color';
+import { color } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -21,14 +21,14 @@ const tableStyles = makeStyles(theme => ({
     width: '60%'
   },
   statusRejected: {
-    color: colors['r800']
+    color: color.r800
   },
   statusPending: {
     fontStyle: 'italic',
-    color: colors['g600']
+    color: color.g600
   },
   selectedRow: {
-    backgroundColor: colors['b50']
+    backgroundColor: color.b50
   }
 }));
 
@@ -75,7 +75,11 @@ const TableWrapperBody = props => {
     return (
       <TableRow
         key={request.Id}
-        className={clsx({ [classes.selectedRow]: isSelected(request.Id) })}
+        className={clsx({
+          [`Table__row--is-selected ${classes.selectedRow}`]: isSelected(
+            request.Id
+          )
+        })}
       >
         <TableCell padding="checkbox">
           <Checkbox

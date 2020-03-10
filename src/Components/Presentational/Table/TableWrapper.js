@@ -117,7 +117,59 @@ const TableWrapper = props => {
   };
 
   if (isLoading) {
-    return <TableWrapperSkeleton />;
+    return (
+      <Paper className={classes.paper}>
+        <div className={classes.tableWrapper}>
+          <TableWrapperHeader
+            filter={filter}
+            filterForm={filterForm}
+            isFilterClick={isFilterClick}
+            removeFilter={removeFilter}
+            selectedFilters={selectedFilters}
+            setFilterForm={setFilterForm}
+            setIsFilterClick={setIsFilterClick}
+            setSelectedFilters={setSelectedFilters}
+            setTitleText={setTitleText}
+          />
+          <Table className={classes.table} size="medium" stickyHeader>
+            <TableWrapperColumnHeaders
+              columns={columns}
+              data={data}
+              numSelected={selected.length}
+              onSelectAllClick={setToggleAllCheckbox}
+              onSort={handleSortClick}
+              order={order}
+              orderBy={orderBy}
+              rowCount={filteredData.length}
+              selected={selected}
+            />
+            <TableWrapperSkeleton />
+          </Table>
+        </div>
+        <TableWrapperFooter
+          count={filteredData.length}
+          onChangePage={(e, newPage) => setPage(newPage)}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+          page={page}
+          rowsPerPage={rowsPerPage}
+        >
+          <Link
+            className={classes.link}
+            to={footerButtonLink || window.location.pathname}
+          >
+            <Button
+              className={classes.button}
+              color="primary"
+              disabled={selected.length === 0}
+              onClick={handleFooterButtonClick}
+              variant="contained"
+            >
+              {footerButtonText}
+            </Button>
+          </Link>
+        </TableWrapperFooter>
+      </Paper>
+    );
   }
 
   if (!data) {
