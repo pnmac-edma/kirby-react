@@ -148,8 +148,6 @@ const TableWrapper = props => {
           />
           {isLoading ? (
             <TableWrapperSkeleton />
-          ) : !data ? (
-            <TableWrapperNotFound searchInput={searchInput} />
           ) : filteredData.length ? (
             <TableWrapperBody
               columns={columns}
