@@ -5,6 +5,7 @@ import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/s
 import {
   IconButton,
   makeStyles,
+  Tooltip,
   Typography,
   useTheme
 } from '@material-ui/core';
@@ -58,12 +59,14 @@ const TransformEditor = (props: TransformProps) => {
       <Typography variant="body1" className={classes.name}>
         {transforms[id].name}
       </Typography>
-      <IconButton
-        className={classes.button}
-        onClick={() => dispatch(setIsEditorOpen(false))}
-      >
-        <CloseIcon />
-      </IconButton>
+      <Tooltip title="Close Editor">
+        <IconButton
+          className={classes.button}
+          onClick={() => dispatch(setIsEditorOpen(false))}
+        >
+          <CloseIcon />
+        </IconButton>
+      </Tooltip>
       <ControlledEditor
         width="800"
         height="90vh"
