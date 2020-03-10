@@ -2,14 +2,27 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
-import { makeStyles } from '@material-ui/core';
+import {
+  IconButton,
+  makeStyles,
+  Typography,
+  useTheme
+} from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
   positioning: {
-    paddingTop: '5rem',
     paddingBottom: '5rem'
+  },
+  name: {
+    padding: '1rem'
+  },
+  button: {
+    position: 'absolute',
+    top: '4.3rem',
+    right: '0.5rem'
   }
 }));
 
@@ -26,6 +39,7 @@ const TransformEditor = (props: TransformProps) => {
   const { transforms } = values;
   const dispatch = useDispatch();
   const classes = useStyles();
+  const theme = useTheme();
 
   const setChange = (value: string | undefined) => {
     const newTransformsValue = {
@@ -39,15 +53,22 @@ const TransformEditor = (props: TransformProps) => {
   };
 
   return (
-    <div className={`Diagram__layer ${classes.positioning}`}>
-      <button type="button" onClick={() => dispatch(setIsEditorOpen(false))}>
-        Close
-      </button>
+    <div className={`Diagram__layer Editor ${classes.positioning}`}>
+      <div className="Editor__heading" />
+      <Typography variant="body1" className={classes.name}>
+        {transforms[id].name}
+      </Typography>
+      <IconButton
+        className={classes.button}
+        onClick={() => dispatch(setIsEditorOpen(false))}
+      >
+        <CloseIcon />
+      </IconButton>
       <ControlledEditor
         width="800"
         height="90vh"
         language="sql"
-        theme="vs-light"
+        theme={theme.palette.type === 'light' ? 'vs-light' : 'vs-dark'}
         value={transforms[id].sqlScript}
         onChange={(_, value: string | undefined) => setChange(value)}
       />
