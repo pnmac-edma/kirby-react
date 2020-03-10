@@ -12,10 +12,21 @@
 
 .Diagram__layer {
   position: relative;
+  border: 3px solid transparent;
   flex-grow: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.Diagram__layer--is-dragging {
+  border: 3px solid $color-p-300;
+  background: $color-p-50;
 }
 
 .Diagram__canvas {
   height: 100%;
   min-height: 300px;
+
+  &:focus {
+    outline: none;
+  }
 }
