@@ -53,6 +53,14 @@
 }
 
 // Kirby styles
+.Editor {
+  position: absolute;
+  width: calc(100% - 260px);
+  z-index: $z-2;
+  animation: editor-enter 0.2s ease-in-out;
+  animation-direction: forwards;
+}
+
 .Editor__heading {
   background: $color-white;
   height: 61px;
@@ -63,4 +71,13 @@
 .dark .Editor__heading {
   background: $color-black;
   border-color: $color-g-700;
+}
+
+@keyframes editor-enter {
+  0% {
+    top: 1000px;
+  }
+  100% {
+    top: 0;
+  }
 }
