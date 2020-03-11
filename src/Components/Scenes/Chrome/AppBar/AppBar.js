@@ -11,6 +11,7 @@ import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.sv
 const appBarStyle = makeStyles(theme => ({
   logoContainer: {
     marginLeft: '16px',
+    marginTop: '-4px',
     display: 'flex'
   },
   themeToggleContainer: {
@@ -27,7 +28,6 @@ const appBarStyle = makeStyles(theme => ({
   mark: {
     height: theme.spacing(7),
     flexShrink: 0,
-    marginRight: theme.spacing(1.5),
 
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
@@ -49,16 +49,17 @@ const appBarStyle = makeStyles(theme => ({
     width: 'calc(100% - 260px)'
   },
   header: {
-    marginLeft: theme.spacing(1),
+    marginLeft: '32px',
+    marginTop: '-2px',
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(2),
+    padding: '16px 0',
     position: 'absolute'
   },
   breadcrumbs: {
     whiteSpace: 'nowrap',
     color: theme.palette.type === 'light' ? color.black : color.white,
-    marginLeft: 24
+    marginLeft: 16
   }
 }));
 
