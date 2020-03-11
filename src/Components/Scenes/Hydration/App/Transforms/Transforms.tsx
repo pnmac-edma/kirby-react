@@ -32,7 +32,7 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
       <div className="Toolbar__filters">
         <SearchIcon className="Icon__search" />
         <Field
-          name={`transforms.filter`}
+          name="transformsFilter"
           className="Input__filter"
           label="Filter"
           as={TextField}
@@ -47,7 +47,9 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
             name={name}
             color={color['c400']}
             onClick={() =>
-              addNodeToDiagram(name, { x: 400, y: 400 }, 'transform', sqlScript)
+              addNodeToDiagram(name, { x: 400, y: 400 }, 'transform', {
+                sqlScript
+              })
             }
           />
         ))}

@@ -1,0 +1,56 @@
+{
+  "random-id-1": {
+    "name": "Servicing DB",
+    "email": "jonathan.datguy@pnmac.com",
+    "description": "This database contains all kinds of cool stuff about stuff and stuff. Do you like stuff? Because if you do, oh boy do we have stuff for you.",
+    "schedule": "This is the schedule placeholder",
+    "domain": "Retail",
+    "justification": "This is the justification",
+    "sensitivity": "Not Sensitive"
+  },
+  "random-id-2": {
+    "name": "Retail DB",
+    "email": "jonathan.datguy@pnmac.com",
+    "description": "This database contains all kinds of cool stuff about stuff and stuff. Do you like stuff? Because if you do, oh boy do we have stuff for you.",
+    "schedule": "This is the schedule placeholder",
+    "domain": "Servicing",
+    "justification": "This is the justification",
+    "sensitivity": "Confidential"
+  },
+  "random-id-3": {
+    "name": "Capital Markets DB",
+    "email": "jonathan.datguy@pnmac.com",
+    "description": "This database contains all kinds of cool stuff about stuff and stuff. Do you like stuff? Because if you do, oh boy do we have stuff for you.",
+    "schedule": "This is the schedule placeholder",
+    "domain": "Capital Markets",
+    "justification": "This is the justification",
+    "sensitivity": "Very Sensitive"
+  },
+  "random-id-4": {
+    "name": "Servicing DB",
+    "email": "jonathan.datguy@pnmac.com",
+    "description": "This database contains all kinds of cool stuff about stuff and stuff. Do you like stuff? Because if you do, oh boy do we have stuff for you.",
+    "schedule": "This is the schedule placeholder",
+    "domain": "Retail",
+    "justification": "This is the justification",
+    "sensitivity": "Not Sensitive"
+  },
+  "random-id-5": {
+    "name": "Retail DB",
+    "email": "jonathan.datguy@pnmac.com",
+    "description": "This database contains all kinds of cool stuff about stuff and stuff. Do you like stuff? Because if you do, oh boy do we have stuff for you.",
+    "schedule": "This is the schedule placeholder",
+    "domain": "Servicing",
+    "justification": "This is the justification",
+    "sensitivity": "Sensitive"
+  },
+  "random-id-6": {
+    "name": "Capital Markets DB",
+    "email": "jonathan.datguy@pnmac.com",
+    "description": "This database contains all kinds of cool stuff about stuff and stuff. Do you like stuff? Because if you do, oh boy do we have stuff for you.",
+    "schedule": "This is the schedule placeholder",
+    "domain": "Capital Markets",
+    "justification": "This is the justification",
+    "sensitivity": "Not Sensitive"
+  }
+}

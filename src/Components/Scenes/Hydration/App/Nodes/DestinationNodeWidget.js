@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Tooltip, withStyles } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 import { PortWidget } from '@projectstorm/react-diagrams';
 
@@ -22,6 +22,15 @@ const tileStyles = makeStyles(theme => ({
   }
 }));
 
+const LightTooltip = withStyles(theme => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[1],
+    fontSize: 11
+  }
+}))(Tooltip);
+
 const DestinationNodeWidget = props => {
   const { name, size } = props.node;
   const height = size * 0.5;
@@ -34,7 +43,9 @@ const DestinationNodeWidget = props => {
           <div className={`${classes.tileTitle} Tile__destination-title`}>
             Destination
           </div>
-          <div className="Tile__destination-name Tile__name">{name}</div>
+          <LightTooltip title={name} placement="top">
+            <div className="Tile__transform-name Tile__name">{name}</div>
+          </LightTooltip>
         </div>
       </div>
       <div

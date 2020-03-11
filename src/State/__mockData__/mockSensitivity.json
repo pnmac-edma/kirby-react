@@ -1,0 +1,6 @@
+{
+  "Not Sensitive": "This job cannot be used for SOX/SOC1, NPPI/NPII, or for regulatory reporting",
+  "Sensitive": "I am sensitive data. If you touch me, I will be sensitive to it",
+  "Very Sensitive": "I am VERY sensitive data. AHHHHHHHHHHHHHHH, don't touch me!",
+  "Confidential": "I don't know even why you can see this data. I am supposed to be confidential"
+}

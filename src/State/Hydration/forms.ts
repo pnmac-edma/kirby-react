@@ -6,18 +6,12 @@ import { InitialStateTypes } from './types';
  * sources: {},
  * transforms: {},
  * transformsFilter: '',
- * transformsCreate: {},
  * destinations: {},
  * destinationsFilterSens: [],
  * destinationsFilter: '',
  * destinationsCreate: {},
  * scheduleJob: {}
  */
-
-export const initialValues = {
-  sources: {},
-  transforms: {}
-};
 
 export const rdbmsInitialState = {
   sourceType: null,
@@ -52,6 +46,26 @@ export const transformInitialState = {
   sqlScript: '',
   tips: '',
   queryResults: []
+};
+
+export const destinationInitialState = {
+  name: '',
+  email: '',
+  description: '',
+  schedule: '',
+  domain: '',
+  justification: '',
+  sensitivity: ''
+};
+
+export const initialValues = {
+  sources: {},
+  transforms: {},
+  transformsFilter: '',
+  destinations: {},
+  destinationsFilter: '',
+  destinationsFilterSens: '',
+  destinationsCreate: { ...destinationInitialState }
 };
 
 export const generateSourceInitialState = (
@@ -99,13 +113,49 @@ export const generateTransformInitialState = (
   };
 };
 
+export const generateDestinationInitialState = (
+  id: string,
+  name: string,
+  formValues: any,
+  optionalParams: {
+    sqlScript: string;
+    email: string;
+    description: string;
+    schedule: string;
+  }
+) => {
+  const { email, description, schedule } = optionalParams;
+  let destinationForm: any;
+  if (formValues.destinations[id]) {
+    destinationForm = formValues.destinations[id];
+  } else {
+    destinationForm = destinationInitialState;
+  }
+
+  return {
+    ...formValues.destinations,
+    [id]: {
+      ...destinationForm,
+      name,
+      email,
+      description,
+      schedule
+    }
+  };
+};
+
 export const setFormInitialState = (
   type: string,
   nodeId: string,
   nodeTitle: string,
   values: InitialStateTypes,
   setFieldValue: (field: string, value: any) => void,
-  sqlScript: string
+  optionalParams: {
+    sqlScript: string;
+    email: string;
+    description: string;
+    schedule: string;
+  }
 ): any => {
   if (type === 'source') {
     setFieldValue(
@@ -115,10 +165,18 @@ export const setFormInitialState = (
   } else if (type === 'transform') {
     setFieldValue(
       'transforms',
-      generateTransformInitialState(nodeId, nodeTitle, values, sqlScript)
+      generateTransformInitialState(
+        nodeId,
+        nodeTitle,
+        values,
+        optionalParams.sqlScript
+      )
     );
   } else if (type === 'destination') {
-    setFieldValue('destinations', { ...values });
+    setFieldValue(
+      'destinations',
+      generateDestinationInitialState(nodeId, nodeTitle, values, optionalParams)
+    );
   }
   return;
 };

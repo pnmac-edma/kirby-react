@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
@@ -14,6 +15,7 @@ import {
 import {
   AppEngine,
   InitialStateTypes,
+  OptionalParamsNode,
   NodeModel
 } from '../../../../../State/Hydration/types';
 
@@ -24,6 +26,7 @@ interface JobDesignerProps {
 }
 
 const JobDesigner = (props: JobDesignerProps) => {
+  const theme = useTheme();
   const { app, forceUpdate, selectedNode } = props;
   const { values, setFieldValue } = useFormikContext() as {
     values: InitialStateTypes;
@@ -35,6 +38,13 @@ const JobDesigner = (props: JobDesignerProps) => {
   );
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    document.body.className = theme.palette.type === 'light' ? 'light' : 'dark';
+    return () => {
+      document.body.className = '';
+    };
+  });
+
   // this function handles node being added to diagram:
   // 1. sets up a node model dependent on the type
   // 2. sets up the proper form initial states in formik dependent on the type
@@ -44,7 +54,7 @@ const JobDesigner = (props: JobDesignerProps) => {
     nodeTitle: string,
     position: { x: number; y: number },
     type: string,
-    sqlScript = ''
+    optionalParams: OptionalParamsNode = {}
   ): NodeModel => {
     let node: any;
     if (type === 'source') node = new SourceNodeModel(nodeTitle);
@@ -54,13 +64,24 @@ const JobDesigner = (props: JobDesignerProps) => {
     node.y = position.y;
     node.name = nodeTitle;
 
+    // this sets the default values for optional params to prevent
+    // erroring out when passed into setFormInitialState
+    const defaultKeys = ['sqlScript', 'email', 'description', 'schedule'];
+    const optionalParamsWithDefault = defaultKeys.reduce(
+      (obj: any, key: string) => {
+        obj[key] = obj[key] ? obj[key] : '';
+        return obj;
+      },
+      { ...optionalParams }
+    );
+
     setFormInitialState(
       type,
       node.id,
       nodeTitle,
       values,
       setFieldValue,
-      sqlScript
+      optionalParamsWithDefault
     );
 
     app

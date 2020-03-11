@@ -1,8 +1,9 @@
 import * as types from './types';
 
 export const initialState = {
-  selectedNode: null,
-  isEditorOpen: false
+  isDestinationModalOpen: false,
+  isEditorOpen: false,
+  selectedNode: null
 };
 
 const hydrationReducer = (state = initialState, action: any) => {
@@ -34,6 +35,12 @@ const hydrationReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isEditorOpen: action.value
+      };
+    }
+    case types.SET_IS_DESTINATION_MODAL_OPEN: {
+      return {
+        ...state,
+        isDestinationModalOpen: action.value
       };
     }
     default:

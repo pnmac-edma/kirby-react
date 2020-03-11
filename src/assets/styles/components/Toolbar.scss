@@ -131,7 +131,7 @@
 
 // Hydration input styles
 .Input__textfield,
-.Input__select {
+.Input__select:not(.Input__select--sensitivity) {
   margin-top: 1rem !important;
   width: 100%;
 }
@@ -205,11 +205,16 @@
   display: none;
 }
 
+.Input__filter--destination {
+  width: calc(100% - 92px);
+}
+
 .Icon__search {
   position: relative;
   top: 17px;
   margin-left: 14px;
   color: $color-g-400;
+  vertical-align: top;
 }
 
 // Dark mode input styles
