@@ -98,7 +98,7 @@ const DiagramView = (props: DiagramViewProps) => {
     [addNodeToDiagram, setFieldValue, transforms, dispatch]
   );
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     multiple: false,
     noClick: true
@@ -106,7 +106,9 @@ const DiagramView = (props: DiagramViewProps) => {
 
   return (
     <div
-      className="Diagram__layer"
+      className={`Diagram__layer ${
+        isDragActive ? 'Diagram__layer--is-dragging' : ''
+      }`}
       onDrop={event => onDropNode(event)}
       onDragOver={event => event.preventDefault()}
     >

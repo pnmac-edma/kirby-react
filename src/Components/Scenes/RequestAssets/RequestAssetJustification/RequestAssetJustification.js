@@ -6,7 +6,15 @@ import color from '@edma/design-tokens/js/color';
 const useStyles = makeStyles(theme => ({
   textField: {
     margin: theme.spacing(1.5),
-    color: color.g200
+    color: color.g200,
+    display: 'flex',
+    flexGrow: 1,
+    flexDirection: 'column',
+    width: 'auto',
+
+    '& .MuiFilledInput-multiline': {
+      maxWidth: '100%'
+    }
   }
 }));
 

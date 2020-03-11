@@ -88,9 +88,9 @@
 .Toolbar__list {
   border-bottom: 1px solid $color-g-100;
   padding: 1rem 0 3rem;
-  margin: 0 0 3rem;
+  margin: 0;
   overflow-x: scroll;
-  height: calc(100% - 220px);
+  height: calc(100% - 200px);
 }
 
 .dark .Toolbar__list {
@@ -103,6 +103,30 @@
 
 .dark .Toolbar__filters {
   border-color: $color-g-700;
+}
+
+.Toolbar__btm-btn {
+  background-color: $color-g-50 !important;
+  color: $color-g-600 !important;
+  font-size: $font-size-body-0;
+  box-shadow: 0 0 0 !important;
+  padding: 8px 16px !important;
+  text-align: left !important;
+  justify-content: left !important;
+  width: 100%;
+  text-transform: none !important;
+  font-weight: $weight-regular !important;
+  border-radius: 0 !important;
+  transition: all 0.2s ease-in-out !important;
+
+  &:hover {
+    color: $color-black !important;
+    background: $color-g-100 !important;
+  }
+
+  .MuiSvgIcon-root {
+    margin-right: 0.5rem;
+  }
 }
 
 // Hydration input styles
@@ -183,7 +207,7 @@
 
 .Icon__search {
   position: relative;
-  top: 16px;
+  top: 17px;
   margin-left: 14px;
   color: $color-g-400;
 }

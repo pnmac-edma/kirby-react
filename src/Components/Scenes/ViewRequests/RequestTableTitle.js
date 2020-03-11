@@ -2,10 +2,11 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
+import { color } from '@edma/design-tokens';
 
 const useStyles = makeStyles(theme => ({
   typography: {
-    color: theme.palette.common.black,
+    color: color.black,
     textAlign: 'left',
     margin: 14
   }

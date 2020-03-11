@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import kirbyTheme from './Theme';
@@ -43,6 +43,14 @@ export default function App() {
   };
 
   const kirby = createMuiTheme(theme);
+
+  useEffect(() => {
+    document.body.className = theme.palette.type === 'light' ? 'light' : 'dark';
+    return () => {
+      document.body.className = '';
+    };
+  });
+
   return (
     <ThemeProvider theme={kirby}>
       <div className="App">

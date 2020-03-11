@@ -15,7 +15,15 @@
   flex-grow: 1;
 }
 
+.Diagram__layer--is-dragging {
+  border: 3px solid $color-p-300;
+}
+
 .Diagram__canvas {
   height: 100%;
   min-height: 300px;
+
+  &:focus {
+    outline: none;
+  }
 }

@@ -7,12 +7,14 @@ import {
   TablePagination
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { color } from '@edma/design-tokens';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 6,
-    borderTop: `1px solid ${theme.palette.grey['300']}`
+    borderTop: `1px solid`,
+    borderColor: theme.palette.type === 'light' ? color.g200 : color.g600
   },
   underline: {
     textDecoration: 'none'

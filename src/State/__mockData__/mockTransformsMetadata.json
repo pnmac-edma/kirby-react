@@ -42,5 +42,53 @@
   "random-id-9004": {
     "name": "I am some Script",
     "sqlScript": "I eat SQL for breakfast"
+  },
+  "power-level-over-9005": {
+    "name": "Some other SQL Script",
+    "sqlScript": "I'm an SQL, I join stuff, yeah"
+  },
+  "random-id-9005": {
+    "name": "I am some Script",
+    "sqlScript": "I eat SQL for breakfast"
+  },
+  "power-level-over-9006": {
+    "name": "Some other SQL Script",
+    "sqlScript": "I'm an SQL, I join stuff, yeah"
+  },
+  "random-id-9006": {
+    "name": "I am some Script",
+    "sqlScript": "I eat SQL for breakfast"
+  },
+  "power-level-over-9007": {
+    "name": "Some other SQL Script",
+    "sqlScript": "I'm an SQL, I join stuff, yeah"
+  },
+  "random-id-9007": {
+    "name": "I am some Script",
+    "sqlScript": "I eat SQL for breakfast"
+  },
+  "power-level-over-9008": {
+    "name": "Some other SQL Script",
+    "sqlScript": "I'm an SQL, I join stuff, yeah"
+  },
+  "random-id-9008": {
+    "name": "I am some Script",
+    "sqlScript": "I eat SQL for breakfast"
+  },
+  "power-level-over-9009": {
+    "name": "Some other SQL Script",
+    "sqlScript": "I'm an SQL, I join stuff, yeah"
+  },
+  "random-id-9009": {
+    "name": "I am some Script",
+    "sqlScript": "I eat SQL for breakfast"
+  },
+  "power-level-over-9010": {
+    "name": "Some other SQL Script",
+    "sqlScript": "I'm an SQL, I join stuff, yeah"
+  },
+  "random-id-9010": {
+    "name": "I am some Script",
+    "sqlScript": "I eat SQL for breakfast"
   }
 }

@@ -1,18 +1,46 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Paper, TableCell, TableRow, TableBody } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    margin: 12,
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  table: {
+    minWidth: 6,
+    width: '100%'
+  },
+  tableWrapper: {
+    flexGrow: 1,
+    height: '50vh',
+    overflowX: 'auto',
+    borderRadius: 'inherit'
+  },
+  tableBody: {
+    width: '100%',
+    display: 'table'
+  }
+}));
 
 const TableWrapperNotFound = props => {
+  const classes = useStyles();
   const { searchInput } = props;
   return (
-    <React.Fragment>
-      <Typography variant="h6" id="tableTitle">
-        Search results for {searchInput}
-      </Typography>
-      <Typography>
-        We couldn't find anything matching <strong>{searchInput}</strong> in the
-        lake
-      </Typography>
-    </React.Fragment>
+    <Paper className={classes.paper}>
+      <div className={classes.tableWrapper}>
+        <TableBody className={classes.tableBody}>
+          <TableRow>
+            <TableCell colSpan={5}>
+              We couldn't find anything matching{' '}
+              <strong>'{searchInput}'</strong>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </div>
+    </Paper>
   );
 };
 

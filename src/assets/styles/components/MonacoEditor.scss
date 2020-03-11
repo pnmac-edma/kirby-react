@@ -1,0 +1,83 @@
+// Monaco Code Editor Styles
+
+// Overrides
+.monaco-editor {
+  padding: 1rem 0;
+
+  &,
+  .monaco-editor-background,
+  & .inputarea.ime-input,
+  & .margin,
+  & .minimap-decorations-layer,
+  & .scrollbar {
+    background: $color-g-50 !important;
+  }
+
+  .current-line {
+    border: none !important;
+    background: $color-g-100;
+  }
+
+  .view-line {
+    height: 2rem !important;
+  }
+
+  .line-numbers,
+  .slider {
+    color: $color-g-300 !important;
+  }
+
+  .decorationsOverviewRuler {
+    height: 0 !important;
+  }
+}
+
+.dark .monaco-editor {
+  &,
+  .monaco-editor-background,
+  & .inputarea.ime-input,
+  & .margin,
+  & .minimap-decorations-layer,
+  & .scrollbar {
+    background: $color-g-900 !important;
+  }
+
+  .current-line {
+    background: $color-g-800 !important;
+  }
+
+  .line-numbers,
+  .slider {
+    color: $color-g-600 !important;
+  }
+}
+
+// Kirby styles
+.Editor {
+  position: absolute;
+  width: calc(100% - 260px);
+  z-index: $z-2;
+  animation: editor-enter 0.2s ease-in-out;
+  animation-direction: forwards;
+}
+
+.Editor__heading {
+  background: $color-white;
+  height: 61px;
+  width: 100%;
+  border-bottom: 1px solid $color-g-100;
+}
+
+.dark .Editor__heading {
+  background: $color-black;
+  border-color: $color-g-700;
+}
+
+@keyframes editor-enter {
+  0% {
+    top: 100vh;
+  }
+  100% {
+    top: 0;
+  }
+}

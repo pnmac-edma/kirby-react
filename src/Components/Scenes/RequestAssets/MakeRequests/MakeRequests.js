@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { color } from '@edma/design-tokens';
 import { useHistory } from 'react-router-dom';
 import SnackBar from '../../../Presentational/RequestAssets/SnackBar';
 
@@ -8,8 +9,15 @@ const tableStyles = makeStyles(theme => ({
   button: {
     textTransform: 'none',
     fontWeight: 'bold',
-    color: theme.palette.common.white,
     margin: theme.spacing(1.5)
+  },
+  secondaryButton: {
+    color: color.b600,
+
+    '&:hover': {
+      color: color.b600,
+      background: color.b50
+    }
   }
 }));
 
@@ -56,9 +64,9 @@ const MakeRequests = props => {
       </Button>
       <Button
         onClick={() => history.goBack()}
-        className={classes.button}
+        className={`${classes.secondaryButton} ${classes.button}`}
         variant="contained"
-        color="primary"
+        color="secondary"
       >
         Cancel
       </Button>

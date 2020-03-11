@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Divider } from '@material-ui/core';
-import color from '@edma/design-tokens/js/color';
-import fontSize from '@edma/design-tokens/js/fontSize';
+import { Divider, Typography } from '@material-ui/core';
+import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import RequestAssetTableContainer from '../RequestAssetTable/RequestAssetTable-Container';
 import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
@@ -14,27 +13,34 @@ import MakeRequestsContainer from '../MakeRequests/MakeRequests-Container';
 const useStyles = makeStyles(theme => ({
   flexStructure: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'left'
   },
   sidebar: {
-    background: color.g200,
+    background: theme.palette.type === 'light' ? color.g100 : color.g800,
     fontSize: fontSize[1],
     marginTop: '-10rem',
     marginBottom: '-10rem',
     overflow: 'hidden',
-    paddingTop: '10rem'
+    paddingTop: '10rem',
+    maxWidth: 430,
+    minWidth: 300,
+    width: '100%'
   },
   sideTable: {
     width: '70%'
   },
   sideBarPostion: {
-    margin: '2rem 3rem 0rem 1rem',
-    color: 'black'
+    margin: '0 1rem',
+    color: theme.palette.type === 'light' ? color.black : color.white
   },
   dividerStyle: {
-    width: 400,
+    width: '100%',
     marginBottom: 32,
     marginTop: 24
+  },
+  heading: {
+    margin: '1rem 0 2rem',
+    color: theme.palette.type === 'light' ? color.black : color.white
   }
 }));
 
@@ -58,7 +64,9 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
     <div className={classes.flexStructure}>
       <div className={classes.sidebar}>
         <div className={classes.sideBarPostion}>
-          <p>Request Assets</p>
+          <Typography variant="h3" className={classes.heading}>
+            Request Assets
+          </Typography>
           <RequestedByContainer />
           <Divider className={classes.dividerStyle} />
           <RequestingForContainer />

@@ -14,6 +14,13 @@
     box-shadow: $shadow-1;
   }
 }
+
+.Tile__left-port {
+  height: 78px;
+  top: -35px;
+  position: relative;
+}
+
 .srd-node--selected,
 .srd-node--selected:hover {
   & > * > .Tile {
