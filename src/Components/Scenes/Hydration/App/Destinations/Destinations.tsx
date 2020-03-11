@@ -6,9 +6,10 @@ import {
   Button,
   Checkbox,
   Dialog,
-  Grid,
   IconButton,
+  InputLabel,
   TextField,
+  Typography,
   FormControl,
   FormControlLabel,
   FormGroup,
@@ -19,6 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { AddCircleOutline, Add, Remove } from '@material-ui/icons';
 import color from '@edma/design-tokens/js/color';
+import fontSize from '@edma/design-tokens/js/fontSize';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
 import {
   AddNodeToDiagram,
@@ -35,6 +37,21 @@ const useStyles = makeStyles(theme => ({
   },
   searchFilter: {
     width: '50%'
+  },
+  selectFormControl: {
+    display: 'flex',
+    marginTop: 0
+  },
+  description: {
+    fontSize: '14px',
+    marginTop: '1rem',
+    color: color.g500
+  },
+  plusButton: {
+    marginTop: '0.2rem'
+  },
+  advancedFilters: {
+    padding: '1rem'
   }
 }));
 
@@ -45,7 +62,6 @@ type DestinationsProps = {
 const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
   const classes = useStyles();
   const { values } = useFormikContext() as { values: InitialStateTypes };
-  const [isSensOpen, setIsSensOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const isDestinationModalOpen = useSelector(
     ({ hydration }: any) => hydration.isDestinationModalOpen
@@ -59,83 +75,80 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
         <NewDestinationForm isAppForm={true} />
       </Dialog>
       <div className={`Toolbar__filters ${classes.sensitivityFilter}`}>
-        <Grid justify="space-between" container>
-          <Grid>
-            <FormControl className={`Input__select`}>
-              <Field
-                displayEmpty
-                id="type"
-                name="destinationsFilterSens"
-                label="Sensitivity"
-                type="select"
-                as={Select}
-              >
-                <MenuItem key={`select-sensitivity`} value="" disabled>
-                  <em>Select Sensitivity</em>
-                </MenuItem>
-                {Object.keys(mockSensitivity).map((sens, i) => (
-                  <MenuItem key={`${i}-${sens}`} value={sens}>
-                    {sens}
-                  </MenuItem>
-                ))}
-              </Field>
-            </FormControl>
-          </Grid>
-          <Grid>
-            <IconButton onClick={() => setIsSensOpen(!isSensOpen)}>
-              {isSensOpen ? <Remove /> : <Add />}
-            </IconButton>
-          </Grid>
-          {isSensOpen && sensitivity && (
-            <div>{(mockSensitivity as any)[sensitivity]}</div>
-          )}
-          {!sensitivity && (
-            <p>Select a sensitivity level in order to view Destinations</p>
-          )}
-        </Grid>
+        <FormControl
+          className={`Input__select Input__select--sensitivity ${classes.selectFormControl}`}
+        >
+          <InputLabel id="destination-type">Sensitivity Level</InputLabel>
+          <Field
+            id="destination-type"
+            name="destinationsFilterSens"
+            label="Sensitivity"
+            type="select"
+            as={Select}
+          >
+            {Object.keys(mockSensitivity).map((sens, i) => (
+              <MenuItem key={`${i}-${sens}`} value={sens}>
+                {sens}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
+        {sensitivity && (
+          <Typography variant="body1" className={classes.description}>
+            {(mockSensitivity as any)[sensitivity]}
+          </Typography>
+        )}
+        {!sensitivity && (
+          <Typography variant="body1" className={classes.description}>
+            Select a sensitivity level in order to view Destinations
+          </Typography>
+        )}
       </div>
       {sensitivity && (
         <>
-          <div className={`Toolbar__filters`}>
+          <div className="Toolbar__filters">
             <SearchIcon className="Icon__search" />
             <Field
               name="destinationsFilter"
-              className={`Input__filter`}
+              className={`Input__filter Input__filter--destination`}
               label="Filter"
               as={TextField}
               variant="filled"
             />
+            <IconButton
+              className={classes.plusButton}
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+            >
+              {isFilterOpen ? <Remove /> : <Add />}
+            </IconButton>
+            {isFilterOpen && (
+              <div className={classes.advancedFilters}>
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={false}
+                        onChange={() => console.log('hey')}
+                        value="Retail"
+                      />
+                    }
+                    label="Retail"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={false}
+                        onChange={() => console.log('hey')}
+                        value="Servicing"
+                      />
+                    }
+                    label="Servicing"
+                  />
+                </FormGroup>
+                <Button color="primary">Add</Button>
+              </div>
+            )}
           </div>
-          <IconButton onClick={() => setIsFilterOpen(!isFilterOpen)}>
-            {isFilterOpen ? <Remove /> : <Add />}
-          </IconButton>
-          {isFilterOpen && (
-            <div>
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={false}
-                      onChange={() => console.log('hey')}
-                      value="Retail"
-                    />
-                  }
-                  label="Retail"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={false}
-                      onChange={() => console.log('hey')}
-                      value="Servicing"
-                    />
-                  }
-                  label="Servicing"
-                />
-              </FormGroup>
-              <p>Add</p>
-            </div>
-          )}
           <div className="Toolbar__list">
             {Object.values(mockDestinationsData).map(
               ({ name, email, description, schedule }, i) => (
@@ -167,6 +180,7 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
         onClick={() => dispatch(setIsDestinationModalOpen(true))}
         variant="contained"
         color="primary"
+        className="Toolbar__btm-btn"
       >
         <AddCircleOutline />
         New Destination
