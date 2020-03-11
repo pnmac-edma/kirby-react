@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
+import sqlFormatter from 'sql-formatter';
 import {
   IconButton,
   makeStyles,
@@ -75,7 +76,7 @@ const TransformEditor = (props: TransformProps) => {
         height="90vh"
         language="sql"
         theme={theme.palette.type === 'light' ? 'vs-light' : 'vs-dark'}
-        value={transforms[id].sqlScript}
+        value={sqlFormatter.format(transforms[id].sqlScript)}
         onChange={(_, value: string | undefined) => setChange(value)}
       />
     </div>

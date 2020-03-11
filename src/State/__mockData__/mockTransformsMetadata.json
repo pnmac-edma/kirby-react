@@ -1,7 +1,7 @@
 {
   "random-id-123456": {
     "name": "My SQL Script",
-    "sqlScript": "some sql code"
+    "sqlScript": "SELECT * FROM butts WHERE mine > moon.full"
   },
   "power-level-over-9000": {
     "name": "Some other SQL Script",
