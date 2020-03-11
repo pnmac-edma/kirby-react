@@ -10,6 +10,7 @@ import {
   useTheme
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import color from '@edma/design-tokens/js/color';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
 
@@ -18,7 +19,9 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: '5rem'
   },
   name: {
-    padding: '1rem'
+    padding: '1rem',
+    background: theme.palette.type === 'light' ? color.g50 : color.g900,
+    maxWidth: '100%'
   },
   button: {
     position: 'absolute',
