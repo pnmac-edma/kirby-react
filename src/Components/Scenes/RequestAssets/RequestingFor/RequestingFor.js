@@ -1,20 +1,23 @@
 import React from 'react';
 import Select, { createFilter } from 'react-select';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import EmployeesList from './EmployeesList';
 import { Typography } from '@material-ui/core';
-import fontSize from '@edma/design-tokens/js/fontSize';
+import { color, font, fontSize } from '@edma/design-tokens';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   table: {
     width: '100%'
   },
   menuStyle: {
     width: 'max-content',
     textTransform: 'uppercase',
-    marginBottom: 8
+    marginBottom: 8,
+    fontWeight: 'bold',
+    fontFamily: font.body,
+    color: theme.palette.type === 'light' ? color.black : color.g300
   }
-});
+}));
 
 const customStyles = {
   option: (provided, state) => ({
@@ -36,10 +39,13 @@ const customStyles = {
 const RequestingFor = props => {
   const { employees, handleSelectedEmployees } = props;
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <React.Fragment>
-      <Typography className={classes.menuStyle}>Requesting For</Typography>
+      <Typography variant="overline" className={classes.menuStyle}>
+        Requesting For
+      </Typography>
       <Select
         className={('basic-multi-select', classes.table)}
         filterOption={createFilter({ ignoreAccents: false })}
