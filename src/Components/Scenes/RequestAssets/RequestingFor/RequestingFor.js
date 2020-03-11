@@ -7,7 +7,7 @@ import fontSize from '@edma/design-tokens/js/fontSize';
 
 const useStyles = makeStyles({
   table: {
-    width: 400
+    width: '100%'
   },
   menuStyle: {
     width: 'max-content',

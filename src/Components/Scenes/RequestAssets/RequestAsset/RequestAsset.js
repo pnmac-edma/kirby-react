@@ -13,7 +13,7 @@ import MakeRequestsContainer from '../MakeRequests/MakeRequests-Container';
 const useStyles = makeStyles(theme => ({
   flexStructure: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'left'
   },
   sidebar: {
     background: theme.palette.type === 'light' ? color.g100 : color.g800,
@@ -21,17 +21,20 @@ const useStyles = makeStyles(theme => ({
     marginTop: '-10rem',
     marginBottom: '-10rem',
     overflow: 'hidden',
-    paddingTop: '10rem'
+    paddingTop: '10rem',
+    maxWidth: 430,
+    minWidth: 300,
+    width: '100%'
   },
   sideTable: {
     width: '70%'
   },
   sideBarPostion: {
-    margin: '0 3rem 0rem 1rem',
+    margin: '0 1rem',
     color: theme.palette.type === 'light' ? color.black : color.white
   },
   dividerStyle: {
-    width: 400,
+    width: '100%',
     marginBottom: 32,
     marginTop: 24
   },

@@ -153,7 +153,7 @@ const TableWrapper = props => {
             selected={selected}
           />
           {isLoading ? (
-            <TableWrapperSkeleton />
+            <TableWrapperSkeleton colspan="4" />
           ) : filteredData.length ? (
             <TableWrapperBody
               columns={columns}
