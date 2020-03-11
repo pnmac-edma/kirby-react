@@ -34,7 +34,7 @@ const SourceNodeWidget = props => {
           <div className={`${classes.tileTitle} Tile__source-title`}>
             Source
           </div>
-          <div>{name}</div>
+          <div className="Tile__source-name Tile__name">{name}</div>
         </div>
       </div>
       <div

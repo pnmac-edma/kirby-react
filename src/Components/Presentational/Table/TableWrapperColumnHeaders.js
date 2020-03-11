@@ -6,12 +6,14 @@ import {
   TableRow,
   TableSortLabel
 } from '@material-ui/core';
+import { color } from '@edma/design-tokens';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
 const headerStyles = makeStyles(theme => ({
   cell: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.common.white : color.g700,
     whiteSpace: 'nowrap'
   },
   indeterminate: {

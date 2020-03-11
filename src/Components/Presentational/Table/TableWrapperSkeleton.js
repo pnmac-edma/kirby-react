@@ -6,45 +6,21 @@ const TableWrapperSkeleton = () => {
     <React.Fragment>
       <Skeleton
         variant="rect"
-        width={1700}
-        height={50}
-        style={{ marginBottom: '1rem' }}
+        width={600}
+        height={10}
+        style={{ margin: '1.5rem 1rem', borderRadius: 50 }}
       />
       <Skeleton
         variant="rect"
-        width={1700}
-        height={50}
-        style={{ marginBottom: '1rem' }}
+        width={600}
+        height={10}
+        style={{ margin: '2.5rem 1rem', borderRadius: 50 }}
       />
       <Skeleton
         variant="rect"
-        width={1700}
-        height={50}
-        style={{ marginBottom: '1rem' }}
-      />
-      <Skeleton
-        variant="rect"
-        width={1700}
-        height={50}
-        style={{ marginBottom: '1rem' }}
-      />
-      <Skeleton
-        variant="rect"
-        width={1700}
-        height={50}
-        style={{ marginBottom: '1rem' }}
-      />
-      <Skeleton
-        variant="rect"
-        width={1700}
-        height={50}
-        style={{ marginBottom: '1rem' }}
-      />
-      <Skeleton
-        variant="rect"
-        width={1700}
-        height={50}
-        style={{ marginBottom: '1rem' }}
+        width={600}
+        height={10}
+        style={{ margin: '2.5rem 1rem', borderRadius: 50 }}
       />
     </React.Fragment>
   );

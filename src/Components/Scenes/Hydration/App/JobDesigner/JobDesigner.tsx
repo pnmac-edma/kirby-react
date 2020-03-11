@@ -1,84 +1,67 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import color from '@edma/design-tokens/js/color';
-import { DiagramWidget } from '@projectstorm/react-diagrams';
+import DiagramView from '../DiagramView/DiagramView';
 import { Toolbar } from '../Toolbar/Toolbar';
-import { DestNodeModel, SourceNodeModel, TransNodeModel } from '../Nodes';
+import TransformEditor from '../Transform/TransformEditor';
 import { setSelectedNode } from '../../../../../State/Hydration/actions';
+import { setFormInitialState } from '../../../../../State/Hydration/forms';
 import {
-  rdbmsInitialState,
-  sftpInitialState,
-  apiInitialState
-} from '../../../../../State/Hydration/forms';
+  DestinationNodeModel,
+  SourceNodeModel,
+  TransformNodeModel
+} from '../Nodes';
+import {
+  AppEngine,
+  InitialStateTypes,
+  NodeModel
+} from '../../../../../State/Hydration/types';
 
-const generateSourceInitialState = (
-  id: string,
-  sourceType: string,
-  formValues: any
-) => {
-  let sourceForm: any;
-  if (formValues.sources[id]) {
-    sourceForm = formValues.sources[id];
-  } else if (sourceType === 'RDBMS') {
-    sourceForm = rdbmsInitialState;
-  } else if (sourceType === 'SFTP') {
-    sourceForm = sftpInitialState;
-  } else if (sourceType === 'API') {
-    sourceForm = apiInitialState;
-  }
-  sourceForm.sourceType = sourceType;
+interface JobDesignerProps {
+  app: AppEngine;
+  forceUpdate: React.DispatchWithoutAction;
+  selectedNode: NodeModel;
+}
 
-  return {
-    ...formValues.sources,
-    [id]: sourceForm
-  };
-};
-
-const diagramStyles = makeStyles(theme => ({
-  diagramCanvas: {
-    background: theme.palette.type === 'light' ? color.g50 : color.g900
-  }
-}));
-
-const JobDesigner = (props: any) => {
-  const theme = useTheme();
+const JobDesigner = (props: JobDesignerProps) => {
   const { app, forceUpdate, selectedNode } = props;
-  const { values, setFieldValue } = useFormikContext() as any;
-  const classes = diagramStyles();
+  const { values, setFieldValue } = useFormikContext() as {
+    values: InitialStateTypes;
+    setFieldValue: (field: string, value: any) => void;
+  };
+
+  const isEditorOpen = useSelector(
+    ({ hydration }: any) => hydration.isEditorOpen
+  );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    document.body.className = theme.palette.type === 'light' ? 'light' : 'dark';
-    return () => {
-      document.body.className = '';
-    };
-  });
-
+  // this function handles node being added to diagram:
+  // 1. sets up a node model dependent on the type
+  // 2. sets up the proper form initial states in formik dependent on the type
+  // 3. runs a few app internal functions and adds listeners
+  // 4. updates component and returns node
   const addNodeToDiagram = (
+    nodeTitle: string,
+    position: { x: number; y: number },
     type: string,
-    x: number,
-    y: number,
-    name: string = ''
-  ) => {
+    sqlScript = ''
+  ): NodeModel => {
     let node: any;
-    if (type === 'source') node = new SourceNodeModel(name);
-    else if (type === 'trans') node = new TransNodeModel();
-    else if (type === 'dest') node = new DestNodeModel();
-    node.x = x;
-    node.y = y;
-    node.name = name;
+    if (type === 'source') node = new SourceNodeModel(nodeTitle);
+    else if (type === 'transform') node = new TransformNodeModel();
+    else if (type === 'destination') node = new DestinationNodeModel();
+    node.x = position.x;
+    node.y = position.y;
+    node.name = nodeTitle;
 
-    let formInitialState = {};
-    if (type === 'source') {
-      formInitialState = generateSourceInitialState(node.id, name, values);
-    } else if (type === 'trans') {
-      formInitialState = { ...values };
-    } else if (type === 'dest') {
-      formInitialState = { ...values };
-    }
-    setFieldValue('sources', formInitialState);
+    setFormInitialState(
+      type,
+      node.id,
+      nodeTitle,
+      values,
+      setFieldValue,
+      sqlScript
+    );
 
     app
       .getDiagramEngine()
@@ -90,27 +73,17 @@ const JobDesigner = (props: any) => {
       entityRemoved: (event: React.FormEvent<HTMLFormElement>) =>
         dispatch(setSelectedNode(null))
     });
+
     forceUpdate();
+    return node;
   };
 
   return (
-    <div className={`Diagram`}>
-      <div
-        className="Diagram__layer"
-        onDrop={event => {
-          const data = JSON.parse(
-            event.dataTransfer.getData('storm-diagram-node')
-          );
-          const points = app.getDiagramEngine().getRelativeMousePoint(event);
-          addNodeToDiagram(data.type, points.x, points.y, data.name);
-        }}
-        onDragOver={event => event.preventDefault()}
-      >
-        <DiagramWidget
-          className={`${classes.diagramCanvas} Diagram__canvas`}
-          diagramEngine={app.getDiagramEngine()}
-        />
-      </div>
+    <div className="Diagram">
+      {isEditorOpen && selectedNode && selectedNode.id && (
+        <TransformEditor id={selectedNode.id} />
+      )}
+      <DiagramView app={app} addNodeToDiagram={addNodeToDiagram} />
       <Toolbar
         selectedNode={selectedNode}
         addNodeToDiagram={addNodeToDiagram}

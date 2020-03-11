@@ -5,7 +5,11 @@ import Diagram from './Diagram/Diagram';
 import JobDesigner from './JobDesigner/JobDesigner';
 import { initialValues } from '../../../../State/Hydration/forms';
 
-const JobAppOuterLayer = (props: any) => {
+interface AppEngineProps {
+  app: any;
+}
+
+const JobAppOuterLayer = (props: AppEngineProps) => {
   const { app } = props;
 
   // Use an incrementing counter to force a re-render of canvas
@@ -21,7 +25,6 @@ const JobAppOuterLayer = (props: any) => {
     <Formik
       initialValues={initialValues}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
         setSubmitting(false);
       }}
     >

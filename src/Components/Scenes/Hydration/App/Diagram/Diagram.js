@@ -1,12 +1,12 @@
 import { DiagramEngine, DiagramModel } from '@projectstorm/react-diagrams';
 import {
-  DestNodeFactory,
-  DestPortModel,
+  DestinationNodeFactory,
+  DestinationPortModel,
   SimplePortFactory,
   SourceNodeFactory,
   SourcePortModel,
-  TransNodeFactory,
-  TransPortModel
+  TransformNodeFactory,
+  TransformPortModel
 } from '../Nodes';
 
 export default class Diagram {
@@ -19,14 +19,14 @@ export default class Diagram {
       new SimplePortFactory('source', config => new SourcePortModel())
     );
     this.engine.registerPortFactory(
-      new SimplePortFactory('dest', config => new DestPortModel())
+      new SimplePortFactory('destination', config => new DestinationPortModel())
     );
     this.engine.registerPortFactory(
-      new SimplePortFactory('trans', config => new TransPortModel())
+      new SimplePortFactory('transform', config => new TransformPortModel())
     );
     this.engine.registerNodeFactory(new SourceNodeFactory());
-    this.engine.registerNodeFactory(new DestNodeFactory());
-    this.engine.registerNodeFactory(new TransNodeFactory());
+    this.engine.registerNodeFactory(new DestinationNodeFactory());
+    this.engine.registerNodeFactory(new TransformNodeFactory());
 
     this.activeModel = new DiagramModel();
     this.engine.setDiagramModel(this.activeModel);

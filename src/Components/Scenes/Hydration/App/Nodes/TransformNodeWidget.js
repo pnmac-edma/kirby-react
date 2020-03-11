@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Tooltip } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import { PortWidget } from '@projectstorm/react-diagrams';
 
@@ -22,7 +23,16 @@ const tileStyles = makeStyles(theme => ({
   }
 }));
 
-const TransNodeWidget = props => {
+const LightTooltip = withStyles(theme => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[1],
+    fontSize: 11
+  }
+}))(Tooltip);
+
+const TransformNodeWidget = props => {
   const { name, size } = props.node;
   const height = size * 0.5;
   const classes = tileStyles();
@@ -34,7 +44,9 @@ const TransNodeWidget = props => {
           <div className={`${classes.tileTitle} Tile__transform-title`}>
             Transform
           </div>
-          <div>{name}</div>
+          <LightTooltip title={name} placement="top">
+            <div className="Tile__transform-name Tile__name">{name}</div>
+          </LightTooltip>
         </div>
       </div>
       <div
@@ -44,7 +56,7 @@ const TransNodeWidget = props => {
           left: -8
         }}
       >
-        <PortWidget name="left" node={props.node} />
+        <PortWidget name="left" node={props.node} className="Tile__left-port" />
       </div>
       <div
         style={{
@@ -59,4 +71,4 @@ const TransNodeWidget = props => {
   );
 };
 
-export default TransNodeWidget;
+export default TransformNodeWidget;

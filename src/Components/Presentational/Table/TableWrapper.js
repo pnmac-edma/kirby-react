@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Table, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { color } from '@edma/design-tokens';
 import PropTypes from 'prop-types';
 import TableWrapperHeader from './TableWrapperHeader';
 import TableWrapperColumnHeaders from './TableWrapperColumnHeaders';
@@ -31,8 +32,13 @@ const useStyles = makeStyles(theme => ({
   button: {
     textTransform: 'none',
     fontWeight: 'bold',
-    color: theme.palette.common.white,
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    color: color.b600,
+
+    '&:hover': {
+      color: color.b600,
+      background: color.b50
+    }
   },
   link: {
     textDecoration: 'none'
@@ -116,10 +122,6 @@ const TableWrapper = props => {
     setPage(0);
   };
 
-  if (isLoading) {
-    return <TableWrapperSkeleton />;
-  }
-
   if (!data) {
     return <TableWrapperNotFound searchInput={searchInput} />;
   }
@@ -150,7 +152,9 @@ const TableWrapper = props => {
             rowCount={filteredData.length}
             selected={selected}
           />
-          {filteredData.length ? (
+          {isLoading ? (
+            <TableWrapperSkeleton />
+          ) : filteredData.length ? (
             <TableWrapperBody
               columns={columns}
               data={filteredData}
@@ -181,7 +185,7 @@ const TableWrapper = props => {
         >
           <Button
             className={classes.button}
-            color="primary"
+            color="secondary"
             disabled={selected.length === 0}
             onClick={handleFooterButtonClick}
             variant="contained"

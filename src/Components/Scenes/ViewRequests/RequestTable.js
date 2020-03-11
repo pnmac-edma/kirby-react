@@ -25,7 +25,6 @@ const tableStyles = makeStyles(theme => ({
   button: {
     textTransform: 'none',
     fontWeight: 'bold',
-    color: theme.palette.common.white,
     whiteSpace: 'nowrap'
   }
 }));

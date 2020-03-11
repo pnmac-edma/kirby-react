@@ -22,7 +22,7 @@ const tileStyles = makeStyles(theme => ({
   }
 }));
 
-const DestNodeWidget = props => {
+const DestinationNodeWidget = props => {
   const { name, size } = props.node;
   const height = size * 0.5;
   const classes = tileStyles();
@@ -34,7 +34,7 @@ const DestNodeWidget = props => {
           <div className={`${classes.tileTitle} Tile__destination-title`}>
             Destination
           </div>
-          <div>{name}</div>
+          <div className="Tile__destination-name Tile__name">{name}</div>
         </div>
       </div>
       <div
@@ -51,4 +51,4 @@ const DestNodeWidget = props => {
   );
 };
 
-export default DestNodeWidget;
+export default DestinationNodeWidget;

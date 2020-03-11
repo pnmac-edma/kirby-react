@@ -51,7 +51,7 @@ const Kirby = {
       }
     },
     h3: {
-      fontFamily: font.body,
+      fontFamily: font.heading,
       fontWeight: 'normal',
       color: color.g700,
       minWidth: 260,
@@ -86,7 +86,7 @@ const Kirby = {
       dark: color.b900
     },
     secondary: {
-      light: color.black,
+      light: color.b300,
       main: color.white,
       dark: color.b700
     },

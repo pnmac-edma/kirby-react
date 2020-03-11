@@ -1,8 +1,8 @@
 import { PortModel, DefaultLinkModel } from '@projectstorm/react-diagrams';
 
-export default class TransPortModel extends PortModel {
+export default class DestinationPortModel extends PortModel {
   constructor(position) {
-    super(position, 'trans');
+    super(position, 'destination');
   }
 
   createLinkModel() {

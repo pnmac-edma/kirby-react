@@ -85,29 +85,47 @@
   margin-right: 4px;
 }
 
-// Hydration tile styles
-.Tile__delete {
-  position: absolute;
-  display: inline;
-  top: 0.7rem;
-  right: 0.5rem;
-
-  & button span svg path {
-    fill: $color-black;
-  }
-
-  &:hover > button span svg path {
-    fill: $color-r-600;
-  }
+.Toolbar__list {
+  border-bottom: 1px solid $color-g-100;
+  padding: 1rem 0 3rem;
+  margin: 0;
+  overflow-x: scroll;
+  height: calc(100% - 200px);
 }
 
-.dark .Tile__delete {
-  & button span svg path {
-    fill: $color-white;
+.dark .Toolbar__list {
+  border-color: $color-g-700;
+}
+
+.Toolbar__filters {
+  border-bottom: 1px solid $color-g-100;
+}
+
+.dark .Toolbar__filters {
+  border-color: $color-g-700;
+}
+
+.Toolbar__btm-btn {
+  background-color: $color-g-50 !important;
+  color: $color-g-600 !important;
+  font-size: $font-size-body-0;
+  box-shadow: 0 0 0 !important;
+  padding: 8px 16px !important;
+  text-align: left !important;
+  justify-content: left !important;
+  width: 100%;
+  text-transform: none !important;
+  font-weight: $weight-regular !important;
+  border-radius: 0 !important;
+  transition: all 0.2s ease-in-out !important;
+
+  &:hover {
+    color: $color-black !important;
+    background: $color-g-100 !important;
   }
 
-  &:hover > button span svg path {
-    fill: $color-r-500;
+  .MuiSvgIcon-root {
+    margin-right: 0.5rem;
   }
 }
 
@@ -172,6 +190,26 @@
 .Input__textfield label,
 .Input__select label {
   transition: all 0.2s ease-in-out;
+}
+
+.Input__filter input {
+  background: $color-white;
+}
+
+.dark .Input__filter input {
+  background: $color-black;
+}
+
+.Input__filter .MuiFilledInput-underline:before,
+.Input__filter .MuiFilledInput-underline:after {
+  display: none;
+}
+
+.Icon__search {
+  position: relative;
+  top: 17px;
+  margin-left: 14px;
+  color: $color-g-400;
 }
 
 // Dark mode input styles

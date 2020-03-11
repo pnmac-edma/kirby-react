@@ -19,7 +19,7 @@ const pageContainerStyle = makeStyles(theme => ({
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: theme.palette.type,
+    backgroundColor: theme.palette.type === 'light' ? color.g50 : color.g900,
     alignItems: 'stretch',
     width: `calc(100% - ${theme.spacing(7)}px)`,
     height: '100vh',
@@ -27,22 +27,20 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({
-  isSearchClicked,
-  authenticateFetch,
-  sessionToken,
-  newJobName,
-  themeToggle
-}) => {
+const PageWrapper = ({ isSearchClicked, newJobName, themeToggle }) => {
   const classes = pageContainerStyle();
   const curPath = useLocation().pathname;
 
   return (
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? (
-        <AppBarContainer hydration jobName={newJobName} />
+        <AppBarContainer
+          hydration
+          jobName={newJobName}
+          themeToggle={themeToggle}
+        />
       ) : curPath === '/' ? (
-        <AppBarContainer home />
+        <AppBarContainer home themeToggle={themeToggle} />
       ) : (
         <AppBarContainer themeToggle={themeToggle} />
       )}

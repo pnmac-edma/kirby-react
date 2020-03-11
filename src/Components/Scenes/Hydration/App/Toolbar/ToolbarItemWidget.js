@@ -11,6 +11,24 @@ const ToolbarItemWidget = props => {
   const theme = useTheme();
   const { model, color, name, onClick } = props;
 
+  const modelType =
+    model.type === 'source'
+      ? SourceIcon
+      : model.type === 'transform'
+      ? TransIcon
+      : model.type === 'destination'
+      ? DestIcon
+      : '';
+
+  const modelTypeDark =
+    model.type === 'source'
+      ? SourceIconDark
+      : model.type === 'transform'
+      ? TransIconDark
+      : model.type === 'destination'
+      ? DestIconDark
+      : '';
+
   return (
     <div
       style={{ borderColor: color }}
@@ -22,23 +40,7 @@ const ToolbarItemWidget = props => {
       onClick={onClick}
     >
       <img
-        src={
-          theme.palette.type === 'light'
-            ? model.type === 'source'
-              ? SourceIcon
-              : model.type === 'trans'
-              ? TransIcon
-              : model.type === 'dest'
-              ? DestIcon
-              : ''
-            : model.type === 'source'
-            ? SourceIconDark
-            : model.type === 'trans'
-            ? TransIconDark
-            : model.type === 'dest'
-            ? DestIconDark
-            : ''
-        }
+        src={theme.palette.type === 'light' ? modelType : modelTypeDark}
         className={`Toolbar__item-icon`}
         alt={`${name} icon`}
       />{' '}
