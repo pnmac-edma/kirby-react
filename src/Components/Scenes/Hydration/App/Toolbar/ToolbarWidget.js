@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 
 const ToolbarWidget = props => {
   const classes = useStyles();
-  const { children, tab, handleTabsChange } = props;
+  const { children, tab, handleTabsChange, setIsScheduleJobOpen } = props;
 
   return (
     <div className={`${classes.toolbar} Toolbar`}>
@@ -80,7 +80,10 @@ const ToolbarWidget = props => {
             leaveDelay={200}
           >
             <span>
-              <Button disabled className={classes.playButton}>
+              <Button
+                onClick={() => setIsScheduleJobOpen(true)}
+                className={classes.playButton}
+              >
                 <PlayIcon aria-label="Schedule Job" fontSize="small" />
               </Button>
             </span>

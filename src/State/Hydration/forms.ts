@@ -156,7 +156,7 @@ export const setFormInitialState = (
     description: string;
     schedule: string;
   }
-): any => {
+): void => {
   if (type === 'source') {
     setFieldValue(
       'sources',

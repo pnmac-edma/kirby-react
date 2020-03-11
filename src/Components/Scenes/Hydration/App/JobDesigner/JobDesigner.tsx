@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
 import { Toolbar } from '../Toolbar/Toolbar';
 import TransformEditor from '../Transform/TransformEditor';
+import ScheduleJob from '../ScheduleJob/ScheduleJob';
 import { setSelectedNode } from '../../../../../State/Hydration/actions';
 import { setFormInitialState } from '../../../../../State/Hydration/forms';
 import {
@@ -32,6 +33,8 @@ const JobDesigner = (props: JobDesignerProps) => {
     values: InitialStateTypes;
     setFieldValue: (field: string, value: any) => void;
   };
+
+  const [isScheduleJobOpen, setIsScheduleJobOpen] = useState(false);
 
   const isEditorOpen = useSelector(
     ({ hydration }: any) => hydration.isEditorOpen
@@ -108,7 +111,11 @@ const JobDesigner = (props: JobDesignerProps) => {
       <Toolbar
         selectedNode={selectedNode}
         addNodeToDiagram={addNodeToDiagram}
+        setIsScheduleJobOpen={setIsScheduleJobOpen}
       />
+      {isScheduleJobOpen && (
+        <ScheduleJob setIsScheduleJobOpen={setIsScheduleJobOpen} />
+      )}
     </div>
   );
 };
