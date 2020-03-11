@@ -20,7 +20,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { AddCircleOutline, Add, Remove } from '@material-ui/icons';
 import color from '@edma/design-tokens/js/color';
-import fontSize from '@edma/design-tokens/js/fontSize';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
 import {
   AddNodeToDiagram,
