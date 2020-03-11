@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Dialog } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
@@ -113,9 +114,9 @@ const JobDesigner = (props: JobDesignerProps) => {
         addNodeToDiagram={addNodeToDiagram}
         setIsScheduleJobOpen={setIsScheduleJobOpen}
       />
-      {isScheduleJobOpen && (
+      <Dialog open={isScheduleJobOpen} aria-labelledby="form-schedule-job">
         <ScheduleJob setIsScheduleJobOpen={setIsScheduleJobOpen} />
-      )}
+      </Dialog>
     </div>
   );
 };

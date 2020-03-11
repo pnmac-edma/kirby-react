@@ -7,7 +7,7 @@ interface ScheduleJobProps {
 const ScheduleJob = (props: ScheduleJobProps) => {
   const { setIsScheduleJobOpen } = props;
 
-  return <div></div>;
+  return <></>;
 };
 
 export default ScheduleJob;
