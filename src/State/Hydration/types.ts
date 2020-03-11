@@ -81,7 +81,7 @@ export type AddNodeToDiagram = (
   nodeTitle: string,
   position: { x: number; y: number },
   type: string,
-  sqlScript?: string
+  optionalParams?: OptionalParamsNode
 ) => NodeModel;
 
 export interface AppEngine {
@@ -102,4 +102,11 @@ export interface NodeModel {
   ports: any;
   name: string;
   size: number;
+}
+
+export interface OptionalParamsNode {
+  sqlScript?: string;
+  email?: string;
+  description?: string;
+  schedule?: string;
 }

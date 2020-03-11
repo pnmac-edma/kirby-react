@@ -69,7 +69,7 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
               type="select"
               as={Select}
             >
-              {mockSensitivity.map((sens, i) => (
+              {Object.keys(mockSensitivity).map((sens, i) => (
                 <MenuItem key={`${i}-${sens}`} value={sens}>
                   {sens}
                 </MenuItem>

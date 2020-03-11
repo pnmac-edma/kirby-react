@@ -47,12 +47,12 @@ const DiagramView = (props: DiagramViewProps) => {
     if (event.dataTransfer.types[0] === 'storm-diagram-node') {
       const data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
       const points = app.getDiagramEngine().getRelativeMousePoint(event);
-      addNodeToDiagram(
-        data.name,
-        { x: points.x, y: points.y },
-        data.type,
-        data.sqlScript
-      );
+      addNodeToDiagram(data.name, { x: points.x, y: points.y }, data.type, {
+        sqlScript: data.sqlScript,
+        email: data.email,
+        description: data.description,
+        schedule: data.schedule
+      });
     }
   };
 
@@ -98,13 +98,12 @@ const DiagramView = (props: DiagramViewProps) => {
     [addNodeToDiagram, setFieldValue, transforms, dispatch]
   );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     multiple: false,
     noClick: true
   });
 
-  // TODO: potentially use isDragActive to provide highlighting functionality when dragging an item over
   return (
     <div
       className="Diagram__layer"

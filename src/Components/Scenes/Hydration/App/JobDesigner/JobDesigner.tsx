@@ -15,6 +15,7 @@ import {
 import {
   AppEngine,
   InitialStateTypes,
+  OptionalParamsNode,
   NodeModel
 } from '../../../../../State/Hydration/types';
 
@@ -53,7 +54,7 @@ const JobDesigner = (props: JobDesignerProps) => {
     nodeTitle: string,
     position: { x: number; y: number },
     type: string,
-    sqlScript = ''
+    optionalParams: OptionalParamsNode = {}
   ): NodeModel => {
     let node: any;
     if (type === 'source') node = new SourceNodeModel(nodeTitle);
@@ -63,13 +64,24 @@ const JobDesigner = (props: JobDesignerProps) => {
     node.y = position.y;
     node.name = nodeTitle;
 
+    // this sets the default values for optional params to prevent
+    // erroring out when passed into setFormInitialState
+    const defaultKeys = ['sqlScript', 'email', 'description', 'schedule'];
+    const optionalParamsWithDefault = defaultKeys.reduce(
+      (obj: any, key: string) => {
+        obj[key] = obj[key] ? obj[key] : '';
+        return obj;
+      },
+      { ...optionalParams }
+    );
+
     setFormInitialState(
       type,
       node.id,
       nodeTitle,
       values,
       setFieldValue,
-      sqlScript
+      optionalParamsWithDefault
     );
 
     app

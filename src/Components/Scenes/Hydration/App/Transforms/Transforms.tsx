@@ -47,7 +47,9 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
             name={name}
             color={color['c400']}
             onClick={() =>
-              addNodeToDiagram(name, { x: 400, y: 400 }, 'transform', sqlScript)
+              addNodeToDiagram(name, { x: 400, y: 400 }, 'transform', {
+                sqlScript
+              })
             }
           />
         ))}
