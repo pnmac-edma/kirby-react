@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDropzone } from 'react-dropzone';
-import color from '@edma/design-tokens/js/color';
+import { color } from '@edma/design-tokens';
 import { DiagramWidget } from '@projectstorm/react-diagrams';
 import {
   setSelectedNode,

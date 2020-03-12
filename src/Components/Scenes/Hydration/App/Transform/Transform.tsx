@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { Button, IconButton, makeStyles, Tooltip } from '@material-ui/core';
+import { color } from '@edma/design-tokens';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
@@ -12,9 +13,15 @@ const useStyles = makeStyles(theme => ({
   },
   formSection: {
     position: 'relative',
-    padding: '8px 16px 16px'
+    padding: '8px 16px 16px',
+    borderBottom: `1px solid ${
+      theme.palette.type === 'light' ? color.g100 : color.g700
+    }`
   },
   typography: {
+    marginBottom: '1rem'
+  },
+  button: {
     marginBottom: '1rem'
   }
 }));
@@ -41,6 +48,7 @@ const Transform = (props: TransformProps) => {
         </Tooltip>
       </div>
       <Button
+        className={classes.button}
         variant="outlined"
         color="primary"
         onClick={() => dispatch(setIsEditorOpen(true))}

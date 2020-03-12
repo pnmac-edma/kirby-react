@@ -4,7 +4,7 @@ import { Field } from 'formik';
 import { Button, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { AddCircleOutline } from '@material-ui/icons';
-import color from '@edma/design-tokens/js/color';
+import { color } from '@edma/design-tokens';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
 import {
   setSelectedNode,
@@ -26,12 +26,19 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
     dispatch(setSelectedNode(event, node));
     dispatch(setIsEditorOpen(true));
   };
+  const filterInput = document.getElementById('transformsFilter');
 
   return (
     <>
       <div className="Toolbar__filters">
-        <SearchIcon className="Icon__search" />
+        <SearchIcon
+          className="Icon__search"
+          onClick={() => {
+            if (filterInput) filterInput.focus();
+          }}
+        />
         <Field
+          id="transformsFilter"
           name="transformsFilter"
           className="Input__filter"
           label="Filter"

@@ -10,7 +10,7 @@ import {
   useTheme
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import color from '@edma/design-tokens/js/color';
+import { color } from '@edma/design-tokens';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
 
