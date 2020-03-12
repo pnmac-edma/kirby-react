@@ -15,7 +15,7 @@ const Sources = (props: SourcesProps) => {
   }));
 
   return (
-    <div>
+    <div className="Toolbar__list Toolbar__list--sources">
       {sourceItems.map((source, i) => (
         <ToolbarItemWidget
           key={`${source.name}-${i}`}

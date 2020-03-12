@@ -93,6 +93,10 @@
   margin: 0;
   overflow-y: scroll;
   height: calc(100% - 200px);
+
+  &.Toolbar__list--sources {
+    height: calc(100% - 100px);
+  }
 }
 
 .dark .Toolbar__list {
