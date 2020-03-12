@@ -89,13 +89,13 @@
 
 .Toolbar__list {
   border-bottom: 1px solid $color-g-100;
-  padding: 1rem 0 3rem;
+  padding: 1rem 0;
   margin: 0;
   overflow-y: scroll;
   height: calc(100% - 200px);
 
   &.Toolbar__list--sources {
-    height: calc(100% - 100px);
+    height: auto;
   }
 }
 
