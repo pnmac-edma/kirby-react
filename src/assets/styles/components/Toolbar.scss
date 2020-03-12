@@ -196,6 +196,23 @@
   transition: all 0.2s ease-in-out;
 }
 
+.Input__filter {
+  margin-left: -2.4rem !important;
+  padding-left: 2.4rem !important;
+
+  .MuiInputLabel-filled {
+    margin-left: 2.4rem;
+  }
+
+  .MuiFilledInput-root {
+    margin-left: -2.4rem;
+  }
+
+  .MuiFilledInput-input {
+    padding: 27px 12px 10px 50px;
+  }
+}
+
 .Input__filter input {
   background: $color-white;
 }
@@ -210,7 +227,7 @@
 }
 
 .Input__filter--destination {
-  width: calc(100% - 92px);
+  width: calc(100% - 53px);
 }
 
 .Icon__search {
@@ -219,6 +236,8 @@
   margin-left: 14px;
   color: $color-g-400;
   vertical-align: top;
+  z-index: $z-1;
+  cursor: text;
 }
 
 // Dark mode input styles

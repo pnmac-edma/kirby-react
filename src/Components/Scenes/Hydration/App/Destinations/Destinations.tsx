@@ -84,6 +84,7 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
   );
   const dispatch = useDispatch();
   const sensitivity = values.destinationsFilterSens;
+  const filterInput = document.getElementById('destinationsFilter');
 
   return (
     <>
@@ -133,8 +134,14 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
       {sensitivity && (
         <>
           <div className="Toolbar__filters">
-            <SearchIcon className="Icon__search" />
+            <SearchIcon
+              className="Icon__search"
+              onClick={() => {
+                if (filterInput) filterInput.focus();
+              }}
+            />
             <Field
+              id="destinationsFilter"
               name="destinationsFilter"
               className={`Input__filter Input__filter--destination`}
               label="Filter"

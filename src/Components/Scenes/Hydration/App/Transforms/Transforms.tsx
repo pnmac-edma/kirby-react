@@ -26,12 +26,19 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
     dispatch(setSelectedNode(event, node));
     dispatch(setIsEditorOpen(true));
   };
+  const filterInput = document.getElementById('transformsFilter');
 
   return (
     <>
       <div className="Toolbar__filters">
-        <SearchIcon className="Icon__search" />
+        <SearchIcon
+          className="Icon__search"
+          onClick={() => {
+            if (filterInput) filterInput.focus();
+          }}
+        />
         <Field
+          id="transformsFilter"
           name="transformsFilter"
           className="Input__filter"
           label="Filter"
