@@ -1,5 +1,5 @@
 import React from 'react';
-import color from '@edma/design-tokens/js/color';
+import { color } from '@edma/design-tokens';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
 import mockSourcesData from '../../../../../State/__mockData__/mockSourcesMetadata.json'; // TODO: replace mockdata
 import { AddNodeToDiagram } from '../../../../../State/Hydration/types';

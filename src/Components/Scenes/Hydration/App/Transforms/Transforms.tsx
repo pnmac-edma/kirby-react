@@ -4,7 +4,7 @@ import { Field } from 'formik';
 import { Button, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { AddCircleOutline } from '@material-ui/icons';
-import color from '@edma/design-tokens/js/color';
+import { color } from '@edma/design-tokens';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
 import {
   setSelectedNode,
