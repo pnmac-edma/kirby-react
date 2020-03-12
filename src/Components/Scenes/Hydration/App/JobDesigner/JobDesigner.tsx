@@ -5,7 +5,10 @@ import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
 import { Toolbar } from '../Toolbar/Toolbar';
 import TransformEditor from '../Transform/TransformEditor';
-import { setSelectedNode } from '../../../../../State/Hydration/actions';
+import {
+  setSelectedNode,
+  setRemoveSelectedNode
+} from '../../../../../State/Hydration/actions';
 import { setFormInitialState } from '../../../../../State/Hydration/forms';
 import {
   DestinationNodeModel,
@@ -99,6 +102,22 @@ const JobDesigner = (props: JobDesignerProps) => {
     return node;
   };
 
+  const removeNodeFromDiagram = (
+    node: NodeModel,
+    subForm: 'sources' | 'transforms' | 'destinations'
+  ): void => {
+    app
+      .getDiagramEngine()
+      .getDiagramModel()
+      .removeNode(node);
+
+    const newValue = { ...values[subForm] };
+    delete newValue[node.id];
+    setFieldValue(subForm, newValue);
+    dispatch(setRemoveSelectedNode(node));
+    return;
+  };
+
   return (
     <div className="Diagram">
       {isEditorOpen && selectedNode && selectedNode.id && (
@@ -108,6 +127,7 @@ const JobDesigner = (props: JobDesignerProps) => {
       <Toolbar
         selectedNode={selectedNode}
         addNodeToDiagram={addNodeToDiagram}
+        removeNodeFromDiagram={removeNodeFromDiagram}
       />
     </div>
   );

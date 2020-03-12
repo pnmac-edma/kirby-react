@@ -22,7 +22,7 @@ const hydrationReducer = (state = initialState, action: any) => {
       }
       return { ...state, selectedNode: null };
     }
-    case types.SET_REMOVE_NODE: {
+    case types.SET_REMOVE_SELECTED_NODE: {
       if (action.node) {
         action.node.selected = false;
       }
