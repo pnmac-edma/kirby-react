@@ -57,18 +57,30 @@ export const destinationInitialState = {
   sensitivity: ''
 };
 
+export const selectedDaysInitialState = {
+  sunday: false,
+  monday: false,
+  tuesday: false,
+  wednesday: false,
+  thursday: false,
+  friday: false,
+  saturday: false
+};
+
 export const scheduleJobInitialState = {
-  calendarTeam: '',
+  calendarTeam: 'EDMA',
   startsOn: new Date(Date.now()),
-  repeat: {
+  repeats: {
     num: 1,
-    interval: '',
-    days: []
+    interval: 'Days',
+    selectedDays: selectedDaysInitialState,
+    weekOfMonth: 'first'
   },
   fails: {
     num: 1,
-    interval: ''
-  }
+    interval: 'Retries'
+  },
+  enableJob: true
 };
 
 export const initialValues = {

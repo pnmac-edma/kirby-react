@@ -80,19 +80,22 @@ export interface Transform {
 
 export interface ScheduleJob {
   calendarTeam: string;
-  startsOn: {
-    date: string;
-    time: string;
-  };
-  repeat: {
+  startsOn: Date;
+  repeats: {
     num: number;
     interval: string;
-    days: Array<string>;
+    selectedDays: SelectedDays;
+    weekOfMonth: string;
   };
   fails: {
     num: number;
     interval: string;
   };
+  enableJob: boolean;
+}
+
+export interface SelectedDays {
+  [day: string]: boolean;
 }
 
 export type AddNodeToDiagram = (
