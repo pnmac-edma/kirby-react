@@ -45,6 +45,10 @@ const RequestingFor = props => {
     indicatorSeparator: (provided, state) => ({
       ...provided,
       display: 'none'
+    }),
+
+    menu: (provided, state) => ({
+      background: theme.palette.type === 'light' ? color.white : color.black
     })
   };
 
