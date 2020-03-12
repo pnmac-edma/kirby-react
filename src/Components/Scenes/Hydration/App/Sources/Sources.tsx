@@ -1,5 +1,5 @@
 import React from 'react';
-import color from '@edma/design-tokens/js/color';
+import { color } from '@edma/design-tokens';
 import ToolbarItemWidget from '../Toolbar/ToolbarItemWidget';
 import mockSourcesData from '../../../../../State/__mockData__/mockSourcesMetadata.json'; // TODO: replace mockdata
 import { AddNodeToDiagram } from '../../../../../State/Hydration/types';
@@ -15,7 +15,7 @@ const Sources = (props: SourcesProps) => {
   }));
 
   return (
-    <div>
+    <div className="Toolbar__list Toolbar__list--sources">
       {sourceItems.map((source, i) => (
         <ToolbarItemWidget
           key={`${source.name}-${i}`}
