@@ -142,13 +142,6 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
             </Button>
           </Grid>
         )}
-        {!isDestinationModalOpen && (
-          <Grid item>
-            <Button variant="contained" color="secondary">
-              Cancel
-            </Button>
-          </Grid>
-        )}
         <Grid item>
           <Button variant="contained" color="primary">
             Add Destination
