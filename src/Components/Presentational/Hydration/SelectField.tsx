@@ -14,7 +14,7 @@ const SelectField = (props: SelectFieldProps) => {
   const { className, id, label, name, options } = props;
 
   return (
-    <FormControl className={className}>
+    <FormControl fullWidth className={className}>
       <InputLabel id={id}>{label}</InputLabel>
       <Field id={id} name={name} label={label} type="select" as={Select}>
         {options.map((option: string, i: number) => (

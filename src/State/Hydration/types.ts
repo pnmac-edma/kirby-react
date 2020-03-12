@@ -51,6 +51,7 @@ export interface InitialStateTypes {
   destinations: Destinations;
   destinationsFilterSens: string;
   destinationsCreate: Destination;
+  scheduleJob: ScheduleJob;
 }
 
 export interface Destinations {
@@ -75,6 +76,23 @@ export interface Transform {
   sqlScript: string;
   tips: string;
   queryReults: Array<any>;
+}
+
+export interface ScheduleJob {
+  calendarTeam: string;
+  startsOn: {
+    date: string;
+    time: string;
+  };
+  repeat: {
+    num: number;
+    interval: string;
+    days: Array<string>;
+  };
+  fails: {
+    num: number;
+    interval: string;
+  };
 }
 
 export type AddNodeToDiagram = (

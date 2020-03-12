@@ -9,8 +9,10 @@ import {
   setSelectedNode,
   setIsEditorOpen
 } from '../../../../../State/Hydration/actions';
-import { InitialStateTypes } from '../../../../../State/Hydration/types';
-import { AddNodeToDiagram } from '../../../../../State/Hydration/types';
+import {
+  AddNodeToDiagram,
+  InitialStateTypes
+} from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
   diagramCanvas: {

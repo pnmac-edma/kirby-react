@@ -2,7 +2,6 @@ import { InitialStateTypes } from './types';
 
 /** EXPECTED FORM INITIAL STATE
  * jobName: '',
- * selectedNode: null,
  * sources: {},
  * transforms: {},
  * transformsFilter: '',
@@ -58,6 +57,20 @@ export const destinationInitialState = {
   sensitivity: ''
 };
 
+export const scheduleJobInitialState = {
+  calendarTeam: '',
+  startsOn: new Date(Date.now()),
+  repeat: {
+    num: 1,
+    interval: '',
+    days: []
+  },
+  fails: {
+    num: 1,
+    interval: ''
+  }
+};
+
 export const initialValues = {
   sources: {},
   transforms: {},
@@ -65,7 +78,8 @@ export const initialValues = {
   destinations: {},
   destinationsFilter: '',
   destinationsFilterSens: '',
-  destinationsCreate: { ...destinationInitialState }
+  destinationsCreate: destinationInitialState,
+  scheduleJob: scheduleJobInitialState
 };
 
 export const generateSourceInitialState = (
