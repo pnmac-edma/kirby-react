@@ -51,6 +51,11 @@ const useStyles = makeStyles(theme => ({
   },
   advancedFilters: {
     padding: '1rem'
+  },
+  modal: {
+    '& .MuiDialog-paperWidthSm': {
+      padding: '2rem'
+    }
   }
 }));
 
@@ -70,7 +75,11 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
 
   return (
     <>
-      <Dialog open={isDestinationModalOpen} aria-labelledby="form-destination">
+      <Dialog
+        className={classes.modal}
+        open={isDestinationModalOpen}
+        aria-labelledby="form-destination"
+      >
         <NewDestinationForm isAppForm={true} />
       </Dialog>
       <div className={`Toolbar__filters ${classes.sensitivityFilter}`}>

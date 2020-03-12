@@ -18,7 +18,8 @@ import mockDomains from '../../../../State/__mockData__/mockDomains.json';
 
 const styles = makeStyles(theme => ({
   gridContainer: {
-    margin: '1rem 0'
+    margin: '0.5rem 0',
+    width: '100%'
   },
   textfield: {
     width: '100%',
@@ -124,7 +125,12 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
           />
         </Grid>
       </Grid>
-      <Grid container justify="flex-end" spacing={2}>
+      <Grid
+        container
+        className={classes.gridContainer}
+        justify="flex-end"
+        spacing={2}
+      >
         {isAppForm && isDestinationModalOpen && (
           <Grid item>
             <Button
@@ -132,6 +138,13 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
               variant="contained"
               color="secondary"
             >
+              Cancel
+            </Button>
+          </Grid>
+        )}
+        {!isDestinationModalOpen && (
+          <Grid item>
+            <Button variant="contained" color="secondary">
               Cancel
             </Button>
           </Grid>
