@@ -38,16 +38,27 @@ const useStyles = makeStyles(theme => ({
     width: '50%'
   },
   selectFormControl: {
-    display: 'flex',
-    marginTop: 0
+    display: 'inline-flex',
+    marginTop: '0.5rem',
+    width: '80%'
   },
   description: {
     fontSize: '14px',
-    marginTop: '1rem',
+    margin: '1rem 0',
     color: color.g500
   },
   plusButton: {
-    marginTop: '0.2rem'
+    marginTop: '0.5rem',
+
+    '& .MuiSvgIcon-root': {
+      height: 16,
+      width: 16
+    }
+  },
+  introPlus: {
+    marginTop: '1.1rem',
+    position: 'absolute',
+    right: '0.8rem'
   },
   advancedFilters: {
     padding: '1rem'
@@ -62,6 +73,7 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
   const classes = useStyles();
   const { values } = useFormikContext() as { values: InitialStateTypes };
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isSensOpen, setIsSensOpen] = useState(true);
   const isDestinationModalOpen = useSelector(
     ({ hydration }: any) => hydration.isDestinationModalOpen
   );
@@ -92,12 +104,18 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
             ))}
           </Field>
         </FormControl>
-        {sensitivity && (
+        <IconButton
+          className={`${classes.plusButton} ${classes.introPlus}`}
+          onClick={() => setIsSensOpen(!isSensOpen)}
+        >
+          {isSensOpen ? <Remove /> : <Add />}
+        </IconButton>
+        {isSensOpen && sensitivity && (
           <Typography variant="body1" className={classes.description}>
             {(mockSensitivity as any)[sensitivity]}
           </Typography>
         )}
-        {!sensitivity && (
+        {isSensOpen && !sensitivity && (
           <Typography variant="body1" className={classes.description}>
             Select a sensitivity level in order to view Destinations
           </Typography>

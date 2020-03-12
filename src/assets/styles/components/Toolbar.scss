@@ -4,6 +4,8 @@
 //      in the hydration flow.
 
 .Toolbar {
+  display: flex;
+  flex-direction: column;
   width: 260px;
   height: 100vh;
   border-left: 1px solid;
@@ -107,6 +109,8 @@
 
 .Toolbar__btm-btn {
   background-color: $color-g-50 !important;
+  border-bottom: 1px solid $color-g-100 !important;
+  align-self: flex-end;
   color: $color-g-600 !important;
   font-size: $font-size-body-0;
   box-shadow: 0 0 0 !important;
