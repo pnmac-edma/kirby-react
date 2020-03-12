@@ -25,17 +25,6 @@ interface SetRemoveSelectedNodeAction {
   node: types.NodeModel | null;
 }
 
-// export const setRemoveNodeData = (
-//   id: string
-// ): SetRemoveNodeDataAction => ({
-//   type: types.SET_REMOVE_NODE_DATA,
-//   id
-// });
-// interface SetRemoveNodeDataAction {
-//   type: types.SET_REMOVE_NODE_DATA,
-//   id: string
-// }
-
 export const setIsEditorOpen = (value: boolean): SetIsEditorOpenAction => ({
   type: types.SET_IS_EDITOR_OPEN,
   value

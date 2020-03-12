@@ -41,7 +41,6 @@ const DiagramView = (props: DiagramViewProps) => {
   const { transforms } = values;
   const dispatch = useDispatch();
   const classes = useStyles();
-  console.log(values);
 
   // this function handles when nodes are dropped
   const onDropNode = (event: any) => {
