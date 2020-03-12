@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import { useFormikContext } from 'formik';
 import { color } from '@edma/design-tokens';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
