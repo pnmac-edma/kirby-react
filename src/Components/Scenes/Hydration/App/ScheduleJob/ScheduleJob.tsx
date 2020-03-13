@@ -26,7 +26,7 @@ import mockWeekOfMonth from '../../../../../State/__mockData__/mockWeekOfMonthDa
 const useStyles = makeStyles(theme => ({
   container: {
     padding: spacing['3'],
-    background: color.g50
+    background: theme.palette.type === 'light' ? color.g50 : color.g900
   },
   header: {
     borderBottom: `1px solid ${
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     }`
   },
   label: {
-    color: color.g600
+    color: theme.palette.type === 'light' ? color.g600 : color.g400
   }
 }));
 
@@ -87,7 +87,7 @@ const ScheduleJob = (props: ScheduleJobProps) => {
 
   const repeatWeekSelect = (
     <SelectField
-      className="Scheduler__input"
+      className="Scheduler__input Scheduler__repeats-on-the"
       id="repeats-weekofmonth"
       name="scheduleJob.repeats.weekOfMonth"
       options={mockWeekOfMonth}
