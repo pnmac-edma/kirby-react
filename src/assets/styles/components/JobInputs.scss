@@ -1,0 +1,112 @@
+// Input styles for Hydration flow
+
+.Input__textfield,
+.Input__select:not(.Input__select--sensitivity) {
+  margin-top: 1rem !important;
+  width: 100%;
+}
+
+.Input__textfield label,
+.Input__select label {
+  color: $color-g-600;
+}
+
+.Input__textfield input,
+.Input__select .MuiSelect-select {
+  border-radius: $border-radius-1;
+  border: 1px solid transparent;
+  padding: 0.2rem;
+
+  &:hover {
+    border: 1px solid $color-g-100;
+  }
+}
+
+.Input__textfield .Mui-focused input,
+.Input__select .Mui-focused .MuiSelect-select {
+  border: 1px solid $color-g-300;
+  border-radius: $border-radius-1;
+}
+
+.Input__textfield div:before,
+.Input__textfield div:after,
+.Input__select div:before,
+.Input__select div:after,
+.Input__textfield div:hover:before,
+.Input__textfield div:hover:after {
+  content: '';
+  border-bottom: none !important;
+}
+
+.Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+.Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+  top: -7px;
+}
+
+.Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+.Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+  background: $color-y-50;
+  padding: 0.3rem;
+}
+
+.Input__select label {
+  color: $color-g-600;
+}
+
+.Input__select .MuiSelect-select:focus {
+  background-color: transparent;
+}
+
+.Input__textfield label,
+.Input__select label {
+  transition: all 0.2s ease-in-out;
+}
+
+.Input__filter input {
+  background: $color-white;
+}
+
+.dark .Input__filter input {
+  background: $color-black;
+}
+
+.Input__filter .MuiFilledInput-underline:before,
+.Input__filter .MuiFilledInput-underline:after {
+  display: none;
+}
+
+.Input__filter--destination {
+  width: calc(100% - 92px);
+}
+
+.Icon__search {
+  position: relative;
+  top: 17px;
+  margin-left: 14px;
+  color: $color-g-400;
+  vertical-align: top;
+}
+
+// Dark mode input styles
+.dark {
+  .Input__textfield label,
+  .Input__select label {
+    color: $color-g-300;
+  }
+
+  .Input__textfield input:hover,
+  .Input__select .MuiSelect-select:hover {
+    border: 1px solid $color-g-600;
+  }
+
+  .Input__textfield .Mui-focused input,
+  .Input__select .Mui-focused .MuiSelect-select {
+    border: 1px solid $color-g-300;
+  }
+
+  .Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
+  .Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
+    background: $color-g-800;
+    color: $color-g-100;
+  }
+}

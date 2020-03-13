@@ -9,6 +9,8 @@ interface SelectFieldProps {
   name: string;
   options: Array<string>;
   fullWidth?: boolean;
+  placeholder?: string | null;
+  variant?: string | null;
 }
 
 const SelectField = ({
@@ -17,12 +19,22 @@ const SelectField = ({
   id,
   label = null,
   name,
-  options
+  options,
+  placeholder,
+  variant
 }: SelectFieldProps) => {
   return (
     <FormControl fullWidth={fullWidth} className={className}>
-      <InputLabel id={id}>{label}</InputLabel>
-      <Field id={id} name={name} label={label} type="select" as={Select}>
+      <InputLabel htmlFor={id}>{label}</InputLabel>
+      <Field
+        id={id}
+        name={name}
+        label={label}
+        type="select"
+        as={Select}
+        variant={variant}
+        placeholder={placeholder}
+      >
         {options.map((option: string, i: number) => (
           <MenuItem key={`${i}-${option}`} value={option}>
             {option}
