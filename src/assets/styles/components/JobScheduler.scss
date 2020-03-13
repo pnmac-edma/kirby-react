@@ -18,3 +18,54 @@
 .Scheduler__time-input .MuiInput-root {
   margin: 24px 0;
 }
+
+.Scheduler__days {
+  margin: 0.7rem 0 2rem;
+}
+
+.Scheduler__day-checkbox {
+  position: relative;
+  margin-left: 0 !important;
+
+  .MuiCheckbox-root {
+    background: $color-g-100;
+    width: 48px;
+    height: 48px;
+    border-radius: $border-radius-1;
+  }
+
+  &:hover,
+  &:hover > .MuiCheckbox-root {
+    background: $color-g-200;
+    border-radius: $border-radius-1;
+  }
+
+  &:hover > .MuiCheckbox-root.Mui-checked {
+    background: $color-b-500;
+  }
+
+  .Mui-checked {
+    background: $color-b-400;
+  }
+
+  .MuiIconButton-label {
+    display: none;
+  }
+
+  .MuiFormControlLabel-root {
+    position: relative;
+    text-align: center;
+  }
+
+  .MuiFormControlLabel-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: $color-black;
+  }
+
+  .Mui-checked ~ .MuiFormControlLabel-label,
+  &:hover > .Mui-checked ~ .MuiFormControlLabel-label {
+    color: $color-white;
+  }
+}
