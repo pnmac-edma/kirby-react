@@ -2,7 +2,6 @@ import { InitialStateTypes } from './types';
 
 /** EXPECTED FORM INITIAL STATE
  * jobName: '',
- * selectedNode: null,
  * sources: {},
  * transforms: {},
  * transformsFilter: '',
@@ -58,6 +57,32 @@ export const destinationInitialState = {
   sensitivity: ''
 };
 
+export const selectedDaysInitialState = {
+  sunday: false,
+  monday: false,
+  tuesday: false,
+  wednesday: false,
+  thursday: false,
+  friday: false,
+  saturday: false
+};
+
+export const scheduleJobInitialState = {
+  calendarTeam: 'EDMA',
+  startsOn: new Date(Date.now()),
+  repeats: {
+    num: 1,
+    interval: 'Days',
+    selectedDays: selectedDaysInitialState,
+    weekOfMonth: 'first'
+  },
+  fails: {
+    num: 1,
+    interval: 'Retries'
+  },
+  enableJob: true
+};
+
 export const initialValues = {
   sources: {},
   transforms: {},
@@ -65,7 +90,8 @@ export const initialValues = {
   destinations: {},
   destinationsFilter: '',
   destinationsFilterSens: '',
-  destinationsCreate: { ...destinationInitialState }
+  destinationsCreate: destinationInitialState,
+  scheduleJob: scheduleJobInitialState
 };
 
 export const generateSourceInitialState = (
@@ -156,7 +182,7 @@ export const setFormInitialState = (
     description: string;
     schedule: string;
   }
-): any => {
+): void => {
   if (type === 'source') {
     setFieldValue(
       'sources',

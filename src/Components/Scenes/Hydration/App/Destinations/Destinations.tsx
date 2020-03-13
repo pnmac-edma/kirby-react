@@ -77,8 +77,8 @@ type DestinationsProps = {
 const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
   const classes = useStyles();
   const { values } = useFormikContext() as { values: InitialStateTypes };
+  const [isSensOpen, setIsSensOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isSensOpen, setIsSensOpen] = useState(true);
   const isDestinationModalOpen = useSelector(
     ({ hydration }: any) => hydration.isDestinationModalOpen
   );
