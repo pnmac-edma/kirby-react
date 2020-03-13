@@ -6,8 +6,7 @@ import {
   FormHelperText,
   Grid,
   InputLabel,
-  TextField,
-  Typography
+  TextField
 } from '@material-ui/core';
 import { color, spacing } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
