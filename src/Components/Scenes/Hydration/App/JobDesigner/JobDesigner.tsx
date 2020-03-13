@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Dialog } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
@@ -9,6 +10,7 @@ import {
   setSelectedNode,
   setRemoveSelectedNode
 } from '../../../../../State/Hydration/actions';
+import ScheduleJob from '../ScheduleJob/ScheduleJob';
 import { setFormInitialState } from '../../../../../State/Hydration/forms';
 import {
   DestinationNodeModel,
@@ -35,6 +37,8 @@ const JobDesigner = (props: JobDesignerProps) => {
     values: InitialStateTypes;
     setFieldValue: (field: string, value: any) => void;
   };
+
+  const [isScheduleJobOpen, setIsScheduleJobOpen] = useState(false);
 
   const isEditorOpen = useSelector(
     ({ hydration }: any) => hydration.isEditorOpen
@@ -128,7 +132,11 @@ const JobDesigner = (props: JobDesignerProps) => {
         selectedNode={selectedNode}
         addNodeToDiagram={addNodeToDiagram}
         removeNodeFromDiagram={removeNodeFromDiagram}
+        setIsScheduleJobOpen={setIsScheduleJobOpen}
       />
+      <Dialog open={isScheduleJobOpen} aria-labelledby="form-schedule-job">
+        <ScheduleJob setIsScheduleJobOpen={setIsScheduleJobOpen} />
+      </Dialog>
     </div>
   );
 };

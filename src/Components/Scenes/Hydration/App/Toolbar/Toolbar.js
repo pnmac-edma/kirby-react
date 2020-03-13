@@ -10,7 +10,7 @@ import Transforms from '../Transforms/Transforms';
 import Transform from '../Transform/Transform';
 
 export const Toolbar = props => {
-  const { selectedNode, addNodeToDiagram, removeNodeFromDiagram } = props;
+  const { selectedNode, addNodeToDiagram, removeNodeFromDiagram, setIsScheduleJobOpen } = props;
   const [tab, setTab] = React.useState(0);
   const dispatch = useDispatch();
 
@@ -46,7 +46,11 @@ export const Toolbar = props => {
   }
 
   return (
-    <ToolbarWidget tab={tab} handleTabsChange={handleTabsChange}>
+    <ToolbarWidget
+      tab={tab}
+      handleTabsChange={handleTabsChange}
+      setIsScheduleJobOpen={setIsScheduleJobOpen}
+    >
       {tab === 0 && <Sources addNodeToDiagram={addNodeToDiagram} />}
       {tab === 1 && <Transforms addNodeToDiagram={addNodeToDiagram} />}
       {tab === 2 && <Destinations addNodeToDiagram={addNodeToDiagram} />}
