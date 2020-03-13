@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import { Button, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { AddCircleOutline } from '@material-ui/icons';
@@ -11,7 +11,10 @@ import {
   setIsEditorOpen
 } from '../../../../../State/Hydration/actions';
 import mockTransformsData from '../../../../../State/__mockData__/mockTransformsMetadata.json'; // TODO: change this to non-mock data when hitting the actual api
-import { AddNodeToDiagram } from '../../../../../State/Hydration/types';
+import {
+  InitialStateTypes,
+  AddNodeToDiagram
+} from '../../../../../State/Hydration/types';
 
 type TransformsProps = {
   addNodeToDiagram: AddNodeToDiagram;
@@ -19,6 +22,7 @@ type TransformsProps = {
 
 const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
   const dispatch = useDispatch();
+  const { values } = useFormikContext() as { values: InitialStateTypes };
 
   const setAddTransform = (event: React.FormEvent<HTMLFormElement>) => {
     const node = addNodeToDiagram('Untitled', { x: 400, y: 400 }, 'transform');
@@ -27,6 +31,11 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
     dispatch(setIsEditorOpen(true));
   };
   const filterInput = document.getElementById('transformsFilter');
+  const filteredTransforms = mockTransformsData
+    ? Object.values(mockTransformsData).filter(({ name }) =>
+        name.toLowerCase().includes(values.transformsFilter.toLowerCase())
+      )
+    : [];
 
   return (
     <>
@@ -47,7 +56,7 @@ const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
         />
       </div>
       <div className="Toolbar__list">
-        {Object.values(mockTransformsData).map(({ name, sqlScript }, i) => (
+        {filteredTransforms.map(({ name, sqlScript }, i) => (
           <ToolbarItemWidget
             key={`${name}-${i}`}
             model={{ type: 'transform', name, sqlScript }}

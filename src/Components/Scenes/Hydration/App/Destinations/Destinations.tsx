@@ -85,6 +85,11 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
   const dispatch = useDispatch();
   const sensitivity = values.destinationsFilterSens;
   const filterInput = document.getElementById('destinationsFilter');
+  const filteredDestinations = mockDestinationsData
+    ? Object.values(mockDestinationsData).filter(({ name }) =>
+        name.toLowerCase().includes(values.destinationsFilter.toLowerCase())
+      )
+    : [];
 
   return (
     <>
@@ -183,7 +188,7 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
             )}
           </div>
           <div className="Toolbar__list">
-            {Object.values(mockDestinationsData).map(
+            {filteredDestinations.map(
               ({ name, email, description, schedule }, i) => (
                 <ToolbarItemWidget
                   key={`${name}-${i}`}

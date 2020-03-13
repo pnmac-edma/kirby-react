@@ -49,6 +49,7 @@ export interface InitialStateTypes {
   transforms: Transforms;
   transformsFilter: string;
   destinations: Destinations;
+  destinationsFilter: string;
   destinationsFilterSens: string;
   destinationsCreate: Destination;
   scheduleJob: ScheduleJob;
