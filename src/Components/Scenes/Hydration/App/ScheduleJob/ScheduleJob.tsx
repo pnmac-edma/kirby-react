@@ -52,15 +52,7 @@ const ScheduleJob = (props: ScheduleJobProps) => {
   };
   const { scheduleJob } = values;
 
-  const daysList = [
-    'sunday',
-    'monday',
-    'tuesday',
-    'wednesday',
-    'thursday',
-    'friday',
-    'saturday'
-  ];
+  const daysList = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   const setEnableJob = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newScheduleJob = {
       ...scheduleJob,
@@ -220,16 +212,20 @@ const ScheduleJob = (props: ScheduleJobProps) => {
         {isRepeatWeeksOrMonths && (
           <div>
             {isRepeatWeeks ? (
-              <FormHelperText>Repeat on</FormHelperText>
+              <InputLabel shrink={false} className={classes.label}>
+                Repeats on
+              </InputLabel>
             ) : (
               <>
-                <FormHelperText>Repeat on the</FormHelperText>
-                {repeatWeekSelect}
+                <InputLabel shrink={false} className={classes.label}>
+                  Repeats on the {repeatWeekSelect}
+                </InputLabel>
               </>
             )}
-            <div>
+            <div className="Scheduler__days">
               {daysList.map((day: string, i: number) => (
                 <FormControlLabel
+                  className="Scheduler__day-checkbox"
                   control={
                     <Checkbox
                       key={`${day}-${i}`}
