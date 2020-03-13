@@ -54,7 +54,7 @@ const Rdbms = (props: ApiProps) => {
   return (
     <div>
       <div className={classes.formSection}>
-        <h4 className={classes.formTitle}>RDBMS</h4>
+        <h4 className={classes.formTitle}>API</h4>
         <div className={`Tile__delete`}>
           <Tooltip
             onClick={() => removeNodeFromDiagram(selectedNode, 'sources')}

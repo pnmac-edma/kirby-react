@@ -13,6 +13,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { color } from '@edma/design-tokens';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
+import { keyboardShortcuts } from '../../../../../State/Hydration/helpers';
 
 const useStyles = makeStyles(theme => ({
   positioning: {
@@ -57,7 +58,10 @@ const TransformEditor = (props: TransformProps) => {
   };
 
   return (
-    <div className={`Diagram__layer Editor ${classes.positioning}`}>
+    <div
+      onKeyUp={(e: React.KeyboardEvent) => keyboardShortcuts.codeEditor(e)}
+      className={`Diagram__layer Editor ${classes.positioning}`}
+    >
       <div className="Editor__heading" />
       <Typography variant="body1" className={classes.name}>
         {transforms[id].name}

@@ -106,6 +106,11 @@ export type AddNodeToDiagram = (
   optionalParams?: OptionalParamsNode
 ) => NodeModel;
 
+// TODO: need to add this typing to appropriate location
+//       and need to fix the subform enum string typing
+//       in keyboardshortcuts
+export type RemoveNodeToDiagram = (node: NodeModel, subForm: any) => void;
+
 export interface AppEngine {
   engine: DiagramEngine;
   model: DiagramModel;
@@ -116,7 +121,7 @@ export interface NodeModel {
   listeners: any;
   id: string;
   locked: boolean;
-  type: string;
+  type: 'source' | 'transform' | 'destination';
   selected: boolean;
   x: number;
   y: number;

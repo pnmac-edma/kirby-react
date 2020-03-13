@@ -7,6 +7,7 @@ import {
   InitialStateTypes,
   NodeModel
 } from '../../../../../State/Hydration/types';
+import { keyboardShortcuts } from '../../../../../State/Hydration/helpers';
 
 interface SourceProps {
   id: string;
@@ -25,7 +26,7 @@ const Source = (props: SourceProps) => {
   return (
     <>
       {sources[id] && (
-        <>
+        <div onKeyUp={(e: React.KeyboardEvent) => keyboardShortcuts.source(e)}>
           {sourceType === 'RDBMS' && (
             <Rdbms id={id} removeNodeFromDiagram={removeNodeFromDiagram} />
           )}
@@ -35,7 +36,7 @@ const Source = (props: SourceProps) => {
           {sourceType === 'API' && (
             <Api id={id} removeNodeFromDiagram={removeNodeFromDiagram} />
           )}
-        </>
+        </div>
       )}
     </>
   );

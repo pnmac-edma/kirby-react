@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDropzone } from 'react-dropzone';
@@ -11,8 +11,10 @@ import {
 } from '../../../../../State/Hydration/actions';
 import {
   AddNodeToDiagram,
-  InitialStateTypes
+  InitialStateTypes,
+  NodeModel
 } from '../../../../../State/Hydration/types';
+import { keyboardShortcuts } from '../../../../../State/Hydration/helpers';
 
 const useStyles = makeStyles(theme => ({
   diagramCanvas: {
@@ -23,6 +25,10 @@ const useStyles = makeStyles(theme => ({
 interface DiagramViewProps {
   app: any;
   addNodeToDiagram: AddNodeToDiagram;
+  removeNodeFromDiagram: (
+    node: NodeModel,
+    subForm: 'sources' | 'transforms' | 'destinations'
+  ) => void;
 }
 
 /**
@@ -35,12 +41,15 @@ interface DiagramViewProps {
  * that runs when a file is dropped
  */
 const DiagramView = (props: DiagramViewProps) => {
-  const { addNodeToDiagram, app } = props;
+  const { addNodeToDiagram, app, removeNodeFromDiagram } = props;
   const { values, setFieldValue } = useFormikContext() as {
     values: InitialStateTypes;
     setFieldValue: (field: string, value: any) => void;
   };
   const { transforms } = values;
+  const selectedNode = useSelector(
+    ({ hydration }: any) => hydration.selectedNode
+  );
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -113,6 +122,9 @@ const DiagramView = (props: DiagramViewProps) => {
       }`}
       onDrop={event => onDropNode(event)}
       onDragOver={event => event.preventDefault()}
+      onKeyUp={event =>
+        keyboardShortcuts.diagram(event, removeNodeFromDiagram, selectedNode)
+      }
     >
       <div
         {...getRootProps()}
