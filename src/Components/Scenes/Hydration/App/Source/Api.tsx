@@ -51,22 +51,8 @@ const Rdbms = (props: ApiProps) => {
   );
   const classes = useStyles();
 
-  const onKeyDown = (event: any) => {
-    if (event.keyCode === 8 /* Backspace */) {
-      event.stopPropagation();
-      console.log('keydown');
-    }
-  };
-
-  const onKeyUp = (event: any) => {
-    if (event.keyCode === 8 /* Backspace */) {
-      event.stopPropagation();
-      console.log('keyup');
-    }
-  };
-
   return (
-    <div onKeyUp={e => onKeyUp(e)}>
+    <div>
       <div className={classes.formSection}>
         <h4 className={classes.formTitle}>API</h4>
         <div className={`Tile__delete`}>

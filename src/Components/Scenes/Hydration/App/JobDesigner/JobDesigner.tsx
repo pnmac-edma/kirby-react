@@ -127,7 +127,11 @@ const JobDesigner = (props: JobDesignerProps) => {
       {isEditorOpen && selectedNode && selectedNode.id && (
         <TransformEditor id={selectedNode.id} />
       )}
-      <DiagramView app={app} addNodeToDiagram={addNodeToDiagram} />
+      <DiagramView
+        app={app}
+        addNodeToDiagram={addNodeToDiagram}
+        removeNodeFromDiagram={removeNodeFromDiagram}
+      />
       <Toolbar
         selectedNode={selectedNode}
         addNodeToDiagram={addNodeToDiagram}
