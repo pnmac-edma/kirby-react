@@ -3,7 +3,6 @@ import {
   Button,
   Checkbox,
   FormControlLabel,
-  FormHelperText,
   Grid,
   InputLabel,
   TextField
