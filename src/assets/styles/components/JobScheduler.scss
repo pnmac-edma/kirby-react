@@ -7,12 +7,23 @@
 
 .Scheduler__input .MuiInput-root {
   background: $color-white;
-  padding: $spacing-2;
   margin: 8px 0 24px;
 
   &:hover {
     background: $color-g-100;
   }
+}
+
+.dark .Scheduler__input .MuiInput-root {
+  background: $color-black;
+
+  &:hover {
+    background: $color-g-800;
+  }
+}
+
+.MuiInput-input {
+  padding: 1rem !important;
 }
 
 .Scheduler__time-input .MuiInput-root {
@@ -67,5 +78,49 @@
   .Mui-checked ~ .MuiFormControlLabel-label,
   &:hover > .Mui-checked ~ .MuiFormControlLabel-label {
     color: $color-white;
+  }
+}
+
+.dark .Scheduler__day-checkbox {
+  .MuiCheckbox-root {
+    background: $color-g-700;
+  }
+
+  &:hover,
+  &:hover > .MuiCheckbox-root {
+    background: $color-g-600;
+  }
+
+  &:hover > .MuiCheckbox-root.Mui-checked {
+    background: $color-b-200;
+  }
+
+  .Mui-checked {
+    background: $color-b-300;
+  }
+
+  .MuiFormControlLabel-label {
+    color: $color-white;
+  }
+
+  .Mui-checked ~ .MuiFormControlLabel-label,
+  &:hover > .Mui-checked ~ .MuiFormControlLabel-label {
+    color: $color-black;
+  }
+}
+
+.MuiFormControl-root.Scheduler__repeats-on-the {
+  display: inline;
+  width: auto;
+  top: -0.4rem;
+
+  .MuiInput-root {
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .MuiInput-input {
+    padding: 6px 24px 7px 0 !important;
   }
 }
