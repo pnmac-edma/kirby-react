@@ -14,14 +14,14 @@ interface SetSelectedNodeAction {
   node: types.NodeModel | undefined;
 }
 
-export const setRemoveNode = (
+export const setRemoveSelectedNode = (
   node: types.NodeModel | null
-): SetRemoveNodeAction => ({
-  type: types.SET_REMOVE_NODE,
+): SetRemoveSelectedNodeAction => ({
+  type: types.SET_REMOVE_SELECTED_NODE,
   node
 });
-interface SetRemoveNodeAction {
-  type: typeof types.SET_REMOVE_NODE;
+interface SetRemoveSelectedNodeAction {
+  type: typeof types.SET_REMOVE_SELECTED_NODE;
   node: types.NodeModel | null;
 }
 

@@ -2,7 +2,7 @@ import { DiagramModel, DiagramEngine } from '@projectstorm/react-diagrams';
 
 // action constant types
 export const SET_SELECTED_NODE = 'SET_SELECTED_NODE';
-export const SET_REMOVE_NODE = 'SET_REMOVE_NODE';
+export const SET_REMOVE_SELECTED_NODE = 'SET_REMOVE_SELECTED_NODE';
 export const SET_IS_EDITOR_OPEN = 'SET_IS_EDITOR_OPEN';
 export const SET_IS_DESTINATION_MODAL_OPEN = 'SET_IS_DESTINATION_MODAL_OPEN';
 

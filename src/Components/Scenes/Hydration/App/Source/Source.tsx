@@ -3,15 +3,22 @@ import { useFormikContext } from 'formik';
 import Rdbms from './Rdbms';
 import Sftp from './Sftp';
 import Api from './Api';
-import { InitialStateTypes } from '../../../../../State/Hydration/types';
+import {
+  InitialStateTypes,
+  NodeModel
+} from '../../../../../State/Hydration/types';
 
 interface SourceProps {
   id: string;
   sourceType: string;
+  removeNodeFromDiagram: (
+    node: NodeModel,
+    subForm: 'sources' | 'transforms' | 'destinations'
+  ) => void;
 }
 
 const Source = (props: SourceProps) => {
-  const { id, sourceType } = props;
+  const { id, sourceType, removeNodeFromDiagram } = props;
   const { values } = useFormikContext() as { values: InitialStateTypes };
   const { sources } = values;
 
@@ -19,9 +26,15 @@ const Source = (props: SourceProps) => {
     <>
       {sources[id] && (
         <>
-          {sourceType === 'RDBMS' && <Rdbms id={id} />}
-          {sourceType === 'SFTP' && <Sftp id={id} />}
-          {sourceType === 'API' && <Api id={id} />}
+          {sourceType === 'RDBMS' && (
+            <Rdbms id={id} removeNodeFromDiagram={removeNodeFromDiagram} />
+          )}
+          {sourceType === 'SFTP' && (
+            <Sftp id={id} removeNodeFromDiagram={removeNodeFromDiagram} />
+          )}
+          {sourceType === 'API' && (
+            <Api id={id} removeNodeFromDiagram={removeNodeFromDiagram} />
+          )}
         </>
       )}
     </>

@@ -1,11 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { Button, IconButton, makeStyles, Tooltip } from '@material-ui/core';
 import { color } from '@edma/design-tokens';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
-import { InitialStateTypes } from '../../../../../State/Hydration/types';
+import {
+  InitialStateTypes,
+  NodeModel
+} from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,12 +31,19 @@ const useStyles = makeStyles(theme => ({
 
 interface TransformProps {
   id: string;
+  removeNodeFromDiagram: (
+    node: NodeModel,
+    subForm: 'sources' | 'transforms' | 'destinations'
+  ) => void;
 }
 
 const Transform = (props: TransformProps) => {
-  const { id } = props;
+  const { id, removeNodeFromDiagram } = props;
   const { values } = useFormikContext() as { values: InitialStateTypes };
   const { transforms } = values;
+  const selectedNode = useSelector(
+    ({ hydration }: any) => hydration.selectedNode
+  );
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -41,7 +51,11 @@ const Transform = (props: TransformProps) => {
     <div className={classes.formSection}>
       <h4 className={classes.typography}>{transforms[id].name}</h4>
       <div className={`Tile__delete`}>
-        <Tooltip title="Remove Tile" placement="top">
+        <Tooltip
+          onClick={() => removeNodeFromDiagram(selectedNode, 'transforms')}
+          title="Remove Tile"
+          placement="top"
+        >
           <IconButton aria-label="remove-tile">
             <DeleteOutline fontSize="small" />
           </IconButton>

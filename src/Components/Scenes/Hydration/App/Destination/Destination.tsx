@@ -1,8 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
-import { useFormikContext } from 'formik';
+import { useSelector } from 'react-redux';
+import { makeStyles, IconButton, Tooltip } from '@material-ui/core';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import { color } from '@edma/design-tokens';
-import { InitialStateTypes } from '../../../../../State/Hydration/types';
+import { useFormikContext } from 'formik';
+import {
+  InitialStateTypes,
+  NodeModel
+} from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
   tileTitle: {
@@ -24,17 +29,33 @@ const useStyles = makeStyles(theme => ({
 
 interface DestinationProps {
   id: string;
+  removeNodeFromDiagram: (
+    node: NodeModel,
+    subForm: 'sources' | 'transforms' | 'destinations'
+  ) => void;
 }
 
 const Destination = (props: DestinationProps) => {
-  const { id } = props;
+  const { id, removeNodeFromDiagram } = props;
   const { values } = useFormikContext() as { values: InitialStateTypes };
+  const selectedNode = useSelector(
+    ({ hydration }: any) => hydration.selectedNode
+  );
   const { destinations } = values;
   const classes = useStyles();
 
   return (
     <div className={classes.tileSection}>
       <h4 className={classes.tileTitle}>{destinations[id].name}</h4>
+      <Tooltip
+        onClick={() => removeNodeFromDiagram(selectedNode, 'destinations')}
+        title="Remove Tile"
+        placement="top"
+      >
+        <IconButton aria-label="remove-tile">
+          <DeleteOutline fontSize="small" />
+        </IconButton>
+      </Tooltip>
       <p className={classes.tileDescription}>{destinations[id].email}</p>
       <p className={classes.tileDescription}>{destinations[id].description}</p>
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Field } from 'formik';
 import {
   Button,
@@ -13,10 +14,15 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import { NodeModel } from '../../../../../State/Hydration/types';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
 interface SftpProps {
   id: string;
+  removeNodeFromDiagram: (
+    node: NodeModel,
+    subForm: 'sources' | 'transforms' | 'destinations'
+  ) => void;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -38,7 +44,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Sftp = (props: SftpProps) => {
-  const { id } = props;
+  const { id, removeNodeFromDiagram } = props;
+  const selectedNode = useSelector(
+    ({ hydration }: any) => hydration.selectedNode
+  );
   const { SFTP } = mockSourcesMetadata; // TODO: replace with real data
   const classes = useStyles();
 
@@ -48,7 +57,10 @@ const Sftp = (props: SftpProps) => {
         <h4 className={classes.formTitle}>SFTP</h4>
         <div className={`Tile__delete`}>
           <Tooltip title="Remove Tile" placement="top">
-            <IconButton aria-label="remove-tile">
+            <IconButton
+              onClick={() => removeNodeFromDiagram(selectedNode, 'sources')}
+              aria-label="remove-tile"
+            >
               <DeleteOutline fontSize="small" />
             </IconButton>
           </Tooltip>

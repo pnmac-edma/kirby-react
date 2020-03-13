@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setRemoveNode } from '../../../../../State/Hydration/actions';
+import { setRemoveSelectedNode } from '../../../../../State/Hydration/actions';
 import ToolbarWidget from './ToolbarWidget';
 import Destinations from '../Destinations/Destinations';
 import Destination from '../Destination/Destination';
@@ -10,12 +10,12 @@ import Transforms from '../Transforms/Transforms';
 import Transform from '../Transform/Transform';
 
 export const Toolbar = props => {
-  const { selectedNode, addNodeToDiagram, setIsScheduleJobOpen } = props;
+  const { selectedNode, addNodeToDiagram, removeNodeFromDiagram, setIsScheduleJobOpen } = props;
   const [tab, setTab] = React.useState(0);
   const dispatch = useDispatch();
 
   const handleTabsChange = (event, newTab) => {
-    dispatch(setRemoveNode(selectedNode));
+    dispatch(setRemoveSelectedNode(selectedNode));
     setTab(newTab);
   };
 
@@ -23,13 +23,23 @@ export const Toolbar = props => {
     return (
       <ToolbarWidget tab={tab} handleTabsChange={handleTabsChange}>
         {selectedNode.type === 'source' && (
-          <Source id={selectedNode.id} sourceType={selectedNode.name} />
+          <Source
+            id={selectedNode.id}
+            sourceType={selectedNode.name}
+            removeNodeFromDiagram={removeNodeFromDiagram}
+          />
         )}
         {selectedNode.type === 'transform' && (
-          <Transform id={selectedNode.id} />
+          <Transform
+            id={selectedNode.id}
+            removeNodeFromDiagram={removeNodeFromDiagram}
+          />
         )}
         {selectedNode.type === 'destination' && (
-          <Destination id={selectedNode.id} />
+          <Destination
+            id={selectedNode.id}
+            removeNodeFromDiagram={removeNodeFromDiagram}
+          />
         )}
       </ToolbarWidget>
     );
