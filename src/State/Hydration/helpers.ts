@@ -8,7 +8,9 @@ export const keyboardShortcuts = {
   ) => {
     if (event.keyCode === 8 /* Backspace */) {
       event.stopPropagation();
-      removeNodeFromDiagram(node, `${node.type}s`);
+      if (node) {
+        removeNodeFromDiagram(node, `${node.type}s`);
+      }
     }
   },
   source: (event: React.KeyboardEvent) => {
