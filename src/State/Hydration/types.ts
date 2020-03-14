@@ -109,7 +109,7 @@ export type AddNodeToDiagram = (
 // TODO: need to add this typing to appropriate location
 //       and need to fix the subform enum string typing
 //       in keyboardshortcuts
-export type RemoveNodeToDiagram = (node: NodeModel, subForm: any) => void;
+export type RemoveNodeFromDiagram = (node: NodeModel, subForm: any) => void;
 
 export interface AppEngine {
   engine: DiagramEngine;

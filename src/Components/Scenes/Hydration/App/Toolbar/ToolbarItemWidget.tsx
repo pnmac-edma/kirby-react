@@ -6,10 +6,22 @@ import DestIcon from '../../../../../assets/img/icon.hydration.dest.svg';
 import SourceIconDark from '../../../../../assets/img/icon.hydration.source.dark.svg';
 import TransIconDark from '../../../../../assets/img/icon.hydration.trans.dark.svg';
 import DestIconDark from '../../../../../assets/img/icon.hydration.dest.dark.svg';
+import { NodeModel } from '../../../../../State/Hydration/types';
 
-const ToolbarItemWidget = props => {
+interface ToolbarItemWidget {
+  name: string;
+  onClick: () => NodeModel;
+  color: string;
+  model: any;
+}
+
+const ToolbarItemWidget = ({
+  name,
+  color,
+  model,
+  onClick
+}: ToolbarItemWidget) => {
   const theme = useTheme();
-  const { model, color, name, onClick } = props;
 
   const modelType =
     model.type === 'source'
