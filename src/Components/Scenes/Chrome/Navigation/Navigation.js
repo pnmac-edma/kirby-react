@@ -68,7 +68,7 @@ const navStyle = makeStyles(theme => ({
 }));
 
 const Navigation = props => {
-  const { sessionToken, authenticateFetch, themeToggle } = props;
+  const { sessionToken, authenticateFetch } = props;
   const classes = navStyle();
 
   const [apiError, setApiError] = useState(null);
@@ -92,26 +92,27 @@ const Navigation = props => {
   // Case 3: there may or may not be a SAML response,
   //         but there is a session token, so relax until an hour later
   //         when we get a 4xx code from some request, then redirect
-  const samlResponse = useQuery('SAMLResponse');
-  const [isRedirecting, setIsRedirecting] = useState(true);
-  useEffect(() => {
-    if (samlResponse && !sessionToken) {
-      setIsRedirecting(false);
-      authenticateFetch(samlResponse);
-    } else if (!sessionToken) {
-      setIsRedirecting(true);
-      window.location.replace('https://pennymac.onelogin.com/portal/');
-    } else {
-      setIsRedirecting(false);
-    }
-  }, [samlResponse, authenticateFetch, sessionToken]);
+  // const samlResponse = useQuery('SAMLResponse');
+  // const [isRedirecting, setIsRedirecting] = useState(true);
+  // useEffect(() => {
+  //   if (samlResponse && !sessionToken) {
+  //     setIsRedirecting(false);
+  //     authenticateFetch(samlResponse);
+  //   } else if (!sessionToken) {
+  //     setIsRedirecting(true);
+  //     window.location.replace('https://pennymac.onelogin.com/portal/');
+  //   } else {
+  //     setIsRedirecting(false);
+  //   }
+  // }, [samlResponse, authenticateFetch, sessionToken]);
 
   const [open, setOpen] = useState(false);
   const closeDrawer = () => {
     setOpen(!open);
   };
 
-  return !isRedirecting ? (
+  // return !isRedirecting ? (
+  return (
     <div className={classes.root}>
       {apiError === null && (
         <>
@@ -155,14 +156,15 @@ const Navigation = props => {
             <AvatarListItem />
           </Drawer>
           <main>
-            <PageWrapper themeToggle={themeToggle} />
+            <PageWrapper />
           </main>
         </>
       )}
       {apiError === 400 && <BadRequest />}
       {(apiError === 401 || apiError === 403) && <ExpiredAuth />}
     </div>
-  ) : null;
+    // ) : null;
+  );
 };
 
 export default Navigation;

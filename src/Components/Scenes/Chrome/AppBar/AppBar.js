@@ -66,7 +66,7 @@ const appBarStyle = makeStyles(theme => ({
 const Appbar = props => {
   const classes = appBarStyle();
   const curPath = useLocation().pathname;
-  const { jobName, themeToggle } = props;
+  const { jobName } = props;
 
   const LogoComponent =
     curPath === '/' ? (
@@ -118,7 +118,7 @@ const Appbar = props => {
         )}
       </div>
       <div className={classes.themeToggleContainer}>
-        <ThemeToggle themeToggle={themeToggle} />
+        <ThemeToggle />
       </div>
     </AppBar>
   );
