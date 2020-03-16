@@ -1,6 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setRemoveSelectedNode } from '../../../../../State/Hydration/actions';
+import {
+  setIsEditorOpen,
+  setRemoveSelectedNode
+} from '../../../../../State/Hydration/actions';
 import ToolbarWidget from './ToolbarWidget';
 import Destinations from '../Destinations/Destinations';
 import Destination from '../Destination/Destination';
@@ -32,6 +35,7 @@ const Toolbar = ({
 
   const handleTabsChange = (_: any, newTab: number) => {
     dispatch(setRemoveSelectedNode(selectedNode));
+    dispatch(setIsEditorOpen(false));
     setTab(newTab);
   };
 
