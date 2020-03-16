@@ -56,7 +56,7 @@ const DestinationNodeWidget = props => {
           left: -8
         }}
       >
-        <PortWidget name="left" node={props.node} />
+        <PortWidget name="left" node={props.node} className="Tile__left-port" />
       </div>
     </div>
   );
