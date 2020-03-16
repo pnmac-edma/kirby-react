@@ -6,7 +6,7 @@ import { color } from '@edma/design-tokens';
 
 const useStyles = makeStyles(theme => ({
   typography: {
-    color: color.black,
+    color: theme.palette.type === 'light' ? color.black : color.white,
     textAlign: 'left',
     margin: 14
   }
