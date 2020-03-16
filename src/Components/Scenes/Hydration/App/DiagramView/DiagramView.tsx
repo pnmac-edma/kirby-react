@@ -69,7 +69,7 @@ const DiagramView = (props: DiagramViewProps) => {
 
   // this function handles file drop with the following steps:
   // 1. converts the file into a string that holds the code
-  // 2. adds node to diagram and makes sure it is selected
+  // 2. adds node to diagram and makes sure node is selected
   // 3. sets the form values in formik
   const onDrop = useCallback(
     async (files: Array<File>) => {

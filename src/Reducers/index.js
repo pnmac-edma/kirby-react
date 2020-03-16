@@ -5,6 +5,7 @@ import viewRequestsReducer from '../State/ViewRequests/reducers';
 import currentUserReducer from '../State/AuthFlow/reducers';
 import hydrationReducer from '../State/Hydration/reducers';
 import jobCalendarReducer from '../State/JobCalendar/reducers';
+import chromeReducer from '../State/Chrome/reducers';
 
 const rootReducer = combineReducers({
   searchResult: searchResultReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   viewRequests: viewRequestsReducer,
   currentUser: currentUserReducer,
   hydration: hydrationReducer,
-  jobCalendar: jobCalendarReducer
+  jobCalendar: jobCalendarReducer,
+  chrome: chromeReducer
 });
 
 export default rootReducer;

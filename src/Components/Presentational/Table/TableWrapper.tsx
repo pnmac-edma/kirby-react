@@ -33,11 +33,12 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'none',
     fontWeight: 'bold',
     whiteSpace: 'nowrap',
-    color: color.b600,
+    color: theme.palette.type === 'light' ? color.b600 : color.b200,
+    background: theme.palette.type === 'light' ? color.white : color.g900,
 
     '&:hover': {
-      color: color.b600,
-      background: color.b50
+      color: theme.palette.type === 'light' ? color.b600 : color.b200,
+      background: theme.palette.type === 'light' ? color.b50 : color.g800
     }
   },
   link: {

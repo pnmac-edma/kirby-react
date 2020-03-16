@@ -5,13 +5,11 @@ import Diagram from './Diagram/Diagram';
 import JobDesigner from './JobDesigner/JobDesigner';
 import { initialValues } from '../../../../State/Hydration/forms';
 
-interface AppEngineProps {
+interface JobAppOuterLayerProps {
   app: any;
 }
 
-const JobAppOuterLayer = (props: AppEngineProps) => {
-  const { app } = props;
-
+const JobAppOuterLayer = ({ app }: JobAppOuterLayerProps) => {
   // Use an incrementing counter to force a re-render of canvas
   // even if React state has not explicitly changed
   // https://reactjs.org/docs/hooks-faq.html#is-there-something-like-forceupdate
@@ -41,6 +39,8 @@ const JobAppOuterLayer = (props: AppEngineProps) => {
   );
 };
 
-const JobApp = () => <JobAppOuterLayer app={new Diagram()} />;
+// only runs the Diagram constructor when component first renders
+// and prevents any re-renders (any re-renders will cause nodes to be lost)
+const JobApp = React.memo(() => <JobAppOuterLayer app={new Diagram()} />);
 
 export default JobApp;

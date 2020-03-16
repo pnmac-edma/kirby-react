@@ -13,7 +13,11 @@ const useStyles = makeStyles((theme: any) => ({
   table: {
     minWidth: 6,
     borderTop: `1px solid`,
-    borderColor: theme.palette.type === 'light' ? color.g200 : color.g600
+    borderColor: theme.palette.type === 'light' ? color.g200 : color.g600,
+
+    '& .MuiTableRow-root:hover': {
+      background: theme.palette.type === 'light' ? color.white : color.g700
+    }
   },
   underline: {
     textDecoration: 'none'

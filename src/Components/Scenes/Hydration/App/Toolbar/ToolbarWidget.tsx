@@ -33,9 +33,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ToolbarWidget = props => {
+interface ToolbarWidgetProps {
+  tab: number;
+  handleTabsChange: (_: any, newTab: number) => void;
+  setIsScheduleJobOpen: (value: boolean) => void;
+  children: React.ReactNode;
+}
+
+const ToolbarWidget = ({
+  tab,
+  handleTabsChange,
+  setIsScheduleJobOpen,
+  children
+}: ToolbarWidgetProps) => {
   const classes = useStyles();
-  const { children, tab, handleTabsChange, setIsScheduleJobOpen } = props;
 
   return (
     <div className={`${classes.toolbar} Toolbar`}>

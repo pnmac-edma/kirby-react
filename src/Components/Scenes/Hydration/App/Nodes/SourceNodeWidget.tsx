@@ -1,9 +1,16 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useFormikContext } from 'formik';
+import { makeStyles, Chip } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 import { PortWidget } from '@projectstorm/react-diagrams';
+import {
+  InitialStateTypes,
+  NodeModel,
+  RDBMS,
+  API
+} from '../../../../../State/Hydration/types';
 
-const tileStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   tile: {
     borderColor: theme.palette.type === 'light' ? color.g600 : color.g500,
     backgroundColor: theme.palette.type === 'light' ? color.g600 : color.g500,
@@ -18,14 +25,30 @@ const tileStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.type === 'light' ? color.white : color.g800
   },
   tileTitle: {
-    color: theme.palette.type === 'light' ? color.c600 : color.c400
+    color: theme.palette.type === 'light' ? color.b500 : color.b200
   }
 }));
 
-const SourceNodeWidget = props => {
-  const { name, size } = props.node;
+interface SourceNodeWidgetProps {
+  node: NodeModel;
+}
+
+const SourceNodeWidget = ({ node }: SourceNodeWidgetProps) => {
+  const { name, id, size } = node;
+  const { values } = useFormikContext() as { values: InitialStateTypes };
+  const { sources } = values;
   const height = size * 0.5;
-  const classes = tileStyles();
+  const classes = useStyles();
+
+  const generateTag = (sourceType: string) => {
+    if (sourceType === 'RDBMS') {
+      return (sources[id] as RDBMS).sourceVersion;
+    }
+    if (sourceType === 'API') {
+      return (sources[id] as API).type;
+    }
+    return '';
+  };
 
   return (
     <div>
@@ -35,6 +58,11 @@ const SourceNodeWidget = props => {
             Source
           </div>
           <div className="Tile__source-name Tile__name">{name}</div>
+          {generateTag(name) !== '' ? (
+            <Chip className="Tile__chip" label={generateTag(name)} />
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <div
@@ -44,7 +72,7 @@ const SourceNodeWidget = props => {
           left: size - 8
         }}
       >
-        <PortWidget name="right" node={props.node} />
+        <PortWidget name="right" node={node as any} />
       </div>
     </div>
   );

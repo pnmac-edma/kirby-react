@@ -20,6 +20,10 @@
   color: $color-black !important;
 }
 
+.MuiTableCell-root .MuiCheckbox-colorPrimary.Mui-checked {
+  color: $color-b-500;
+}
+
 .dark {
   .MuiTableRow-root {
     background: $color-g-700;
@@ -47,5 +51,9 @@
 
   .MuiTableSortLabel-active {
     color: $color-white !important;
+  }
+
+  .MuiTableCell-root .MuiCheckbox-colorPrimary.Mui-checked {
+    color: $color-b-200;
   }
 }
