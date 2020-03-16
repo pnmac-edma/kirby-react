@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Chip } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 import { PortWidget } from '@projectstorm/react-diagrams';
 import {
@@ -58,7 +58,11 @@ const SourceNodeWidget = ({ node }: SourceNodeWidgetProps) => {
             Source
           </div>
           <div className="Tile__source-name Tile__name">{name}</div>
-          <div>{generateTag(name)}</div>
+          {generateTag(name) !== '' ? (
+            <Chip className="Tile__chip" label={generateTag(name)} />
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <div
