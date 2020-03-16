@@ -5,15 +5,13 @@ import {
   AppBar,
   Box,
   Breadcrumbs,
-  Button,
   Link,
   TextField,
-  Tooltip,
   Typography
 } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { useLocation } from 'react-router-dom';
-import { borderRadius, color, z } from '@edma/design-tokens';
+import { color, z } from '@edma/design-tokens';
 import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.svg';
 import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
 
