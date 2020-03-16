@@ -4,7 +4,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
-import { Toolbar } from '../Toolbar/Toolbar';
+import Toolbar from '../Toolbar/Toolbar';
 import TransformEditor from '../Transform/TransformEditor';
 import {
   setSelectedNode,
