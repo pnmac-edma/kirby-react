@@ -76,7 +76,7 @@ const ScheduleJob = (props: ScheduleJobProps) => {
         ...scheduleJob.repeats,
         selectedDays: {
           ...scheduleJob.repeats.selectedDays,
-          [name]: event.target.checked
+          [name.toLowerCase()]: event.target.checked
         }
       }
     };
@@ -225,9 +225,9 @@ const ScheduleJob = (props: ScheduleJobProps) => {
               {daysList.map((day: string, i: number) => (
                 <FormControlLabel
                   className="Scheduler__day-checkbox"
+                  key={`${day}-${i}`}
                   control={
                     <Checkbox
-                      key={`${day}-${i}`}
                       checked={scheduleJob.repeats.selectedDays[day]}
                       onChange={e => setSelectedDays(e, day)}
                       value={day}
