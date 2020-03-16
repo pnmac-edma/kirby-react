@@ -49,14 +49,17 @@ interface TableWrapperProps {
   columns: Array<Column>;
   data: Array<Datum>;
   isLoading?: boolean;
-  filter?: Array<string> | null;
   searchInput?: string;
-  setTitleText?: Function | null;
   setFirstColLink?: Function;
+  // NOTE: filter requires setTitleText to work
+  setTitleText?: Function | null;
+  filter?: Array<string> | null;
+  // NOTE: footerButtonLink and setFooterButtonClick requires footerButtonText to work
   footerButtonText?: string;
   footerButtonLink?: string;
   setFooterButtonClick?: Function;
-  // NOTE: these 3 props need to all be there or none of them
+  // NOTE: these 3 props need to all be there for checkboxes to work;
+  //       omitting all of them will remove all checkboxes
   selected?: Array<any>;
   setToggleAllCheckbox?: Function | null;
   setToggleCheckbox?: Function | null;
