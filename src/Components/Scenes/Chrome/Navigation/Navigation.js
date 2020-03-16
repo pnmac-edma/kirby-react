@@ -68,7 +68,7 @@ const navStyle = makeStyles(theme => ({
 }));
 
 const Navigation = props => {
-  const { sessionToken, authenticateFetch, themeToggle } = props;
+  const { sessionToken, authenticateFetch } = props;
   const classes = navStyle();
 
   const [apiError, setApiError] = useState(null);
@@ -155,7 +155,7 @@ const Navigation = props => {
             <AvatarListItem />
           </Drawer>
           <main>
-            <PageWrapper themeToggle={themeToggle} />
+            <PageWrapper />
           </main>
         </>
       )}

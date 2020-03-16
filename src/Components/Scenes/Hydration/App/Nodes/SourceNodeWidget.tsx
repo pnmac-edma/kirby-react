@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.type === 'light' ? color.white : color.g800
   },
   tileTitle: {
-    color: theme.palette.type === 'light' ? color.c600 : color.c400
+    color: theme.palette.type === 'light' ? color.b500 : color.b200
   }
 }));
 

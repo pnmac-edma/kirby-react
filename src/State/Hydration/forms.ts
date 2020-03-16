@@ -58,13 +58,13 @@ export const destinationInitialState = {
 };
 
 export const selectedDaysInitialState = {
-  sunday: false,
-  monday: false,
-  tuesday: false,
-  wednesday: false,
-  thursday: false,
-  friday: false,
-  saturday: false
+  su: false,
+  mo: false,
+  tu: false,
+  we: false,
+  th: false,
+  fr: false,
+  sa: false
 };
 
 export const scheduleJobInitialState = {

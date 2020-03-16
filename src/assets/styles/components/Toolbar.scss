@@ -43,7 +43,7 @@
 
 .Toolbar__sources-tab.MuiTab-textColorPrimary.Mui-selected,
 .Toolbar__sources-tab:hover {
-  color: $color-c-600;
+  color: $color-b-500;
 }
 
 .Toolbar__transforms-tab.MuiTab-textColorPrimary.Mui-selected,
@@ -54,6 +54,23 @@
 .Toolbar__destinations-tab.MuiTab-textColorPrimary.Mui-selected,
 .Toolbar__destinations-tab:hover {
   color: $color-t-800;
+}
+
+.dark {
+  .Toolbar__sources-tab.MuiTab-textColorPrimary.Mui-selected,
+  .Toolbar__sources-tab:hover {
+    color: $color-b-200;
+  }
+
+  .Toolbar__transforms-tab.MuiTab-textColorPrimary.Mui-selected,
+  .Toolbar__transforms-tab:hover {
+    color: $color-v-300;
+  }
+
+  .Toolbar__destinations-tab.MuiTab-textColorPrimary.Mui-selected,
+  .Toolbar__destinations-tab:hover {
+    color: $color-t-600;
+  }
 }
 
 .Toolbar__nodetype {

@@ -8,20 +8,40 @@ import Sources from '../Sources/Sources';
 import Source from '../Source/Source';
 import Transforms from '../Transforms/Transforms';
 import Transform from '../Transform/Transform';
+import {
+  AddNodeToDiagram,
+  NodeModel,
+  RemoveNodeFromDiagram
+} from '../../../../../State/Hydration/types';
 
-export const Toolbar = props => {
-  const { selectedNode, addNodeToDiagram, removeNodeFromDiagram, setIsScheduleJobOpen } = props;
+interface ToolbarProps {
+  selectedNode: NodeModel;
+  addNodeToDiagram: AddNodeToDiagram;
+  removeNodeFromDiagram: RemoveNodeFromDiagram;
+  setIsScheduleJobOpen: (value: boolean) => void;
+}
+
+const Toolbar = ({
+  selectedNode,
+  addNodeToDiagram,
+  removeNodeFromDiagram,
+  setIsScheduleJobOpen
+}: ToolbarProps) => {
   const [tab, setTab] = React.useState(0);
   const dispatch = useDispatch();
 
-  const handleTabsChange = (event, newTab) => {
+  const handleTabsChange = (_: any, newTab: number) => {
     dispatch(setRemoveSelectedNode(selectedNode));
     setTab(newTab);
   };
 
   if (selectedNode) {
     return (
-      <ToolbarWidget tab={tab} handleTabsChange={handleTabsChange}>
+      <ToolbarWidget
+        tab={tab}
+        handleTabsChange={handleTabsChange}
+        setIsScheduleJobOpen={setIsScheduleJobOpen}
+      >
         {selectedNode.type === 'source' && (
           <Source
             id={selectedNode.id}
@@ -57,3 +77,5 @@ export const Toolbar = props => {
     </ToolbarWidget>
   );
 };
+
+export default Toolbar;
