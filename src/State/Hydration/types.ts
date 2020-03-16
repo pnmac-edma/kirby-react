@@ -34,14 +34,8 @@ export interface API {
   connectionType: string;
 }
 
-enum Source {
-  RDBMS,
-  SFTP,
-  API
-}
-
 export interface Sources {
-  [id: string]: Source;
+  [id: string]: RDBMS | SFTP | API;
 }
 
 export interface InitialStateTypes {

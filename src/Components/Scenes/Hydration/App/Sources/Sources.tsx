@@ -8,22 +8,21 @@ type SourcesProps = {
   addNodeToDiagram: AddNodeToDiagram;
 };
 
-const Sources = (props: SourcesProps) => {
-  const { addNodeToDiagram } = props;
+const Sources = ({ addNodeToDiagram }: SourcesProps) => {
   const sourceItems = Object.entries(mockSourcesData).map(source => ({
-    name: source[0]
+    sourceType: source[0]
   }));
 
   return (
     <div className="Toolbar__list Toolbar__list--sources">
       {sourceItems.map((source, i) => (
         <ToolbarItemWidget
-          key={`${source.name}-${i}`}
-          model={{ type: 'source', name: source.name }}
-          name={source.name}
+          key={`${source.sourceType}-${i}`}
+          model={{ type: 'source', name: source.sourceType }}
+          name={source.sourceType}
           color={color['c400']}
           onClick={() =>
-            addNodeToDiagram(source.name, { x: 400, y: 400 }, 'source')
+            addNodeToDiagram(source.sourceType, { x: 400, y: 400 }, 'source')
           }
         />
       ))}
