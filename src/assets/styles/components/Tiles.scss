@@ -28,8 +28,8 @@
   }
 
   & > * > .Tile__source {
-    background-color: $color-c-600;
-    border-color: $color-c-600;
+    background-color: $color-b-500;
+    border-color: $color-b-500;
   }
 
   & > * > .Tile__transform {
@@ -40,6 +40,26 @@
   & > * > .Tile__destination {
     background-color: $color-t-800;
     border-color: $color-t-800;
+  }
+}
+
+.dark {
+  .srd-node--selected,
+  .srd-node--selected:hover {
+    & > * > .Tile__source {
+      background-color: $color-b-200;
+      border-color: $color-b-200;
+    }
+
+    & > * > .Tile__transform {
+      background-color: $color-v-300;
+      border-color: $color-v-300;
+    }
+
+    & > * > .Tile__destination {
+      background-color: $color-t-600;
+      border-color: $color-t-600;
+    }
   }
 }
 
@@ -76,11 +96,21 @@
 }
 
 .Tile__source ~ * > .port:not([data-name='left']) {
-  border-color: $color-c-600;
+  border-color: $color-b-500;
 }
 
 .Tile__transform ~ * > .port:not([data-name='left']) {
   border-color: $color-v-400;
+}
+
+.dark {
+  .Tile__source ~ * > .port:not([data-name='left']) {
+    border-color: $color-b-200;
+  }
+
+  .Tile__transform ~ * > .port:not([data-name='left']) {
+    border-color: $color-v-300;
+  }
 }
 
 .Tile__source-title,
@@ -92,7 +122,7 @@
 // Tile link overrides
 
 .srd-default-link path {
-  stroke: $color-c-600;
+  stroke: $color-c-400;
 }
 
 .srd-default-link--path-selected {
