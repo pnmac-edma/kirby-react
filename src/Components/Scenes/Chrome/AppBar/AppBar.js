@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
+import {
+  AppBar,
+  Box,
+  Breadcrumbs,
+  Link,
+  TextField,
+  Typography
+} from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { useLocation } from 'react-router-dom';
-import color from '@edma/design-tokens/js/color';
+import { color, z } from '@edma/design-tokens';
 import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.svg';
 import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
 
@@ -45,7 +52,7 @@ const appBarStyle = makeStyles(theme => ({
   },
   appBarHydration: {
     position: 'absolute',
-    zIndex: 1,
+    zIndex: z['1'],
     width: 'calc(100% - 260px)'
   },
   header: {
@@ -60,6 +67,43 @@ const appBarStyle = makeStyles(theme => ({
     whiteSpace: 'nowrap',
     color: theme.palette.type === 'light' ? color.black : color.white,
     marginLeft: 16
+  },
+  jobName: {
+    margin: 0,
+    padding: 0,
+    verticalAlign: 'top',
+    display: 'block',
+
+    '& .MuiInput-root:before, & .MuiInput-root:after': {
+      display: 'none'
+    },
+
+    '& .MuiInput-input': {
+      padding: 0
+    }
+  },
+  jobNameBtn: {
+    transition: 'all .2s ease-in-out',
+    verticalAlign: 'top',
+    position: 'relative',
+    top: 0,
+    height: '20px',
+
+    '&:hover': {
+      background: theme.palette.type === 'light' ? color.y50 : color.g600
+    },
+
+    '& ~ svg ': {
+      position: 'absolute',
+      height: '0.8em',
+      top: 19
+    }
+  },
+  untitledJobName: {
+    background: theme.palette.type === 'light' ? color.y50 : color.g600
+  },
+  jobsLink: {
+    color: theme.palette.type === 'light' ? color.b600 : color.b200
   }
 }));
 
@@ -67,6 +111,7 @@ const Appbar = props => {
   const classes = appBarStyle();
   const curPath = useLocation().pathname;
   const { jobName } = props;
+  const [isJobNameActive, setIsJobNameActive] = useState(false);
 
   const LogoComponent =
     curPath === '/' ? (
@@ -105,12 +150,31 @@ const Appbar = props => {
                   href="/hydration/view-jobs"
                   to="/hydration/view-jobs"
                   variant="body1"
+                  className={classes.jobsLink}
                 >
                   Jobs
                 </Link>
-                <Typography variant="body1">{jobName}</Typography>
+                {isJobNameActive && (
+                  <TextField
+                    autoFocus
+                    id="jobName"
+                    placeholder={jobName}
+                    className={classes.jobName}
+                    onBlur={() => setIsJobNameActive(!isJobNameActive)}
+                  />
+                )}
+                {!isJobNameActive && (
+                  <span>
+                    <span
+                      className={`${classes.jobNameBtn} ${classes.untitledJobName}`}
+                      onClick={() => setIsJobNameActive(!isJobNameActive)}
+                    >
+                      {jobName}
+                    </span>
+                    <KeyboardArrowDownIcon />
+                  </span>
+                )}
               </Breadcrumbs>
-              <KeyboardArrowDownIcon />
             </Box>
           </>
         ) : (
