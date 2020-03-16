@@ -3,7 +3,7 @@
 .Tile {
   position: relative;
   width: 158px;
-  height: 74px;
+  height: 81px;
   border-radius: 5px;
   border: solid 1px;
   text-align: left;
@@ -12,6 +12,14 @@
 
   &:hover {
     box-shadow: $shadow-1;
+  }
+}
+
+.Tile__chip.MuiChip-root {
+  height: 22px;
+
+  & span {
+    padding: 0 8px;
   }
 }
 
