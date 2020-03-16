@@ -34,8 +34,8 @@ const RequestTable = props => {
     tableColumns,
     requests,
     setFooterButtonText,
-    handleFooterButtonClick,
-    handleRequestClick,
+    setFooterButtonClick,
+    setFirstColLink,
     linkTo,
     title
   } = props;
@@ -114,7 +114,7 @@ const RequestTable = props => {
             order={order}
             orderBy={orderBy}
             handleCheckboxClick={handleToggleCheckbox}
-            handleRequestClick={handleRequestClick}
+            setFirstColLink={setFirstColLink}
           />
         </Table>
       </div>
@@ -132,7 +132,7 @@ const RequestTable = props => {
           color="primary"
           disabled={selected.length === 0}
           onClick={() =>
-            handleFooterButtonClick({ requests: requests, selected: selected })
+            setFooterButtonClick({ requests: requests, selected: selected })
           }
         >
           {setFooterButtonText(selected)}
@@ -151,8 +151,8 @@ RequestTable.propTypes = {
   ),
   requests: PropTypes.any,
   setFooterButtonText: PropTypes.func,
-  handleFooterButtonClick: PropTypes.func,
-  handleRequestClick: PropTypes.func
+  setFooterButtonClick: PropTypes.func,
+  setFirstColLink: PropTypes.func
 };
 
 export default RequestTable;

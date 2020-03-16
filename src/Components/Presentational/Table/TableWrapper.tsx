@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button, Table, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { color } from '@edma/design-tokens';
-import PropTypes from 'prop-types';
 import TableWrapperHeader from './TableWrapperHeader';
 import TableWrapperColumnHeaders from './TableWrapperColumnHeaders';
 import TableWrapperFooter from './TableWrapperFooter';
@@ -12,6 +11,7 @@ import TableWrapperNotFound from './TableWrapperNotFound';
 import TableWrapperNotFoundFilter from './TableWrapperNotFoundFilter';
 import TableWrapperSkeleton from './TableWrapperSkeleton';
 import { useForm, useSelectedFilters } from './hooks';
+import { Column, Datum } from './types';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -45,22 +45,38 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TableWrapper = props => {
-  const {
-    columns,
-    data,
-    filter,
-    handleFooterButtonClick,
-    footerButtonLink,
-    handleRequestClick,
-    isLoading,
-    selected,
-    searchInput,
-    footerButtonText,
-    setTitleText,
-    setToggleAllCheckbox,
-    setToggleCheckbox
-  } = props;
+interface TableWrapperProps {
+  columns: Array<Column>;
+  data: Array<Datum>;
+  isLoading?: boolean;
+  filter?: Array<string> | null;
+  searchInput?: string;
+  setTitleText?: Function | null;
+  setFirstColLink?: Function;
+  footerButtonText?: string;
+  footerButtonLink?: string;
+  setFooterButtonClick?: Function;
+  // NOTE: these 3 props need to all be there or none of them
+  selected?: Array<any>;
+  setToggleAllCheckbox?: Function | null;
+  setToggleCheckbox?: Function | null;
+}
+
+const TableWrapper = ({
+  columns = [],
+  data = [],
+  isLoading = false,
+  filter = null,
+  searchInput = '',
+  setTitleText = null,
+  setFirstColLink = () => {},
+  footerButtonLink = '',
+  footerButtonText = '',
+  setFooterButtonClick = () => {},
+  selected = [],
+  setToggleAllCheckbox = null,
+  setToggleCheckbox = null
+}: TableWrapperProps) => {
   const classes = useStyles();
 
   const filterInitialValues = !filter || {
@@ -87,9 +103,9 @@ const TableWrapper = props => {
   // filters data based on all the active filter chips
   const filteredData = data
     ? data.filter(datum =>
-        selectedFilters.every(({ filterBy, filterType, filterTerm }) => {
-          const property = columns.find(column => column.name === filterBy)
-            .property;
+        selectedFilters.every(({ filterBy, filterType, filterTerm }: any) => {
+          const selectedCol = columns.find(column => column.name === filterBy);
+          const property = selectedCol ? selectedCol.property : '';
           if (filterType === 'Contains') {
             return datum[property].includes(filterTerm);
           }
@@ -102,23 +118,23 @@ const TableWrapper = props => {
           return true;
         })
       )
-    : null;
+    : [];
 
-  const isSelected = id => selected.indexOf(id) !== -1;
+  const setSelected = (id: string) => selected.indexOf(id) !== -1;
 
-  const handleSortClick = (e, property) => {
+  const handleSortClick = (_: any, property: string) => {
     if (orderBy === property) {
       setOrder({
         ...order,
-        [property]: order[property] === 'asc' ? 'desc' : 'asc'
+        [property]: (order as any)[property] === 'asc' ? 'desc' : 'asc'
       });
       return;
     }
     setOrderBy(property);
   };
 
-  const handleChangeRowsPerPage = e => {
-    setRowsPerPage(parseInt(e.target.value), 10);
+  const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(e.target.value, 10));
     setPage(0);
   };
 
@@ -145,7 +161,7 @@ const TableWrapper = props => {
             columns={columns}
             data={data}
             numSelected={selected.length}
-            onSelectAllClick={setToggleAllCheckbox}
+            setToggleAllCheckbox={setToggleAllCheckbox}
             onSort={handleSortClick}
             order={order}
             orderBy={orderBy}
@@ -153,14 +169,14 @@ const TableWrapper = props => {
             selected={selected}
           />
           {isLoading ? (
-            <TableWrapperSkeleton colspan="4" />
+            <TableWrapperSkeleton />
           ) : filteredData.length ? (
             <TableWrapperBody
               columns={columns}
               data={filteredData}
-              handleCheckboxClick={setToggleCheckbox}
-              handleRequestClick={handleRequestClick}
-              isSelected={isSelected}
+              setToggleCheckbox={setToggleCheckbox}
+              setFirstColLink={setFirstColLink}
+              setSelected={setSelected}
               selected={selected}
               order={order}
               orderBy={orderBy}
@@ -168,47 +184,39 @@ const TableWrapper = props => {
               rowsPerPage={rowsPerPage}
             />
           ) : (
-            <TableWrapperNotFoundFilter searchInput={searchInput} />
+            <TableWrapperNotFoundFilter
+              searchInput={searchInput}
+              filterTerm={filterForm.filterTerm}
+            />
           )}
         </Table>
       </div>
       <TableWrapperFooter
         count={filteredData.length}
-        onChangePage={(e, newPage) => setPage(newPage)}
+        onChangePage={(_: any, newPage: any) => setPage(newPage)}
         onChangeRowsPerPage={handleChangeRowsPerPage}
         page={page}
         rowsPerPage={rowsPerPage}
       >
-        <Link
-          className={classes.link}
-          to={footerButtonLink || window.location.pathname}
-        >
-          <Button
-            className={classes.button}
-            color="secondary"
-            disabled={selected.length === 0}
-            onClick={handleFooterButtonClick}
-            variant="contained"
+        {footerButtonText && (
+          <Link
+            className={classes.link}
+            to={footerButtonLink || window.location.pathname}
           >
-            {footerButtonText}
-          </Button>
-        </Link>
+            <Button
+              className={classes.button}
+              color="secondary"
+              disabled={selected.length === 0}
+              onClick={() => setFooterButtonClick()}
+              variant="contained"
+            >
+              {footerButtonText}
+            </Button>
+          </Link>
+        )}
       </TableWrapperFooter>
     </Paper>
   );
-};
-
-TableWrapper.propTypes = {
-  tableColumns: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      property: PropTypes.string
-    })
-  ),
-  data: PropTypes.any,
-  footerButtonText: PropTypes.string,
-  handleFooterButtonClick: PropTypes.func,
-  handleRequestClick: PropTypes.func
 };
 
 export default TableWrapper;

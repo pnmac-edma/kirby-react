@@ -5,7 +5,7 @@ import {
   governanceRequestsFetch,
   setToggleViewCheckbox,
   setToggleViewAllCheckbox,
-  handleFooterButtonClick
+  setFooterButtonClick
 } from '../../../../State/ViewRequests/actions';
 
 const mapStateToProps = ({ viewRequests, currentUser, searchResult }) => {
@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(setToggleViewCheckbox(selected, id)),
     setToggleViewAllCheckbox: (selected, data) =>
       dispatch(setToggleViewAllCheckbox(selected, data)),
-    handleFooterButtonClick: e => dispatch(handleFooterButtonClick(e))
+    setFooterButtonClick: e => dispatch(setFooterButtonClick(e))
   };
 };
 

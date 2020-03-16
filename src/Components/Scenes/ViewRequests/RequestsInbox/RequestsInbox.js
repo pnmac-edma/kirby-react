@@ -15,7 +15,7 @@ const RequestsInbox = props => {
     selected,
     setToggleViewCheckbox,
     setToggleViewAllCheckbox
-    // handleFooterButtonClick // TODO: check if this doing something
+    // setFooterButtonClick // TODO: check if this doing something
   } = props;
 
   const columns = [
@@ -62,9 +62,9 @@ const RequestsInbox = props => {
         data={reqs}
         setToggleCheckbox={setToggleViewCheckbox}
         setToggleAllCheckbox={setToggleViewAllCheckbox}
-        handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
+        setFirstColLink={(e, id) => console.log(`request ${id} clicked`)}
         footerButtonText={footerButtonText}
-        handleFooterButtonClick={() => console.log('footer button clicked')}
+        setFooterButtonClick={() => console.log('footer button clicked')}
       />
     </>
   );

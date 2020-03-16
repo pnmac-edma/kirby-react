@@ -58,8 +58,8 @@ const SentRequests = props => {
         setToggleCheckbox={setToggleSentCheckbox}
         setToggleAllCheckbox={setToggleSentAllCheckbox}
         footerButtonText={footerButtonText}
-        handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
-        handleFooterButtonClick={() => console.log('footer button clicked')}
+        setFirstColLink={(e, id) => console.log(`request ${id} clicked`)}
+        setFooterButtonClick={() => console.log('footer button clicked')}
       />
     </>
   );

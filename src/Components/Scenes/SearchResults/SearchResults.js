@@ -59,8 +59,8 @@ const SearchResults = props => {
       setToggleAllCheckbox={setToggleSearchAllCheckbox}
       footerButtonText={footerButtonText}
       footerButtonLink="/search/access"
-      handleRequestClick={id => console.log(`request ${id} clicked`)}
-      handleFooterButtonClick={() =>
+      setFirstColLink={id => console.log(`request ${id} clicked`)}
+      setFooterButtonClick={() =>
         requestAssetsClick(selected, searchResult.results)
       }
     />

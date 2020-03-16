@@ -8,9 +8,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { color } from '@edma/design-tokens';
-import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: any) => ({
   table: {
     minWidth: 6,
     borderTop: `1px solid`,
@@ -21,16 +20,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TableWrapperFooter = props => {
-  const {
-    children,
-    count,
-    rowsPerPage,
-    page,
-    onChangePage,
-    onChangeRowsPerPage
-  } = props;
+interface TableWrapperFooterProps {
+  children: React.ReactNode;
+  count: number;
+  rowsPerPage: number;
+  page: number;
+  onChangePage: any;
+  onChangeRowsPerPage: any;
+}
+
+const TableWrapperFooter = ({
+  children,
+  count,
+  rowsPerPage,
+  page,
+  onChangePage,
+  onChangeRowsPerPage
+}: TableWrapperFooterProps) => {
   const classes = useStyles();
+
   return (
     <Table className={classes.table} size="small">
       <TableBody>
@@ -57,15 +65,6 @@ const TableWrapperFooter = props => {
       </TableBody>
     </Table>
   );
-};
-
-TableWrapperFooter.propTypes = {
-  children: PropTypes.node,
-  count: PropTypes.number,
-  rowsPerPage: PropTypes.number,
-  page: PropTypes.number,
-  onChangePage: PropTypes.func,
-  onChangeRowsPerPage: PropTypes.func
 };
 
 export default TableWrapperFooter;

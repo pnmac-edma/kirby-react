@@ -29,17 +29,30 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TableWrapperFilter = props => {
-  const classes = useStyles();
-  const { filter, filterForm, setFilterForm, setSelectedFilters } = props;
+interface TableWrapperFilterProps {
+  filter: Array<string> | null;
+  filterForm: any;
+  setFilterForm: Function;
+  setSelectedFilters: Function;
+}
 
-  const filterByOptions = filter.map((value, i) => {
-    return (
-      <MenuItem key={i} value={value}>
-        {value}
-      </MenuItem>
-    );
-  });
+const TableWrapperFilter = ({
+  filter,
+  filterForm,
+  setFilterForm,
+  setSelectedFilters
+}: TableWrapperFilterProps) => {
+  const classes = useStyles();
+
+  const filterByOptions = filter
+    ? filter.map((value, i) => {
+        return (
+          <MenuItem key={i} value={value}>
+            {value}
+          </MenuItem>
+        );
+      })
+    : '';
 
   const filterTypeOptions = ['Contains', "Doesn't Contain", 'Equals'].map(
     (value, i) => {

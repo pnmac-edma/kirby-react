@@ -28,8 +28,8 @@ const TableSection = props => {
       setToggleCheckbox={setToggleAssetCheckbox}
       setToggleAllCheckbox={setToggleAssetAllCheckbox}
       footerButtonText={footerButtonText}
-      handleRequestClick={id => console.log(`request ${id} clicked`)}
-      handleFooterButtonClick={handleModalToggle}
+      setFirstColLink={id => console.log(`request ${id} clicked`)}
+      setFooterButtonClick={handleModalToggle}
     />
   );
 };
