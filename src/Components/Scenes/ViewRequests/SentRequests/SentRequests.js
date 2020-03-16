@@ -18,6 +18,10 @@ const SentRequests = props => {
     setToggleSentAllCheckbox
   } = props;
 
+  useEffect(() => {
+    userRequestsFetch(userEmail);
+  }, [userRequestsFetch, userEmail]);
+
   const columns = [
     {
       name: 'Request',
@@ -36,10 +40,6 @@ const SentRequests = props => {
       property: 'createddate'
     }
   ];
-
-  useEffect(() => {
-    userRequestsFetch(userEmail);
-  }, [userRequestsFetch, userEmail]);
 
   const reqs = transformRequests(requests, userRole);
 

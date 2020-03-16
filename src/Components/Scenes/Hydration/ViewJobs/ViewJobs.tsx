@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react';
-import { Divider } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  Button,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  TextField
+} from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
+import { setField } from '../../../../State/JobCalendar/actions';
 
 const useStyles = makeStyles(theme => ({
   flexStructure: {
@@ -40,6 +48,10 @@ const useStyles = makeStyles(theme => ({
 
 const ViewJobs = () => {
   const classes = useStyles();
+  const { mySelectedJobs, otherSelectedJobs, searchJobsText } = useSelector(
+    ({ jobCalendar }: any) => jobCalendar
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // TODO: add action with saga that calls a list of jobs
@@ -49,23 +61,71 @@ const ViewJobs = () => {
     { name: 'Name', property: 'name' },
     { name: 'Status', property: 'status' }
   ];
+
   const mockData = [
     { Id: 'dsfjasfdas', name: 'i am name', status: 'approved' },
     { Id: 'ddsafaa', name: 'i am another name', status: 'declined' }
   ];
+  const mockMyJobs = ['Scott Fowles', 'EDMA Team'];
+  const mockOtherJobs = ['Eric Barrow', 'Jonathan de la Rosa'];
+
+  const setTitleText = () => 'Current Jobs';
 
   return (
     <div className={classes.flexStructure}>
       <div className={classes.sidebar}>
         <div className={classes.sideBarPostion}>
           <h3 className={classes.heading}>My Jobs</h3>
+          {mockMyJobs.map((cal: string, i: number) => (
+            <FormControlLabel
+              key={`${cal}-${i}`}
+              label={cal}
+              control={
+                <Checkbox
+                  checked={mySelectedJobs.includes(cal)}
+                  onChange={() => dispatch(setField('mySelectedJobs', cal))}
+                  value={cal}
+                  inputProps={{ 'aria-label': `${cal}-checkbox` }}
+                />
+              }
+            />
+          ))}
+          <Button color="primary">Job Sharing</Button>
           <Divider className={classes.dividerStyle} />
           <h3 className={classes.heading}>Other Jobs</h3>
+          {mockOtherJobs.map((cal: string, i: number) => (
+            <FormControlLabel
+              key={`${cal}-${i}`}
+              label={cal}
+              control={
+                <Checkbox
+                  checked={otherSelectedJobs.includes(cal)}
+                  onChange={e => dispatch(setField('otherSelectedJobs', cal))}
+                  value={cal}
+                  inputProps={{ 'aria-label': `${cal}-checkbox` }}
+                />
+              }
+            />
+          ))}
+          <Button color="primary">Add People</Button>
         </div>
       </div>
 
       <div className={classes.sideTable}>
-        <TableWrapper columns={columns} data={mockData} />
+        <TextField
+          id="search-jobs"
+          label="Search Jobs"
+          value={searchJobsText}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            dispatch(setField('searchJobsText', e.target.value))
+          }
+        />
+        <TableWrapper
+          columns={columns}
+          data={mockData}
+          setTitleText={setTitleText}
+          filter={['Name', 'Status']}
+        />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { initialState as viewRequests } from '../State/ViewRequests/reducers';
 import { initialState as hydration } from '../State/Hydration/reducers';
+import { initialState as jobCalendar } from '../State/JobCalendar/reducers';
 
 const initialState = {
   // TODO: Replace Stub Data (role and EmpEmail) with Real Data
@@ -65,7 +66,8 @@ const initialState = {
     justification: ''
   },
   viewRequests,
-  hydration
+  hydration,
+  jobCalendar
 };
 
 export default initialState;

@@ -4,13 +4,15 @@ import requestAssetsReducer from './requestAssetsReducers';
 import viewRequestsReducer from '../State/ViewRequests/reducers';
 import currentUserReducer from '../State/AuthFlow/reducers';
 import hydrationReducer from '../State/Hydration/reducers';
+import jobCalendarReducer from '../State/JobCalendar/reducers';
 
 const rootReducer = combineReducers({
   searchResult: searchResultReducer,
   requestAssets: requestAssetsReducer,
   viewRequests: viewRequestsReducer,
   currentUser: currentUserReducer,
-  hydration: hydrationReducer
+  hydration: hydrationReducer,
+  jobCalendar: jobCalendarReducer
 });
 
 export default rootReducer;
