@@ -47,15 +47,17 @@ const Destination = (props: DestinationProps) => {
   return (
     <div className={classes.tileSection}>
       <h4 className={classes.tileTitle}>{destinations[id].name}</h4>
-      <Tooltip
-        onClick={() => removeNodeFromDiagram(selectedNode, 'destinations')}
-        title="Remove Tile"
-        placement="top"
-      >
-        <IconButton aria-label="remove-tile">
-          <DeleteOutline fontSize="small" />
-        </IconButton>
-      </Tooltip>
+      <div className={`Tile__delete`}>
+        <Tooltip
+          onClick={() => removeNodeFromDiagram(selectedNode, 'destinations')}
+          title="Remove Tile"
+          placement="top"
+        >
+          <IconButton aria-label="remove-tile">
+            <DeleteOutline fontSize="small" />
+          </IconButton>
+        </Tooltip>
+      </div>
       <p className={classes.tileDescription}>{destinations[id].email}</p>
       <p className={classes.tileDescription}>{destinations[id].description}</p>
     </div>
