@@ -3,7 +3,7 @@ import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import JobApp from '../App/index';
 
-const chromeStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     position: 'fixed',
     height: '100%',
@@ -12,7 +12,7 @@ const chromeStyles = makeStyles(theme => ({
 }));
 
 const NewJob = () => {
-  const classes = chromeStyles();
+  const classes = useStyles();
 
   return (
     <Box className={classes.container}>

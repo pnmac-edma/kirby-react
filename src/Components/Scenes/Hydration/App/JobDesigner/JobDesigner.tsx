@@ -37,14 +37,11 @@ const JobDesigner = (props: JobDesignerProps) => {
     values: InitialStateTypes;
     setFieldValue: (field: string, value: any) => void;
   };
-
-  const [isScheduleJobOpen, setIsScheduleJobOpen] = useState(false);
-
   const isEditorOpen = useSelector(
     ({ hydration }: any) => hydration.isEditorOpen
   );
+  const [isScheduleJobOpen, setIsScheduleJobOpen] = useState(false);
   const dispatch = useDispatch();
-
   useEffect(() => {
     document.body.className = theme.palette.type === 'light' ? 'light' : 'dark';
     return () => {
