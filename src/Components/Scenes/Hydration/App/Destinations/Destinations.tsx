@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   description: {
     fontSize: '14px',
     margin: '1rem 0',
-    color: color.g500
+    color: theme.palette.type === 'light' ? color.g500 : color.g400
   },
   plusButton: {
     marginTop: '0.5rem',

@@ -153,3 +153,16 @@
     margin-right: 0.5rem;
   }
 }
+
+.dark {
+  .Toolbar__btm-btn {
+    background-color: $color-g-900 !important;
+    color: $color-g-100 !important;
+    border-color: $color-g-700 !important;
+
+    &:hover {
+      background: $color-g-800 !important;
+      color: $color-white !important;
+    }
+  }
+}
