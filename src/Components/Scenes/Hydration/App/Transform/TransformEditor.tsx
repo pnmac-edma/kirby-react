@@ -11,7 +11,7 @@ import {
   useTheme
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { color, z } from '@edma/design-tokens';
+import { color } from '@edma/design-tokens';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
 import { keyboardShortcuts } from '../../../../../State/Hydration/helpers';
