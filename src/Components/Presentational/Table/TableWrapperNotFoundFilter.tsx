@@ -1,8 +1,15 @@
 import React from 'react';
 import { TableCell, TableRow, TableBody } from '@material-ui/core';
 
-const TableWrapperNotFoundFilter = props => {
-  const { searchInput, filterTerm } = props;
+interface TableWrapperNotFoundFilterProps {
+  searchInput: string;
+  filterTerm: string;
+}
+
+const TableWrapperNotFoundFilter = ({
+  searchInput,
+  filterTerm
+}: TableWrapperNotFoundFilterProps) => {
   return (
     <TableBody>
       <TableRow>

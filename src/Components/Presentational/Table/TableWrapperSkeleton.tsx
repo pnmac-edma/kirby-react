@@ -2,10 +2,10 @@ import React from 'react';
 import { Skeleton } from '@material-ui/lab';
 import { TableRow, TableCell } from '@material-ui/core';
 
-const TableWrapperSkeleton = props => {
+const TableWrapperSkeleton = () => {
   return (
     <TableRow>
-      <TableCell colspan={props.colspan}>
+      <TableCell>
         <Skeleton
           variant="rect"
           width={600}

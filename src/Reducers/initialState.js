@@ -1,5 +1,6 @@
 import { initialState as viewRequests } from '../State/ViewRequests/reducers';
 import { initialState as hydration } from '../State/Hydration/reducers';
+import { initialState as jobCalendar } from '../State/JobCalendar/reducers';
 import { initialState as chrome } from '../State/Chrome/reducers';
 
 const initialState = {
@@ -67,6 +68,7 @@ const initialState = {
   },
   viewRequests,
   hydration,
+  jobCalendar,
   chrome
 };
 

@@ -1,19 +1,12 @@
 import React from 'react';
 import { Tooltip, IconButton, Chip } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'block',
-    textAlign: 'right',
-    '& > *': {
-      margin: theme.spacing(0.5)
-    }
-  },
   spacer: {
-    flexGrow: '2',
+    // flexGrow: 2,
     display: 'flex',
     justifyContent: 'flex-end',
     flexWrap: 'wrap'
@@ -27,17 +20,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TableWrapperFilterChip = props => {
-  const {
-    selectedFilters,
-    isFilterClick,
-    setIsFilterClick,
-    removeFilter
-  } = props;
+interface TableWrapperFilterChipProps {
+  selectedFilters: any;
+  isFilterClick: boolean;
+  setIsFilterClick: Function;
+  removeFilter: Function;
+}
+
+const TableWrapperFilterChip = ({
+  selectedFilters,
+  isFilterClick,
+  setIsFilterClick,
+  removeFilter
+}: TableWrapperFilterChipProps) => {
   const classes = useStyles();
 
   const chips = selectedFilters.map(
-    ({ filterBy, filterType, filterTerm }, i) => {
+    ({ filterBy, filterType, filterTerm }: any, i: number) => {
       return (
         <Chip
           className={classes.chip}

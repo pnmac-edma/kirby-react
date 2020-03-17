@@ -53,7 +53,7 @@ const DiagramView = (props: DiagramViewProps) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  // this function handles when nodes are dropped
+  // this function handles node elements drop
   const onDropNode = (event: any) => {
     if (event.dataTransfer.types[0] === 'storm-diagram-node') {
       const data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
@@ -67,10 +67,10 @@ const DiagramView = (props: DiagramViewProps) => {
     }
   };
 
-  // this function handles file dropping with the following steps:
+  // this function handles file drop with the following steps:
   // 1. converts the file into a string that holds the code
   // 2. adds node to diagram and makes sure node is selected
-  // 3. adds/sets the form values in formik
+  // 3. sets the form values in formik
   const onDrop = useCallback(
     async (files: Array<File>) => {
       const convertFileToCodeString = async (file: File) => {

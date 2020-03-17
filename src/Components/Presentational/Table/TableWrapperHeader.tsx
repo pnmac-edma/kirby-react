@@ -22,18 +22,29 @@ const useStyles = makeStyles(theme => ({
         }
 }));
 
-const TableWrapperHeader = props => {
-  const {
-    setTitleText,
-    filter,
-    filterForm,
-    setFilterForm,
-    selectedFilters,
-    isFilterClick,
-    setIsFilterClick,
-    setSelectedFilters,
-    removeFilter
-  } = props;
+interface TableWrapperHeaderProps {
+  setTitleText: Function | null;
+  filter: Array<string> | null;
+  filterForm: any;
+  setFilterForm: Function;
+  selectedFilters: any;
+  isFilterClick: boolean;
+  setIsFilterClick: Function;
+  setSelectedFilters: Function;
+  removeFilter: Function;
+}
+
+const TableWrapperHeader = ({
+  setTitleText,
+  filter,
+  filterForm,
+  setFilterForm,
+  selectedFilters,
+  isFilterClick,
+  setIsFilterClick,
+  setSelectedFilters,
+  removeFilter
+}: TableWrapperHeaderProps) => {
   const classes = useStyles();
 
   return (
@@ -55,7 +66,7 @@ const TableWrapperHeader = props => {
       )}
 
       {isFilterClick ? (
-        <Toolbar className={classes.filterForm}>
+        <Toolbar>
           <TableWrapperFilter
             filter={filter}
             filterForm={filterForm}

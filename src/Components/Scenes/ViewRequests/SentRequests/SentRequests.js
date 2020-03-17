@@ -18,6 +18,10 @@ const SentRequests = props => {
     setToggleSentAllCheckbox
   } = props;
 
+  useEffect(() => {
+    userRequestsFetch(userEmail);
+  }, [userRequestsFetch, userEmail]);
+
   const columns = [
     {
       name: 'Request',
@@ -37,10 +41,6 @@ const SentRequests = props => {
     }
   ];
 
-  useEffect(() => {
-    userRequestsFetch(userEmail);
-  }, [userRequestsFetch, userEmail]);
-
   const reqs = transformRequests(requests, userRole);
 
   const footerButtonText = `Cancel ${selected.length} request${
@@ -58,8 +58,8 @@ const SentRequests = props => {
         setToggleCheckbox={setToggleSentCheckbox}
         setToggleAllCheckbox={setToggleSentAllCheckbox}
         footerButtonText={footerButtonText}
-        handleRequestClick={(e, id) => console.log(`request ${id} clicked`)}
-        handleFooterButtonClick={() => console.log('footer button clicked')}
+        setFirstColLink={(e, id) => console.log(`request ${id} clicked`)}
+        setFooterButtonClick={() => console.log('footer button clicked')}
       />
     </>
   );

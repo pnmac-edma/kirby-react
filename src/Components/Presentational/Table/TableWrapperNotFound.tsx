@@ -25,9 +25,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TableWrapperNotFound = props => {
+interface TableWrapperNotFoundProps {
+  searchInput: string;
+}
+
+const TableWrapperNotFound = ({ searchInput }: TableWrapperNotFoundProps) => {
   const classes = useStyles();
-  const { searchInput } = props;
   return (
     <Paper className={classes.paper}>
       <div className={classes.tableWrapper}>

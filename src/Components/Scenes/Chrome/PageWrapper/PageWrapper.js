@@ -11,6 +11,7 @@ import SearchResultsContainer from '../../SearchResults/SearchResults-Container'
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
 import NewJob from '../../Hydration/NewJob/NewJob';
+import ViewJobs from '../../Hydration/ViewJobs/ViewJobs';
 import NewDestination from '../../Hydration/NewDestination/NewDestination.tsx';
 
 const pageContainerStyle = makeStyles(theme => ({
@@ -56,6 +57,7 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
         {/* hydration pages */}
         <Route path="/hydration/new-destination" component={NewDestination} />
         <Route path="/hydration/new-job" component={NewJob} />
+        <Route path="/hydration/view-jobs" component={ViewJobs} />
         {/* requests pages */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
