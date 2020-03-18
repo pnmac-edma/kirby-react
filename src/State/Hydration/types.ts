@@ -7,6 +7,15 @@ export const SET_IS_EDITOR_OPEN = 'SET_IS_EDITOR_OPEN';
 export const SET_IS_DESTINATION_MODAL_OPEN = 'SET_IS_DESTINATION_MODAL_OPEN';
 
 // types
+export interface KIRBY {
+  sourceType: string;
+  host: string;
+  port: string;
+  folder: string;
+  isConnected: boolean;
+  connectionType: string;
+}
+
 export interface RDBMS {
   sourceVersion: string;
   server: string;
@@ -35,7 +44,7 @@ export interface API {
 }
 
 export interface Sources {
-  [id: string]: RDBMS | SFTP | API;
+  [id: string]: KIRBY | RDBMS | SFTP | API;
 }
 
 export interface InitialStateTypes {

@@ -1,4 +1,7 @@
 {
+  "KIRBY": {
+    "connectionTypes": ["SFTP", "Auto"]
+  },
   "RDBMS": {
     "sourceVersions": ["MySQL", "MSSQL"],
     "connectionTypes": ["Automatic", "Manual"]
