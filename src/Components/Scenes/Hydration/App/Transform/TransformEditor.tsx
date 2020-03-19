@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useFormikContext } from 'formik';
+import { useFormikContext, Field } from 'formik';
 import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
 import {
   IconButton,
@@ -95,23 +95,21 @@ const TransformEditor = (props: TransformProps) => {
     };
     setFieldValue('transforms', newTransformsValue);
   };
-
   return (
     <div
       onKeyUp={(e: React.KeyboardEvent) => keyboardShortcuts.codeEditor(e)}
       className={`Diagram__layer Editor ${classes.positioning}`}
     >
       <div className="Editor__heading" />
-      {isScriptNameActive && (
-        <TextField
+      {isScriptNameActive ? (
+        <Field
           autoFocus
-          id="scriptName"
-          placeholder={transforms[id].name}
-          className={classes.scriptName}
           onBlur={() => setIsScriptNameActive(!isScriptNameActive)}
+          name={`transforms.${id}.name`}
+          className={classes.scriptName}
+          as={TextField}
         />
-      )}
-      {!isScriptNameActive && (
+      ) : (
         <Typography
           variant="body1"
           className={`${classes.scriptNameBtn} ${
