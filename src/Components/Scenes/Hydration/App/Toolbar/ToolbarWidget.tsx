@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, IconButton, Tab, Tabs, Tooltip } from '@material-ui/core';
+import { IconButton, Tab, Tabs, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import UndoIcon from '@material-ui/icons/Undo';
 import RedoIcon from '@material-ui/icons/Redo';
 import PlayIcon from '@material-ui/icons/PlayArrow';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 import color from '@edma/design-tokens/js/color';
 
 const useStyles = makeStyles(theme => ({
@@ -18,18 +19,7 @@ const useStyles = makeStyles(theme => ({
     extends: 'toolbarTop'
   },
   iconButton: {
-    color: color.black
-  },
-  playButton: {
-    color: color.black,
-    background: color.y400,
-    minWidth: 40,
-    minHeight: 40
-  },
-  toolbarTopRight: {
-    position: 'absolute',
-    right: 12,
-    top: 8
+    color: theme.palette.type === 'light' ? color.black : color.white
   }
 }));
 
@@ -83,23 +73,33 @@ const ToolbarWidget = ({
             </IconButton>
           </span>
         </Tooltip>
-        <span className={classes.toolbarTopRight}>
-          <Tooltip
-            title="Schedule Job"
-            aria-label="Schedule Job"
-            enterDelay={500}
-            leaveDelay={200}
-          >
-            <span>
-              <Button
-                onClick={() => setIsScheduleJobOpen(true)}
-                className={classes.playButton}
-              >
-                <PlayIcon aria-label="Schedule Job" fontSize="small" />
-              </Button>
-            </span>
-          </Tooltip>
-        </span>
+        <Tooltip
+          title="Test Run Job"
+          aria-label="Test Run Job"
+          enterDelay={500}
+          leaveDelay={200}
+        >
+          <span>
+            <IconButton className={classes.iconButton}>
+              <PlayIcon aria-label="Test Run Job" fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
+        <Tooltip
+          title="Schedule Job"
+          aria-label="Schedule Job"
+          enterDelay={500}
+          leaveDelay={200}
+        >
+          <span>
+            <IconButton
+              onClick={() => setIsScheduleJobOpen(true)}
+              className={classes.iconButton}
+            >
+              <ScheduleIcon aria-label="Schedule Job" fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
       </div>
       <div className={`${classes.toolbarBottomBorder} Toolbar__tabs`}>
         <Tabs
