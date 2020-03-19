@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IconButton, Tab, Tabs, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import UndoIcon from '@material-ui/icons/Undo';
 import RedoIcon from '@material-ui/icons/Redo';
 import PlayIcon from '@material-ui/icons/PlayArrow';
+import StopIcon from '@material-ui/icons/Stop';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import PublishIcon from '@material-ui/icons/Publish';
 import color from '@edma/design-tokens/js/color';
 
 const useStyles = makeStyles(theme => ({
@@ -37,6 +39,7 @@ const ToolbarWidget = ({
   children
 }: ToolbarWidgetProps) => {
   const classes = useStyles();
+  const [isJobRunning, setIsJobRunning] = useState(false);
 
   return (
     <div className={`${classes.toolbar} Toolbar`}>
@@ -74,14 +77,21 @@ const ToolbarWidget = ({
           </span>
         </Tooltip>
         <Tooltip
-          title="Test Run Job"
-          aria-label="Test Run Job"
+          title={isJobRunning ? 'Stop Test Run' : 'Test Run Job'}
+          aria-label={isJobRunning ? 'Stop Test Run' : 'Test Run Job'}
           enterDelay={500}
           leaveDelay={200}
         >
           <span>
-            <IconButton className={classes.iconButton}>
-              <PlayIcon aria-label="Test Run Job" fontSize="small" />
+            <IconButton
+              className={classes.iconButton}
+              onClick={() => setIsJobRunning(!isJobRunning)}
+            >
+              {isJobRunning ? (
+                <StopIcon aria-label="Stop Test Run" fontSize="small" />
+              ) : (
+                <PlayIcon aria-label="Test Run Job" fontSize="small" />
+              )}
             </IconButton>
           </span>
         </Tooltip>
@@ -97,6 +107,18 @@ const ToolbarWidget = ({
               className={classes.iconButton}
             >
               <ScheduleIcon aria-label="Schedule Job" fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
+        <Tooltip
+          title="Submit For Review"
+          aria-label="Submit For Review"
+          enterDelay={500}
+          leaveDelay={200}
+        >
+          <span>
+            <IconButton disabled className={classes.iconButton}>
+              <PublishIcon aria-label="Submit For Review" fontSize="small" />
             </IconButton>
           </span>
         </Tooltip>
