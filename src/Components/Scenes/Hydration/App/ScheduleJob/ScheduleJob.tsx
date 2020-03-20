@@ -263,7 +263,7 @@ const ScheduleJob = (props: ScheduleJobProps) => {
           </Grid>
           <Grid item>
             <Button variant="contained" color="primary">
-              Submit Job
+              Save Schedule
             </Button>
           </Grid>
         </Grid>

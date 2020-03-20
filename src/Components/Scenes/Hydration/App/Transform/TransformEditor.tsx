@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     height: '24px',
 
     '&:hover': {
-      background: theme.palette.type === 'light' ? color.y50 : color.g600
+      background: theme.palette.type === 'light' ? color.y100 : color.br500
     },
 
     '& ~ svg ': {
@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   untitledScriptName: {
-    background: theme.palette.type === 'light' ? color.y50 : color.g600
+    background: theme.palette.type === 'light' ? color.y100 : color.br500
   }
 }));
 
@@ -101,25 +101,29 @@ const TransformEditor = (props: TransformProps) => {
       className={`Diagram__layer Editor ${classes.positioning}`}
     >
       <div className="Editor__heading" />
-      {isScriptNameActive ? (
-        <Field
-          autoFocus
-          onBlur={() => setIsScriptNameActive(!isScriptNameActive)}
-          name={`transforms.${id}.name`}
-          className={classes.scriptName}
-          as={TextField}
-        />
-      ) : (
-        <Typography
-          variant="body1"
-          className={`${classes.scriptNameBtn} ${
-            transforms[id].name === 'Untitled' ? classes.untitledScriptName : ''
-          }`}
-          onClick={() => setIsScriptNameActive(!isScriptNameActive)}
-        >
-          {transforms[id].name}
-        </Typography>
-      )}
+      <div className={classes.name}>
+        {isScriptNameActive ? (
+          <Field
+            autoFocus
+            onBlur={() => setIsScriptNameActive(!isScriptNameActive)}
+            name={`transforms.${id}.name`}
+            className={classes.scriptName}
+            as={TextField}
+          />
+        ) : (
+          <Typography
+            variant="body1"
+            className={`${classes.scriptNameBtn} ${
+              transforms[id].name === 'Untitled'
+                ? classes.untitledScriptName
+                : ''
+            }`}
+            onClick={() => setIsScriptNameActive(!isScriptNameActive)}
+          >
+            {transforms[id].name}
+          </Typography>
+        )}
+      </div>
       <Tooltip title="Close Editor">
         <IconButton
           className={classes.button}

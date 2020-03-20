@@ -90,7 +90,7 @@ const appBarStyle = makeStyles(theme => ({
     height: '20px',
 
     '&:hover': {
-      background: theme.palette.type === 'light' ? color.y50 : color.g600
+      background: theme.palette.type === 'light' ? color.y100 : color.br500
     },
 
     '& ~ svg ': {
@@ -100,7 +100,7 @@ const appBarStyle = makeStyles(theme => ({
     }
   },
   untitledJobName: {
-    background: theme.palette.type === 'light' ? color.y50 : color.g600
+    background: theme.palette.type === 'light' ? color.y100 : color.br500
   },
   jobsLink: {
     color: theme.palette.type === 'light' ? color.b600 : color.b200

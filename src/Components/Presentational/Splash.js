@@ -30,10 +30,15 @@ export default function Splash() {
   const theme = useTheme();
 
   useEffect(() => {
-    document.body.className =
-      theme.palette.type === 'light' ? 'splash' : 'splash-dark';
+    document
+      .querySelector('#root')
+      .classList.add(theme.palette.type === 'light' ? 'splash' : 'splash-dark');
     return () => {
-      document.body.className = '';
+      document
+        .querySelector('#root')
+        .classList.remove(
+          theme.palette.type === 'light' ? 'splash' : 'splash-dark'
+        );
     };
   });
 

@@ -22,8 +22,13 @@
 .Diagram__canvas {
   height: 100%;
   min-height: 300px;
+  background: $color-g-50;
 
   &:focus {
     outline: none;
   }
+}
+
+.dark .Diagram__canvas {
+  background: darken($color-g-900, 7%);
 }

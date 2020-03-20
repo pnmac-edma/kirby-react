@@ -18,7 +18,7 @@ const JobAppOuterLayer = ({ app }: JobAppOuterLayerProps) => {
   const selectedNode = useSelector(
     ({ hydration }: any) => hydration.selectedNode
   );
-
+  console.log(app);
   return (
     <Formik
       initialValues={initialValues}

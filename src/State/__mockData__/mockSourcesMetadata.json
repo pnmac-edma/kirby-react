@@ -1,17 +1,17 @@
 {
   "KIRBY": {
-    "connectionTypes": ["SFTP", "Auto"]
+    "connectionTypes": ["AWS Glue"]
   },
   "RDBMS": {
     "sourceVersions": ["MySQL", "MSSQL"],
-    "connectionTypes": ["Automatic", "Manual"]
+    "connectionTypes": ["AWS DMS", "SFTP", "API", "AWS Glue"]
   },
   "SFTP": {
-    "connectionTypes": ["SFTP", "Auto"]
+    "connectionTypes": ["SFTP", "AWS Glue"]
   },
   "API": {
     "types": ["Rest", "Soap", "Xml-Rpc"],
     "httpMethods": ["GET", "POST", "PUT"],
-    "connectionTypes": ["Automatic", "Manual"]
+    "connectionTypes": ["SFTP", "AWS Glue"]
   }
 }
