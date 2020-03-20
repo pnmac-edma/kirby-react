@@ -125,7 +125,7 @@ const Rdbms = (props: RdbmsProps) => {
             ))}
           </Field>
         </FormControl>
-        <Button variant="outlined" color="primary">
+        <Button variant="outlined" color="primary" className="Tile__button">
           Test Connection
         </Button>
       </div>
