@@ -9,9 +9,13 @@ export default function App() {
   const kirby = createMuiTheme(theme);
 
   useEffect(() => {
-    document.body.className = theme.palette.type === 'light' ? 'light' : 'dark';
+    document
+      .querySelector('#root')
+      .classList.add(theme.palette.type === 'light' ? 'light' : 'dark');
     return () => {
-      document.body.className = '';
+      document
+        .querySelector('#root')
+        .classList.remove(theme.palette.type === 'light' ? 'light' : 'dark');
     };
   });
 

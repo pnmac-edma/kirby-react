@@ -45,7 +45,7 @@
 
 .Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
 .Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
-  background: $color-y-50;
+  background: $color-y-100;
   padding: 0.3rem;
 }
 
@@ -58,8 +58,13 @@
 }
 
 .Input__textfield label,
-.Input__select label {
+.Input__select label,
+.Input__filter label {
   transition: all 0.2s ease-in-out;
+
+  &.Mui-focused {
+    color: $color-black;
+  }
 }
 
 .Input__filter input {
@@ -90,8 +95,13 @@
 // Dark mode input styles
 .dark {
   .Input__textfield label,
-  .Input__select label {
+  .Input__select label,
+  .Input__filter label {
     color: $color-g-300;
+
+    &.Mui-focused {
+      color: $color-white;
+    }
   }
 
   .Input__textfield input:hover,
@@ -106,7 +116,7 @@
 
   .Input__textfield label:not(.MuiFormLabel-filled):not(.Mui-focused),
   .Input__select label:not(.MuiFormLabel-filled):not(.Mui-focused) {
-    background: $color-g-800;
+    background: $color-br-500;
     color: $color-g-100;
   }
 }

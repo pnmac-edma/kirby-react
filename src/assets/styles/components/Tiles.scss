@@ -6,12 +6,26 @@
   height: 81px;
   border-radius: 5px;
   border: solid 1px;
+  border-color: $color-g-600;
+  background: $color-g-500;
   text-align: left;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     box-shadow: $shadow-1;
+    background: $color-black;
+    border-color: $color-black;
+  }
+}
+
+.dark .Tile {
+  border-color: $color-g-500;
+  background: $color-g-600;
+
+  &:hover {
+    background: $color-white;
+    border-color: $color-white;
   }
 }
 
@@ -77,6 +91,11 @@
   height: 100%;
   padding: 8px;
   font-size: 16px;
+  background: $color-white;
+}
+
+.dark .Tile__inner {
+  background: darken($color-g-900, 5%);
 }
 
 .Tile {
@@ -121,10 +140,32 @@
   }
 }
 
-.Tile__source-title,
-.Tile__transform-title,
-.Tile__destination-title {
+.Tile__title {
   font-size: 12px;
+}
+
+.Tile__source-title {
+  color: $color-b-500;
+}
+
+.dark .Tile__source-title {
+  color: $color-b-200;
+}
+
+.Tile__transform-title {
+  color: $color-v-400;
+}
+
+.dark .Tile__transform-title {
+  color: $color-v-300;
+}
+
+.Tile__destination-title {
+  color: $color-t-800;
+}
+
+.dark .Tile__destination-title {
+  color: $color-t-600;
 }
 
 // Tile link overrides
