@@ -62,7 +62,7 @@ const Transform = (props: TransformProps) => {
         </Tooltip>
       </div>
       <Button
-        className={classes.button}
+        className={`Tile__button ${classes.button}`}
         variant="outlined"
         color="primary"
         onClick={() => dispatch(setIsEditorOpen(true))}
