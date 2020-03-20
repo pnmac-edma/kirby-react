@@ -128,6 +128,21 @@
   border-color: $color-g-700;
 }
 
+.Toolbar__form-title {
+  display: inline-block;
+}
+
+.Toolbar__bolt-icon {
+  margin: 0 0.5rem 0 0;
+  position: relative;
+  top: 0.4rem;
+  color: $color-g-200;
+}
+
+.dark .Toolbar__bolt-icon {
+  color: $color-g-700;
+}
+
 .Toolbar__btm-btn {
   background-color: $color-g-50 !important;
   border-bottom: 1px solid $color-g-100 !important;

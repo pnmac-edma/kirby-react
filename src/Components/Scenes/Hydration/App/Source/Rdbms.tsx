@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import FlashOnIcon from '@material-ui/icons/FlashOn';
 import { NodeModel } from '../../../../../State/Hydration/types';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
@@ -106,11 +107,16 @@ const Rdbms = (props: RdbmsProps) => {
       <Divider className={classes.divider} />
 
       <div className={classes.formSection}>
-        <h4 className={classes.formTitle}>Connection</h4>
+        <Tooltip title="Not Connected" placement="top">
+          <FlashOnIcon className="Toolbar__bolt-icon" />
+        </Tooltip>
+        <h4 className={`Toolbar__form-title ${classes.formTitle}`}>
+          Connection
+        </h4>
         <FormControl
           className={`${classes.selectFormControl} Input__select Toolbar__connection-type`}
         >
-          <InputLabel id="connection-type">Connection Type</InputLabel>
+          <InputLabel id="connection-type">Type</InputLabel>
           <Field
             id="connection-type"
             name={`sources.${id}.connectionType`}
