@@ -59,7 +59,7 @@ const kirbyConfig = () => {
       apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com',
       authPath: '/dev/authenticate',
       authUrl: 'https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com',
-      cognitoUrl: `${baseCogConUrl}877995`,
+      cognitoUrl: `${baseCogConUrl}765855`,
       consoleUrl: `${baseCogConUrl}877999`
     }
   };

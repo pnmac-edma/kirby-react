@@ -1,9 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { makeStyles } from '@material-ui/core/styles';
 import { useDropzone } from 'react-dropzone';
-import { color } from '@edma/design-tokens';
 import { DiagramWidget } from '@projectstorm/react-diagrams';
 import {
   setSelectedNode,
@@ -15,12 +13,6 @@ import {
   NodeModel
 } from '../../../../../State/Hydration/types';
 import { keyboardShortcuts } from '../../../../../State/Hydration/helpers';
-
-const useStyles = makeStyles(theme => ({
-  diagramCanvas: {
-    background: theme.palette.type === 'light' ? color.g50 : color.g900
-  }
-}));
 
 interface DiagramViewProps {
   app: any;
@@ -51,7 +43,6 @@ const DiagramView = (props: DiagramViewProps) => {
     ({ hydration }: any) => hydration.selectedNode
   );
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   // this function handles node elements drop
   const onDropNode = (event: any) => {
@@ -126,13 +117,10 @@ const DiagramView = (props: DiagramViewProps) => {
         keyboardShortcuts.diagram(event, removeNodeFromDiagram, selectedNode)
       }
     >
-      <div
-        {...getRootProps()}
-        className={`${classes.diagramCanvas} Diagram__canvas`}
-      >
+      <div {...getRootProps()} className={`Diagram__canvas`}>
         <input {...getInputProps()} />
         <DiagramWidget
-          className={`${classes.diagramCanvas} Diagram__canvas`}
+          className={`Diagram__canvas`}
           diagramEngine={app.getDiagramEngine()}
         />
       </div>

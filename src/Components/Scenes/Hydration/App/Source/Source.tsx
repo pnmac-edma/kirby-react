@@ -3,6 +3,7 @@ import { useFormikContext } from 'formik';
 import Rdbms from './Rdbms';
 import Sftp from './Sftp';
 import Api from './Api';
+import Kirby from './Kirby';
 import {
   InitialStateTypes,
   NodeModel
@@ -35,6 +36,9 @@ const Source = (props: SourceProps) => {
           )}
           {sourceType === 'API' && (
             <Api id={id} removeNodeFromDiagram={removeNodeFromDiagram} />
+          )}
+          {sourceType === 'KIRBY' && (
+            <Kirby id={id} removeNodeFromDiagram={removeNodeFromDiagram} />
           )}
         </div>
       )}

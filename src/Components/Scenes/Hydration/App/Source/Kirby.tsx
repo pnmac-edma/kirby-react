@@ -18,7 +18,7 @@ import FlashOnIcon from '@material-ui/icons/FlashOn';
 import { NodeModel } from '../../../../../State/Hydration/types';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
-interface ApiProps {
+interface KirbyProps {
   id: string;
   removeNodeFromDiagram: (
     node: NodeModel,
@@ -44,69 +44,44 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Rdbms = (props: ApiProps) => {
+const Kirby = (props: KirbyProps) => {
   const { id, removeNodeFromDiagram } = props;
-  const { API } = mockSourcesMetadata; // TODO: replace with real data
   const selectedNode = useSelector(
     ({ hydration }: any) => hydration.selectedNode
   );
+  const { KIRBY } = mockSourcesMetadata; // TODO: replace with real data
   const classes = useStyles();
 
   return (
     <div>
       <div className={classes.formSection}>
-        <h4 className={classes.formTitle}>API</h4>
+        <h4 className={classes.formTitle}>Kirby</h4>
         <div className={`Tile__delete`}>
-          <Tooltip
-            onClick={() => removeNodeFromDiagram(selectedNode, 'sources')}
-            title="Remove Tile"
-            placement="top"
-          >
-            <IconButton aria-label="remove-tile">
+          <Tooltip title="Remove Tile" placement="top">
+            <IconButton
+              onClick={() => removeNodeFromDiagram(selectedNode, 'sources')}
+              aria-label="remove-tile"
+            >
               <DeleteOutline fontSize="small" />
             </IconButton>
           </Tooltip>
         </div>
-        <FormControl
-          className={`Input__select Api__type ${classes.selectFormControl}`}
-        >
-          <InputLabel id="type">Type</InputLabel>
-          <Field
-            id="type"
-            name={`sources.${id}.type`}
-            label="Type"
-            type="select"
-            as={Select}
-          >
-            {API.types.map((type, i) => (
-              <MenuItem key={`${i}-${type}`} value={type}>
-                {type}
-              </MenuItem>
-            ))}
-          </Field>
-        </FormControl>
-        <FormControl
-          className={`Input__select Api__http-method ${classes.selectFormControl}`}
-        >
-          <InputLabel id="httpMethod">HTTP Method</InputLabel>
-          <Field
-            id="httpMethod"
-            name={`sources.${id}.httpMethod`}
-            label="HTTP Method"
-            type="select"
-            as={Select}
-          >
-            {API.httpMethods.map((httpMethod, i) => (
-              <MenuItem key={`${i}-${httpMethod}`} value={httpMethod}>
-                {httpMethod}
-              </MenuItem>
-            ))}
-          </Field>
-        </FormControl>
         <Field
-          name={`sources.${id}.url`}
-          className="Input__textfield Api__url"
-          label="URL"
+          name={`sources.${id}.host`}
+          className="Input__textfield Kirby__host"
+          label="Host"
+          as={TextField}
+        />
+        <Field
+          name={`sources.${id}.port`}
+          className="Input__textfield Kirby__port"
+          label="Port"
+          as={TextField}
+        />
+        <Field
+          name={`sources.${id}.folder`}
+          className="Input__textfield Kirby__folder"
+          label="Folder"
           as={TextField}
         />
       </div>
@@ -130,7 +105,7 @@ const Rdbms = (props: ApiProps) => {
             type="select"
             as={Select}
           >
-            {API.connectionTypes.map((connectionType, i) => (
+            {KIRBY.connectionTypes.map((connectionType, i) => (
               <MenuItem key={`${i}-${connectionType}`} value={connectionType}>
                 {connectionType}
               </MenuItem>
@@ -146,4 +121,4 @@ const Rdbms = (props: ApiProps) => {
   );
 };
 
-export default Rdbms;
+export default Kirby;

@@ -1,27 +1,7 @@
 import React from 'react';
 import { Tooltip } from '@material-ui/core';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import color from '@edma/design-tokens/js/color';
+import { withStyles } from '@material-ui/core/styles';
 import { PortWidget } from '@projectstorm/react-diagrams';
-
-const tileStyles = makeStyles(theme => ({
-  tile: {
-    borderColor: theme.palette.type === 'light' ? color.g600 : color.g500,
-    backgroundColor: theme.palette.type === 'light' ? color.g600 : color.g500,
-
-    '&:hover': {
-      backgroundColor:
-        theme.palette.type === 'light' ? color.black : color.white,
-      borderColor: theme.palette.type === 'light' ? color.black : color.white
-    }
-  },
-  tileInner: {
-    backgroundColor: theme.palette.type === 'light' ? color.white : color.g800
-  },
-  tileTitle: {
-    color: theme.palette.type === 'light' ? color.v400 : color.v300
-  }
-}));
 
 const LightTooltip = withStyles(theme => ({
   tooltip: {
@@ -35,15 +15,12 @@ const LightTooltip = withStyles(theme => ({
 const TransformNodeWidget = props => {
   const { name, size } = props.node;
   const height = size * 0.5;
-  const classes = tileStyles();
 
   return (
     <div>
-      <div className={`${classes.tile} Tile Tile__transform`}>
-        <div className={`${classes.tileInner} Tile__inner`}>
-          <div className={`${classes.tileTitle} Tile__transform-title`}>
-            Transform
-          </div>
+      <div className={`Tile Tile__transform`}>
+        <div className={`Tile__inner`}>
+          <div className={`Tile__title Tile__transform-title`}>Transform</div>
           <LightTooltip title={name} placement="top">
             <div className="Tile__transform-name Tile__name">{name}</div>
           </LightTooltip>

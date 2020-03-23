@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useFormikContext } from 'formik';
+import { useFormikContext, Field } from 'formik';
 import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
 import {
   IconButton,
@@ -55,7 +55,8 @@ const useStyles = makeStyles(theme => ({
     height: '24px',
 
     '&:hover': {
-      background: theme.palette.type === 'light' ? color.y50 : color.g600
+      background: theme.palette.type === 'light' ? color.y100 : color.y300,
+      color: color.black
     },
 
     '& ~ svg ': {
@@ -65,7 +66,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   untitledScriptName: {
-    background: theme.palette.type === 'light' ? color.y50 : color.g600
+    background: theme.palette.type === 'light' ? color.y100 : color.y300,
+    color: color.black
   }
 }));
 
@@ -95,33 +97,35 @@ const TransformEditor = (props: TransformProps) => {
     };
     setFieldValue('transforms', newTransformsValue);
   };
-
   return (
     <div
       onKeyUp={(e: React.KeyboardEvent) => keyboardShortcuts.codeEditor(e)}
       className={`Diagram__layer Editor ${classes.positioning}`}
     >
       <div className="Editor__heading" />
-      {isScriptNameActive && (
-        <TextField
-          autoFocus
-          id="scriptName"
-          placeholder={transforms[id].name}
-          className={classes.scriptName}
-          onBlur={() => setIsScriptNameActive(!isScriptNameActive)}
-        />
-      )}
-      {!isScriptNameActive && (
-        <Typography
-          variant="body1"
-          className={`${classes.scriptNameBtn} ${
-            transforms[id].name === 'Untitled' ? classes.untitledScriptName : ''
-          }`}
-          onClick={() => setIsScriptNameActive(!isScriptNameActive)}
-        >
-          {transforms[id].name}
-        </Typography>
-      )}
+      <div className={classes.name}>
+        {isScriptNameActive ? (
+          <Field
+            autoFocus
+            onBlur={() => setIsScriptNameActive(!isScriptNameActive)}
+            name={`transforms.${id}.name`}
+            className={classes.scriptName}
+            as={TextField}
+          />
+        ) : (
+          <Typography
+            variant="body1"
+            className={`${classes.scriptNameBtn} ${
+              transforms[id].name === 'Untitled'
+                ? classes.untitledScriptName
+                : ''
+            }`}
+            onClick={() => setIsScriptNameActive(!isScriptNameActive)}
+          >
+            {transforms[id].name}
+          </Typography>
+        )}
+      </div>
       <Tooltip title="Close Editor">
         <IconButton
           className={classes.button}

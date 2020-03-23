@@ -1,9 +1,12 @@
-import React from 'react';
-import { Button, IconButton, Tab, Tabs, Tooltip } from '@material-ui/core';
+import React, { useState } from 'react';
+import { IconButton, Tab, Tabs, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import UndoIcon from '@material-ui/icons/Undo';
 import RedoIcon from '@material-ui/icons/Redo';
 import PlayIcon from '@material-ui/icons/PlayArrow';
+import StopIcon from '@material-ui/icons/Stop';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import PublishIcon from '@material-ui/icons/Publish';
 import color from '@edma/design-tokens/js/color';
 
 const useStyles = makeStyles(theme => ({
@@ -18,18 +21,7 @@ const useStyles = makeStyles(theme => ({
     extends: 'toolbarTop'
   },
   iconButton: {
-    color: color.black
-  },
-  playButton: {
-    color: color.black,
-    background: color.y400,
-    minWidth: 40,
-    minHeight: 40
-  },
-  toolbarTopRight: {
-    position: 'absolute',
-    right: 12,
-    top: 8
+    color: theme.palette.type === 'light' ? color.black : color.white
   }
 }));
 
@@ -47,6 +39,7 @@ const ToolbarWidget = ({
   children
 }: ToolbarWidgetProps) => {
   const classes = useStyles();
+  const [isJobRunning, setIsJobRunning] = useState(false);
 
   return (
     <div className={`${classes.toolbar} Toolbar`}>
@@ -83,23 +76,52 @@ const ToolbarWidget = ({
             </IconButton>
           </span>
         </Tooltip>
-        <span className={classes.toolbarTopRight}>
-          <Tooltip
-            title="Schedule Job"
-            aria-label="Schedule Job"
-            enterDelay={500}
-            leaveDelay={200}
-          >
-            <span>
-              <Button
-                onClick={() => setIsScheduleJobOpen(true)}
-                className={classes.playButton}
-              >
-                <PlayIcon aria-label="Schedule Job" fontSize="small" />
-              </Button>
-            </span>
-          </Tooltip>
-        </span>
+        <Tooltip
+          title={isJobRunning ? 'Stop Test Run' : 'Test Run Job'}
+          aria-label={isJobRunning ? 'Stop Test Run' : 'Test Run Job'}
+          enterDelay={500}
+          leaveDelay={200}
+        >
+          <span>
+            <IconButton
+              className={classes.iconButton}
+              onClick={() => setIsJobRunning(!isJobRunning)}
+            >
+              {isJobRunning ? (
+                <StopIcon aria-label="Stop Test Run" fontSize="small" />
+              ) : (
+                <PlayIcon aria-label="Test Run Job" fontSize="small" />
+              )}
+            </IconButton>
+          </span>
+        </Tooltip>
+        <Tooltip
+          title="Schedule Job"
+          aria-label="Schedule Job"
+          enterDelay={500}
+          leaveDelay={200}
+        >
+          <span>
+            <IconButton
+              onClick={() => setIsScheduleJobOpen(true)}
+              className={classes.iconButton}
+            >
+              <ScheduleIcon aria-label="Schedule Job" fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
+        <Tooltip
+          title="Submit For Review"
+          aria-label="Submit For Review"
+          enterDelay={500}
+          leaveDelay={200}
+        >
+          <span>
+            <IconButton disabled className={classes.iconButton}>
+              <PublishIcon aria-label="Submit For Review" fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
       </div>
       <div className={`${classes.toolbarBottomBorder} Toolbar__tabs`}>
         <Tabs
