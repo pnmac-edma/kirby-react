@@ -29,6 +29,29 @@
   }
 }
 
+.Tile__button {
+  color: $color-b-600;
+  border-color: $color-b-600;
+
+  .MuiButton-label {
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:hover {
+    background: $color-b-50;
+  }
+}
+
+.dark .Tile__button {
+  color: $color-b-200;
+  border-color: $color-b-200;
+
+  &:hover {
+    color: $color-b-300;
+    border-color: $color-b-300;
+  }
+}
+
 .Tile__chip.MuiChip-root {
   height: 22px;
 

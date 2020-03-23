@@ -183,7 +183,9 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
                     label="Servicing"
                   />
                 </FormGroup>
-                <Button color="primary">Add</Button>
+                <Button color="primary" className="Tile__button">
+                  Add
+                </Button>
               </div>
             )}
           </div>
