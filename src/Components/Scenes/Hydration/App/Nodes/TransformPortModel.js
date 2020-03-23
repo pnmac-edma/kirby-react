@@ -1,4 +1,5 @@
-import { PortModel, DefaultLinkModel } from '@projectstorm/react-diagrams';
+import { PortModel } from '@projectstorm/react-diagrams';
+import { TransformLinkModel } from './TransformLinkFactory';
 
 export default class TransformPortModel extends PortModel {
   constructor(position) {
@@ -6,6 +7,6 @@ export default class TransformPortModel extends PortModel {
   }
 
   createLinkModel() {
-    return new DefaultLinkModel();
+    return new TransformLinkModel();
   }
 }

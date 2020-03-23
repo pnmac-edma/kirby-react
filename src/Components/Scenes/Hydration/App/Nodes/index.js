@@ -11,14 +11,12 @@ import TransformNodeModel from './TransformNodeModel';
 import TransformNodeWidget from './TransformNodeWidget';
 import TransformPortModel from './TransformPortModel';
 import SimplePortFactory from './SimplePortFactory';
-import LinkFactory from './LinkFactory';
-import LinkModel from './LinkModel';
-import LinkSegment from './LinkSegment';
+import SourceLinkFactory from './SourceLinkFactory';
+import TransformLinkFactory from './TransformLinkFactory';
 
 export {
-  LinkFactory,
-  LinkModel,
-  LinkSegment,
+  SourceLinkFactory,
+  TransformLinkFactory,
   DestinationNodeFactory,
   DestinationNodeModel,
   DestinationNodeWidget,
