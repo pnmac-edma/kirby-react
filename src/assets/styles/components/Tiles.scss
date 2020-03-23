@@ -60,6 +60,15 @@
   }
 }
 
+.Tile__statusIcon {
+  position: absolute;
+  right: 8px;
+}
+
+.Tile__statusIcon.Tile__statusIcon--warning {
+  color: $color-y-500;
+}
+
 .Tile__left-port {
   height: 78px;
   top: -35px;
