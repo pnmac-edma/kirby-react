@@ -1,7 +1,8 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
-import { Chip } from '@material-ui/core';
+import { Chip, Tooltip } from '@material-ui/core';
 import { PortWidget } from '@projectstorm/react-diagrams';
+import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
 import {
   InitialStateTypes,
   NodeModel,
@@ -40,6 +41,9 @@ const SourceNodeWidget = ({ node }: SourceNodeWidgetProps) => {
           ) : (
             ''
           )}
+          <Tooltip title="There are 5 incomplete fields" placement="top">
+            <WarningRoundedIcon className="Tile__statusIcon Tile__statusIcon--warning" />
+          </Tooltip>
         </div>
       </div>
       <div
