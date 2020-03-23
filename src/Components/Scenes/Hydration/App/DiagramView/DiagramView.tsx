@@ -1,8 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFormikContext } from 'formik';
+import { useFormikContext, Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDropzone } from 'react-dropzone';
+import { Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { color } from '@edma/design-tokens';
 import { DiagramWidget } from '@projectstorm/react-diagrams';
 import {
@@ -51,6 +53,7 @@ const DiagramView = (props: DiagramViewProps) => {
     ({ hydration }: any) => hydration.selectedNode
   );
   const dispatch = useDispatch();
+  const [isJobNameActive, setIsJobNameActive] = useState(false);
   const classes = useStyles();
 
   // this function handles when nodes are dropped
@@ -131,6 +134,31 @@ const DiagramView = (props: DiagramViewProps) => {
         className={`${classes.diagramCanvas} Diagram__canvas`}
       >
         <input {...getInputProps()} />
+        <Box>
+          <Breadcrumbs
+            aria-label="breadcrumb"
+            separator={<Typography variant="body1">/</Typography>}
+          >
+            <Link href="/hydration/view-jobs" variant="body2">
+              Jobs
+            </Link>
+            {isJobNameActive && (
+              <Field
+                autoFocus
+                id="jobName"
+                onBlur={() => setIsJobNameActive(!isJobNameActive)}
+              />
+            )}
+            {!isJobNameActive && (
+              <span>
+                <span onClick={() => setIsJobNameActive(!isJobNameActive)}>
+                  {values.jobName}
+                </span>
+                <KeyboardArrowDownIcon />
+              </span>
+            )}
+          </Breadcrumbs>
+        </Box>
         <DiagramWidget
           className={`${classes.diagramCanvas} Diagram__canvas`}
           diagramEngine={app.getDiagramEngine()}

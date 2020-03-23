@@ -27,14 +27,14 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({ isSearchClicked, newJobName }) => {
+const PageWrapper = ({ isSearchClicked }) => {
   const classes = pageContainerStyle();
   const curPath = useLocation().pathname;
 
   return (
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? (
-        <AppBarContainer hydration jobName={newJobName} />
+        <AppBarContainer hydration />
       ) : curPath === '/' ? (
         <AppBarContainer home />
       ) : (

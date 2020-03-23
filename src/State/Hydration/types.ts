@@ -39,6 +39,7 @@ export interface Sources {
 }
 
 export interface InitialStateTypes {
+  jobName: string;
   sources: Sources;
   transforms: Transforms;
   transformsFilter: string;

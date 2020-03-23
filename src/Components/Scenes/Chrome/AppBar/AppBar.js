@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  AppBar,
-  Box,
-  Breadcrumbs,
-  Link,
-  TextField,
-  Typography
-} from '@material-ui/core';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import { AppBar, Link } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import { color, z } from '@edma/design-tokens';
 import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.svg';
@@ -108,10 +101,9 @@ const appBarStyle = makeStyles(theme => ({
 }));
 
 const Appbar = props => {
+  const jobTitle = useSelector(({ hydration }) => hydration.jobTitle);
   const classes = appBarStyle();
   const curPath = useLocation().pathname;
-  const { jobName } = props;
-  const [isJobNameActive, setIsJobNameActive] = useState(false);
 
   const LogoComponent =
     curPath === '/' ? (
@@ -121,7 +113,6 @@ const Appbar = props => {
         <KirbyLogo className={classes.logo} />
       </Link>
     );
-
   return (
     <AppBar
       position="relative"
@@ -140,42 +131,6 @@ const Appbar = props => {
             <Link href="/">
               <KirbyMark className={classes.mark} />
             </Link>
-            <Box className={classes.header}>
-              <Breadcrumbs
-                aria-label="breadcrumb"
-                separator={<Typography variant="body1">/</Typography>}
-                className={classes.breadcrumbs}
-              >
-                <Link
-                  href="/hydration/view-jobs"
-                  to="/hydration/view-jobs"
-                  variant="body1"
-                  className={classes.jobsLink}
-                >
-                  Jobs
-                </Link>
-                {isJobNameActive && (
-                  <TextField
-                    autoFocus
-                    id="jobName"
-                    placeholder={jobName}
-                    className={classes.jobName}
-                    onBlur={() => setIsJobNameActive(!isJobNameActive)}
-                  />
-                )}
-                {!isJobNameActive && (
-                  <span>
-                    <span
-                      className={`${classes.jobNameBtn} ${classes.untitledJobName}`}
-                      onClick={() => setIsJobNameActive(!isJobNameActive)}
-                    >
-                      {jobName}
-                    </span>
-                    <KeyboardArrowDownIcon />
-                  </span>
-                )}
-              </Breadcrumbs>
-            </Box>
           </>
         ) : (
           LogoComponent

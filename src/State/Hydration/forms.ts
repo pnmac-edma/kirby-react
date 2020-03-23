@@ -84,6 +84,7 @@ export const scheduleJobInitialState = {
 };
 
 export const initialValues = {
+  jobName: 'My New Job',
   sources: {},
   transforms: {},
   transformsFilter: '',
