@@ -47,10 +47,9 @@ const RequestsInbox = props => {
   }, [approverRequestsFetch, governanceRequestsFetch, userEmail, userRole]);
 
   const reqs = transformRequests(requests, userRole);
-
-  const footerButtonText = `${selected.length} request${
-    selected.length !== 1 ? 's' : ''
-  } selected`;
+  const numReqSelected = selected.length > 0 ? selected.length : '';
+  const isPlurl = selected.length !== 1 ? 's' : '';
+  const footerButtonText = `Archive ${numReqSelected} request${isPlurl}`;
 
   return (
     <>
