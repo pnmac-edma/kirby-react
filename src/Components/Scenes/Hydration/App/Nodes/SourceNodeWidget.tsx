@@ -41,6 +41,10 @@ const SourceNodeWidget = ({ node }: SourceNodeWidgetProps) => {
           ) : (
             ''
           )}
+          {
+            // TODO: Replace the hard coded "5" with an actual count
+            // of incomplete fields for the given tile.
+          }
           <Tooltip title="There are 5 incomplete fields" placement="top">
             <WarningRoundedIcon className="Tile__statusIcon Tile__statusIcon--warning" />
           </Tooltip>
