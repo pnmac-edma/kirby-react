@@ -2,6 +2,7 @@ import { DiagramEngine, DiagramModel } from '@projectstorm/react-diagrams';
 import {
   DestinationNodeFactory,
   DestinationPortModel,
+  LinkFactory,
   SimplePortFactory,
   SourceNodeFactory,
   SourcePortModel,
@@ -14,7 +15,8 @@ export default class Diagram {
     this.engine = new DiagramEngine();
     this.engine.installDefaultFactories();
 
-    // register custom port and node factories
+    // register custom link, port, and node factories
+    this.engine.registerLinkFactory(new LinkFactory());
     this.engine.registerPortFactory(
       new SimplePortFactory('source', config => new SourcePortModel())
     );
