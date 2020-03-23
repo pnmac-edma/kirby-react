@@ -55,7 +55,8 @@ const useStyles = makeStyles(theme => ({
     height: '24px',
 
     '&:hover': {
-      background: theme.palette.type === 'light' ? color.y100 : color.br500
+      background: theme.palette.type === 'light' ? color.y100 : color.y300,
+      color: color.black
     },
 
     '& ~ svg ': {
@@ -65,7 +66,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   untitledScriptName: {
-    background: theme.palette.type === 'light' ? color.y100 : color.br500
+    background: theme.palette.type === 'light' ? color.y100 : color.y300,
+    color: color.black
   }
 }));
 

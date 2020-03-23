@@ -42,10 +42,9 @@ const SentRequests = props => {
   ];
 
   const reqs = transformRequests(requests, userRole);
-
-  const footerButtonText = `Cancel ${selected.length} request${
-    selected.length !== 1 ? 's' : ''
-  }`;
+  const numReqSelected = selected.length > 0 ? selected.length : '';
+  const isPlurl = selected.length !== 1 ? 's' : '';
+  const footerButtonText = `Cancel ${numReqSelected} request${isPlurl}`;
 
   return (
     <>
