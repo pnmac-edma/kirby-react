@@ -17,6 +17,7 @@ export default class Diagram {
 
     // register custom link, port, and node factories
     this.engine.registerLinkFactory(new LinkFactory());
+    console.log(this.engine.getLinkFactories());
     this.engine.registerPortFactory(
       new SimplePortFactory('source', config => new SourcePortModel())
     );
