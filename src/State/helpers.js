@@ -1,4 +1,5 @@
 import store from '../setupStore';
+import aws4 from 'aws4';
 
 // takes in requests data from api results and returns parseable data
 export const transformRequests = (requests, role) => {
@@ -27,93 +28,59 @@ export const transformRequests = (requests, role) => {
 };
 
 /* constructs a request object to be passed to axios
+ * TODO: add typing for this function and get rid of the notes below
  * url: the base url of the API (pulled from the config in most ways)
- * method: the HTTP method of the request
+ * hostname: the hostname of the request
  * path: the specific path to be appended to the host (e.g. /users/requests)
- * params: any query paramters the request needs. Pass in null if there is no query string parameters
- * data: the body of the request. Pass in null if there is no body
+ * method: HTTP Method
+ * currentUser: the current user's login credentials
+ * optionalConfig: {
+ *  data: the body of the request
+ *  headers: any headers if needed
+ *  params: any query paramters the request needs
+ * }
  */
-export const constructRequest = (url, method, path, params, data) => {
-  const {
-    AccessKeyId,
-    EmpEmail,
-    SamlHash,
-    SecretKey,
-    SessionToken,
-    UserKey
-  } = store.getState().currentUser;
+export const constructRequest = (url, path, method, optionalConfig = {}) => {
+  const { data, headers, params } = optionalConfig;
+  const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
 
-  let userSession = {
-    AccessKeyId,
-    EmpEmail,
-    SamlHash,
-    SecretKey,
-    SessionToken,
-    UserKey
-  };
+  // grabs the substring of url after https://
+  const hostname = url.split('https://')[1];
 
-  // regex to match on a hostname
-  // eslint-disable-next-line
-  let hostRegex = new RegExp(/([(\w(\-?)\.]+)com/g);
+  // converts params object to a query string
+  const queryString = params
+    ? `/?${new URLSearchParams(params).toString()}`
+    : '';
 
-  let hostname = hostRegex.exec(url)[0];
-  // construct request
-  let request = {
-    host: hostname,
+  const request = {
     method,
-    url: `${url}${path}`,
-    path,
-    data: { ...userSession }, // data paramter needed for axios
-    body: JSON.stringify({ ...userSession }) // body parameter needed for aws
+    host: hostname,
+    path: `${path}${queryString}`,
+    url: `${url}${path}${queryString}`
   };
 
-  /* NOTE:
-   * Adding these headers violates CORS policies!
-   * For now, this will be commented out, but once
-   * we are able to get signing implemented correctly
-   * this can be implemented
-   */
-
-  // request.headers["AccessKeyId"] = AccessKeyId;
-  // request.headers["EmpEmail"] = EmpEmail;
-  // request.headers["SamlHash"] = SamlHash;
-  // request.headers["SecretKey"] = SecretKey;
-  // request.headers["SessionToken"] = SessionToken;
-  // request.headers["UserKey"] = UserKey;
-
-  // add params if needed
-  if (params) {
-    request.params = params;
-  }
-
-  // tack on additional data if needed
   if (data) {
-    request.data = { ...request.data, ...data };
-    request.body = JSON.stringify(request.data);
+    request.data = { ...data }; // body parameter needed for aws
+    request.body = JSON.stringify({ ...request.data }); // data parameter needed for axios
   }
 
-  // TODO: Implement aws4 signing
-  // let signedRequest = signApiCall(request, {AccessKeyId, SecretKey, SessionToken});
+  if (headers) {
+    request.headers = headers;
+  }
+
+  /*
+   * PACKAGE SIGNING WITH AWS4 MODULE
+   * refer to: https://github.com/mhart/aws4#readme
+   */
+  const signedRequest = aws4.sign(request, {
+    secretAccessKey: SecretKey,
+    accessKeyId: AccessKeyId,
+    sessionToken: SessionToken
+  });
+
+  // delete unsafe headers added by aws4
+  delete signedRequest.headers['Host'];
+  delete signedRequest.headers['Content-Length'];
 
   return request;
 };
-
-// TODO: implement signing. The aws4 package is not signing correctly
-// so signing will have to be done manually
-// const signApiCall = request = credentials => {
-//   const { AccessKeyId, SecretKey, SessionToken } = credentials;
-
-//   if (AccessKeyId && SecretKey && SessionToken) {
-//     aws4.sign(request, {
-//       accessKeyId: AccessKeyId,
-//       secretAccessKey: SecretKey,
-//       sessionToken: SessionToken
-//     });
-
-//     delete request.headers['Host'];
-//     delete request.headers['Content-Length'];
-//   }
-//   console.log(request);
-//
-//   return request;
-// };

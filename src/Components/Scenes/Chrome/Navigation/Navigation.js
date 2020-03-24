@@ -16,6 +16,7 @@ import AvatarListItem from '../../SideNavigation/AvatarListItem/AvatarListItem';
 import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
 import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
 import { useQuery } from '../../../../Hooks/customHooks';
+import config from '../../../../config/config';
 
 const navWidth = 250;
 
@@ -100,7 +101,7 @@ const Navigation = props => {
       authenticateFetch(samlResponse);
     } else if (!sessionToken) {
       setIsRedirecting(true);
-      window.location.replace('https://pennymac.onelogin.com/portal/');
+      window.location.replace(config.cognitoUrl);
     } else {
       setIsRedirecting(false);
     }
