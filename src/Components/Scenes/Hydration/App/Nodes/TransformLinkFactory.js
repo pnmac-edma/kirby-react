@@ -13,7 +13,22 @@ export class TransformLinkModel extends DefaultLinkModel {
 
 const TransformLinkSegment = ({ path }) => {
   return (
-    <path fill="none" strokeWidth={1} stroke="rgba(255,0,0,0.5)" d={path} />
+    <g className="Connection">
+      <path
+        className="Connection__transform-bg"
+        fill="none"
+        strokeWidth={20}
+        stroke="rgba(0,0,0,0)"
+        d={path}
+      />
+      <path
+        className="Connection__transform"
+        fill="none"
+        strokeWidth={2}
+        stroke="rgba(255,0,0,0.5)"
+        d={path}
+      />
+    </g>
   );
 };
 

@@ -13,7 +13,22 @@ export class SourceLinkModel extends DefaultLinkModel {
 
 const SourceLinkSegment = ({ path }) => {
   return (
-    <path fill="none" strokeWidth={20} stroke="rgba(255,0,0,0.5)" d={path} />
+    <g className="Connection">
+      <path
+        className="Connection__source-bg"
+        fill="none"
+        strokeWidth={20}
+        stroke="rgba(0,0,0,0)"
+        d={path}
+      />
+      <path
+        className="Connection__source"
+        fill="none"
+        strokeWidth={2}
+        stroke="rgba(255,0,0,0.5)"
+        d={path}
+      />
+    </g>
   );
 };
 
