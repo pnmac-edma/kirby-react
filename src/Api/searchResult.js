@@ -6,8 +6,9 @@ export const searchResultApiCall = (...args) => {
   // to test signing (once implemented), Jon created this url that requires signing to access
   // const BASE_URL = 'https://vtc55uxuy5.execute-api.us-west-2.amazonaws.com/dev';
   const searchTerm = args[0] || '';
-  const filterQueries = args[2] ? undefined : args[1];
-  const sortBy = args[2] ? [{ [args[1]]: args[2].payload }] : undefined;
+  // TODO Need to syncup with backend
+  // const filterQueries = args[2] ? undefined : args[1];
+  // const sortBy = args[2] ? [{ [args[1]]: args[2].payload }] : undefined;
 
   const requestBody = {
     requestedbyemail: 'selcuk.ates@pnmac.com',
