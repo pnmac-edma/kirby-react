@@ -17,6 +17,7 @@ export interface KIRBY {
 }
 
 export interface RDBMS {
+  sourceType: string;
   sourceVersion: string;
   server: string;
   schema: string;

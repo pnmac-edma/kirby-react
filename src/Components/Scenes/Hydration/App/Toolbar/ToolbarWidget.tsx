@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useFormikContext } from 'formik';
 import { IconButton, Tab, Tabs, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import UndoIcon from '@material-ui/icons/Undo';
@@ -8,6 +9,7 @@ import StopIcon from '@material-ui/icons/Stop';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import PublishIcon from '@material-ui/icons/Publish';
 import color from '@edma/design-tokens/js/color';
+import { InitialStateTypes } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -26,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface ToolbarWidgetProps {
+  setTab: (num: number) => void;
   tab: number;
   handleTabsChange: (_: any, newTab: number) => void;
   setIsScheduleJobOpen: (value: boolean) => void;
@@ -33,6 +36,7 @@ interface ToolbarWidgetProps {
 }
 
 const ToolbarWidget = ({
+  setTab,
   tab,
   handleTabsChange,
   setIsScheduleJobOpen,
@@ -40,6 +44,20 @@ const ToolbarWidget = ({
 }: ToolbarWidgetProps) => {
   const classes = useStyles();
   const [isJobRunning, setIsJobRunning] = useState(false);
+  const { values } = useFormikContext() as { values: InitialStateTypes };
+  const { sources } = values;
+
+  const isNonKirbySourceAdded = Boolean(
+    Object.values(sources).find(source =>
+      ['RDBMS', 'SFTP', 'API'].includes(source.sourceType)
+    )
+  );
+
+  useEffect(() => {
+    if (isNonKirbySourceAdded) {
+      setTab(2);
+    }
+  }, [isNonKirbySourceAdded, setTab]);
 
   return (
     <div className={`${classes.toolbar} Toolbar`}>
@@ -131,8 +149,16 @@ const ToolbarWidget = ({
           onChange={handleTabsChange}
           aria-label="Tile types"
         >
-          <Tab label="Sources" className="Toolbar__sources-tab" />
-          <Tab label="Transforms" className="Toolbar__transforms-tab" />
+          <Tab
+            disabled={isNonKirbySourceAdded}
+            label="Sources"
+            className="Toolbar__sources-tab"
+          />
+          <Tab
+            disabled={isNonKirbySourceAdded}
+            label="Transforms"
+            className="Toolbar__transforms-tab"
+          />
           <Tab label="Destinations" className="Toolbar__destinations-tab" />
         </Tabs>
       </div>

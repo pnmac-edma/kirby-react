@@ -9,6 +9,7 @@ import DestIconDark from '../../../../../assets/img/icon.hydration.dest.dark.svg
 import { NodeModel } from '../../../../../State/Hydration/types';
 
 interface ToolbarItemWidget {
+  disabled?: boolean | null;
   name: string;
   onClick: () => NodeModel;
   color: string;
@@ -16,6 +17,7 @@ interface ToolbarItemWidget {
 }
 
 const ToolbarItemWidget = ({
+  disabled = false,
   name,
   color,
   model,
@@ -44,16 +46,25 @@ const ToolbarItemWidget = ({
   return (
     <div
       style={{ borderColor: color }}
-      draggable={true}
-      onDragStart={event => {
-        event.dataTransfer.setData('storm-diagram-node', JSON.stringify(model));
-      }}
-      className="Toolbar__nodetype"
-      onClick={onClick}
+      draggable={!disabled}
+      onDragStart={
+        disabled
+          ? undefined
+          : event => {
+              event.dataTransfer.setData(
+                'storm-diagram-node',
+                JSON.stringify(model)
+              );
+            }
+      }
+      className={disabled ? 'Toolbar__nodetype-disabled' : 'Toolbar__nodetype'}
+      onClick={disabled ? undefined : onClick}
     >
       <img
         src={theme.palette.type === 'light' ? modelType : modelTypeDark}
-        className={`Toolbar__item-icon`}
+        className={
+          disabled ? 'Toolbar__item-icon-disabled' : 'Toolbar__item-icon'
+        }
         alt={`${name} icon`}
       />{' '}
       {name}
