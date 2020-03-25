@@ -30,10 +30,8 @@ export const transformRequests = (requests, role) => {
 /* constructs a request object to be passed to axios
  * TODO: add typing for this function and get rid of the notes below
  * url: the base url of the API (pulled from the config in most ways)
- * hostname: the hostname of the request
  * path: the specific path to be appended to the host (e.g. /users/requests)
  * method: HTTP Method
- * currentUser: the current user's login credentials
  * optionalConfig: {
  *  data: the body of the request
  *  headers: any headers if needed
