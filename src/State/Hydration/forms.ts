@@ -40,15 +40,6 @@ export const apiInitialState = {
   connectionType: ''
 };
 
-export const kirbyInitialState = {
-  sourceType: null,
-  host: '',
-  port: '',
-  folder: '',
-  isConnected: false,
-  connectionType: ''
-};
-
 export const transformInitialState = {
   name: '',
   sqlScript: '',
@@ -117,8 +108,6 @@ export const generateSourceInitialState = (
     sourceForm = sftpInitialState;
   } else if (sourceType === 'API') {
     sourceForm = apiInitialState;
-  } else if (sourceType === 'KIRBY') {
-    sourceForm = kirbyInitialState;
   }
 
   return {
