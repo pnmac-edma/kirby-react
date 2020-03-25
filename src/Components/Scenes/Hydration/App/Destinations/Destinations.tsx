@@ -76,13 +76,17 @@ type DestinationsProps = {
 
 const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
   const classes = useStyles();
-  const { values } = useFormikContext() as { values: InitialStateTypes };
   const [isSensOpen, setIsSensOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const { values } = useFormikContext() as { values: InitialStateTypes };
+  const { destinations } = values;
   const isDestinationModalOpen = useSelector(
     ({ hydration }: any) => hydration.isDestinationModalOpen
   );
   const dispatch = useDispatch();
+
+  const isDestinationAdded = Object.keys(destinations).length > 0;
   const sensitivity = values.destinationsFilterSens;
   const filterInput = document.getElementById('destinationsFilter');
   const filteredDestinations = mockDestinationsData
@@ -194,6 +198,7 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
               ({ name, email, description, schedule }, i) => (
                 <ToolbarItemWidget
                   key={`${name}-${i}`}
+                  disabled={isDestinationAdded}
                   model={{
                     type: 'destination',
                     name,

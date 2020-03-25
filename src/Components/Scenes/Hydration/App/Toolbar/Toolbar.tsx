@@ -42,6 +42,7 @@ const Toolbar = ({
   if (selectedNode) {
     return (
       <ToolbarWidget
+        setTab={setTab}
         tab={tab}
         handleTabsChange={handleTabsChange}
         setIsScheduleJobOpen={setIsScheduleJobOpen}
@@ -71,6 +72,7 @@ const Toolbar = ({
 
   return (
     <ToolbarWidget
+      setTab={setTab}
       tab={tab}
       handleTabsChange={handleTabsChange}
       setIsScheduleJobOpen={setIsScheduleJobOpen}

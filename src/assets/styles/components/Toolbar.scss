@@ -86,6 +86,19 @@
   }
 }
 
+.Toolbar__nodetype-disabled {
+  padding: 8px 16px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  text-align: left;
+  color: $color-g-100;
+
+  &:hover {
+    background: $color-g-100;
+    color: $color-black;
+  }
+}
+
 .dark .Toolbar__nodetype {
   color: $color-g-400;
 
@@ -102,6 +115,12 @@
 .Toolbar__item-icon {
   width: 21px;
   margin-right: 4px;
+}
+
+.Toolbar__item-icon-disabled {
+  width: 21px;
+  margin-right: 4px;
+  color: $color-g-100;
 }
 
 .Toolbar__list {
