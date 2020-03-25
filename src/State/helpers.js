@@ -39,9 +39,7 @@ export const transformRequests = (requests, role) => {
  * }
  */
 export const constructRequest = (url, path, method, optionalConfig = {}) => {
-  console.log('REQUESTBY ME', optionalConfig);
   const { data, headers, params } = optionalConfig;
-  console.log('OPTIONAL CONFIG', optionalConfig);
   const { AccessKeyId, SecretKey, SessionToken } = store.getState().currentUser;
 
   // grabs the substring of url after https://
@@ -81,6 +79,5 @@ export const constructRequest = (url, path, method, optionalConfig = {}) => {
   // delete unsafe headers added by aws4
   delete signedRequest.headers['Host'];
   delete signedRequest.headers['Content-Length'];
-  console.log('REQUEST', request);
   return request;
 };

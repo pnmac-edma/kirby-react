@@ -47,7 +47,6 @@ const useStyles = makeStyles(theme => ({
 const RequestAsset = ({ getEmployeesFetch, openModal }) => {
   const classes = useStyles();
   useEffect(() => {
-    console.log('Requested by here');
     getEmployeesFetch();
   }, [getEmployeesFetch]);
 

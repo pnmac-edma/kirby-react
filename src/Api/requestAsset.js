@@ -6,7 +6,6 @@ import config from '../config/config';
 export const getEmployees = args => {
   // to test signing (once implemented), Jon created this url that requires signing to access
   // const BASE_URL = 'https://vtc55uxuy5.execute-api.us-west-2.amazonaws.com/dev';
-  console.log('AM I inside the API call ');
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/users`,
@@ -15,7 +14,7 @@ export const getEmployees = args => {
       params: {}
     }
   );
-  console.log('request', request);
+
   return axios(request)
     .then(response => response.data.users)
     .then(error => error);
