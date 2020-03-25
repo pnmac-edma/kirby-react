@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import RequestedBy from './RequestedBy';
 
 // TODO This will get updated when Auth is done
-const mapStateToProps = ({ requestAssets }) => {
+const mapStateToProps = ({ currentUser }) => {
   return {
-    requestedBy: `selcuk.ates@pnmac.com`
+    requestedBy: currentUser.EmpEmail
   };
 };
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { constructRequest } from '../State/helpers';
+import store from '../setupStore';
 
 export const getEmployees = args => {
   // TODO: Pull base url from the env config object once implemented
@@ -16,10 +17,11 @@ export const getEmployees = args => {
 };
 
 export const makeRequest = (requestAssets, justification, requestedFor) => {
+  const { EmpEmail } = store.getState().currentUser;
   const url = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
   const fetchBody = {
     // TODO needs update from currentUser auth. have aticket already
-    createdbyemail: 'selcuk.ates@pnmac.com',
+    createdbyemail: EmpEmail,
     requestedfor: requestedFor,
     assets: requestAssets,
     justification: justification
