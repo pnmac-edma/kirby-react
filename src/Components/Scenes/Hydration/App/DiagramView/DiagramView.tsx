@@ -13,6 +13,7 @@ import {
   NodeModel
 } from '../../../../../State/Hydration/types';
 import { keyboardShortcuts } from '../../../../../State/Hydration/helpers';
+import JobInfo from './JobInfo';
 
 interface DiagramViewProps {
   app: any;
@@ -107,24 +108,27 @@ const DiagramView = (props: DiagramViewProps) => {
   });
 
   return (
-    <div
-      className={`Diagram__layer ${
-        isDragActive ? 'Diagram__layer--is-dragging' : ''
-      }`}
-      onDrop={event => onDropNode(event)}
-      onDragOver={event => event.preventDefault()}
-      onKeyUp={event =>
-        keyboardShortcuts.diagram(event, removeNodeFromDiagram, selectedNode)
-      }
-    >
-      <div {...getRootProps()} className={`Diagram__canvas`}>
-        <input {...getInputProps()} />
-        <DiagramWidget
-          className={`Diagram__canvas`}
-          diagramEngine={app.getDiagramEngine()}
-        />
+    <>
+      <div
+        className={`Diagram__layer ${
+          isDragActive ? 'Diagram__layer--is-dragging' : ''
+        }`}
+        onDrop={event => onDropNode(event)}
+        onDragOver={event => event.preventDefault()}
+        onKeyUp={event =>
+          keyboardShortcuts.diagram(event, removeNodeFromDiagram, selectedNode)
+        }
+      >
+        <div {...getRootProps()} className={`Diagram__canvas`}>
+          <input {...getInputProps()} />
+          <JobInfo />
+          <DiagramWidget
+            className={`Diagram__canvas`}
+            diagramEngine={app.getDiagramEngine()}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

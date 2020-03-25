@@ -35,7 +35,7 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
   return (
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? (
-        <AppBarContainer hydration jobName={newJobName} />
+        <AppBarContainer hydration />
       ) : curPath === '/' ? (
         <AppBarContainer home />
       ) : (
