@@ -1,5 +1,4 @@
-import { PortModel } from '@projectstorm/react-diagrams';
-import { SourceLinkModel } from './SourceLinkFactory';
+import { DefaultLinkModel, PortModel } from '@projectstorm/react-diagrams';
 
 export default class SourcePortModel extends PortModel {
   constructor(position) {
@@ -7,6 +6,6 @@ export default class SourcePortModel extends PortModel {
   }
 
   createLinkModel() {
-    return new SourceLinkModel();
+    return new DefaultLinkModel('source');
   }
 }
