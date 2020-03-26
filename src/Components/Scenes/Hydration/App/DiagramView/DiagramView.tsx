@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { useDropzone } from 'react-dropzone';
 import { DiagramWidget } from '@projectstorm/react-diagrams';
+import ArrowHead from '../Links/ArrowHead';
 import {
   setSelectedNode,
   setIsEditorOpen
@@ -123,6 +124,7 @@ const DiagramView = (props: DiagramViewProps) => {
           className={`Diagram__canvas`}
           diagramEngine={app.getDiagramEngine()}
         />
+        <ArrowHead />
       </div>
     </div>
   );
