@@ -3,9 +3,11 @@ import { useTheme } from '@material-ui/core/styles';
 import SourceIcon from '../../../../../assets/img/icon.hydration.source.svg';
 import TransIcon from '../../../../../assets/img/icon.hydration.trans.svg';
 import DestIcon from '../../../../../assets/img/icon.hydration.dest.svg';
+import DisabledIcon from '../../../../../assets/img/icon.hydration.disabled.svg';
 import SourceIconDark from '../../../../../assets/img/icon.hydration.source.dark.svg';
 import TransIconDark from '../../../../../assets/img/icon.hydration.trans.dark.svg';
 import DestIconDark from '../../../../../assets/img/icon.hydration.dest.dark.svg';
+import DisabledIconDark from '../../../../../assets/img/icon.hydration.disabled.dark.svg';
 import { NodeModel } from '../../../../../State/Hydration/types';
 
 interface ToolbarItemWidget {
@@ -27,20 +29,32 @@ const ToolbarItemWidget = ({
 
   const modelType =
     model.type === 'source'
-      ? SourceIcon
+      ? disabled
+        ? DisabledIcon
+        : SourceIcon
       : model.type === 'transform'
-      ? TransIcon
+      ? disabled
+        ? DisabledIcon
+        : TransIcon
       : model.type === 'destination'
-      ? DestIcon
+      ? disabled
+        ? DisabledIcon
+        : DestIcon
       : '';
 
   const modelTypeDark =
     model.type === 'source'
-      ? SourceIconDark
+      ? disabled
+        ? DisabledIconDark
+        : SourceIconDark
       : model.type === 'transform'
-      ? TransIconDark
+      ? disabled
+        ? DisabledIconDark
+        : TransIconDark
       : model.type === 'destination'
-      ? DestIconDark
+      ? disabled
+        ? DisabledIconDark
+        : DestIconDark
       : '';
 
   return (

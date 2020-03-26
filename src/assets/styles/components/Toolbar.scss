@@ -56,6 +56,12 @@
   color: $color-t-800;
 }
 
+.Toolbar__sources-tab.MuiTab-textColorPrimary.Mui-disabled,
+.Toolbar__transforms-tab.MuiTab-textColorPrimary.Mui-disabled,
+.Toolbar__destinations-tab.MuiTab-textColorPrimary.Mui-disabled {
+  color: $color-g-300;
+}
+
 .dark {
   .Toolbar__sources-tab.MuiTab-textColorPrimary.Mui-selected,
   .Toolbar__sources-tab:hover {
@@ -70,6 +76,12 @@
   .Toolbar__destinations-tab.MuiTab-textColorPrimary.Mui-selected,
   .Toolbar__destinations-tab:hover {
     color: $color-t-600;
+  }
+
+  .Toolbar__sources-tab.MuiTab-textColorPrimary.Mui-disabled,
+  .Toolbar__transforms-tab.MuiTab-textColorPrimary.Mui-disabled,
+  .Toolbar__destinations-tab.MuiTab-textColorPrimary.Mui-disabled {
+    color: $color-g-600;
   }
 }
 
@@ -89,14 +101,17 @@
 .Toolbar__nodetype-disabled {
   padding: 8px 16px;
   margin-bottom: 2px;
-  cursor: pointer;
+  cursor: default;
   text-align: left;
-  color: $color-g-100;
+  color: $color-g-300;
 
   &:hover {
-    background: $color-g-100;
-    color: $color-black;
+    background: transparent;
   }
+}
+
+.dark .Toolbar__nodetype-disabled {
+  color: $color-g-600;
 }
 
 .dark .Toolbar__nodetype {
