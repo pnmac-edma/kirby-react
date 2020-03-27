@@ -20,7 +20,7 @@ import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.sv
 import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
 import {
   setJobName,
-  setFormSubmitOnBlur
+  setDefaultJobNameOnBlur
 } from '../../../../State/Chrome/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -116,7 +116,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Appbar = props => {
+const Appbar = ({ hydration, home, hydrationFormikRef }) => {
   const classes = useStyles();
   const [isJobNameActive, setIsJobNameActive] = useState(false);
   const curPath = useLocation().pathname;
@@ -138,15 +138,15 @@ const Appbar = props => {
       position="relative"
       color="default"
       className={
-        props.hydration
+        hydration
           ? `${classes.appBar} ${classes.appBarHydration}`
-          : props.home
+          : home
           ? `${classes.appBar} ${classes.appBarHome}`
           : classes.appBar
       }
     >
       <div className={classes.logoContainer}>
-        {props.hydration ? (
+        {hydration ? (
           <>
             <Link href="/">
               <KirbyMark className={classes.mark} />
@@ -170,10 +170,12 @@ const Appbar = props => {
                     id="jobName"
                     className={classes.jobName}
                     onBlur={() => {
-                      // TODO: for now this action is only setting the title
-                      // will need to add functionality to this that can
-                      // potentially make an api call with the form
-                      dispatch(setFormSubmitOnBlur(jobName));
+                      // this will call the handleSubmit function
+                      // within Formik outside that context
+                      if (hydrationFormikRef.current) {
+                        hydrationFormikRef.current.handleSubmit();
+                      }
+                      dispatch(setDefaultJobNameOnBlur(jobName));
                       setIsJobNameActive(!isJobNameActive);
                     }}
                     onChange={e => dispatch(setJobName(e.target.value))}

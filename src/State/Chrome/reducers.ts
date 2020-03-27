@@ -50,7 +50,7 @@ const chromeReducer = (state = initialState, action: any) => {
         jobName
       };
     }
-    case types.SET_FORM_SUBMIT_ON_BLUR: {
+    case types.SET_DEFAULT_JOB_NAME_ON_BLUR: {
       const { jobName } = action;
       return {
         ...state,

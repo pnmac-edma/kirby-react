@@ -16,13 +16,13 @@ interface SetJobNameAction {
   jobName: string;
 }
 
-export const setFormSubmitOnBlur = (
+export const setDefaultJobNameOnBlur = (
   jobName: string
-): SetFormSubmitOnBlurAction => ({
-  type: types.SET_FORM_SUBMIT_ON_BLUR,
+): SetDefaultJobNameOnBlurAction => ({
+  type: types.SET_DEFAULT_JOB_NAME_ON_BLUR,
   jobName
 });
-interface SetFormSubmitOnBlurAction {
-  type: typeof types.SET_FORM_SUBMIT_ON_BLUR;
+interface SetDefaultJobNameOnBlurAction {
+  type: typeof types.SET_DEFAULT_JOB_NAME_ON_BLUR;
   jobName: string;
 }
