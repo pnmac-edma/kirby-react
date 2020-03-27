@@ -24,7 +24,8 @@ export const searchResultApiCall = (...args) => {
     `${config.apiPath}/assets/search`,
     'POST',
     {
-      params: requestBody
+      data: requestBody,
+      headers: { 'Content-Type': 'application/json' }
     }
   );
   return axios(request)
