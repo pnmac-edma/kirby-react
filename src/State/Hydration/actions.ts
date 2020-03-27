@@ -1,5 +1,4 @@
 import * as types from './types';
-import { AnyAction } from 'redux';
 
 export const setSelectedNode = (
   event: React.FormEvent<HTMLFormElement> | null,
