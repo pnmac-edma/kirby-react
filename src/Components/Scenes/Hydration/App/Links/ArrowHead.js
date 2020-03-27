@@ -1,22 +1,44 @@
 import React from 'react';
+import { useTheme } from '@material-ui/core/styles';
+import { color } from '@edma/design-tokens';
 
-export const markerHead = 'markerHead';
+export const sourceHead = 'sourceHead';
+export const transformHead = 'transformHead';
 
-const ArrowHead = props => {
+const ArrowHead = () => {
+  const theme = useTheme();
+
   return (
     <svg viewBox="0 0 4 5">
       <defs>
         <marker
-          id={markerHead}
-          markerWidth="4"
-          markerHeight="5"
+          id={sourceHead}
+          markerWidth="6"
+          markerHeight="4"
           refX="3"
-          refY="2.4"
+          refY="2"
           orient="0deg"
         >
           <path
-            d="M4 2.5L0.25 4.66506L0.25 0.334936L4 2.5Z"
-            style={{ fill: props.color }}
+            d="M0,0 L0,4 L4,2 Z"
+            style={{
+              fill: theme.palette.type === 'light' ? color.b500 : color.b200
+            }}
+          />
+        </marker>
+        <marker
+          id={transformHead}
+          markerWidth="6"
+          markerHeight="4"
+          refX="3"
+          refY="2"
+          orient="0deg"
+        >
+          <path
+            d="M0,0 L0,4 L4,2 Z"
+            style={{
+              fill: theme.palette.type === 'light' ? color.v400 : color.v300
+            }}
           />
         </marker>
       </defs>

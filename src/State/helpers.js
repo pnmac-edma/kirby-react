@@ -63,7 +63,7 @@ export const constructRequest = (url, path, method, optionalConfig = {}) => {
   }
 
   if (headers) {
-    request.headers = headers;
+    request.headers = { ...headers };
   }
 
   /*
@@ -79,6 +79,5 @@ export const constructRequest = (url, path, method, optionalConfig = {}) => {
   // delete unsafe headers added by aws4
   delete signedRequest.headers['Host'];
   delete signedRequest.headers['Content-Length'];
-
   return request;
 };
