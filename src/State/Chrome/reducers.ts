@@ -19,6 +19,7 @@ const chromeReducer = (state = initialState, action: any) => {
       const { palette } = state.theme;
       const newPaletteType = palette.type === 'light' ? 'dark' : 'light';
       return {
+        ...state,
         theme: {
           ...state.theme,
           palette: {
@@ -51,7 +52,10 @@ const chromeReducer = (state = initialState, action: any) => {
     }
     case types.SET_FORM_SUBMIT_ON_BLUR: {
       const { jobName } = action;
-      return {};
+      return {
+        ...state,
+        jobName: jobName ? jobName : 'Untitled'
+      };
     }
     default:
       return state;

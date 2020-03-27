@@ -7,7 +7,10 @@ import {
   AppBar,
   Box,
   Breadcrumbs,
+  Button,
+  Divider,
   Link,
+  Select,
   TextField,
   Typography
 } from '@material-ui/core';
@@ -20,7 +23,7 @@ import {
   setFormSubmitOnBlur
 } from '../../../../State/Chrome/actions';
 
-const appBarStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   logoContainer: {
     marginLeft: '16px',
     marginTop: '-4px',
@@ -114,9 +117,9 @@ const appBarStyle = makeStyles(theme => ({
 }));
 
 const Appbar = props => {
-  const classes = appBarStyle();
-  const curPath = useLocation().pathname;
+  const classes = useStyles();
   const [isJobNameActive, setIsJobNameActive] = useState(false);
+  const curPath = useLocation().pathname;
   const jobName = useSelector(({ chrome }) => chrome.jobName);
   const dispatch = useDispatch();
 
@@ -128,6 +131,7 @@ const Appbar = props => {
         <KirbyLogo className={classes.logo} />
       </Link>
     );
+  const lastSaved = 14;
 
   return (
     <AppBar
@@ -166,7 +170,10 @@ const Appbar = props => {
                     id="jobName"
                     className={classes.jobName}
                     onBlur={() => {
-                      dispatch(setFormSubmitOnBlur());
+                      // TODO: for now this action is only setting the title
+                      // will need to add functionality to this that can
+                      // potentially make an api call with the form
+                      dispatch(setFormSubmitOnBlur(jobName));
                       setIsJobNameActive(!isJobNameActive);
                     }}
                     onChange={e => dispatch(setJobName(e.target.value))}
@@ -180,7 +187,30 @@ const Appbar = props => {
                     >
                       {jobName}
                     </span>
-                    <KeyboardArrowDownIcon />
+                    <Select
+                      id="job-select"
+                      IconComponent={KeyboardArrowDownIcon}
+                    >
+                      <div>
+                        <Button
+                          onClick={() => console.log('I open upload modal')}
+                        >
+                          Upload Script
+                        </Button>
+                      </div>
+                      <div>
+                        <Button onClick={() => console.log('I duplicate')}>
+                          Duplicate
+                        </Button>
+                      </div>
+                      <div>
+                        <Button onClick={() => console.log('I delete')}>
+                          Delete
+                        </Button>
+                      </div>
+                      <Divider />
+                      <p>Last saved {lastSaved} minutes ago</p>
+                    </Select>
                   </span>
                 )}
               </Breadcrumbs>
