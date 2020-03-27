@@ -1,6 +1,7 @@
-import React, { useReducer } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useReducer, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
+import { sourceTilesRequestFetch } from '../../../../State/Hydration/actions';
 import Diagram from './Diagram/Diagram';
 import JobDesigner from './JobDesigner/JobDesigner';
 import { initialValues } from '../../../../State/Hydration/forms';
@@ -14,14 +15,20 @@ const JobAppOuterLayer = ({ app }: JobAppOuterLayerProps) => {
   // even if React state has not explicitly changed
   // https://reactjs.org/docs/hooks-faq.html#is-there-something-like-forceupdate
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+  const dispatch = useDispatch();
 
   const selectedNode = useSelector(
     ({ hydration }: any) => hydration.selectedNode
   );
 
+  useEffect(() => {
+    dispatch(sourceTilesRequestFetch());
+  }, [dispatch]);
+
   return (
     <Formik
       initialValues={initialValues}
+      // initialValues={{ ...initialValues }}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
       }}

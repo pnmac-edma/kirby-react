@@ -3,7 +3,10 @@ import * as types from './types';
 export const initialState = {
   isDestinationModalOpen: false,
   isEditorOpen: false,
-  selectedNode: null
+  selectedNode: null,
+  metaData: {
+    sourceTiles: {}
+  }
 };
 
 const hydrationReducer = (state = initialState, action: any) => {
@@ -43,6 +46,15 @@ const hydrationReducer = (state = initialState, action: any) => {
         isDestinationModalOpen: action.value
       };
     }
+    case types.SOURCE_TILES_REQUESTS_FETCH:
+      return { ...state };
+    case types.SOURCE_TILES_REQUESTS_SUCCESS:
+      return {
+        ...state,
+        metaData: { ...state.metaData, sourceTiles: action.sourceTiles }
+      };
+    case types.SOURCE_TILES_REQUESTS_FAILURE:
+      return { ...state };
     default:
       return state;
   }
