@@ -5,6 +5,10 @@ export const SET_SELECTED_NODE = 'SET_SELECTED_NODE';
 export const SET_REMOVE_SELECTED_NODE = 'SET_REMOVE_SELECTED_NODE';
 export const SET_IS_EDITOR_OPEN = 'SET_IS_EDITOR_OPEN';
 export const SET_IS_DESTINATION_MODAL_OPEN = 'SET_IS_DESTINATION_MODAL_OPEN';
+// SOURCE TILE FETCH
+export const SOURCE_TILES_REQUESTS_FETCH = 'SOURCE_TILES_REQUESTS_FETCH';
+export const SOURCE_TILES_REQUESTS_SUCCESS = 'SOURCE_TILES_REQUESTS_SUCCESS';
+export const SOURCE_TILES_REQUESTS_FAILURE = 'SOURCE_TILES_REQUESTS_FAILURE';
 
 // types
 export interface KIRBY {
@@ -42,6 +46,17 @@ export interface API {
   url: string;
   isConnected: boolean;
   connectionType: string;
+}
+
+export interface SourceTiles {
+  [id: number]: SourceTile;
+}
+
+export interface SourceTile {
+  Id: number;
+  createddate: string;
+  createdbyemail: string;
+  sourcetypedesc: string;
 }
 
 export interface Sources {

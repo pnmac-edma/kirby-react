@@ -1,4 +1,5 @@
 import * as types from './types';
+import { AnyAction } from 'redux';
 
 export const setSelectedNode = (
   event: React.FormEvent<HTMLFormElement> | null,
@@ -43,4 +44,33 @@ export const setIsDestinationModalOpen = (
 interface SetIsDestinationModalOpenAction {
   type: typeof types.SET_IS_DESTINATION_MODAL_OPEN;
   value: boolean;
+}
+
+export const sourceTilesRequestFetch = (): SourceTilesRequestFetchAction => ({
+  type: types.SOURCE_TILES_REQUESTS_FETCH
+});
+interface SourceTilesRequestFetchAction {
+  type: typeof types.SOURCE_TILES_REQUESTS_FETCH;
+}
+
+export const sourceTilesRequestSuccess = (
+  sourceTiles: types.SourceTiles
+): SourceTilesRequestSuccessAction => ({
+  type: types.SOURCE_TILES_REQUESTS_SUCCESS,
+  sourceTiles
+});
+interface SourceTilesRequestSuccessAction {
+  type: typeof types.SOURCE_TILES_REQUESTS_SUCCESS;
+  sourceTiles: types.SourceTiles;
+}
+
+export const sourceTilesRequestFailure = (
+  message: any
+): SourceTilesRequestFailureAction => ({
+  type: types.SOURCE_TILES_REQUESTS_FAILURE,
+  message
+});
+interface SourceTilesRequestFailureAction {
+  type: typeof types.SOURCE_TILES_REQUESTS_FAILURE;
+  message: any;
 }
