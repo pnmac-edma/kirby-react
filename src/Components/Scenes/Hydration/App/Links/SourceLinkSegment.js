@@ -24,7 +24,6 @@ class SourceLinkSegment extends React.PureComponent {
         <path
           className="Connection__source-bg"
           ref={ref => (this.path = ref)}
-          className="Connection__source-bg"
           fill="none"
           strokeWidth={20}
           stroke="rgba(0,0,0,0)"
