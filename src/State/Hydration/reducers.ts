@@ -4,7 +4,7 @@ export const initialState = {
   isDestinationModalOpen: false,
   isEditorOpen: false,
   selectedNode: null,
-  metaData: {
+  metadata: {
     sourceTiles: {}
   }
 };
@@ -51,9 +51,17 @@ const hydrationReducer = (state = initialState, action: any) => {
     case types.SOURCE_TILES_REQUESTS_SUCCESS:
       return {
         ...state,
-        metaData: { ...state.metaData, sourceTiles: action.sourceTiles }
+        metaData: { ...state.metadata, sourceTiles: action.sourceTiles }
       };
     case types.SOURCE_TILES_REQUESTS_FAILURE:
+      return { ...state };
+    case types.DESTINATIONS_REQUEST_FETCH: {
+      console.log('Reducer Fetch');
+      return { ...state };
+    }
+    case types.DESTINATIONS_REQUEST_SUCCESS:
+      return { ...state };
+    case types.DESTINATIONS_REQUEST_FAILURE:
       return { ...state };
     default:
       return state;

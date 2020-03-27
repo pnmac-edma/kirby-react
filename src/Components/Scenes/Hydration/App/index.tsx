@@ -1,7 +1,10 @@
 import React, { useReducer, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import { sourceTilesRequestFetch } from '../../../../State/Hydration/actions';
+import {
+  sourceTilesRequestFetch,
+  destinationRequestFetch
+} from '../../../../State/Hydration/actions';
 import Diagram from './Diagram/Diagram';
 import JobDesigner from './JobDesigner/JobDesigner';
 import { initialValues } from '../../../../State/Hydration/forms';
@@ -23,6 +26,7 @@ const JobAppOuterLayer = ({ app }: JobAppOuterLayerProps) => {
 
   useEffect(() => {
     dispatch(sourceTilesRequestFetch());
+    dispatch(destinationRequestFetch());
   }, [dispatch]);
 
   return (

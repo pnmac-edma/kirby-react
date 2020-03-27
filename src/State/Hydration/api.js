@@ -15,3 +15,19 @@ export const getSourceTiles = () => {
     .then(response => response.data)
     .then(error => error);
 };
+
+export const getDestinations = () => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/users/data`,
+    'POST',
+    {
+      params: { dropdown: 'sensitivity' }
+      // params: { dropdown: 'databases', sensitivity: 'non-sensitive' }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};
