@@ -3,29 +3,19 @@ import { useFormikContext } from 'formik';
 import { Chip, Tooltip } from '@material-ui/core';
 import { PortWidget } from '@projectstorm/react-diagrams';
 import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
-import {
-  InitialStateTypes,
-  NodeModel,
-  RDBMS,
-  API
-} from '../../../../../State/Hydration/types';
 
-interface SourceNodeWidgetProps {
-  node: NodeModel;
-}
-
-const SourceNodeWidget = ({ node }: SourceNodeWidgetProps) => {
+const SourceNodeWidget = ({ node }) => {
   const { name, id, size } = node;
-  const { values } = useFormikContext() as { values: InitialStateTypes };
+  const { values } = useFormikContext();
   const { sources } = values;
   const height = size * 0.5;
 
-  const generateTag = (sourceType: string) => {
+  const generateTag = sourceType => {
     if (sourceType === 'RDBMS') {
-      return (sources[id] as RDBMS).sourceVersion;
+      return sources[id].sourceVersion;
     }
     if (sourceType === 'API') {
-      return (sources[id] as API).type;
+      return sources[id].type;
     }
     return '';
   };
@@ -57,7 +47,7 @@ const SourceNodeWidget = ({ node }: SourceNodeWidgetProps) => {
           left: size - 8
         }}
       >
-        <PortWidget name="right" node={node as any} />
+        <PortWidget name="right" node={node} />
       </div>
     </div>
   );

@@ -2,14 +2,13 @@ import { DiagramEngine, DiagramModel } from '@projectstorm/react-diagrams';
 import {
   DestinationNodeFactory,
   DestinationPortModel,
-  SourceLinkFactory,
-  TransformLinkFactory,
   SimplePortFactory,
   SourceNodeFactory,
   SourcePortModel,
   TransformNodeFactory,
   TransformPortModel
 } from '../Nodes';
+import { SourceLinkFactory, TransformLinkFactory } from '../Links';
 
 export default class Diagram {
   constructor() {
