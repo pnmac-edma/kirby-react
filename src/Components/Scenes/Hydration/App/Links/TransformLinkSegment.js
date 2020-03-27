@@ -25,18 +25,18 @@ class TransformLinkSegment extends React.PureComponent {
           className="Connection__transform-bg"
           ref={ref => (this.path = ref)}
           fill="none"
-          strokeWidth={model.width * (3 / 2)}
+          strokeWidth={20}
           strokeLinecap="round"
           stroke="rgba(0,0,0,0)"
           d={customPath}
-          style={this.style}
         />
         <path
           className="Connection__transform"
           fill="none"
-          strokeWidth={model.width}
+          strokeWidth={2}
           stroke="rgba(255,0,0,0.5)"
           d={customPath}
+          style={this.style}
         />
       </g>
     );
