@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -10,10 +12,13 @@ import {
   Typography
 } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { useLocation } from 'react-router-dom';
 import { color, z } from '@edma/design-tokens';
 import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.svg';
 import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
+import {
+  setJobName,
+  setFormSubmitOnBlur
+} from '../../../../State/Chrome/actions';
 
 const appBarStyle = makeStyles(theme => ({
   logoContainer: {
@@ -111,8 +116,9 @@ const appBarStyle = makeStyles(theme => ({
 const Appbar = props => {
   const classes = appBarStyle();
   const curPath = useLocation().pathname;
-  const { jobName } = props;
   const [isJobNameActive, setIsJobNameActive] = useState(false);
+  const jobName = useSelector(({ chrome }) => chrome.jobName);
+  const dispatch = useDispatch();
 
   const LogoComponent =
     curPath === '/' ? (
@@ -149,22 +155,24 @@ const Appbar = props => {
               >
                 <Link
                   href="/hydration/view-jobs"
-                  to="/hydration/view-jobs"
                   variant="body1"
                   className={classes.jobsLink}
                 >
                   Jobs
                 </Link>
-                {isJobNameActive && (
+                {isJobNameActive ? (
                   <TextField
                     autoFocus
                     id="jobName"
-                    placeholder={jobName}
                     className={classes.jobName}
-                    onBlur={() => setIsJobNameActive(!isJobNameActive)}
+                    onBlur={() => {
+                      dispatch(setFormSubmitOnBlur());
+                      setIsJobNameActive(!isJobNameActive);
+                    }}
+                    onChange={e => dispatch(setJobName(e.target.value))}
+                    value={jobName}
                   />
-                )}
-                {!isJobNameActive && (
+                ) : (
                   <span>
                     <span
                       className={`${classes.jobNameBtn} ${classes.untitledJobName}`}

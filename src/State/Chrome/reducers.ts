@@ -7,7 +7,8 @@ export const initialState = {
   theme: {
     typography: kirbyTheme.typography,
     palette: kirbyTheme.palette
-  }
+  },
+  jobName: 'Job Name'
 };
 
 const chromeReducer = (state = initialState, action: any) => {
@@ -40,6 +41,17 @@ const chromeReducer = (state = initialState, action: any) => {
           }
         }
       };
+    }
+    case types.SET_JOB_NAME: {
+      const { jobName } = action;
+      return {
+        ...state,
+        jobName
+      };
+    }
+    case types.SET_FORM_SUBMIT_ON_BLUR: {
+      const { jobName } = action;
+      return {};
     }
     default:
       return state;
