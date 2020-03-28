@@ -51,7 +51,7 @@ const hydrationReducer = (state = initialState, action: any) => {
     case types.SOURCE_TILES_REQUESTS_SUCCESS:
       return {
         ...state,
-        metaData: { ...state.metadata, sourceTiles: action.sourceTiles }
+        metadata: { ...state.metadata, sourceTiles: action.sourceTiles }
       };
     case types.SOURCE_TILES_REQUESTS_FAILURE:
       return { ...state };

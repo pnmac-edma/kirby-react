@@ -201,6 +201,10 @@
 }
 
 // Tile link overrides
+.srd-default-link {
+  z-index: $z-2;
+  pointer-events: none;
+}
 
 .Connection {
   .Connection__source-bg,
@@ -218,11 +222,11 @@
 
   &:hover {
     .Connection__source-bg {
-      stroke: $color-b-200;
+      stroke: rgba($color-b-200, 0.3);
     }
 
     .Connection__transform-bg {
-      stroke: $color-p-200;
+      stroke: rgba($color-p-200, 0.3);
     }
   }
 }
@@ -235,11 +239,25 @@
   .Connection__transform {
     stroke: $color-v-300;
   }
+
+  &:hover {
+    .Connection__source-bg {
+      stroke: rgba($color-b-900, 0.3);
+    }
+
+    .Connection__transform-bg {
+      stroke: rgba($color-p-900, 0.3);
+    }
+  }
 }
 
 .srd-default-link--path-selected {
   animation: none;
   stroke-dasharray: 0, 0;
+}
+
+.srd-default-link__point {
+  display: none;
 }
 
 // Delete button

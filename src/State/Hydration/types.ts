@@ -69,6 +69,17 @@ export interface SourceTile {
   sourcetypedesc: string;
 }
 
+export interface SourceTiles {
+  [id: number]: SourceTile;
+}
+
+export interface SourceTile {
+  Id: number;
+  createddate: string;
+  createdbyemail: string;
+  sourcetypedesc: string;
+}
+
 export interface Sources {
   [id: string]: KIRBY | RDBMS | SFTP | API;
 }
