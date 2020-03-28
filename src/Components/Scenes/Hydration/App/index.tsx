@@ -32,7 +32,6 @@ const JobAppOuterLayer = ({ app }: JobAppOuterLayerProps) => {
   return (
     <Formik
       initialValues={initialValues}
-      // initialValues={{ ...initialValues }}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
       }}

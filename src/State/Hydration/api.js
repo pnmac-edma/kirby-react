@@ -20,7 +20,7 @@ export const getDestinations = () => {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/users/data`,
-    'POST',
+    'GET',
     {
       params: { dropdown: 'sensitivity' }
       // params: { dropdown: 'databases', sensitivity: 'non-sensitive' }

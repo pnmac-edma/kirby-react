@@ -69,15 +69,15 @@ export interface SourceTile {
   sourcetypedesc: string;
 }
 
-export interface SourceTiles {
-  [id: number]: SourceTile;
+export interface Destinations {
+  [id: number]: Destination;
 }
 
-export interface SourceTile {
+export interface Destination {
   Id: number;
   createddate: string;
   createdbyemail: string;
-  sourcetypedesc: string;
+  sensitivity: string;
 }
 
 export interface Sources {
