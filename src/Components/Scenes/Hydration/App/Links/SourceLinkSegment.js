@@ -1,17 +1,17 @@
 import React from 'react';
-import { markerHead } from '../Links/ArrowHead';
+import { sourceHead } from '../Links/ArrowHead';
 import { createCustomPath } from './helpers';
 
 // TODO: convert to functional component if possible
 class SourceLinkSegment extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.style = { markerEnd: `url(#${markerHead})` };
+    this.style = { markerEnd: `url(#${sourceHead})` };
   }
 
   componentDidUpdate = prevProps => {
     if (prevProps.inversed !== this.props.inversed) {
-      this.style = { markerEnd: `url(#${markerHead})` };
+      this.style = { markerEnd: `url(#${sourceHead})` };
     }
   };
 
@@ -25,18 +25,17 @@ class SourceLinkSegment extends React.PureComponent {
           className="Connection__source-bg"
           ref={ref => (this.path = ref)}
           fill="none"
-          strokeWidth={model.width * (3 / 2)}
-          strokeLinecap="round"
+          strokeWidth={20}
           stroke="rgba(0,0,0,0)"
           d={customPath}
-          style={this.style}
         />
         <path
           className="Connection__source"
           fill="none"
-          strokeWidth={model.width}
+          strokeWidth={2}
           stroke="rgba(255,0,0,0.5)"
           d={customPath}
+          style={this.style}
         />
       </g>
     );

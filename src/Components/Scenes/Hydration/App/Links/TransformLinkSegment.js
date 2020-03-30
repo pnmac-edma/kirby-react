@@ -1,17 +1,17 @@
 import React from 'react';
-import { markerHead } from '../Links/ArrowHead';
+import { transformHead } from '../Links/ArrowHead';
 import { createCustomPath } from './helpers';
 
 // TODO: convert to functional component if possible
 class TransformLinkSegment extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.style = { markerEnd: `url(#${markerHead})` };
+    this.style = { markerEnd: `url(#${transformHead})` };
   }
 
   componentDidUpdate = prevProps => {
     if (prevProps.inversed !== this.props.inversed) {
-      this.style = { markerEnd: `url(#${markerHead})` };
+      this.style = { markerEnd: `url(#${transformHead})` };
     }
   };
 
@@ -25,18 +25,18 @@ class TransformLinkSegment extends React.PureComponent {
           className="Connection__transform-bg"
           ref={ref => (this.path = ref)}
           fill="none"
-          strokeWidth={model.width * (3 / 2)}
+          strokeWidth={20}
           strokeLinecap="round"
           stroke="rgba(0,0,0,0)"
           d={customPath}
-          style={this.style}
         />
         <path
           className="Connection__transform"
           fill="none"
-          strokeWidth={model.width}
+          strokeWidth={2}
           stroke="rgba(255,0,0,0.5)"
           d={customPath}
+          style={this.style}
         />
       </g>
     );
