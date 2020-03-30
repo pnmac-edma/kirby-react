@@ -1,6 +1,10 @@
 import * as types from './types';
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { getSourceTiles, getDestinations } from './api';
+import {
+  getSourceTiles,
+  getDestinations,
+  getDestinationsDropdown
+} from './api';
 
 export function* handleSourceTiles() {
   try {
@@ -26,7 +30,26 @@ export function* handleDestinations() {
   }
 }
 
+export function* handleDestinationsDropDown() {
+  try {
+    const response = yield call(getDestinationsDropdown);
+    yield put({
+      type: types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS,
+      destinations: response
+    });
+  } catch (error) {
+    yield put({
+      type: types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE,
+      message: error
+    });
+  }
+}
+
 export default function* actionWatcher() {
   yield takeEvery(types.SOURCE_TILES_REQUESTS_FETCH, handleSourceTiles);
   yield takeEvery(types.DESTINATIONS_REQUEST_FETCH, handleDestinations);
+  yield takeEvery(
+    types.DESTINATIONS_DROPDOWN_REQUEST_FETCH,
+    handleDestinationsDropDown
+  );
 }

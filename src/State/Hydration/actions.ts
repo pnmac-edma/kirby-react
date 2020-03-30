@@ -83,7 +83,7 @@ interface DestinationRequestFetchAction {
 
 export const destinationRequestSuccess = (
   destinations: types.Destinations
-) => ({
+): DestinationRequestSuccessAction => ({
   type: types.DESTINATIONS_REQUEST_SUCCESS,
   destinations
 });
@@ -101,4 +101,29 @@ export const destinationRequestFailure = (
 interface DestinationRequestFailurehAction {
   type: typeof types.DESTINATIONS_REQUEST_FAILURE;
   message: any;
+}
+
+export const destinationDropdownRequestFetch = (): DestinationDropdownRequestFetchAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_FETCH
+});
+interface DestinationDropdownRequestFetchAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_FETCH;
+}
+
+export const destinationDropdownRequestSuccess = (
+  destinationDropdown: any
+): DestinationDropdownRequestSuccessAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS,
+  destinationDropdown
+});
+interface DestinationDropdownRequestSuccessAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS;
+  destinationDropdown: [];
+}
+
+export const destinationDropdownRequestFailure = (): DestinationDropdownRequestFailureAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE
+});
+interface DestinationDropdownRequestFailureAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE;
 }
