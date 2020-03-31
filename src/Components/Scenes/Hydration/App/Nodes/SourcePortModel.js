@@ -8,4 +8,13 @@ export default class SourcePortModel extends PortModel {
   createLinkModel() {
     return new DefaultLinkModel('source');
   }
+
+  canLinkToPort(port) {
+    const sourceType = this.getNode().name;
+    const targetPort = port.type;
+    if (sourceType === 'KIRBY' && targetPort === 'destination') {
+      return false;
+    }
+    return true;
+  }
 }
