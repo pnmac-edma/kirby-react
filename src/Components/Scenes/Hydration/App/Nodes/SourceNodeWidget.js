@@ -20,14 +20,16 @@ const SourceNodeWidget = ({ node }) => {
     return '';
   };
 
+  const sourceType = generateTag(name);
+
   return (
     <div>
       <div className={`Tile Tile__source`}>
         <div className={`Tile__inner`}>
           <div className={`Tile__title Tile__source-title`}>Source</div>
           <div className="Tile__source-name Tile__name">{name}</div>
-          {generateTag(name) !== '' ? (
-            <Chip className="Tile__chip" label={generateTag(name)} />
+          {sourceType !== '' ? (
+            <Chip className="Tile__chip" label={sourceType} />
           ) : (
             ''
           )}
