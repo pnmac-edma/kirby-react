@@ -9,7 +9,10 @@ import {
   Breadcrumbs,
   Button,
   Divider,
+  IconButton,
   Link,
+  Menu,
+  MenuItem,
   Select,
   TextField,
   Typography
@@ -115,8 +118,8 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.type === 'light' ? color.b600 : color.b200
   },
   jobsMenu: {
-    width: 24,
-    height: 24,
+    top: '0.3rem',
+    position: 'absolute',
     marginLeft: '0.5rem',
 
     '& .MuiSelect-select': {
@@ -128,6 +131,15 @@ const useStyles = makeStyles(theme => ({
     '&:before, &:after': {
       display: 'none'
     }
+  },
+  menuPadding: {
+    padding: '0 16px'
+  },
+  deleteItem: {
+    color: theme.palette.type === 'light' ? color.r500 : color.r300
+  },
+  divider: {
+    marginTop: 8
   }
 }));
 
@@ -137,6 +149,16 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
   const curPath = useLocation().pathname;
   const jobName = useSelector(({ chrome }) => chrome.jobName);
   const dispatch = useDispatch();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const LogoComponent =
     curPath === '/' ? (
@@ -204,31 +226,35 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                     >
                       {jobName === undefined ? 'untitled' : jobName}
                     </span>
-                    <Select
+                    <IconButton
                       id="job-select"
-                      IconComponent={KeyboardArrowDownIcon}
                       className={classes.jobsMenu}
+                      aria-controls="jobs-menu"
+                      aria-haspopup="true"
+                      onClick={handleClick}
                     >
-                      <div>
-                        <Button
-                          onClick={() => console.log('I open upload modal')}
-                        >
-                          Upload Script
-                        </Button>
-                      </div>
-                      <div>
-                        <Button onClick={() => console.log('I duplicate')}>
-                          Duplicate
-                        </Button>
-                      </div>
-                      <div>
-                        <Button onClick={() => console.log('I delete')}>
-                          Delete
-                        </Button>
-                      </div>
-                      <Divider />
-                      <p>Last saved {lastSaved} minutes ago</p>
-                    </Select>
+                      <KeyboardArrowDownIcon />
+                    </IconButton>
+                    <Menu
+                      id="jobs-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <MenuItem onClick={handleClose}>Upload Script</MenuItem>
+                      <MenuItem onClick={handleClose}>Duplicate</MenuItem>
+                      <MenuItem
+                        onClick={handleClose}
+                        className={classes.deleteItem}
+                      >
+                        Delete
+                      </MenuItem>
+                      <Divider className={classes.divider} />
+                      <p className={classes.menuPadding}>
+                        Last saved {lastSaved} minutes ago
+                      </p>
+                    </Menu>
                   </span>
                 )}
               </Breadcrumbs>
