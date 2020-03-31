@@ -113,6 +113,21 @@ const useStyles = makeStyles(theme => ({
   },
   jobsLink: {
     color: theme.palette.type === 'light' ? color.b600 : color.b200
+  },
+  jobsMenu: {
+    width: 24,
+    height: 24,
+    marginLeft: '0.5rem',
+
+    '& .MuiSelect-select': {
+      padding: 4,
+      width: 16,
+      height: 14
+    },
+
+    '&:before, &:after': {
+      display: 'none'
+    }
   }
 }));
 
@@ -179,7 +194,7 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                       setIsJobNameActive(!isJobNameActive);
                     }}
                     onChange={e => dispatch(setJobName(e.target.value))}
-                    value={jobName}
+                    placeholder={jobName}
                   />
                 ) : (
                   <span>
@@ -187,11 +202,12 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                       className={`${classes.jobNameBtn} ${classes.untitledJobName}`}
                       onClick={() => setIsJobNameActive(!isJobNameActive)}
                     >
-                      {jobName}
+                      {jobName === undefined ? 'untitled' : jobName}
                     </span>
                     <Select
                       id="job-select"
                       IconComponent={KeyboardArrowDownIcon}
+                      className={classes.jobsMenu}
                     >
                       <div>
                         <Button
