@@ -219,7 +219,9 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                 ) : (
                   <span>
                     <span
-                      className={`${classes.jobNameBtn} ${classes.untitledJobName}`}
+                      className={`${classes.jobNameBtn} ${
+                        jobName === 'Untitled' ? classes.untitledJobName : ''
+                      }`}
                       onClick={() => setIsJobNameActive(!isJobNameActive)}
                     >
                       {jobName === undefined ? 'untitled' : jobName}
