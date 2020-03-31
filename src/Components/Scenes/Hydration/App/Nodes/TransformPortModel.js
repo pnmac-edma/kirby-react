@@ -6,6 +6,11 @@ export default class TransformPortModel extends PortModel {
   }
 
   createLinkModel() {
+    // limits to one outbound connection per node
+    const linkList = Object.values(this.links);
+    if (linkList.length > 0) {
+      linkList[0].remove();
+    }
     return new DefaultLinkModel('transform');
   }
 }

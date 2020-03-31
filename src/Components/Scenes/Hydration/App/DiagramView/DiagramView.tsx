@@ -124,6 +124,7 @@ const DiagramView = (props: DiagramViewProps) => {
           className={`Diagram__canvas`}
           diagramEngine={app.getDiagramEngine()}
           allowLooseLinks={false}
+          maxNumberPointsPerLink={0}
         />
         <ArrowHead />
       </div>
