@@ -7,10 +7,11 @@ import {
   AppBar,
   Box,
   Breadcrumbs,
-  Button,
   Divider,
+  IconButton,
   Link,
-  Select,
+  Menu,
+  MenuItem,
   TextField,
   Typography
 } from '@material-ui/core';
@@ -113,6 +114,30 @@ const useStyles = makeStyles(theme => ({
   },
   jobsLink: {
     color: theme.palette.type === 'light' ? color.b600 : color.b200
+  },
+  jobsMenu: {
+    top: '0.3rem',
+    position: 'absolute',
+    marginLeft: '0.5rem',
+
+    '& .MuiSelect-select': {
+      padding: 4,
+      width: 16,
+      height: 14
+    },
+
+    '&:before, &:after': {
+      display: 'none'
+    }
+  },
+  menuPadding: {
+    padding: '0 16px'
+  },
+  deleteItem: {
+    color: theme.palette.type === 'light' ? color.r500 : color.r300
+  },
+  divider: {
+    marginTop: 8
   }
 }));
 
@@ -122,6 +147,16 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
   const curPath = useLocation().pathname;
   const jobName = useSelector(({ chrome }) => chrome.jobName);
   const dispatch = useDispatch();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const LogoComponent =
     curPath === '/' ? (
@@ -179,40 +214,47 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                       setIsJobNameActive(!isJobNameActive);
                     }}
                     onChange={e => dispatch(setJobName(e.target.value))}
-                    value={jobName}
+                    placeholder={jobName}
                   />
                 ) : (
                   <span>
                     <span
-                      className={`${classes.jobNameBtn} ${classes.untitledJobName}`}
+                      className={`${classes.jobNameBtn} ${
+                        jobName === 'Untitled' ? classes.untitledJobName : ''
+                      }`}
                       onClick={() => setIsJobNameActive(!isJobNameActive)}
                     >
-                      {jobName}
+                      {jobName === undefined ? 'untitled' : jobName}
                     </span>
-                    <Select
+                    <IconButton
                       id="job-select"
-                      IconComponent={KeyboardArrowDownIcon}
+                      className={classes.jobsMenu}
+                      aria-controls="jobs-menu"
+                      aria-haspopup="true"
+                      onClick={handleClick}
                     >
-                      <div>
-                        <Button
-                          onClick={() => console.log('I open upload modal')}
-                        >
-                          Upload Script
-                        </Button>
-                      </div>
-                      <div>
-                        <Button onClick={() => console.log('I duplicate')}>
-                          Duplicate
-                        </Button>
-                      </div>
-                      <div>
-                        <Button onClick={() => console.log('I delete')}>
-                          Delete
-                        </Button>
-                      </div>
-                      <Divider />
-                      <p>Last saved {lastSaved} minutes ago</p>
-                    </Select>
+                      <KeyboardArrowDownIcon />
+                    </IconButton>
+                    <Menu
+                      id="jobs-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <MenuItem onClick={handleClose}>Upload Script</MenuItem>
+                      <MenuItem onClick={handleClose}>Duplicate</MenuItem>
+                      <MenuItem
+                        onClick={handleClose}
+                        className={classes.deleteItem}
+                      >
+                        Delete
+                      </MenuItem>
+                      <Divider className={classes.divider} />
+                      <p className={classes.menuPadding}>
+                        Last saved {lastSaved} minutes ago
+                      </p>
+                    </Menu>
                   </span>
                 )}
               </Breadcrumbs>
