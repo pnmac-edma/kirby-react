@@ -121,19 +121,17 @@
   }
 }
 
-.Toolbar__list-item-disabled {
-  padding: 8px 16px;
-  margin-bottom: 2px;
+.Toolbar__list-item--disabled {
   cursor: default;
-  text-align: left;
   color: $color-g-300;
 
   &:hover {
     background: transparent;
+    color: $color-g-300;
   }
 }
 
-.dark .Toolbar__list-item-disabled {
+.dark .Toolbar__list-item--disabled {
   color: $color-g-600;
 }
 
