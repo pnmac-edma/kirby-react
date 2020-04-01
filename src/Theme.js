@@ -1,8 +1,4 @@
-import color from '@edma/design-tokens/js/color';
-import fontSize from '@edma/design-tokens/js/fontSize';
-import font from '@edma/design-tokens/js/font';
-import weight from '@edma/design-tokens/js/weight';
-import spacing from '@edma/design-tokens/js/spacing';
+import { color, font, fontSize, spacing, weight } from '@edma/design-tokens';
 
 const Kirby = {
   typography: {
@@ -17,8 +13,8 @@ const Kirby = {
       fontFamily: font.heading,
       fontSize: fontSize['h1'],
       fontWeight: weight['bold'],
-      '&:after': {
-        content: '',
+      '&::after': {
+        content: '""',
         background: color.y400,
         position: 'relative',
         display: 'block',
@@ -39,8 +35,8 @@ const Kirby = {
         display: 'block',
         marginBottom: 8
       },
-      '&:after': {
-        content: '',
+      '&::after': {
+        content: '""',
         background: color.y400,
         position: 'relative',
         display: 'block',

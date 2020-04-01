@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { history } from '../../../../BrowserRouter';
 import { useDispatch, useSelector } from 'react-redux';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,6 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     height: '56px',
+    cursor: 'pointer',
 
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
@@ -44,6 +46,7 @@ const useStyles = makeStyles(theme => ({
   mark: {
     height: theme.spacing(7),
     flexShrink: 0,
+    cursor: 'pointer',
 
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
@@ -117,7 +120,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   jobsLink: {
-    color: theme.palette.type === 'light' ? color.b600 : color.b200
+    color: theme.palette.type === 'light' ? color.b600 : color.b200,
+    cursor: 'pointer'
   },
   jobsMenu: {
     top: '0.3rem',
@@ -164,13 +168,25 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
     setAnchorEl(null);
   };
 
+  const handleRename = () => {
+    handleClose();
+    setIsJobNameActive(!isJobNameActive);
+  };
+
+  const handleOpen = () => {
+    handleClose();
+    history.push('/hydration/view-jobs');
+  };
+
+  const handleLogo = () => {
+    history.push('/');
+  };
+
   const LogoComponent =
     curPath === '/' ? (
       <KirbyLogo className={classes.logo} />
     ) : (
-      <Link href="/">
-        <KirbyLogo className={classes.logo} />
-      </Link>
+      <KirbyLogo className={classes.logo} onClick={handleLogo} />
     );
   const lastSaved = 14;
 
@@ -189,9 +205,7 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
       <div className={classes.logoContainer}>
         {hydration ? (
           <>
-            <Link href="/">
-              <KirbyMark className={classes.mark} />
-            </Link>
+            <KirbyMark className={classes.mark} onClick={handleLogo} />
             <Box className={classes.header}>
               <Breadcrumbs
                 aria-label="breadcrumb"
@@ -199,7 +213,7 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                 className={classes.breadcrumbs}
               >
                 <Link
-                  href="/hydration/view-jobs"
+                  onClick={handleOpen}
                   variant="body1"
                   className={classes.jobsLink}
                 >
@@ -249,7 +263,8 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                       onClose={handleClose}
                     >
                       <MenuItem onClick={handleClose}>New</MenuItem>
-                      <MenuItem onClick={handleClose}>Open</MenuItem>
+                      <MenuItem onClick={handleOpen}>Open</MenuItem>
+                      <MenuItem onClick={handleRename}>Rename</MenuItem>
                       <MenuItem onClick={handleClose}>Duplicate</MenuItem>
                       <MenuItem onClick={handleClose}>Upload Script</MenuItem>
                       <MenuItem
