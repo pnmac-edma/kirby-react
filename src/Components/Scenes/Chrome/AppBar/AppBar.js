@@ -250,8 +250,8 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                     >
                       <MenuItem onClick={handleClose}>New</MenuItem>
                       <MenuItem onClick={handleClose}>Open</MenuItem>
-                      <MenuItem onClick={handleClose}>Upload Script</MenuItem>
                       <MenuItem onClick={handleClose}>Duplicate</MenuItem>
+                      <MenuItem onClick={handleClose}>Upload Script</MenuItem>
                       <MenuItem
                         onClick={handleClose}
                         className={classes.deleteItem}
