@@ -71,7 +71,9 @@ const ToolbarItemWidget = ({
               );
             }
       }
-      className={disabled ? 'Toolbar__nodetype-disabled' : 'Toolbar__nodetype'}
+      className={
+        disabled ? 'Toolbar__list-item-disabled' : 'Toolbar__list-item'
+      }
       onClick={disabled ? undefined : onClick}
     >
       <img

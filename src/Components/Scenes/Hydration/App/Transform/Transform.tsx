@@ -14,13 +14,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative'
   },
-  formSection: {
-    position: 'relative',
-    padding: '8px 16px 16px',
-    borderBottom: `1px solid ${
-      theme.palette.type === 'light' ? color.g100 : color.g700
-    }`
-  },
   typography: {
     marginBottom: '1rem'
   },
@@ -48,9 +41,9 @@ const Transform = (props: TransformProps) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.formSection}>
+    <div className="Toolbar__container Toolbar__section">
       <h4 className={classes.typography}>{transforms[id].name}</h4>
-      <div className={`Tile__delete`}>
+      <div className={`Toolbar__delete-tile`}>
         <Tooltip
           onClick={() => removeNodeFromDiagram(selectedNode, 'transforms')}
           title="Remove Tile"

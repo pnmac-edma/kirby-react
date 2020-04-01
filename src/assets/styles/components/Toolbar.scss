@@ -10,15 +10,24 @@
   height: 100vh;
   border-left: 1px solid;
   z-index: 999;
+  background: $color-white;
+  border-left-color: $color-g-100;
+}
+
+.dark .Toolbar {
+  background: $color-black;
+  border-left-color: $color-g-700;
 }
 
 .Toolbar__top {
   padding: 8px;
   border-bottom: 1px solid;
+  border-bottom-color: $color-g-100;
 }
 
 .Toolbar__tabs {
   border-bottom: 1px solid;
+  border-bottom-color: $color-g-100;
 
   // MUI Overrides
   .MuiTab-root {
@@ -39,6 +48,20 @@
     background: transparent;
     height: 0;
   }
+}
+
+.dark .Toolbar__top,
+.dark .Toolbar__tabs {
+  border-bottom-color: $color-g-700;
+}
+
+.Toolbar__container {
+  position: relative;
+  text-align: left;
+}
+
+.Toolbar__section {
+  padding: 8px 16px 16px;
 }
 
 .Toolbar__sources-tab.MuiTab-textColorPrimary.Mui-selected,
@@ -85,7 +108,7 @@
   }
 }
 
-.Toolbar__nodetype {
+.Toolbar__list-item {
   padding: 8px 16px;
   margin-bottom: 2px;
   cursor: pointer;
@@ -98,7 +121,7 @@
   }
 }
 
-.Toolbar__nodetype-disabled {
+.Toolbar__list-item-disabled {
   padding: 8px 16px;
   margin-bottom: 2px;
   cursor: default;
@@ -110,11 +133,11 @@
   }
 }
 
-.dark .Toolbar__nodetype-disabled {
+.dark .Toolbar__list-item-disabled {
   color: $color-g-600;
 }
 
-.dark .Toolbar__nodetype {
+.dark .Toolbar__list-item {
   color: $color-g-400;
 
   &:hover {
@@ -164,6 +187,7 @@
 
 .Toolbar__form-title {
   display: inline-block;
+  margin-bottom: 0;
 }
 
 .Toolbar__bolt-icon {
@@ -213,5 +237,31 @@
       background: $color-g-800 !important;
       color: $color-white !important;
     }
+  }
+}
+
+// Delete button
+.Toolbar__delete-tile {
+  position: absolute;
+  display: inline;
+  top: 0.7rem;
+  right: 0.5rem;
+
+  & button span svg path {
+    fill: $color-black;
+  }
+
+  &:hover > button span svg path {
+    fill: $color-r-600;
+  }
+}
+
+.dark .Toolbar__delete-tile {
+  & button span svg path {
+    fill: $color-white;
+  }
+
+  &:hover > button span svg path {
+    fill: $color-r-500;
   }
 }
