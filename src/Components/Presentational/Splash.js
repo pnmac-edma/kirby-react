@@ -16,7 +16,12 @@ const useStyles = makeStyles(theme => ({
   },
   heading: {
     color: theme.palette.type === 'light' ? color.g700 : color.g200,
-    marginTop: 24
+    marginTop: 24,
+    display: 'inline-block',
+
+    '&:after': {
+      display: 'none'
+    }
   },
   paragraph: {
     margin: '16px auto',

@@ -251,6 +251,10 @@
   }
 }
 
+.Connection__transform-bg:focus {
+  stroke: rgba($color-p-200, 0.3);
+}
+
 .srd-default-link--path-selected {
   animation: none;
   stroke-dasharray: 0, 0;

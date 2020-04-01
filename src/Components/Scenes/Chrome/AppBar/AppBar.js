@@ -99,7 +99,7 @@ const useStyles = makeStyles(theme => ({
     height: '20px',
 
     '&:hover': {
-      background: theme.palette.type === 'light' ? color.y100 : color.y300
+      background: theme.palette.type === 'light' ? color.g100 : color.g700
     },
 
     '& ~ svg ': {
@@ -110,7 +110,11 @@ const useStyles = makeStyles(theme => ({
   },
   untitledJobName: {
     background: theme.palette.type === 'light' ? color.y100 : color.y300,
-    color: color.black
+    color: color.black,
+
+    '&:hover': {
+      background: theme.palette.type === 'light' ? color.y100 : color.y300
+    }
   },
   jobsLink: {
     color: theme.palette.type === 'light' ? color.b600 : color.b200
@@ -131,7 +135,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   menuPadding: {
-    padding: '0 16px'
+    padding: '0 16px',
+    marginBottom: 8,
+    color: theme.palette.type === 'light' ? color.g400 : color.g500
   },
   deleteItem: {
     color: theme.palette.type === 'light' ? color.r500 : color.r300
@@ -242,8 +248,10 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                       open={Boolean(anchorEl)}
                       onClose={handleClose}
                     >
-                      <MenuItem onClick={handleClose}>Upload Script</MenuItem>
+                      <MenuItem onClick={handleClose}>New</MenuItem>
+                      <MenuItem onClick={handleClose}>Open</MenuItem>
                       <MenuItem onClick={handleClose}>Duplicate</MenuItem>
+                      <MenuItem onClick={handleClose}>Upload Script</MenuItem>
                       <MenuItem
                         onClick={handleClose}
                         className={classes.deleteItem}

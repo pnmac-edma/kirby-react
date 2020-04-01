@@ -29,6 +29,11 @@ p {
   font-family: $font-body;
 }
 
+.MuiTypography-h1:not(.MuiPickersToolbarText-toolbarTxt):after,
+.MuiTypography-h2:not(.MuiPickersToolbarText-toolbarTxt):after {
+  content: '';
+}
+
 .switch-wrapper {
   position: relative;
   width: 100%;
