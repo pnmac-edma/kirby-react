@@ -64,7 +64,7 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
     <div className={classes.flexStructure}>
       <div className={classes.sidebar}>
         <div className={classes.sideBarPostion}>
-          <Typography variant="h3" className={classes.heading}>
+          <Typography variant="h2" className={classes.heading}>
             Request Assets
           </Typography>
           <RequestedByContainer />
