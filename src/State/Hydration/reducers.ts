@@ -4,6 +4,7 @@ export const initialState = {
   isDestinationModalOpen: false,
   isEditorOpen: false,
   selectedNode: null,
+  scriptTitle: null,
   metaData: {
     sourceTiles: {}
   }
@@ -55,6 +56,8 @@ const hydrationReducer = (state = initialState, action: any) => {
       };
     case types.SOURCE_TILES_REQUESTS_FAILURE:
       return { ...state };
+    case types.HANDLE_TITLE_NAME:
+      return { ...state, scriptTitle: action.scriptTitle };
     default:
       return state;
   }

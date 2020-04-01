@@ -73,3 +73,12 @@ interface SourceTilesRequestFailureAction {
   type: typeof types.SOURCE_TILES_REQUESTS_FAILURE;
   message: any;
 }
+
+export const handleTitleName = (value: string): HandleTitleNameAction => ({
+  type: types.HANDLE_TITLE_NAME,
+  scriptTitle: value
+});
+interface HandleTitleNameAction {
+  type: typeof types.HANDLE_TITLE_NAME;
+  scriptTitle: string;
+}

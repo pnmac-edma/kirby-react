@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useFormikContext, Field } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormikContext } from 'formik';
 import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
 import {
   IconButton,
@@ -12,7 +12,10 @@ import {
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { color } from '@edma/design-tokens';
-import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
+import {
+  setIsEditorOpen,
+  handleTitleName
+} from '../../../../../State/Hydration/actions';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
 import { keyboardShortcuts } from '../../../../../State/Hydration/helpers';
 
@@ -86,6 +89,7 @@ const TransformEditor = (props: TransformProps) => {
   const classes = useStyles();
   const theme = useTheme();
   const [isScriptNameActive, setIsScriptNameActive] = useState(false);
+  const { scriptTitle } = useSelector((state: any) => state);
 
   const setChange = (value: string | undefined) => {
     const newTransformsValue = {
@@ -105,12 +109,18 @@ const TransformEditor = (props: TransformProps) => {
       <div className="Editor__heading" />
       <div className={classes.name}>
         {isScriptNameActive ? (
-          <Field
+          <TextField
             autoFocus
-            onBlur={() => setIsScriptNameActive(!isScriptNameActive)}
+            onBlur={() => {
+              setChange(scriptTitle);
+              return setIsScriptNameActive(!isScriptNameActive);
+            }}
+            onChange={e => {
+              dispatch(handleTitleName(e.target.value));
+            }}
             name={`transforms.${id}.name`}
             className={classes.scriptName}
-            as={TextField}
+            // as={TextField}
           />
         ) : (
           <Typography
