@@ -29,8 +29,8 @@ p {
   font-family: $font-body;
 }
 
-.MuiTypography-h1:after,
-.MuiTypography-h2:after {
+.MuiTypography-h1:not(.MuiPickersToolbarText-toolbarTxt):after,
+.MuiTypography-h2:not(.MuiPickersToolbarText-toolbarTxt):after {
   content: '';
 }
 
