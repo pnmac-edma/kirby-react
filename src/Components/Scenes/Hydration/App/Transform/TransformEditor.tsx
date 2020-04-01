@@ -89,14 +89,14 @@ const TransformEditor = (props: TransformProps) => {
   const classes = useStyles();
   const theme = useTheme();
   const [isScriptNameActive, setIsScriptNameActive] = useState(false);
-  const { scriptTitle } = useSelector((state: any) => state);
+  const { scriptTitle } = useSelector((state: any) => state.hydration);
 
-  const setChange = (value: string | undefined) => {
+  const setChange = (value: string | undefined, name: string) => {
     const newTransformsValue = {
       ...transforms,
       [id]: {
         ...transforms[id],
-        sqlScript: value
+        [name]: value
       }
     };
     setFieldValue('transforms', newTransformsValue);
@@ -112,7 +112,7 @@ const TransformEditor = (props: TransformProps) => {
           <TextField
             autoFocus
             onBlur={() => {
-              setChange(scriptTitle);
+              setChange(scriptTitle, 'name');
               return setIsScriptNameActive(!isScriptNameActive);
             }}
             onChange={e => {
@@ -120,7 +120,6 @@ const TransformEditor = (props: TransformProps) => {
             }}
             name={`transforms.${id}.name`}
             className={classes.scriptName}
-            // as={TextField}
           />
         ) : (
           <Typography
@@ -150,7 +149,9 @@ const TransformEditor = (props: TransformProps) => {
         language="sql"
         theme={theme.palette.type === 'light' ? 'vs-light' : 'vs-dark'}
         value={transforms[id].sqlScript}
-        onChange={(_, value: string | undefined) => setChange(value)}
+        onChange={(_, value: string | undefined) =>
+          setChange(value, 'sqlScript')
+        }
       />
     </div>
   );
