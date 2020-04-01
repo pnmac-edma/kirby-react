@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { Button, IconButton, makeStyles, Tooltip } from '@material-ui/core';
-import { color } from '@edma/design-tokens';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import { setIsEditorOpen } from '../../../../../State/Hydration/actions';
 import {
