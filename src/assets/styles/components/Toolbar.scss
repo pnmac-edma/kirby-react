@@ -55,6 +55,84 @@
   border-bottom-color: $color-g-700;
 }
 
+// Toolbar list styles
+.Toolbar__list-item {
+  padding: 8px 16px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  text-align: left;
+  color: $color-g-700;
+
+  &:hover {
+    background: $color-g-100;
+    color: $color-black;
+  }
+}
+
+.Toolbar__list-item--disabled {
+  cursor: default;
+  color: $color-g-300;
+
+  &:hover {
+    background: transparent;
+    color: $color-g-300;
+  }
+}
+
+.dark .Toolbar__list-item--disabled {
+  color: $color-g-600;
+}
+
+.dark .Toolbar__list-item {
+  color: $color-g-400;
+
+  &:hover {
+    background: $color-g-800;
+    color: $color-white;
+  }
+}
+
+.Toolbar__item-icon {
+  width: 21px;
+  margin-right: 4px;
+}
+
+.Toolbar__item-icon-disabled {
+  width: 21px;
+  margin-right: 4px;
+  color: $color-g-100;
+}
+
+.Toolbar__list {
+  border-bottom: 1px solid $color-g-100;
+  padding: 1rem 0;
+  margin: 0;
+  overflow-y: scroll;
+  height: calc(100% - 200px);
+
+  &.Toolbar__list--sources {
+    height: auto;
+  }
+}
+
+.dark .Toolbar__list {
+  border-color: $color-g-700;
+}
+
+.Toolbar__filters {
+  border-bottom: 1px solid $color-g-100;
+}
+
+.dark .Toolbar__filters {
+  border-color: $color-g-700;
+}
+
+.Toolbar__form-title {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+// Toolbar tile styles
 .Toolbar__container {
   position: relative;
   text-align: left;
@@ -108,84 +186,8 @@
   }
 }
 
-.Toolbar__list-item {
-  padding: 8px 16px;
-  margin-bottom: 2px;
-  cursor: pointer;
-  text-align: left;
-  color: $color-g-700;
-
-  &:hover {
-    background: $color-g-100;
-    color: $color-black;
-  }
-}
-
-.Toolbar__list-item--disabled {
-  cursor: default;
-  color: $color-g-300;
-
-  &:hover {
-    background: transparent;
-    color: $color-g-300;
-  }
-}
-
-.dark .Toolbar__list-item--disabled {
-  color: $color-g-600;
-}
-
-.dark .Toolbar__list-item {
-  color: $color-g-400;
-
-  &:hover {
-    background: $color-g-800;
-    color: $color-white;
-  }
-}
-
 .Toolbar__connection-type {
   margin-bottom: 1rem !important;
-}
-
-.Toolbar__item-icon {
-  width: 21px;
-  margin-right: 4px;
-}
-
-.Toolbar__item-icon-disabled {
-  width: 21px;
-  margin-right: 4px;
-  color: $color-g-100;
-}
-
-.Toolbar__list {
-  border-bottom: 1px solid $color-g-100;
-  padding: 1rem 0;
-  margin: 0;
-  overflow-y: scroll;
-  height: calc(100% - 200px);
-
-  &.Toolbar__list--sources {
-    height: auto;
-  }
-}
-
-.dark .Toolbar__list {
-  border-color: $color-g-700;
-}
-
-.Toolbar__filters {
-  border-bottom: 1px solid $color-g-100;
-}
-
-.dark .Toolbar__filters {
-  border-color: $color-g-700;
-}
-
-.Toolbar__form-title {
-  display: inline-block;
-  margin-bottom: 0;
 }
 
 .Toolbar__bolt-icon {
