@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { history } from '../../../../BrowserRouter';
 import { useDispatch, useSelector } from 'react-redux';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
@@ -117,7 +118,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   jobsLink: {
-    color: theme.palette.type === 'light' ? color.b600 : color.b200
+    color: theme.palette.type === 'light' ? color.b600 : color.b200,
+    cursor: 'pointer'
   },
   jobsMenu: {
     top: '0.3rem',
@@ -164,6 +166,16 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
     setAnchorEl(null);
   };
 
+  const handleRename = () => {
+    handleClose();
+    setIsJobNameActive(!isJobNameActive);
+  };
+
+  const handleOpen = () => {
+    handleClose();
+    history.push('/hydration/view-jobs');
+  };
+
   const LogoComponent =
     curPath === '/' ? (
       <KirbyLogo className={classes.logo} />
@@ -199,7 +211,7 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                 className={classes.breadcrumbs}
               >
                 <Link
-                  href="/hydration/view-jobs"
+                  onClick={handleOpen}
                   variant="body1"
                   className={classes.jobsLink}
                 >
@@ -249,7 +261,8 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                       onClose={handleClose}
                     >
                       <MenuItem onClick={handleClose}>New</MenuItem>
-                      <MenuItem onClick={handleClose}>Open</MenuItem>
+                      <MenuItem onClick={handleOpen}>Open</MenuItem>
+                      <MenuItem onClick={handleRename}>Rename</MenuItem>
                       <MenuItem onClick={handleClose}>Duplicate</MenuItem>
                       <MenuItem onClick={handleClose}>Upload Script</MenuItem>
                       <MenuItem
