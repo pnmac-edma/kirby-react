@@ -79,16 +79,21 @@
   }
 }
 
-.dark .Toolbar__list-item--disabled {
-  color: $color-g-600;
-}
-
 .dark .Toolbar__list-item {
   color: $color-g-400;
 
   &:hover {
     background: $color-g-800;
     color: $color-white;
+  }
+}
+
+.dark .Toolbar__list-item--disabled {
+  color: $color-g-600;
+
+  &:hover {
+    background: transparent;
+    color: $color-g-600;
   }
 }
 
