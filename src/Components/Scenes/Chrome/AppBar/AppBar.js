@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     height: '56px',
+    cursor: 'pointer',
 
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
@@ -45,6 +46,7 @@ const useStyles = makeStyles(theme => ({
   mark: {
     height: theme.spacing(7),
     flexShrink: 0,
+    cursor: 'pointer',
 
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
@@ -176,13 +178,15 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
     history.push('/hydration/view-jobs');
   };
 
+  const handleLogo = () => {
+    history.push('/');
+  };
+
   const LogoComponent =
     curPath === '/' ? (
       <KirbyLogo className={classes.logo} />
     ) : (
-      <Link href="/">
-        <KirbyLogo className={classes.logo} />
-      </Link>
+      <KirbyLogo className={classes.logo} onClick={handleLogo} />
     );
   const lastSaved = 14;
 
@@ -201,9 +205,7 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
       <div className={classes.logoContainer}>
         {hydration ? (
           <>
-            <Link href="/">
-              <KirbyMark className={classes.mark} />
-            </Link>
+            <KirbyMark className={classes.mark} onClick={handleLogo} />
             <Box className={classes.header}>
               <Breadcrumbs
                 aria-label="breadcrumb"
