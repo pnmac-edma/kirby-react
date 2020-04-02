@@ -13,6 +13,7 @@ export const getFilterQueries = state => state.searchResult.filterQueries;
 export const getRequestedFor = state =>
   state.requestAssets.selectedEmployees.map(employee => employee.email);
 export const getJustification = state => state.requestAssets.justification;
+export const getCreatedByEmail = state => state.currentUser.EmpEmail;
 export const getRequestAssets = state =>
   state.requestAssets.selectedSearchResultCopy.reduce((assets, asset) => {
     assets.push({ [asset.requesttype]: asset.name });
