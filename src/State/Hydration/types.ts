@@ -9,6 +9,10 @@ export const SET_IS_DESTINATION_MODAL_OPEN = 'SET_IS_DESTINATION_MODAL_OPEN';
 export const SOURCE_TILES_REQUESTS_FETCH = 'SOURCE_TILES_REQUESTS_FETCH';
 export const SOURCE_TILES_REQUESTS_SUCCESS = 'SOURCE_TILES_REQUESTS_SUCCESS';
 export const SOURCE_TILES_REQUESTS_FAILURE = 'SOURCE_TILES_REQUESTS_FAILURE';
+// DESTINATION FETCH
+export const DESTINATIONS_REQUEST_FETCH = 'DESTINATIONS_REQUEST_FETCH';
+export const DESTINATIONS_REQUEST_SUCCESS = 'DESTINATIONS_REQUEST_SUCCESS';
+export const DESTINATIONS_REQUEST_FAILURE = 'DESTINATIONS_REQUEST_FAILURE';
 
 // types
 export interface KIRBY {
@@ -47,7 +51,13 @@ export interface API {
   isConnected: boolean;
   connectionType: string;
 }
-
+/* 
+=============================
+  API RESPONSE
+  SourceTiles and SourceTile are API response structure
+  TODO Need to organize Sources & SourceTiles and SourceTile
+==============================
+*/
 export interface SourceTiles {
   [id: number]: SourceTile;
 }
@@ -57,6 +67,17 @@ export interface SourceTile {
   createddate: string;
   createdbyemail: string;
   sourcetypedesc: string;
+}
+
+export interface Destinations {
+  [id: number]: Destination;
+}
+
+export interface Destination {
+  Id: number;
+  createddate: string;
+  createdbyemail: string;
+  sensitivity: string;
 }
 
 export interface Sources {

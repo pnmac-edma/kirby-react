@@ -73,3 +73,32 @@ interface SourceTilesRequestFailureAction {
   type: typeof types.SOURCE_TILES_REQUESTS_FAILURE;
   message: any;
 }
+
+export const destinationRequestFetch = (): DestinationRequestFetchAction => ({
+  type: types.DESTINATIONS_REQUEST_FETCH
+});
+interface DestinationRequestFetchAction {
+  type: typeof types.DESTINATIONS_REQUEST_FETCH;
+}
+
+export const destinationRequestSuccess = (
+  destinations: types.Destinations
+) => ({
+  type: types.DESTINATIONS_REQUEST_SUCCESS,
+  destinations
+});
+interface DestinationRequestSuccessAction {
+  type: typeof types.DESTINATIONS_REQUEST_SUCCESS;
+  destinations: types.Destinations;
+}
+
+export const destinationRequestFailure = (
+  message: any
+): DestinationRequestFailurehAction => ({
+  type: types.DESTINATIONS_REQUEST_FAILURE,
+  message
+});
+interface DestinationRequestFailurehAction {
+  type: typeof types.DESTINATIONS_REQUEST_FAILURE;
+  message: any;
+}
