@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { history } from '../../../../BrowserRouter';
 import { useDispatch, useSelector } from 'react-redux';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,10 +8,11 @@ import {
   AppBar,
   Box,
   Breadcrumbs,
-  Button,
   Divider,
+  IconButton,
   Link,
-  Select,
+  Menu,
+  MenuItem,
   TextField,
   Typography
 } from '@material-ui/core';
@@ -35,6 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     height: '56px',
+    cursor: 'pointer',
 
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
@@ -43,6 +46,7 @@ const useStyles = makeStyles(theme => ({
   mark: {
     height: theme.spacing(7),
     flexShrink: 0,
+    cursor: 'pointer',
 
     '& path': {
       fill: theme.palette.type === 'light' ? color.black : color.white
@@ -98,7 +102,7 @@ const useStyles = makeStyles(theme => ({
     height: '20px',
 
     '&:hover': {
-      background: theme.palette.type === 'light' ? color.y100 : color.y300
+      background: theme.palette.type === 'light' ? color.g100 : color.g700
     },
 
     '& ~ svg ': {
@@ -109,10 +113,41 @@ const useStyles = makeStyles(theme => ({
   },
   untitledJobName: {
     background: theme.palette.type === 'light' ? color.y100 : color.y300,
-    color: color.black
+    color: color.black,
+
+    '&:hover': {
+      background: theme.palette.type === 'light' ? color.y100 : color.y300
+    }
   },
   jobsLink: {
-    color: theme.palette.type === 'light' ? color.b600 : color.b200
+    color: theme.palette.type === 'light' ? color.b600 : color.b200,
+    cursor: 'pointer'
+  },
+  jobsMenu: {
+    top: '0.3rem',
+    position: 'absolute',
+    marginLeft: '0.5rem',
+
+    '& .MuiSelect-select': {
+      padding: 4,
+      width: 16,
+      height: 14
+    },
+
+    '&:before, &:after': {
+      display: 'none'
+    }
+  },
+  menuPadding: {
+    padding: '0 16px',
+    marginBottom: 8,
+    color: theme.palette.type === 'light' ? color.g400 : color.g500
+  },
+  deleteItem: {
+    color: theme.palette.type === 'light' ? color.r500 : color.r300
+  },
+  divider: {
+    marginTop: 8
   }
 }));
 
@@ -123,13 +158,35 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
   const jobName = useSelector(({ chrome }) => chrome.jobName);
   const dispatch = useDispatch();
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleRename = () => {
+    handleClose();
+    setIsJobNameActive(!isJobNameActive);
+  };
+
+  const handleOpen = () => {
+    handleClose();
+    history.push('/hydration/view-jobs');
+  };
+
+  const handleLogo = () => {
+    history.push('/');
+  };
+
   const LogoComponent =
     curPath === '/' ? (
       <KirbyLogo className={classes.logo} />
     ) : (
-      <Link href="/">
-        <KirbyLogo className={classes.logo} />
-      </Link>
+      <KirbyLogo className={classes.logo} onClick={handleLogo} />
     );
   const lastSaved = 14;
 
@@ -148,9 +205,7 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
       <div className={classes.logoContainer}>
         {hydration ? (
           <>
-            <Link href="/">
-              <KirbyMark className={classes.mark} />
-            </Link>
+            <KirbyMark className={classes.mark} onClick={handleLogo} />
             <Box className={classes.header}>
               <Breadcrumbs
                 aria-label="breadcrumb"
@@ -158,7 +213,7 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                 className={classes.breadcrumbs}
               >
                 <Link
-                  href="/hydration/view-jobs"
+                  onClick={handleOpen}
                   variant="body1"
                   className={classes.jobsLink}
                 >
@@ -179,40 +234,50 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                       setIsJobNameActive(!isJobNameActive);
                     }}
                     onChange={e => dispatch(setJobName(e.target.value))}
-                    value={jobName}
+                    placeholder={jobName}
                   />
                 ) : (
                   <span>
                     <span
-                      className={`${classes.jobNameBtn} ${classes.untitledJobName}`}
+                      className={`${classes.jobNameBtn} ${
+                        jobName === 'Untitled' ? classes.untitledJobName : ''
+                      }`}
                       onClick={() => setIsJobNameActive(!isJobNameActive)}
                     >
-                      {jobName}
+                      {jobName === undefined ? 'untitled' : jobName}
                     </span>
-                    <Select
+                    <IconButton
                       id="job-select"
-                      IconComponent={KeyboardArrowDownIcon}
+                      className={classes.jobsMenu}
+                      aria-controls="jobs-menu"
+                      aria-haspopup="true"
+                      onClick={handleClick}
                     >
-                      <div>
-                        <Button
-                          onClick={() => console.log('I open upload modal')}
-                        >
-                          Upload Script
-                        </Button>
-                      </div>
-                      <div>
-                        <Button onClick={() => console.log('I duplicate')}>
-                          Duplicate
-                        </Button>
-                      </div>
-                      <div>
-                        <Button onClick={() => console.log('I delete')}>
-                          Delete
-                        </Button>
-                      </div>
-                      <Divider />
-                      <p>Last saved {lastSaved} minutes ago</p>
-                    </Select>
+                      <KeyboardArrowDownIcon />
+                    </IconButton>
+                    <Menu
+                      id="jobs-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <MenuItem onClick={handleClose}>New</MenuItem>
+                      <MenuItem onClick={handleOpen}>Open</MenuItem>
+                      <MenuItem onClick={handleRename}>Rename</MenuItem>
+                      <MenuItem onClick={handleClose}>Duplicate</MenuItem>
+                      <MenuItem onClick={handleClose}>Upload Script</MenuItem>
+                      <MenuItem
+                        onClick={handleClose}
+                        className={classes.deleteItem}
+                      >
+                        Delete
+                      </MenuItem>
+                      <Divider className={classes.divider} />
+                      <p className={classes.menuPadding}>
+                        Last saved {lastSaved} minutes ago
+                      </p>
+                    </Menu>
                   </span>
                 )}
               </Breadcrumbs>

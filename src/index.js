@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import './assets/styles/index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom';
+import BrowserRouter from './BrowserRouter';
+import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
 import store from './setupStore';
 
+export const history = createHistory();
+
 const app = (
   <Provider store={store}>
-    <Router>
+    <BrowserRouter history={history}>
       <App />
-    </Router>
+    </BrowserRouter>
   </Provider>
 );
 

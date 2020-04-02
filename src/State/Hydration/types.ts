@@ -169,6 +169,7 @@ export interface NodeModel {
   ports: any;
   name: string;
   size: number;
+  remove: Function;
 }
 
 export interface OptionalParamsNode {
