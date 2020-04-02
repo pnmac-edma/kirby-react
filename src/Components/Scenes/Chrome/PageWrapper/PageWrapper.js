@@ -63,7 +63,7 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
         <Route path="/hydration/new-destination" component={NewDestination} />
         <Route
           path="/hydration/new-job"
-          component={() => <NewJob hydrationFormikRef={hydrationFormikRef} />}
+          render={() => <NewJob hydrationFormikRef={hydrationFormikRef} />}
         />
         <Route path="/hydration/view-jobs" component={ViewJobs} />
         {/* requests pages */}
