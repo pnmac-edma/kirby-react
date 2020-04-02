@@ -23,7 +23,6 @@ export const getDestinations = () => {
     'GET',
     {
       params: { dropdown: 'sensitivity' }
-      // params: { dropdown: 'databases', sensitivity: 'non-sensitive' }
     }
   );
 

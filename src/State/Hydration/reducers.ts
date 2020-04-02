@@ -5,7 +5,7 @@ export const initialState = {
   isEditorOpen: false,
   selectedNode: null,
   metadata: {
-    sourceTiles: {},
+    sources: {},
     destinations: {}
   }
 };
@@ -52,7 +52,7 @@ const hydrationReducer = (state = initialState, action: any) => {
     case types.SOURCE_TILES_REQUESTS_SUCCESS:
       return {
         ...state,
-        metadata: { ...state.metadata, sourceTiles: action.sourceTiles }
+        metadata: { ...state.metadata, sources: action.sourceTiles }
       };
     case types.SOURCE_TILES_REQUESTS_FAILURE:
       return { ...state };
