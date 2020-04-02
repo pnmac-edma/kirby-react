@@ -16,19 +16,6 @@ code {
   border-radius: $border-radius-1;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: $font-heading;
-}
-
-h6,
-p {
-  font-family: $font-body;
-}
-
 .MuiTypography-h1:not(.MuiPickersToolbarText-toolbarTxt):after,
 .MuiTypography-h2:not(.MuiPickersToolbarText-toolbarTxt):after {
   content: '';
