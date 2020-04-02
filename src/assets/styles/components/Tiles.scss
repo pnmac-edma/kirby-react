@@ -264,32 +264,6 @@
   display: none;
 }
 
-// Delete button
-.Tile__delete {
-  position: absolute;
-  display: inline;
-  top: 0.7rem;
-  right: 0.5rem;
-
-  & button span svg path {
-    fill: $color-black;
-  }
-
-  &:hover > button span svg path {
-    fill: $color-r-600;
-  }
-}
-
-.dark .Tile__delete {
-  & button span svg path {
-    fill: $color-white;
-  }
-
-  &:hover > button span svg path {
-    fill: $color-r-500;
-  }
-}
-
 .Tile__name {
   width: 120px;
   overflow: hidden;

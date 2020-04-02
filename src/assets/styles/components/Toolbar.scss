@@ -10,15 +10,24 @@
   height: 100vh;
   border-left: 1px solid;
   z-index: 999;
+  background: $color-white;
+  border-left-color: $color-g-100;
+}
+
+.dark .Toolbar {
+  background: $color-black;
+  border-left-color: $color-g-700;
 }
 
 .Toolbar__top {
   padding: 8px;
   border-bottom: 1px solid;
+  border-bottom-color: $color-g-100;
 }
 
 .Toolbar__tabs {
   border-bottom: 1px solid;
+  border-bottom-color: $color-g-100;
 
   // MUI Overrides
   .MuiTab-root {
@@ -39,6 +48,103 @@
     background: transparent;
     height: 0;
   }
+}
+
+.dark .Toolbar__top,
+.dark .Toolbar__tabs {
+  border-bottom-color: $color-g-700;
+}
+
+// Toolbar list styles
+.Toolbar__list-item {
+  padding: 8px 16px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  text-align: left;
+  color: $color-g-700;
+
+  &:hover {
+    background: $color-g-100;
+    color: $color-black;
+  }
+}
+
+.Toolbar__list-item--disabled {
+  cursor: default;
+  color: $color-g-300;
+
+  &:hover {
+    background: transparent;
+    color: $color-g-300;
+  }
+}
+
+.dark .Toolbar__list-item {
+  color: $color-g-400;
+
+  &:hover {
+    background: $color-g-800;
+    color: $color-white;
+  }
+}
+
+.dark .Toolbar__list-item--disabled {
+  color: $color-g-600;
+
+  &:hover {
+    background: transparent;
+    color: $color-g-600;
+  }
+}
+
+.Toolbar__item-icon {
+  width: 21px;
+  margin-right: 4px;
+}
+
+.Toolbar__item-icon-disabled {
+  width: 21px;
+  margin-right: 4px;
+  color: $color-g-100;
+}
+
+.Toolbar__list {
+  border-bottom: 1px solid $color-g-100;
+  padding: 1rem 0;
+  margin: 0;
+  overflow-y: scroll;
+  height: calc(100% - 200px);
+
+  &.Toolbar__list--sources {
+    height: auto;
+  }
+}
+
+.dark .Toolbar__list {
+  border-color: $color-g-700;
+}
+
+.Toolbar__filters {
+  border-bottom: 1px solid $color-g-100;
+}
+
+.dark .Toolbar__filters {
+  border-color: $color-g-700;
+}
+
+.Toolbar__form-title {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+// Toolbar tile styles
+.Toolbar__container {
+  position: relative;
+  text-align: left;
+}
+
+.Toolbar__section {
+  padding: 8px 16px 16px;
 }
 
 .Toolbar__sources-tab.MuiTab-textColorPrimary.Mui-selected,
@@ -85,85 +191,8 @@
   }
 }
 
-.Toolbar__nodetype {
-  padding: 8px 16px;
-  margin-bottom: 2px;
-  cursor: pointer;
-  text-align: left;
-  color: $color-g-700;
-
-  &:hover {
-    background: $color-g-100;
-    color: $color-black;
-  }
-}
-
-.Toolbar__nodetype-disabled {
-  padding: 8px 16px;
-  margin-bottom: 2px;
-  cursor: default;
-  text-align: left;
-  color: $color-g-300;
-
-  &:hover {
-    background: transparent;
-  }
-}
-
-.dark .Toolbar__nodetype-disabled {
-  color: $color-g-600;
-}
-
-.dark .Toolbar__nodetype {
-  color: $color-g-400;
-
-  &:hover {
-    background: $color-g-800;
-    color: $color-white;
-  }
-}
-
 .Toolbar__connection-type {
   margin-bottom: 1rem !important;
-}
-
-.Toolbar__item-icon {
-  width: 21px;
-  margin-right: 4px;
-}
-
-.Toolbar__item-icon-disabled {
-  width: 21px;
-  margin-right: 4px;
-  color: $color-g-100;
-}
-
-.Toolbar__list {
-  border-bottom: 1px solid $color-g-100;
-  padding: 1rem 0;
-  margin: 0;
-  overflow-y: scroll;
-  height: calc(100% - 200px);
-
-  &.Toolbar__list--sources {
-    height: auto;
-  }
-}
-
-.dark .Toolbar__list {
-  border-color: $color-g-700;
-}
-
-.Toolbar__filters {
-  border-bottom: 1px solid $color-g-100;
-}
-
-.dark .Toolbar__filters {
-  border-color: $color-g-700;
-}
-
-.Toolbar__form-title {
-  display: inline-block;
 }
 
 .Toolbar__bolt-icon {
@@ -213,5 +242,31 @@
       background: $color-g-800 !important;
       color: $color-white !important;
     }
+  }
+}
+
+// Delete button
+.Toolbar__delete-tile {
+  position: absolute;
+  display: inline;
+  top: 0.7rem;
+  right: 0.5rem;
+
+  & button span svg path {
+    fill: $color-black;
+  }
+
+  &:hover > button span svg path {
+    fill: $color-r-600;
+  }
+}
+
+.dark .Toolbar__delete-tile {
+  & button span svg path {
+    fill: $color-white;
+  }
+
+  &:hover > button span svg path {
+    fill: $color-r-500;
   }
 }
