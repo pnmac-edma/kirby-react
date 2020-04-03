@@ -87,6 +87,16 @@ export interface Destination {
   sensitivity: string;
 }
 
+export interface DestinationDropDowns {
+  [id: number]: DestinationDropDown;
+}
+
+export interface DestinationDropDown {
+  Id: number;
+  databasename: string;
+  sensitivity: string;
+}
+
 export interface Sources {
   [id: string]: KIRBY | RDBMS | SFTP | API;
 }

@@ -111,14 +111,14 @@ interface DestinationDropdownRequestFetchAction {
 }
 
 export const destinationDropdownRequestSuccess = (
-  destinationDropdown: any
+  destinationDropdowns: types.DestinationDropDowns
 ): DestinationDropdownRequestSuccessAction => ({
   type: types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS,
-  destinationDropdown
+  destinationDropdowns
 });
 interface DestinationDropdownRequestSuccessAction {
   type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS;
-  destinationDropdown: [];
+  destinationDropdowns: types.DestinationDropDowns;
 }
 
 export const destinationDropdownRequestFailure = (): DestinationDropdownRequestFailureAction => ({

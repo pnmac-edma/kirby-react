@@ -7,7 +7,7 @@ export const initialState = {
   metadata: {
     sources: {},
     destinations: {},
-    destinationDropdown: {}
+    destinationDropdowns: {}
   }
 };
 
@@ -73,7 +73,7 @@ const hydrationReducer = (state = initialState, action: any) => {
         ...state,
         metadata: {
           ...state.metadata,
-          destinationDropdown: action.destinations
+          destinationDropdowns: action.destinations
         }
       };
     case types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE:
