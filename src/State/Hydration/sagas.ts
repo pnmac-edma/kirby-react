@@ -6,7 +6,7 @@ import {
   getDestinationsDropdown
 } from './api';
 
-export function* handleSourceTiles() {
+export function* workSourceTiles() {
   try {
     const response = yield call(getSourceTiles);
     yield put({
@@ -18,7 +18,7 @@ export function* handleSourceTiles() {
   }
 }
 
-export function* handleDestinations() {
+export function* workDestinations() {
   try {
     const response = yield call(getDestinations);
     yield put({
@@ -30,7 +30,7 @@ export function* handleDestinations() {
   }
 }
 
-export function* handleDestinationsDropDown() {
+export function* workDestinationsDropDown() {
   try {
     const response = yield call(getDestinationsDropdown);
     yield put({
@@ -45,11 +45,11 @@ export function* handleDestinationsDropDown() {
   }
 }
 
-export default function* actionWatcher() {
-  yield takeEvery(types.SOURCE_TILES_REQUESTS_FETCH, handleSourceTiles);
-  yield takeEvery(types.DESTINATIONS_REQUEST_FETCH, handleDestinations);
+export default function* watchHydration() {
+  yield takeEvery(types.SOURCE_TILES_REQUESTS_FETCH, workSourceTiles);
+  yield takeEvery(types.DESTINATIONS_REQUEST_FETCH, workDestinations);
   yield takeEvery(
     types.DESTINATIONS_DROPDOWN_REQUEST_FETCH,
-    handleDestinationsDropDown
+    workDestinationsDropDown
   );
 }

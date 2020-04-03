@@ -44,8 +44,6 @@ export const getDestinationsDropdown = () => {
   );
 
   return axios(request)
-    .then(response => {
-      return response.data;
-    })
+    .then(response => response.data)
     .then(error => error);
 };
