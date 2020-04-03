@@ -83,7 +83,7 @@ interface DestinationRequestFetchAction {
 
 export const destinationRequestSuccess = (
   destinations: types.Destinations
-): DestinationRequestSuccessAction => ({
+) => ({
   type: types.DESTINATIONS_REQUEST_SUCCESS,
   destinations
 });

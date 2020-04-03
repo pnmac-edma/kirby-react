@@ -99,6 +99,7 @@ const JobDesigner = (props: JobDesignerProps) => {
     node: NodeModel,
     subForm: 'sources' | 'transforms' | 'destinations'
   ): void => {
+    node.remove();
     app
       .getDiagramEngine()
       .getDiagramModel()

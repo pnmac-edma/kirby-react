@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Route, useLocation } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,11 +31,16 @@ const pageContainerStyle = makeStyles(theme => ({
 const PageWrapper = ({ isSearchClicked, newJobName }) => {
   const classes = pageContainerStyle();
   const curPath = useLocation().pathname;
+  const hydrationFormikRef = useRef(null);
 
   return (
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? (
-        <AppBarContainer hydration jobName={newJobName} />
+        <AppBarContainer
+          hydration
+          jobName={newJobName}
+          hydrationFormikRef={hydrationFormikRef}
+        />
       ) : curPath === '/' ? (
         <AppBarContainer home />
       ) : (
@@ -56,7 +61,10 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
         <Route path="/search" component={SearchResultsContainer} />
         {/* hydration pages */}
         <Route path="/hydration/new-destination" component={NewDestination} />
-        <Route path="/hydration/new-job" component={NewJob} />
+        <Route
+          path="/hydration/new-job"
+          render={() => <NewJob hydrationFormikRef={hydrationFormikRef} />}
+        />
         <Route path="/hydration/view-jobs" component={ViewJobs} />
         {/* requests pages */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
