@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tooltip, withStyles } from '@material-ui/core';
+import { useFormikContext } from 'formik';
+import { Chip, Tooltip, withStyles } from '@material-ui/core';
 import { PortWidget } from '@projectstorm/react-diagrams';
 
 const LightTooltip = withStyles(theme => ({
@@ -12,8 +13,18 @@ const LightTooltip = withStyles(theme => ({
 }))(Tooltip);
 
 const DestinationNodeWidget = props => {
-  const { name, size } = props.node;
+  const { name, id, size } = props.node;
   const height = size * 0.5;
+  const { values } = useFormikContext();
+  const { destinations } = values;
+
+  const generateTag = destinationSensitivity => {
+    return destinations[id].sensitivity;
+  };
+
+  console.log(destinations[id]);
+
+  const destinationSensitivity = generateTag(name);
 
   return (
     <div>
@@ -25,6 +36,7 @@ const DestinationNodeWidget = props => {
           <LightTooltip title={name} placement="top">
             <div className="Tile__transform-name Tile__name">{name}</div>
           </LightTooltip>
+          <Chip className="Tile__chip" label={destinationSensitivity} />
         </div>
       </div>
       <div

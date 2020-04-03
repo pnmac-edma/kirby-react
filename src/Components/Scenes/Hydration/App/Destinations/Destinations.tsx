@@ -195,7 +195,7 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
           </div>
           <div className="Toolbar__list">
             {filteredDestinations.map(
-              ({ name, email, description, schedule }, i) => (
+              ({ name, email, description, schedule, sensitivity }, i) => (
                 <ToolbarItemWidget
                   key={`${name}-${i}`}
                   disabled={isDestinationAdded}
@@ -204,7 +204,8 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
                     name,
                     email,
                     description,
-                    schedule
+                    schedule,
+                    sensitivity
                   }}
                   name={name}
                   color={color['c400']}
@@ -212,7 +213,8 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
                     addNodeToDiagram(name, { x: 400, y: 400 }, 'destination', {
                       email,
                       description,
-                      schedule
+                      schedule,
+                      sensitivity
                     })
                   }
                 />

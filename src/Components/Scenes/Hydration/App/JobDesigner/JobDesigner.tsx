@@ -62,7 +62,13 @@ const JobDesigner = (props: JobDesignerProps) => {
 
     // this sets the default values for optional params to prevent
     // erroring out when passed into setFormInitialState
-    const defaultKeys = ['sqlScript', 'email', 'description', 'schedule'];
+    const defaultKeys = [
+      'sqlScript',
+      'email',
+      'description',
+      'schedule',
+      'sensitivity'
+    ];
     const optionalParamsWithDefault = defaultKeys.reduce(
       (obj: any, key: string) => {
         obj[key] = obj[key] ? obj[key] : '';

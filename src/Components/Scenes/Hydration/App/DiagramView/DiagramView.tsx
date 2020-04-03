@@ -54,7 +54,8 @@ const DiagramView = (props: DiagramViewProps) => {
         sqlScript: data.sqlScript,
         email: data.email,
         description: data.description,
-        schedule: data.schedule
+        schedule: data.schedule,
+        sensitivity: data.sensitivity
       });
     }
   };
