@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { constructRequest } from '../State/helpers';
-import store from '../setupStore';
 import config from '../config/config';
 
 export const getEmployees = args => {
@@ -20,17 +19,30 @@ export const getEmployees = args => {
     .then(error => error);
 };
 
-export const makeRequest = (requestAssets, justification, requestedFor) => {
-  const { EmpEmail } = store.getState().currentUser;
-  const url = 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com/dev';
+export const makeRequest = (
+  createdbyemail,
+  assets,
+  justification,
+  requestedfor
+) => {
   const fetchBody = {
-    // TODO needs update from currentUser auth. have aticket already
-    createdbyemail: EmpEmail,
-    requestedfor: requestedFor,
-    assets: requestAssets,
-    justification: justification
+    createdbyemail,
+    assets,
+    justification,
+    requestedfor
   };
-  return axios
-    .post(`${url}/assets/requests/access/`, fetchBody)
-    .then(response => response.data);
+
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/assets/requests/access`,
+    'POST',
+    {
+      data: fetchBody,
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
 };
