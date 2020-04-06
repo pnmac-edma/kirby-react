@@ -7,14 +7,9 @@ import {
   Checkbox,
   Dialog,
   IconButton,
-  InputLabel,
   TextField,
-  Typography,
-  FormControl,
   FormControlLabel,
-  FormGroup,
-  MenuItem,
-  Select
+  FormGroup
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -27,13 +22,8 @@ import {
 } from '../../../../../State/Hydration/types';
 import { setIsDestinationModalOpen } from '../../../../../State/Hydration/actions';
 import mockDestinationsData from '../../../../../State/__mockData__/mockDestinationsData.json';
-import mockSensitivity from '../../../../../State/__mockData__/mockSensitivity.json';
 
 const useStyles = makeStyles(theme => ({
-  sensitivityFilter: {
-    textAlign: 'left',
-    padding: '8px 16px 16px'
-  },
   searchFilter: {
     width: '50%'
   },
@@ -76,7 +66,6 @@ type DestinationsProps = {
 
 const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
   const classes = useStyles();
-  const [isSensOpen, setIsSensOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const { values } = useFormikContext() as { values: InitialStateTypes };
@@ -87,7 +76,6 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
   const dispatch = useDispatch();
 
   const isDestinationAdded = Object.keys(destinations).length > 0;
-  const sensitivity = values.destinationsFilterSens;
   const filterInput = document.getElementById('destinationsFilter');
   const filteredDestinations = mockDestinationsData
     ? Object.values(mockDestinationsData).filter(({ name }) =>
@@ -104,123 +92,83 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
       >
         <NewDestinationForm isAppForm={true} />
       </Dialog>
-      <div className={`Toolbar__filters ${classes.sensitivityFilter}`}>
-        <FormControl
-          className={`Input__select Input__select--sensitivity ${classes.selectFormControl}`}
-        >
-          <InputLabel id="destination-type">Sensitivity Level</InputLabel>
-          <Field
-            id="destination-type"
-            name="destinationsFilterSens"
-            label="Sensitivity"
-            type="select"
-            as={Select}
-          >
-            {Object.keys(mockSensitivity).map((sens, i) => (
-              <MenuItem key={`${i}-${sens}`} value={sens}>
-                {sens}
-              </MenuItem>
-            ))}
-          </Field>
-        </FormControl>
+      <div className="Toolbar__filters">
+        <SearchIcon
+          className="Icon__search"
+          onClick={() => {
+            if (filterInput) filterInput.focus();
+          }}
+        />
+        <Field
+          id="destinationsFilter"
+          name="destinationsFilter"
+          className={`Input__filter Input__filter--destination`}
+          label="Filter"
+          as={TextField}
+          variant="filled"
+        />
         <IconButton
-          className={`${classes.plusButton} ${classes.introPlus}`}
-          onClick={() => setIsSensOpen(!isSensOpen)}
+          className={classes.plusButton}
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
         >
-          {isSensOpen ? <Remove /> : <Add />}
+          {isFilterOpen ? <Remove /> : <Add />}
         </IconButton>
-        {isSensOpen && sensitivity && (
-          <Typography variant="body1" className={classes.description}>
-            {(mockSensitivity as any)[sensitivity]}
-          </Typography>
-        )}
-        {isSensOpen && !sensitivity && (
-          <Typography variant="body1" className={classes.description}>
-            Select a sensitivity level in order to view Destinations
-          </Typography>
+        {isFilterOpen && (
+          <div className={classes.advancedFilters}>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={false}
+                    onChange={() => console.log('hey')}
+                    value="Retail"
+                  />
+                }
+                label="Retail"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={false}
+                    onChange={() => console.log('hey')}
+                    value="Servicing"
+                  />
+                }
+                label="Servicing"
+              />
+            </FormGroup>
+            <Button color="primary" className="Tile__button">
+              Add
+            </Button>
+          </div>
         )}
       </div>
-      {sensitivity && (
-        <>
-          <div className="Toolbar__filters">
-            <SearchIcon
-              className="Icon__search"
-              onClick={() => {
-                if (filterInput) filterInput.focus();
+      <div className="Toolbar__list">
+        {filteredDestinations.map(
+          ({ name, email, description, schedule }, i) => (
+            <ToolbarItemWidget
+              key={`${name}-${i}`}
+              disabled={isDestinationAdded}
+              model={{
+                type: 'destination',
+                name,
+                email,
+                description,
+                schedule
               }}
+              name={name}
+              color={color['c400']}
+              onClick={() =>
+                addNodeToDiagram(name, { x: 400, y: 400 }, 'destination', {
+                  email,
+                  description,
+                  schedule
+                })
+              }
             />
-            <Field
-              id="destinationsFilter"
-              name="destinationsFilter"
-              className={`Input__filter Input__filter--destination`}
-              label="Filter"
-              as={TextField}
-              variant="filled"
-            />
-            <IconButton
-              className={classes.plusButton}
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
-            >
-              {isFilterOpen ? <Remove /> : <Add />}
-            </IconButton>
-            {isFilterOpen && (
-              <div className={classes.advancedFilters}>
-                <FormGroup>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={false}
-                        onChange={() => console.log('hey')}
-                        value="Retail"
-                      />
-                    }
-                    label="Retail"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={false}
-                        onChange={() => console.log('hey')}
-                        value="Servicing"
-                      />
-                    }
-                    label="Servicing"
-                  />
-                </FormGroup>
-                <Button color="primary" className="Tile__button">
-                  Add
-                </Button>
-              </div>
-            )}
-          </div>
-          <div className="Toolbar__list">
-            {filteredDestinations.map(
-              ({ name, email, description, schedule }, i) => (
-                <ToolbarItemWidget
-                  key={`${name}-${i}`}
-                  disabled={isDestinationAdded}
-                  model={{
-                    type: 'destination',
-                    name,
-                    email,
-                    description,
-                    schedule
-                  }}
-                  name={name}
-                  color={color['c400']}
-                  onClick={() =>
-                    addNodeToDiagram(name, { x: 400, y: 400 }, 'destination', {
-                      email,
-                      description,
-                      schedule
-                    })
-                  }
-                />
-              )
-            )}
-          </div>
-        </>
-      )}
+          )
+        )}
+      </div>
       <Button
         onClick={() => dispatch(setIsDestinationModalOpen(true))}
         variant="contained"
