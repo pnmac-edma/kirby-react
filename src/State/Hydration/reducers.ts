@@ -4,7 +4,7 @@ export const initialState = {
   isDestinationModalOpen: false,
   isEditorOpen: false,
   selectedNode: null,
-  scriptTitle: null,
+  scriptTitle: '',
   metaData: {
     sourceTiles: {}
   }

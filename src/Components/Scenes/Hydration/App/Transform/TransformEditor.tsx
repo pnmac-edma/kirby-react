@@ -90,7 +90,6 @@ const TransformEditor = (props: TransformProps) => {
   const theme = useTheme();
   const [isScriptNameActive, setIsScriptNameActive] = useState(false);
   const { scriptTitle } = useSelector((state: any) => state.hydration);
-
   const setChange = (value: string | undefined, name: string) => {
     const newTransformsValue = {
       ...transforms,
@@ -99,8 +98,10 @@ const TransformEditor = (props: TransformProps) => {
         [name]: value
       }
     };
+    console.log(newTransformsValue[id]);
     setFieldValue('transforms', newTransformsValue);
   };
+  console.log(transforms[id]);
   return (
     <div
       onKeyUp={(e: React.KeyboardEvent) => keyboardShortcuts.codeEditor(e)}
@@ -118,8 +119,9 @@ const TransformEditor = (props: TransformProps) => {
             onChange={e => {
               dispatch(handleTitleName(e.target.value));
             }}
-            name={`transforms.${id}.name`}
+            // name={`transforms.${id}.name`}
             className={classes.scriptName}
+            // value={scriptTitle}
           />
         ) : (
           <Typography
@@ -149,9 +151,9 @@ const TransformEditor = (props: TransformProps) => {
         language="sql"
         theme={theme.palette.type === 'light' ? 'vs-light' : 'vs-dark'}
         value={transforms[id].sqlScript}
-        onChange={(_, value: string | undefined) =>
-          setChange(value, 'sqlScript')
-        }
+        onChange={(_, value: string | undefined) => {
+          setChange(value, 'sqlScript');
+        }}
       />
     </div>
   );
