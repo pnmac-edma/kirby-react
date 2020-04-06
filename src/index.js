@@ -4,11 +4,11 @@ import './assets/styles/index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import BrowserRouter from './BrowserRouter';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import store from './setupStore';
 
-export const history = createHistory();
+export const history = createBrowserHistory();
 
 const app = (
   <Provider store={store}>
