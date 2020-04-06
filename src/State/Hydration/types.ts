@@ -13,6 +13,13 @@ export const SOURCE_TILES_REQUESTS_FAILURE = 'SOURCE_TILES_REQUESTS_FAILURE';
 export const DESTINATIONS_REQUEST_FETCH = 'DESTINATIONS_REQUEST_FETCH';
 export const DESTINATIONS_REQUEST_SUCCESS = 'DESTINATIONS_REQUEST_SUCCESS';
 export const DESTINATIONS_REQUEST_FAILURE = 'DESTINATIONS_REQUEST_FAILURE';
+// DESTINATIONDROPDOWN FETCH
+export const DESTINATIONS_DROPDOWN_REQUEST_FETCH =
+  'DESTINATIONS_DROPDOWN_REQUEST_FETCH';
+export const DESTINATIONS_DROPDOWN_REQUEST_SUCCESS =
+  'DESTINATIONS_DROPDOWN_REQUEST_SUCCESS';
+export const DESTINATIONS_DROPDOWN_REQUEST_FAILURE =
+  'DESTINATIONS_DROPDOWN_REQUEST_FAILURE';
 
 // types
 export interface KIRBY {
@@ -77,6 +84,16 @@ export interface Destination {
   Id: number;
   createddate: string;
   createdbyemail: string;
+  sensitivity: string;
+}
+
+export interface DestinationDropDowns {
+  [id: number]: DestinationDropDown;
+}
+
+export interface DestinationDropDown {
+  Id: number;
+  databasename: string;
   sensitivity: string;
 }
 
