@@ -145,7 +145,7 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
       </div>
       <div className="Toolbar__list">
         {filteredDestinations.map(
-          ({ name, email, description, schedule }, i) => (
+          ({ name, email, description, schedule, sensitivity }, i) => (
             <ToolbarItemWidget
               key={`${name}-${i}`}
               disabled={isDestinationAdded}
@@ -154,7 +154,8 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
                 name,
                 email,
                 description,
-                schedule
+                schedule,
+                sensitivity
               }}
               name={name}
               color={color['c400']}
@@ -162,84 +163,14 @@ const Destinations = ({ addNodeToDiagram }: DestinationsProps) => {
                 addNodeToDiagram(name, { x: 400, y: 400 }, 'destination', {
                   email,
                   description,
-                  schedule
+                  schedule,
+                  sensitivity
                 })
               }
             />
-            <Field
-              id="destinationsFilter"
-              name="destinationsFilter"
-              className={`Input__filter Input__filter--destination`}
-              label="Filter"
-              as={TextField}
-              variant="filled"
-            />
-            <IconButton
-              className={classes.plusButton}
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
-            >
-              {isFilterOpen ? <Remove /> : <Add />}
-            </IconButton>
-            {isFilterOpen && (
-              <div className={classes.advancedFilters}>
-                <FormGroup>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={false}
-                        onChange={() => console.log('hey')}
-                        value="Retail"
-                      />
-                    }
-                    label="Retail"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={false}
-                        onChange={() => console.log('hey')}
-                        value="Servicing"
-                      />
-                    }
-                    label="Servicing"
-                  />
-                </FormGroup>
-                <Button color="primary" className="Tile__button">
-                  Add
-                </Button>
-              </div>
-            )}
-          </div>
-          <div className="Toolbar__list">
-            {filteredDestinations.map(
-              ({ name, email, description, schedule, sensitivity }, i) => (
-                <ToolbarItemWidget
-                  key={`${name}-${i}`}
-                  disabled={isDestinationAdded}
-                  model={{
-                    type: 'destination',
-                    name,
-                    email,
-                    description,
-                    schedule,
-                    sensitivity
-                  }}
-                  name={name}
-                  color={color['c400']}
-                  onClick={() =>
-                    addNodeToDiagram(name, { x: 400, y: 400 }, 'destination', {
-                      email,
-                      description,
-                      schedule,
-                      sensitivity
-                    })
-                  }
-                />
-              )
-            )}
-          </div>
-        </>
-      )}
+          )
+        )}
+      </div>
       <Button
         onClick={() => dispatch(setIsDestinationModalOpen(true))}
         variant="contained"
