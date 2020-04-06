@@ -3,6 +3,9 @@ import * as types from './types';
 export const initialState = {
   isDestinationModalOpen: false,
   isEditorOpen: false,
+  isSnackbarOpen: false,
+  isSnackbarUpdated: false,
+  snackbarText: '',
   selectedNode: null,
   metadata: {
     sources: {},
@@ -47,6 +50,73 @@ const hydrationReducer = (state = initialState, action: any) => {
         isDestinationModalOpen: action.value
       };
     }
+    case types.SET_IS_SNACKBAR_OPEN: {
+      return {
+        ...state,
+        isSnackbarOpen: action.value
+      };
+    }
+    case types.SET_SNACKBAR_EXIT: {
+      const { isSnackbarUpdated, snackbarText } = state;
+
+      return {
+        ...state,
+        isSnackbarOpen: isSnackbarUpdated,
+        isSnackbarUpdated: false,
+        snackbarText: isSnackbarUpdated ? snackbarText : ''
+      };
+    }
+    case types.SET_SNACKBAR_TEXT: {
+      const { isSnackbarOpen } = state;
+
+      return {
+        ...state,
+        isSnackbarOpen: !isSnackbarOpen,
+        isSnackbarUpdated: isSnackbarOpen,
+        snackbarText: action.text
+      };
+    }
+    // case types.SET_IS_SNACKBAR_OPEN: {
+    //   return {
+    //     ...state,
+    //     isSnackbarOpen: action.value
+    //   };
+    // }
+    // case types.SET_SNACKBAR_EXIT: {
+    //   const { snackbarQueue } = state;
+    //   if (snackbarQueue.length > 0) {
+    //     const nextSnackbarQueue = [ ...snackbarQueue ];
+    //     const nextSnackbarText = nextSnackbarQueue.shift();
+    //     return {
+    //       ...state,
+    //       isSnackbarOpen: true,
+    //       snackbarQueue: nextSnackbarQueue,
+    //       snackbarText: nextSnackbarText
+    //     };
+    //   }
+    //   return { ...state };
+    // }
+    // case types.SET_SNACKBAR_TEXT: {
+    //   const { isSnackbarOpen, snackbarQueue } = state;
+    //   const nextSnackbarQueue = [ ...snackbarQueue, action.text ];
+    //   if (isSnackbarOpen) {
+    //     return {
+    //       ...state,
+    //       isSnackbarOpen: false,
+    //       snackbarQueue: nextSnackbarQueue
+    //     };
+    //   }
+    //   if (nextSnackbarQueue.length > 0) {
+    //     const nextSnackbarText = nextSnackbarQueue.shift();
+    //     return {
+    //       ...state,
+    //       isSnackbarOpen: true,
+    //       snackbarQueue: nextSnackbarQueue,
+    //       snackbarText: nextSnackbarText
+    //     };
+    //   }
+    //   return { ...state };
+    // }
     case types.SOURCE_TILES_REQUESTS_FETCH:
       return { ...state };
     case types.SOURCE_TILES_REQUESTS_SUCCESS:
