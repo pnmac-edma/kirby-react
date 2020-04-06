@@ -47,6 +47,7 @@ const Destination = (props: DestinationProps) => {
         </Tooltip>
       </div>
       <p className={classes.tileDescription}>{destinations[id].email}</p>
+      <p className={classes.tileDescription}>{destinations[id].sensitivity}</p>
       <p className={classes.tileDescription}>{destinations[id].description}</p>
     </div>
   );

@@ -159,9 +159,10 @@ export const generateDestinationInitialState = (
     email: string;
     description: string;
     schedule: string;
+    sensitivity: string;
   }
 ) => {
-  const { email, description, schedule } = optionalParams;
+  const { email, description, schedule, sensitivity } = optionalParams;
   let destinationForm: any;
   if (formValues.destinations[id]) {
     destinationForm = formValues.destinations[id];
@@ -176,7 +177,8 @@ export const generateDestinationInitialState = (
       name,
       email,
       description,
-      schedule
+      schedule,
+      sensitivity
     }
   };
 };
@@ -192,6 +194,7 @@ export const setFormInitialState = (
     email: string;
     description: string;
     schedule: string;
+    sensitivity: string;
   }
 ): void => {
   if (type === 'source') {
