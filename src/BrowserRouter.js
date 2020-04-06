@@ -1,8 +1,8 @@
 import React from 'react';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { Router } from 'react-router';
 
-export const history = createHistory();
+export const history = createBrowserHistory();
 
 const BrowserRouter = props => {
   return <Router history={history} children={props.children} />;
