@@ -22,8 +22,6 @@ const DestinationNodeWidget = props => {
     return destinations[id].sensitivity;
   };
 
-  console.log(destinations[id]);
-
   const destinationSensitivity = generateTag(name);
 
   return (
