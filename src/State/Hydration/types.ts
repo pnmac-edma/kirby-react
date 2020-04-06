@@ -177,4 +177,5 @@ export interface OptionalParamsNode {
   email?: string;
   description?: string;
   schedule?: string;
+  sensitivity?: string;
 }
