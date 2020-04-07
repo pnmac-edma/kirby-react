@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import DOMPurify from 'dompurify';
 import { makeStyles } from '@material-ui/core/styles';
 import { Snackbar, IconButton } from '@material-ui/core';
 import { color } from '@edma/design-tokens';
@@ -45,26 +46,24 @@ const Snackbars = () => {
   };
 
   const textMatch = /(kirby\s|non-kirby\s)?(sources?)(\stiles?)?|(transforms?)(\stiles?)|(destinations?)(\stiles?)/gi;
-  const highlightedSnackbarText = () => {
-    return (
-      <div>
-        {snackbarText.replace(textMatch, (matched: string) => {
-          const lowercaseMatched = matched.toLowerCase();
-          if (lowercaseMatched.includes('source')) {
-            return <span className={classes.sourceText}>{matched}</span>;
-          }
-          if (lowercaseMatched.includes('transform')) {
-            return <span className={classes.transformText}>{matched}</span>;
-          }
-          if (lowercaseMatched.includes('destination')) {
-            return <span className={classes.destinationText}>{matched}</span>;
-          }
-          return matched;
-        })}
-      </div>
-    );
-  };
-  console.log(highlightedSnackbarText);
+
+  const highlightedSnackbarText = snackbarText
+    ? snackbarText.replace(textMatch, (matched: string) => {
+        const lowercaseMatched = matched.toLowerCase();
+        if (lowercaseMatched.includes('source')) {
+          return `<span class=${classes.sourceText}>${matched}</span>`;
+        }
+        if (lowercaseMatched.includes('transform')) {
+          return `<span class=${classes.transformText}>${matched}</span>`;
+        }
+        if (lowercaseMatched.includes('destination')) {
+          return `<span class=${classes.destinationText}>${matched}</span>`;
+        }
+        return matched;
+      })
+    : '';
+
+  const sanitizedSnackbarText = DOMPurify.sanitize(highlightedSnackbarText);
 
   return (
     <Snackbar
@@ -83,7 +82,9 @@ const Snackbars = () => {
         horizontal: 'right'
       }}
       autoHideDuration={6000}
-      message={<>{highlightedSnackbarText()}</>}
+      message={
+        <div dangerouslySetInnerHTML={{ __html: sanitizedSnackbarText }} />
+      }
       open={isSnackbarOpen}
       onClose={setClose}
       onExited={() => dispatch(setSnackbarExit())}
@@ -92,14 +93,3 @@ const Snackbars = () => {
 };
 
 export default Snackbars;
-
-// <Snackbar
-//  key={messageInfo ? messageInfo.key : undefined}
-//  onExited={handleExited} // ??? what is this
-//  message={messageInfo ? messageInfo.message : undefined} // not needed
-// />
-
-// {/* <div className='MuiSnackbar-root MuiSnackbar-anchorOriginBottomRight'>
-//         {snackbarText}
-//       </div> */}
-//     {/* </Snackbar> */}

@@ -17,7 +17,7 @@ export default class SourcePortModel extends PortModel {
     if (sourceType === 'KIRBY' && targetPort === 'destination') {
       store.dispatch(
         setSnackbarText(
-          'Kirby Source Tiles must be connected to a Transform Tile'
+          'Kirby Source Tiles must only be connected to Transform Tiles'
         )
       );
       return false;
