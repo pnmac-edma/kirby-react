@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import Editor from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
@@ -100,16 +100,10 @@ const TransformEditor = (props: TransformProps) => {
     };
     setFieldValue('transforms', newTransformsValue);
   };
-  // const [isEditorReady, setIsEditorReady] = useState(false);
+
   const valueGetter = useRef();
-
-  // function handleEditorDidMount(_valueGetter) {
-  //   setIsEditorReady(true);
-  //   valueGetter.current = _valueGetter;
-  // }
-
   function handleShowValue() {
-    alert(valueGetter.current());
+    console.log(valueGetter);
   }
   return (
     <div
@@ -128,9 +122,9 @@ const TransformEditor = (props: TransformProps) => {
             onChange={e => {
               dispatch(handleTitleName(e.target.value));
             }}
-            // name={`transforms.${id}.name`}
+            name={`transforms.${id}.name`}
             className={classes.scriptName}
-            // value={scriptTitle}
+            value={scriptTitle}
           />
         ) : (
           <Typography
@@ -154,17 +148,12 @@ const TransformEditor = (props: TransformProps) => {
           <CloseIcon />
         </IconButton>
       </Tooltip>
-      {/* <input type='text' onChange={(e) =>setChange(e.target.value, 'sqlScript')} value={transforms[id].sqlScript} /> */}
       <Editor
         width="800"
         height="90vh"
         language="sql"
         theme={theme.palette.type === 'light' ? 'vs-light' : 'vs-dark'}
         value={transforms[id].sqlScript}
-        // onChange={(_, value: string | undefined) => {
-        //   console.log('------', _, value)
-        //   setChange(value, 'sqlScript');
-        // }}
         editorDidMount={handleShowValue}
       />
     </div>
