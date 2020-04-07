@@ -95,7 +95,6 @@ const useStyles = makeStyles(theme => ({
     }
   },
   jobNameBtn: {
-    transition: 'all .2s ease-in-out',
     verticalAlign: 'top',
     position: 'relative',
     top: 0,

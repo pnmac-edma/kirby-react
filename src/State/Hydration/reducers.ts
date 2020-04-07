@@ -9,7 +9,8 @@ export const initialState = {
   selectedNode: null,
   metadata: {
     sources: {},
-    destinations: {}
+    destinations: {},
+    destinationDropdowns: {}
   }
 };
 
@@ -93,6 +94,18 @@ const hydrationReducer = (state = initialState, action: any) => {
         metadata: { ...state.metadata, destinations: action.destinations }
       };
     case types.DESTINATIONS_REQUEST_FAILURE:
+      return { ...state };
+    case types.DESTINATIONS_DROPDOWN_REQUEST_FETCH:
+      return { ...state };
+    case types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS:
+      return {
+        ...state,
+        metadata: {
+          ...state.metadata,
+          destinationDropdowns: action.destinations
+        }
+      };
+    case types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE:
       return { ...state };
     default:
       return state;

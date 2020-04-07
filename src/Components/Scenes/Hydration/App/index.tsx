@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import {
   sourceTilesRequestFetch,
-  destinationRequestFetch
+  destinationRequestFetch,
+  destinationDropdownRequestFetch
 } from '../../../../State/Hydration/actions';
 import Diagram from './Diagram/Diagram';
 import JobDesigner from './JobDesigner/JobDesigner';
@@ -31,6 +32,7 @@ const JobAppOuterLayer = ({
   useEffect(() => {
     dispatch(sourceTilesRequestFetch());
     dispatch(destinationRequestFetch());
+    dispatch(destinationDropdownRequestFetch());
   }, [dispatch]);
 
   return (

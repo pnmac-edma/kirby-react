@@ -127,3 +127,28 @@ export const setSnackbarExit = (): SetSnackbarExitAction => ({
 interface SetSnackbarExitAction {
   type: typeof types.SET_SNACKBAR_EXIT;
 }
+
+export const destinationDropdownRequestFetch = (): DestinationDropdownRequestFetchAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_FETCH
+});
+interface DestinationDropdownRequestFetchAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_FETCH;
+}
+
+export const destinationDropdownRequestSuccess = (
+  destinationDropdowns: types.DestinationDropDowns
+): DestinationDropdownRequestSuccessAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS,
+  destinationDropdowns
+});
+interface DestinationDropdownRequestSuccessAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS;
+  destinationDropdowns: types.DestinationDropDowns;
+}
+
+export const destinationDropdownRequestFailure = (): DestinationDropdownRequestFailureAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE
+});
+interface DestinationDropdownRequestFailureAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE;
+}

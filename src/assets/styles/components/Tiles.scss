@@ -10,7 +10,6 @@
   background: $color-g-500;
   text-align: left;
   overflow: hidden;
-  transition: all 0.2s ease-in-out;
 
   &:hover {
     box-shadow: $shadow-1;
@@ -54,6 +53,7 @@
 
 .Tile__chip.MuiChip-root {
   height: 22px;
+  transition: none;
 
   & span {
     padding: 0 8px;
