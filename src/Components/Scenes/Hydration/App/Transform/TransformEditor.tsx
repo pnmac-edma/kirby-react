@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
+import Editor from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
 import {
   IconButton,
   makeStyles,
@@ -98,10 +98,19 @@ const TransformEditor = (props: TransformProps) => {
         [name]: value
       }
     };
-    console.log(newTransformsValue[id]);
     setFieldValue('transforms', newTransformsValue);
   };
-  console.log(transforms[id]);
+  // const [isEditorReady, setIsEditorReady] = useState(false);
+  const valueGetter = useRef();
+
+  // function handleEditorDidMount(_valueGetter) {
+  //   setIsEditorReady(true);
+  //   valueGetter.current = _valueGetter;
+  // }
+
+  function handleShowValue() {
+    alert(valueGetter.current());
+  }
   return (
     <div
       onKeyUp={(e: React.KeyboardEvent) => keyboardShortcuts.codeEditor(e)}
@@ -145,15 +154,18 @@ const TransformEditor = (props: TransformProps) => {
           <CloseIcon />
         </IconButton>
       </Tooltip>
-      <ControlledEditor
+      {/* <input type='text' onChange={(e) =>setChange(e.target.value, 'sqlScript')} value={transforms[id].sqlScript} /> */}
+      <Editor
         width="800"
         height="90vh"
         language="sql"
         theme={theme.palette.type === 'light' ? 'vs-light' : 'vs-dark'}
         value={transforms[id].sqlScript}
-        onChange={(_, value: string | undefined) => {
-          setChange(value, 'sqlScript');
-        }}
+        // onChange={(_, value: string | undefined) => {
+        //   console.log('------', _, value)
+        //   setChange(value, 'sqlScript');
+        // }}
+        editorDidMount={handleShowValue}
       />
     </div>
   );
