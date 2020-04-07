@@ -103,6 +103,31 @@ interface DestinationRequestFailurehAction {
   message: any;
 }
 
+export const setIsSnackbarOpen = (value: boolean): SetIsSnackbarOpenAction => ({
+  type: types.SET_IS_SNACKBAR_OPEN,
+  value
+});
+interface SetIsSnackbarOpenAction {
+  type: typeof types.SET_IS_SNACKBAR_OPEN;
+  value: boolean;
+}
+
+export const setSnackbarText = (text: string): SetSnackbarTextAction => ({
+  type: types.SET_SNACKBAR_TEXT,
+  text
+});
+interface SetSnackbarTextAction {
+  type: typeof types.SET_SNACKBAR_TEXT;
+  text: string;
+}
+
+export const setSnackbarExit = (): SetSnackbarExitAction => ({
+  type: types.SET_SNACKBAR_EXIT
+});
+interface SetSnackbarExitAction {
+  type: typeof types.SET_SNACKBAR_EXIT;
+}
+
 export const destinationDropdownRequestFetch = (): DestinationDropdownRequestFetchAction => ({
   type: types.DESTINATIONS_DROPDOWN_REQUEST_FETCH
 });

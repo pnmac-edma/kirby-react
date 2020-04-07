@@ -20,9 +20,12 @@ const Sources = ({ addNodeToDiagram }: SourcesProps) => {
   const isKirbySourceAdded = Boolean(
     Object.values(sources).find(source => source.sourceType === 'KIRBY')
   );
+
   const isNonKirbySourceAdded =
     Object.values(sources).length > 0 && !isKirbySourceAdded;
+
   const isTransformAdded = Object.values(transforms).length > 0;
+
   // TODO: below is based on mock data; will need to change based on real data
   const sourceItems = Object.keys(mockSourcesData).map(source => ({
     sourceType: source,
