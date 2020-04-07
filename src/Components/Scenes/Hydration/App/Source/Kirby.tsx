@@ -32,15 +32,6 @@ const useStyles = makeStyles(theme => ({
   },
   selectFormControl: {
     display: 'flex'
-  },
-  formSection: {
-    position: 'relative',
-    textAlign: 'left',
-    padding: '8px 16px 16px'
-  },
-  formTitle: {
-    textDecoration: 'bold',
-    marginBottom: '1rem'
   }
 }));
 
@@ -53,10 +44,10 @@ const Kirby = (props: KirbyProps) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <div className={classes.formSection}>
-        <h4 className={classes.formTitle}>Kirby</h4>
-        <div className={`Tile__delete`}>
+    <div className="Toolbar__container">
+      <div className="Toolbar__section">
+        <h4 className="Toolbar__form-title">Kirby</h4>
+        <div className={`Toolbar__delete-tile`}>
           <Tooltip title="Remove Tile" placement="top">
             <IconButton
               onClick={() => removeNodeFromDiagram(selectedNode, 'sources')}
@@ -87,13 +78,11 @@ const Kirby = (props: KirbyProps) => {
       </div>
       <Divider className={classes.divider} />
 
-      <div className={classes.formSection}>
+      <div className="Toolbar__section">
         <Tooltip title="Not Connected" placement="top">
           <FlashOnIcon className="Toolbar__bolt-icon" />
         </Tooltip>
-        <h4 className={`Toolbar__form-title ${classes.formTitle}`}>
-          Connection
-        </h4>
+        <h4 className={`Toolbar__form-title`}>Connection</h4>
         <FormControl
           className={`Input__select Toolbar__connection-type ${classes.selectFormControl}`}
         >

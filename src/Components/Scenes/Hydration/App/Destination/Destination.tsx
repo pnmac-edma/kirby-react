@@ -10,18 +10,6 @@ import {
 } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
-  tileTitle: {
-    textDecoration: 'bold',
-    marginBottom: '1rem'
-  },
-  tileSection: {
-    position: 'relative',
-    textAlign: 'left',
-    padding: '8px 16px 16px',
-    borderBottom: `1px solid ${
-      theme.palette.type === 'light' ? color.g100 : color.g700
-    }`
-  },
   tileDescription: {
     color: theme.palette.type === 'light' ? color.g600 : color.g400
   }
@@ -45,9 +33,9 @@ const Destination = (props: DestinationProps) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.tileSection}>
-      <h4 className={classes.tileTitle}>{destinations[id].name}</h4>
-      <div className={`Tile__delete`}>
+    <div className="Toolbar__container Toolbar__section">
+      <h4 className="Toolbar__form-title">{destinations[id].name}</h4>
+      <div className={`Toolbar__delete-tile`}>
         <Tooltip
           onClick={() => removeNodeFromDiagram(selectedNode, 'destinations')}
           title="Remove Tile"
@@ -59,6 +47,7 @@ const Destination = (props: DestinationProps) => {
         </Tooltip>
       </div>
       <p className={classes.tileDescription}>{destinations[id].email}</p>
+      <p className={classes.tileDescription}>{destinations[id].sensitivity}</p>
       <p className={classes.tileDescription}>{destinations[id].description}</p>
     </div>
   );

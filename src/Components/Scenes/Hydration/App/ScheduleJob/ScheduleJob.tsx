@@ -5,7 +5,8 @@ import {
   FormControlLabel,
   Grid,
   InputLabel,
-  TextField
+  TextField,
+  Typography
 } from '@material-ui/core';
 import { color, spacing } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
@@ -97,7 +98,7 @@ const ScheduleJob = (props: ScheduleJobProps) => {
   return (
     <>
       <div className={`Scheduler ${classes.container} ${classes.header}`}>
-        <h2>Schedule Job</h2>
+        <Typography variant="h2">Schedule Job</Typography>
       </div>
       <div className={classes.container}>
         <InputLabel

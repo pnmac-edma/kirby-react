@@ -82,3 +82,57 @@ interface HandleTitleNameAction {
   type: typeof types.HANDLE_TITLE_NAME;
   scriptTitle: string;
 }
+
+export const destinationRequestFetch = (): DestinationRequestFetchAction => ({
+  type: types.DESTINATIONS_REQUEST_FETCH
+});
+interface DestinationRequestFetchAction {
+  type: typeof types.DESTINATIONS_REQUEST_FETCH;
+}
+
+export const destinationRequestSuccess = (
+  destinations: types.Destinations
+): DestinationRequestSuccessAction => ({
+  type: types.DESTINATIONS_REQUEST_SUCCESS,
+  destinations
+});
+interface DestinationRequestSuccessAction {
+  type: typeof types.DESTINATIONS_REQUEST_SUCCESS;
+  destinations: types.Destinations;
+}
+
+export const destinationRequestFailure = (
+  message: any
+): DestinationRequestFailurehAction => ({
+  type: types.DESTINATIONS_REQUEST_FAILURE,
+  message
+});
+interface DestinationRequestFailurehAction {
+  type: typeof types.DESTINATIONS_REQUEST_FAILURE;
+  message: any;
+}
+
+export const destinationDropdownRequestFetch = (): DestinationDropdownRequestFetchAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_FETCH
+});
+interface DestinationDropdownRequestFetchAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_FETCH;
+}
+
+export const destinationDropdownRequestSuccess = (
+  destinationDropdowns: types.DestinationDropDowns
+): DestinationDropdownRequestSuccessAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS,
+  destinationDropdowns
+});
+interface DestinationDropdownRequestSuccessAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_SUCCESS;
+  destinationDropdowns: types.DestinationDropDowns;
+}
+
+export const destinationDropdownRequestFailure = (): DestinationDropdownRequestFailureAction => ({
+  type: types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE
+});
+interface DestinationDropdownRequestFailureAction {
+  type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE;
+}

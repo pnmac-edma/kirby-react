@@ -4,10 +4,11 @@ import { getEmployees, makeRequest } from '../Api/requestAsset';
 import {
   getRequestedFor,
   getJustification,
-  getRequestAssets
+  getRequestAssets,
+  getCreatedByEmail
 } from '../Selectors/sagaSelectors';
 
-function* requestAsset() {
+function* workRequestAsset() {
   try {
     const response = yield call(getEmployees);
     yield put({ type: types.GET_EMPLOYEES_SUCCESS, payload: response });
@@ -16,13 +17,15 @@ function* requestAsset() {
   }
 }
 
-function* makeRequests() {
+function* workMakeRequests() {
   const justification = yield select(getJustification);
   const requestAssets = yield select(getRequestAssets);
   const requestedFor = yield select(getRequestedFor);
+  const createdByEmail = yield select(getCreatedByEmail);
   try {
     const response = yield call(
       makeRequest,
+      createdByEmail,
       requestAssets,
       justification,
       requestedFor
@@ -33,7 +36,7 @@ function* makeRequests() {
   }
 }
 
-export default function* actionWatcher() {
-  yield takeEvery(types.GET_EMPLOYEES_FETCH, requestAsset);
-  yield takeEvery(types.MAKE_REQUESTS_FETCH, makeRequests);
+export default function* watchRequestAsset() {
+  yield takeEvery(types.GET_EMPLOYEES_FETCH, workRequestAsset);
+  yield takeEvery(types.MAKE_REQUESTS_FETCH, workMakeRequests);
 }

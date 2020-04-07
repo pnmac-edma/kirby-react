@@ -6,17 +6,16 @@ import {
   getGovernanceRequests
 } from './api';
 
-export function* handleUserRequests(action) {
+export function* workUserRequests(action) {
   try {
     const response = yield call(getUserRequests, action.payload);
     yield put({ type: types.USER_REQUESTS_SUCCESS, payload: response });
   } catch (error) {
-    console.log(error);
     yield put({ type: types.USER_REQUESTS_FAILURE, payload: error });
   }
 }
 
-export function* handleApproverRequests(action) {
+export function* workApproverRequests(action) {
   try {
     const response = yield call(getApproverRequests, action.payload);
     yield put({ type: types.APPROVER_REQUESTS_SUCCESS, payload: response });
@@ -25,7 +24,7 @@ export function* handleApproverRequests(action) {
   }
 }
 
-export function* handleGovernanceRequests(action) {
+export function* workGovernanceRequests(action) {
   try {
     const response = yield call(getGovernanceRequests, action.payload);
     yield put({ type: types.GOVERNANCE_REQUESTS_SUCCESS, payload: response });
@@ -34,8 +33,8 @@ export function* handleGovernanceRequests(action) {
   }
 }
 
-export default function* actionWatcher() {
-  yield takeEvery(types.USER_REQUESTS_FETCH, handleUserRequests);
-  yield takeEvery(types.APPROVER_REQUESTS_FETCH, handleApproverRequests);
-  yield takeEvery(types.GOVERNANCE_REQUESTS_FETCH, handleGovernanceRequests);
+export default function* watchViewRequests() {
+  yield takeEvery(types.USER_REQUESTS_FETCH, workUserRequests);
+  yield takeEvery(types.APPROVER_REQUESTS_FETCH, workApproverRequests);
+  yield takeEvery(types.GOVERNANCE_REQUESTS_FETCH, workGovernanceRequests);
 }

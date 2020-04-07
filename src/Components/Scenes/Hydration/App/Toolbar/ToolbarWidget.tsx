@@ -12,13 +12,6 @@ import color from '@edma/design-tokens/js/color';
 import { InitialStateTypes } from '../../../../../State/Hydration/types';
 
 const useStyles = makeStyles(theme => ({
-  toolbar: {
-    background: theme.palette.type === 'light' ? color.white : color.black,
-    borderLeftColor: theme.palette.type === 'light' ? color.g100 : color.g700
-  },
-  toolbarBottomBorder: {
-    borderBottomColor: theme.palette.type === 'light' ? color.g100 : color.g700
-  },
   toolbarTabs: {
     extends: 'toolbarTop'
   },
@@ -60,8 +53,8 @@ const ToolbarWidget = ({
   }, [isNonKirbySourceAdded, setTab]);
 
   return (
-    <div className={`${classes.toolbar} Toolbar`}>
-      <div className={`${classes.toolbarBottomBorder} Toolbar__top`}>
+    <div className={`Toolbar`}>
+      <div className={`Toolbar__top`}>
         <Tooltip
           title="Undo"
           aria-label="Undo"
@@ -141,7 +134,7 @@ const ToolbarWidget = ({
           </span>
         </Tooltip>
       </div>
-      <div className={`${classes.toolbarBottomBorder} Toolbar__tabs`}>
+      <div className={`Toolbar__tabs`}>
         <Tabs
           value={tab}
           indicatorColor="primary"

@@ -10,7 +10,6 @@
   background: $color-g-500;
   text-align: left;
   overflow: hidden;
-  transition: all 0.2s ease-in-out;
 
   &:hover {
     box-shadow: $shadow-1;
@@ -54,6 +53,7 @@
 
 .Tile__chip.MuiChip-root {
   height: 22px;
+  transition: none;
 
   & span {
     padding: 0 8px;
@@ -251,6 +251,10 @@
   }
 }
 
+.Connection__transform-bg:focus {
+  stroke: rgba($color-p-200, 0.3);
+}
+
 .srd-default-link--path-selected {
   animation: none;
   stroke-dasharray: 0, 0;
@@ -258,32 +262,6 @@
 
 .srd-default-link__point {
   display: none;
-}
-
-// Delete button
-.Tile__delete {
-  position: absolute;
-  display: inline;
-  top: 0.7rem;
-  right: 0.5rem;
-
-  & button span svg path {
-    fill: $color-black;
-  }
-
-  &:hover > button span svg path {
-    fill: $color-r-600;
-  }
-}
-
-.dark .Tile__delete {
-  & button span svg path {
-    fill: $color-white;
-  }
-
-  &:hover > button span svg path {
-    fill: $color-r-500;
-  }
 }
 
 .Tile__name {
