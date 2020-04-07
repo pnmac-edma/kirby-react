@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
-import Editor from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
+import { ControlledEditor } from '@monaco-editor/react'; // https://github.com/suren-atoyan/monaco-react, similar to react-monaco-editor
 import {
   IconButton,
   makeStyles,
@@ -89,22 +89,25 @@ const TransformEditor = (props: TransformProps) => {
   const classes = useStyles();
   const theme = useTheme();
   const [isScriptNameActive, setIsScriptNameActive] = useState(false);
+  const [script, setScript] = useState('');
   const { scriptTitle } = useSelector((state: any) => state.hydration);
-  const setChange = (value: string | undefined, name: string) => {
+
+  const setScriptEditor = (e: any, value: any) => {
+    return setScript(value);
+  };
+
+  const setTransform = (value: string | undefined) => {
     const newTransformsValue = {
       ...transforms,
       [id]: {
         ...transforms[id],
-        [name]: value
+        sqlScript: script,
+        name: value
       }
     };
     setFieldValue('transforms', newTransformsValue);
   };
 
-  const valueGetter = useRef();
-  function handleShowValue() {
-    console.log(valueGetter);
-  }
   return (
     <div
       onKeyUp={(e: React.KeyboardEvent) => keyboardShortcuts.codeEditor(e)}
@@ -116,7 +119,7 @@ const TransformEditor = (props: TransformProps) => {
           <TextField
             autoFocus
             onBlur={() => {
-              setChange(scriptTitle, 'name');
+              setTransform(scriptTitle);
               return setIsScriptNameActive(!isScriptNameActive);
             }}
             onChange={e => {
@@ -124,7 +127,7 @@ const TransformEditor = (props: TransformProps) => {
             }}
             name={`transforms.${id}.name`}
             className={classes.scriptName}
-            value={scriptTitle}
+            placeholder={scriptTitle}
           />
         ) : (
           <Typography
@@ -148,13 +151,13 @@ const TransformEditor = (props: TransformProps) => {
           <CloseIcon />
         </IconButton>
       </Tooltip>
-      <Editor
+      <ControlledEditor
         width="800"
         height="90vh"
         language="sql"
         theme={theme.palette.type === 'light' ? 'vs-light' : 'vs-dark'}
         value={transforms[id].sqlScript}
-        editorDidMount={handleShowValue}
+        onChange={setScriptEditor}
       />
     </div>
   );
