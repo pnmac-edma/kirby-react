@@ -3,6 +3,9 @@ import * as types from './types';
 export const initialState = {
   isDestinationModalOpen: false,
   isEditorOpen: false,
+  isSnackbarOpen: false,
+  isSnackbarUpdated: false,
+  snackbarText: '',
   selectedNode: null,
   scriptTitle: '',
   metadata: {
@@ -47,6 +50,32 @@ const hydrationReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isDestinationModalOpen: action.value
+      };
+    }
+    case types.SET_IS_SNACKBAR_OPEN: {
+      return {
+        ...state,
+        isSnackbarOpen: action.value
+      };
+    }
+    case types.SET_SNACKBAR_EXIT: {
+      const { isSnackbarUpdated, snackbarText } = state;
+
+      return {
+        ...state,
+        isSnackbarOpen: isSnackbarUpdated,
+        isSnackbarUpdated: false,
+        snackbarText: isSnackbarUpdated ? snackbarText : ''
+      };
+    }
+    case types.SET_SNACKBAR_TEXT: {
+      const { isSnackbarOpen } = state;
+
+      return {
+        ...state,
+        isSnackbarOpen: !isSnackbarOpen,
+        isSnackbarUpdated: isSnackbarOpen,
+        snackbarText: action.text
       };
     }
     case types.SOURCE_TILES_REQUESTS_FETCH:

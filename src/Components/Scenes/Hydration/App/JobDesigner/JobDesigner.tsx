@@ -3,6 +3,7 @@ import { Dialog } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import DiagramView from '../DiagramView/DiagramView';
+import Snackbars from '../Snackbars/Snackbars';
 import Toolbar from '../Toolbar/Toolbar';
 import TransformEditor from '../Transform/TransformEditor';
 import {
@@ -137,6 +138,7 @@ const JobDesigner = (props: JobDesignerProps) => {
       <Dialog open={isScheduleJobOpen} aria-labelledby="form-schedule-job">
         <ScheduleJob setIsScheduleJobOpen={setIsScheduleJobOpen} />
       </Dialog>
+      <Snackbars />
     </div>
   );
 };
