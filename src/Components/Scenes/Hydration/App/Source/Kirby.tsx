@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import {
   Button,
   FormControl,
@@ -10,12 +10,16 @@ import {
   TextField,
   Tooltip,
   Select,
-  Divider
+  Divider,
+  CircularProgress
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
-import { NodeModel } from '../../../../../State/Hydration/types';
+import {
+  NodeModel,
+  InitialStateTypes
+} from '../../../../../State/Hydration/types';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
 interface KirbyProps {
@@ -42,7 +46,15 @@ const Kirby = (props: KirbyProps) => {
   );
   const { KIRBY } = mockSourcesMetadata; // TODO: replace with real data
   const classes = useStyles();
+  const { values } = useFormikContext() as { values: InitialStateTypes };
+  const [isCalling, setIsCalling] = useState(false);
 
+  const sourceTilesTypeConnection = () => {
+    setIsCalling(true);
+    return setTimeout(function() {
+      setIsCalling(false);
+    }, 4000);
+  };
   return (
     <div className="Toolbar__container">
       <div className="Toolbar__section">
@@ -80,11 +92,16 @@ const Kirby = (props: KirbyProps) => {
 
       <div className="Toolbar__section">
         <Tooltip title="Not Connected" placement="top">
-          <FlashOnIcon className="Toolbar__bolt-icon" />
+          {isCalling ? (
+            <CircularProgress />
+          ) : (
+            <FlashOnIcon className="Toolbar__bolt-icon" />
+          )}
         </Tooltip>
         <h4 className={`Toolbar__form-title`}>Connection</h4>
         <FormControl
           className={`Input__select Toolbar__connection-type ${classes.selectFormControl}`}
+          disabled={isCalling}
         >
           <InputLabel id="connection-type">Type</InputLabel>
           <Field
@@ -101,7 +118,15 @@ const Kirby = (props: KirbyProps) => {
             ))}
           </Field>
         </FormControl>
-        <Button variant="outlined" color="primary" className="Tile__button">
+        <Button
+          variant="outlined"
+          color="primary"
+          className="Tile__button"
+          disabled={
+            !Object.values(values.sources)[0].connectionType || isCalling
+          }
+          onClick={sourceTilesTypeConnection}
+        >
           Test Connection
         </Button>
       </div>
