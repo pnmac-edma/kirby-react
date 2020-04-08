@@ -36,6 +36,15 @@ const useStyles = makeStyles(theme => ({
   },
   selectFormControl: {
     display: 'flex'
+  },
+  colorForSuccess: {
+    color: 'green'
+  },
+  colorForFail: {
+    color: 'red'
+  },
+  hide: {
+    display: 'none'
   }
 }));
 
@@ -48,11 +57,14 @@ const Kirby = (props: KirbyProps) => {
   const classes = useStyles();
   const { values } = useFormikContext() as { values: InitialStateTypes };
   const [isCalling, setIsCalling] = useState(false);
-
+  const [isCallSuccessful, setIsCallSuccessful] = useState(false);
+  const [isCallFail, setIsCallFail] = useState(false);
   const sourceTilesTypeConnection = () => {
     setIsCalling(true);
     return setTimeout(function() {
       setIsCalling(false);
+      setIsCallFail(false);
+      setIsCallSuccessful(true);
     }, 4000);
   };
   return (
@@ -91,11 +103,28 @@ const Kirby = (props: KirbyProps) => {
       <Divider className={classes.divider} />
 
       <div className="Toolbar__section">
-        <Tooltip title="Not Connected" placement="top">
+        <Tooltip
+          title={
+            isCallSuccessful
+              ? 'Connected'
+              : isCallFail
+              ? 'Unable to connect'
+              : 'Not Connected'
+          }
+          placement="top"
+        >
           {isCalling ? (
-            <CircularProgress />
+            <CircularProgress size={24} color="inherit" />
           ) : (
-            <FlashOnIcon className="Toolbar__bolt-icon" />
+            <FlashOnIcon
+              className={
+                isCallSuccessful
+                  ? classes.colorForSuccess
+                  : isCallFail
+                  ? classes.colorForFail
+                  : 'Toolbar__bolt-icon'
+              }
+            />
           )}
         </Tooltip>
         <h4 className={`Toolbar__form-title`}>Connection</h4>
@@ -121,7 +150,7 @@ const Kirby = (props: KirbyProps) => {
         <Button
           variant="outlined"
           color="primary"
-          className="Tile__button"
+          className={isCallSuccessful ? classes.hide : 'Tile__button'}
           disabled={
             !Object.values(values.sources)[0].connectionType || isCalling
           }
