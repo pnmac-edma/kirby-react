@@ -59,6 +59,7 @@ const Sftp = (props: SftpProps) => {
   const [isCalling, setIsCalling] = useState(false);
   const [isCallSuccessful, setIsCallSuccessful] = useState(false);
   const [isCallFail, setIsCallFail] = useState(false);
+  // TODO replace with real Api call
   const sourceTilesTypeConnection = () => {
     setIsCalling(true);
     return setTimeout(function() {

@@ -59,6 +59,7 @@ const Kirby = (props: KirbyProps) => {
   const [isCalling, setIsCalling] = useState(false);
   const [isCallSuccessful, setIsCallSuccessful] = useState(false);
   const [isCallFail, setIsCallFail] = useState(false);
+  // TODO replace with real api call
   const sourceTilesTypeConnection = () => {
     setIsCalling(true);
     return setTimeout(function() {

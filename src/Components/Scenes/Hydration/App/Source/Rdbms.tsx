@@ -59,6 +59,7 @@ const Rdbms = (props: RdbmsProps) => {
   const [isCalling, setIsCalling] = useState(false);
   const [isCallSuccessful, setIsCallSuccessful] = useState(false);
   const [isCallFail, setIsCallFail] = useState(false);
+  // TODO replace with real API call
   const sourceTilesTypeConnection = () => {
     setIsCalling(true);
     return setTimeout(function() {
