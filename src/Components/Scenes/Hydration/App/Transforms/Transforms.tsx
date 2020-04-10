@@ -23,7 +23,6 @@ type TransformsProps = {
 const Transforms = ({ addNodeToDiagram }: TransformsProps) => {
   const dispatch = useDispatch();
   const { values } = useFormikContext() as { values: InitialStateTypes };
-
   const setAddTransform = (event: React.FormEvent<HTMLFormElement>) => {
     const node = addNodeToDiagram('Untitled', { x: 400, y: 400 }, 'transform');
     node.selected = true;

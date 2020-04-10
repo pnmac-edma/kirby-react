@@ -7,6 +7,7 @@ export const initialState = {
   isSnackbarUpdated: false,
   snackbarText: '',
   selectedNode: null,
+  scriptTitle: '',
   metadata: {
     sources: {},
     destinations: {},
@@ -86,6 +87,8 @@ const hydrationReducer = (state = initialState, action: any) => {
       };
     case types.SOURCE_TILES_REQUESTS_FAILURE:
       return { ...state };
+    case types.HANDLE_TITLE_NAME:
+      return { ...state, scriptTitle: action.scriptTitle };
     case types.DESTINATIONS_REQUEST_FETCH:
       return { ...state };
     case types.DESTINATIONS_REQUEST_SUCCESS:
