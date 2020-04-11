@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import {
   Button,
   FormControl,
@@ -30,10 +30,6 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-interface NewDestinationFormProps {
-  isAppForm: boolean;
-}
-
 const NewDestinationForm = (props: NewDestinationFormProps) => {
   const { isAppForm } = props;
   const classes = styles();
@@ -42,6 +38,10 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
   );
   const dispatch = useDispatch();
   const prefixForApp = isAppForm ? 'destinationsCreate.' : '';
+  const { errors, touched } = (useFormikContext() as unknown) as {
+    errors: InitialErrorTypes;
+    touched: InitialTouchedTypes;
+  };
 
   return (
     <>
@@ -55,6 +55,8 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
           <Field
             name={`${prefixForApp}name`}
             className={classes.textfield}
+            error={touched.name}
+            helperText={touched.name ? errors.name : null}
             label="Destination Name"
             variant="outlined"
             as={TextField}
@@ -106,6 +108,8 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
             name={`${prefixForApp}description`}
             className={classes.textfield}
             label="Description"
+            error={touched.description}
+            helperText={touched.description ? errors.description : null}
             variant="outlined"
             rows="3"
             as={TextField}
@@ -119,6 +123,8 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
             name={`${prefixForApp}justification`}
             className={classes.textfield}
             label="Justification"
+            error={touched.justification}
+            helperText={touched.justification ? errors.justification : null}
             variant="outlined"
             rows="3"
             as={TextField}
@@ -153,3 +159,31 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
 };
 
 export default NewDestinationForm;
+
+interface NewDestinationFormProps {
+  isAppForm: boolean;
+}
+
+interface InitialErrorTypes {
+  name: string;
+  sensitivity: string;
+  domain: string;
+  description: string;
+  justification: string;
+}
+
+interface InitialTouchedTypes {
+  name: boolean;
+  sensitivity: boolean;
+  domain: boolean;
+  description: boolean;
+  justification: boolean;
+}
+
+interface InitialValuesTypes {
+  name: string;
+  sensitivity: string;
+  domain: string;
+  descrition: string;
+  justification: string;
+}
