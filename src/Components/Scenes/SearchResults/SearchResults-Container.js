@@ -5,8 +5,9 @@ import {
   searchResultRequest,
   setToggleSearchCheckbox,
   setToggleSearchAllCheckbox
-} from '../../../Actions/searchResultActions';
+} from '../../../State/SearchResult/actions';
 import { requestAssetsClick } from '../../../Actions/requestAssetActions';
+// import { requestAssetsClick } from '../../../State/SearchResult/actions'
 
 const mapStateToProps = ({ searchResult }) => {
   return {

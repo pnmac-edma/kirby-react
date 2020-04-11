@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import searchResultReducer from './searchResultReducer';
+import searchResultReducer from '../State/SearchResult/reducer';
 import requestAssetsReducer from './requestAssetsReducers';
 import viewRequestsReducer from '../State/ViewRequests/reducers';
 import currentUserReducer from '../State/AuthFlow/reducers';
