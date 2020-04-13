@@ -20,23 +20,6 @@ export const searchResultRequest = (searchInput: any) => ({
   payload: searchInput
 });
 
-// export const searchResultSuccess = (response: any) => ({
-//   type: types.SEARCH_RESULT_SUCCESS,
-//   payload: response
-// });
-
-// export const handleCheckBoxSelect = ({ target }: any) => {
-//   return ({
-//     type: types.HANDLE_CHECKBOX_SELECT,
-//     payload: { id: target.id, checked: target.checked }
-//   });
-// };
-
-// export const searchResultSortRequest = (columnName: any) => ({
-//   type: types.SEARCH_RESULT_SORT_REQUEST,
-//   payload: columnName
-// });
-
 export const handleFilterSelect = (e: { target: any }) => ({
   type: types.HANDLE_FILTER_SELECT,
   payload: e.target

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { constructRequest } from '../State/helpers';
-import config from '../config/config';
-import store from '../setupStore';
+import { constructRequest } from '../helpers';
+import config from '../../config/config';
+import store from '../../setupStore';
 
 export const searchResultApiCall = (...args) => {
   // to test signing (once implemented), Jon created this url that requires signing to access
