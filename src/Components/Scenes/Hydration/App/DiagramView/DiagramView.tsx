@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { useDropzone } from 'react-dropzone';
-import { DiagramWidget } from '@projectstorm/react-diagrams';
+import DiagramWidget from '../Diagram/DiagramWidget';
 import ArrowHead from '../Links/ArrowHead';
 import {
   setSelectedNode,
