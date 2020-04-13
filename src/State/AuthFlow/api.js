@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { constructRequest } from '../helpers';
 import config from '../../config/config';
+import { HttpMethods } from '../../Models/enums';
 
 // TODO: load from the env config once implemented
 // NOTE: authenicate still uses the older API. Do not change
@@ -14,7 +15,7 @@ export function authenticate(token) {
   const request = constructRequest(
     config.authUrl, // url
     config.authPath, // authenticationPath
-    'POST', // method
+    HttpMethods.POST, // method
     {
       data: requestBody // the body of request
     }
