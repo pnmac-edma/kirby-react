@@ -74,6 +74,15 @@ interface SourceTilesRequestFailureAction {
   message: any;
 }
 
+export const handleTitleName = (value: string): HandleTitleNameAction => ({
+  type: types.HANDLE_TITLE_NAME,
+  scriptTitle: value
+});
+interface HandleTitleNameAction {
+  type: typeof types.HANDLE_TITLE_NAME;
+  scriptTitle: string;
+}
+
 export const destinationRequestFetch = (): DestinationRequestFetchAction => ({
   type: types.DESTINATIONS_REQUEST_FETCH
 });
@@ -83,7 +92,7 @@ interface DestinationRequestFetchAction {
 
 export const destinationRequestSuccess = (
   destinations: types.Destinations
-) => ({
+): DestinationRequestSuccessAction => ({
   type: types.DESTINATIONS_REQUEST_SUCCESS,
   destinations
 });
