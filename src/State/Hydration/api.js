@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { constructRequest } from '../helpers';
 import config from '../../config/config';
+import { HttpMethods } from '../../Models/enums';
 
 export const getSourceTiles = () => {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/users/data`,
-    'GET',
+    HttpMethods.GET,
     {
       params: { dropdown: 'sourcetypes' }
     }
@@ -21,7 +22,7 @@ export const getDestinations = () => {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/users/data`,
-    'GET',
+    HttpMethods.GET,
     {
       params: { dropdown: 'sensitivity' }
     }
@@ -36,7 +37,7 @@ export const getDestinationsDropdown = () => {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/users/data`,
-    'GET',
+    HttpMethods.GET,
     {
       // TODO need to update with user select
       params: { dropdown: 'databases', sensitivity: 'non-sensitive' }
