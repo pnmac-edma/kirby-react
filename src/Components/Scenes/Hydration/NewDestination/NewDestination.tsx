@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import NewDestinationForm from './NewDestination-Form';
+import NewDestinationValidationSchema from '../../../../Validators/newDestinationSchema';
 import { destinationInitialState } from '../../../../State/Hydration/forms';
 
 const styles = makeStyles(theme => ({
@@ -21,6 +22,7 @@ const NewDestination = () => {
   return (
     <Formik
       initialValues={destinationInitialState}
+      validationSchema={NewDestinationValidationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
       }}
