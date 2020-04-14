@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { constructRequest } from '../helpers';
-import config from '../../config/config';
-import store from '../../setupStore';
+import { constructRequest } from '../State/helpers';
+import config from '../config/config';
+import store from '../setupStore';
+import { HttpMethods } from '../Models/enums';
 
 export const searchResultApiCall = (...args) => {
   // to test signing (once implemented), Jon created this url that requires signing to access
@@ -22,7 +23,7 @@ export const searchResultApiCall = (...args) => {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/assets/search`,
-    'POST',
+    HttpMethods.POST,
     {
       data: requestBody,
       headers: { 'Content-Type': 'application/json' }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { constructRequest } from '../State/helpers';
 import config from '../config/config';
+import { HttpMethods } from '../Models/enums';
 
 export const getEmployees = args => {
   // to test signing (once implemented), Jon created this url that requires signing to access
@@ -8,7 +9,7 @@ export const getEmployees = args => {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/users`,
-    'GET',
+    HttpMethods.GET,
     {
       params: {}
     }
@@ -35,7 +36,7 @@ export const makeRequest = (
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/assets/requests/access`,
-    'POST',
+    HttpMethods.POST,
     {
       data: fetchBody,
       headers: { 'Content-Type': 'application/json' }
