@@ -1,6 +1,6 @@
 {
   "KIRBY": {
-    "connectionTypes": ["AWS Glue"]
+    "connectionTypes": ["SFTP", "AWS Glue"]
   },
   "RDBMS": {
     "sourceVersions": ["MySQL", "MSSQL"],

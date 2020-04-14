@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import {
   Button,
   FormControl,
@@ -10,12 +10,16 @@ import {
   TextField,
   Tooltip,
   Select,
-  Divider
+  Divider,
+  CircularProgress
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
-import { NodeModel } from '../../../../../State/Hydration/types';
+import {
+  NodeModel,
+  InitialStateTypes
+} from '../../../../../State/Hydration/types';
 import mockSourcesMetadata from '../../../../../State/__mockData__/mockSourcesMetadata.json';
 
 interface RdbmsProps {
@@ -32,6 +36,15 @@ const useStyles = makeStyles(theme => ({
   },
   selectFormControl: {
     display: 'flex'
+  },
+  colorForSuccess: {
+    color: 'green'
+  },
+  colorForFail: {
+    color: 'red'
+  },
+  hide: {
+    display: 'none'
   }
 }));
 
@@ -42,6 +55,19 @@ const Rdbms = (props: RdbmsProps) => {
     ({ hydration }: any) => hydration.selectedNode
   );
   const classes = useStyles();
+  const { values } = useFormikContext() as { values: InitialStateTypes };
+  const [isCalling, setIsCalling] = useState(false);
+  const [isCallSuccessful, setIsCallSuccessful] = useState(false);
+  const [isCallFail, setIsCallFail] = useState(false);
+  // TODO replace with real API call
+  const sourceTilesTypeConnection = () => {
+    setIsCalling(true);
+    return setTimeout(function() {
+      setIsCalling(false);
+      setIsCallFail(false);
+      setIsCallSuccessful(true);
+    }, 4000);
+  };
 
   return (
     <div className="Toolbar__container">
@@ -98,12 +124,34 @@ const Rdbms = (props: RdbmsProps) => {
       <Divider className={classes.divider} />
 
       <div className="Toolbar__section">
-        <Tooltip title="Not Connected" placement="top">
-          <FlashOnIcon className="Toolbar__bolt-icon" />
+        <Tooltip
+          title={
+            isCallSuccessful
+              ? 'Connected'
+              : isCallFail
+              ? 'Unable to connect'
+              : 'Not Connected'
+          }
+          placement="top"
+        >
+          {isCalling ? (
+            <CircularProgress size={24} color="inherit" />
+          ) : (
+            <FlashOnIcon
+              className={
+                isCallSuccessful
+                  ? classes.colorForSuccess
+                  : isCallFail
+                  ? classes.colorForFail
+                  : 'Toolbar__bolt-icon'
+              }
+            />
+          )}
         </Tooltip>
         <h4 className={`Toolbar__form-title`}>Connection</h4>
         <FormControl
           className={`${classes.selectFormControl} Input__select Toolbar__connection-type`}
+          disabled={isCalling}
         >
           <InputLabel id="connection-type">Type</InputLabel>
           <Field
@@ -120,7 +168,15 @@ const Rdbms = (props: RdbmsProps) => {
             ))}
           </Field>
         </FormControl>
-        <Button variant="outlined" color="primary" className="Tile__button">
+        <Button
+          variant="outlined"
+          color="primary"
+          className={isCallSuccessful ? classes.hide : 'Tile__button'}
+          disabled={
+            !Object.values(values.sources)[0].connectionType || isCalling
+          }
+          onClick={sourceTilesTypeConnection}
+        >
           Test Connection
         </Button>
       </div>
