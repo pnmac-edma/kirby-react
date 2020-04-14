@@ -45,7 +45,7 @@ const SearchResults = props => {
   const footerButtonText = selected
     ? `${selected.length} request${selected.length !== 1 ? 's' : ''} selected`
     : '';
-  console.log('SearchResult', searchResult);
+
   return (
     <TableWrapper
       isLoading={isLoading}

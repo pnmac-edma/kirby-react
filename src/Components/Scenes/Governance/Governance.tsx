@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Typography, Button, TextField } from '@material-ui/core';
-import { color, fontSize, font } from '@edma/design-tokens';
+import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import GovernanceTable from './GovernorsTable';
 import SideBar from './sideBar';
@@ -29,23 +29,9 @@ const useStyles = makeStyles(theme => ({
     margin: '0 1rem',
     color: theme.palette.type === 'light' ? color.black : color.white
   },
-  dividerStyle: {
-    width: '100%',
-    marginBottom: 32,
-    marginTop: 24
-  },
   heading: {
     margin: '1rem 0 2rem',
     color: theme.palette.type === 'light' ? color.black : color.white
-  },
-  menuStyle: {
-    width: 'max-content',
-    textTransform: 'uppercase',
-    marginBottom: 8,
-    fontWeight: 'bold',
-    fontFamily: font.body,
-    color: theme.palette.type === 'light' ? color.black : color.g300,
-    margin: '1rem 0 2rem'
   },
   paper: {
     margin: 12,
@@ -60,10 +46,15 @@ const useStyles = makeStyles(theme => ({
   rightSide: {
     float: 'right',
     paddingTop: 24
+  },
+  button: {
+    textTransform: 'none',
+    fontWeight: 'bold',
+    whiteSpace: 'nowrap'
   }
 }));
 
-const Governance = (props: any) => {
+const Governance: FunctionComponent = (props: any) => {
   const classes = useStyles();
 
   return (
@@ -88,7 +79,11 @@ const Governance = (props: any) => {
               onChange={() => {}}
             />
             <div className={classes.rightSide}>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
                 Add Governor
               </Button>
             </div>
