@@ -60,7 +60,7 @@ const TableWrapper = ({
   selected = [],
   setToggleAllCheckbox = null,
   setToggleCheckbox = null,
-  remove = []
+  remove = false
 }: TableWrapperProps) => {
   const classes = useStyles();
 
@@ -226,5 +226,5 @@ interface TableWrapperProps {
   setToggleAllCheckbox?: Function | null;
   setToggleCheckbox?: Function | null;
   // Remove
-  remove?: Array<any>;
+  remove?: boolean;
 }

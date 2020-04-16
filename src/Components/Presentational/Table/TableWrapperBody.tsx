@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { Checkbox, TableCell, TableBody, TableRow } from '@material-ui/core';
+import {
+  Checkbox,
+  TableCell,
+  TableBody,
+  TableRow,
+  Tooltip
+} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { color } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { stableSort, getSorting } from '../../../Utilities/utils';
 import { Column, Datum } from './types';
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import {
   setRemoveSelectedRow,
   setRemoveGovernor
@@ -63,7 +69,7 @@ const TableWrapperBody = ({
   const { governors, setSelectedRemoveRowId } = useSelector(
     (state: any) => state.governance
   );
-  console.log('GOVERNANCAE', governors);
+  console.log('This is Remove', remove);
   const removeGovernor = governors.reduce((acc: any, governor: any) => {
     if (governor.Id === setSelectedRemoveRowId) {
       acc.push(
@@ -125,14 +131,16 @@ const TableWrapperBody = ({
         {columns.map((col, i) => createRowCells(datum, col, i))}
         {remove && (
           <TableCell padding="checkbox">
-            <DeleteIcon
-              color="primary"
-              id={`${datum.Id}`}
-              onClick={() => {
-                dispatch(setRemoveSelectedRow(Number(datum.Id)));
-                setIsModalOpen(true);
-              }}
-            />
+            <Tooltip title="Delete" placement="top">
+              <DeleteOutlineIcon
+                color="inherit"
+                id={`${datum.Id}`}
+                onClick={() => {
+                  dispatch(setRemoveSelectedRow(Number(datum.Id)));
+                  setIsModalOpen(true);
+                }}
+              />
+            </Tooltip>
           </TableCell>
         )}
       </TableRow>
@@ -183,5 +191,5 @@ interface TableWrapperBodyProps {
   page: number;
   data: Array<Datum>;
   rowsPerPage: number;
-  remove: Array<any>;
+  remove: boolean;
 }

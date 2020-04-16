@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Typography, Button, TextField } from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import GovernanceTable from './GovernorsTable';
-import SideBar from './sideBar';
+import Sidebar from './sidebar';
 
 const useStyles = makeStyles(theme => ({
   flexStructure: {
@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Governance: FunctionComponent = (props: any) => {
+const Governance = (props: any) => {
   const classes = useStyles();
 
   return (
@@ -64,7 +64,7 @@ const Governance: FunctionComponent = (props: any) => {
           <Typography variant="h2" className={classes.heading}>
             Governance
           </Typography>
-          <SideBar />
+          <Sidebar />
         </div>
       </div>
       <div className={classes.sideTable}>
