@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
+import { useSelector } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
-import MockGovernors from '../../../State/__mockData__/mockGovernors.json';
 
 const GovernorsTable: FunctionComponent = (props: any) => {
+  const { governors } = useSelector((state: any) => state.governance);
   const titleText = `Governors`;
   const columns = [{ name: 'Governor', property: 'governor' }];
 
@@ -10,7 +11,8 @@ const GovernorsTable: FunctionComponent = (props: any) => {
     <TableWrapper
       setTitleText={() => titleText}
       columns={columns}
-      data={MockGovernors}
+      data={governors}
+      remove={[]}
     />
   );
 };

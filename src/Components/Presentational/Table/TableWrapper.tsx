@@ -59,7 +59,8 @@ const TableWrapper = ({
   setFooterButtonClick = () => {},
   selected = [],
   setToggleAllCheckbox = null,
-  setToggleCheckbox = null
+  setToggleCheckbox = null,
+  remove = []
 }: TableWrapperProps) => {
   const classes = useStyles();
 
@@ -166,6 +167,7 @@ const TableWrapper = ({
               orderBy={orderBy}
               page={page}
               rowsPerPage={rowsPerPage}
+              remove={remove}
             />
           ) : (
             <TableWrapperNotFoundFilter
@@ -223,4 +225,6 @@ interface TableWrapperProps {
   selected?: Array<any>;
   setToggleAllCheckbox?: Function | null;
   setToggleCheckbox?: Function | null;
+  // Remove
+  remove?: Array<any>;
 }

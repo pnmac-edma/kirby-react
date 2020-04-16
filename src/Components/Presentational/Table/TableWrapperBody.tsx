@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Checkbox, TableCell, TableBody, TableRow } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import { color } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { stableSort, getSorting } from '../../../Utilities/utils';
 import { Column, Datum } from './types';
+import DeleteIcon from '@material-ui/icons/Delete';
+import {
+  setRemoveSelectedRow,
+  setRemoveGovernor
+} from '../../../State/Governance/actions';
+import Modal from '../Modal/Modal';
 
 const tableStyles = makeStyles(theme => ({
   cell: {
@@ -30,6 +37,11 @@ const tableStyles = makeStyles(theme => ({
   selectedRow: {
     backgroundColor: color.b50
   }
+  // tableCell: {
+  //   '&:hover': {
+  //     display: 'none'
+  //   }
+  // }
 }));
 
 const TableWrapperBody = ({
@@ -42,10 +54,29 @@ const TableWrapperBody = ({
   orderBy,
   page,
   data,
-  rowsPerPage
+  rowsPerPage,
+  remove
 }: TableWrapperBodyProps) => {
   const classes = tableStyles();
-
+  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { governors, setSelectedRemoveRowId } = useSelector(
+    (state: any) => state.governance
+  );
+  console.log('GOVERNANCAE', governors);
+  const removeGovernor = governors.reduce((acc: any, governor: any) => {
+    if (governor.Id === setSelectedRemoveRowId) {
+      acc.push(
+        <p key={governor.Id}>
+          Are you sure that you want to remove{' '}
+          <strong>{governor.governor}</strong> from the Governance group?
+        </p>
+      );
+    }
+    return acc;
+  }, []);
+  console.log('removeGoverno', removeGovernor);
+  const setRemoveGovernors = () => dispatch(setRemoveGovernor());
   const getCellProps = (datum: Datum, col: Column, i: number) => {
     let className, onClickFunc;
     if (i === 0) {
@@ -92,6 +123,18 @@ const TableWrapperBody = ({
           </TableCell>
         )}
         {columns.map((col, i) => createRowCells(datum, col, i))}
+        {remove && (
+          <TableCell padding="checkbox">
+            <DeleteIcon
+              color="primary"
+              id={`${datum.Id}`}
+              onClick={() => {
+                dispatch(setRemoveSelectedRow(Number(datum.Id)));
+                setIsModalOpen(true);
+              }}
+            />
+          </TableCell>
+        )}
       </TableRow>
     );
   };
@@ -110,9 +153,20 @@ const TableWrapperBody = ({
   };
 
   return (
-    <TableBody>
-      {sortedSlicedRequests.map((datum: Datum) => createRow(datum))}
-    </TableBody>
+    <>
+      {isModalOpen ? (
+        <Modal
+          modalTitle={'Remove Govenor'}
+          render={removeGovernor}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setRemoveGovernors}
+        />
+      ) : null}
+      <TableBody>
+        {sortedSlicedRequests.map((datum: Datum) => createRow(datum))}
+      </TableBody>
+    </>
   );
 };
 
@@ -129,4 +183,5 @@ interface TableWrapperBodyProps {
   page: number;
   data: Array<Datum>;
   rowsPerPage: number;
+  remove: Array<any>;
 }
