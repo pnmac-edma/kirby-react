@@ -72,7 +72,6 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
           <RequestingForContainer />
         </div>
       </div>
-
       <div className={classes.sideTable}>
         <RequestAssetTableContainer />
         {openModal && (

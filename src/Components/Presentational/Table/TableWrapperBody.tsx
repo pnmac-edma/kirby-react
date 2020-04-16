@@ -32,19 +32,6 @@ const tableStyles = makeStyles(theme => ({
   }
 }));
 
-interface TableWrapperBodyProps {
-  columns: Array<Column>;
-  setToggleCheckbox: Function | null;
-  setFirstColLink: Function;
-  setSelected: Function;
-  selected: Array<any>;
-  order: any;
-  orderBy: string;
-  page: number;
-  data: Array<Datum>;
-  rowsPerPage: number;
-}
-
 const TableWrapperBody = ({
   columns,
   setToggleCheckbox,
@@ -130,3 +117,16 @@ const TableWrapperBody = ({
 };
 
 export default TableWrapperBody;
+
+interface TableWrapperBodyProps {
+  columns: Array<Column>;
+  setToggleCheckbox: Function | null;
+  setFirstColLink: Function;
+  setSelected: Function;
+  selected: Array<any>;
+  order: any;
+  orderBy: string;
+  page: number;
+  data: Array<Datum>;
+  rowsPerPage: number;
+}
