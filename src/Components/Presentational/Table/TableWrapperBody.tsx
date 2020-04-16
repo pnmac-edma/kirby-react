@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Checkbox,
   TableCell,
@@ -6,18 +6,14 @@ import {
   TableRow,
   Tooltip
 } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { color } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { stableSort, getSorting } from '../../../Utilities/utils';
 import { Column, Datum } from './types';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import {
-  setRemoveSelectedRow,
-  setRemoveGovernor
-} from '../../../State/Governance/actions';
-import Modal from '../Modal/Modal';
+import { setRemoveSelectedRow } from '../../../State/Governance/actions';
 
 const tableStyles = makeStyles(theme => ({
   cell: {
@@ -42,12 +38,13 @@ const tableStyles = makeStyles(theme => ({
   },
   selectedRow: {
     backgroundColor: color.b50
+  },
+  hover: {
+    opacity: 0,
+    '&:hover': {
+      opacity: 1
+    }
   }
-  // tableCell: {
-  //   '&:hover': {
-  //     display: 'none'
-  //   }
-  // }
 }));
 
 const TableWrapperBody = ({
@@ -61,28 +58,11 @@ const TableWrapperBody = ({
   page,
   data,
   rowsPerPage,
-  remove
+  remove,
+  setIsModalOpen
 }: TableWrapperBodyProps) => {
   const classes = tableStyles();
   const dispatch = useDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { governors, setSelectedRemoveRowId } = useSelector(
-    (state: any) => state.governance
-  );
-  console.log('This is Remove', remove);
-  const removeGovernor = governors.reduce((acc: any, governor: any) => {
-    if (governor.Id === setSelectedRemoveRowId) {
-      acc.push(
-        <p key={governor.Id}>
-          Are you sure that you want to remove{' '}
-          <strong>{governor.governor}</strong> from the Governance group?
-        </p>
-      );
-    }
-    return acc;
-  }, []);
-  console.log('removeGoverno', removeGovernor);
-  const setRemoveGovernors = () => dispatch(setRemoveGovernor());
   const getCellProps = (datum: Datum, col: Column, i: number) => {
     let className, onClickFunc;
     if (i === 0) {
@@ -134,6 +114,7 @@ const TableWrapperBody = ({
             <Tooltip title="Delete" placement="top">
               <DeleteOutlineIcon
                 color="inherit"
+                className={classes.hover}
                 id={`${datum.Id}`}
                 onClick={() => {
                   dispatch(setRemoveSelectedRow(Number(datum.Id)));
@@ -161,20 +142,9 @@ const TableWrapperBody = ({
   };
 
   return (
-    <>
-      {isModalOpen ? (
-        <Modal
-          modalTitle={'Remove Govenor'}
-          render={removeGovernor}
-          openModal={isModalOpen}
-          handleModalToggle={setIsModalOpen}
-          handleRemoveSelected={setRemoveGovernors}
-        />
-      ) : null}
-      <TableBody>
-        {sortedSlicedRequests.map((datum: Datum) => createRow(datum))}
-      </TableBody>
-    </>
+    <TableBody>
+      {sortedSlicedRequests.map((datum: Datum) => createRow(datum))}
+    </TableBody>
   );
 };
 
@@ -192,4 +162,5 @@ interface TableWrapperBodyProps {
   data: Array<Datum>;
   rowsPerPage: number;
   remove: boolean;
+  setIsModalOpen: Function;
 }

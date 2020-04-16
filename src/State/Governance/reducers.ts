@@ -1,6 +1,6 @@
 import * as types from './types';
 import mockGovernors from '../__mockData__/mockGovernors.json';
-console.log(4444, mockGovernors);
+
 export const initialState = {
   setSelectedRemoveRowId: null,
   governors: mockGovernors
@@ -14,7 +14,6 @@ const governanceReducer = (state = initialState, action: any) => {
       const newGovernors = state.governors.filter(
         governor => governor.Id !== state.setSelectedRemoveRowId
       );
-      console.log('New ', newGovernors);
       return { ...state, governors: newGovernors };
     }
     default:
