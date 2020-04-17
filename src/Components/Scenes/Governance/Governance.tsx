@@ -3,7 +3,7 @@ import { Typography, Button, TextField } from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import GovernanceTable from './GovernorsTable';
-import Sidebar from './sidebar';
+import Sidebar from './Sidebar';
 
 const useStyles = makeStyles(theme => ({
   flexStructure: {
