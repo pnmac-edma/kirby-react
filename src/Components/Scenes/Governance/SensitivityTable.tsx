@@ -2,23 +2,28 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
-import { setRemoveGovernor } from '../../../State/Governance/actions';
+import { setRemoveSensitivityLevels } from '../../../State/Governance/actions';
 
 const SensitivityTable = (props: any) => {
-  const { governors, setSelectedRemoveRowId } = useSelector(
+  const { sensitivity, setSelectedRemoveRowId } = useSelector(
     (state: any) => state.governance
   );
-  const titleText = `Governors`;
-  const columns = [{ name: 'Governor', property: 'governor' }];
+  const titleText = `Sensitivity Levels`;
+  const columns = [
+    { name: 'Sensitivity', property: 'sensitivity' },
+    { name: 'Description', property: 'description' }
+  ];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const setRemoveGovernors = () => dispatch(setRemoveGovernor());
-  const removeGovernor = governors.reduce((acc: any, governor: any) => {
-    if (governor.Id === setSelectedRemoveRowId) {
+  const setRemoveSensitivityLevel = () =>
+    dispatch(setRemoveSensitivityLevels());
+  const removeGovernor = sensitivity.reduce((acc: any, sensitivity: any) => {
+    if (sensitivity.Id === setSelectedRemoveRowId) {
       acc.push(
-        <p key={governor.Id}>
+        <p key={sensitivity.Id}>
           Are you sure that you want to remove{' '}
-          <strong>{governor.governor}</strong> from the Governance group?
+          <strong>{sensitivity.sensitivity}</strong> from the availbale
+          sensitivity levels?
         </p>
       );
     }
@@ -29,17 +34,17 @@ const SensitivityTable = (props: any) => {
     <>
       {isModalOpen ? (
         <Modal
-          modalTitle={'Remove Govenor'}
+          modalTitle={'Remove Sensitivity Level'}
           render={removeGovernor}
           openModal={isModalOpen}
           handleModalToggle={setIsModalOpen}
-          handleRemoveSelected={setRemoveGovernors}
+          handleRemoveSelected={setRemoveSensitivityLevel}
         />
       ) : null}
       <TableWrapper
         setTitleText={() => titleText}
         columns={columns}
-        data={governors}
+        data={sensitivity}
         remove={true}
         setIsModalOpen={setIsModalOpen}
       />

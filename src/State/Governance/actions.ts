@@ -12,3 +12,7 @@ interface SetRemoveSelectedRow {
 export const setRemoveGovernor = () => ({
   type: types.SET_REMOVE_GOVERNOR
 });
+
+export const setRemoveSensitivityLevels = () => ({
+  type: types.SET_REMOVE_SENSITIVITY_LEVELS
+});

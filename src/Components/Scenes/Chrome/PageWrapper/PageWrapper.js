@@ -14,7 +14,6 @@ import NewJob from '../../Hydration/NewJob/NewJob';
 import ViewJobs from '../../Hydration/ViewJobs/ViewJobs';
 import NewDestination from '../../Hydration/NewDestination/NewDestination.tsx';
 import Governance from '../../Governance/Governance';
-import Sensitivity from '../../Governance/SensitivityTable';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -74,7 +73,7 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
         <Route path="/requests/sent" component={SentRequestsContainer} />
         {/* Governors Pages */}
         <Route path="/governance/governors" component={Governance} />
-        <Route path="/governance/sensitivity" component={Sensitivity} />
+        <Route path="/governance/sensitivity-levels" component={Governance} />
       </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}
