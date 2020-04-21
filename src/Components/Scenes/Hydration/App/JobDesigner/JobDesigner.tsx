@@ -98,6 +98,8 @@ const JobDesigner = (props: JobDesignerProps) => {
         dispatch(setSelectedNode(null))
     });
 
+    node.selected = true;
+    dispatch(setSelectedNode(null, node));
     forceUpdate();
     return node;
   };
