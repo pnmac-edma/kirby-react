@@ -73,6 +73,7 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
         <Route path="/requests/sent" component={SentRequestsContainer} />
         {/* Governors Pages */}
         <Route path="/governance/governors" component={Governance} />
+        <Route path="/governance/sensitivity-levels" component={Governance} />
       </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}

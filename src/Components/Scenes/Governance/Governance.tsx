@@ -1,8 +1,10 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { Typography, Button, TextField } from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import GovernanceTable from './GovernorsTable';
+import SensitivityTable from './SensitivityTable';
 import Sidebar from './Sidebar';
 
 const useStyles = makeStyles(theme => ({
@@ -56,7 +58,7 @@ const useStyles = makeStyles(theme => ({
 
 const Governance = (props: any) => {
   const classes = useStyles();
-
+  const curPath = useLocation().pathname;
   return (
     <div className={classes.flexStructure}>
       <div className={classes.sidebar}>
@@ -67,30 +69,49 @@ const Governance = (props: any) => {
           <Sidebar />
         </div>
       </div>
-      <div className={classes.sideTable}>
-        <div className={classes.paper}>
-          <div className={classes.tableWrapper}>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Search"
-              type="text"
-              onChange={() => {}}
-            />
-            <div className={classes.rightSide}>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-              >
-                Add Governor
-              </Button>
+      {curPath === '/governance/sensitivity-levels' ? (
+        <div className={classes.sideTable}>
+          <div className={classes.paper}>
+            <div className={classes.tableWrapper}>
+              <div className={classes.rightSide}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                >
+                  Add Sensitivity Level
+                </Button>
+              </div>
             </div>
           </div>
+          <SensitivityTable />
         </div>
-        <GovernanceTable />
-      </div>
+      ) : (
+        <div className={classes.sideTable}>
+          <div className={classes.paper}>
+            <div className={classes.tableWrapper}>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Search"
+                type="text"
+                onChange={() => {}}
+              />
+              <div className={classes.rightSide}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                >
+                  Add Governor
+                </Button>
+              </div>
+            </div>
+          </div>
+          <GovernanceTable />
+        </div>
+      )}
     </div>
   );
 };
