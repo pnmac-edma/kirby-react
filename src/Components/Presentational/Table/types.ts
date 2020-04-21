@@ -1,5 +1,5 @@
 export interface Datum {
-  Id: string;
+  Id: number;
   [property: string]: any;
 }
 

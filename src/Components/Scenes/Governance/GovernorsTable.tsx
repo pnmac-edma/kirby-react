@@ -1,17 +1,49 @@
-import React, { FunctionComponent } from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
-import MockGovernors from '../../../State/__mockData__/mockGovernors.json';
+import Modal from '../../Presentational/Modal/Modal';
+import { setRemoveGovernor } from '../../../State/Governance/actions';
 
-const GovernorsTable: FunctionComponent = (props: any) => {
+const GovernorsTable = (props: any) => {
+  const { governors, setSelectedRemoveRowId } = useSelector(
+    (state: any) => state.governance
+  );
   const titleText = `Governors`;
   const columns = [{ name: 'Governor', property: 'governor' }];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const setRemoveGovernors = () => dispatch(setRemoveGovernor());
+  const removeGovernor = governors.reduce((acc: any, governor: any) => {
+    if (governor.Id === setSelectedRemoveRowId) {
+      acc.push(
+        <p key={governor.Id}>
+          Are you sure that you want to remove{' '}
+          <strong>{governor.governor}</strong> from the Governance group?
+        </p>
+      );
+    }
+    return acc;
+  }, []);
 
   return (
-    <TableWrapper
-      setTitleText={() => titleText}
-      columns={columns}
-      data={MockGovernors}
-    />
+    <>
+      {isModalOpen ? (
+        <Modal
+          modalTitle={'Remove Govenor'}
+          render={removeGovernor}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setRemoveGovernors}
+        />
+      ) : null}
+      <TableWrapper
+        setTitleText={() => titleText}
+        columns={columns}
+        data={governors}
+        remove={true}
+        setIsModalOpen={setIsModalOpen}
+      />
+    </>
   );
 };
 

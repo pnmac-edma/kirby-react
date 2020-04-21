@@ -21,18 +21,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-interface TableWrapperColumnHeadersProps {
-  columns: Array<Column>;
-  data: Array<Datum>;
-  order: any;
-  orderBy: string;
-  numSelected: number;
-  rowCount: number;
-  setToggleAllCheckbox: Function | null;
-  onSort: Function;
-  selected: Array<any>;
-}
-
 const TableWrapperColumnHeaders = ({
   columns,
   data,
@@ -42,7 +30,8 @@ const TableWrapperColumnHeaders = ({
   rowCount,
   setToggleAllCheckbox,
   onSort,
-  selected
+  selected,
+  remove
 }: TableWrapperColumnHeadersProps) => {
   const classes = useStyles();
 
@@ -77,9 +66,23 @@ const TableWrapperColumnHeaders = ({
             </TableSortLabel>
           </TableCell>
         ))}
+        {remove && <TableCell padding="default"></TableCell>}
       </TableRow>
     </TableHead>
   );
 };
 
 export default TableWrapperColumnHeaders;
+
+interface TableWrapperColumnHeadersProps {
+  columns: Array<Column>;
+  data: Array<Datum>;
+  order: any;
+  orderBy: string;
+  numSelected: number;
+  rowCount: number;
+  setToggleAllCheckbox: Function | null;
+  onSort: Function;
+  selected: Array<any>;
+  remove?: boolean;
+}

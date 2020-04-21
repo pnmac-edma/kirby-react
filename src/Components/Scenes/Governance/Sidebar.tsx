@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SideBar = (props: any) => {
+const Sidebar = (props: any) => {
   const classes = useStyles();
 
   return (
@@ -63,4 +63,4 @@ const SideBar = (props: any) => {
   );
 };
 
-export default SideBar;
+export default Sidebar;

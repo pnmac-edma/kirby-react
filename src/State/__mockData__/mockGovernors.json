@@ -1,24 +1,24 @@
 [
   {
-    "Id": "1",
+    "Id": 1,
     "createddate": "2020-04-02 18:57:56",
     "createdbyemail": "selcuk.ates@pnmac.com",
     "governor": "eric barrow"
   },
   {
-    "Id": "2",
+    "Id": 2,
     "createddate": "2020-04-02 18:57:56",
     "createdbyemail": "selcuk.ates@pnmac.com",
     "governor": "someone someone"
   },
   {
-    "Id": "3",
+    "Id": 3,
     "createddate": "2020-04-02 18:57:56",
     "createdbyemail": "selcuk.ates@pnmac.com",
     "governor": "jonathan delarosa"
   },
   {
-    "Id": "4",
+    "Id": 4,
     "createddate": "2020-04-02 18:57:56",
     "createdbyemail": "selcuk.ates@pnmac.com",
     "governor": "selcuk ates"
