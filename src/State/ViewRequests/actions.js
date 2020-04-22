@@ -84,6 +84,18 @@ export const setToggleSentAllCheckbox = (selected, data) => ({
   data
 });
 
+export const setToggleArchivedCheckbox = (selected, id) => ({
+  type: types.SET_TOGGLE_ARCHIVED_CHECKBOX,
+  selected,
+  id
+});
+
+export const setToggleArchivedAllCheckbox = (selected, data) => ({
+  type: types.SET_TOGGLE_ARCHIVED_ALL_CHECKBOX,
+  selected,
+  data
+});
+
 export const setFooterButtonClick = selected => {
   return {
     type: types.HANDLE_FOOTER_BUTTON_CLICK,

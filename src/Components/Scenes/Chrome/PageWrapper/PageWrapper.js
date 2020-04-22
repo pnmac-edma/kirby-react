@@ -10,6 +10,7 @@ import SearchContainer from '../Search/Search-Container';
 import SearchResultsContainer from '../../SearchResults/SearchResults-Container';
 import RequestAssetContainer from '../../RequestAssets/RequestAsset/RequestAsset-Container';
 import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-Container';
+import ArchivedRequests from '../../ViewRequests/ArchivedRequests/ArchivedRequests';
 import NewJob from '../../Hydration/NewJob/NewJob';
 import ViewJobs from '../../Hydration/ViewJobs/ViewJobs';
 import NewDestination from '../../Hydration/NewDestination/NewDestination.tsx';
@@ -69,7 +70,7 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
         <Route path="/hydration/view-jobs" component={ViewJobs} />
         {/* requests pages */}
         <Route exact path="/requests" component={RequestsInboxContainer} />
-        <Route path="/requests/archive" component={null} />
+        <Route path="/requests/archive" component={ArchivedRequests} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
         {/* Governors Pages */}
         <Route path="/governance/governors" component={Governance} />

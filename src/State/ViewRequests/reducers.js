@@ -5,8 +5,28 @@ export const initialState = {
   outboundRequests: [], // stores all user requests
   selectedRequests: [],
   selectedSentRequests: [],
+  selectedArchivedRequests: [],
   error: {},
   isLoading: false
+};
+
+const generateNewSelected = (selected, id) => {
+  const selectedIndex = selected.indexOf(id);
+  const newSelected = [...selected];
+  if (selectedIndex === -1) {
+    newSelected.push(id);
+  } else {
+    newSelected.splice(selectedIndex, 1);
+  }
+  return newSelected;
+};
+
+const generateNewAllSelected = (selected, data) => {
+  let newSelecteds = [];
+  if (selected.length === 0) {
+    newSelecteds = data.map(request => request.Id);
+  }
+  return newSelecteds;
 };
 
 const viewRequestsReducer = (state = initialState, action) => {
@@ -62,61 +82,48 @@ const viewRequestsReducer = (state = initialState, action) => {
       };
     }
     case types.SET_TOGGLE_VIEW_CHECKBOX: {
-      const { selected, id } = action;
-      const selectedIndex = selected.indexOf(id);
-      const newSelected = [...selected];
-
-      if (selectedIndex === -1) {
-        newSelected.push(id);
-      } else {
-        newSelected.splice(selectedIndex, 1);
-      }
-
       return {
         ...state,
-        selectedRequests: newSelected
+        selectedRequests: generateNewSelected(action.selected, action.id)
       };
     }
     case types.SET_TOGGLE_VIEW_ALL_CHECKBOX: {
-      const { selected, data } = action;
-
-      let newSelecteds = [];
-      if (selected.length === 0) {
-        newSelecteds = data.map(request => request.Id);
-      }
-
       return {
         ...state,
-        selectedRequests: newSelecteds
+        selectedRequests: generateNewAllSelected(action.selected, action.data)
       };
     }
     case types.SET_TOGGLE_SENT_CHECKBOX: {
-      const { selected, id } = action;
-      const selectedIndex = selected.indexOf(id);
-      const newSelected = [...selected];
-
-      if (selectedIndex === -1) {
-        newSelected.push(id);
-      } else {
-        newSelected.splice(selectedIndex, 1);
-      }
-
       return {
         ...state,
-        selectedSentRequests: newSelected
+        selectedSentRequests: generateNewSelected(action.selected, action.id)
       };
     }
     case types.SET_TOGGLE_SENT_ALL_CHECKBOX: {
-      const { selected, data } = action;
-
-      let newSelecteds = [];
-      if (selected.length === 0) {
-        newSelecteds = data.map(request => request.Id);
-      }
-
       return {
         ...state,
-        selectedSentRequests: newSelecteds
+        selectedSentRequests: generateNewAllSelected(
+          action.selected,
+          action.data
+        )
+      };
+    }
+    case types.SET_TOGGLE_ARCHIVED_CHECKBOX: {
+      return {
+        ...state,
+        selectedArchivedRequests: generateNewSelected(
+          action.selected,
+          action.id
+        )
+      };
+    }
+    case types.SET_TOGGLE_ARCHIVED_ALL_CHECKBOX: {
+      return {
+        ...state,
+        selectedArchivedRequests: generateNewAllSelected(
+          action.selected,
+          action.data
+        )
       };
     }
     case types.HANDLE_FOOTER_BUTTON_CLICK: {
