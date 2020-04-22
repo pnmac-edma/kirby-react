@@ -9,7 +9,7 @@ const SearchResults = props => {
     searchResult,
     searchResultPageLoad,
     searchResultRequest,
-    searchInput,
+    searchedInput,
     selected,
     setToggleSearchCheckbox,
     setToggleSearchAllCheckbox
@@ -49,12 +49,12 @@ const SearchResults = props => {
   return (
     <TableWrapper
       isLoading={isLoading}
-      setTitleText={() => `Search Results for ${searchInput}`}
+      setTitleText={() => `Search Results for ${searchedInput}`}
       filter={['Name', 'Domain', 'Owner', 'Date Created']}
       selected={selected}
       columns={columns}
       data={searchResult ? searchResult.results : searchResult}
-      searchInput={searchInput}
+      searchedInput={searchedInput}
       setToggleCheckbox={setToggleSearchCheckbox}
       setToggleAllCheckbox={setToggleSearchAllCheckbox}
       footerButtonText={footerButtonText}
