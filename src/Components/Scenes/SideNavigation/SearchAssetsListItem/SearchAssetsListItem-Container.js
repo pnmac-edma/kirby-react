@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { handleSearchClick } from '../../../../Actions/searchResultActions';
+import { handleSearchClick } from '../../../../State/SearchResult/actions';
 import SearchAssetsListItem from './SearchAssetsListItem';
 
 const mapStateToProps = ({ searchResult }) => {

@@ -5,7 +5,7 @@ import {
   searchResultRequest,
   handleKeyPress,
   handleSearchClose
-} from '../../../../Actions/searchResultActions';
+} from '../../../../State/SearchResult/actions';
 
 const mapStateToProps = ({ searchResult }) => {
   return {

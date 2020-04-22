@@ -1,41 +1,26 @@
 import * as types from './types';
 
-export const searchResultPageLoad = params => ({
+export const searchResultPageLoad = (params: any) => ({
   type: types.SEARCH_RESULT_PAGE_LOAD,
   payload: params
 });
 
-export const searchHandleInput = e => ({
+export const searchHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => ({
   type: types.SEARCH_HANDLE_INPUT,
   payload: e.target.value
 });
 
-export const handleKeyPress = e => ({
+export const handleKeyPress = (e: any) => ({
   type: types.HANDLE_KEY_PRESS,
   payload: e
 });
 
-export const searchResultRequest = searchInput => ({
+export const searchResultRequest = (searchInput: any) => ({
   type: types.SEARCH_RESULT_REQUEST,
   payload: searchInput
 });
 
-export const searchResultSuccess = response => ({
-  type: types.SEARCH_RESULT_SUCCESS,
-  payload: response
-});
-
-export const handleCheckBoxSelect = ({ target }) => ({
-  type: types.HANDLE_CHECKBOX_SELECT,
-  payload: { id: target.id, checked: target.checked }
-});
-
-export const searchResultSortRequest = columnName => ({
-  type: types.SEARCH_RESULT_SORT_REQUEST,
-  payload: columnName
-});
-
-export const handleFilterSelect = e => ({
+export const handleFilterSelect = (e: { target: any }) => ({
   type: types.HANDLE_FILTER_SELECT,
   payload: e.target
 });
@@ -48,7 +33,7 @@ export const handleFilterClick = () => ({
   type: types.HANDLE_FILTER_CLICK
 });
 
-export const handleRemoveChip = id => ({
+export const handleRemoveChip = (id: any) => ({
   type: types.HANDLE_REMOVE_CHIP,
   payload: id
 });
@@ -61,13 +46,13 @@ export const handleSearchClose = () => ({
   type: types.HANDLE_SEARCH_CLOSE
 });
 
-export const setToggleSearchCheckbox = (selected, id) => ({
+export const setToggleSearchCheckbox = (selected: any, id: any) => ({
   type: types.SET_TOGGLE_SEARCH_CHECKBOX,
   selected,
   id
 });
 
-export const setToggleSearchAllCheckbox = (selected, data) => ({
+export const setToggleSearchAllCheckbox = (selected: any, data: any) => ({
   type: types.SET_TOGGLE_SEARCH_ALL_CHECKBOX,
   selected,
   data

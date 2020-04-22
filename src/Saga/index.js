@@ -1,5 +1,5 @@
 import { all } from 'redux-saga/effects';
-import handleSearch from './handleSearch';
+import handleSearch from '../State/SearchResult/sagas';
 import requestAsset from './requestAsset';
 import viewRequestsSagas from '../State/ViewRequests/sagas';
 import authFlowSagas from '../State/AuthFlow/sagas';

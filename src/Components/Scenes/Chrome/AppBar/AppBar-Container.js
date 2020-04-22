@@ -3,7 +3,7 @@ import {
   searchHandleInput,
   searchResultRequest,
   handleKeyPress
-} from '../../../../Actions/searchResultActions';
+} from '../../../../State/SearchResult/actions';
 import AppBar from './AppBar';
 
 const mapStateToProps = ({ searchResult }) => {
