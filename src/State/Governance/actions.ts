@@ -16,3 +16,7 @@ export const setRemoveGovernor = () => ({
 export const setRemoveSensitivityLevels = () => ({
   type: types.SET_REMOVE_SENSITIVITY_LEVELS
 });
+
+export const setRemoveDomainManagers = () => ({
+  type: types.SET_REMOVE_DOMAIN_MANAGERS
+});

@@ -5,6 +5,7 @@ import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import GovernanceTable from './GovernorsTable';
 import SensitivityTable from './SensitivityTable';
+import DomainManagerTable from './DomainManagerTable';
 import Sidebar from './Sidebar';
 
 const useStyles = makeStyles(theme => ({
@@ -59,6 +60,60 @@ const useStyles = makeStyles(theme => ({
 const Governance = (props: any) => {
   const classes = useStyles();
   const curPath = useLocation().pathname;
+
+  const governanceStates = {
+    governors: (
+      <div className={classes.sideTable}>
+        <div className={classes.paper}>
+          <div className={classes.tableWrapper}>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Search"
+              type="text"
+              onChange={() => {}}
+            />
+            <div className={classes.rightSide}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Add Governor
+              </Button>
+            </div>
+          </div>
+        </div>
+        <GovernanceTable />
+      </div>
+    ),
+    sensitivityAndManager: (
+      <div className={classes.sideTable}>
+        <div className={classes.paper}>
+          <div className={classes.tableWrapper}>
+            <div className={classes.rightSide}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                {curPath === '/governance/sensitivity-levels'
+                  ? `Add Sensitivity Level`
+                  : `Add Domain Manager`}
+              </Button>
+            </div>
+          </div>
+        </div>
+        {curPath === '/governance/sensitivity-levels' ? (
+          <SensitivityTable />
+        ) : (
+          <DomainManagerTable />
+        )}
+      </div>
+    )
+  };
+
   return (
     <div className={classes.flexStructure}>
       <div className={classes.sidebar}>
@@ -69,49 +124,9 @@ const Governance = (props: any) => {
           <Sidebar />
         </div>
       </div>
-      {curPath === '/governance/sensitivity-levels' ? (
-        <div className={classes.sideTable}>
-          <div className={classes.paper}>
-            <div className={classes.tableWrapper}>
-              <div className={classes.rightSide}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                >
-                  Add Sensitivity Level
-                </Button>
-              </div>
-            </div>
-          </div>
-          <SensitivityTable />
-        </div>
-      ) : (
-        <div className={classes.sideTable}>
-          <div className={classes.paper}>
-            <div className={classes.tableWrapper}>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Search"
-                type="text"
-                onChange={() => {}}
-              />
-              <div className={classes.rightSide}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                >
-                  Add Governor
-                </Button>
-              </div>
-            </div>
-          </div>
-          <GovernanceTable />
-        </div>
-      )}
+      {curPath === '/governance/governors'
+        ? governanceStates.governors
+        : governanceStates.sensitivityAndManager}
     </div>
   );
 };
