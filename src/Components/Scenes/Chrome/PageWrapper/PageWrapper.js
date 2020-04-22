@@ -33,7 +33,7 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
   const classes = pageContainerStyle();
   const curPath = useLocation().pathname;
   const hydrationFormikRef = useRef(null);
-  console.log('Current path', curPath);
+
   return (
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? (
