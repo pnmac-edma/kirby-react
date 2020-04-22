@@ -21,6 +21,7 @@ describe('ViewRequests Reducers', () => {
       error: {},
       isLoading: false,
       selectedRequests: [],
+      selectedArchivedRequests: [],
       selectedSentRequests: []
     };
   });
