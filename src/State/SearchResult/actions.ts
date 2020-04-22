@@ -5,7 +5,7 @@ export const searchResultPageLoad = (params: any) => ({
   payload: params
 });
 
-export const searchHandleInput = (e: { target: { value: any } }) => ({
+export const searchHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => ({
   type: types.SEARCH_HANDLE_INPUT,
   payload: e.target.value
 });
