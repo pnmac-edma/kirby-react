@@ -46,26 +46,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-interface TableWrapperProps {
-  columns: Array<Column>;
-  data: Array<Datum>;
-  isLoading?: boolean;
-  searchInput?: string;
-  setFirstColLink?: Function;
-  // NOTE: filter requires setTitleText to work
-  setTitleText?: Function | null;
-  filter?: Array<string> | null;
-  // NOTE: footerButtonLink and setFooterButtonClick requires footerButtonText to work
-  footerButtonText?: string;
-  footerButtonLink?: string;
-  setFooterButtonClick?: Function;
-  // NOTE: these 3 props need to all be there for checkboxes to work;
-  //       omitting all of them will remove all checkboxes
-  selected?: Array<any>;
-  setToggleAllCheckbox?: Function | null;
-  setToggleCheckbox?: Function | null;
-}
-
 const TableWrapper = ({
   columns = [],
   data = [],
@@ -79,7 +59,9 @@ const TableWrapper = ({
   setFooterButtonClick = () => {},
   selected = [],
   setToggleAllCheckbox = null,
-  setToggleCheckbox = null
+  setToggleCheckbox = null,
+  remove = false,
+  setIsModalOpen = () => {}
 }: TableWrapperProps) => {
   const classes = useStyles();
 
@@ -171,6 +153,7 @@ const TableWrapper = ({
             orderBy={orderBy}
             rowCount={filteredData.length}
             selected={selected}
+            remove={remove}
           />
           {isLoading ? (
             <TableWrapperSkeleton />
@@ -186,6 +169,8 @@ const TableWrapper = ({
               orderBy={orderBy}
               page={page}
               rowsPerPage={rowsPerPage}
+              remove={remove}
+              setIsModalOpen={setIsModalOpen}
             />
           ) : (
             <TableWrapperNotFoundFilter
@@ -224,3 +209,34 @@ const TableWrapper = ({
 };
 
 export default TableWrapper;
+
+interface TableWrapperProps {
+  columns: Array<Column>;
+  data: Array<Datum>;
+  isLoading?: boolean;
+  searchInput?: string;
+  setFirstColLink?: Function;
+  /**
+   * Filter requires setTitleText to work
+   */
+  setTitleText?: Function | null;
+  filter?: Array<string> | null;
+  /**
+   * FooterButtonLink and setFooterButtonClick requires footerButtonText to work
+   */
+  footerButtonText?: string;
+  footerButtonLink?: string;
+  setFooterButtonClick?: Function;
+  /**
+   * These 3 props need to all be there for checkboxes to work;
+   * omitting all of them will remove all checkboxes
+   */
+  selected?: Array<any>;
+  setToggleAllCheckbox?: Function | null;
+  setToggleCheckbox?: Function | null;
+  /**
+   * These 2 props need to all be there for Remove to work;
+   */
+  remove?: boolean;
+  setIsModalOpen?: Function;
+}

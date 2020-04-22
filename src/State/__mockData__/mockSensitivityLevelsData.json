@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 1,
+    "createddate": "2019-08-23 11:06:25",
+    "description": "Most documents are not sensitive",
+    "createdbyemail": "eric.barrow@pnmac.com",
+    "sensitivity": "Non-sensitive"
+  },
+  {
+    "Id": 2,
+    "createddate": "2019-08-23 11:06:35",
+    "description": "This group includes any document with the offical Sensitive seal on them",
+    "createdbyemail": "eric.barrow@pnmac.com",
+    "sensitivity": "Sensitive"
+  },
+  {
+    "Id": 4,
+    "createddate": "2019-08-23 11:06:42",
+    "description": "This group includes any documents with the offical Confidential seal on them.",
+    "createdbyemail": "eric.barrow@pnmac.com",
+    "sensitivity": "Confidential"
+  }
+]

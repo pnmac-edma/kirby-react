@@ -13,6 +13,7 @@ import SentRequestsContainer from '../../ViewRequests/SentRequests/SentRequests-
 import NewJob from '../../Hydration/NewJob/NewJob';
 import ViewJobs from '../../Hydration/ViewJobs/ViewJobs';
 import NewDestination from '../../Hydration/NewDestination/NewDestination.tsx';
+import Governance from '../../Governance/Governance';
 
 const pageContainerStyle = makeStyles(theme => ({
   pageContainer: {
@@ -70,6 +71,9 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
         <Route exact path="/requests" component={RequestsInboxContainer} />
         <Route path="/requests/archive" component={null} />
         <Route path="/requests/sent" component={SentRequestsContainer} />
+        {/* Governors Pages */}
+        <Route path="/governance/governors" component={Governance} />
+        <Route path="/governance/sensitivity-levels" component={Governance} />
       </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}

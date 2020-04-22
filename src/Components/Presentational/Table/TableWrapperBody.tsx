@@ -1,10 +1,19 @@
 import React from 'react';
-import { Checkbox, TableCell, TableBody, TableRow } from '@material-ui/core';
+import {
+  Checkbox,
+  TableCell,
+  TableBody,
+  TableRow,
+  Tooltip
+} from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import { color } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { stableSort, getSorting } from '../../../Utilities/utils';
 import { Column, Datum } from './types';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import { setRemoveSelectedRow } from '../../../State/Governance/actions';
 
 const tableStyles = makeStyles(theme => ({
   cell: {
@@ -29,21 +38,14 @@ const tableStyles = makeStyles(theme => ({
   },
   selectedRow: {
     backgroundColor: color.b50
+  },
+  hover: {
+    opacity: 0,
+    '&:hover': {
+      opacity: 1
+    }
   }
 }));
-
-interface TableWrapperBodyProps {
-  columns: Array<Column>;
-  setToggleCheckbox: Function | null;
-  setFirstColLink: Function;
-  setSelected: Function;
-  selected: Array<any>;
-  order: any;
-  orderBy: string;
-  page: number;
-  data: Array<Datum>;
-  rowsPerPage: number;
-}
 
 const TableWrapperBody = ({
   columns,
@@ -55,10 +57,12 @@ const TableWrapperBody = ({
   orderBy,
   page,
   data,
-  rowsPerPage
+  rowsPerPage,
+  remove,
+  setIsModalOpen
 }: TableWrapperBodyProps) => {
   const classes = tableStyles();
-
+  const dispatch = useDispatch();
   const getCellProps = (datum: Datum, col: Column, i: number) => {
     let className, onClickFunc;
     if (i === 0) {
@@ -105,6 +109,21 @@ const TableWrapperBody = ({
           </TableCell>
         )}
         {columns.map((col, i) => createRowCells(datum, col, i))}
+        {remove && (
+          <TableCell padding="checkbox">
+            <Tooltip title="Delete" placement="top">
+              <DeleteOutlineIcon
+                color="inherit"
+                className={classes.hover}
+                id={`${datum.Id}`}
+                onClick={() => {
+                  dispatch(setRemoveSelectedRow(Number(datum.Id)));
+                  setIsModalOpen(true);
+                }}
+              />
+            </Tooltip>
+          </TableCell>
+        )}
       </TableRow>
     );
   };
@@ -130,3 +149,18 @@ const TableWrapperBody = ({
 };
 
 export default TableWrapperBody;
+
+interface TableWrapperBodyProps {
+  columns: Array<Column>;
+  setToggleCheckbox: Function | null;
+  setFirstColLink: Function;
+  setSelected: Function;
+  selected: Array<any>;
+  order: any;
+  orderBy: string;
+  page: number;
+  data: Array<Datum>;
+  rowsPerPage: number;
+  remove: boolean;
+  setIsModalOpen: Function;
+}

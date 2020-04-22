@@ -2,6 +2,7 @@ import { initialState as viewRequests } from '../State/ViewRequests/reducers';
 import { initialState as hydration } from '../State/Hydration/reducers';
 import { initialState as jobCalendar } from '../State/JobCalendar/reducers';
 import { initialState as chrome } from '../State/Chrome/reducers';
+import { initialState as governance } from '../State/Governance/reducers';
 
 const initialState = {
   // TODO: Replace Stub Data (role and EmpEmail) with Real Data
@@ -69,7 +70,8 @@ const initialState = {
   viewRequests,
   hydration,
   jobCalendar,
-  chrome
+  chrome,
+  governance
 };
 
 export default initialState;

@@ -18,8 +18,8 @@ const ViewJobs = () => {
   ];
 
   const mockData = [
-    { Id: 'dsfjasfdas', name: 'i am name', status: 'approved' },
-    { Id: 'ddsafaa', name: 'i am another name', status: 'declined' }
+    { Id: 5, name: 'i am name', status: 'approved' },
+    { Id: 6, name: 'i am another name', status: 'declined' }
   ];
 
   const setTitleText = () => 'Current Jobs';
