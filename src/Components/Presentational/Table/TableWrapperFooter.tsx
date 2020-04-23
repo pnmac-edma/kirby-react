@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Table,
   TableCell,
-  TableBody,
+  TableFooter,
   TableRow,
   TablePagination
 } from '@material-ui/core';
@@ -45,7 +45,7 @@ const TableWrapperFooter = ({
 
   return (
     <Table className={classes.table} size="small">
-      <TableBody>
+      <TableFooter>
         <TableRow>
           <TableCell>{children}</TableCell>
           <TableCell>
@@ -66,7 +66,7 @@ const TableWrapperFooter = ({
             />
           </TableCell>
         </TableRow>
-      </TableBody>
+      </TableFooter>
     </Table>
   );
 };
