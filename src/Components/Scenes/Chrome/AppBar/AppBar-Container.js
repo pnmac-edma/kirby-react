@@ -8,7 +8,6 @@ import AppBar from './AppBar';
 
 const mapStateToProps = ({ searchResult }) => {
   return {
-    searchInput: searchResult.searchInput,
     isLoading: searchResult.isLoading,
     displaySearchResult: searchResult.displaySearchResult
   };

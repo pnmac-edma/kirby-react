@@ -11,7 +11,7 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 
-const SearchInput = props => {
+const Search = props => {
   const {
     searchInput,
     isSearchClicked,
@@ -81,4 +81,4 @@ const SearchInput = props => {
   );
 };
 
-export default SearchInput;
+export default Search;

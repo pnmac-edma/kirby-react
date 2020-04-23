@@ -12,7 +12,7 @@ const mapStateToProps = ({ searchResult }) => {
   return {
     isLoading: searchResult.isLoading,
     displaySearchResult: searchResult.displaySearchResult,
-    searchInput: searchResult.searchInput,
+    searchedInput: searchResult.searchedInput,
     searchResult: searchResult.searchResult,
     selected: searchResult.selected
   };

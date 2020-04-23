@@ -47,11 +47,17 @@ const searchReducer = (
         isLoading: false,
         searchResultCopy: searchResultCopy,
         displaySearchResult: true,
-        isSearchClicked: false
+        isSearchClicked: false,
+        searchInput: ''
       };
     }
     case types.SEARCH_RESULT_FAILURE: {
-      return { ...state, searchResult: action.payload, isLoading: false };
+      return {
+        ...state,
+        searchResult: action.payload,
+        isLoading: false,
+        searchInput: ''
+      };
     }
 
     case types.HANDLE_FILTER_SELECT: {
