@@ -15,9 +15,6 @@ const searchReducer = (
   }
 ) => {
   switch (action.type) {
-    case types.SEARCH_RESULT_PAGE_LOAD: {
-      return { ...state, searchInput: action.payload };
-    }
     case types.SEARCH_HANDLE_INPUT: {
       return { ...state, searchInput: action.payload };
     }
@@ -25,6 +22,7 @@ const searchReducer = (
       return { ...state };
     }
     case types.SEARCH_RESULT_REQUEST: {
+      console.log(action.payload);
       return {
         ...state,
         isLoading: true,
