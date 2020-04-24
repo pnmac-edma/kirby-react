@@ -22,7 +22,6 @@ const searchReducer = (
       return { ...state };
     }
     case types.SEARCH_RESULT_REQUEST: {
-      console.log(action.payload);
       return {
         ...state,
         isLoading: true,
