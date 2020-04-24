@@ -1,10 +1,5 @@
 import * as types from './types';
 
-export const searchResultPageLoad = (params: any) => ({
-  type: types.SEARCH_RESULT_PAGE_LOAD,
-  payload: params
-});
-
 export const searchHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => ({
   type: types.SEARCH_HANDLE_INPUT,
   payload: e.target.value

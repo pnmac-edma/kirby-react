@@ -1,7 +1,8 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
+  IconButton,
   TextField,
   Dialog,
   DialogActions,
@@ -16,7 +17,6 @@ const Search = props => {
     searchInput,
     isSearchClicked,
     searchHandleInput,
-    searchResultRequest,
     handleKeyPress,
     handleSearchClose
   } = props;
@@ -51,19 +51,16 @@ const Search = props => {
                 label="Start Typing..."
                 helperText="Find and request access to data in Kirby."
                 type="text"
+                fullWidth
                 value={searchInput}
                 onChange={e => searchHandleInput(e)}
-                fullWidth
                 onKeyPress={e => handleKeyPress(keyPressWrapper(e))}
               />
             </Grid>
             <Grid item>
-              <Link
-                to="/search"
-                onClick={() => searchResultRequest(searchInput)}
-              >
+              <IconButton onClick={() => history.push(urlWithParams)}>
                 <SearchIcon />
-              </Link>
+              </IconButton>
             </Grid>
           </Grid>
         </DialogContent>

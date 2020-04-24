@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import SearchResults from './SearchResults';
 import {
-  searchResultPageLoad,
-  searchResultRequest,
   setToggleSearchCheckbox,
   setToggleSearchAllCheckbox
 } from '../../../State/SearchResult/actions';
@@ -12,7 +10,6 @@ const mapStateToProps = ({ searchResult }) => {
   return {
     isLoading: searchResult.isLoading,
     displaySearchResult: searchResult.displaySearchResult,
-    searchedInput: searchResult.searchedInput,
     searchResult: searchResult.searchResult,
     selected: searchResult.selected
   };
@@ -20,8 +17,6 @@ const mapStateToProps = ({ searchResult }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchResultPageLoad: params => dispatch(searchResultPageLoad(params)),
-    searchResultRequest: () => dispatch(searchResultRequest()),
     setToggleSearchCheckbox: (selected, id) =>
       dispatch(setToggleSearchCheckbox(selected, id)),
     setToggleSearchAllCheckbox: (selected, data) =>
