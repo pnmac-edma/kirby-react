@@ -16,7 +16,6 @@ const SearchResults = props => {
     isLoading,
     requestAssetsClick,
     searchResult,
-    searchedInput,
     selected,
     setToggleSearchCheckbox,
     setToggleSearchAllCheckbox
@@ -50,8 +49,6 @@ const SearchResults = props => {
       property: 'createddate'
     }
   ];
-
-  console.log(params);
 
   useEffect(() => {
     if (params) {

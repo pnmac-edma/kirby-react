@@ -10,7 +10,6 @@ const mapStateToProps = ({ searchResult }) => {
   return {
     isLoading: searchResult.isLoading,
     displaySearchResult: searchResult.displaySearchResult,
-    searchedInput: searchResult.searchedInput,
     searchResult: searchResult.searchResult,
     selected: searchResult.selected
   };
