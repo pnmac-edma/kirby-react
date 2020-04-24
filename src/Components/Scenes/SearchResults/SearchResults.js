@@ -29,6 +29,7 @@ const SearchResults = props => {
   const dispatch = useDispatch();
 
   const history = useHistory();
+
   const urlWithParams = `/search?params=${searchInput}`;
 
   const columns = [
@@ -49,6 +50,8 @@ const SearchResults = props => {
       property: 'createddate'
     }
   ];
+
+  console.log(params);
 
   useEffect(() => {
     if (params) {
@@ -80,12 +83,12 @@ const SearchResults = props => {
       />
       <TableWrapper
         isLoading={isLoading}
-        setTitleText={() => `Search Results for ${searchedInput}`}
+        setTitleText={() => `Search Results for ${params}`}
         filter={['Name', 'Domain', 'Owner', 'Date Created']}
         selected={selected}
         columns={columns}
         data={searchResult ? searchResult.results : searchResult}
-        searchedInput={searchedInput}
+        searchedInput={params}
         setToggleCheckbox={setToggleSearchCheckbox}
         setToggleAllCheckbox={setToggleSearchAllCheckbox}
         footerButtonText={footerButtonText}
