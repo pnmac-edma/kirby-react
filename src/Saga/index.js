@@ -4,6 +4,7 @@ import requestAsset from './requestAsset';
 import viewRequestsSagas from '../State/ViewRequests/sagas';
 import authFlowSagas from '../State/AuthFlow/sagas';
 import hydrationSagas from '../State/Hydration/sagas';
+import governaceSagas from '../State/Governance/sagas';
 
 export default function* rootSaga() {
   yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     requestAsset(),
     viewRequestsSagas(),
     authFlowSagas(),
-    hydrationSagas()
+    hydrationSagas(),
+    governaceSagas()
   ]);
 }

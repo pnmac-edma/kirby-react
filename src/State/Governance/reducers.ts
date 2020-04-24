@@ -32,6 +32,14 @@ const governanceReducer = (state = initialState, action: any) => {
       );
       return { ...state, managers: newManagers };
     }
+    case types.DOMAIN_OWNERS_REQUEST_FETCH: {
+      console.log(55, action);
+      return { ...state };
+    }
+    case types.DOMAIN_OWNERS_REQUEST_SUCCESS: {
+      console.log(11, action);
+      return { ...state };
+    }
     default:
       return state;
   }

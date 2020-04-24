@@ -1,5 +1,19 @@
 import * as types from './types';
 
+export const domainOwnersRequestFetch = (): DomainOwnersRequestFetchAction => ({
+  type: types.DOMAIN_OWNERS_REQUEST_FETCH
+});
+interface DomainOwnersRequestFetchAction {
+  type: typeof types.DOMAIN_OWNERS_REQUEST_FETCH;
+}
+
+export const domainOwnersRequestSuccess = (): DomainOwnersRequestSuccessAction => ({
+  type: types.DOMAIN_OWNERS_REQUEST_SUCCESS
+});
+interface DomainOwnersRequestSuccessAction {
+  type: typeof types.DOMAIN_OWNERS_REQUEST_SUCCESS;
+}
+
 export const setRemoveSelectedRow = (Id: number): SetRemoveSelectedRow => ({
   type: types.SET_REMOVE_SELECTED_ROW,
   Id
