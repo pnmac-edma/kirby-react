@@ -26,10 +26,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface TableWrapperNotFoundProps {
-  searchInput: string;
+  searchedInput: string;
 }
 
-const TableWrapperNotFound = ({ searchInput }: TableWrapperNotFoundProps) => {
+const TableWrapperNotFound = ({ searchedInput }: TableWrapperNotFoundProps) => {
   const classes = useStyles();
   return (
     <Paper className={classes.paper}>
@@ -38,7 +38,7 @@ const TableWrapperNotFound = ({ searchInput }: TableWrapperNotFoundProps) => {
           <TableRow>
             <TableCell colSpan={5}>
               We couldn't find anything matching{' '}
-              <strong>'{searchInput}'</strong>
+              <strong>'{searchedInput}'</strong>
             </TableCell>
           </TableRow>
         </TableBody>
