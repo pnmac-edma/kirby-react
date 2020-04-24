@@ -1,8 +1,8 @@
-import { initialState as viewRequests } from '../State/ViewRequests/reducers';
-import { initialState as hydration } from '../State/Hydration/reducers';
-import { initialState as jobCalendar } from '../State/JobCalendar/reducers';
-import { initialState as chrome } from '../State/Chrome/reducers';
-import { initialState as governance } from '../State/Governance/reducers';
+import { initialState as viewRequests } from './ViewRequests/reducers';
+import { initialState as hydration } from './Hydration/reducers';
+import { initialState as jobCalendar } from './JobCalendar/reducers';
+import { initialState as chrome } from './Chrome/reducers';
+import { initialState as governance } from './Governance/reducers';
 
 const initialState = {
   // TODO: Replace Stub Data (role and EmpEmail) with Real Data

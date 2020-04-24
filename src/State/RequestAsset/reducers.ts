@@ -1,12 +1,15 @@
-import initialState from './initialState';
-import * as types from '../Actions/types';
+import initialState from '../initialState';
+import * as types from './types';
 
-const requestAssetsReducers = (state = initialState.requestAssets, action) => {
+const requestAssetsReducers = (
+  state = initialState.requestAssets,
+  action: { type?: any; payload?: any; selected?: any; data?: any; id?: any }
+) => {
   switch (action.type) {
     case types.REQUEST_ASSETS_CLICK: {
       const { selected, data } = action;
-      const selectedSearchResults = data.filter(({ Id }) =>
-        selected.some(id => id === Id)
+      const selectedSearchResults = data.filter(({ Id }: any) =>
+        selected.some((id: any) => id === Id)
       );
       return { ...state, selectedSearchResultCopy: selectedSearchResults };
     }
@@ -15,27 +18,35 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       let selectedCheckBoxes;
       let selectedAll;
       if (ap.id === 'all' && ap.checked) {
-        selectedCheckBoxes = state.selectedSearchResultCopy.map(lake => {
-          lake.chec = true;
-          return lake;
-        });
+        selectedCheckBoxes = state.selectedSearchResultCopy.map(
+          (lake: { chec: boolean }) => {
+            lake.chec = true;
+            return lake;
+          }
+        );
         selectedAll = true;
       } else if (ap.id === 'all' && !ap.checked) {
-        selectedCheckBoxes = state.selectedSearchResultCopy.map(lake => {
-          lake.chec = false;
-          return lake;
-        });
+        selectedCheckBoxes = state.selectedSearchResultCopy.map(
+          (lake: { chec: boolean }) => {
+            lake.chec = false;
+            return lake;
+          }
+        );
         selectedAll = false;
       } else if (ap.id !== 'all') {
-        selectedCheckBoxes = state.selectedSearchResultCopy.map(lake => {
-          if (Number(lake.Id) === Number(ap.id) && ap.checked) {
-            lake.chec = true;
-          } else if (Number(lake.Id) === Number(ap.id) && !ap.checked) {
-            lake.chec = false;
+        selectedCheckBoxes = state.selectedSearchResultCopy.map(
+          (lake: { Id: any; chec: boolean }) => {
+            if (Number(lake.Id) === Number(ap.id) && ap.checked) {
+              lake.chec = true;
+            } else if (Number(lake.Id) === Number(ap.id) && !ap.checked) {
+              lake.chec = false;
+            }
+            return lake;
           }
-          return lake;
-        });
-        selectedAll = selectedCheckBoxes.every(lake => lake.chec);
+        );
+        selectedAll = selectedCheckBoxes.every(
+          (lake: { chec: any }) => lake.chec
+        );
       }
       return {
         ...state,
@@ -47,14 +58,20 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
       return { ...state };
     }
     case types.GET_EMPLOYEES_SUCCESS: {
-      const employees = action.payload.reduce((acc, user) => {
-        acc.push({
-          value: user.displayname,
-          label: user.displayname,
-          email: user.email
-        });
-        return acc;
-      }, []);
+      const employees = action.payload.reduce(
+        (
+          acc: { value: any; label: any; email: any }[],
+          user: { displayname: any; email: any }
+        ) => {
+          acc.push({
+            value: user.displayname,
+            label: user.displayname,
+            email: user.email
+          });
+          return acc;
+        },
+        []
+      );
       return { ...state, employees: employees };
     }
     case types.GET_EMPLOYEES_FAILURE: {
@@ -69,7 +86,7 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
     case types.HANDLE_REMOVE_SELECTED: {
       const { selectedSearchResultCopy, selected } = state;
       const searchResultCopy = selectedSearchResultCopy.filter(
-        ({ Id }) => !selected.some(id => id === Id)
+        ({ Id }) => !selected.some((id: any) => id === Id)
       );
 
       return {
@@ -123,7 +140,7 @@ const requestAssetsReducers = (state = initialState.requestAssets, action) => {
 
       let newSelecteds = [];
       if (selected.length === 0) {
-        newSelecteds = data.map(request => request.Id);
+        newSelecteds = data.map((request: { Id: any }) => request.Id);
       }
 
       return {
