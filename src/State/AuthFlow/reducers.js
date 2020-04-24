@@ -1,4 +1,4 @@
-import initialState from '../../Reducers/initialState';
+import initialState from '../initialState';
 import * as types from './types';
 
 const authReducer = (state = initialState.currentUser, action) => {

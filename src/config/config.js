@@ -9,6 +9,7 @@ const kirbyConfig = () => {
       domain: 'kirby.pennymac.com',
       apiUrl: 'https://kirby-api.pnmac.com',
       apiBasePath: '/',
+      apiPath: '/',
       authUrl: 'https://kirby-api-sec.pnmac.com',
       authPath: '/authenticate',
       cognitoUrl: `${baseCogConUrl}965273`,
@@ -21,6 +22,7 @@ const kirbyConfig = () => {
       domain: 'd14zq0f3jiu0zb.cloudfront.net',
       apiUrl: 'https://kirby-api-stg.pnmac.com',
       apiBasePath: '/',
+      apiPath: '/',
       authUrl: 'https://kirby-api-stg-sec.pnmac.com',
       authPath: '/authenticate',
       cognitoUrl: `${baseCogConUrl}964944`,
@@ -32,6 +34,7 @@ const kirbyConfig = () => {
       // NOTE: unsure of the url path for dev
       domain: 'd1n1yc8ym1y64x.cloudfront.net',
       apiBasePath: '/dev',
+      apiPath: '/',
       apiUrl: 'https://kirby-api-dev.pnmac.com',
       authPath: '/dev/authenticate',
       authUrl: 'https://kirby-api-dev-sec.pnmac.com',

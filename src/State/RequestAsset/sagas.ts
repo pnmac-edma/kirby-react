@@ -1,12 +1,12 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
-import * as types from './../Actions/types';
-import { getEmployees, makeRequest } from '../Api/requestAsset';
+import * as types from './types';
+import { getEmployees, makeRequest } from './api';
 import {
   getRequestedFor,
   getJustification,
   getRequestAssets,
   getCreatedByEmail
-} from '../Selectors/sagaSelectors';
+} from '../../Selectors/sagaSelectors';
 
 function* workRequestAsset() {
   try {
