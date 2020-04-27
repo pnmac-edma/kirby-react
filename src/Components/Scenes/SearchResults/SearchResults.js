@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { IconButton, TextField } from '@material-ui/core';
+import { FormHelperText, IconButton, TextField } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Search } from '@material-ui/icons';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
@@ -23,9 +23,17 @@ const SearchResults = props => {
   const params = useQuery('params');
 
   const searchInput = useSelector(
-    ({ searchResult }) => searchResult.searchInput
+    ({ searchResult }) => searchResult.searchInput.value
+  );
+  const isSearchInputError = useSelector(
+    ({ searchResult }) => searchResult.searchInput.isError
+  );
+  const isSearchInputTouched = useSelector(
+    ({ searchResult }) => searchResult.searchInput.isTouched
   );
   const dispatch = useDispatch();
+
+  const isNoError = isSearchInputTouched && !isSearchInputError;
 
   const history = useHistory();
 
@@ -71,13 +79,24 @@ const SearchResults = props => {
         InputProps={{
           endAdornment: (
             <InputAdornment>
-              <IconButton onClick={() => history.push(urlWithParams)}>
+              <IconButton
+                onClick={() => {
+                  if (isNoError) {
+                    history.push(urlWithParams);
+                  }
+                }}
+              >
                 <Search />
               </IconButton>
             </InputAdornment>
           )
         }}
       />
+      {isSearchInputError && (
+        <FormHelperText error={isSearchInputError}>
+          Please enter a non-empty search
+        </FormHelperText>
+      )}
       <TableWrapper
         isLoading={isLoading}
         setTitleText={() => `Search Results for ${params}`}
