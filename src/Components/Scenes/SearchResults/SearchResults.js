@@ -22,22 +22,16 @@ const SearchResults = props => {
   } = props;
   const params = useQuery('params');
 
-  const searchInput = useSelector(
-    ({ searchResult }) => searchResult.searchInput.value
-  );
-  const isSearchInputError = useSelector(
-    ({ searchResult }) => searchResult.searchInput.isError
-  );
-  const isSearchInputTouched = useSelector(
-    ({ searchResult }) => searchResult.searchInput.isTouched
+  const { value, isError, isTouched } = useSelector(
+    state => state.searchResult.searchInput
   );
   const dispatch = useDispatch();
 
-  const isNoError = isSearchInputTouched && !isSearchInputError;
+  const isNoError = isTouched && !isError;
 
   const history = useHistory();
 
-  const urlWithParams = `/search?params=${searchInput}`;
+  const urlWithParams = `/search?params=${value}`;
 
   const columns = [
     {
@@ -60,7 +54,7 @@ const SearchResults = props => {
 
   useEffect(() => {
     if (params) {
-      dispatch(searchResultRequest(searchInput));
+      dispatch(searchResultRequest(value));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
@@ -74,7 +68,7 @@ const SearchResults = props => {
       <TextField
         id="search"
         label="Search"
-        value={searchInput}
+        value={value}
         onChange={e => dispatch(searchHandleInput(e))}
         InputProps={{
           endAdornment: (
@@ -92,8 +86,8 @@ const SearchResults = props => {
           )
         }}
       />
-      {isSearchInputError && (
-        <FormHelperText error={isSearchInputError}>
+      {isError && (
+        <FormHelperText error={isError}>
           Please enter a non-empty search
         </FormHelperText>
       )}

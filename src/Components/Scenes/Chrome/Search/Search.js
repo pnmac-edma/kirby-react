@@ -22,21 +22,15 @@ const Search = props => {
     handleSearchClose
   } = props;
 
-  const searchInput = useSelector(
-    ({ searchResult }) => searchResult.searchInput.value
-  );
-  const isSearchInputError = useSelector(
-    ({ searchResult }) => searchResult.searchInput.isError
-  );
-  const isSearchInputTouched = useSelector(
-    ({ searchResult }) => searchResult.searchInput.isTouched
+  const { value, isError, isTouched } = useSelector(
+    state => state.searchResult.searchInput
   );
 
-  const isNoError = isSearchInputTouched && !isSearchInputError;
+  const isNoError = isTouched && !isError;
 
   const history = useHistory();
 
-  const urlWithParams = `/search?params=${searchInput}`;
+  const urlWithParams = `/search?params=${value}`;
 
   const keyPressWrapper = e => {
     if (e.key === 'Enter') {
@@ -66,7 +60,7 @@ const Search = props => {
                 helperText="Find and request access to data in Kirby."
                 type="text"
                 fullWidth
-                value={searchInput}
+                value={value}
                 onChange={e => searchHandleInput(e)}
                 onKeyPress={e => {
                   if (isNoError) {
@@ -87,8 +81,8 @@ const Search = props => {
               </IconButton>
             </Grid>
           </Grid>
-          {isSearchInputError && (
-            <FormHelperText error={isSearchInputError}>
+          {isError && (
+            <FormHelperText error={isError}>
               Please enter a non-empty search
             </FormHelperText>
           )}
