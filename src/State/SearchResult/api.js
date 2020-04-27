@@ -22,7 +22,7 @@ export const searchResultApiCall = (...args) => {
 
   const request = constructRequest(
     config.apiUrl,
-    `${config.apiPath}/assets/search`,
+    `${config.apiPath}/assets/databases/search`,
     HttpMethods.POST,
     {
       data: requestBody,
