@@ -28,7 +28,8 @@ const governanceReducer = (state = initialState, action: any) => {
     case types.SET_REMOVE_DOMAIN_MANAGERS: {
       // @ts-ignore
       const newDomainOwners = state.domainOwners.filter(
-        domainOwner => domainOwner.Id !== state.setSelectedRemoveRowId
+        (domainOwner: { Id: null }) =>
+          domainOwner.Id !== state.setSelectedRemoveRowId
       );
       return { ...state, domainOwners: newDomainOwners };
     }
