@@ -44,7 +44,7 @@ const kirbyConfig = () => {
       // NOTE: unsure of j8nhpla4d3 or e6b8r4dht6 as url number
       domain: 'kirby-website-litter.s3-website-us-west-2.amazonaws.com',
       apiPath: '/dev',
-      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com',
+      apiUrl: 'https://tx9n6nw9ye.execute-api.us-west-2.amazonaws.com',
       authPath: '/dev/authenticate',
       authUrl: 'https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com',
       cognitoUrl: `${baseCogConUrl}877995`,
@@ -56,7 +56,7 @@ const kirbyConfig = () => {
       // NOTE: unsure of j8nhpla4d3 or e6b8r4dht6 as url number
       hostname: 'localhost',
       apiPath: '/dev',
-      apiUrl: 'https://j8nhpla4d3.execute-api.us-west-2.amazonaws.com',
+      apiUrl: 'https://tx9n6nw9ye.execute-api.us-west-2.amazonaws.com',
       authPath: '/dev/authenticate',
       authUrl: 'https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com',
       cognitoUrl: `${baseCogConUrl}765855`,
