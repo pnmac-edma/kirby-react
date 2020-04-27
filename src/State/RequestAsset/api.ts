@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { constructRequest } from '../State/helpers';
-import config from '../config/config';
-import { HttpMethods } from '../Models/enums';
+import { constructRequest } from '../helpers';
+import config from '../../config/config';
+import { HttpMethods } from '../../Models/enums';
 
-export const getEmployees = args => {
+export const getEmployees = () => {
   // to test signing (once implemented), Jon created this url that requires signing to access
   // const BASE_URL = 'https://vtc55uxuy5.execute-api.us-west-2.amazonaws.com/dev';
   const request = constructRequest(
@@ -21,10 +21,10 @@ export const getEmployees = args => {
 };
 
 export const makeRequest = (
-  createdbyemail,
-  assets,
-  justification,
-  requestedfor
+  createdbyemail: any,
+  assets: any,
+  justification: any,
+  requestedfor: any
 ) => {
   const fetchBody = {
     createdbyemail,

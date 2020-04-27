@@ -1,19 +1,38 @@
-/*
-If we implement this structure, this would gather all reducers and sagas to make a rootSaga and rootReducer
-for now, we are just importing our reducers and sagas into the current rootSaga and rootReducer
+import { all } from 'redux-saga/effects';
+import { combineReducers } from 'redux';
+import handleSearchSagas from './SearchResult/sagas';
+import requestAssetSagas from './RequestAsset/sagas';
+import viewRequestsSagas from './ViewRequests/sagas';
+import authFlowSagas from './AuthFlow/sagas';
+import hydrationSagas from './Hydration/sagas';
+import searchResultReducer from './SearchResult/reducers';
+import requestAssetsReducer from './RequestAsset/reducers';
+import viewRequestsReducer from './ViewRequests/reducers';
+import currentUserReducer from './AuthFlow/reducers';
+import hydrationReducer from './Hydration/reducers';
+import jobCalendarReducer from './JobCalendar/reducers';
+import chromeReducer from './Chrome/reducers';
+import governanceReducer from './Governance/reducers';
 
-Below is an example implmentation
-*/
-// import viewRequestsReducer, { viewRequestsSagas } from './ViewRequests/index';
-// import { all } from 'redux-saga/effects';
-// import { combineReducers } from 'redux';
+function* rootSaga() {
+  yield all([
+    handleSearchSagas(),
+    requestAssetSagas(),
+    viewRequestsSagas(),
+    authFlowSagas(),
+    hydrationSagas()
+  ]);
+}
 
-// function* rootSaga() {
-//   yield all([viewRequestsSagas]);
-// }
+const rootReducer = combineReducers({
+  searchResult: searchResultReducer,
+  requestAssets: requestAssetsReducer,
+  viewRequests: viewRequestsReducer,
+  currentUser: currentUserReducer,
+  hydration: hydrationReducer,
+  jobCalendar: jobCalendarReducer,
+  chrome: chromeReducer,
+  governance: governanceReducer
+});
 
-// const rootReducer = combineReducers({
-//   viewRequests
-// });
-
-// export { rootSaga, rootReducer };
+export { rootReducer, rootSaga };

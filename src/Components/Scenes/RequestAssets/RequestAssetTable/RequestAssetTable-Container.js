@@ -5,7 +5,7 @@ import {
   requestCheckBoxSelect,
   setToggleAssetCheckbox,
   setToggleAssetAllCheckbox
-} from '../../../../Actions/requestAssetActions';
+} from '../../../../State/RequestAsset/actions';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {
