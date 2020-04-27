@@ -1,4 +1,4 @@
-import initialState from '../../Reducers/initialState';
+import initialState from '../initialState';
 import * as types from './types';
 
 const searchReducer = (
@@ -15,9 +15,6 @@ const searchReducer = (
   }
 ) => {
   switch (action.type) {
-    case types.SEARCH_RESULT_PAGE_LOAD: {
-      return { ...state, searchInput: action.payload };
-    }
     case types.SEARCH_HANDLE_INPUT: {
       return { ...state, searchInput: action.payload };
     }
@@ -47,11 +44,17 @@ const searchReducer = (
         isLoading: false,
         searchResultCopy: searchResultCopy,
         displaySearchResult: true,
-        isSearchClicked: false
+        isSearchClicked: false,
+        searchInput: ''
       };
     }
     case types.SEARCH_RESULT_FAILURE: {
-      return { ...state, searchResult: action.payload, isLoading: false };
+      return {
+        ...state,
+        searchResult: action.payload,
+        isLoading: false,
+        searchInput: ''
+      };
     }
 
     case types.HANDLE_FILTER_SELECT: {

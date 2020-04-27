@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import {
   getEmployeesFetch,
   handleSelectedEmployees
-} from '../../../../Actions/requestAssetActions';
+} from '../../../../State/RequestAsset/actions';
 import RequestingFor from './RequestingFor';
 
 const mapStateToProps = ({ requestAssets }) => {

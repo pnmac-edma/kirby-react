@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Justification from './RequestAssetJustification';
-import { justificationHandleInput } from '../../../../Actions/requestAssetActions';
+import { justificationHandleInput } from '../../../../State/RequestAsset/actions';
 
 const mapStateToProps = ({ requestAssets }) => {
   return {

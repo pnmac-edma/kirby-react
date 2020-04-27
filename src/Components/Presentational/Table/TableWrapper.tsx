@@ -51,7 +51,7 @@ const TableWrapper = ({
   data = [],
   isLoading = false,
   filter = null,
-  searchInput = '',
+  searchedInput = '',
   setTitleText = null,
   setFirstColLink = () => {},
   footerButtonLink = '',
@@ -125,7 +125,7 @@ const TableWrapper = ({
   };
 
   if (!data) {
-    return <TableWrapperNotFound searchInput={searchInput} />;
+    return <TableWrapperNotFound searchedInput={searchedInput} />;
   }
 
   return (
@@ -174,7 +174,7 @@ const TableWrapper = ({
             />
           ) : (
             <TableWrapperNotFoundFilter
-              searchInput={searchInput}
+              searchedInput={searchedInput}
               filterTerm={filterForm.filterTerm}
             />
           )}
@@ -214,7 +214,7 @@ interface TableWrapperProps {
   columns: Array<Column>;
   data: Array<Datum>;
   isLoading?: boolean;
-  searchInput?: string;
+  searchedInput?: string;
   setFirstColLink?: Function;
   /**
    * Filter requires setTitleText to work

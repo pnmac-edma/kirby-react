@@ -1,5 +1,5 @@
 import viewRequestsReducer from '../reducers';
-import initialState from '../../../Reducers/initialState';
+import initialState from '../../initialState';
 import {
   mockApproverRequests,
   mockUserRequests,
