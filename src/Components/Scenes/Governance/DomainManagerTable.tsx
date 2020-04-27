@@ -10,20 +10,17 @@ import {
 const DomainManagerTable = (props: any) => {
   const titleText = `Domain Managers`;
   const columns = [
-    { name: 'Name', property: 'name' },
+    { name: 'Name', property: 'owneremail' },
     { name: 'Domain', property: 'domain' }
   ];
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { managers, setSelectedRemoveRowId } = useSelector(
+  const { domainOwners, setSelectedRemoveRowId } = useSelector(
     (state: any) => state.governance
   );
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(domainOwnersRequestFetch());
-  }, [dispatch]);
   const setRemoveDomainManager = () => dispatch(setRemoveDomainManagers());
-  const removeManager = managers.reduce((acc: any, manager: any) => {
+  const removeManager = domainOwners.reduce((acc: any, manager: any) => {
     if (manager.Id === setSelectedRemoveRowId) {
       acc.push(
         <p key={manager.Id}>
@@ -49,7 +46,7 @@ const DomainManagerTable = (props: any) => {
       <TableWrapper
         setTitleText={() => titleText}
         columns={columns}
-        data={managers}
+        data={domainOwners}
         remove={true}
         setIsModalOpen={setIsModalOpen}
       />

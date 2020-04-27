@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Typography, Button, TextField } from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
@@ -7,6 +8,7 @@ import GovernanceTable from './GovernorsTable';
 import SensitivityTable from './SensitivityTable';
 import DomainManagerTable from './DomainManagerTable';
 import Sidebar from './Sidebar';
+import { domainOwnersRequestFetch } from '../../../State/Governance/actions';
 
 const useStyles = makeStyles(theme => ({
   flexStructure: {
@@ -60,6 +62,11 @@ const useStyles = makeStyles(theme => ({
 const Governance = (props: any) => {
   const classes = useStyles();
   const curPath = useLocation().pathname;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(domainOwnersRequestFetch());
+  }, [dispatch]);
 
   const governanceStates = {
     governors: (
