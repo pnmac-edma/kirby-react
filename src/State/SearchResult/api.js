@@ -14,7 +14,7 @@ export const searchResultApiCall = (...args) => {
   // const sortBy = args[2] ? [{ [args[1]]: args[2].payload }] : undefined;
 
   const requestBody = {
-    requestedbyemail: EmpEmail,
+    user_email: EmpEmail,
     search_term: searchTerm
     // sort_by: sortBy,
     // filters: filterQueries
