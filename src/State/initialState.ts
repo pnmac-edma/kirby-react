@@ -19,8 +19,11 @@ const initialState = {
     UserKey: null
   },
   searchResult: {
-    searchInput: '',
-    searchedInput: '',
+    searchInput: {
+      value: '',
+      isError: false,
+      isTouched: false
+    },
     isLoading: false,
     displaySearchResult: false,
     searchResult: [],

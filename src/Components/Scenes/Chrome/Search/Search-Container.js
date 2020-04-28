@@ -8,7 +8,6 @@ import {
 
 const mapStateToProps = ({ searchResult }) => {
   return {
-    searchInput: searchResult.searchInput,
     isSearchClicked: searchResult.isSearchClicked
   };
 };
