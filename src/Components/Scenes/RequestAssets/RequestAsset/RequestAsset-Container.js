@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import RequestAsset from './RequestAsset';
-import { getEmployeesFetch } from '../../../../Actions/requestAssetActions';
+import { getEmployeesFetch } from '../../../../State/RequestAsset/actions';
 
 const mapStateToProps = state => {
   return {

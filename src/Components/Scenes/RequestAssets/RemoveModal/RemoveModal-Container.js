@@ -6,7 +6,7 @@ import RemoveModal from '../../../Presentational/RequestAssets/RemoveModal';
 import {
   handleModalToggle,
   handleRemoveSelected
-} from '../../../../Actions/requestAssetActions';
+} from '../../../../State/RequestAsset/actions';
 
 const mapStateToProps = ({ requestAssets }) => {
   const { selectedSearchResultCopy, selected } = requestAssets;

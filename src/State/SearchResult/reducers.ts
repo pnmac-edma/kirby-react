@@ -1,4 +1,4 @@
-import initialState from '../../Reducers/initialState';
+import initialState from '../initialState';
 import * as types from './types';
 
 const searchReducer = (
@@ -15,9 +15,6 @@ const searchReducer = (
   }
 ) => {
   switch (action.type) {
-    case types.SEARCH_RESULT_PAGE_LOAD: {
-      return { ...state, searchInput: action.payload };
-    }
     case types.SEARCH_HANDLE_INPUT: {
       return { ...state, searchInput: action.payload };
     }

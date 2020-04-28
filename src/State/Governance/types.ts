@@ -15,3 +15,17 @@ export const SENSITIVITY_LEVELS_REQUEST_SUCCESS =
   'SENSITIVITY_LEVELS_REQUEST_SUCCESS';
 export const SENSITIVITY_LEVELS_REQUEST_FAILURE =
   'SENSITIVITY_LEVELS_REQUEST_FAILURE';
+
+/**
+ * Domain Owners API structure
+ */
+export interface DomainOwnersResponse {
+  data: DomainOwners;
+}
+export interface DomainOwners {
+  Id: number;
+  createddate: string;
+  createdbyemail: string;
+  domain: string;
+  owneremail: string;
+}
