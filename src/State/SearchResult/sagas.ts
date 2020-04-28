@@ -6,8 +6,8 @@ import {
 } from '../../Selectors/sagaSelectors';
 import { searchResultApiCall } from './api';
 
-function* handleSearch() {
-  const searchInput = yield select(getSearchInput) || '';
+function* handleSearch(action: any) {
+  const searchInput = action.payload || '';
 
   try {
     const response = yield call(searchResultApiCall, searchInput);
