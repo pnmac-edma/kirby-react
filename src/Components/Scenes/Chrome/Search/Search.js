@@ -1,9 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   Button,
   IconButton,
   TextField,
+  FormHelperText,
   Dialog,
   DialogActions,
   DialogContent,
@@ -14,15 +16,21 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const Search = props => {
   const {
-    searchInput,
     isSearchClicked,
     searchHandleInput,
     handleKeyPress,
     handleSearchClose
   } = props;
 
+  const { value, isError, isTouched } = useSelector(
+    state => state.searchResult.searchInput
+  );
+
+  const isNoError = isTouched && !isError;
+
   const history = useHistory();
-  const urlWithParams = `/search?params=${searchInput}`;
+
+  const urlWithParams = `/search?params=${value}`;
 
   const keyPressWrapper = e => {
     if (e.key === 'Enter') {
@@ -52,17 +60,32 @@ const Search = props => {
                 helperText="Find and request access to data in Kirby."
                 type="text"
                 fullWidth
-                value={searchInput}
+                value={value}
                 onChange={e => searchHandleInput(e)}
-                onKeyPress={e => handleKeyPress(keyPressWrapper(e))}
+                onKeyPress={e => {
+                  if (isNoError) {
+                    handleKeyPress(keyPressWrapper(e));
+                  }
+                }}
               />
             </Grid>
             <Grid item>
-              <IconButton onClick={() => history.push(urlWithParams)}>
+              <IconButton
+                onClick={() => {
+                  if (isNoError) {
+                    history.push(urlWithParams);
+                  }
+                }}
+              >
                 <SearchIcon />
               </IconButton>
             </Grid>
           </Grid>
+          {isError && (
+            <FormHelperText error={isError}>
+              Please enter a non-empty search
+            </FormHelperText>
+          )}
         </DialogContent>
         <DialogActions>
           <Button

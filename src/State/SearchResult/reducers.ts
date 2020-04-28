@@ -16,7 +16,14 @@ const searchReducer = (
 ) => {
   switch (action.type) {
     case types.SEARCH_HANDLE_INPUT: {
-      return { ...state, searchInput: action.payload };
+      return {
+        ...state,
+        searchInput: {
+          value: action.payload,
+          isError: action.payload === '',
+          isTouched: true
+        }
+      };
     }
     case types.HANDLE_KEY_PRESS: {
       return { ...state };
@@ -28,7 +35,11 @@ const searchReducer = (
         selectedAll: false,
         displaySearchResult: true,
         isSearchClicked: false,
-        searchedInput: action.payload
+        searchInput: {
+          value: '',
+          isError: false,
+          isTouched: false
+        }
       };
     }
     case types.SEARCH_RESULT_SUCCESS: {
@@ -45,7 +56,11 @@ const searchReducer = (
         searchResultCopy: searchResultCopy,
         displaySearchResult: true,
         isSearchClicked: false,
-        searchInput: ''
+        searchInput: {
+          value: '',
+          isError: false,
+          isTouched: false
+        }
       };
     }
     case types.SEARCH_RESULT_FAILURE: {
@@ -53,7 +68,11 @@ const searchReducer = (
         ...state,
         searchResult: action.payload,
         isLoading: false,
-        searchInput: ''
+        searchInput: {
+          value: '',
+          isError: false,
+          isTouched: false
+        }
       };
     }
 
