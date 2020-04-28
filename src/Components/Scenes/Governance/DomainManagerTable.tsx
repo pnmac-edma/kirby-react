@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
-import { setRemoveDomainManagers } from '../../../State/Governance/actions';
+import {
+  setRemoveDomainManagers,
+  domainOwnersRequestFetch
+} from '../../../State/Governance/actions';
 
 const DomainManagerTable = (props: any) => {
-  const { managers, setSelectedRemoveRowId } = useSelector(
-    (state: any) => state.governance
-  );
   const titleText = `Domain Managers`;
   const columns = [
-    { name: 'Name', property: 'name' },
+    { name: 'Name', property: 'owneremail' },
     { name: 'Domain', property: 'domain' }
   ];
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { domainOwners, setSelectedRemoveRowId, isLoading } = useSelector(
+    (state: any) => state.governance
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(domainOwnersRequestFetch());
+  }, [dispatch]);
+
   const setRemoveDomainManager = () => dispatch(setRemoveDomainManagers());
-  const removeManager = managers.reduce((acc: any, manager: any) => {
-    if (manager.Id === setSelectedRemoveRowId) {
-      acc.push(
-        <p key={manager.Id}>
-          Are you sure that you want to remove <strong>{manager.name}</strong>{' '}
-          from being the manager levels?
-        </p>
-      );
-    }
-    return acc;
-  }, []);
+  let removeManager;
+  if (domainOwners !== null) {
+    removeManager = domainOwners.reduce((acc: any, manager: any) => {
+      if (manager.Id === setSelectedRemoveRowId) {
+        acc.push(
+          <p key={manager.Id}>
+            Are you sure that you want to remove <strong>{manager.name}</strong>{' '}
+            from being the manager levels?
+          </p>
+        );
+      }
+      return acc;
+    }, []);
+  }
 
   return (
     <>
@@ -40,9 +52,10 @@ const DomainManagerTable = (props: any) => {
         />
       ) : null}
       <TableWrapper
+        isLoading={isLoading}
         setTitleText={() => titleText}
         columns={columns}
-        data={managers}
+        data={domainOwners}
         remove={true}
         setIsModalOpen={setIsModalOpen}
       />

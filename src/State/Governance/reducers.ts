@@ -1,13 +1,13 @@
 import * as types from './types';
 import mockGovernors from '../__mockData__/mockGovernors.json';
 import mockSensitivityLevelsData from '../__mockData__/mockSensitivityLevelsData.json';
-import mockDomainManagerData from '../__mockData__/mockDomainManagerData.json';
 
 export const initialState = {
   setSelectedRemoveRowId: null,
   governors: mockGovernors,
   sensitivity: mockSensitivityLevelsData,
-  managers: mockDomainManagerData
+  domainOwners: null,
+  isLoading: false
 };
 
 const governanceReducer = (state = initialState, action: any) => {
@@ -27,10 +27,17 @@ const governanceReducer = (state = initialState, action: any) => {
       return { ...state, sensitivity: newSensitivity };
     }
     case types.SET_REMOVE_DOMAIN_MANAGERS: {
-      const newManagers = state.managers.filter(
-        manager => manager.Id !== state.setSelectedRemoveRowId
+      // @ts-ignore
+      const newDomainOwners = state.domainOwners.filter(
+        (domainOwner: { Id: null }) =>
+          domainOwner.Id !== state.setSelectedRemoveRowId
       );
-      return { ...state, managers: newManagers };
+      return { ...state, domainOwners: newDomainOwners };
+    }
+    case types.DOMAIN_OWNERS_REQUEST_FETCH:
+      return { ...state, isLoading: true };
+    case types.DOMAIN_OWNERS_REQUEST_SUCCESS: {
+      return { ...state, domainOwners: action.domainOwners, isLoading: false };
     }
     default:
       return state;
