@@ -1,11 +1,10 @@
 import * as types from './types';
 import mockGovernors from '../__mockData__/mockGovernors.json';
-import mockSensitivityLevelsData from '../__mockData__/mockSensitivityLevelsData.json';
 
 export const initialState = {
   setSelectedRemoveRowId: null,
   governors: mockGovernors,
-  sensitivity: mockSensitivityLevelsData,
+  sensitivity: null,
   domainOwners: null,
   isLoading: false
 };
@@ -21,8 +20,10 @@ const governanceReducer = (state = initialState, action: any) => {
       return { ...state, governors: newGovernors };
     }
     case types.SET_REMOVE_SENSITIVITY_LEVELS: {
+      // @ts-ignore
       const newSensitivity = state.sensitivity.filter(
-        sensitivity => sensitivity.Id !== state.setSelectedRemoveRowId
+        (sensitivity: { Id: null }) =>
+          sensitivity.Id !== state.setSelectedRemoveRowId
       );
       return { ...state, sensitivity: newSensitivity };
     }
@@ -39,6 +40,10 @@ const governanceReducer = (state = initialState, action: any) => {
     case types.DOMAIN_OWNERS_REQUEST_SUCCESS: {
       return { ...state, domainOwners: action.domainOwners, isLoading: false };
     }
+    case types.SENSITIVITY_LEVELS_REQUEST_FETCH:
+      return { ...state, isLoading: true };
+    case types.SENSITIVITY_LEVELS_REQUEST_SUCCESS:
+      return { ...state, isLoading: false, sensitivity: action.sensitivity };
     default:
       return state;
   }

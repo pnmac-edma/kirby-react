@@ -17,10 +17,10 @@ export const getDomainOwners = (): Promise<types.DomainOwnersResponse> => {
     .then(error => error);
 };
 
-export const getSensitivityLevels = () => {
+export const getSensitivityLevels = (): Promise<types.SensitivityLevelsResponse> => {
   const request = constructRequest(
-    `https://tx9n6nw9ye.execute-api.us-west-2.amazonaws.com/dev`,
-    `${config.apiPath}/governance/sensitivityLevels/`,
+    config.apiUrl,
+    `${config.apiPath}/governance/sensitivity/`,
     HttpMethods.GET,
     {}
   );

@@ -29,3 +29,15 @@ export interface DomainOwners {
   domain: string;
   owneremail: string;
 }
+/**
+ * Sensitivity Levels API structure
+ */
+export interface SensitivityLevelsResponse {
+  data: SensitivityLevel;
+}
+export interface SensitivityLevel {
+  Id: number;
+  createddate: string;
+  createdbyemail: string;
+  sensitivity: string;
+}

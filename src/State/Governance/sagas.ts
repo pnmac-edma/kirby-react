@@ -19,7 +19,7 @@ export function* worksensitivityLevels() {
     const response = yield call(getSensitivityLevels);
     yield put({
       type: types.SENSITIVITY_LEVELS_REQUEST_SUCCESS,
-      sensitivityLevels: response
+      sensitivity: response
     });
   } catch (error) {
     yield put({

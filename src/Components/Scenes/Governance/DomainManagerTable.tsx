@@ -4,8 +4,7 @@ import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
 import {
   setRemoveDomainManagers,
-  domainOwnersRequestFetch,
-  sensitivityLevelsRequestFetch
+  domainOwnersRequestFetch
 } from '../../../State/Governance/actions';
 
 const DomainManagerTable = (props: any) => {
@@ -23,7 +22,6 @@ const DomainManagerTable = (props: any) => {
 
   useEffect(() => {
     dispatch(domainOwnersRequestFetch());
-    dispatch(sensitivityLevelsRequestFetch());
   }, [dispatch]);
 
   const setRemoveDomainManager = () => dispatch(setRemoveDomainManagers());
