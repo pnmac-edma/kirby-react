@@ -16,7 +16,7 @@ const DomainManagerTable = (props: any) => {
   ];
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { domainOwners, setSelectedRemoveRowId } = useSelector(
+  const { domainOwners, setSelectedRemoveRowId, isLoading } = useSelector(
     (state: any) => state.governance
   );
   const dispatch = useDispatch();
@@ -54,6 +54,7 @@ const DomainManagerTable = (props: any) => {
         />
       ) : null}
       <TableWrapper
+        isLoading={isLoading}
         setTitleText={() => titleText}
         columns={columns}
         data={domainOwners}

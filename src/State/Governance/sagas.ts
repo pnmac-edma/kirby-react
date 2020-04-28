@@ -5,7 +5,6 @@ import { getDomainOwners, getSensitivityLevels } from './api';
 export function* workDomainOwners() {
   try {
     const response = yield call(getDomainOwners);
-    console.log(response);
     yield put({
       type: types.DOMAIN_OWNERS_REQUEST_SUCCESS,
       domainOwners: response

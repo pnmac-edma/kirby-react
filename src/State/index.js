@@ -5,6 +5,7 @@ import requestAssetSagas from './RequestAsset/sagas';
 import viewRequestsSagas from './ViewRequests/sagas';
 import authFlowSagas from './AuthFlow/sagas';
 import hydrationSagas from './Hydration/sagas';
+import governaceSagas from './Governance/sagas';
 import searchResultReducer from './SearchResult/reducers';
 import requestAssetsReducer from './RequestAsset/reducers';
 import viewRequestsReducer from './ViewRequests/reducers';
@@ -20,7 +21,8 @@ function* rootSaga() {
     requestAssetSagas(),
     viewRequestsSagas(),
     authFlowSagas(),
-    hydrationSagas()
+    hydrationSagas(),
+    governaceSagas()
   ]);
 }
 
