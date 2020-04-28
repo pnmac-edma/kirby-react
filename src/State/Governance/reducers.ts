@@ -6,7 +6,8 @@ export const initialState = {
   setSelectedRemoveRowId: null,
   governors: mockGovernors,
   sensitivity: mockSensitivityLevelsData,
-  domainOwners: null
+  domainOwners: null,
+  isLoading: false
 };
 
 const governanceReducer = (state = initialState, action: any) => {
@@ -34,9 +35,9 @@ const governanceReducer = (state = initialState, action: any) => {
       return { ...state, domainOwners: newDomainOwners };
     }
     case types.DOMAIN_OWNERS_REQUEST_FETCH:
-      return { ...state };
+      return { ...state, isLoading: true };
     case types.DOMAIN_OWNERS_REQUEST_SUCCESS: {
-      return { ...state, domainOwners: action.domainOwners };
+      return { ...state, domainOwners: action.domainOwners, isLoading: false };
     }
     default:
       return state;
