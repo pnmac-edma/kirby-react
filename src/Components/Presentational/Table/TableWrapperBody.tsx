@@ -127,6 +127,7 @@ const TableWrapperBody = ({
       </TableRow>
     );
   };
+
   const createRowCells = (datum: Datum, col: Column, i: number) => {
     const [className, onClickFunc] = getCellProps(datum, col, i);
     return (
