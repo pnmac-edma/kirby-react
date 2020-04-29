@@ -29,3 +29,16 @@ export const getSensitivityLevels = (): Promise<types.SensitivityLevelsResponse>
     .then(response => response.data)
     .then(error => error);
 };
+
+export const getGovernors = (): Promise<types.GovernorsResponse> => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/governance/users`,
+    HttpMethods.GET,
+    {}
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};

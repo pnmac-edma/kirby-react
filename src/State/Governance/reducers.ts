@@ -1,9 +1,8 @@
 import * as types from './types';
-import mockGovernors from '../__mockData__/mockGovernors.json';
 
 export const initialState = {
   setSelectedRemoveRowId: null,
-  governors: mockGovernors,
+  governors: null,
   sensitivity: null,
   domainOwners: null,
   isLoading: false
@@ -14,8 +13,9 @@ const governanceReducer = (state = initialState, action: any) => {
     case types.SET_REMOVE_SELECTED_ROW:
       return { ...state, setSelectedRemoveRowId: action.Id };
     case types.SET_REMOVE_GOVERNOR: {
+      // @ts-ignore
       const newGovernors = state.governors.filter(
-        governor => governor.Id !== state.setSelectedRemoveRowId
+        (governor: { Id: null }) => governor.Id !== state.setSelectedRemoveRowId
       );
       return { ...state, governors: newGovernors };
     }
@@ -44,6 +44,10 @@ const governanceReducer = (state = initialState, action: any) => {
       return { ...state, isLoading: true };
     case types.SENSITIVITY_LEVELS_REQUEST_SUCCESS:
       return { ...state, isLoading: false, sensitivity: action.sensitivity };
+    case types.GOVERNORS_REQUEST_FETCH:
+      return { ...state, isLoading: true };
+    case types.GOVERNORS_REQUEST_SUCCESS:
+      return { ...state, isLoading: false, governors: action.governors };
     default:
       return state;
   }

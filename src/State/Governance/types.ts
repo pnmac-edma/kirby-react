@@ -15,6 +15,10 @@ export const SENSITIVITY_LEVELS_REQUEST_SUCCESS =
   'SENSITIVITY_LEVELS_REQUEST_SUCCESS';
 export const SENSITIVITY_LEVELS_REQUEST_FAILURE =
   'SENSITIVITY_LEVELS_REQUEST_FAILURE';
+// SENSITIVITY LEVELS FETCH
+export const GOVERNORS_REQUEST_FETCH = 'GOVERNORS_REQUEST_FETCH';
+export const GOVERNORS_REQUEST_SUCCESS = 'GOVERNORS_REQUEST_SUCCESS';
+export const GOVERNORS_REQUEST_FAILURE = 'GOVERNORS_REQUEST_FAILURE';
 
 /**
  * Domain Owners API structure
@@ -40,4 +44,17 @@ export interface SensitivityLevel {
   createddate: string;
   createdbyemail: string;
   sensitivity: string;
+}
+/**
+ * Governors API structure
+ */
+export interface GovernorsResponse {
+  data: Governor;
+}
+export interface Governor {
+  Id: number;
+  createddate: string;
+  createdbyemail: string;
+  username: string;
+  useremail: string;
 }
