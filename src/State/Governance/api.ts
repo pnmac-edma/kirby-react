@@ -16,3 +16,16 @@ export const getDomainOwners = (): Promise<types.DomainOwnersResponse> => {
     .then(response => response.data)
     .then(error => error);
 };
+
+export const getSensitivityLevels = (): Promise<types.SensitivityLevelsResponse> => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/governance/sensitivity/`,
+    HttpMethods.GET,
+    {}
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};

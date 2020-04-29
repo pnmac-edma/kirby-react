@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
-import { setRemoveSensitivityLevels } from '../../../State/Governance/actions';
+import {
+  setRemoveSensitivityLevels,
+  sensitivityLevelsRequestFetch
+} from '../../../State/Governance/actions';
 
 const SensitivityTable = (props: any) => {
-  const { sensitivity, setSelectedRemoveRowId } = useSelector(
+  const { sensitivity, setSelectedRemoveRowId, isLoading } = useSelector(
     (state: any) => state.governance
   );
   const titleText = `Sensitivity Levels`;
@@ -15,20 +18,27 @@ const SensitivityTable = (props: any) => {
   ];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(sensitivityLevelsRequestFetch());
+  }, [dispatch]);
   const setRemoveSensitivityLevel = () =>
     dispatch(setRemoveSensitivityLevels());
-  const removeGovernor = sensitivity.reduce((acc: any, sensitivity: any) => {
-    if (sensitivity.Id === setSelectedRemoveRowId) {
-      acc.push(
-        <p key={sensitivity.Id}>
-          Are you sure that you want to remove{' '}
-          <strong>{sensitivity.sensitivity}</strong> from the availbale
-          sensitivity levels?
-        </p>
-      );
-    }
-    return acc;
-  }, []);
+  let removeGovernor;
+  if (sensitivity !== null) {
+    removeGovernor = sensitivity.reduce((acc: any, sensitivity: any) => {
+      if (sensitivity.Id === setSelectedRemoveRowId) {
+        acc.push(
+          <p key={sensitivity.Id}>
+            Are you sure that you want to remove{' '}
+            <strong>{sensitivity.sensitivity}</strong> from the availbale
+            sensitivity levels?
+          </p>
+        );
+      }
+      return acc;
+    }, []);
+  }
 
   return (
     <>
@@ -42,6 +52,7 @@ const SensitivityTable = (props: any) => {
         />
       ) : null}
       <TableWrapper
+        isLoading={isLoading}
         setTitleText={() => titleText}
         columns={columns}
         data={sensitivity}

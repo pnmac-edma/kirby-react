@@ -4,10 +4,17 @@ export const SET_REMOVE_GOVERNOR = 'SET_REMOVE_GOVERNOR';
 export const SET_REMOVE_SENSITIVITY_LEVELS = 'SET_REMOVE_SENSITIVITY_LEVELS';
 export const SET_REMOVE_DOMAIN_MANAGERS = 'SET_REMOVE_DOMAIN_MANAGER';
 
-// DOMAIN_OWNERS FETCH
+// SENSITIVITY_LEVELS FETCH
 export const DOMAIN_OWNERS_REQUEST_FETCH = 'DOMAIN_OWNERS_REQUEST_FETCH';
 export const DOMAIN_OWNERS_REQUEST_SUCCESS = 'DOMAIN_OWNERS_REQUEST_SUCCESS';
 export const DOMAIN_OWNERS_REQUEST_FAILURE = 'DOMAIN_OWNERS_REQUEST_FAILURE';
+// SENSITIVITY LEVELS FETCH
+export const SENSITIVITY_LEVELS_REQUEST_FETCH =
+  'SENSITIVITY_LEVELS_REQUEST_FETCH';
+export const SENSITIVITY_LEVELS_REQUEST_SUCCESS =
+  'SENSITIVITY_LEVELS_REQUEST_SUCCESS';
+export const SENSITIVITY_LEVELS_REQUEST_FAILURE =
+  'SENSITIVITY_LEVELS_REQUEST_FAILURE';
 
 /**
  * Domain Owners API structure
@@ -21,4 +28,16 @@ export interface DomainOwners {
   createdbyemail: string;
   domain: string;
   owneremail: string;
+}
+/**
+ * Sensitivity Levels API structure
+ */
+export interface SensitivityLevelsResponse {
+  data: SensitivityLevel;
+}
+export interface SensitivityLevel {
+  Id: number;
+  createddate: string;
+  createdbyemail: string;
+  sensitivity: string;
 }
