@@ -28,6 +28,24 @@ interface SensitivityLevelsRequestSuccessAction {
   type: typeof types.SENSITIVITY_LEVELS_REQUEST_SUCCESS;
 }
 
+export const governorsRequestFetch = (): GovernorsRequestFetchAction => ({
+  type: types.GOVERNORS_REQUEST_FETCH
+});
+interface GovernorsRequestFetchAction {
+  type: typeof types.GOVERNORS_REQUEST_FETCH;
+}
+
+export const governorsRequestSuccess = (
+  governors: types.Governor
+): GovernorsRequestSuccessAction => ({
+  type: types.GOVERNORS_REQUEST_SUCCESS,
+  governors: governors
+});
+interface GovernorsRequestSuccessAction {
+  type: typeof types.GOVERNORS_REQUEST_SUCCESS;
+  governors: types.Governor;
+}
+
 export const setRemoveSelectedRow = (Id: number): SetRemoveSelectedRow => ({
   type: types.SET_REMOVE_SELECTED_ROW,
   Id

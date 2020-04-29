@@ -22,6 +22,7 @@ const SensitivityTable = (props: any) => {
   useEffect(() => {
     dispatch(sensitivityLevelsRequestFetch());
   }, [dispatch]);
+
   const setRemoveSensitivityLevel = () =>
     dispatch(setRemoveSensitivityLevels());
   let removeGovernor;
