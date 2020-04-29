@@ -6,11 +6,6 @@ export const requestAssetsClick = (selected: any, data: any) => ({
   data
 });
 
-export const requestCheckBoxSelect = ({ target }: any) => ({
-  type: types.REQUEST_CHECKBOX_SELECT,
-  payload: { id: target.id, checked: target.checked }
-});
-
 export const getEmployeesFetch = () => ({
   type: types.GET_EMPLOYEES_FETCH
 });
@@ -24,11 +19,6 @@ export const handleModalToggle = () => ({
   type: types.HANDLE_MODAL_TOGGLE
 });
 
-export const handleRemoveSelected = (obj: any) => ({
-  type: types.HANDLE_REMOVE_SELECTED,
-  payload: obj
-});
-
 export const justificationHandleInput = (e: { target: { value: any } }) => ({
   type: types.JUSTIFICATION_HANDLE_INPUT,
   payload: e.target.value
@@ -36,6 +26,11 @@ export const justificationHandleInput = (e: { target: { value: any } }) => ({
 
 export const makeRequestsFetch = () => ({
   type: types.MAKE_REQUESTS_FETCH
+});
+
+export const handleRemoveSelected = (obj: any) => ({
+  type: types.HANDLE_REMOVE_SELECTED,
+  payload: obj
 });
 
 export const setToggleAssetCheckbox = (selected: any, id: any) => ({

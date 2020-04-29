@@ -15,30 +15,17 @@ export const searchResultRequest = (searchInput: any) => ({
   payload: searchInput
 });
 
-export const handleFilterSelect = (e: { target: any }) => ({
-  type: types.HANDLE_FILTER_SELECT,
-  payload: e.target
-});
-
-export const handleFilterRequest = () => ({
-  type: types.HANDLE_FILTER_REQUEST
-});
-
-export const handleFilterClick = () => ({
-  type: types.HANDLE_FILTER_CLICK
-});
-
-export const handleRemoveChip = (id: any) => ({
-  type: types.HANDLE_REMOVE_CHIP,
-  payload: id
-});
-
 export const handleSearchClick = () => ({
   type: types.HANDLE_SEARCH_CLICK
 });
 
 export const handleSearchClose = () => ({
   type: types.HANDLE_SEARCH_CLOSE
+});
+
+export const setRemoveSelected = (selectedAssets: Array<number>) => ({
+  type: types.SET_REMOVE_SELECTED,
+  selectedAssets
 });
 
 export const setToggleSearchCheckbox = (selected: any, id: any) => ({
