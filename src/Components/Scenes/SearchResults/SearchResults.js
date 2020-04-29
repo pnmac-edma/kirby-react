@@ -2,14 +2,26 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormHelperText, IconButton, TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Search } from '@material-ui/icons';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
 import { useQuery } from '../../../Hooks/customHooks';
 import {
+  handleKeyPress,
   searchHandleInput,
   searchResultRequest
 } from '../../../State/SearchResult/actions';
+
+const useStyles = makeStyles(theme => ({
+  searchBar: {
+    marginLeft: theme.spacing(1.5),
+    width: '25%'
+  },
+  searchBarError: {
+    marginLeft: theme.spacing(1.5)
+  }
+}));
 
 const SearchResults = props => {
   const {
@@ -20,12 +32,14 @@ const SearchResults = props => {
     setToggleSearchCheckbox,
     setToggleSearchAllCheckbox
   } = props;
-  const params = useQuery('params');
+  const classes = useStyles();
 
   const { value, isError, isTouched } = useSelector(
     state => state.searchResult.searchInput
   );
   const dispatch = useDispatch();
+
+  const params = useQuery('params');
 
   const isNoError = isTouched && !isError;
 
@@ -36,7 +50,7 @@ const SearchResults = props => {
   const columns = [
     {
       name: 'Name',
-      property: 'name'
+      property: 'databasename'
     },
     {
       name: 'Domain',
@@ -52,24 +66,40 @@ const SearchResults = props => {
     }
   ];
 
-  useEffect(() => {
-    if (params) {
-      dispatch(searchResultRequest(value));
+  const keyPressWrapper = e => {
+    if (e.key === 'Enter') {
+      // TODO: reconsider how to search while updating URL params.
+      // Currently, this updates the URL, and when we render `Search`,
+      // it looks at the URL, extracts the params, and then performs the request.
+      // This isn't necessarily bad, but potentially could be made cleaner
+      history.push(urlWithParams);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params]);
+  };
 
   const footerButtonText = selected
     ? `${selected.length} request${selected.length !== 1 ? 's' : ''} selected`
     : '';
 
+  useEffect(() => {
+    if (params) {
+      dispatch(searchResultRequest(params));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
+
   return (
     <>
       <TextField
+        className={classes.searchBar}
         id="search"
         label="Search"
         value={value}
         onChange={e => dispatch(searchHandleInput(e))}
+        onKeyPress={e => {
+          if (isNoError) {
+            handleKeyPress(keyPressWrapper(e));
+          }
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment>
@@ -87,7 +117,7 @@ const SearchResults = props => {
         }}
       />
       {isError && (
-        <FormHelperText error={isError}>
+        <FormHelperText className={classes.searchBarError} error={isError}>
           Please enter a non-empty search
         </FormHelperText>
       )}

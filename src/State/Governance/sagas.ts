@@ -2,6 +2,7 @@ import * as types from './types';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { getDomainOwners, getSensitivityLevels, getGovernors } from './api';
 
+
 export function* workDomainOwners() {
   try {
     const response = yield call(getDomainOwners);
@@ -40,9 +41,6 @@ export function* workGovernors() {
 
 export default function* watchDomainOwners() {
   yield takeEvery(types.DOMAIN_OWNERS_REQUEST_FETCH, workDomainOwners);
-  yield takeEvery(
-    types.SENSITIVITY_LEVELS_REQUEST_FETCH,
-    worksensitivityLevels
-  );
+  yield takeEvery(types.SENSITIVITY_LEVELS_REQUEST_FETCH, worksensitivityLevels);
   yield takeEvery(types.GOVERNORS_REQUEST_FETCH, workGovernors);
 }

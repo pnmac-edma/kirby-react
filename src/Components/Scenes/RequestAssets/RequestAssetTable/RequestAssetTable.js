@@ -11,7 +11,7 @@ const TableSection = props => {
   } = props;
 
   const columns = [
-    { name: 'Name', property: 'name' },
+    { name: 'Name', property: 'databasename' },
     { name: 'Date Created', property: 'createddate' }
   ];
 

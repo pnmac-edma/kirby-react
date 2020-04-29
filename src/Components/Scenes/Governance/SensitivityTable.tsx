@@ -25,7 +25,6 @@ const SensitivityTable = (props: any) => {
 
   const setRemoveSensitivityLevel = () =>
     dispatch(setRemoveSensitivityLevels());
-
   let removeGovernor;
   if (sensitivity !== null) {
     removeGovernor = sensitivity.reduce((acc: any, sensitivity: any) => {
