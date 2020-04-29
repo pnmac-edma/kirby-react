@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
 import {
-  setRemoveDomainManagers,
   deleteDomainOwnersRequestFetch,
   domainOwnersRequestFetch
 } from '../../../State/Governance/actions';

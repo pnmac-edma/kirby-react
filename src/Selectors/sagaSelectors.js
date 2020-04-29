@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 export const getSearchInput = state => state.searchResult.searchInput.value;
 export const getSortBy = state => state.searchResult.sortBy;
 export const getFilterBy = state => state.searchResult.filter.filterBy;
@@ -19,3 +21,21 @@ export const getRequestAssets = state =>
     assets.push({ [asset.requesttype]: asset.name });
     return assets;
   }, []);
+
+/**
+ * === GOVERNANCE SELECTORS ===
+ *    setSelectedRemoveRowId,
+ *    domain, owneremail
+ * === GOVERNANCE SELECTORS ===
+ */
+export const getDomainOwners = state => state.governance.domainOwners;
+export const getSelectedRemoveRowId = state =>
+  state.governance.setSelectedRemoveRowId;
+
+const getSelected = (getDomainOwners, getSelectedRemoveRowId) =>
+  getDomainOwners.filter(governor => governor.Id === getSelectedRemoveRowId);
+export const getDomainOwner = createSelector(
+  getDomainOwners,
+  getSelectedRemoveRowId,
+  getSelected
+);

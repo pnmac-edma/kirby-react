@@ -1,11 +1,12 @@
 import * as types from './types';
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call, select } from 'redux-saga/effects';
 import {
   getDomainOwners,
   getSensitivityLevels,
   getGovernors,
   deleteDomainOwners
 } from './api';
+import { getDomainOwner } from '../../Selectors/sagaSelectors';
 
 export function* workDomainOwners() {
   try {
@@ -20,8 +21,13 @@ export function* workDomainOwners() {
 }
 
 export function* workDeleteDomainOwners() {
+  const domain = yield select(getDomainOwner);
   try {
-    const response = yield call(deleteDomainOwners);
+    const response = yield call(
+      deleteDomainOwners,
+      domain[0].domain,
+      domain[0].owneremail
+    );
     yield put({
       type: types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS,
       message: response
