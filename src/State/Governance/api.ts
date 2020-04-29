@@ -17,6 +17,19 @@ export const getDomainOwners = (): Promise<types.DomainOwnersResponse> => {
     .then(error => error);
 };
 
+export const deleteDomainOwners = (): Promise<types.DomainOwnersResponse> => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/governance/owners/`,
+    HttpMethods.DELETE,
+    {}
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};
+
 export const getSensitivityLevels = (): Promise<types.SensitivityLevelsResponse> => {
   const request = constructRequest(
     config.apiUrl,

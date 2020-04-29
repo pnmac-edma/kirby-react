@@ -1,6 +1,11 @@
 import * as types from './types';
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { getDomainOwners, getSensitivityLevels, getGovernors } from './api';
+import {
+  getDomainOwners,
+  getSensitivityLevels,
+  getGovernors,
+  deleteDomainOwners
+} from './api';
 
 export function* workDomainOwners() {
   try {
@@ -11,6 +16,21 @@ export function* workDomainOwners() {
     });
   } catch (error) {
     yield put({ type: types.DOMAIN_OWNERS_REQUEST_FAILURE, message: error });
+  }
+}
+
+export function* workDeleteDomainOwners() {
+  try {
+    const response = yield call(deleteDomainOwners);
+    yield put({
+      type: types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS,
+      message: response
+    });
+  } catch (error) {
+    yield put({
+      type: types.DELETE_DOMAIN_OWNERS_REQUEST_FAILURE,
+      message: error
+    });
   }
 }
 
@@ -45,4 +65,8 @@ export default function* watchDomainOwners() {
     worksensitivityLevels
   );
   yield takeEvery(types.GOVERNORS_REQUEST_FETCH, workGovernors);
+  yield takeEvery(
+    types.DELETE_DOMAIN_OWNERS_REQUEST_FETCH,
+    workDeleteDomainOwners
+  );
 }
