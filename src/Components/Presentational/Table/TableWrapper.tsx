@@ -145,7 +145,7 @@ const TableWrapper = ({
         <Table className={classes.table} size="medium" stickyHeader>
           <TableWrapperColumnHeaders
             columns={columns}
-            data={data}
+            data={filteredData}
             numSelected={selected.length}
             setToggleAllCheckbox={setToggleAllCheckbox}
             onSort={handleSortClick}
