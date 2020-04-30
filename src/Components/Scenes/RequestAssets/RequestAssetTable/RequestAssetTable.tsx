@@ -7,7 +7,7 @@ import {
   setToggleAssetAllCheckbox
 } from '../../../../State/RequestAsset/actions';
 
-const TableSection = () => {
+const RequestAssetTable = () => {
   const { searchResult, selected } = useSelector(
     ({ searchResult }: any) => searchResult
   );
@@ -49,4 +49,4 @@ const TableSection = () => {
   );
 };
 
-export default TableSection;
+export default RequestAssetTable;
