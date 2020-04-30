@@ -4,7 +4,8 @@ import {
   getDomainOwners,
   getSensitivityLevels,
   getGovernors,
-  deleteDomainOwners
+  deleteDomainOwners,
+  deleteSensitivityLevels
 } from './api';
 import { getDomainOwner } from '../../Selectors/sagaSelectors';
 
@@ -55,6 +56,21 @@ export function* worksensitivityLevels() {
   }
 }
 
+export function* workDeleteSensitivityLevels() {
+  try {
+    const response = yield call(deleteSensitivityLevels);
+    yield put({
+      type: types.DELETE_SENSITIVITY_LEVELS_REQUEST_SUCCESS,
+      message: response
+    });
+  } catch (error) {
+    yield put({
+      type: types.DELETE_DOMAIN_OWNERS_REQUEST_FAILURE,
+      message: error
+    });
+  }
+}
+
 export function* workGovernors() {
   try {
     const response = yield call(getGovernors);
@@ -74,5 +90,9 @@ export default function* watchDomainOwners() {
   yield takeEvery(
     types.DELETE_DOMAIN_OWNERS_REQUEST_FETCH,
     workDeleteDomainOwners
+  );
+  yield takeEvery(
+    types.DELETE_SENSITIVITY_LEVELS_REQUEST_FETCH,
+    workDeleteSensitivityLevels
   );
 }

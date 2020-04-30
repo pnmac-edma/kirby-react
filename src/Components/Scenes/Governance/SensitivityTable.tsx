@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
 import {
-  setRemoveSensitivityLevels,
+  deleteSensitivityRequestFetch,
   sensitivityLevelsRequestFetch
 } from '../../../State/Governance/actions';
 
@@ -24,7 +24,7 @@ const SensitivityTable = (props: any) => {
   }, [dispatch]);
 
   const setRemoveSensitivityLevel = () =>
-    dispatch(setRemoveSensitivityLevels());
+    dispatch(deleteSensitivityRequestFetch());
   let removeGovernor;
   if (sensitivity !== null) {
     removeGovernor = sensitivity.reduce((acc: any, sensitivity: any) => {
