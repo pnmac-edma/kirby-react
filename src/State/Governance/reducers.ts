@@ -5,7 +5,8 @@ export const initialState = {
   governors: null,
   sensitivity: null,
   domainOwners: null,
-  isLoading: false
+  isLoading: false,
+  message: null
 };
 
 const governanceReducer = (state = initialState, action: any) => {
@@ -40,6 +41,10 @@ const governanceReducer = (state = initialState, action: any) => {
     case types.DOMAIN_OWNERS_REQUEST_SUCCESS: {
       return { ...state, domainOwners: action.domainOwners, isLoading: false };
     }
+    case types.DELETE_DOMAIN_OWNERS_REQUEST_FETCH:
+      return { ...state };
+    case types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS:
+      return { ...state, message: action.message };
     case types.SENSITIVITY_LEVELS_REQUEST_FETCH:
       return { ...state, isLoading: true };
     case types.SENSITIVITY_LEVELS_REQUEST_SUCCESS:

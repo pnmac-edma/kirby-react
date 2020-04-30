@@ -14,6 +14,35 @@ interface DomainOwnersRequestSuccessAction {
   type: typeof types.DOMAIN_OWNERS_REQUEST_SUCCESS;
 }
 
+export const deleteDomainOwnersRequestFetch = (): DeleteDomainOwnersRequestFetchAction => ({
+  type: types.DELETE_DOMAIN_OWNERS_REQUEST_FETCH
+});
+interface DeleteDomainOwnersRequestFetchAction {
+  type: typeof types.DELETE_DOMAIN_OWNERS_REQUEST_FETCH;
+}
+
+export const deleteDomainOwnersRequestSuccess = (
+  message: string
+): DeleteDomainOwnersRequestSuccessAction => ({
+  type: types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS,
+  message
+});
+interface DeleteDomainOwnersRequestSuccessAction {
+  type: typeof types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS;
+  message: string;
+}
+
+export const deleteDomainOwnersRequestFailure = (
+  message: any
+): DeleteDomainOwnersFailureAction => ({
+  type: types.DELETE_DOMAIN_OWNERS_REQUEST_FAILURE,
+  message
+});
+interface DeleteDomainOwnersFailureAction {
+  type: typeof types.DELETE_DOMAIN_OWNERS_REQUEST_FAILURE;
+  message: any;
+}
+
 export const sensitivityLevelsRequestFetch = (): SensitivityLevelsRequestFetchAction => ({
   type: types.SENSITIVITY_LEVELS_REQUEST_FETCH
 });
