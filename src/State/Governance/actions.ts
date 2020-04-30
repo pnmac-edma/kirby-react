@@ -14,6 +14,67 @@ interface DomainOwnersRequestSuccessAction {
   type: typeof types.DOMAIN_OWNERS_REQUEST_SUCCESS;
 }
 
+export const deleteDomainOwnersRequestFetch = (): DeleteDomainOwnersRequestFetchAction => ({
+  type: types.DELETE_DOMAIN_OWNERS_REQUEST_FETCH
+});
+interface DeleteDomainOwnersRequestFetchAction {
+  type: typeof types.DELETE_DOMAIN_OWNERS_REQUEST_FETCH;
+}
+
+export const deleteDomainOwnersRequestSuccess = (
+  message: string
+): DeleteDomainOwnersRequestSuccessAction => ({
+  type: types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS,
+  message
+});
+interface DeleteDomainOwnersRequestSuccessAction {
+  type: typeof types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS;
+  message: string;
+}
+
+export const deleteDomainOwnersRequestFailure = (
+  message: any
+): DeleteDomainOwnersFailureAction => ({
+  type: types.DELETE_DOMAIN_OWNERS_REQUEST_FAILURE,
+  message
+});
+interface DeleteDomainOwnersFailureAction {
+  type: typeof types.DELETE_DOMAIN_OWNERS_REQUEST_FAILURE;
+  message: any;
+}
+
+export const sensitivityLevelsRequestFetch = (): SensitivityLevelsRequestFetchAction => ({
+  type: types.SENSITIVITY_LEVELS_REQUEST_FETCH
+});
+interface SensitivityLevelsRequestFetchAction {
+  type: typeof types.SENSITIVITY_LEVELS_REQUEST_FETCH;
+}
+
+export const sensitivityLevelsRequestSuccess = (): SensitivityLevelsRequestSuccessAction => ({
+  type: types.SENSITIVITY_LEVELS_REQUEST_SUCCESS
+});
+interface SensitivityLevelsRequestSuccessAction {
+  type: typeof types.SENSITIVITY_LEVELS_REQUEST_SUCCESS;
+}
+
+export const governorsRequestFetch = (): GovernorsRequestFetchAction => ({
+  type: types.GOVERNORS_REQUEST_FETCH
+});
+interface GovernorsRequestFetchAction {
+  type: typeof types.GOVERNORS_REQUEST_FETCH;
+}
+
+export const governorsRequestSuccess = (
+  governors: types.Governor
+): GovernorsRequestSuccessAction => ({
+  type: types.GOVERNORS_REQUEST_SUCCESS,
+  governors: governors
+});
+interface GovernorsRequestSuccessAction {
+  type: typeof types.GOVERNORS_REQUEST_SUCCESS;
+  governors: types.Governor;
+}
+
 export const setRemoveSelectedRow = (Id: number): SetRemoveSelectedRow => ({
   type: types.SET_REMOVE_SELECTED_ROW,
   Id
