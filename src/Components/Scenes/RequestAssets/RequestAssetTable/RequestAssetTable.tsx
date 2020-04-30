@@ -8,8 +8,8 @@ import {
 } from '../../../../State/RequestAsset/actions';
 
 const TableSection = () => {
-  const selected = useSelector(
-    ({ searchResult }: any) => searchResult.selected
+  const { searchResult, selected } = useSelector(
+    ({ searchResult }: any) => searchResult
   );
   const selectedAssets = useSelector(
     ({ requestAssets }: any) => requestAssets.selectedAssets
@@ -25,18 +25,23 @@ const TableSection = () => {
 
   const footerButtonText = `Remove ${selectedAssets.length} selected`;
 
+  const selectedResults = searchResult.results.filter(({ Id }: any) =>
+    selected.includes(Id)
+  );
+
   return (
     <TableWrapper
       setTitleText={() => titleText}
       selected={selectedAssets}
       columns={columns}
-      data={selected}
-      setToggleCheckbox={(selected: Array<number>, id: number) =>
-        dispatch(setToggleAssetCheckbox(selected, id))
+      data={selectedResults}
+      setToggleCheckbox={(selectedAssets: Array<number>, id: number) =>
+        dispatch(setToggleAssetCheckbox(selectedAssets, id))
       }
-      setToggleAllCheckbox={(selected: Array<number>, data: Array<number>) =>
-        setToggleAssetAllCheckbox(selected, data)
-      }
+      setToggleAllCheckbox={(
+        selectedAssets: Array<number>,
+        selectedResults: Array<number>
+      ) => dispatch(setToggleAssetAllCheckbox(selectedAssets, selectedResults))}
       footerButtonText={footerButtonText}
       setFirstColLink={(id: number) => console.log(`request ${id} clicked`)}
       setFooterButtonClick={() => dispatch(handleModalToggle())}

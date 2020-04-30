@@ -1,5 +1,6 @@
 import initialState from '../initialState';
 import * as types from './types';
+import * as typesSearchResult from '../SearchResult/types';
 
 const requestAssetsReducers = (
   state = initialState.requestAssets,
@@ -65,19 +66,12 @@ const requestAssetsReducers = (
         justification: action.payload
       };
     }
-    // case types.HANDLE_REMOVE_SELECTED: {
-    //   const { selectedSearchResultCopy, selected } = state;
-    //   const searchResultCopy = selectedSearchResultCopy.filter(
-    //     ({ Id }) => !selected.some((id: any) => id === Id)
-    //   );
-
-    //   return {
-    //     ...state,
-    //     selectedSearchResultCopy: searchResultCopy,
-    //     selected: [],
-    //     openModal: !state.openModal
-    //   };
-    // }
+    case types.SET_CLEAR_SELECTED_ASSETS: {
+      return {
+        ...state,
+        selectedAssets: []
+      };
+    }
     case types.SET_TOGGLE_ASSET_CHECKBOX: {
       const { selected, id } = action;
       const selectedIndex = selected.indexOf(id);
@@ -105,6 +99,13 @@ const requestAssetsReducers = (
       return {
         ...state,
         selectedAssets: newSelecteds
+      };
+    }
+    case typesSearchResult.SET_REMOVE_SELECTED: {
+      return {
+        ...state,
+        openModal: !state.openModal,
+        selectedAssets: []
       };
     }
     default:

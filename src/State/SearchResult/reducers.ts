@@ -13,6 +13,7 @@ const searchReducer = (
     id?: any;
     data?: any;
     selectedAssets?: any;
+    searchedInput?: any;
   }
 ) => {
   switch (action.type) {
@@ -38,7 +39,8 @@ const searchReducer = (
           value: '',
           isError: false,
           isTouched: false
-        }
+        },
+        selected: []
       };
     }
     case types.SEARCH_RESULT_SUCCESS: {
@@ -46,6 +48,7 @@ const searchReducer = (
         ...state,
         isLoading: false,
         isSearchClicked: false,
+        searchResult: action.payload,
         searchInput: {
           value: '',
           isError: false,
@@ -76,13 +79,22 @@ const searchReducer = (
         isSearchClicked: false
       };
     }
+    case types.SET_SEARCHED_INPUT: {
+      return {
+        ...state,
+        searchedInput: action.searchedInput
+      };
+    }
     case types.SET_REMOVE_SELECTED: {
       const { selectedAssets } = action;
-      console.log(selectedAssets);
+      const { selected } = state;
+      const newSelected = selected.filter(
+        (id: number) => !selectedAssets.includes(id)
+      );
 
       return {
-        ...state
-        // selected: newSelected
+        ...state,
+        selected: newSelected
       };
     }
     case types.SET_TOGGLE_SEARCH_CHECKBOX: {

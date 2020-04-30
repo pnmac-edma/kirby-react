@@ -33,6 +33,10 @@ export const handleRemoveSelected = (obj: any) => ({
   payload: obj
 });
 
+export const setClearSelectedAssets = () => ({
+  type: types.SET_CLEAR_SELECTED_ASSETS
+});
+
 export const setToggleAssetCheckbox = (selected: any, id: any) => ({
   type: types.SET_TOGGLE_ASSET_CHECKBOX,
   selected,

@@ -24,7 +24,11 @@ const initialState = {
       isError: false,
       isTouched: false
     },
+    searchedInput: '',
     isLoading: false,
+    searchResult: {
+      results: []
+    },
     selected: []
   },
   requestAssets: {

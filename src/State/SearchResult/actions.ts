@@ -23,6 +23,11 @@ export const handleSearchClose = () => ({
   type: types.HANDLE_SEARCH_CLOSE
 });
 
+export const setSearchedInput = (searchedInput: string) => ({
+  type: types.SET_SEARCHED_INPUT,
+  searchedInput
+});
+
 export const setRemoveSelected = (selectedAssets: Array<number>) => ({
   type: types.SET_REMOVE_SELECTED,
   selectedAssets

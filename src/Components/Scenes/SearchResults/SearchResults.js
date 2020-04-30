@@ -10,7 +10,8 @@ import { useQuery } from '../../../Hooks/customHooks';
 import {
   handleKeyPress,
   searchHandleInput,
-  searchResultRequest
+  searchResultRequest,
+  setSearchedInput
 } from '../../../State/SearchResult/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -34,6 +35,9 @@ const SearchResults = props => {
   } = props;
   const classes = useStyles();
 
+  const searchedInput = useSelector(
+    ({ searchResult }) => searchResult.searchedInput
+  );
   const { value, isError, isTouched } = useSelector(
     state => state.searchResult.searchInput
   );
@@ -41,11 +45,11 @@ const SearchResults = props => {
 
   const params = useQuery('params');
 
-  const isNoError = isTouched && !isError;
-
   const history = useHistory();
 
   const urlWithParams = `/search?params=${value}`;
+
+  const isNoError = isTouched && !isError;
 
   const columns = [
     {
@@ -68,10 +72,6 @@ const SearchResults = props => {
 
   const keyPressWrapper = e => {
     if (e.key === 'Enter') {
-      // TODO: reconsider how to search while updating URL params.
-      // Currently, this updates the URL, and when we render `Search`,
-      // it looks at the URL, extracts the params, and then performs the request.
-      // This isn't necessarily bad, but potentially could be made cleaner
       history.push(urlWithParams);
     }
   };
@@ -83,6 +83,7 @@ const SearchResults = props => {
   useEffect(() => {
     if (params) {
       dispatch(searchResultRequest(params));
+      dispatch(setSearchedInput(params));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
@@ -123,7 +124,7 @@ const SearchResults = props => {
       )}
       <TableWrapper
         isLoading={isLoading}
-        setTitleText={() => `Search Results for ${params}`}
+        setTitleText={() => `Search Results for ${params || searchedInput}`}
         filter={['Name', 'Domain', 'Owner', 'Date Created']}
         selected={selected}
         columns={columns}
