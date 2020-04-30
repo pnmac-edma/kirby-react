@@ -57,6 +57,10 @@ const governanceReducer = (state = initialState, action: any) => {
       return { ...state, isLoading: true };
     case types.GOVERNORS_REQUEST_SUCCESS:
       return { ...state, isLoading: false, governors: action.governors };
+    case types.DELETE_GOVERNORS_REQUEST_FETCH:
+      return { ...state };
+    case types.DELETE_GOVERNORS_REQUEST_SUCCESS:
+      return { ...state, message: action.message };
     default:
       return state;
   }

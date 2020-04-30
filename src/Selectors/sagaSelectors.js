@@ -29,6 +29,7 @@ export const getRequestAssets = state =>
  * === GOVERNANCE SELECTORS ===
  */
 export const getDomainOwners = state => state.governance.domainOwners;
+export const getGovernors = state => state.governance.governors;
 export const getSelectedRemoveRowId = state =>
   state.governance.setSelectedRemoveRowId;
 
@@ -38,4 +39,12 @@ export const getDomainOwner = createSelector(
   getDomainOwners,
   getSelectedRemoveRowId,
   getSelected
+);
+
+const getSelectedEmail = (getGovernors, getSelectedRemoveRowId) =>
+  getGovernors.filter(governor => governor.Id === getSelectedRemoveRowId);
+export const getUserEmail = createSelector(
+  getGovernors,
+  getSelectedRemoveRowId,
+  getSelectedEmail
 );
