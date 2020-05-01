@@ -49,6 +49,10 @@ const governanceReducer = (state = initialState, action: any) => {
       return { ...state, isLoading: true };
     case types.SENSITIVITY_LEVELS_REQUEST_SUCCESS:
       return { ...state, isLoading: false, sensitivity: action.sensitivity };
+    case types.DELETE_SENSITIVITY_LEVELS_REQUEST_FETCH:
+      return { ...state };
+    case types.DELETE_SENSITIVITY_LEVELS_REQUEST_SUCCESS:
+      return { ...state, message: action.message };
     case types.GOVERNORS_REQUEST_FETCH:
       return { ...state, isLoading: true };
     case types.GOVERNORS_REQUEST_SUCCESS:

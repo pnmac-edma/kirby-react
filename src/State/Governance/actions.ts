@@ -57,6 +57,35 @@ interface SensitivityLevelsRequestSuccessAction {
   type: typeof types.SENSITIVITY_LEVELS_REQUEST_SUCCESS;
 }
 
+export const deleteSensitivityRequestFetch = (): DeleteSensitivityRequestFetchAction => ({
+  type: types.DELETE_SENSITIVITY_LEVELS_REQUEST_FETCH
+});
+interface DeleteSensitivityRequestFetchAction {
+  type: typeof types.DELETE_SENSITIVITY_LEVELS_REQUEST_FETCH;
+}
+
+export const deleteSensitivityLevelsRequestSuccess = (
+  message: string
+): DeleteSensitivityLevelsRequestSuccessAction => ({
+  type: types.DELETE_SENSITIVITY_LEVELS_REQUEST_SUCCESS,
+  message
+});
+interface DeleteSensitivityLevelsRequestSuccessAction {
+  type: typeof types.DELETE_SENSITIVITY_LEVELS_REQUEST_SUCCESS;
+  message: string;
+}
+
+export const deleteSensitivityLevelsRequestFailure = (
+  message: any
+): DeleteSensitivityLevelsFailureAction => ({
+  type: types.DELETE_SENSITIVITY_LEVELS_REQUEST_FAILURE,
+  message
+});
+interface DeleteSensitivityLevelsFailureAction {
+  type: typeof types.DELETE_SENSITIVITY_LEVELS_REQUEST_FAILURE;
+  message: any;
+}
+
 export const governorsRequestFetch = (): GovernorsRequestFetchAction => ({
   type: types.GOVERNORS_REQUEST_FETCH
 });
