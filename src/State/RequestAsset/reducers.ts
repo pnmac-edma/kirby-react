@@ -1,5 +1,6 @@
 import initialState from '../initialState';
 import * as types from './types';
+import * as typesSearchResult from '../SearchResult/types';
 
 const requestAssetsReducers = (
   state = initialState.requestAssets,
@@ -12,47 +13,6 @@ const requestAssetsReducers = (
         selected.some((id: any) => id === Id)
       );
       return { ...state, selectedSearchResultCopy: selectedSearchResults };
-    }
-    case types.REQUEST_CHECKBOX_SELECT: {
-      let ap = action.payload;
-      let selectedCheckBoxes;
-      let selectedAll;
-      if (ap.id === 'all' && ap.checked) {
-        selectedCheckBoxes = state.selectedSearchResultCopy.map(
-          (lake: { chec: boolean }) => {
-            lake.chec = true;
-            return lake;
-          }
-        );
-        selectedAll = true;
-      } else if (ap.id === 'all' && !ap.checked) {
-        selectedCheckBoxes = state.selectedSearchResultCopy.map(
-          (lake: { chec: boolean }) => {
-            lake.chec = false;
-            return lake;
-          }
-        );
-        selectedAll = false;
-      } else if (ap.id !== 'all') {
-        selectedCheckBoxes = state.selectedSearchResultCopy.map(
-          (lake: { Id: any; chec: boolean }) => {
-            if (Number(lake.Id) === Number(ap.id) && ap.checked) {
-              lake.chec = true;
-            } else if (Number(lake.Id) === Number(ap.id) && !ap.checked) {
-              lake.chec = false;
-            }
-            return lake;
-          }
-        );
-        selectedAll = selectedCheckBoxes.every(
-          (lake: { chec: any }) => lake.chec
-        );
-      }
-      return {
-        ...state,
-        selectedSearchResultCopy: selectedCheckBoxes,
-        selectedAll: selectedAll
-      };
     }
     case types.GET_EMPLOYEES_FETCH: {
       return { ...state };
@@ -83,19 +43,6 @@ const requestAssetsReducers = (
     case types.HANDLE_MODAL_TOGGLE: {
       return { ...state, openModal: !state.openModal };
     }
-    case types.HANDLE_REMOVE_SELECTED: {
-      const { selectedSearchResultCopy, selected } = state;
-      const searchResultCopy = selectedSearchResultCopy.filter(
-        ({ Id }) => !selected.some((id: any) => id === Id)
-      );
-
-      return {
-        ...state,
-        selectedSearchResultCopy: searchResultCopy,
-        selected: [],
-        openModal: !state.openModal
-      };
-    }
     case types.MAKE_REQUESTS_FETCH: {
       return { ...state, isLoading: true };
     }
@@ -119,6 +66,12 @@ const requestAssetsReducers = (
         justification: action.payload
       };
     }
+    case types.SET_CLEAR_SELECTED_ASSETS: {
+      return {
+        ...state,
+        selectedAssets: []
+      };
+    }
     case types.SET_TOGGLE_ASSET_CHECKBOX: {
       const { selected, id } = action;
       const selectedIndex = selected.indexOf(id);
@@ -132,7 +85,7 @@ const requestAssetsReducers = (
 
       return {
         ...state,
-        selected: newSelected
+        selectedAssets: newSelected
       };
     }
     case types.SET_TOGGLE_ASSET_ALL_CHECKBOX: {
@@ -145,7 +98,14 @@ const requestAssetsReducers = (
 
       return {
         ...state,
-        selected: newSelecteds
+        selectedAssets: newSelecteds
+      };
+    }
+    case typesSearchResult.SET_REMOVE_SELECTED: {
+      return {
+        ...state,
+        openModal: !state.openModal,
+        selectedAssets: []
       };
     }
     default:

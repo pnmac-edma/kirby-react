@@ -24,45 +24,15 @@ const initialState = {
       isError: false,
       isTouched: false
     },
+    searchedInput: '',
     isLoading: false,
-    displaySearchResult: false,
-    searchResult: [],
-    searchResultCopy: [],
-    selected: [],
-    selectedAll: false,
-    sortBy: {
-      name: 'asc',
-      domain: 'asc',
-      owner: 'asc',
-      createddate: 'asc'
+    searchResult: {
+      results: []
     },
-    selecters: [
-      'Name',
-      'Description',
-      'Domain',
-      'Owner',
-      'Contains',
-      // prettier-ignore
-      'Doesn\'t contain', // eslint-disable-line
-      'Equals'
-    ],
-    isFilterClick: false,
-    filterQueries: [],
-    isFilterQueriesEmpty: false,
-    filter: {
-      filterBy: '',
-      filterType: '',
-      filterTerm: ''
-    },
-    isSearchClicked: false,
-    rowsPerPage: 10,
-    rowsPerPageOptions: [10, 25, 50],
-    selectedIds: []
+    selected: []
   },
   requestAssets: {
-    selectedSearchResultCopy: [],
-    selected: [],
-    selectedAll: false,
+    selectedAssets: [],
     employees: [],
     selectedEmployees: [],
     openModal: false,

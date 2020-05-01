@@ -9,7 +9,6 @@ import { requestAssetsClick } from '../../../State/RequestAsset/actions';
 const mapStateToProps = ({ searchResult }) => {
   return {
     isLoading: searchResult.isLoading,
-    displaySearchResult: searchResult.displaySearchResult,
     searchResult: searchResult.searchResult,
     selected: searchResult.selected
   };

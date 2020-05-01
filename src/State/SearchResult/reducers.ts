@@ -12,6 +12,8 @@ const searchReducer = (
     selected?: any;
     id?: any;
     data?: any;
+    selectedAssets?: any;
+    searchedInput?: any;
   }
 ) => {
   switch (action.type) {
@@ -32,30 +34,21 @@ const searchReducer = (
       return {
         ...state,
         isLoading: true,
-        selectedAll: false,
-        displaySearchResult: true,
         isSearchClicked: false,
         searchInput: {
           value: '',
           isError: false,
           isTouched: false
-        }
+        },
+        selected: []
       };
     }
     case types.SEARCH_RESULT_SUCCESS: {
-      const searchResultCopy = action.payload.results.map(
-        (val: { checked: boolean }) => {
-          val.checked = false;
-          return val;
-        }
-      );
       return {
         ...state,
-        searchResult: action.payload,
         isLoading: false,
-        searchResultCopy: searchResultCopy,
-        displaySearchResult: true,
         isSearchClicked: false,
+        searchResult: action.payload,
         searchInput: {
           value: '',
           isError: false,
@@ -66,54 +59,12 @@ const searchReducer = (
     case types.SEARCH_RESULT_FAILURE: {
       return {
         ...state,
-        searchResult: action.payload,
         isLoading: false,
         searchInput: {
           value: '',
           isError: false,
           isTouched: false
         }
-      };
-    }
-
-    case types.HANDLE_FILTER_SELECT: {
-      return {
-        ...state,
-        filter: {
-          ...state.filter,
-          [action.payload.name]: action.payload.value
-        }
-      };
-    }
-    case types.HANDLE_FILTER_CLICK: {
-      return {
-        ...state,
-        isFilterClick: !state.isFilterClick
-      };
-    }
-
-    case types.HANDLE_REMOVE_CHIP: {
-      const filterQueries = [...state.filterQueries];
-      filterQueries.splice(action.payload, 1);
-      return {
-        ...state,
-        filterQueries: filterQueries,
-        isFilterQueriesEmpty: false
-      };
-    }
-    case types.HANDLE_REMOVE_CHIP_SUCCESS: {
-      const searchResultCopy = action.payload.results.map(
-        (val: { checked: boolean }) => {
-          val.checked = false;
-          return val;
-        }
-      );
-
-      return {
-        ...state,
-        isLoading: false,
-        selectedAll: false,
-        searchResultCopy: searchResultCopy
       };
     }
     case types.HANDLE_SEARCH_CLICK: {
@@ -126,6 +77,24 @@ const searchReducer = (
       return {
         ...state,
         isSearchClicked: false
+      };
+    }
+    case types.SET_SEARCHED_INPUT: {
+      return {
+        ...state,
+        searchedInput: action.searchedInput
+      };
+    }
+    case types.SET_REMOVE_SELECTED: {
+      const { selectedAssets } = action;
+      const { selected } = state;
+      const newSelected = selected.filter(
+        (id: number) => !selectedAssets.includes(id)
+      );
+
+      return {
+        ...state,
+        selected: newSelected
       };
     }
     case types.SET_TOGGLE_SEARCH_CHECKBOX: {
