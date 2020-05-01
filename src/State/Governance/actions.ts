@@ -104,6 +104,33 @@ interface GovernorsRequestSuccessAction {
   governors: types.Governor;
 }
 
+export const deleteGovernorsRequestFetch = (): DeleteGovernorsRequestFetchAction => ({
+  type: types.DELETE_GOVERNORS_REQUEST_FETCH
+});
+interface DeleteGovernorsRequestFetchAction {
+  type: typeof types.DELETE_GOVERNORS_REQUEST_FETCH;
+}
+export const deleteGovernorsRequestSuccess = (
+  message: any
+): DeleteGovernorsRequestSuccessAction => ({
+  type: types.DELETE_GOVERNORS_REQUEST_SUCCESS,
+  message
+});
+interface DeleteGovernorsRequestSuccessAction {
+  type: typeof types.DELETE_GOVERNORS_REQUEST_SUCCESS;
+  message: any;
+}
+export const deleteGovernorsRequestFailure = (
+  message: any
+): DeleteGovernorsRequestFailureAction => ({
+  type: types.DELETE_GOVERNORS_REQUEST_FAILURE,
+  message
+});
+interface DeleteGovernorsRequestFailureAction {
+  type: typeof types.DELETE_GOVERNORS_REQUEST_FAILURE;
+  message: any;
+}
+
 export const setRemoveSelectedRow = (Id: number): SetRemoveSelectedRow => ({
   type: types.SET_REMOVE_SELECTED_ROW,
   Id

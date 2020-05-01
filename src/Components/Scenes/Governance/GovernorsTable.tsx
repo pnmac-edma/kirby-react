@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
 import {
-  setRemoveGovernor,
-  governorsRequestFetch
+  governorsRequestFetch,
+  deleteGovernorsRequestFetch
 } from '../../../State/Governance/actions';
 
 const GovernorsTable = (props: any) => {
@@ -20,7 +20,7 @@ const GovernorsTable = (props: any) => {
     dispatch(governorsRequestFetch());
   }, [dispatch]);
 
-  const setRemoveGovernors = () => dispatch(setRemoveGovernor());
+  const setRemoveGovernors = () => dispatch(deleteGovernorsRequestFetch());
   let removeGovernor;
   if (governors !== null) {
     removeGovernor = governors.reduce((acc: any, governor: any) => {

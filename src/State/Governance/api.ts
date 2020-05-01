@@ -76,3 +76,17 @@ export const getGovernors = (): Promise<types.GovernorsResponse> => {
     .then(response => response.data)
     .then(error => error);
 };
+
+export const deleteGovernors = (useremail: string): Promise<void> => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/governance/users`,
+    HttpMethods.DELETE,
+    {
+      params: { useremail }
+    }
+  );
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};
