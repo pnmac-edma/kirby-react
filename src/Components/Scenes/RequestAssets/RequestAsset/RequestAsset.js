@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { Divider, Typography } from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
-import RequestAssetTableContainer from '../RequestAssetTable/RequestAssetTable-Container';
+import RequestAssetTable from '../RequestAssetTable/RequestAssetTable';
 import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
 import RequestingForContainer from '../RequestingFor/RequestingFor-Container';
 import RequestedByContainer from '../RequestedBy/RequestedBy-Container';
 import SnackBarContainer from '../SnackBar/SnackBar-Container';
-import RemoveModalContainer from '../RemoveModal/RemoveModal-Container';
+import RemoveModal from '../RemoveModal/RemoveModal';
 import MakeRequestsContainer from '../MakeRequests/MakeRequests-Container';
 
 const useStyles = makeStyles(theme => ({
@@ -73,11 +73,9 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
         </div>
       </div>
       <div className={classes.sideTable}>
-        <RequestAssetTableContainer />
+        <RequestAssetTable />
         {openModal && (
-          <RemoveModalContainer
-            handleOpenNotification={handleOpenNotification}
-          />
+          <RemoveModal handleOpenNotification={handleOpenNotification} />
         )}
         <RequestAssetJustificationContainer />
         <MakeRequestsContainer />
