@@ -101,11 +101,7 @@ export const addGovernors = (
     `${config.apiPath}/governance/users`,
     HttpMethods.POST,
     {
-      data: {
-        useremail,
-        username,
-        createdbyemail
-      },
+      data: { useremail, username, createdbyemail },
       headers: { 'Content-Type': 'application/json' }
     }
   );
