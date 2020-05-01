@@ -90,3 +90,27 @@ export const deleteGovernors = (useremail: string): Promise<void> => {
     .then(response => response.data)
     .then(error => error);
 };
+
+export const addGovernors = (
+  useremail: string,
+  username: string,
+  createdbyemail: string
+): Promise<void> => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/governance/users`,
+    HttpMethods.POST,
+    {
+      data: {
+        useremail,
+        username,
+        createdbyemail
+      },
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};

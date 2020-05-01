@@ -131,6 +131,43 @@ interface DeleteGovernorsRequestFailureAction {
   message: any;
 }
 
+export const addGovernorsRequestFetch = (
+  userName: string,
+  createdByEmail: string,
+  userEmail: string
+): AddGovernorsRequestFetchAction => ({
+  type: types.ADD_GOVERNORS_REQUEST_FETCH,
+  userEmail,
+  userName,
+  createdByEmail
+});
+interface AddGovernorsRequestFetchAction {
+  type: typeof types.ADD_GOVERNORS_REQUEST_FETCH;
+  userEmail: string;
+  userName: string;
+  createdByEmail: string;
+}
+export const addGovernorsRequestSuccess = (
+  message: string
+): AddGovernorsRequestSuccessAction => ({
+  type: types.ADD_GOVERNORS_REQUEST_SUCCESS,
+  message
+});
+interface AddGovernorsRequestSuccessAction {
+  type: typeof types.ADD_GOVERNORS_REQUEST_SUCCESS;
+  message: string;
+}
+export const addGovernorsRequestFailure = (
+  message: string
+): AddGovernorsRequestFailureAction => ({
+  type: types.ADD_GOVERNORS_REQUEST_FAILURE,
+  message
+});
+interface AddGovernorsRequestFailureAction {
+  type: typeof types.ADD_GOVERNORS_REQUEST_FAILURE;
+  message: string;
+}
+
 export const setRemoveSelectedRow = (Id: number): SetRemoveSelectedRow => ({
   type: types.SET_REMOVE_SELECTED_ROW,
   Id
