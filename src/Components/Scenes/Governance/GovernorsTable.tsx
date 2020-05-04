@@ -4,16 +4,24 @@ import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
 import {
   governorsRequestFetch,
-  deleteGovernorsRequestFetch
+  deleteGovernorsRequestFetch,
+  addGovernorsRequestFetch
 } from '../../../State/Governance/actions';
+import { TextField } from '@material-ui/core/';
 
-const GovernorsTable = (props: any) => {
+const GovernorsTable = ({
+  isModalOpenAddGovernor,
+  setIsModalOpenAddGovernors
+}: any) => {
   const { governors, setSelectedRemoveRowId } = useSelector(
     (state: any) => state.governance
   );
   const titleText = `Governors`;
   const columns = [{ name: 'Governor', property: 'username' }];
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [createdByName, setCreatedByName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,6 +29,8 @@ const GovernorsTable = (props: any) => {
   }, [dispatch]);
 
   const setRemoveGovernors = () => dispatch(deleteGovernorsRequestFetch());
+  const setGovernorsRequestFetch = () =>
+    dispatch(addGovernorsRequestFetch(userName, createdByName, userEmail));
   let removeGovernor;
   if (governors !== null) {
     removeGovernor = governors.reduce((acc: any, governor: any) => {
@@ -36,6 +46,29 @@ const GovernorsTable = (props: any) => {
     }, []);
   }
 
+  const render = [
+    <>
+      <TextField
+        id="standard-basic"
+        label="User Name"
+        helperText="Please provide username"
+        onChange={e => setUserName(e.target.value)}
+      />
+      <TextField
+        id="standard-basic"
+        label="Createdby Name"
+        helperText="Please provide createdby email"
+        onChange={e => setCreatedByName(e.target.value)}
+      />
+      <TextField
+        id="standard-basic"
+        label="User Email"
+        helperText="Please provide useremail"
+        onChange={e => setUserEmail(e.target.value)}
+      />
+    </>
+  ];
+
   return (
     <>
       {isModalOpen ? (
@@ -47,6 +80,13 @@ const GovernorsTable = (props: any) => {
           handleRemoveSelected={setRemoveGovernors}
         />
       ) : null}
+      <Modal
+        modalTitle={'Add Govenor'}
+        render={render}
+        openModal={isModalOpenAddGovernor}
+        handleModalToggle={setIsModalOpenAddGovernors}
+        handleRemoveSelected={setGovernorsRequestFetch}
+      />
       <TableWrapper
         setTitleText={() => titleText}
         columns={columns}

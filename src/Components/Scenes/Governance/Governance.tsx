@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Typography, Button, TextField } from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
@@ -61,6 +61,8 @@ const Governance = (props: any) => {
   const classes = useStyles();
   const curPath = useLocation().pathname;
 
+  const [isModalOpenAddGovernor, setIsModalOpenAddGovernors] = useState(false);
+
   const governanceStates = {
     governors: (
       <div className={classes.sideTable}>
@@ -79,13 +81,17 @@ const Governance = (props: any) => {
                 variant="contained"
                 color="primary"
                 className={classes.button}
+                onClick={() => setIsModalOpenAddGovernors(true)}
               >
                 Add Governor
               </Button>
             </div>
           </div>
         </div>
-        <GovernanceTable />
+        <GovernanceTable
+          isModalOpenAddGovernor={isModalOpenAddGovernor}
+          setIsModalOpenAddGovernors={setIsModalOpenAddGovernors}
+        />
       </div>
     ),
     sensitivityAndManager: (
