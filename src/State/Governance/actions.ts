@@ -43,6 +43,43 @@ interface DeleteDomainOwnersFailureAction {
   message: any;
 }
 
+export const addDomainOwnersRequestFetch = (
+  domain: string,
+  createdByEmail: string,
+  ownerEmail: string
+): AddDomainOwnersRequestFetchAction => ({
+  type: types.ADD_DOMAIN_OWNERS_REQUEST_FETCH,
+  domain,
+  createdByEmail,
+  ownerEmail
+});
+interface AddDomainOwnersRequestFetchAction {
+  type: typeof types.ADD_DOMAIN_OWNERS_REQUEST_FETCH;
+  domain: string;
+  createdByEmail: string;
+  ownerEmail: string;
+}
+export const addDomainOwnersRequestSuccess = (
+  message: string
+): AddDomainOwnersRequestSuccessAction => ({
+  type: types.ADD_DOMAIN_OWNERS_REQUEST_SUCCESS,
+  message
+});
+interface AddDomainOwnersRequestSuccessAction {
+  type: typeof types.ADD_DOMAIN_OWNERS_REQUEST_SUCCESS;
+  message: string;
+}
+export const addDomainOwnersRequestFailure = (
+  message: string
+): AddDomainOwnersRequestFailureAction => ({
+  type: types.ADD_DOMAIN_OWNERS_REQUEST_FAILURE,
+  message
+});
+interface AddDomainOwnersRequestFailureAction {
+  type: typeof types.ADD_DOMAIN_OWNERS_REQUEST_FAILURE;
+  message: string;
+}
+
 export const sensitivityLevelsRequestFetch = (): SensitivityLevelsRequestFetchAction => ({
   type: types.SENSITIVITY_LEVELS_REQUEST_FETCH
 });
