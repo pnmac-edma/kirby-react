@@ -8,9 +8,11 @@ import Toolbar from '../Toolbar/Toolbar';
 import TransformEditor from '../Transform/TransformEditor';
 import {
   setSelectedNode,
-  setRemoveSelectedNode
+  setRemoveSelectedNode,
+  setIsUploadModalOpen
 } from '../../../../../State/Hydration/actions';
 import ScheduleJob from '../ScheduleJob/ScheduleJob';
+import UploadScripts from '../UploadScripts/UploadScripts';
 import { setFormInitialState } from '../../../../../State/Hydration/forms';
 import {
   DestinationNodeModel,
@@ -36,8 +38,8 @@ const JobDesigner = (props: JobDesignerProps) => {
     values: InitialStateTypes;
     setFieldValue: (field: string, value: any) => void;
   };
-  const isEditorOpen = useSelector(
-    ({ hydration }: any) => hydration.isEditorOpen
+  const { isUploadModalOpen, isEditorOpen } = useSelector(
+    ({ hydration }: any) => hydration
   );
   const [isScheduleJobOpen, setIsScheduleJobOpen] = useState(false);
   const dispatch = useDispatch();
@@ -139,6 +141,13 @@ const JobDesigner = (props: JobDesignerProps) => {
       />
       <Dialog open={isScheduleJobOpen} aria-labelledby="form-schedule-job">
         <ScheduleJob setIsScheduleJobOpen={setIsScheduleJobOpen} />
+      </Dialog>
+      <Dialog
+        open={isUploadModalOpen}
+        aria-labelledby="upload-scripts"
+        onClose={() => dispatch(setIsUploadModalOpen(false))}
+      >
+        <UploadScripts addNodeToDiagram={addNodeToDiagram} />
       </Dialog>
       <Snackbars />
     </div>
