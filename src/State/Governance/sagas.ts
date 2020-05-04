@@ -7,7 +7,8 @@ import {
   deleteDomainOwners,
   deleteSensitivityLevels,
   deleteGovernors,
-  addGovernors
+  addGovernors,
+  addDomainOwners
 } from './api';
 import { getDomainOwner, getUserEmail } from '../../Selectors/sagaSelectors';
 
@@ -38,6 +39,27 @@ export function* workDeleteDomainOwners() {
   } catch (error) {
     yield put({
       type: types.DELETE_DOMAIN_OWNERS_REQUEST_FAILURE,
+      message: error
+    });
+  }
+}
+
+export function* workAddDomainOwners(action: any) {
+  const { domain, createdByEmail, ownerEmail } = action;
+  try {
+    const response = yield call(
+      addDomainOwners,
+      domain,
+      createdByEmail,
+      ownerEmail
+    );
+    yield put({
+      type: types.ADD_DOMAIN_OWNERS_REQUEST_SUCCESS,
+      message: response
+    });
+  } catch (error) {
+    yield put({
+      type: types.ADD_DOMAIN_OWNERS_REQUEST_FAILURE,
       message: error
     });
   }
@@ -127,4 +149,5 @@ export default function* watchDomainOwners() {
   );
   yield takeEvery(types.DELETE_GOVERNORS_REQUEST_FETCH, workDeleteGovernors);
   yield takeEvery(types.ADD_GOVERNORS_REQUEST_FETCH, workAddGovernors);
+  yield takeEvery(types.ADD_DOMAIN_OWNERS_REQUEST_FETCH, workAddDomainOwners);
 }

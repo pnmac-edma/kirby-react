@@ -4,16 +4,24 @@ import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
 import {
   deleteDomainOwnersRequestFetch,
-  domainOwnersRequestFetch
+  domainOwnersRequestFetch,
+  addDomainOwnersRequestFetch
 } from '../../../State/Governance/actions';
+import { TextField } from '@material-ui/core';
 
-const DomainManagerTable = (props: any) => {
+const DomainManagerTable = ({
+  isModalOpenAddGovernor,
+  setIsModalOpenAddGovernors
+}: any) => {
   const titleText = `Domain Managers`;
   const columns = [
     { name: 'Name', property: 'owneremail' },
     { name: 'Domain', property: 'domain' }
   ];
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [domain, setDomain] = useState('');
+  const [createdByEmail, setCreatedByEmail] = useState('');
+  const [owneremail, setOwnerEmail] = useState('');
 
   const { domainOwners, setSelectedRemoveRowId, isLoading } = useSelector(
     (state: any) => state.governance
@@ -26,6 +34,8 @@ const DomainManagerTable = (props: any) => {
 
   const setRemoveDomainManager = () =>
     dispatch(deleteDomainOwnersRequestFetch());
+  const setGovernorsRequestFetch = () =>
+    dispatch(addDomainOwnersRequestFetch(domain, createdByEmail, owneremail));
   let removeManager;
   if (domainOwners !== null) {
     removeManager = domainOwners.reduce((acc: any, manager: any) => {
@@ -41,6 +51,29 @@ const DomainManagerTable = (props: any) => {
     }, []);
   }
 
+  const render = [
+    <>
+      <TextField
+        id="standard-basic"
+        label="User Name"
+        helperText="Please provide username"
+        onChange={e => setDomain(e.target.value)}
+      />
+      <TextField
+        id="standard-basic"
+        label="Createdby Email"
+        helperText="Please provide createdby email"
+        onChange={e => setCreatedByEmail(e.target.value)}
+      />
+      <TextField
+        id="standard-basic"
+        label="Owner Email"
+        helperText="Please provide useremail"
+        onChange={e => setOwnerEmail(e.target.value)}
+      />
+    </>
+  ];
+
   return (
     <>
       {isModalOpen ? (
@@ -52,6 +85,13 @@ const DomainManagerTable = (props: any) => {
           handleRemoveSelected={setRemoveDomainManager}
         />
       ) : null}
+      <Modal
+        modalTitle={'Add Business Owners'}
+        render={render}
+        openModal={isModalOpenAddGovernor}
+        handleModalToggle={setIsModalOpenAddGovernors}
+        handleRemoveSelected={setGovernorsRequestFetch}
+      />
       <TableWrapper
         isLoading={isLoading}
         setTitleText={() => titleText}

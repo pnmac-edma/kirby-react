@@ -36,6 +36,26 @@ export const deleteDomainOwners = (
     .then(error => error);
 };
 
+export const addDomainOwners = (
+  domain: string,
+  createdbyemail: string,
+  owneremail: string
+): Promise<void> => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/governance/owners`,
+    HttpMethods.POST,
+    {
+      data: { domain, createdbyemail, owneremail },
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};
+
 export const getSensitivityLevels = (): Promise<types.SensitivityLevelsResponse> => {
   const request = constructRequest(
     config.apiUrl,

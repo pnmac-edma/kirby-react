@@ -103,6 +103,7 @@ const Governance = (props: any) => {
                 variant="contained"
                 color="primary"
                 className={classes.button}
+                onClick={() => setIsModalOpenAddGovernors(true)}
               >
                 {curPath === '/governance/sensitivity-levels'
                   ? `Add Sensitivity Level`
@@ -114,7 +115,10 @@ const Governance = (props: any) => {
         {curPath === '/governance/sensitivity-levels' ? (
           <SensitivityTable />
         ) : (
-          <DomainManagerTable />
+          <DomainManagerTable
+            isModalOpenAddGovernor={isModalOpenAddGovernor}
+            setIsModalOpenAddGovernors={setIsModalOpenAddGovernors}
+          />
         )}
       </div>
     )

@@ -45,6 +45,10 @@ const governanceReducer = (state = initialState, action: any) => {
       return { ...state };
     case types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS:
       return { ...state, message: action.message };
+    case types.ADD_DOMAIN_OWNERS_REQUEST_FETCH:
+      return { ...state };
+    case types.ADD_DOMAIN_OWNERS_REQUEST_SUCCESS:
+      return { ...state, message: action.message };
     case types.SENSITIVITY_LEVELS_REQUEST_FETCH:
       return { ...state, isLoading: true };
     case types.SENSITIVITY_LEVELS_REQUEST_SUCCESS:
