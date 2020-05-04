@@ -10,8 +10,8 @@ import {
 import { TextField } from '@material-ui/core';
 
 const DomainManagerTable = ({
-  isModalOpen = isModalOpenAddGovernor,
-  setIsModalOpen = setIsModalOpenAddGovernors
+  isModalOpenAddGovernor,
+  setIsModalOpenAddGovernors
 }: any) => {
   const titleText = `Domain Managers`;
   const columns = [

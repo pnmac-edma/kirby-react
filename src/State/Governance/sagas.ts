@@ -54,7 +54,7 @@ export function* workAddDomainOwners(action: any) {
       ownerEmail
     );
     yield put({
-      type: types.ADD_DOMAIN_OWNERS_REQUEST_FETCH,
+      type: types.ADD_DOMAIN_OWNERS_REQUEST_SUCCESS,
       message: response
     });
   } catch (error) {
