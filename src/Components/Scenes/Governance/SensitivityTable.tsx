@@ -4,10 +4,12 @@ import TableWrapper from '../../Presentational/Table/TableWrapper';
 import Modal from '../../Presentational/Modal/Modal';
 import {
   deleteSensitivityRequestFetch,
-  sensitivityLevelsRequestFetch
+  sensitivityLevelsRequestFetch,
+  addSensitivityLevelsRequestFetch
 } from '../../../State/Governance/actions';
+import { TextField } from '@material-ui/core';
 
-const SensitivityTable = (props: any) => {
+const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const { sensitivity, setSelectedRemoveRowId, isLoading } = useSelector(
     (state: any) => state.governance
   );
@@ -16,7 +18,11 @@ const SensitivityTable = (props: any) => {
     { name: 'Sensitivity', property: 'sensitivity' },
     { name: 'Description', property: 'description' }
   ];
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
+  const [sensitive, setSensitive] = useState('');
+  const [createdByEmail, setCreatedByEmail] = useState('');
+  const [description, setDescription] = useState('');
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +31,10 @@ const SensitivityTable = (props: any) => {
 
   const setRemoveSensitivityLevel = () =>
     dispatch(deleteSensitivityRequestFetch());
+  const setGovernorsRequestFetch = () =>
+    dispatch(
+      addSensitivityLevelsRequestFetch(sensitive, createdByEmail, description)
+    );
   let removeGovernor;
   if (sensitivity !== null) {
     removeGovernor = sensitivity.reduce((acc: any, sensitivity: any) => {
@@ -41,24 +51,52 @@ const SensitivityTable = (props: any) => {
     }, []);
   }
 
+  const render = [
+    <>
+      <TextField
+        id="standard-basic"
+        label="Sensitivity"
+        helperText="Please provide sensitivity"
+        onChange={e => setSensitive(e.target.value)}
+      />
+      <TextField
+        id="standard-basic"
+        label="Createdby Email"
+        helperText="Please provide createdby email"
+        onChange={e => setCreatedByEmail(e.target.value)}
+      />
+      <TextField
+        id="standard-basic"
+        label="Description"
+        helperText="Please provide description"
+        onChange={e => setDescription(e.target.value)}
+      />
+    </>
+  ];
+
   return (
     <>
-      {isModalOpen ? (
-        <Modal
-          modalTitle={'Remove Sensitivity Level'}
-          render={removeGovernor}
-          openModal={isModalOpen}
-          handleModalToggle={setIsModalOpen}
-          handleRemoveSelected={setRemoveSensitivityLevel}
-        />
-      ) : null}
+      <Modal
+        modalTitle={'Remove Sensitivity Level'}
+        render={removeGovernor}
+        openModal={isModalOpenForRemove}
+        handleModalToggle={setIsModalOpenForRemove}
+        handleRemoveSelected={setRemoveSensitivityLevel}
+      />
+      <Modal
+        modalTitle={'Add Sensitivity Levels'}
+        render={render}
+        openModal={isModalOpen}
+        handleModalToggle={setIsModalOpen}
+        handleRemoveSelected={setGovernorsRequestFetch}
+      />
       <TableWrapper
         isLoading={isLoading}
         setTitleText={() => titleText}
         columns={columns}
         data={sensitivity}
         remove={true}
-        setIsModalOpen={setIsModalOpen}
+        setIsModalOpen={setIsModalOpenForRemove}
       />
     </>
   );

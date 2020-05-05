@@ -123,6 +123,43 @@ interface DeleteSensitivityLevelsFailureAction {
   message: any;
 }
 
+export const addSensitivityLevelsRequestFetch = (
+  sensitive: string,
+  createdByEmail: string,
+  description: string
+): AddSensitivityLevelsRequestFetchAction => ({
+  type: types.ADD_SENSITIVITY_LEVELS_REQUEST_FETCH,
+  sensitive,
+  createdByEmail,
+  description
+});
+interface AddSensitivityLevelsRequestFetchAction {
+  type: typeof types.ADD_SENSITIVITY_LEVELS_REQUEST_FETCH;
+  sensitive: string;
+  createdByEmail: string;
+  description: string;
+}
+export const addSensitivityLevelsRequestSuccess = (
+  message: string
+): AddSensitivityLevelsRequestSuccessAction => ({
+  type: types.ADD_SENSITIVITY_LEVELS_REQUEST_SUCCESS,
+  message
+});
+interface AddSensitivityLevelsRequestSuccessAction {
+  type: typeof types.ADD_SENSITIVITY_LEVELS_REQUEST_SUCCESS;
+  message: string;
+}
+export const addSensitivityLevelsRequestFailure = (
+  message: any
+): AddSensitivityLevelsRequestFailureAction => ({
+  type: types.ADD_SENSITIVITY_LEVELS_REQUEST_FAILURE,
+  message
+});
+interface AddSensitivityLevelsRequestFailureAction {
+  type: typeof types.ADD_SENSITIVITY_LEVELS_REQUEST_FAILURE;
+  message: any;
+}
+
 export const governorsRequestFetch = (): GovernorsRequestFetchAction => ({
   type: types.GOVERNORS_REQUEST_FETCH
 });

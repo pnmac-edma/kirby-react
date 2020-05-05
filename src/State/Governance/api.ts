@@ -84,6 +84,26 @@ export const deleteSensitivityLevels = (): Promise<void> => {
     .then(error => error);
 };
 
+export const addSensitivityLevels = (
+  sensitivity: string,
+  createdbyemail: string,
+  description: string
+): Promise<void> => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/governance/sensitivity`,
+    HttpMethods.POST,
+    {
+      data: { sensitivity, createdbyemail, description },
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};
+
 export const getGovernors = (): Promise<types.GovernorsResponse> => {
   const request = constructRequest(
     config.apiUrl,

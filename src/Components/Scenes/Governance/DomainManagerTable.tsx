@@ -9,16 +9,13 @@ import {
 } from '../../../State/Governance/actions';
 import { TextField } from '@material-ui/core';
 
-const DomainManagerTable = ({
-  isModalOpenAddGovernor,
-  setIsModalOpenAddGovernors
-}: any) => {
+const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const titleText = `Domain Managers`;
   const columns = [
     { name: 'Name', property: 'owneremail' },
     { name: 'Domain', property: 'domain' }
   ];
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [domain, setDomain] = useState('');
   const [createdByEmail, setCreatedByEmail] = useState('');
   const [owneremail, setOwnerEmail] = useState('');
@@ -76,20 +73,18 @@ const DomainManagerTable = ({
 
   return (
     <>
-      {isModalOpen ? (
-        <Modal
-          modalTitle={'Remove Sensitivity Level'}
-          render={removeManager}
-          openModal={isModalOpen}
-          handleModalToggle={setIsModalOpen}
-          handleRemoveSelected={setRemoveDomainManager}
-        />
-      ) : null}
+      <Modal
+        modalTitle={'Remove Sensitivity Level'}
+        render={removeManager}
+        openModal={isModalOpenForRemove}
+        handleModalToggle={setIsModalOpenForRemove}
+        handleRemoveSelected={setRemoveDomainManager}
+      />
       <Modal
         modalTitle={'Add Business Owners'}
         render={render}
-        openModal={isModalOpenAddGovernor}
-        handleModalToggle={setIsModalOpenAddGovernors}
+        openModal={isModalOpen}
+        handleModalToggle={setIsModalOpen}
         handleRemoveSelected={setGovernorsRequestFetch}
       />
       <TableWrapper
@@ -98,7 +93,7 @@ const DomainManagerTable = ({
         columns={columns}
         data={domainOwners}
         remove={true}
-        setIsModalOpen={setIsModalOpen}
+        setIsModalOpen={setIsModalOpenForRemove}
       />
     </>
   );
