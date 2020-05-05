@@ -24,6 +24,7 @@ import {
   setJobName,
   setDefaultJobNameOnBlur
 } from '../../../../State/Chrome/actions';
+import { setIsUploadModalOpen } from '../../../../State/Hydration/actions';
 
 const useStyles = makeStyles(theme => ({
   logoContainer: {
@@ -265,7 +266,14 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
                       <MenuItem onClick={handleOpen}>Open</MenuItem>
                       <MenuItem onClick={handleRename}>Rename</MenuItem>
                       <MenuItem onClick={handleClose}>Duplicate</MenuItem>
-                      <MenuItem onClick={handleClose}>Upload Script</MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          dispatch(setIsUploadModalOpen(true));
+                          handleClose();
+                        }}
+                      >
+                        Upload Script
+                      </MenuItem>
                       <MenuItem
                         onClick={handleClose}
                         className={classes.deleteItem}

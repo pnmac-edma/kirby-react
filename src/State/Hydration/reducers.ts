@@ -1,6 +1,7 @@
 import * as types from './types';
 
 export const initialState = {
+  isUploadModalOpen: false,
   isDestinationModalOpen: false,
   isEditorOpen: false,
   isSnackbarOpen: false,
@@ -50,6 +51,12 @@ const hydrationReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isDestinationModalOpen: action.value
+      };
+    }
+    case types.SET_IS_UPLOAD_MODAL_OPEN: {
+      return {
+        ...state,
+        isUploadModalOpen: action.value
       };
     }
     case types.SET_IS_SNACKBAR_OPEN: {
