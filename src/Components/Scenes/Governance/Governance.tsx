@@ -61,7 +61,7 @@ const Governance = (props: any) => {
   const classes = useStyles();
   const curPath = useLocation().pathname;
 
-  const [isModalOpenAddGovernor, setIsModalOpenAddGovernors] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const governanceStates = {
     governors: (
@@ -81,7 +81,7 @@ const Governance = (props: any) => {
                 variant="contained"
                 color="primary"
                 className={classes.button}
-                onClick={() => setIsModalOpenAddGovernors(true)}
+                onClick={() => setIsModalOpen(true)}
               >
                 Add Governor
               </Button>
@@ -89,8 +89,8 @@ const Governance = (props: any) => {
           </div>
         </div>
         <GovernanceTable
-          isModalOpenAddGovernor={isModalOpenAddGovernor}
-          setIsModalOpenAddGovernors={setIsModalOpenAddGovernors}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
         />
       </div>
     ),
@@ -103,7 +103,7 @@ const Governance = (props: any) => {
                 variant="contained"
                 color="primary"
                 className={classes.button}
-                onClick={() => setIsModalOpenAddGovernors(true)}
+                onClick={() => setIsModalOpen(true)}
               >
                 {curPath === '/governance/sensitivity-levels'
                   ? `Add Sensitivity Level`
@@ -114,13 +114,13 @@ const Governance = (props: any) => {
         </div>
         {curPath === '/governance/sensitivity-levels' ? (
           <SensitivityTable
-            isModalOpenAddGovernor={isModalOpenAddGovernor}
-            setIsModalOpenAddGovernors={setIsModalOpenAddGovernors}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
           />
         ) : (
           <DomainManagerTable
-            isModalOpenAddGovernor={isModalOpenAddGovernor}
-            setIsModalOpenAddGovernors={setIsModalOpenAddGovernors}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
           />
         )}
       </div>

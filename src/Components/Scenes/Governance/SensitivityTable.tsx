@@ -9,10 +9,7 @@ import {
 } from '../../../State/Governance/actions';
 import { TextField } from '@material-ui/core';
 
-const SensitivityTable = ({
-  isModalOpenAddGovernor,
-  setIsModalOpenAddGovernors
-}: any) => {
+const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const { sensitivity, setSelectedRemoveRowId, isLoading } = useSelector(
     (state: any) => state.governance
   );
@@ -21,7 +18,7 @@ const SensitivityTable = ({
     { name: 'Sensitivity', property: 'sensitivity' },
     { name: 'Description', property: 'description' }
   ];
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [sensitive, setSensitive] = useState('');
   const [createdByEmail, setCreatedByEmail] = useState('');
   const [description, setDescription] = useState('');
@@ -79,20 +76,18 @@ const SensitivityTable = ({
 
   return (
     <>
-      {isModalOpen ? (
-        <Modal
-          modalTitle={'Remove Sensitivity Level'}
-          render={removeGovernor}
-          openModal={isModalOpen}
-          handleModalToggle={setIsModalOpen}
-          handleRemoveSelected={setRemoveSensitivityLevel}
-        />
-      ) : null}
+      <Modal
+        modalTitle={'Remove Sensitivity Level'}
+        render={removeGovernor}
+        openModal={isModalOpenForRemove}
+        handleModalToggle={setIsModalOpenForRemove}
+        handleRemoveSelected={setRemoveSensitivityLevel}
+      />
       <Modal
         modalTitle={'Add Sensitivity Levels'}
         render={render}
-        openModal={isModalOpenAddGovernor}
-        handleModalToggle={setIsModalOpenAddGovernors}
+        openModal={isModalOpen}
+        handleModalToggle={setIsModalOpen}
         handleRemoveSelected={setGovernorsRequestFetch}
       />
       <TableWrapper
@@ -101,7 +96,7 @@ const SensitivityTable = ({
         columns={columns}
         data={sensitivity}
         remove={true}
-        setIsModalOpen={setIsModalOpen}
+        setIsModalOpen={setIsModalOpenForRemove}
       />
     </>
   );
