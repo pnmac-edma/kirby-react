@@ -28,10 +28,6 @@ const RequestsInbox = props => {
       property: 'description'
     },
     {
-      name: 'Status',
-      property: userRole.governance ? 'govstatus' : 'requeststatus'
-    },
-    {
       name: 'Date Requested',
       property: 'createddate'
     }
@@ -50,7 +46,6 @@ const RequestsInbox = props => {
   const numReqSelected = selected.length > 0 ? selected.length : '';
   const isPlurl = selected.length !== 1 ? 's' : '';
   const footerButtonText = `Archive ${numReqSelected} request${isPlurl}`;
-
   return (
     <>
       <RequestTableTitle title="Requests Inbox" />
