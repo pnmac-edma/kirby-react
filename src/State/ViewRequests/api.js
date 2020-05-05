@@ -36,10 +36,10 @@ export function getApproverRequests(approveremail) {
 export function getGovernanceRequests(pages, size, status) {
   const request = constructRequest(
     config.apiUrl,
-    `${config.apiPath}/governance/requests`,
+    `${config.apiPath}/requests`,
     'GET',
     {
-      params: { pages, size, status }
+      params: { useremail: 'eric.barrow@pnmac.com' }
     }
   );
 
