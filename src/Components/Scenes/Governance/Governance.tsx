@@ -113,7 +113,10 @@ const Governance = (props: any) => {
           </div>
         </div>
         {curPath === '/governance/sensitivity-levels' ? (
-          <SensitivityTable />
+          <SensitivityTable
+            isModalOpenAddGovernor={isModalOpenAddGovernor}
+            setIsModalOpenAddGovernors={setIsModalOpenAddGovernors}
+          />
         ) : (
           <DomainManagerTable
             isModalOpenAddGovernor={isModalOpenAddGovernor}
