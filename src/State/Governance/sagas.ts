@@ -33,9 +33,14 @@ export function* workDeleteDomainOwners() {
       domain[0].domain,
       domain[0].owneremail
     );
+    const responseForGetDomainOwners = yield call(getDomainOwners);
     yield put({
       type: types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS,
       message: response
+    });
+    yield put({
+      type: types.DOMAIN_OWNERS_REQUEST_SUCCESS,
+      domainOwners: responseForGetDomainOwners
     });
   } catch (error) {
     yield put({
@@ -54,9 +59,14 @@ export function* workAddDomainOwners(action: any) {
       createdByEmail,
       ownerEmail
     );
+    const responseForGetDomainOwners = yield call(getDomainOwners);
     yield put({
       type: types.ADD_DOMAIN_OWNERS_REQUEST_SUCCESS,
       message: response
+    });
+    yield put({
+      type: types.DOMAIN_OWNERS_REQUEST_SUCCESS,
+      domainOwners: responseForGetDomainOwners
     });
   } catch (error) {
     yield put({
@@ -84,9 +94,14 @@ export function* worksensitivityLevels() {
 export function* workDeleteSensitivityLevels() {
   try {
     const response = yield call(deleteSensitivityLevels);
+    const responseForGetSensitivityLevel = yield call(getSensitivityLevels);
     yield put({
       type: types.DELETE_SENSITIVITY_LEVELS_REQUEST_SUCCESS,
       message: response
+    });
+    yield put({
+      type: types.SENSITIVITY_LEVELS_REQUEST_SUCCESS,
+      sensitivity: responseForGetSensitivityLevel
     });
   } catch (error) {
     yield put({
@@ -105,9 +120,14 @@ export function* workAddSensitivityLevels(action: any) {
       createdByEmail,
       description
     );
+    const responseForGetSensitivityLevel = yield call(getSensitivityLevels);
     yield put({
       type: types.ADD_SENSITIVITY_LEVELS_REQUEST_SUCCESS,
       message: response
+    });
+    yield put({
+      type: types.SENSITIVITY_LEVELS_REQUEST_SUCCESS,
+      sensitivity: responseForGetSensitivityLevel
     });
   } catch (error) {
     yield put({
@@ -129,10 +149,15 @@ export function* workGovernors() {
 export function* workDeleteGovernors() {
   const userEmail = yield select(getUserEmail);
   try {
-    const reponse = yield call(deleteGovernors, userEmail[0].useremail);
+    const response = yield call(deleteGovernors, userEmail[0].useremail);
+    const responseForGetGovernors = yield call(getGovernors);
     yield put({
       type: types.DELETE_GOVERNORS_REQUEST_SUCCESS,
-      message: reponse
+      message: response
+    });
+    yield put({
+      type: types.GOVERNORS_REQUEST_FETCH,
+      governors: responseForGetGovernors
     });
   } catch (error) {
     yield put({ type: types.DELETE_GOVERNORS_REQUEST_FAILURE, message: error });
@@ -148,7 +173,12 @@ export function* workAddGovernors(action: any) {
       userName,
       createdByEmail
     );
+    const responseForGetGovernors = yield call(getGovernors);
     yield put({ type: types.ADD_GOVERNORS_REQUEST_SUCCESS, message: response });
+    yield put({
+      type: types.GOVERNORS_REQUEST_FETCH,
+      governors: responseForGetGovernors
+    });
   } catch (error) {
     yield put({ type: types.ADD_GOVERNORS_REQUEST_FAILURE, message: error });
   }
