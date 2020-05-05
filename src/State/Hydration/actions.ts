@@ -45,6 +45,17 @@ interface SetIsDestinationModalOpenAction {
   value: boolean;
 }
 
+export const setIsUploadModalOpen = (
+  value: boolean
+): SetIsUploadModalOpenAction => ({
+  type: types.SET_IS_UPLOAD_MODAL_OPEN,
+  value
+});
+interface SetIsUploadModalOpenAction {
+  type: typeof types.SET_IS_UPLOAD_MODAL_OPEN;
+  value: boolean;
+}
+
 export const sourceTilesRequestFetch = (): SourceTilesRequestFetchAction => ({
   type: types.SOURCE_TILES_REQUESTS_FETCH
 });
