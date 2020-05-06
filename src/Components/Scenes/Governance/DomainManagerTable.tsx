@@ -15,6 +15,8 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
     { name: 'Name', property: 'owneremail' },
     { name: 'Domain', property: 'domain' }
   ];
+  const messageForRemove = `Domain Manager was removed successfully.`;
+  const messageForAdded = `Domain Manager was added successfully.`;
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [domain, setDomain] = useState('');
   const [createdByEmail, setCreatedByEmail] = useState('');
@@ -23,7 +25,11 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const { domainOwners, setSelectedRemoveRowId, isLoading } = useSelector(
     (state: any) => state.governance
   );
+  const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
+
+  const handleOpenNotification = () => setNotification(true);
+  const handleCloseNotification = () => setNotification(false);
 
   useEffect(() => {
     dispatch(domainOwnersRequestFetch());
@@ -79,6 +85,10 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
         openModal={isModalOpenForRemove}
         handleModalToggle={setIsModalOpenForRemove}
         handleRemoveSelected={setRemoveDomainManager}
+        notification={notification}
+        handleOpenNotification={handleOpenNotification}
+        handleCloseNotification={handleCloseNotification}
+        message={messageForRemove}
       />
       <Modal
         modalTitle={'Add Business Owners'}
@@ -86,6 +96,10 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
         openModal={isModalOpen}
         handleModalToggle={setIsModalOpen}
         handleRemoveSelected={setGovernorsRequestFetch}
+        notification={notification}
+        handleOpenNotification={handleOpenNotification}
+        handleCloseNotification={handleCloseNotification}
+        message={messageForAdded}
       />
       <TableWrapper
         isLoading={isLoading}

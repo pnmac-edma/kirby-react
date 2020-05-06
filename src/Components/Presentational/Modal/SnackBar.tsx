@@ -9,9 +9,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SnackBar = props => {
+const SnackBar = (props: any) => {
   const classes = useStyles();
-  const { message, notification, handleCloseNotification } = props;
+  const {
+    message,
+    notification,
+    handleOpenNotification,
+    handleCloseNotification
+  } = props;
 
   return (
     <Snackbar
@@ -21,7 +26,7 @@ const SnackBar = props => {
       }}
       open={notification}
       onClose={handleCloseNotification}
-      autoHideDuration={2000}
+      autoHideDuration={1500}
       message={<span id="message-id">{message}</span>}
       action={[
         <IconButton
