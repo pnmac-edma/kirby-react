@@ -7,7 +7,7 @@ import color from '@edma/design-tokens/js/color';
 import UserGroup from '../../SideNavigation/UserGroupListItem/UserGroupListItem';
 import DashboardListItem from '../../SideNavigation/DashboardListItem/DashboardListItem';
 import SearchAssetsListItem from '../../SideNavigation/SearchAssetsListItem/SearchAssetsListItem-Container';
-import GovernanceListItem from '../../SideNavigation/GovernanceListItem/GovernanceListItem-Container';
+import GovernanceListItem from '../../SideNavigation/GovernanceListItem/GovernanceListItem';
 import HydrationListItem from '../../SideNavigation/HydrationListItem/HydrationListItem-Container';
 import RequestListItem from '../../SideNavigation/RequestListItem/RequestListItem-Container';
 import KeysListItem from '../../SideNavigation/KeysListItem/KeysListItem';
