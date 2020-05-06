@@ -14,12 +14,18 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
     (state: any) => state.governance
   );
   const titleText = `Governors`;
+  const messageForRemove = `Governor was removed successfully.`;
+  const messageForAdded = `Governor was added successfully.`;
   const columns = [{ name: 'Governor', property: 'username' }];
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [userName, setUserName] = useState('');
   const [createdByName, setCreatedByName] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
+
+  const handleOpenNotification = () => setNotification(true);
+  const handleCloseNotification = () => setNotification(false);
 
   useEffect(() => {
     dispatch(governorsRequestFetch());
@@ -74,13 +80,10 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
         openModal={isModalOpenForRemove}
         handleModalToggle={setIsModalOpenForRemove}
         handleRemoveSelected={setRemoveGovernors}
-      />
-      <Modal
-        modalTitle={'Add Govenor'}
-        render={render}
-        openModal={isModalOpen}
-        handleModalToggle={setIsModalOpen}
-        handleRemoveSelected={setGovernorsRequestFetch}
+        notification={notification}
+        handleOpenNotification={handleOpenNotification}
+        handleCloseNotification={handleCloseNotification}
+        message={messageForRemove}
       />
       <TableWrapper
         setTitleText={() => titleText}
@@ -88,6 +91,17 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
         data={governors}
         remove={true}
         setIsModalOpen={setIsModalOpenForRemove}
+      />
+      <Modal
+        modalTitle={'Add Govenor'}
+        render={render}
+        openModal={isModalOpen}
+        handleModalToggle={setIsModalOpen}
+        handleRemoveSelected={setGovernorsRequestFetch}
+        notification={notification}
+        handleOpenNotification={handleOpenNotification}
+        handleCloseNotification={handleCloseNotification}
+        message={messageForAdded}
       />
     </>
   );

@@ -18,12 +18,18 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
     { name: 'Sensitivity', property: 'sensitivity' },
     { name: 'Description', property: 'description' }
   ];
+  const messageForRemove = `Sensitivity Level was removed successfully.`;
+  const messageForAdded = `Sensitivity Level was added successfully.`;
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [sensitive, setSensitive] = useState('');
   const [createdByEmail, setCreatedByEmail] = useState('');
   const [description, setDescription] = useState('');
 
+  const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
+
+  const handleOpenNotification = () => setNotification(true);
+  const handleCloseNotification = () => setNotification(false);
 
   useEffect(() => {
     dispatch(sensitivityLevelsRequestFetch());
@@ -82,6 +88,10 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
         openModal={isModalOpenForRemove}
         handleModalToggle={setIsModalOpenForRemove}
         handleRemoveSelected={setRemoveSensitivityLevel}
+        notification={notification}
+        handleOpenNotification={handleOpenNotification}
+        handleCloseNotification={handleCloseNotification}
+        message={messageForRemove}
       />
       <Modal
         modalTitle={'Add Sensitivity Levels'}
@@ -89,6 +99,10 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
         openModal={isModalOpen}
         handleModalToggle={setIsModalOpen}
         handleRemoveSelected={setGovernorsRequestFetch}
+        notification={notification}
+        handleOpenNotification={handleOpenNotification}
+        handleCloseNotification={handleCloseNotification}
+        message={messageForAdded}
       />
       <TableWrapper
         isLoading={isLoading}
