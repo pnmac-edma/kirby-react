@@ -1,9 +1,14 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Select, { createFilter } from 'react-select';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import EmployeesList from './EmployeesList';
 import { Typography } from '@material-ui/core';
 import { color, font, fontSize } from '@edma/design-tokens';
+import {
+  getEmployeesFetch,
+  handleSelectedEmployees
+} from '../../../../State/RequestAsset/actions';
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -19,18 +24,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestingFor = props => {
-  const { employees, handleSelectedEmployees } = props;
+const RequestingFor = () => {
   const classes = useStyles();
+
+  const { employees, selectedEmployees } = useSelector(
+    ({ requestAssets }: any) => requestAssets
+  );
+  const dispatch = useDispatch();
+
   const theme = useTheme();
 
-  const customStyles = {
-    option: (provided, state) => ({
+  const customReactSelectStyles = {
+    option: (provided: any) => ({
       ...provided,
       fontSize: fontSize[0]
     }),
-
-    control: (provided, state) => ({
+    control: (provided: any) => ({
       ...provided,
       border: 0,
       borderBottom: `1px solid ${
@@ -41,33 +50,32 @@ const RequestingFor = props => {
       boxShadow: 'none',
       fontSize: fontSize[0]
     }),
-
-    indicatorSeparator: (provided, state) => ({
+    indicatorSeparator: (provided: any) => ({
       ...provided,
       display: 'none'
     }),
-
-    menu: (provided, state) => ({
+    menu: () => ({
       background: theme.palette.type === 'light' ? color.white : color.black
     })
   };
 
   return (
-    <React.Fragment>
+    <>
       <Typography variant="overline" className={classes.menuStyle}>
         Requesting For
       </Typography>
       <Select
-        className={('basic-multi-select', classes.table)}
+        // className={('basic-multi-select', classes.table)} // NOTE: not sure if 'basic-multi-select' is needed
+        className={classes.table}
         filterOption={createFilter({ ignoreAccents: false })}
         isMulti
         placeholder={'Select name(s) from the list'}
-        styles={customStyles}
+        styles={customReactSelectStyles}
         components={{ MenuList: EmployeesList }}
         options={employees}
-        onChange={val => handleSelectedEmployees(val)}
+        onChange={val => dispatch(handleSelectedEmployees(val))}
       />
-    </React.Fragment>
+    </>
   );
 };
 

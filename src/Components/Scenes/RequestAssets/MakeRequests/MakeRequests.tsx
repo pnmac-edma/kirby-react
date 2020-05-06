@@ -4,8 +4,11 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { color } from '@edma/design-tokens';
 import { useHistory } from 'react-router-dom';
-import SnackBar from '../../../Presentational/RequestAssets/SnackBar';
-import { setClearSelectedAssets } from '../../../../State/RequestAsset/actions';
+import SnackBar from '../../../Presentational/SnackBar/SnackBar';
+import {
+  makeRequestsFetch,
+  setClearSelectedAssets
+} from '../../../../State/RequestAsset/actions';
 
 const tableStyles = makeStyles(theme => ({
   button: {
@@ -24,21 +27,20 @@ const tableStyles = makeStyles(theme => ({
 }));
 
 // TODO: api call for making requests doesn't work, need to fix
-const MakeRequests = props => {
-  const {
-    makeRequestsFetch,
-    notificationMessage,
-    isLoading,
-    selectedEmployeesLength,
-    selectedSearchResultCopyLength,
-    justificationLength
-  } = props;
+const MakeRequests = () => {
   const classes = tableStyles();
 
   const [notification, setNotification] = useState(false);
 
+  const {
+    isLoading,
+    justification,
+    notificationMessage,
+    selectedEmployees,
+    selectedAssets
+  } = useSelector(({ requestAssets }: any) => requestAssets);
   const searchedInput = useSelector(
-    ({ searchResult }) => searchResult.searchedInput
+    ({ searchResult }: any) => searchResult.searchedInput
   );
   const dispatch = useDispatch();
 
@@ -51,7 +53,6 @@ const MakeRequests = props => {
   };
 
   const history = useHistory();
-
   const urlWithParams = `/search?params=${searchedInput}`;
 
   // depending on what we do with redux store saving into session
@@ -61,18 +62,18 @@ const MakeRequests = props => {
   }, [dispatch]);
 
   return (
-    <div className={classes.buttonStyle}>
+    <>
       <Button
         className={classes.button}
         variant="contained"
         color="primary"
         disabled={
-          !selectedSearchResultCopyLength ||
-          !selectedEmployeesLength ||
-          !justificationLength
+          !selectedAssets.length ||
+          !selectedEmployees.length ||
+          !justification.length
         }
         onClick={() => {
-          makeRequestsFetch();
+          dispatch(makeRequestsFetch());
           handleOpenNotification();
         }}
       >
@@ -93,7 +94,7 @@ const MakeRequests = props => {
           handleCloseNotification={handleCloseNotification}
         />
       ) : null}
-    </div>
+    </>
   );
 };
 
