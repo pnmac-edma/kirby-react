@@ -3,11 +3,6 @@ import clsx from 'clsx';
 import { makeStyles, Avatar, ListItem, ListItemText } from '@material-ui/core';
 import color from '@edma/design-tokens/js/color';
 
-const colorObj = color.color;
-const colorKeys = Object.keys(colorObj);
-const randomIndex = colorKeys[Math.floor(Math.random() * colorKeys.length)];
-const randomColor = color.color[randomIndex];
-
 const useStyles = makeStyles(theme => ({
   listItemSettings: {
     overflow: 'hidden',
@@ -15,12 +10,12 @@ const useStyles = makeStyles(theme => ({
     position: 'fixed',
     bottom: 0,
     width: 'inherit',
-    backgroundColor: colorObj.black.value,
+    backgroundColor: color.black,
     padding: theme.spacing(2)
   },
   avatar: {
-    color: randomColor.against,
-    backgroundColor: randomColor.value
+    color: color.white,
+    background: color.green
   }
 }));
 

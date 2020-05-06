@@ -3,8 +3,9 @@ import { ListItem, ListItemText } from '@material-ui/core';
 import { VpnKeyOutlined } from '@material-ui/icons/';
 import { Link, useLocation } from 'react-router-dom';
 
-const KeysListItem = ({ closeDrawer }) => {
+const KeysListItem = ({ closeDrawer }: KeysListItemProps) => {
   const activeLink = useLocation();
+
   return (
     <ListItem
       onClick={closeDrawer}
@@ -24,3 +25,7 @@ const KeysListItem = ({ closeDrawer }) => {
 };
 
 export default KeysListItem;
+
+interface KeysListItemProps {
+  closeDrawer: () => void;
+}

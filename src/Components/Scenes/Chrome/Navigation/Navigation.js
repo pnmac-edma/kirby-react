@@ -4,12 +4,12 @@ import axios from 'axios';
 import { makeStyles, Drawer, List } from '@material-ui/core';
 import PageWrapper from '../PageWrapper/PageWrapper-Container';
 import color from '@edma/design-tokens/js/color';
-import UserGroup from '../../SideNavigation/UserGroupListItem/UserGroupListItem';
+import UserGroupListItem from '../../SideNavigation/UserGroupListItem/UserGroupListItem';
 import DashboardListItem from '../../SideNavigation/DashboardListItem/DashboardListItem';
-import SearchAssetsListItem from '../../SideNavigation/SearchAssetsListItem/SearchAssetsListItem-Container';
+import SearchAssetsListItem from '../../SideNavigation/SearchAssetsListItem/SearchAssetsListItem';
 import GovernanceListItem from '../../SideNavigation/GovernanceListItem/GovernanceListItem';
-import HydrationListItem from '../../SideNavigation/HydrationListItem/HydrationListItem-Container';
-import RequestListItem from '../../SideNavigation/RequestListItem/RequestListItem-Container';
+import HydrationListItem from '../../SideNavigation/HydrationListItem/HydrationListItem';
+import RequestListItem from '../../SideNavigation/RequestListItem/RequestListItem';
 import KeysListItem from '../../SideNavigation/KeysListItem/KeysListItem';
 import AwsAthenaListItem from '../../SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
 import AvatarListItem from '../../SideNavigation/AvatarListItem/AvatarListItem';
@@ -135,7 +135,7 @@ const Navigation = props => {
             open={open}
           >
             <List className={classes.customList}>
-              <UserGroup />
+              <UserGroupListItem />
               <DashboardListItem closeDrawer={closeDrawer} />
               <SearchAssetsListItem />
               <GovernanceListItem
