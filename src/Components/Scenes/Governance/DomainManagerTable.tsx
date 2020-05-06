@@ -53,18 +53,21 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
       <TextField
         id="standard-basic"
         label="User Name"
+        fullWidth
         helperText="Please provide username"
         onChange={e => setDomain(e.target.value)}
       />
       <TextField
         id="standard-basic"
         label="Createdby Email"
+        fullWidth
         helperText="Please provide createdby email"
         onChange={e => setCreatedByEmail(e.target.value)}
       />
       <TextField
         id="standard-basic"
         label="Owner Email"
+        fullWidth
         helperText="Please provide useremail"
         onChange={e => setOwnerEmail(e.target.value)}
       />
