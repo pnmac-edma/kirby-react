@@ -6,17 +6,17 @@ import { Link, useLocation } from 'react-router-dom';
 
 const GovernanceListItem = ({
   closeAllArrows,
-  governanceListItemsName,
   closeDrawer
-}) => {
-  const activeLink = useLocation();
+}: GovernanceListItemProps) => {
   const [openIconOne, setOpenIconOne] = useState(false);
 
-  useEffect(() => {
-    if (closeAllArrows === false && openIconOne === true) {
-      setOpenIconOne(false);
-    }
-  }, [closeAllArrows, openIconOne]);
+  const activeLink = useLocation();
+
+  const governanceListItemsName = [
+    { label: 'Business Owners', link: '/governance/business-owners' },
+    { label: 'Governors', link: '/governance/governors' },
+    { label: 'Sensitivity Levels', link: '/governance/sensitivity-levels' }
+  ];
 
   const governanceListItemText = governanceListItemsName.map(
     ({ label, link }) => (
@@ -36,6 +36,12 @@ const GovernanceListItem = ({
       </ListItem>
     )
   );
+
+  useEffect(() => {
+    if (closeAllArrows === false && openIconOne === true) {
+      setOpenIconOne(false);
+    }
+  }, [closeAllArrows, openIconOne]);
 
   return (
     <>
@@ -62,3 +68,8 @@ const GovernanceListItem = ({
 };
 
 export default GovernanceListItem;
+
+interface GovernanceListItemProps {
+  closeAllArrows: boolean;
+  closeDrawer: () => void;
+}

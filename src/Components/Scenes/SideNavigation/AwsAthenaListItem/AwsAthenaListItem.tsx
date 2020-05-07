@@ -5,7 +5,7 @@ import { makeStyles, ListItem, ListItemText } from '@material-ui/core';
 import { CloudQueue, ExitToApp } from '@material-ui/icons/';
 import config from '../../../../config/config';
 
-const awsAthenaListItem = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   exitToApp: {
     position: 'relative',
     top: 6,
@@ -14,7 +14,7 @@ const awsAthenaListItem = makeStyles(theme => ({
 }));
 
 const AwsAthenaListItem = () => {
-  const classes = awsAthenaListItem();
+  const classes = useStyles();
 
   return (
     <ListItem

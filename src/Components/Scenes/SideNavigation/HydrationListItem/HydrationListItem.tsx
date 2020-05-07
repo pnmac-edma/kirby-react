@@ -7,17 +7,16 @@ import { Link, useLocation } from 'react-router-dom';
 
 const HydrationListItem = ({
   closeAllArrows,
-  hydrationListItemsName,
   closeDrawer
-}) => {
+}: HydrationListItemProps) => {
   const [openIconTwo, setOpenIconTwo] = useState(false);
   const activeLink = useLocation();
 
-  useEffect(() => {
-    if (closeAllArrows === false && openIconTwo === true) {
-      setOpenIconTwo(false);
-    }
-  }, [closeAllArrows, openIconTwo]);
+  const hydrationListItemsName = [
+    { label: 'New Destination', link: '/hydration/new-destination' },
+    { label: 'New Job', link: '/hydration/new-job' },
+    { label: 'View Jobs', link: '/hydration/view-jobs' }
+  ];
 
   const hydrationListItemText = hydrationListItemsName.map(
     ({ label, link }) => (
@@ -37,6 +36,12 @@ const HydrationListItem = ({
       </ListItem>
     )
   );
+
+  useEffect(() => {
+    if (closeAllArrows === false && openIconTwo === true) {
+      setOpenIconTwo(false);
+    }
+  }, [closeAllArrows, openIconTwo]);
 
   return (
     <>
@@ -63,3 +68,8 @@ const HydrationListItem = ({
 };
 
 export default HydrationListItem;
+
+interface HydrationListItemProps {
+  closeAllArrows: boolean;
+  closeDrawer: () => void;
+}
