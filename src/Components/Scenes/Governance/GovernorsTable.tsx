@@ -49,31 +49,28 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
     }, []);
   }
 
-  const render = [
+  const render = (
     <>
       <TextField
-        id="standard-basic"
         label="User Name"
         fullWidth
         helperText="Please provide username"
         onChange={e => setUserName(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Createdby Name"
         fullWidth
         helperText="Please provide createdby email"
         onChange={e => setCreatedByName(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="User Email"
         fullWidth
         helperText="Please provide useremail"
         onChange={e => setUserEmail(e.target.value)}
       />
     </>
-  ];
+  );
 
   return (
     <>

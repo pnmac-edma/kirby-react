@@ -57,31 +57,28 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
     }, []);
   }
 
-  const render = [
+  const render = (
     <>
       <TextField
-        id="standard-basic"
         label="Sensitivity"
         fullWidth
         helperText="Please provide sensitivity"
         onChange={e => setSensitive(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Description"
         fullWidth
         helperText="Please provide description"
         onChange={e => setDescription(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Createdby Email"
         fullWidth
         helperText="Please provide createdby email"
         onChange={e => setCreatedByEmail(e.target.value)}
       />
     </>
-  ];
+  );
 
   return (
     <>

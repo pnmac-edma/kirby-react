@@ -54,56 +54,57 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
     }, []);
   }
 
-  const render = [
+  const render = (
     <>
       <TextField
-        id="standard-basic"
         label="User Name"
         fullWidth
         helperText="Please provide username"
         onChange={e => setDomain(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Createdby Email"
         fullWidth
         helperText="Please provide createdby email"
         onChange={e => setCreatedByEmail(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Owner Email"
         fullWidth
         helperText="Please provide useremail"
         onChange={e => setOwnerEmail(e.target.value)}
       />
     </>
-  ];
+  );
 
   return (
     <>
-      <Modal
-        modalTitle={'Remove Sensitivity Level'}
-        render={removeManager}
-        openModal={isModalOpenForRemove}
-        handleModalToggle={setIsModalOpenForRemove}
-        handleRemoveSelected={setRemoveDomainManager}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForRemove}
-      />
-      <Modal
-        modalTitle={'Add Business Owners'}
-        render={render}
-        openModal={isModalOpen}
-        handleModalToggle={setIsModalOpen}
-        handleRemoveSelected={setGovernorsRequestFetch}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForAdded}
-      />
+      {isModalOpenForRemove && (
+        <Modal
+          modalTitle={'Remove Sensitivity Level'}
+          render={removeManager}
+          openModal={isModalOpenForRemove}
+          handleModalToggle={setIsModalOpenForRemove}
+          handleRemoveSelected={setRemoveDomainManager}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+          message={messageForRemove}
+        />
+      )}
+      {isModalOpen && (
+        <Modal
+          modalTitle={'Add Business Owners'}
+          render={render}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setGovernorsRequestFetch}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+          message={messageForAdded}
+        />
+      )}
       <TableWrapper
         isLoading={isLoading}
         setTitleText={() => titleText}
