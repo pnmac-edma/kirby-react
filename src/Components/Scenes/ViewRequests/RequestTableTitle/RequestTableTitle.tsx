@@ -1,10 +1,9 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { color } from '@edma/design-tokens';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: any) => ({
   typography: {
     color: theme.palette.type === 'light' ? color.black : color.white,
     textAlign: 'left',
@@ -12,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestTableTitle = ({ title }) => {
+const RequestTableTitle = ({ title }: RequestTableTitleProps) => {
   const classes = useStyles();
 
   return (
@@ -22,8 +21,8 @@ const RequestTableTitle = ({ title }) => {
   );
 };
 
-RequestTableTitle.propTypes = {
-  title: PropTypes.string.isRequired
-};
-
 export default RequestTableTitle;
+
+interface RequestTableTitleProps {
+  title: string;
+}

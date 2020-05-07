@@ -4,21 +4,19 @@ import RequestTableTitle from '../RequestTableTitle/RequestTableTitle';
 import { transformRequests } from '../../../../State/helpers';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
 import {
-  setToggleArchivedCheckbox,
-  setToggleArchivedAllCheckbox,
+  setToggleSentCheckbox,
+  setToggleSentAllCheckbox,
   userRequestsFetch
 } from '../../../../State/ViewRequests/actions';
 
-const ArchivedRequests = () => {
+// TODO: need to check if api is broken or request is broken
+//       table is currently not working
+const SentRequests = () => {
+  const { outboundRequests, isLoading, selectedSentRequests } = useSelector(
+    ({ viewRequests }: any) => viewRequests
+  );
   const userEmail = useSelector(({ currentUser }: any) => currentUser.EmpEmail);
   const userRole = useSelector(({ currentUser }: any) => currentUser.role);
-  // TODO: change the following to the appropriate api call when finished
-  const requests = useSelector(
-    ({ viewRequests }: any) => viewRequests.outboundRequests
-  );
-  const selected = useSelector(
-    ({ viewRequests }: any) => viewRequests.selectedArchivedRequests
-  );
   const dispatch = useDispatch();
 
   const columns = [
@@ -40,9 +38,11 @@ const ArchivedRequests = () => {
     }
   ];
 
-  const reqs = transformRequests(requests, userRole);
-
-  const footerButtonText = 'Move to Inbox';
+  const reqs = transformRequests(outboundRequests, userRole);
+  const numReqSelected =
+    selectedSentRequests.length > 0 ? selectedSentRequests.length : '';
+  const isPlurl = selectedSentRequests.length !== 1 ? 's' : '';
+  const footerButtonText = `Cancel ${numReqSelected} request${isPlurl}`;
 
   useEffect(() => {
     dispatch(userRequestsFetch(userEmail));
@@ -50,25 +50,26 @@ const ArchivedRequests = () => {
 
   return (
     <>
-      <RequestTableTitle title="Archived Requests" />
+      <RequestTableTitle title="Sent Requests" />
       <TableWrapper
+        isLoading={isLoading}
+        selected={selectedSentRequests}
         columns={columns}
         data={reqs}
+        setToggleCheckbox={(selected: Array<number>, id: number) =>
+          dispatch(setToggleSentCheckbox(selected, id))
+        }
+        setToggleAllCheckbox={(selected: Array<number>, data: Array<number>) =>
+          dispatch(setToggleSentAllCheckbox(selected, data))
+        }
         footerButtonText={footerButtonText}
-        setFirstColLink={(e: React.TouchEvent, id: number) =>
+        setFirstColLink={(e: React.ChangeEvent, id: number) =>
           console.log(`request ${id} clicked`)
         }
         setFooterButtonClick={() => console.log('footer button clicked')}
-        selected={selected}
-        setToggleCheckbox={(selected: Array<number>, id: number) =>
-          dispatch(setToggleArchivedCheckbox(selected, id))
-        }
-        setToggleAllCheckbox={(selected: Array<number>, data: Array<number>) =>
-          dispatch(setToggleArchivedAllCheckbox(selected, data))
-        }
       />
     </>
   );
 };
 
-export default ArchivedRequests;
+export default SentRequests;
