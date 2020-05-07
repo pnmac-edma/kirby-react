@@ -5,10 +5,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import EmployeesList from './EmployeesList';
 import { Typography } from '@material-ui/core';
 import { color, font, fontSize } from '@edma/design-tokens';
-import {
-  getEmployeesFetch,
-  handleSelectedEmployees
-} from '../../../../State/RequestAsset/actions';
+import { handleSelectedEmployees } from '../../../../State/RequestAsset/actions';
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -27,9 +24,7 @@ const useStyles = makeStyles(theme => ({
 const RequestingFor = () => {
   const classes = useStyles();
 
-  const { employees, selectedEmployees } = useSelector(
-    ({ requestAssets }: any) => requestAssets
-  );
+  const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
   const dispatch = useDispatch();
 
   const theme = useTheme();

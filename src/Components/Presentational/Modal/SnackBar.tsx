@@ -11,12 +11,7 @@ const useStyles = makeStyles(theme => ({
 
 const SnackBar = (props: any) => {
   const classes = useStyles();
-  const {
-    message,
-    notification,
-    handleOpenNotification,
-    handleCloseNotification
-  } = props;
+  const { message, notification, handleCloseNotification } = props;
 
   return (
     <Snackbar
