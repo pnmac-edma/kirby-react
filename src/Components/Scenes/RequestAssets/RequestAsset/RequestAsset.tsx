@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Divider, Typography } from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import RequestAssetTable from '../RequestAssetTable/RequestAssetTable';
-import RequestAssetJustificationContainer from '../RequestAssetJustification/RequestAssetJustification-Container';
-import RequestingForContainer from '../RequestingFor/RequestingFor-Container';
-import RequestedByContainer from '../RequestedBy/RequestedBy-Container';
-import SnackBarContainer from '../SnackBar/SnackBar-Container';
+import RequestAssetJustification from '../RequestAssetJustification/RequestAssetJustification';
+import RequestingFor from '../RequestingFor/RequestingFor';
+import RequestedBy from '../RequestedBy/RequestedBy';
+import SnackBar from '../../../Presentational/SnackBar/SnackBar';
 import RemoveModal from '../RemoveModal/RemoveModal';
-import MakeRequestsContainer from '../MakeRequests/MakeRequests-Container';
+import MakeRequests from '../MakeRequests/MakeRequests';
+import { getEmployeesFetch } from '../../../../State/RequestAsset/actions';
 
 const useStyles = makeStyles(theme => ({
   flexStructure: {
@@ -44,13 +46,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestAsset = ({ getEmployeesFetch, openModal }) => {
+const RequestAsset = () => {
   const classes = useStyles();
-  useEffect(() => {
-    getEmployeesFetch();
-  }, [getEmployeesFetch]);
 
   const [notification, setNotification] = React.useState(false);
+
+  const { openModal } = useSelector(({ requestAssets }: any) => requestAssets);
+  const dispatch = useDispatch();
 
   const handleOpenNotification = () => {
     setNotification(true);
@@ -60,6 +62,10 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
     setNotification(false);
   };
 
+  useEffect(() => {
+    dispatch(getEmployeesFetch());
+  }, [dispatch]);
+
   return (
     <div className={classes.flexStructure}>
       <div className={classes.sidebar}>
@@ -67,9 +73,9 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
           <Typography variant="h2" className={classes.heading}>
             Request Assets
           </Typography>
-          <RequestedByContainer />
+          <RequestedBy />
           <Divider className={classes.dividerStyle} />
-          <RequestingForContainer />
+          <RequestingFor />
         </div>
       </div>
       <div className={classes.sideTable}>
@@ -77,9 +83,10 @@ const RequestAsset = ({ getEmployeesFetch, openModal }) => {
         {openModal && (
           <RemoveModal handleOpenNotification={handleOpenNotification} />
         )}
-        <RequestAssetJustificationContainer />
-        <MakeRequestsContainer />
-        <SnackBarContainer
+        <RequestAssetJustification />
+        <MakeRequests />
+        <SnackBar
+          message="The Assets in your request were updated successfully."
           handleCloseNotification={handleCloseNotification}
           notification={notification}
         />

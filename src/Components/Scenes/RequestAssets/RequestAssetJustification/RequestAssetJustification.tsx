@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
+import { justificationHandleInput } from '../../../../State/RequestAsset/actions';
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -18,16 +20,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Justification = props => {
+const Justification = () => {
   const classes = useStyles();
-  const { justification, justificationHandleInput } = props;
+
+  const { justification } = useSelector(
+    ({ requestAssets }: any) => requestAssets
+  );
+  const dispatch = useDispatch();
+
   return (
     <TextField
       className={classes.textField}
       placeholder="Request Justification"
       value={justification}
       multiline={true}
-      onChange={e => justificationHandleInput(e)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        dispatch(justificationHandleInput(e))
+      }
       fullWidth
       rows={6}
       rowsMax={6}
