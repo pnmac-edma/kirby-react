@@ -7,7 +7,7 @@ import {
   Button,
   Dialog
 } from '@material-ui/core';
-import SnackBar from '../RequestAssets/SnackBar';
+import SnackBar from './SnackBar';
 
 const Modal = props => {
   const {
@@ -40,7 +40,8 @@ const Modal = props => {
         <DialogTitle id="responsive-dialog-title">{modalTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText>{modalText}</DialogContentText>
-          <DialogContentText style={renderStyle}>{render}</DialogContentText>
+          <DialogContentText style={renderStyle}></DialogContentText>
+          {render}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleModalToggle()} color="primary">

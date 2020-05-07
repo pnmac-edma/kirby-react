@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import {
   makeStyles,
@@ -28,19 +29,21 @@ const requestListItem = makeStyles(theme => ({
 
 const RequestListItem = ({
   closeAllArrows,
-  requestListItemsName,
-  closeDrawer,
-  currentRole
-}) => {
+  closeDrawer
+}: RequestListItemProps) => {
   const classes = requestListItem();
+
   const [openIconThree, setOpenIconThree] = useState(false);
+
+  const currentRole = useSelector(({ currentUser }: any) => currentUser.role);
+
   const activeLink = useLocation();
 
-  useEffect(() => {
-    if (closeAllArrows === false && openIconThree === true) {
-      setOpenIconThree(false);
-    }
-  }, [closeAllArrows, openIconThree]);
+  const requestListItemsName = [
+    { label: 'Inbox', link: '/requests' },
+    { label: 'Sent', link: '/requests/sent' },
+    { label: 'Archive', link: '/requests/archive' }
+  ];
 
   const requestListItemText = requestListItemsName.map(({ label, link }) => (
     <ListItem
@@ -67,6 +70,12 @@ const RequestListItem = ({
       </ListItemText>
     </ListItem>
   ));
+
+  useEffect(() => {
+    if (closeAllArrows === false && openIconThree === true) {
+      setOpenIconThree(false);
+    }
+  }, [closeAllArrows, openIconThree]);
 
   return (
     <>
@@ -96,3 +105,8 @@ const RequestListItem = ({
 };
 
 export default RequestListItem;
+
+interface RequestListItemProps {
+  closeAllArrows: boolean;
+  closeDrawer: () => void;
+}

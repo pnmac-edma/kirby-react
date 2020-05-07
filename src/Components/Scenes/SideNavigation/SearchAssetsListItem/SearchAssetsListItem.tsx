@@ -1,16 +1,23 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ListItem, ListItemText } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
+import { handleSearchClick } from '../../../../State/SearchResult/actions';
 
-const FindDataListItem = props => {
-  const { handleSearchClick, isSearchClicked } = props;
+const SearchAssetsListItem = () => {
+  const { isSearchClicked } = useSelector(
+    ({ searchResult }: any) => searchResult
+  );
+  const dispatch = useDispatch();
+
   const activeLink = useLocation();
+
   return (
     <ListItem
       component={Link}
       to={window.location.pathname}
-      onClick={() => handleSearchClick()}
+      onClick={() => dispatch(handleSearchClick())}
       button
       className={
         isSearchClicked || '/search' === activeLink.pathname
@@ -24,4 +31,4 @@ const FindDataListItem = props => {
   );
 };
 
-export default FindDataListItem;
+export default SearchAssetsListItem;
