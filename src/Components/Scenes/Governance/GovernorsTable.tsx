@@ -74,17 +74,19 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   return (
     <>
-      <Modal
-        modalTitle={'Remove Govenor'}
-        render={removeGovernor}
-        openModal={isModalOpenForRemove}
-        handleModalToggle={setIsModalOpenForRemove}
-        handleRemoveSelected={setRemoveGovernors}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForRemove}
-      />
+      {isModalOpenForRemove && (
+        <Modal
+          modalTitle={'Remove Govenor'}
+          render={removeGovernor}
+          openModal={isModalOpenForRemove}
+          handleModalToggle={setIsModalOpenForRemove}
+          handleRemoveSelected={setRemoveGovernors}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+          message={messageForRemove}
+        />
+      )}
       <TableWrapper
         setTitleText={() => titleText}
         columns={columns}
@@ -92,17 +94,19 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
         remove={true}
         setIsModalOpen={setIsModalOpenForRemove}
       />
-      <Modal
-        modalTitle={'Add Govenor'}
-        render={render}
-        openModal={isModalOpen}
-        handleModalToggle={setIsModalOpen}
-        handleRemoveSelected={setGovernorsRequestFetch}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForAdded}
-      />
+      {isModalOpen && (
+        <Modal
+          modalTitle={'Add Govenor'}
+          render={render}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setGovernorsRequestFetch}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+          message={messageForAdded}
+        />
+      )}
     </>
   );
 };

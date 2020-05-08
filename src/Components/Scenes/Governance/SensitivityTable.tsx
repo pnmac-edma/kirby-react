@@ -82,28 +82,32 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   return (
     <>
-      <Modal
-        modalTitle={'Remove Sensitivity Level'}
-        render={removeGovernor}
-        openModal={isModalOpenForRemove}
-        handleModalToggle={setIsModalOpenForRemove}
-        handleRemoveSelected={setRemoveSensitivityLevel}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForRemove}
-      />
-      <Modal
-        modalTitle={'Add Sensitivity Levels'}
-        render={render}
-        openModal={isModalOpen}
-        handleModalToggle={setIsModalOpen}
-        handleRemoveSelected={setGovernorsRequestFetch}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForAdded}
-      />
+      {isModalOpenForRemove && (
+        <Modal
+          modalTitle={'Remove Sensitivity Level'}
+          render={removeGovernor}
+          openModal={isModalOpenForRemove}
+          handleModalToggle={setIsModalOpenForRemove}
+          handleRemoveSelected={setRemoveSensitivityLevel}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+          message={messageForRemove}
+        />
+      )}
+      {isModalOpen && (
+        <Modal
+          modalTitle={'Add Sensitivity Levels'}
+          render={render}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setGovernorsRequestFetch}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+          message={messageForAdded}
+        />
+      )}
       <TableWrapper
         isLoading={isLoading}
         setTitleText={() => titleText}
