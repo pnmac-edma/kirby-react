@@ -10,7 +10,6 @@ import SearchAssetsListItem from '../../SideNavigation/SearchAssetsListItem/Sear
 import GovernanceListItem from '../../SideNavigation/GovernanceListItem/GovernanceListItem';
 import HydrationListItem from '../../SideNavigation/HydrationListItem/HydrationListItem';
 import RequestListItem from '../../SideNavigation/RequestListItem/RequestListItem';
-import KeysListItem from '../../SideNavigation/KeysListItem/KeysListItem';
 import AwsAthenaListItem from '../../SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
 import AvatarListItem from '../../SideNavigation/AvatarListItem/AvatarListItem';
 import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
@@ -150,7 +149,6 @@ const Navigation = props => {
                 closeAllArrows={open}
                 closeDrawer={closeDrawer}
               />
-              <KeysListItem closeDrawer={closeDrawer} />
               <AwsAthenaListItem />
             </List>
             <AvatarListItem />
