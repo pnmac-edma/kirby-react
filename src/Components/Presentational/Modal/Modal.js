@@ -7,7 +7,6 @@ import {
   Button,
   Dialog
 } from '@material-ui/core';
-import SnackBar from '../RequestAssets/SnackBar';
 
 const Modal = props => {
   const {
@@ -18,20 +17,11 @@ const Modal = props => {
     openModal,
     handleModalToggle,
     handleRemoveSelected,
-    notification,
-    handleOpenNotification,
-    handleCloseNotification,
-    message
+    handleOpenNotification
   } = props;
 
   return (
     <React.Fragment>
-      <SnackBar
-        message={message}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-      />
       <Dialog
         maxWidth="md"
         open={openModal}
@@ -50,9 +40,9 @@ const Modal = props => {
           <Button
             color="primary"
             onClick={() => {
+              handleOpenNotification();
               handleRemoveSelected();
               handleModalToggle();
-              handleOpenNotification();
             }}
             autoFocus
           >
