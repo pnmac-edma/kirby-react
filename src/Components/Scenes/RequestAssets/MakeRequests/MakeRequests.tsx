@@ -77,7 +77,7 @@ const MakeRequests = () => {
           handleOpenNotification();
         }}
       >
-        Request Assets
+        Submit Request
       </Button>
       <Button
         onClick={() => history.push(urlWithParams)}

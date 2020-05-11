@@ -69,9 +69,9 @@ const SearchResults = () => {
     }
   };
 
-  const footerButtonText = selected
-    ? `${selected.length} request${selected.length !== 1 ? 's' : ''} selected`
-    : '';
+  const footerButtonText = 'Request Access';
+
+  const numOfDestinations = searchResult ? searchResult.results.length : 0;
 
   useEffect(() => {
     if (params) {
@@ -114,12 +114,15 @@ const SearchResults = () => {
       />
       {isError && (
         <FormHelperText className={classes.searchBarError} error={isError}>
-          Please enter a non-empty search
+          This must be filled out before we can find your data.
         </FormHelperText>
       )}
       <TableWrapper
         isLoading={isLoading}
-        setTitleText={() => `Search Results for ${params || searchedInput}`}
+        setTitleText={() =>
+          `Found ${numOfDestinations} destinations for ${params ||
+            searchedInput}`
+        }
         filter={['Name', 'Domain', 'Owner', 'Date Created']}
         selected={selected}
         columns={columns}
@@ -133,7 +136,6 @@ const SearchResults = () => {
         }
         footerButtonText={footerButtonText}
         footerButtonLink="/search/access"
-        setFirstColLink={(id: number) => console.log(`request ${id} clicked`)}
         setFooterButtonClick={() =>
           dispatch(requestAssetsClick(selected, searchResult.results))
         }
