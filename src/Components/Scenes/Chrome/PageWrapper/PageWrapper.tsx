@@ -1,22 +1,24 @@
 import React, { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Route, useLocation } from 'react-router-dom';
+// @ts-ignore
 import { AnimatedSwitch } from 'react-router-transition';
 import { makeStyles } from '@material-ui/core/styles';
 import color from '@edma/design-tokens/js/color';
 import Splash from '../../../Presentational/Splash';
-import AppBarContainer from '../AppBar/AppBar-Container';
+import AppBar from '../AppBar/AppBar';
 import RequestsInbox from '../../ViewRequests/RequestsInbox/RequestsInbox';
-import SearchContainer from '../Search/Search-Container';
+import SearchContainer from '../Search/Search';
 import SentRequests from '../../ViewRequests/SentRequests/SentRequests';
 import SearchResults from '../../SearchResults/SearchResults';
 import RequestAsset from '../../RequestAssets/RequestAsset/RequestAsset';
 import ArchivedRequests from '../../ViewRequests/ArchivedRequests/ArchivedRequests';
 import NewJob from '../../Hydration/NewJob/NewJob';
 import ViewJobs from '../../Hydration/ViewJobs/ViewJobs';
-import NewDestination from '../../Hydration/NewDestination/NewDestination.tsx';
+import NewDestination from '../../Hydration/NewDestination/NewDestination';
 import Governance from '../../Governance/Governance';
 
-const pageContainerStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   pageContainer: {
     overflowY: 'scroll',
     position: 'absolute',
@@ -30,23 +32,25 @@ const pageContainerStyle = makeStyles(theme => ({
   }
 }));
 
-const PageWrapper = ({ isSearchClicked, newJobName }) => {
-  const classes = pageContainerStyle();
+const PageWrapper = () => {
+  const classes = useStyles();
+
+  const isSearchClicked = useSelector(
+    ({ searchResult }: any) => searchResult.isSearchClicked
+  );
+
   const curPath = useLocation().pathname;
+
   const hydrationFormikRef = useRef(null);
 
   return (
     <div className={classes.pageContainer}>
       {curPath === '/hydration/new-job' ? (
-        <AppBarContainer
-          hydration
-          jobName={newJobName}
-          hydrationFormikRef={hydrationFormikRef}
-        />
+        <AppBar hydration hydrationFormikRef={hydrationFormikRef} />
       ) : curPath === '/' ? (
-        <AppBarContainer home />
+        <AppBar home />
       ) : (
-        <AppBarContainer />
+        <AppBar />
       )}
 
       <AnimatedSwitch

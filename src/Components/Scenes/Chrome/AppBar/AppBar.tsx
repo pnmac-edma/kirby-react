@@ -25,19 +25,6 @@ import {
   setDefaultJobNameOnBlur
 } from '../../../../State/Chrome/actions';
 import { setIsUploadModalOpen } from '../../../../State/Hydration/actions';
-import {
-  searchHandleInput,
-  searchResultRequest,
-  handleKeyPress
-} from '../../../../State/SearchResult/actions';
-
-const mapDispatchToProps = dispatch => {
-  return {
-    searchHandleInput: e => dispatch(searchHandleInput(e)),
-    searchResultRequest: () => dispatch(searchResultRequest()),
-    handleKeyPress: e => dispatch(handleKeyPress(e))
-  };
-};
 
 const useStyles = makeStyles(theme => ({
   logoContainer: {
@@ -164,7 +151,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Appbar = ({ hydration, home, hydrationFormikRef }) => {
+const Appbar = ({ hydration, home, hydrationFormikRef }: AppbarProps) => {
   const classes = useStyles();
 
   const [isJobNameActive, setIsJobNameActive] = useState(false);
@@ -175,7 +162,7 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
 
   const curPath = useLocation().pathname;
 
-  const handleClick = event => {
+  const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -317,3 +304,9 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
 };
 
 export default Appbar;
+
+interface AppbarProps {
+  hydration?: boolean;
+  home?: boolean;
+  hydrationFormikRef?: any;
+}
