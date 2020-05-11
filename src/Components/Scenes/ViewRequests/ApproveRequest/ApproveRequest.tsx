@@ -1,8 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useQuery } from '../../../../Hooks/customHooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Divider, Typography } from '@material-ui/core';
 import { WarningRounded } from '@material-ui/icons';
 import { color, font, fontSize } from '@edma/design-tokens';
+import { transformRequests } from '../../../../State/helpers';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -62,18 +65,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ApproveRequestAddDestination = ({
-  destinationRequest
-}: ApproveRequestAddDestinationProps) => {
+const ApproveRequest = () => {
   const classes = useStyles();
-  const {
-    name,
-    description,
-    domain,
-    justification,
-    manager,
-    sensitivity
-  } = destinationRequest;
+
+  const { inboundRequests } = useSelector(
+    ({ viewRequests }: any) => viewRequests
+  );
+  const userRole = useSelector(({ currentUser }: any) => currentUser.role);
 
   const sensitivityIcon = (sensitivity: string) => {
     if (sensitivity === 'Sensitive') {
@@ -86,6 +84,21 @@ const ApproveRequestAddDestination = ({
     }
     return null;
   };
+
+  const requestId = useQuery('id');
+
+  const reqs = transformRequests(inboundRequests, userRole);
+
+  const currentRequest = reqs.find((request: any) => request.Id === requestId);
+
+  const {
+    name,
+    sensitivity,
+    domain,
+    manager,
+    justification,
+    description
+  } = currentRequest;
 
   return (
     <div className={classes.flexStructure}>
@@ -166,8 +179,4 @@ const ApproveRequestAddDestination = ({
   );
 };
 
-export default ApproveRequestAddDestination;
-
-interface ApproveRequestAddDestinationProps {
-  destinationRequest: any; // TODO: add the shape of DestinationRequest
-}
+export default ApproveRequest;
