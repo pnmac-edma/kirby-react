@@ -9,9 +9,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SnackBar = props => {
+const SnackBar = ({
+  handleCloseNotification,
+  message,
+  notification
+}: SnackBarProps) => {
   const classes = useStyles();
-  const { message, notification, handleCloseNotification } = props;
 
   return (
     <Snackbar
@@ -39,3 +42,9 @@ const SnackBar = props => {
 };
 
 export default SnackBar;
+
+interface SnackBarProps {
+  handleCloseNotification: () => void;
+  message: string;
+  notification: boolean;
+}

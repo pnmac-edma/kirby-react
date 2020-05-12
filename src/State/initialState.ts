@@ -32,13 +32,13 @@ const initialState = {
     selected: []
   },
   requestAssets: {
-    selectedAssets: [],
     employees: [],
-    selectedEmployees: [],
-    openModal: false,
-    notificationMessage: '',
     isLoading: false,
-    justification: ''
+    justification: '',
+    notificationMessage: '',
+    openModal: false,
+    selectedAssets: [],
+    selectedEmployees: []
   },
   viewRequests,
   hydration,

@@ -3,7 +3,7 @@ import { ListItem, ListItemText } from '@material-ui/core';
 import { Equalizer } from '@material-ui/icons/';
 import { Link, useLocation } from 'react-router-dom';
 
-const DashboardListItem = ({ closeDrawer }) => {
+const DashboardListItem = ({ closeDrawer }: DashboardListItemProps) => {
   const activeLink = useLocation();
   return (
     <ListItem
@@ -24,3 +24,7 @@ const DashboardListItem = ({ closeDrawer }) => {
 };
 
 export default DashboardListItem;
+
+interface DashboardListItemProps {
+  closeDrawer: () => void;
+}

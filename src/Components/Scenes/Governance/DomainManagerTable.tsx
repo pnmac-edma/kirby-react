@@ -8,7 +8,7 @@ import {
   addDomainOwnersRequestFetch
 } from '../../../State/Governance/actions';
 import { TextField } from '@material-ui/core';
-import SnackBar from '../../Presentational/RequestAssets/SnackBar';
+import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const titleText = `Domain Managers`;
@@ -82,14 +82,12 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   return (
     <>
-      {message.length > 0 && (
-        <SnackBar
-          message={message}
-          notification={notification}
-          handleOpenNotification={handleOpenNotification}
-          handleCloseNotification={handleCloseNotification}
-        />
-      )}
+      <SnackBar
+        message={message}
+        notification={notification}
+        handleOpenNotification={handleOpenNotification}
+        handleCloseNotification={handleCloseNotification}
+      />
       {isModalOpenForRemove && (
         <Modal
           modalTitle={'Remove Sensitivity Level'}

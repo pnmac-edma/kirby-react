@@ -11,8 +11,11 @@ import {
   handleKeyPress,
   searchHandleInput,
   searchResultRequest,
-  setSearchedInput
+  setSearchedInput,
+  setToggleSearchCheckbox,
+  setToggleSearchAllCheckbox
 } from '../../../State/SearchResult/actions';
+import { requestAssetsClick } from '../../../State/RequestAsset/actions';
 
 const useStyles = makeStyles(theme => ({
   searchBar: {
@@ -24,29 +27,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SearchResults = props => {
-  const {
-    isLoading,
-    requestAssetsClick,
-    searchResult,
-    selected,
-    setToggleSearchCheckbox,
-    setToggleSearchAllCheckbox
-  } = props;
+const SearchResults = () => {
   const classes = useStyles();
 
-  const searchedInput = useSelector(
-    ({ searchResult }) => searchResult.searchedInput
+  const { isLoading, searchedInput, searchResult, selected } = useSelector(
+    ({ searchResult }: any) => searchResult
   );
   const { value, isError, isTouched } = useSelector(
-    state => state.searchResult.searchInput
+    ({ searchResult }: any) => searchResult.searchInput
   );
   const dispatch = useDispatch();
 
   const params = useQuery('params');
-
   const history = useHistory();
-
   const urlWithParams = `/search?params=${value}`;
 
   const isNoError = isTouched && !isError;
@@ -70,7 +63,7 @@ const SearchResults = props => {
     }
   ];
 
-  const keyPressWrapper = e => {
+  const keyPressWrapper = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       history.push(urlWithParams);
     }
@@ -95,15 +88,17 @@ const SearchResults = props => {
         id="search"
         label="Search"
         value={value}
-        onChange={e => dispatch(searchHandleInput(e))}
-        onKeyPress={e => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          dispatch(searchHandleInput(e))
+        }
+        onKeyPress={(e: React.KeyboardEvent) => {
           if (isNoError) {
             handleKeyPress(keyPressWrapper(e));
           }
         }}
         InputProps={{
           endAdornment: (
-            <InputAdornment>
+            <InputAdornment position="end">
               <IconButton
                 onClick={() => {
                   if (isNoError) {
@@ -129,14 +124,18 @@ const SearchResults = props => {
         selected={selected}
         columns={columns}
         data={searchResult ? searchResult.results : searchResult}
-        searchedInput={params}
-        setToggleCheckbox={setToggleSearchCheckbox}
-        setToggleAllCheckbox={setToggleSearchAllCheckbox}
+        searchedInput={params ? params : ''}
+        setToggleCheckbox={(selected: Array<number>, id: number) =>
+          dispatch(setToggleSearchCheckbox(selected, id))
+        }
+        setToggleAllCheckbox={(selected: Array<number>, data: Array<number>) =>
+          dispatch(setToggleSearchAllCheckbox(selected, data))
+        }
         footerButtonText={footerButtonText}
         footerButtonLink="/search/access"
-        setFirstColLink={id => console.log(`request ${id} clicked`)}
+        setFirstColLink={(id: number) => console.log(`request ${id} clicked`)}
         setFooterButtonClick={() =>
-          requestAssetsClick(selected, searchResult.results)
+          dispatch(requestAssetsClick(selected, searchResult.results))
         }
       />
     </>

@@ -129,9 +129,11 @@ const Governance = (props: any) => {
           <Sidebar />
         </div>
       </div>
-      {curPath === '/governance/governors'
-        ? governanceStates.governors
-        : governanceStates.sensitivityAndManager}
+      <>
+        {curPath === '/governance/governors'
+          ? governanceStates.governors
+          : governanceStates.sensitivityAndManager}
+      </>
     </div>
   );
 };

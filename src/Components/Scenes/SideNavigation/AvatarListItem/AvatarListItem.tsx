@@ -1,31 +1,26 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, Avatar, ListItem, ListItemText } from '@material-ui/core';
-import color from '@edma/design-tokens/json/color';
+import color from '@edma/design-tokens/js/color';
 
-const colorObj = color.color;
-const colorKeys = Object.keys(colorObj);
-const randomIndex = colorKeys[Math.floor(Math.random() * colorKeys.length)];
-const randomColor = color.color[randomIndex];
-
-const avatarListItem = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   listItemSettings: {
     overflow: 'hidden',
     cursor: 'pointer',
     position: 'fixed',
     bottom: 0,
     width: 'inherit',
-    backgroundColor: colorObj.black.value,
+    backgroundColor: color.black,
     padding: theme.spacing(2)
   },
   avatar: {
-    color: randomColor.against,
-    backgroundColor: randomColor.value
+    color: color.white,
+    background: color.green
   }
 }));
 
 const AvatarListItem = () => {
-  const classes = avatarListItem();
+  const classes = useStyles();
 
   return (
     <ListItem className={clsx('Nav__item', classes.listItemSettings)}>
