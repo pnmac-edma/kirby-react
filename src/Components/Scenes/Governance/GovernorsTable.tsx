@@ -49,45 +49,44 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
     }, []);
   }
 
-  const render = [
+  const render = (
     <>
       <TextField
-        id="standard-basic"
         label="User Name"
         fullWidth
         helperText="Please provide username"
         onChange={e => setUserName(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Createdby Name"
         fullWidth
         helperText="Please provide createdby email"
         onChange={e => setCreatedByName(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="User Email"
         fullWidth
         helperText="Please provide useremail"
         onChange={e => setUserEmail(e.target.value)}
       />
     </>
-  ];
+  );
 
   return (
     <>
-      <Modal
-        modalTitle={'Remove Govenor'}
-        render={removeGovernor}
-        openModal={isModalOpenForRemove}
-        handleModalToggle={setIsModalOpenForRemove}
-        handleRemoveSelected={setRemoveGovernors}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForRemove}
-      />
+      {isModalOpenForRemove && (
+        <Modal
+          modalTitle={'Remove Govenor'}
+          render={removeGovernor}
+          openModal={isModalOpenForRemove}
+          handleModalToggle={setIsModalOpenForRemove}
+          handleRemoveSelected={setRemoveGovernors}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+          message={messageForRemove}
+        />
+      )}
       <TableWrapper
         setTitleText={() => titleText}
         columns={columns}
@@ -95,17 +94,19 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
         remove={true}
         setIsModalOpen={setIsModalOpenForRemove}
       />
-      <Modal
-        modalTitle={'Add Govenor'}
-        render={render}
-        openModal={isModalOpen}
-        handleModalToggle={setIsModalOpen}
-        handleRemoveSelected={setGovernorsRequestFetch}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForAdded}
-      />
+      {isModalOpen && (
+        <Modal
+          modalTitle={'Add Govenor'}
+          render={render}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setGovernorsRequestFetch}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+          message={messageForAdded}
+        />
+      )}
     </>
   );
 };
