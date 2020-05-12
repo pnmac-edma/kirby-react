@@ -13,7 +13,6 @@ import SnackBar from '../../Presentational/Modal/SnackBar';
 const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [domain, setDomain] = useState('');
-  const [createdByEmail, setCreatedByEmail] = useState('');
   const [owneremail, setOwnerEmail] = useState('');
   const {
     domainOwners,
@@ -40,7 +39,7 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const setRemoveDomainManager = () =>
     dispatch(deleteDomainOwnersRequestFetch());
   const setGovernorsRequestFetch = () =>
-    dispatch(addDomainOwnersRequestFetch(domain, createdByEmail, owneremail));
+    dispatch(addDomainOwnersRequestFetch(domain, owneremail));
   let removeManager;
   if (domainOwners !== null) {
     removeManager = domainOwners.reduce((acc: any, manager: any) => {
@@ -63,12 +62,6 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
         fullWidth
         helperText="Please provide username"
         onChange={e => setDomain(e.target.value)}
-      />
-      <TextField
-        label="Createdby Email"
-        fullWidth
-        helperText="Please provide createdby email"
-        onChange={e => setCreatedByEmail(e.target.value)}
       />
       <TextField
         label="Owner Email"

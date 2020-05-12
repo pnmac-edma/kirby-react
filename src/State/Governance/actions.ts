@@ -45,18 +45,15 @@ interface DeleteDomainOwnersFailureAction {
 
 export const addDomainOwnersRequestFetch = (
   domain: string,
-  createdByEmail: string,
   ownerEmail: string
 ): AddDomainOwnersRequestFetchAction => ({
   type: types.ADD_DOMAIN_OWNERS_REQUEST_FETCH,
   domain,
-  createdByEmail,
   ownerEmail
 });
 interface AddDomainOwnersRequestFetchAction {
   type: typeof types.ADD_DOMAIN_OWNERS_REQUEST_FETCH;
   domain: string;
-  createdByEmail: string;
   ownerEmail: string;
 }
 export const addDomainOwnersRequestSuccess = (
@@ -125,18 +122,15 @@ interface DeleteSensitivityLevelsFailureAction {
 
 export const addSensitivityLevelsRequestFetch = (
   sensitive: string,
-  createdByEmail: string,
   description: string
 ): AddSensitivityLevelsRequestFetchAction => ({
   type: types.ADD_SENSITIVITY_LEVELS_REQUEST_FETCH,
   sensitive,
-  createdByEmail,
   description
 });
 interface AddSensitivityLevelsRequestFetchAction {
   type: typeof types.ADD_SENSITIVITY_LEVELS_REQUEST_FETCH;
   sensitive: string;
-  createdByEmail: string;
   description: string;
 }
 export const addSensitivityLevelsRequestSuccess = (
@@ -207,19 +201,16 @@ interface DeleteGovernorsRequestFailureAction {
 
 export const addGovernorsRequestFetch = (
   userName: string,
-  createdByEmail: string,
   userEmail: string
 ): AddGovernorsRequestFetchAction => ({
   type: types.ADD_GOVERNORS_REQUEST_FETCH,
   userEmail,
-  userName,
-  createdByEmail
+  userName
 });
 interface AddGovernorsRequestFetchAction {
   type: typeof types.ADD_GOVERNORS_REQUEST_FETCH;
   userEmail: string;
   userName: string;
-  createdByEmail: string;
 }
 export const addGovernorsRequestSuccess = (
   message: string

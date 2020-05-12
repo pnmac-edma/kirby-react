@@ -16,7 +16,6 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
   );
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [userName, setUserName] = useState('');
-  const [createdByName, setCreatedByName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   const setRemoveGovernors = () => dispatch(deleteGovernorsRequestFetch());
   const setGovernorsRequestFetch = () =>
-    dispatch(addGovernorsRequestFetch(userName, createdByName, userEmail));
+    dispatch(addGovernorsRequestFetch(userName, userEmail));
   let removeGovernor;
   if (governors !== null) {
     removeGovernor = governors.reduce((acc: any, governor: any) => {
@@ -56,12 +55,6 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
         fullWidth
         helperText="Please provide username"
         onChange={e => setUserName(e.target.value)}
-      />
-      <TextField
-        label="Createdby Name"
-        fullWidth
-        helperText="Please provide createdby email"
-        onChange={e => setCreatedByName(e.target.value)}
       />
       <TextField
         label="User Email"
