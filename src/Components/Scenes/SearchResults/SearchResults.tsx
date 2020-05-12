@@ -71,7 +71,11 @@ const SearchResults = () => {
 
   const footerButtonText = 'Request Access';
 
-  const numOfDestinations = searchResult ? searchResult.results.length : 0;
+  const numOfDestinations = searchResult
+    ? `${searchResult.results.length} Destination${
+        searchResult.results.length !== 1 ? 's' : ''
+      }`
+    : '0 Destinations';
 
   useEffect(() => {
     if (params) {
@@ -120,8 +124,7 @@ const SearchResults = () => {
       <TableWrapper
         isLoading={isLoading}
         setTitleText={() =>
-          `Found ${numOfDestinations} destinations for ${params ||
-            searchedInput}`
+          `Found ${numOfDestinations} for ${params || searchedInput}`
         }
         filter={['Name', 'Domain', 'Owner', 'Date Created']}
         selected={selected}
