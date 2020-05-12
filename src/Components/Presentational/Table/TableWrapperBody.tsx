@@ -26,6 +26,13 @@ const tableStyles = makeStyles(theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis'
   },
+  firstColLink: {
+    color: color.b800,
+    '&:hover': {
+      textDecoration: 'underline',
+      cursor: 'pointer'
+    }
+  },
   descriptionCol: {
     width: '60%'
   },
@@ -66,9 +73,13 @@ const TableWrapperBody = ({
   const getCellProps = (datum: Datum, col: Column, i: number) => {
     let className, onClickFunc;
     if (i === 0) {
-      className = classes.firstCol;
-      onClickFunc = (e: React.ChangeEvent<HTMLInputElement>) =>
-        setFirstColLink(e, datum.Id);
+      className = `${classes.firstCol} ${
+        setFirstColLink ? classes.firstColLink : ''
+      }`;
+      onClickFunc = setFirstColLink
+        ? (e: React.ChangeEvent<HTMLInputElement>) =>
+            setFirstColLink(e, datum.Id)
+        : undefined;
     }
     if (col.name.toLowerCase() === 'description') {
       className = classes.descriptionCol;
@@ -154,7 +165,7 @@ export default TableWrapperBody;
 interface TableWrapperBodyProps {
   columns: Array<Column>;
   setToggleCheckbox: Function | null;
-  setFirstColLink: Function;
+  setFirstColLink: Function | null;
   setSelected: Function;
   selected: Array<any>;
   order: any;

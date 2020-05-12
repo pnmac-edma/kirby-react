@@ -13,6 +13,7 @@ import SentRequests from '../../ViewRequests/SentRequests/SentRequests';
 import SearchResults from '../../SearchResults/SearchResults';
 import RequestAsset from '../../RequestAssets/RequestAsset/RequestAsset';
 import ArchivedRequests from '../../ViewRequests/ArchivedRequests/ArchivedRequests';
+import ApproveRequest from '../../ViewRequests/ApproveRequest/ApproveRequest';
 import NewJob from '../../Hydration/NewJob/NewJob';
 import ViewJobs from '../../Hydration/ViewJobs/ViewJobs';
 import NewDestination from '../../Hydration/NewDestination/NewDestination';
@@ -76,6 +77,7 @@ const PageWrapper = () => {
         <Route exact path="/requests" component={RequestsInbox} />
         <Route path="/requests/archive" component={ArchivedRequests} />
         <Route path="/requests/sent" component={SentRequests} />
+        <Route path="/requests/:id" component={ApproveRequest} />
         {/* Governors Pages */}
         <Route path="/governance/governors" component={Governance} />
         <Route path="/governance/sensitivity-levels" component={Governance} />

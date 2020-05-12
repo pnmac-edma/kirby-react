@@ -53,7 +53,7 @@ const TableWrapper = ({
   filter = null,
   searchedInput = '',
   setTitleText = null,
-  setFirstColLink = () => {},
+  setFirstColLink = null,
   footerButtonLink = '',
   footerButtonText = '',
   setFooterButtonClick = () => {},
@@ -215,7 +215,7 @@ interface TableWrapperProps {
   data: Array<Datum>;
   isLoading?: boolean;
   searchedInput?: string;
-  setFirstColLink?: Function;
+  setFirstColLink?: Function | null;
   /**
    * Filter requires setTitleText to work
    */
