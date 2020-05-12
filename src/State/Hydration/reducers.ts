@@ -117,6 +117,12 @@ const hydrationReducer = (state = initialState, action: any) => {
       };
     case types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE:
       return { ...state };
+    case types.NEW_DESTINATION_REQUEST_FETCH:
+      return { ...state };
+    case types.NEW_DESTINATION_REQUEST_SUCCESS: {
+      console.log('this reducer', action);
+      return { ...state };
+    }
     default:
       return state;
   }

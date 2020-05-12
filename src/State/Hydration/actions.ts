@@ -172,3 +172,34 @@ export const destinationDropdownRequestFailure = (): DestinationDropdownRequestF
 interface DestinationDropdownRequestFailureAction {
   type: typeof types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE;
 }
+
+export const newDestinationRequestFetch = (
+  values: any
+): NewDestinationRequestFetch => ({
+  type: types.NEW_DESTINATION_REQUEST_FETCH,
+  values
+});
+interface NewDestinationRequestFetch {
+  type: typeof types.NEW_DESTINATION_REQUEST_FETCH;
+  values: any;
+}
+export const newDestinationRequestSuccess = (
+  message: any
+): NewDestinationRequestSuccess => ({
+  type: types.NEW_DESTINATION_REQUEST_SUCCESS,
+  message
+});
+interface NewDestinationRequestSuccess {
+  type: typeof types.NEW_DESTINATION_REQUEST_SUCCESS;
+  message: Object;
+}
+export const NewDestinationRequestFailure = (
+  message: any
+): NewDestinationRequestFailure => ({
+  type: types.NEW_DESTINATION_REQUEST_FAILURE,
+  message
+});
+interface NewDestinationRequestFailure {
+  type: typeof types.NEW_DESTINATION_REQUEST_FAILURE;
+  message: Object;
+}

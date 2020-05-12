@@ -48,3 +48,33 @@ export const getDestinationsDropdown = () => {
     .then(response => response.data)
     .then(error => error);
 };
+
+export const newDestination = (
+  name,
+  sensitivity,
+  domain,
+  description,
+  justification,
+  createdbyemail
+) => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/requests/databases`,
+    HttpMethods.POST,
+    {
+      data: {
+        createdbyemail,
+        databasename: name,
+        domain,
+        description,
+        justification,
+        sensitivity
+      },
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};
