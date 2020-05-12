@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import RequestTableTitle from '../RequestTableTitle/RequestTableTitle';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
 import { transformRequests } from '../../../../State/helpers';
@@ -12,7 +12,7 @@ import {
 } from '../../../../State/ViewRequests/actions';
 
 const RequestsInbox = () => {
-  const { inboundRequests, isLoading, selectedRequests } = useSelector(
+  const { inboundRequests, isLoading } = useSelector(
     ({ viewRequests }: any) => viewRequests
   );
   const userEmail = useSelector(({ currentUser }: any) => currentUser.EmpEmail);
@@ -51,15 +51,15 @@ const RequestsInbox = () => {
       <RequestTableTitle title="Requests Inbox" />
       <TableWrapper
         isLoading={isLoading}
-        selected={selectedRequests}
         columns={columns}
         data={reqs}
         setFirstColLink={(e: React.ChangeEvent, id: number) => {
-          const urlWithId = `/requests?id=${id}`;
+          const urlWithId = `/requests/${id}`;
           history.push(urlWithId);
         }}
 
         // TODO: not sure if checkboxes will be needed, kept here for now
+        // selected={selectedRequests}
         // setToggleCheckbox={(selected: Array<number>, id: number) =>
         //   dispatch(setToggleViewCheckbox(selected, id))
         // }

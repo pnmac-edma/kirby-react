@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useQuery } from '../../../../Hooks/customHooks';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Divider, Typography } from '@material-ui/core';
 import { WarningRounded } from '@material-ui/icons';
@@ -11,11 +11,13 @@ const useStyles = makeStyles(theme => ({
   button: {
     textTransform: 'none',
     fontWeight: 'bold',
-    margin: theme.spacing(1.5)
+    marginTop: theme.spacing(1.5),
+    marginRight: theme.spacing(3)
   },
   flexStructure: {
     display: 'flex',
-    justifyContent: 'left'
+    justifyContent: 'left',
+    height: '100vh'
   },
   dividerStyle: {
     width: '100%',
@@ -34,7 +36,6 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.type === 'light' ? color.g100 : color.g800,
     fontSize: fontSize[1],
     marginTop: '-10rem',
-    marginBottom: '-10rem',
     overflow: 'hidden',
     paddingTop: '10rem',
     maxWidth: 430,
@@ -50,9 +51,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   sideTable: {
-    width: '70%'
+    width: '70%',
+    marginTop: theme.spacing(6),
+    marginLeft: theme.spacing(4)
   },
-  sideBarPostion: {
+  sidebarPosition: {
     margin: '0 1rem',
     color: theme.palette.type === 'light' ? color.black : color.white
   },
@@ -85,32 +88,32 @@ const ApproveRequest = () => {
     return null;
   };
 
-  const requestId = useQuery('id');
-
+  const { id } = useParams();
   const reqs = transformRequests(inboundRequests, userRole);
-
-  const currentRequest = reqs.find((request: any) => request.Id === requestId);
-
+  const currentRequest = reqs.find(
+    (request: any) => request.Id.toString() === id
+  );
+  const { requestdata } = currentRequest;
   const {
-    name,
-    sensitivity,
+    databasename,
+    description,
     domain,
-    manager,
     justification,
-    description
-  } = currentRequest;
+    owner,
+    sensitivity
+  } = requestdata;
 
   return (
     <div className={classes.flexStructure}>
       <div className={classes.sidebar}>
-        <div className={classes.sideBarPostion}>
+        <div className={classes.sidebarPosition}>
           <Typography variant="h2" className={classes.heading}>
             Add Destination
           </Typography>
           <Typography variant="overline" className={classes.menuStyle}>
             Destination Name
           </Typography>
-          <Typography className={classes.title}>{name}</Typography>
+          <Typography className={classes.title}>{databasename}</Typography>
           <Divider className={classes.dividerStyle} />
           <Typography variant="overline" className={classes.menuStyle}>
             Sensitivity
@@ -127,7 +130,7 @@ const ApproveRequest = () => {
           <Typography variant="overline" className={classes.menuStyle}>
             Manager
           </Typography>
-          <Typography className={classes.title}>{manager}</Typography>
+          <Typography className={classes.title}>{owner}</Typography>
         </div>
       </div>
       <div className={classes.sideTable}>
@@ -135,10 +138,12 @@ const ApproveRequest = () => {
           Description
         </Typography>
         <Typography className={classes.title}>{description}</Typography>
+        <br />
         <Typography variant="overline" className={classes.menuStyle}>
           Justification
         </Typography>
         <Typography className={classes.title}>{justification}</Typography>
+        <br />
         <div>
           <Button
             className={`${classes.secondaryButton} ${classes.button}`}

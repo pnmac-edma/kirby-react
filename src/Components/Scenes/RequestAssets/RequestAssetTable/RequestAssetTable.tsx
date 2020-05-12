@@ -43,7 +43,6 @@ const RequestAssetTable = () => {
         selectedResults: Array<number>
       ) => dispatch(setToggleAssetAllCheckbox(selectedAssets, selectedResults))}
       footerButtonText={footerButtonText}
-      setFirstColLink={(id: number) => console.log(`request ${id} clicked`)}
       setFooterButtonClick={() => dispatch(handleModalToggle())}
     />
   );

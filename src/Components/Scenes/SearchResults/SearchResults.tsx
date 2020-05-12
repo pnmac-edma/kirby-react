@@ -133,7 +133,6 @@ const SearchResults = () => {
         }
         footerButtonText={footerButtonText}
         footerButtonLink="/search/access"
-        setFirstColLink={(id: number) => console.log(`request ${id} clicked`)}
         setFooterButtonClick={() =>
           dispatch(requestAssetsClick(selected, searchResult.results))
         }

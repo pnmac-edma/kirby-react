@@ -73,7 +73,7 @@ const PageWrapper = ({ isSearchClicked, newJobName }) => {
         <Route exact path="/requests" component={RequestsInbox} />
         <Route path="/requests/archive" component={ArchivedRequests} />
         <Route path="/requests/sent" component={SentRequests} />
-        <Route path="/requests" component={ApproveRequest} />
+        <Route path="/requests/:id" component={ApproveRequest} />
         {/* Governors Pages */}
         <Route path="/governance/governors" component={Governance} />
         <Route path="/governance/sensitivity-levels" component={Governance} />
