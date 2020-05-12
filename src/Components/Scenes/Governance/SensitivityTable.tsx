@@ -8,18 +8,21 @@ import {
   addSensitivityLevelsRequestFetch
 } from '../../../State/Governance/actions';
 import { TextField } from '@material-ui/core';
+import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
-  const { sensitivity, setSelectedRemoveRowId, isLoading } = useSelector(
-    (state: any) => state.governance
-  );
+  const {
+    sensitivity,
+    setSelectedRemoveRowId,
+    isLoading,
+    message
+  } = useSelector((state: any) => state.governance);
   const titleText = `Sensitivity Levels`;
   const columns = [
     { name: 'Sensitivity', property: 'sensitivity' },
     { name: 'Description', property: 'description' }
   ];
-  const messageForRemove = `Sensitivity Level was removed successfully.`;
-  const messageForAdded = `Sensitivity Level was added successfully.`;
+
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [sensitive, setSensitive] = useState('');
   const [createdByEmail, setCreatedByEmail] = useState('');
@@ -57,56 +60,47 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
     }, []);
   }
 
-  const render = [
+  const render = (
     <>
       <TextField
-        id="standard-basic"
         label="Sensitivity"
         fullWidth
         helperText="Please provide sensitivity"
         onChange={e => setSensitive(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Description"
         fullWidth
         helperText="Please provide description"
         onChange={e => setDescription(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Createdby Email"
         fullWidth
         helperText="Please provide createdby email"
         onChange={e => setCreatedByEmail(e.target.value)}
       />
     </>
-  ];
+  );
 
   return (
     <>
-      <Modal
-        modalTitle={'Remove Sensitivity Level'}
-        render={removeGovernor}
-        openModal={isModalOpenForRemove}
-        handleModalToggle={setIsModalOpenForRemove}
-        handleRemoveSelected={setRemoveSensitivityLevel}
+      <SnackBar
+        message={message}
         notification={notification}
         handleOpenNotification={handleOpenNotification}
         handleCloseNotification={handleCloseNotification}
-        message={messageForRemove}
       />
-      <Modal
-        modalTitle={'Add Sensitivity Levels'}
-        render={render}
-        openModal={isModalOpen}
-        handleModalToggle={setIsModalOpen}
-        handleRemoveSelected={setGovernorsRequestFetch}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForAdded}
-      />
+      {isModalOpenForRemove && (
+        <Modal
+          modalTitle={'Remove Sensitivity Level'}
+          render={removeGovernor}
+          openModal={isModalOpenForRemove}
+          handleModalToggle={setIsModalOpenForRemove}
+          handleRemoveSelected={setRemoveSensitivityLevel}
+          handleOpenNotification={handleOpenNotification}
+        />
+      )}
       <TableWrapper
         isLoading={isLoading}
         setTitleText={() => titleText}
@@ -115,6 +109,16 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
         remove={true}
         setIsModalOpen={setIsModalOpenForRemove}
       />
+      {isModalOpen && (
+        <Modal
+          modalTitle={'Add Sensitivity Levels'}
+          render={render}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setGovernorsRequestFetch}
+          handleOpenNotification={handleOpenNotification}
+        />
+      )}
     </>
   );
 };

@@ -8,15 +8,15 @@ import {
   addGovernorsRequestFetch
 } from '../../../State/Governance/actions';
 import { TextField } from '@material-ui/core/';
+import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
-  const { governors, setSelectedRemoveRowId } = useSelector(
+  const { governors, setSelectedRemoveRowId, message } = useSelector(
     (state: any) => state.governance
   );
+
   const titleText = `Governors`;
-  const messageForRemove = `Governor was removed successfully.`;
-  const messageForAdded = `Governor was added successfully.`;
-  const columns = [{ name: 'Governor', property: 'username' }];
+  const columns = [{ name: 'Governor', property: 'useremail' }];
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [userName, setUserName] = useState('');
   const [createdByName, setCreatedByName] = useState('');
@@ -49,45 +49,47 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
     }, []);
   }
 
-  const render = [
+  const render = (
     <>
       <TextField
-        id="standard-basic"
         label="User Name"
         fullWidth
         helperText="Please provide username"
         onChange={e => setUserName(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Createdby Name"
         fullWidth
         helperText="Please provide createdby email"
         onChange={e => setCreatedByName(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="User Email"
         fullWidth
         helperText="Please provide useremail"
         onChange={e => setUserEmail(e.target.value)}
       />
     </>
-  ];
+  );
 
   return (
     <>
-      <Modal
-        modalTitle={'Remove Govenor'}
-        render={removeGovernor}
-        openModal={isModalOpenForRemove}
-        handleModalToggle={setIsModalOpenForRemove}
-        handleRemoveSelected={setRemoveGovernors}
+      <SnackBar
+        message={message}
         notification={notification}
         handleOpenNotification={handleOpenNotification}
         handleCloseNotification={handleCloseNotification}
-        message={messageForRemove}
       />
+      {isModalOpenForRemove && (
+        <Modal
+          modalTitle={'Remove Govenor'}
+          render={removeGovernor}
+          openModal={isModalOpenForRemove}
+          handleModalToggle={setIsModalOpenForRemove}
+          handleRemoveSelected={setRemoveGovernors}
+          handleOpenNotification={handleOpenNotification}
+        />
+      )}
       <TableWrapper
         setTitleText={() => titleText}
         columns={columns}
@@ -95,17 +97,16 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
         remove={true}
         setIsModalOpen={setIsModalOpenForRemove}
       />
-      <Modal
-        modalTitle={'Add Govenor'}
-        render={render}
-        openModal={isModalOpen}
-        handleModalToggle={setIsModalOpen}
-        handleRemoveSelected={setGovernorsRequestFetch}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForAdded}
-      />
+      {isModalOpen && (
+        <Modal
+          modalTitle={'Add Govenor'}
+          render={render}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setGovernorsRequestFetch}
+          handleOpenNotification={handleOpenNotification}
+        />
+      )}
     </>
   );
 };

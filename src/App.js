@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
-import NavigationContainer from './Components/Scenes/Chrome/Navigation/Navigation-Container';
+import Navigation from './Components/Scenes/Chrome/Navigation/Navigation';
 
 export default function App() {
   const theme = useSelector(({ chrome }) => chrome.theme);
@@ -23,7 +23,7 @@ export default function App() {
     <ThemeProvider theme={kirby}>
       <div className="App">
         <CssBaseline />
-        <NavigationContainer />
+        <Navigation />
       </div>
     </ThemeProvider>
   );
