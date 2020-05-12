@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Typography, Button, TextField } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import { color, fontSize } from '@edma/design-tokens';
 import { makeStyles } from '@material-ui/core/styles';
 import GovernanceTable from './GovernorsTable';
@@ -68,14 +68,6 @@ const Governance = (props: any) => {
       <div className={classes.sideTable}>
         <div className={classes.paper}>
           <div className={classes.tableWrapper}>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Search"
-              type="text"
-              onChange={() => {}}
-            />
             <div className={classes.rightSide}>
               <Button
                 variant="contained"

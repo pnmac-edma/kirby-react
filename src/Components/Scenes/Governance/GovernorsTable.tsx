@@ -8,15 +8,15 @@ import {
   addGovernorsRequestFetch
 } from '../../../State/Governance/actions';
 import { TextField } from '@material-ui/core/';
+import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
-  const { governors, setSelectedRemoveRowId } = useSelector(
+  const { governors, setSelectedRemoveRowId, message } = useSelector(
     (state: any) => state.governance
   );
+
   const titleText = `Governors`;
-  const messageForRemove = `Governor was removed successfully.`;
-  const messageForAdded = `Governor was added successfully.`;
-  const columns = [{ name: 'Governor', property: 'username' }];
+  const columns = [{ name: 'Governor', property: 'useremail' }];
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [userName, setUserName] = useState('');
   const [createdByName, setCreatedByName] = useState('');
@@ -74,6 +74,12 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   return (
     <>
+      <SnackBar
+        message={message}
+        notification={notification}
+        handleOpenNotification={handleOpenNotification}
+        handleCloseNotification={handleCloseNotification}
+      />
       {isModalOpenForRemove && (
         <Modal
           modalTitle={'Remove Govenor'}
@@ -81,10 +87,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
           openModal={isModalOpenForRemove}
           handleModalToggle={setIsModalOpenForRemove}
           handleRemoveSelected={setRemoveGovernors}
-          notification={notification}
           handleOpenNotification={handleOpenNotification}
-          handleCloseNotification={handleCloseNotification}
-          message={messageForRemove}
         />
       )}
       <TableWrapper
@@ -101,10 +104,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
           openModal={isModalOpen}
           handleModalToggle={setIsModalOpen}
           handleRemoveSelected={setGovernorsRequestFetch}
-          notification={notification}
           handleOpenNotification={handleOpenNotification}
-          handleCloseNotification={handleCloseNotification}
-          message={messageForAdded}
         />
       )}
     </>
