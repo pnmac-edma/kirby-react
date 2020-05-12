@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import axios from 'axios';
 import { makeStyles, Drawer, List } from '@material-ui/core';
-import PageWrapper from '../PageWrapper/PageWrapper-Container';
+import PageWrapper from '../PageWrapper/PageWrapper';
 import color from '@edma/design-tokens/js/color';
 import UserGroupListItem from '../../SideNavigation/UserGroupListItem/UserGroupListItem';
 import DashboardListItem from '../../SideNavigation/DashboardListItem/DashboardListItem';
@@ -16,10 +17,11 @@ import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
 import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
 import { useQuery } from '../../../../Hooks/customHooks';
 import config from '../../../../config/config';
+import { authenticateFetch } from '../../../../State/AuthFlow/actions';
 
 const navWidth = 250;
 
-const navStyle = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -67,11 +69,23 @@ const navStyle = makeStyles(theme => ({
   }
 }));
 
-const Navigation = props => {
-  const { sessionToken, authenticateFetch } = props;
-  const classes = navStyle();
+const Navigation = () => {
+  const classes = useStyles();
 
+  const [isRedirecting, setIsRedirecting] = useState(true);
   const [apiError, setApiError] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  const sessionToken = useSelector(
+    ({ currentUser }: any) => currentUser.SessionToken
+  );
+  const dispatch = useDispatch();
+
+  const samlResponse = useQuery('SAMLResponse');
+  const closeDrawer = () => {
+    setOpen(!open);
+  };
+
   useEffect(() => {
     axios.interceptors.response.use(
       response => {
@@ -92,24 +106,17 @@ const Navigation = props => {
   // Case 3: there may or may not be a SAML response,
   //         but there is a session token, so relax until an hour later
   //         when we get a 4xx code from some request, then redirect
-  const samlResponse = useQuery('SAMLResponse');
-  const [isRedirecting, setIsRedirecting] = useState(true);
   useEffect(() => {
     if (samlResponse && !sessionToken) {
       setIsRedirecting(false);
-      authenticateFetch(samlResponse);
+      dispatch(authenticateFetch(samlResponse));
     } else if (!sessionToken) {
       setIsRedirecting(true);
       window.location.replace(config.cognitoUrl);
     } else {
       setIsRedirecting(false);
     }
-  }, [samlResponse, authenticateFetch, sessionToken]);
-
-  const [open, setOpen] = useState(false);
-  const closeDrawer = () => {
-    setOpen(!open);
-  };
+  }, [samlResponse, dispatch, sessionToken]);
 
   return !isRedirecting ? (
     <div className={classes.root}>

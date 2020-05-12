@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { history } from '../../../../BrowserRouter';
-import { useDispatch, useSelector } from 'react-redux';
 import ThemeToggle from '../../../Presentational/Chrome/ThemeToggle';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -151,16 +151,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Appbar = ({ hydration, home, hydrationFormikRef }) => {
+const Appbar = ({ hydration, home, hydrationFormikRef }: AppbarProps) => {
   const classes = useStyles();
+
   const [isJobNameActive, setIsJobNameActive] = useState(false);
-  const curPath = useLocation().pathname;
-  const jobName = useSelector(({ chrome }) => chrome.jobName);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const jobName = useSelector(({ chrome }: any) => chrome.jobName);
   const dispatch = useDispatch();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const curPath = useLocation().pathname;
 
-  const handleClick = event => {
+  const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -302,3 +304,9 @@ const Appbar = ({ hydration, home, hydrationFormikRef }) => {
 };
 
 export default Appbar;
+
+interface AppbarProps {
+  hydration?: boolean;
+  home?: boolean;
+  hydrationFormikRef?: any;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   Button,
@@ -13,18 +13,20 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
+import {
+  searchHandleInput,
+  handleKeyPress,
+  handleSearchClose
+} from '../../../../State/SearchResult/actions';
 
-const Search = props => {
-  const {
-    isSearchClicked,
-    searchHandleInput,
-    handleKeyPress,
-    handleSearchClose
-  } = props;
-
+const Search = () => {
   const { value, isError, isTouched } = useSelector(
-    state => state.searchResult.searchInput
+    ({ searchResult }: any) => searchResult.searchInput
   );
+  const { isSearchClicked } = useSelector(
+    ({ searchResult }: any) => searchResult
+  );
+  const dispatch = useDispatch();
 
   const isNoError = isTouched && !isError;
 
@@ -32,7 +34,7 @@ const Search = props => {
 
   const urlWithParams = `/search?params=${value}`;
 
-  const keyPressWrapper = e => {
+  const keyPressWrapper = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       // TODO: reconsider how to search while updating URL params.
       // Currently, this updates the URL, and when we render `Search`,
@@ -61,10 +63,12 @@ const Search = props => {
                 type="text"
                 fullWidth
                 value={value}
-                onChange={e => searchHandleInput(e)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  dispatch(searchHandleInput(e))
+                }
                 onKeyPress={e => {
                   if (isNoError) {
-                    handleKeyPress(keyPressWrapper(e));
+                    dispatch(handleKeyPress(keyPressWrapper(e)));
                   }
                 }}
               />
@@ -89,7 +93,7 @@ const Search = props => {
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={() => handleSearchClose()}
+            onClick={() => dispatch(handleSearchClose())}
             color="primary"
             className="search-modal__close-btn"
           >

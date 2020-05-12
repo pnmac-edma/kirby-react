@@ -8,6 +8,7 @@ import {
   addDomainOwnersRequestFetch
 } from '../../../State/Governance/actions';
 import { TextField } from '@material-ui/core';
+import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const titleText = `Domain Managers`;
@@ -15,16 +16,18 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
     { name: 'Name', property: 'owneremail' },
     { name: 'Domain', property: 'domain' }
   ];
-  const messageForRemove = `Domain Manager was removed successfully.`;
-  const messageForAdded = `Domain Manager was added successfully.`;
+
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [domain, setDomain] = useState('');
   const [createdByEmail, setCreatedByEmail] = useState('');
   const [owneremail, setOwnerEmail] = useState('');
 
-  const { domainOwners, setSelectedRemoveRowId, isLoading } = useSelector(
-    (state: any) => state.governance
-  );
+  const {
+    domainOwners,
+    setSelectedRemoveRowId,
+    isLoading,
+    message
+  } = useSelector((state: any) => state.governance);
   const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
 
@@ -54,56 +57,47 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
     }, []);
   }
 
-  const render = [
+  const render = (
     <>
       <TextField
-        id="standard-basic"
         label="User Name"
         fullWidth
         helperText="Please provide username"
         onChange={e => setDomain(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Createdby Email"
         fullWidth
         helperText="Please provide createdby email"
         onChange={e => setCreatedByEmail(e.target.value)}
       />
       <TextField
-        id="standard-basic"
         label="Owner Email"
         fullWidth
         helperText="Please provide useremail"
         onChange={e => setOwnerEmail(e.target.value)}
       />
     </>
-  ];
+  );
 
   return (
     <>
-      <Modal
-        modalTitle={'Remove Sensitivity Level'}
-        render={removeManager}
-        openModal={isModalOpenForRemove}
-        handleModalToggle={setIsModalOpenForRemove}
-        handleRemoveSelected={setRemoveDomainManager}
+      <SnackBar
+        message={message}
         notification={notification}
         handleOpenNotification={handleOpenNotification}
         handleCloseNotification={handleCloseNotification}
-        message={messageForRemove}
       />
-      <Modal
-        modalTitle={'Add Business Owners'}
-        render={render}
-        openModal={isModalOpen}
-        handleModalToggle={setIsModalOpen}
-        handleRemoveSelected={setGovernorsRequestFetch}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-        message={messageForAdded}
-      />
+      {isModalOpenForRemove && (
+        <Modal
+          modalTitle={'Remove Sensitivity Level'}
+          render={removeManager}
+          openModal={isModalOpenForRemove}
+          handleModalToggle={setIsModalOpenForRemove}
+          handleRemoveSelected={setRemoveDomainManager}
+          handleOpenNotification={handleOpenNotification}
+        />
+      )}
       <TableWrapper
         isLoading={isLoading}
         setTitleText={() => titleText}
@@ -112,6 +106,16 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
         remove={true}
         setIsModalOpen={setIsModalOpenForRemove}
       />
+      {isModalOpen && (
+        <Modal
+          modalTitle={'Add Business Owners'}
+          render={render}
+          openModal={isModalOpen}
+          handleModalToggle={setIsModalOpen}
+          handleRemoveSelected={setGovernorsRequestFetch}
+          handleOpenNotification={handleOpenNotification}
+        />
+      )}
     </>
   );
 };
