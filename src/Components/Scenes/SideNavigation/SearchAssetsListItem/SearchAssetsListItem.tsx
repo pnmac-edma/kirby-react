@@ -26,7 +26,7 @@ const SearchAssetsListItem = () => {
       }
     >
       <Search className="Nav__icon" />
-      <ListItemText className="Nav__text" primary="Find Data" />
+      <ListItemText className="Nav__text" primary="Search Destinations" />
     </ListItem>
   );
 };
