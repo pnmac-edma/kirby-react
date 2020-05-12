@@ -11,7 +11,11 @@ import {
   addDomainOwners,
   addSensitivityLevels
 } from './api';
-import { getDomainOwner, getUserEmail } from '../../Selectors/sagaSelectors';
+import {
+  getDomainOwner,
+  getUserEmail,
+  getCreatedByEmail
+} from '../../Selectors/sagaSelectors';
 
 export function* workDomainOwners() {
   try {
@@ -51,7 +55,8 @@ export function* workDeleteDomainOwners() {
 }
 
 export function* workAddDomainOwners(action: any) {
-  const { domain, createdByEmail, ownerEmail } = action;
+  const { domain, ownerEmail } = action;
+  const createdByEmail = yield select(getCreatedByEmail);
   try {
     const response = yield call(
       addDomainOwners,
@@ -112,7 +117,8 @@ export function* workDeleteSensitivityLevels() {
 }
 
 export function* workAddSensitivityLevels(action: any) {
-  const { sensitive, createdByEmail, description } = action;
+  const { sensitive, description } = action;
+  const createdByEmail = yield select(getCreatedByEmail);
   try {
     const response = yield call(
       addSensitivityLevels,
@@ -165,7 +171,8 @@ export function* workDeleteGovernors() {
 }
 
 export function* workAddGovernors(action: any) {
-  const { userEmail, userName, createdByEmail } = action;
+  const { userEmail, userName } = action;
+  const createdByEmail = yield select(getCreatedByEmail);
   try {
     const response = yield call(
       addGovernors,

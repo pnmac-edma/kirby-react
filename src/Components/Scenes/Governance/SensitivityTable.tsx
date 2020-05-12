@@ -19,7 +19,6 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
   } = useSelector((state: any) => state.governance);
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [sensitive, setSensitive] = useState('');
-  const [createdByEmail, setCreatedByEmail] = useState('');
   const [description, setDescription] = useState('');
 
   const [notification, setNotification] = useState(false);
@@ -41,9 +40,7 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const setRemoveSensitivityLevel = () =>
     dispatch(deleteSensitivityRequestFetch());
   const setGovernorsRequestFetch = () =>
-    dispatch(
-      addSensitivityLevelsRequestFetch(sensitive, createdByEmail, description)
-    );
+    dispatch(addSensitivityLevelsRequestFetch(sensitive, description));
   let removeGovernor;
   if (sensitivity !== null) {
     removeGovernor = sensitivity.reduce((acc: any, sensitivity: any) => {
@@ -73,12 +70,6 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
         fullWidth
         helperText="Please provide description"
         onChange={e => setDescription(e.target.value)}
-      />
-      <TextField
-        label="Createdby Email"
-        fullWidth
-        helperText="Please provide createdby email"
-        onChange={e => setCreatedByEmail(e.target.value)}
       />
     </>
   );
