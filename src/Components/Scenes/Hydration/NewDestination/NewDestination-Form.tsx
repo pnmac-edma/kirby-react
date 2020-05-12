@@ -12,7 +12,10 @@ import {
   TextField
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { setIsDestinationModalOpen } from '../../../../State/Hydration/actions';
+import {
+  setIsDestinationModalOpen,
+  newDestinationRequestFetch
+} from '../../../../State/Hydration/actions';
 import mockSensitivity from '../../../../State/__mockData__/mockSensitivity.json';
 import mockDomains from '../../../../State/__mockData__/mockDomains.json';
 
@@ -38,9 +41,10 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
   );
   const dispatch = useDispatch();
   const prefixForApp = isAppForm ? 'destinationsCreate.' : '';
-  const { errors, touched } = (useFormikContext() as unknown) as {
+  const { errors, touched, values } = (useFormikContext() as unknown) as {
     errors: InitialErrorTypes;
     touched: InitialTouchedTypes;
+    values: any;
   };
 
   return (
@@ -149,7 +153,11 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
           </Grid>
         )}
         <Grid item>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => dispatch(newDestinationRequestFetch(values))}
+          >
             Add Destination
           </Button>
         </Grid>
