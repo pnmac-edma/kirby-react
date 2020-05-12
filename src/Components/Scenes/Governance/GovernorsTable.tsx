@@ -14,9 +14,6 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const { governors, setSelectedRemoveRowId, message } = useSelector(
     (state: any) => state.governance
   );
-
-  const titleText = `Governors`;
-  const columns = [{ name: 'Governor', property: 'useremail' }];
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [userName, setUserName] = useState('');
   const [createdByName, setCreatedByName] = useState('');
@@ -26,6 +23,9 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   const handleOpenNotification = () => setNotification(true);
   const handleCloseNotification = () => setNotification(false);
+
+  const titleText = `Governors`;
+  const columns = [{ name: 'Governor', property: 'useremail' }];
 
   useEffect(() => {
     dispatch(governorsRequestFetch());

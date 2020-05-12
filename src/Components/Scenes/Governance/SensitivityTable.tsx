@@ -17,12 +17,6 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
     isLoading,
     message
   } = useSelector((state: any) => state.governance);
-  const titleText = `Sensitivity Levels`;
-  const columns = [
-    { name: 'Sensitivity', property: 'sensitivity' },
-    { name: 'Description', property: 'description' }
-  ];
-
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [sensitive, setSensitive] = useState('');
   const [createdByEmail, setCreatedByEmail] = useState('');
@@ -33,6 +27,12 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   const handleOpenNotification = () => setNotification(true);
   const handleCloseNotification = () => setNotification(false);
+
+  const titleText = `Sensitivity Levels`;
+  const columns = [
+    { name: 'Sensitivity', property: 'sensitivity' },
+    { name: 'Description', property: 'description' }
+  ];
 
   useEffect(() => {
     dispatch(sensitivityLevelsRequestFetch());

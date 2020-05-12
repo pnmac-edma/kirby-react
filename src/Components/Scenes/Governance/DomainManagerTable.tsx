@@ -11,17 +11,10 @@ import { TextField } from '@material-ui/core';
 import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
-  const titleText = `Domain Managers`;
-  const columns = [
-    { name: 'Name', property: 'owneremail' },
-    { name: 'Domain', property: 'domain' }
-  ];
-
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [domain, setDomain] = useState('');
   const [createdByEmail, setCreatedByEmail] = useState('');
   const [owneremail, setOwnerEmail] = useState('');
-
   const {
     domainOwners,
     setSelectedRemoveRowId,
@@ -33,6 +26,12 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   const handleOpenNotification = () => setNotification(true);
   const handleCloseNotification = () => setNotification(false);
+
+  const titleText = `Domain Managers`;
+  const columns = [
+    { name: 'Name', property: 'owneremail' },
+    { name: 'Domain', property: 'domain' }
+  ];
 
   useEffect(() => {
     dispatch(domainOwnersRequestFetch());
