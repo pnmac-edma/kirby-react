@@ -6,7 +6,7 @@ const TableWrapperSkeleton = () => {
   return (
     <TableBody>
       <TableRow>
-        <TableCell>
+        <TableCell colSpan={10}>
           <Skeleton
             variant="rect"
             width={600}

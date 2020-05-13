@@ -27,7 +27,7 @@ const tableStyles = makeStyles(theme => ({
     textOverflow: 'ellipsis'
   },
   firstColLink: {
-    color: color.b800,
+    color: theme.palette.type === 'light' ? color.b600 : color.b200,
     '&:hover': {
       textDecoration: 'underline',
       cursor: 'pointer'
