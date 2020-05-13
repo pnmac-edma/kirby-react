@@ -45,7 +45,6 @@ const ArchivedRequests = () => {
       <TableWrapper
         columns={columns}
         data={archivedRequests}
-        footerButtonText={footerButtonText}
         setFirstColLink={(e: React.TouchEvent, id: number) =>
           console.log(`request ${id} clicked`)
         }
