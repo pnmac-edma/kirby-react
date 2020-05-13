@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RequestTableTitle from '../RequestTableTitle/RequestTableTitle';
-import { transformRequests } from '../../../../State/helpers';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
 import {
   setToggleArchivedCheckbox,
@@ -11,14 +10,10 @@ import {
 
 const ArchivedRequests = () => {
   const userEmail = useSelector(({ currentUser }: any) => currentUser.EmpEmail);
-  const userRole = useSelector(({ currentUser }: any) => currentUser.role);
-  // TODO: change the following to the appropriate api call when finished
-  const requests = useSelector(
-    ({ viewRequests }: any) => viewRequests.outboundRequests
-  );
   const selected = useSelector(
     ({ viewRequests }: any) => viewRequests.selectedArchivedRequests
   );
+  const { archivedRequests } = useSelector((state: any) => state.viewRequests);
   const dispatch = useDispatch();
 
   const columns = [
@@ -40,8 +35,6 @@ const ArchivedRequests = () => {
     }
   ];
 
-  const reqs = transformRequests(requests, userRole);
-
   const footerButtonText = 'Move to Inbox';
 
   useEffect(() => {
@@ -53,7 +46,7 @@ const ArchivedRequests = () => {
       <RequestTableTitle title="Archived Requests" />
       <TableWrapper
         columns={columns}
-        data={reqs}
+        data={archivedRequests}
         footerButtonText={footerButtonText}
         setFirstColLink={(e: React.TouchEvent, id: number) =>
           console.log(`request ${id} clicked`)

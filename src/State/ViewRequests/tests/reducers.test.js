@@ -18,11 +18,12 @@ describe('ViewRequests Reducers', () => {
     nextState = {
       inboundRequests: [],
       outboundRequests: [],
-      error: {},
-      isLoading: false,
       selectedRequests: [],
+      selectedSentRequests: [],
       selectedArchivedRequests: [],
-      selectedSentRequests: []
+      archivedRequests: null,
+      error: {},
+      isLoading: false
     };
   });
 

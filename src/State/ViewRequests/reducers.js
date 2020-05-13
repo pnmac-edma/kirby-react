@@ -6,7 +6,7 @@ export const initialState = {
   selectedRequests: [],
   selectedSentRequests: [],
   selectedArchivedRequests: [],
-  archivedRequest: null,
+  archivedRequests: null,
   error: {},
   isLoading: false
 };
@@ -125,10 +125,10 @@ const viewRequestsReducer = (state = initialState, action) => {
       return { ...state };
     case types.ARCHIVED_REQUESTS_FETCH:
       return { ...state };
-    case types.ARCHIVED_REQUESTS_SUCCESS: {
-      console.log(action);
-      return { ...state, archivedRequest: action.archived };
-    }
+    case types.ARCHIVED_REQUESTS_SUCCESS:
+      return { ...state, archivedRequests: action.archived };
+    case types.ARCHIVED_REQUESTS_FAILURE:
+      return { ...state, error: action.errors };
     default:
       return state;
   }
