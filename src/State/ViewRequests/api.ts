@@ -2,14 +2,15 @@
 import axios from 'axios';
 import { constructRequest } from '../helpers';
 import config from '../../config/config';
+import { HttpMethods } from '../../Models/enums';
 
-export function getUserRequests(createdbyemail) {
+export function getUserRequests(useremail: any) {
   const request = constructRequest(
     config.apiUrl,
-    `${config.apiPath}/users/requests`,
-    'GET',
+    `${config.apiPath}/requests/sent`,
+    HttpMethods.GET,
     {
-      params: { createdbyemail }
+      params: { useremail }
     }
   );
 
@@ -18,11 +19,11 @@ export function getUserRequests(createdbyemail) {
     .then(error => error);
 }
 
-export function getApproverRequests(approveremail) {
+export function getApproverRequests(approveremail: string) {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/approver/requests`,
-    'GET',
+    HttpMethods.GET,
     {
       params: { approveremail }
     }
@@ -33,11 +34,11 @@ export function getApproverRequests(approveremail) {
     .then(error => error);
 }
 
-export function getGovernanceRequests(pages, size, status) {
+export function getGovernanceRequests() {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/requests`,
-    'GET',
+    HttpMethods.GET,
     {
       params: { useremail: 'eric.barrow@pnmac.com' }
     }
