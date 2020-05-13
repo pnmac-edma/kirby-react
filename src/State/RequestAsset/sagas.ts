@@ -22,6 +22,7 @@ function* workMakeRequests() {
   const requestAssets = yield select(getRequestAssets);
   const requestedFor = yield select(getRequestedFor);
   const createdByEmail = yield select(getCreatedByEmail);
+  console.log('sgaga', requestAssets);
   try {
     const response = yield call(
       makeRequest,
