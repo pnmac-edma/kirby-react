@@ -6,6 +6,7 @@ export const initialState = {
   selectedRequests: [],
   selectedSentRequests: [],
   selectedArchivedRequests: [],
+  archivedRequest: null,
   error: {},
   isLoading: false
 };
@@ -31,9 +32,8 @@ const generateNewAllSelected = (selected, data) => {
 
 const viewRequestsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.USER_REQUESTS_FETCH: {
+    case types.USER_REQUESTS_FETCH:
       return { ...state, isLoading: true };
-    }
     case types.USER_REQUESTS_SUCCESS: {
       return {
         ...state,
@@ -42,12 +42,10 @@ const viewRequestsReducer = (state = initialState, action) => {
         error: {}
       };
     }
-    case types.USER_REQUESTS_FAILURE: {
+    case types.USER_REQUESTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    }
-    case types.APPROVER_REQUESTS_FETCH: {
+    case types.APPROVER_REQUESTS_FETCH:
       return { ...state, isLoading: true };
-    }
     case types.APPROVER_REQUESTS_SUCCESS: {
       return {
         ...state,
@@ -56,12 +54,10 @@ const viewRequestsReducer = (state = initialState, action) => {
         error: {}
       };
     }
-    case types.APPROVER_REQUESTS_FAILURE: {
+    case types.APPROVER_REQUESTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    }
-    case types.GOVERNANCE_REQUESTS_FETCH: {
+    case types.GOVERNANCE_REQUESTS_FETCH:
       return { ...state, isLoading: true };
-    }
     case types.GOVERNANCE_REQUESTS_SUCCESS: {
       return {
         ...state,
@@ -70,9 +66,8 @@ const viewRequestsReducer = (state = initialState, action) => {
         error: {}
       };
     }
-    case types.GOVERNANCE_REQUESTS_FAILURE: {
+    case types.GOVERNANCE_REQUESTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    }
     case types.GET_ARCHIVED_REQUESTS: {
       return {
         ...state,
@@ -126,8 +121,13 @@ const viewRequestsReducer = (state = initialState, action) => {
         )
       };
     }
-    case types.HANDLE_FOOTER_BUTTON_CLICK: {
+    case types.HANDLE_FOOTER_BUTTON_CLICK:
       return { ...state };
+    case types.ARCHIVED_REQUESTS_FETCH:
+      return { ...state };
+    case types.ARCHIVED_REQUESTS_SUCCESS: {
+      console.log(action);
+      return { ...state, archivedRequest: action.archived };
     }
     default:
       return state;

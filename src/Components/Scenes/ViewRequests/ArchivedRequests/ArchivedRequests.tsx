@@ -6,7 +6,7 @@ import TableWrapper from '../../../Presentational/Table/TableWrapper';
 import {
   setToggleArchivedCheckbox,
   setToggleArchivedAllCheckbox,
-  userRequestsFetch
+  archivedRequestsFetch
 } from '../../../../State/ViewRequests/actions';
 
 const ArchivedRequests = () => {
@@ -45,7 +45,7 @@ const ArchivedRequests = () => {
   const footerButtonText = 'Move to Inbox';
 
   useEffect(() => {
-    dispatch(userRequestsFetch(userEmail));
+    dispatch(archivedRequestsFetch(userEmail));
   }, [dispatch, userEmail]);
 
   return (

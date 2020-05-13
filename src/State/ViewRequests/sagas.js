@@ -2,6 +2,7 @@ import * as types from './types';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import {
   getUserRequests,
+  getArchivedRequests,
   getApproverRequests,
   getGovernanceRequests
 } from './api';
@@ -12,6 +13,15 @@ export function* workUserRequests(action) {
     yield put({ type: types.USER_REQUESTS_SUCCESS, payload: response });
   } catch (error) {
     yield put({ type: types.USER_REQUESTS_FAILURE, payload: error });
+  }
+}
+
+export function* workArchivedRequests(action) {
+  try {
+    const response = yield call(getArchivedRequests, action.payload);
+    yield put({ type: types.ARCHIVED_REQUESTS_SUCCESS, archived: response });
+  } catch (error) {
+    yield put({ type: types.ARCHIVED_REQUESTS_FAILURE, payload: error });
   }
 }
 
@@ -35,6 +45,7 @@ export function* workGovernanceRequests(action) {
 
 export default function* watchViewRequests() {
   yield takeEvery(types.USER_REQUESTS_FETCH, workUserRequests);
+  yield takeEvery(types.ARCHIVED_REQUESTS_FETCH, workArchivedRequests);
   yield takeEvery(types.APPROVER_REQUESTS_FETCH, workApproverRequests);
   yield takeEvery(types.GOVERNANCE_REQUESTS_FETCH, workGovernanceRequests);
 }

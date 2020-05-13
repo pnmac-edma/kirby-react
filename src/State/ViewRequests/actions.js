@@ -19,6 +19,25 @@ export const userRequestsFailure = error => {
   };
 };
 
+export const archivedRequestsFetch = createdbyemail => {
+  return {
+    type: types.ARCHIVED_REQUESTS_FETCH,
+    payload: createdbyemail
+  };
+};
+export const archivedRequestsSuccess = response => {
+  return {
+    type: types.ARCHIVED_REQUESTS_SUCCESS,
+    archived: response
+  };
+};
+export const archivedRequestsFailure = error => {
+  return {
+    type: types.ARCHIVED_REQUESTS_FAILURE,
+    payload: error
+  };
+};
+
 export const approverRequestsFetch = approverEmail => {
   return {
     type: types.APPROVER_REQUESTS_FETCH,
