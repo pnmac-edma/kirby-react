@@ -42,8 +42,6 @@ const ArchivedRequests = () => {
 
   const reqs = transformRequests(requests, userRole);
 
-  const footerButtonText = 'Move to Inbox';
-
   useEffect(() => {
     dispatch(userRequestsFetch(userEmail));
   }, [dispatch, userEmail]);
@@ -54,11 +52,9 @@ const ArchivedRequests = () => {
       <TableWrapper
         columns={columns}
         data={reqs}
-        footerButtonText={footerButtonText}
         setFirstColLink={(e: React.TouchEvent, id: number) =>
           console.log(`request ${id} clicked`)
         }
-        setFooterButtonClick={() => console.log('footer button clicked')}
         selected={selected}
         setToggleCheckbox={(selected: Array<number>, id: number) =>
           dispatch(setToggleArchivedCheckbox(selected, id))

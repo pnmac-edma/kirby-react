@@ -146,17 +146,6 @@ const ApproveRequest = () => {
         <br />
         <div>
           <Button
-            className={`${classes.secondaryButton} ${classes.button}`}
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              // TODO: make call to api to mark in review request
-              // TODO: create snackbar notification on RequestsInbox page
-            }}
-          >
-            Mark In Review
-          </Button>
-          <Button
             className={classes.button}
             variant="contained"
             color="primary"
