@@ -35,8 +35,6 @@ const ArchivedRequests = () => {
     }
   ];
 
-  const footerButtonText = 'Move to Inbox';
-
   useEffect(() => {
     dispatch(archivedRequestsFetch(userEmail));
   }, [dispatch, userEmail]);
@@ -51,7 +49,6 @@ const ArchivedRequests = () => {
         setFirstColLink={(e: React.TouchEvent, id: number) =>
           console.log(`request ${id} clicked`)
         }
-        setFooterButtonClick={() => console.log('footer button clicked')}
         selected={selected}
         setToggleCheckbox={(selected: Array<number>, id: number) =>
           dispatch(setToggleArchivedCheckbox(selected, id))
