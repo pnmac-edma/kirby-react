@@ -15,7 +15,7 @@ const MenuList = ({
   return (
     <List
       height={maxHeight}
-      width={200} // TODO: may need to change this width
+      width={400}
       itemCount={children.length}
       itemSize={height}
       initialScrollOffset={initialOffset}
