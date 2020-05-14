@@ -171,15 +171,10 @@ export function* workDeleteGovernors() {
 }
 
 export function* workAddGovernors(action: any) {
-  const { userEmail, userName } = action;
+  const { userEmail } = action;
   const createdByEmail = yield select(getCreatedByEmail);
   try {
-    const response = yield call(
-      addGovernors,
-      userEmail,
-      userName,
-      createdByEmail
-    );
+    const response = yield call(addGovernors, userEmail, createdByEmail);
     const responseForGetGovernors = yield call(getGovernors);
     yield put({ type: types.ADD_GOVERNORS_REQUEST_SUCCESS, message: response });
     yield put({

@@ -133,7 +133,6 @@ export const deleteGovernors = (useremail: string): Promise<void> => {
 
 export const addGovernors = (
   useremail: string,
-  username: string,
   createdbyemail: string
 ): Promise<void> => {
   const request = constructRequest(
@@ -141,7 +140,7 @@ export const addGovernors = (
     `${config.apiPath}/governance/users`,
     HttpMethods.POST,
     {
-      data: { useremail, username, createdbyemail },
+      data: { useremail, createdbyemail },
       headers: { 'Content-Type': 'application/json' }
     }
   );

@@ -18,6 +18,7 @@ import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
 import { useQuery } from '../../../../Hooks/customHooks';
 import config from '../../../../config/config';
 import { authenticateFetch } from '../../../../State/AuthFlow/actions';
+import { getEmployeesFetch } from '../../../../State/RequestAsset/actions';
 
 const navWidth = 250;
 
@@ -120,6 +121,12 @@ const Navigation = () => {
       setIsRedirecting(false);
     }
   }, [samlResponse, dispatch, sessionToken]);
+
+  useEffect(() => {
+    if (sessionToken) {
+      dispatch(getEmployeesFetch());
+    }
+  }, [dispatch, sessionToken]);
 
   return !isRedirecting ? (
     <div className={classes.root}>
