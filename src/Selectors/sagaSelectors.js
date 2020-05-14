@@ -18,7 +18,7 @@ export const getJustification = state => state.requestAssets.justification;
 export const getCreatedByEmail = state => state.currentUser.EmpEmail;
 export const getRequestAssets = state =>
   state.requestAssets.selectedSearchResultCopy.reduce((assets, asset) => {
-    assets.push({ [asset.requesttype]: asset.name });
+    assets.push({ database: asset.databasename });
     return assets;
   }, []);
 

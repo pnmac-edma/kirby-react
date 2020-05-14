@@ -32,10 +32,10 @@ export const makeRequest = (
     justification,
     requestedfor
   };
-  console.log('API ', assets);
+
   const request = constructRequest(
     config.apiUrl,
-    `${config.apiPath}/assets/access`,
+    `${config.apiPath}/requests/access`,
     HttpMethods.POST,
     {
       data: fetchBody,
