@@ -6,7 +6,8 @@ import {
   List,
   ListItem,
   Collapse,
-  ListItemText
+  ListItemText,
+  Tooltip
 } from '@material-ui/core';
 import { InboxOutlined, ArrowDropDown } from '@material-ui/icons/';
 import color from '@edma/design-tokens/js/color';
@@ -29,11 +30,16 @@ const requestListItem = makeStyles(theme => ({
 
 const RequestListItem = ({
   closeAllArrows,
-  closeDrawer
+  openDrawer
 }: RequestListItemProps) => {
   const classes = requestListItem();
 
   const [openIconThree, setOpenIconThree] = useState(false);
+
+  const clickActions = () => {
+    setOpenIconThree(!openIconThree);
+    openDrawer();
+  };
 
   const currentRole = useSelector(({ currentUser }: any) => currentUser.role);
 
@@ -47,7 +53,7 @@ const RequestListItem = ({
 
   const requestListItemText = requestListItemsName.map(({ label, link }) => (
     <ListItem
-      onClick={closeDrawer}
+      onClick={openDrawer}
       component={Link}
       to={link}
       key={label}
@@ -77,22 +83,32 @@ const RequestListItem = ({
     }
   }, [closeAllArrows, openIconThree]);
 
+  const listItem = (
+    <ListItem
+      className={clsx(
+        openIconThree
+          ? clsx('Nav__item', 'Nav__item--is-open')
+          : clsx('Nav__item')
+      )}
+      button
+      onClick={() => clickActions()}
+    >
+      <ArrowDropDown className="Nav__arrow" />
+      <InboxOutlined className="Nav__icon" />
+      <div className={classes.newRequestCircle}></div>
+      <ListItemText className="Nav__text">Requests</ListItemText>
+    </ListItem>
+  );
+
   return (
     <>
-      <ListItem
-        className={clsx(
-          openIconThree
-            ? clsx('Nav__item', 'Nav__item--is-open')
-            : clsx('Nav__item')
-        )}
-        button
-        onClick={() => setOpenIconThree(!openIconThree)}
-      >
-        <ArrowDropDown className="Nav__arrow" />
-        <InboxOutlined className="Nav__icon" />
-        <div className={classes.newRequestCircle}></div>
-        <ListItemText className="Nav__text">Requests</ListItemText>
-      </ListItem>
+      {closeAllArrows ? (
+        listItem
+      ) : (
+        <Tooltip placement="right" title="Requests">
+          {listItem}
+        </Tooltip>
+      )}
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {currentRole.governance || currentRole.approver
@@ -108,5 +124,5 @@ export default RequestListItem;
 
 interface RequestListItemProps {
   closeAllArrows: boolean;
-  closeDrawer: () => void;
+  openDrawer: () => void;
 }

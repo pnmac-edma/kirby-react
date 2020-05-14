@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import { makeStyles, ListItem, ListItemText } from '@material-ui/core';
+import { makeStyles, ListItem, ListItemText, Tooltip } from '@material-ui/core';
 import { CloudQueue, ExitToApp } from '@material-ui/icons/';
 import config from '../../../../config/config';
 
@@ -13,10 +13,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AwsAthenaListItem = () => {
+const AwsAthenaListItem = ({ closeAllArrows }: AwsAthenaListItemProps) => {
   const classes = useStyles();
 
-  return (
+  const listItem = (
     <ListItem
       button
       onClick={() => window.open(`${config.consoleUrl}`)}
@@ -31,6 +31,22 @@ const AwsAthenaListItem = () => {
       </ListItemText>
     </ListItem>
   );
+
+  return (
+    <>
+      {closeAllArrows ? (
+        listItem
+      ) : (
+        <Tooltip placement="right" title="Open AWS Athena">
+          {listItem}
+        </Tooltip>
+      )}
+    </>
+  );
 };
 
 export default AwsAthenaListItem;
+
+interface AwsAthenaListItemProps {
+  closeAllArrows: boolean;
+}
