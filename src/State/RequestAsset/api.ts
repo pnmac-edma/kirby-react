@@ -35,7 +35,7 @@ export const makeRequest = (
 
   const request = constructRequest(
     config.apiUrl,
-    `${config.apiPath}/assets/requests/access`,
+    `${config.apiPath}/requests/access`,
     HttpMethods.POST,
     {
       data: fetchBody,
