@@ -12,7 +12,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const GovernanceListItem = ({
   closeAllArrows,
-  openDrawer
+  openDrawer,
+  closeDrawer
 }: GovernanceListItemProps) => {
   const [openIconOne, setOpenIconOne] = useState(false);
 
@@ -80,7 +81,7 @@ const GovernanceListItem = ({
         </Tooltip>
       )}
       <Collapse in={openIconOne} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
+        <List onClick={closeDrawer} component="div" disablePadding>
           {governanceListItemText}
         </List>
       </Collapse>
@@ -93,4 +94,5 @@ export default GovernanceListItem;
 interface GovernanceListItemProps {
   closeAllArrows: boolean;
   openDrawer: () => void;
+  closeDrawer: () => void;
 }

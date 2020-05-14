@@ -84,7 +84,7 @@ const Navigation = () => {
 
   const samlResponse = useQuery('SAMLResponse');
   const closeDrawer = () => {
-    setOpen(!open);
+    setOpen(false);
   };
 
   const openDrawer = () => {
@@ -156,12 +156,18 @@ const Navigation = () => {
               <GovernanceListItem
                 closeAllArrows={open}
                 openDrawer={openDrawer}
+                closeDrawer={closeDrawer}
               />
               <HydrationListItem
                 closeAllArrows={open}
                 openDrawer={openDrawer}
+                closeDrawer={closeDrawer}
               />
-              <RequestListItem closeAllArrows={open} openDrawer={openDrawer} />
+              <RequestListItem
+                closeAllArrows={open}
+                openDrawer={openDrawer}
+                closeDrawer={closeDrawer}
+              />
               <AwsAthenaListItem closeAllArrows={open} />
             </List>
             <AvatarListItem closeAllArrows={open} closeDrawer={closeDrawer} />
