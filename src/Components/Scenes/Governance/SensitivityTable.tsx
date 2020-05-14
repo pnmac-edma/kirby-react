@@ -60,15 +60,15 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const render = (
     <>
       <TextField
-        label="Sensitivity"
+        label="Sensitivity Name"
         fullWidth
-        helperText="Please provide sensitivity"
+        helperText="Type a name"
         onChange={e => setSensitive(e.target.value)}
       />
       <TextField
         label="Description"
         fullWidth
-        helperText="Please provide description"
+        helperText="Describe this Sensitivity Level"
         onChange={e => setDescription(e.target.value)}
       />
     </>
