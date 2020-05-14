@@ -1,11 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Divider, Typography } from '@material-ui/core';
 import { WarningRounded } from '@material-ui/icons';
 import { color, font, fontSize } from '@edma/design-tokens';
 import { transformRequests } from '../../../../State/helpers';
+import { reqDecisionRequestFetch } from '../../../../State/ViewRequests/actions';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -75,6 +76,7 @@ const ApproveRequest = () => {
     ({ viewRequests }: any) => viewRequests
   );
   const userRole = useSelector(({ currentUser }: any) => currentUser.role);
+  const dispatch = useDispatch();
 
   const sensitivityIcon = (sensitivity: string) => {
     if (sensitivity === 'Sensitive') {
@@ -88,11 +90,21 @@ const ApproveRequest = () => {
     return null;
   };
 
+  const history = useHistory();
+
   const { id } = useParams();
   const reqs = transformRequests(inboundRequests, userRole);
   const currentRequest = reqs.find(
     (request: any) => request.Id.toString() === id
   );
+
+  // NOTE: after going to approve request page and approve/rejecting request,
+  // hitting back button will cause currentRequest to error out without the following
+  // lines of code; unsure as to why this is happening
+  if (!currentRequest) {
+    return null;
+  }
+
   const { requestdata } = currentRequest;
   const {
     databasename,
@@ -150,7 +162,8 @@ const ApproveRequest = () => {
             variant="contained"
             color="primary"
             onClick={() => {
-              // TODO: make call to api to approve request
+              dispatch(reqDecisionRequestFetch('Approved', [id]));
+              history.push('/requests');
               // TODO: create snackbar notification on RequestsInbox page
             }}
           >
@@ -161,7 +174,8 @@ const ApproveRequest = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              // TODO: make call to api to reject request
+              dispatch(reqDecisionRequestFetch('Rejected', [id]));
+              history.push('/requests');
               // TODO: create snackbar notification on RequestsInbox page
             }}
           >

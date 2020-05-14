@@ -60,6 +60,22 @@ export const getArchivedRequests = () => {
   };
 };
 
+export const reqDecisionRequestFetch = (decision, ids) => ({
+  type: types.REQ_DECISION_REQUEST_FETCH,
+  decision,
+  ids
+});
+
+export const reqDecisionRequestSuccess = response => ({
+  type: types.REQ_DECISION_REQUEST_SUCCESS,
+  response
+});
+
+export const reqDecisionRequestFailure = error => ({
+  type: types.REQ_DECISION_REQUEST_FAILURE,
+  error
+});
+
 export const setToggleViewCheckbox = (selected, id) => ({
   type: types.SET_TOGGLE_VIEW_CHECKBOX,
   selected,

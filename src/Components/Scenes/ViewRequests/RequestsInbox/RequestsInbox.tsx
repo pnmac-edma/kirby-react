@@ -57,15 +57,6 @@ const RequestsInbox = () => {
           const urlWithId = `/requests/${id}`;
           history.push(urlWithId);
         }}
-
-        // TODO: not sure if checkboxes will be needed, kept here for now
-        // selected={selectedRequests}
-        // setToggleCheckbox={(selected: Array<number>, id: number) =>
-        //   dispatch(setToggleViewCheckbox(selected, id))
-        // }
-        // setToggleAllCheckbox={(selected: Array<number>, data: Array<number>) =>
-        //   dispatch(setToggleViewAllCheckbox(selected, data))
-        // }
       />
     </>
   );
