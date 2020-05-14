@@ -84,11 +84,15 @@ const Navigation = () => {
 
   const samlResponse = useQuery('SAMLResponse');
   const closeDrawer = () => {
-    setOpen(!open);
+    setOpen(false);
   };
 
   const openDrawer = () => {
     setOpen(true);
+  };
+
+  const toggleDrawer = () => {
+    setOpen(!open);
   };
 
   useEffect(() => {
@@ -146,7 +150,7 @@ const Navigation = () => {
             <List className={classes.customList}>
               <MenuToggleListItem
                 closeAllArrows={open}
-                toggleDrawer={closeDrawer}
+                toggleDrawer={toggleDrawer}
               />
               <DashboardListItem
                 closeAllArrows={open}
@@ -156,12 +160,18 @@ const Navigation = () => {
               <GovernanceListItem
                 closeAllArrows={open}
                 openDrawer={openDrawer}
+                closeDrawer={closeDrawer}
               />
               <HydrationListItem
                 closeAllArrows={open}
                 openDrawer={openDrawer}
+                closeDrawer={closeDrawer}
               />
-              <RequestListItem closeAllArrows={open} openDrawer={openDrawer} />
+              <RequestListItem
+                closeAllArrows={open}
+                openDrawer={openDrawer}
+                closeDrawer={closeDrawer}
+              />
               <AwsAthenaListItem closeAllArrows={open} />
             </List>
             <AvatarListItem closeAllArrows={open} closeDrawer={closeDrawer} />

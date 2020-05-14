@@ -13,7 +13,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const HydrationListItem = ({
   closeAllArrows,
-  openDrawer
+  openDrawer,
+  closeDrawer
 }: HydrationListItemProps) => {
   const [openIconTwo, setOpenIconTwo] = useState(false);
   const activeLink = useLocation();
@@ -80,7 +81,7 @@ const HydrationListItem = ({
         </Tooltip>
       )}
       <Collapse in={openIconTwo} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
+        <List component="div" disablePadding onClick={closeDrawer}>
           {hydrationListItemText}
         </List>
       </Collapse>
@@ -93,4 +94,5 @@ export default HydrationListItem;
 interface HydrationListItemProps {
   closeAllArrows: boolean;
   openDrawer: () => void;
+  closeDrawer: () => void;
 }

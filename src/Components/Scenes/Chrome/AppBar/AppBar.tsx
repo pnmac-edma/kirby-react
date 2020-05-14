@@ -18,8 +18,8 @@ import {
 } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { color, z } from '@edma/design-tokens';
-import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogo.svg';
-import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMark.svg';
+import { ReactComponent as KirbyLogo } from '../../../../assets/img/kirbyLogoColor.svg';
+import { ReactComponent as KirbyMark } from '../../../../assets/img/kirbyMarkColor.svg';
 import {
   setJobName,
   setDefaultJobNameOnBlur
@@ -38,20 +38,12 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     height: '56px',
-    cursor: 'pointer',
-
-    '& path': {
-      fill: theme.palette.type === 'light' ? color.black : color.white
-    }
+    cursor: 'pointer'
   },
   mark: {
     height: theme.spacing(7),
     flexShrink: 0,
-    cursor: 'pointer',
-
-    '& path': {
-      fill: theme.palette.type === 'light' ? color.black : color.white
-    }
+    cursor: 'pointer'
   },
   appBar: {
     backgroundColor: 'transparent',

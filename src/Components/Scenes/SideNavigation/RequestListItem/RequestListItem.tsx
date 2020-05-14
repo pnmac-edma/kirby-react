@@ -30,7 +30,8 @@ const requestListItem = makeStyles(theme => ({
 
 const RequestListItem = ({
   closeAllArrows,
-  openDrawer
+  openDrawer,
+  closeDrawer
 }: RequestListItemProps) => {
   const classes = requestListItem();
 
@@ -110,7 +111,7 @@ const RequestListItem = ({
         </Tooltip>
       )}
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
+        <List component="div" disablePadding onClick={closeDrawer}>
           {currentRole.governance || currentRole.approver
             ? requestListItemText
             : [requestListItemText[1]]}
@@ -125,4 +126,5 @@ export default RequestListItem;
 interface RequestListItemProps {
   closeAllArrows: boolean;
   openDrawer: () => void;
+  closeDrawer: () => void;
 }
