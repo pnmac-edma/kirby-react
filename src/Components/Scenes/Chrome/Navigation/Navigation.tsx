@@ -91,6 +91,10 @@ const Navigation = () => {
     setOpen(true);
   };
 
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
   useEffect(() => {
     axios.interceptors.response.use(
       response => {
@@ -146,7 +150,7 @@ const Navigation = () => {
             <List className={classes.customList}>
               <MenuToggleListItem
                 closeAllArrows={open}
-                toggleDrawer={closeDrawer}
+                toggleDrawer={toggleDrawer}
               />
               <DashboardListItem
                 closeAllArrows={open}
