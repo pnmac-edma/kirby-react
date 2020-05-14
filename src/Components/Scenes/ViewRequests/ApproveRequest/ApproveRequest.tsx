@@ -98,9 +98,9 @@ const ApproveRequest = () => {
     (request: any) => request.Id.toString() === id
   );
 
-  // NOTE: after going to approve request page and approve/rejecting request,
-  // hitting back button will cause currentRequest to error out without the following
-  // lines of code; unsure as to why this is happening
+  // NOTE: after going to approve request page and approve/rejecting request
+  //       and being redirected to requests page, the following lines of code
+  //       prevents erroring out; unsure why ApproveRequest gets re-rendered
   if (!currentRequest) {
     return null;
   }
