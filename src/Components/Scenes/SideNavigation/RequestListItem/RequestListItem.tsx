@@ -15,7 +15,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const requestListItem = makeStyles(theme => ({
   newInbox: {
-    color: color.t300
+    color: color.c300
   },
   newRequestCircle: {
     position: 'absolute',
@@ -24,7 +24,7 @@ const requestListItem = makeStyles(theme => ({
     height: '8px',
     width: '8px',
     borderRadius: '50%',
-    backgroundColor: color.t300
+    backgroundColor: color.c300
   }
 }));
 

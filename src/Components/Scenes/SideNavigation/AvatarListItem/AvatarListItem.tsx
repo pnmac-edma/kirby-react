@@ -16,12 +16,12 @@ const useStyles = makeStyles(theme => ({
     position: 'fixed',
     bottom: 0,
     width: 'inherit',
-    backgroundColor: color.black,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    color: color.b100
   },
   avatar: {
-    color: color.white,
-    background: color.green
+    color: color.black,
+    background: color.white
   }
 }));
 

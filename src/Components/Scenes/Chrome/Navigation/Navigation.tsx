@@ -39,10 +39,11 @@ const useStyles = makeStyles(theme => ({
   drawerOpen: {
     overflowY: 'auto',
     overflowX: 'hidden',
-    color: color.g400,
-    backgroundColor: color.black,
     borderRight: 'none',
     width: navWidth,
+    backgroundColor: color.v700,
+    background: `linear-gradient(0deg, ${color.b500} 0%, ${color.v700} 40%, ${color.v700} 100%)`,
+    color: color.v100,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -50,9 +51,10 @@ const useStyles = makeStyles(theme => ({
   },
   drawerClose: {
     overflow: 'hidden',
-    color: color.g400,
-    backgroundColor: color.black,
     borderRight: 'none',
+    backgroundColor: color.v700,
+    background: `linear-gradient(0deg, ${color.b500} 0%, ${color.v700} 40%, ${color.v700} 100%)`,
+    color: color.v100,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen

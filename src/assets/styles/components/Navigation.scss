@@ -16,6 +16,7 @@
   flex-wrap: nowrap;
   overflow: hidden;
   height: 100vh;
+  color: $color-v-100;
 
   &:hover,
   &.Nav--is-open {
@@ -70,7 +71,7 @@
 
   &:hover:before {
     content: '';
-    background: $color-b-400;
+    background: $color-v-50;
   }
 
   &.Nav__item--is-open {
@@ -94,14 +95,14 @@
 }
 
 .Nav .Nav__item .Nav__icon {
-  fill: $color-g-400;
+  fill: $color-v-100;
   width: 20px;
   min-width: 20px;
   margin-right: 1.5rem;
   transition: all 0.2s ease-in-out;
 
   & path {
-    fill: $color-g-400;
+    fill: $color-v-100;
     transition: all 0.2s ease-in-out;
   }
 }
@@ -126,7 +127,7 @@
 }
 
 .Nav .Nav__item .Nav__arrow {
-  fill: $color-g-400;
+  fill: $color-v-100;
   width: 16px;
   position: absolute;
   left: 2px;
