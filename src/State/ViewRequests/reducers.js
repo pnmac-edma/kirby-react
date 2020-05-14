@@ -81,6 +81,20 @@ const viewRequestsReducer = (state = initialState, action) => {
         )
       };
     }
+    case types.REQ_DECISION_REQUEST_FETCH: {
+      // TODO: maybe add req decision loading status
+      return { ...state };
+    }
+    case types.REQ_DECISION_REQUEST_SUCCESS: {
+      console.log(action.response);
+      // TODO: add message for snackbar notification
+      return { ...state };
+    }
+    case types.REQ_DECISION_REQUEST_FAILURE: {
+      console.log(action.error);
+      // TODO: add message for snackbar notification
+      return { ...state };
+    }
     case types.SET_TOGGLE_VIEW_CHECKBOX: {
       return {
         ...state,

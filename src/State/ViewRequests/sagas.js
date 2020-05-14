@@ -3,7 +3,8 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import {
   getUserRequests,
   getApproverRequests,
-  getGovernanceRequests
+  getGovernanceRequests,
+  postReqDecision
 } from './api';
 
 export function* workUserRequests(action) {
@@ -33,8 +34,19 @@ export function* workGovernanceRequests(action) {
   }
 }
 
+export function* workReqDecisionRequest(action) {
+  const { decision, ids } = action;
+  try {
+    const response = yield call(postReqDecision, decision, ids);
+    yield put({ type: types.REQ_DECISION_REQUEST_SUCCESS, response: response });
+  } catch (error) {
+    yield put({ type: types.REQ_DECISION_REQUEST_FAILURE, error: error });
+  }
+}
+
 export default function* watchViewRequests() {
   yield takeEvery(types.USER_REQUESTS_FETCH, workUserRequests);
   yield takeEvery(types.APPROVER_REQUESTS_FETCH, workApproverRequests);
   yield takeEvery(types.GOVERNANCE_REQUESTS_FETCH, workGovernanceRequests);
+  yield takeEvery(types.REQ_DECISION_REQUEST_FETCH, workReqDecisionRequest);
 }
