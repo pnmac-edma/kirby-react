@@ -20,6 +20,21 @@ export function getUserRequests(useremail: any) {
     .then(error => error);
 }
 
+export function getArchivedRequests(useremail: any) {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/requests/archive`,
+    HttpMethods.GET,
+    {
+      params: { useremail }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+}
+
 export function getApproverRequests(approveremail: string) {
   const request = constructRequest(
     config.apiUrl,
