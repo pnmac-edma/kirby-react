@@ -1,13 +1,16 @@
 import React from 'react';
-import { ListItem, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemText, Tooltip } from '@material-ui/core';
 import { Equalizer } from '@material-ui/icons/';
 import { Link, useLocation } from 'react-router-dom';
 
-const DashboardListItem = ({ closeDrawer }: DashboardListItemProps) => {
+const DashboardListItem = ({
+  closeAllArrows,
+  closeDrawer
+}: DashboardListItemProps) => {
   const activeLink = useLocation();
-  return (
+  const listItem = (
     <ListItem
-      onClick={closeDrawer}
+      onClick={closeAllArrows ? closeDrawer : undefined}
       component={Link}
       to="/"
       button
@@ -21,10 +24,23 @@ const DashboardListItem = ({ closeDrawer }: DashboardListItemProps) => {
       <ListItemText className="Nav__text" primary="Dashboard" />
     </ListItem>
   );
+
+  return (
+    <>
+      {closeAllArrows ? (
+        listItem
+      ) : (
+        <Tooltip placement="right" title="Dashboard">
+          {listItem}
+        </Tooltip>
+      )}
+    </>
+  );
 };
 
 export default DashboardListItem;
 
 interface DashboardListItemProps {
+  closeAllArrows: boolean;
   closeDrawer: () => void;
 }

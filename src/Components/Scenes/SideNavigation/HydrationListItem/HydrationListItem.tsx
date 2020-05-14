@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import { List, ListItem, Collapse, ListItemText } from '@material-ui/core';
+import {
+  List,
+  ListItem,
+  Collapse,
+  ListItemText,
+  Tooltip
+} from '@material-ui/core';
 import { ArrowDropDown } from '@material-ui/icons/';
 import { ReactComponent as DropIcon } from '@edma/design-tokens/img/dropIcon.svg';
 import { Link, useLocation } from 'react-router-dom';
 
 const HydrationListItem = ({
   closeAllArrows,
-  closeDrawer
+  openDrawer
 }: HydrationListItemProps) => {
   const [openIconTwo, setOpenIconTwo] = useState(false);
   const activeLink = useLocation();
+
+  const clickActions = () => {
+    setOpenIconTwo(!openIconTwo);
+    openDrawer();
+  };
 
   const hydrationListItemsName = [
     { label: 'New Destination', link: '/hydration/new-destination' },
@@ -21,7 +32,7 @@ const HydrationListItem = ({
   const hydrationListItemText = hydrationListItemsName.map(
     ({ label, link }) => (
       <ListItem
-        onClick={closeDrawer}
+        onClick={openDrawer}
         component={Link}
         to={link}
         key={label}
@@ -43,21 +54,31 @@ const HydrationListItem = ({
     }
   }, [closeAllArrows, openIconTwo]);
 
+  const listItem = (
+    <ListItem
+      button
+      onClick={() => clickActions()}
+      className={clsx(
+        openIconTwo
+          ? clsx('Nav__item', 'Nav__item--is-open')
+          : clsx('Nav__item')
+      )}
+    >
+      <ArrowDropDown className="Nav__arrow" />
+      <DropIcon className="Nav__icon" />
+      <ListItemText className="Nav__text" primary="Hydration" />
+    </ListItem>
+  );
+
   return (
     <>
-      <ListItem
-        button
-        onClick={() => setOpenIconTwo(!openIconTwo)}
-        className={clsx(
-          openIconTwo
-            ? clsx('Nav__item', 'Nav__item--is-open')
-            : clsx('Nav__item')
-        )}
-      >
-        <ArrowDropDown className="Nav__arrow" />
-        <DropIcon className="Nav__icon" />
-        <ListItemText className="Nav__text" primary="Hydration" />
-      </ListItem>
+      {closeAllArrows ? (
+        listItem
+      ) : (
+        <Tooltip placement="right" title="Hydration">
+          {listItem}
+        </Tooltip>
+      )}
       <Collapse in={openIconTwo} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {hydrationListItemText}
@@ -71,5 +92,5 @@ export default HydrationListItem;
 
 interface HydrationListItemProps {
   closeAllArrows: boolean;
-  closeDrawer: () => void;
+  openDrawer: () => void;
 }

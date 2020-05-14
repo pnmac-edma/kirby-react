@@ -16,6 +16,7 @@
   flex-wrap: nowrap;
   overflow: hidden;
   height: 100vh;
+  color: $color-v-100;
 
   &:hover,
   &.Nav--is-open {
@@ -35,13 +36,12 @@
     .Nav__nested-item .Nav__text {
       padding-left: 3.5rem;
     }
+  }
 
-    .Nav__item .Nav__avatar-icon {
-      width: 48px;
-      height: 48px;
-      font-size: 14px;
-      transition-delay: 200ms;
-    }
+  &.Nav--is-open .Nav__item .Nav__avatar-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 14px;
   }
 }
 
@@ -71,7 +71,7 @@
 
   &:hover:before {
     content: '';
-    background: $color-b-400;
+    background: $color-v-50;
   }
 
   &.Nav__item--is-open {
@@ -95,15 +95,14 @@
 }
 
 .Nav .Nav__item .Nav__icon {
-  fill: $color-g-400;
+  fill: $color-v-100;
   width: 20px;
   min-width: 20px;
   margin-right: 1.5rem;
   transition: all 0.2s ease-in-out;
-  transition-delay: 200ms;
 
   & path {
-    fill: $color-g-400;
+    fill: $color-v-100;
     transition: all 0.2s ease-in-out;
   }
 }
@@ -114,11 +113,21 @@
   height: 32px;
   font-size: 8px;
   font-weight: $weight-bold;
-  transition-delay: 0s;
+}
+
+.Nav .Nav__item .Nav__toggle-icon {
+  position: relative;
+  right: -8;
+}
+
+.Nav--is-open .Nav__item .Nav__toggle-icon {
+  position: relative;
+  right: 0;
+  transform: rotate(180deg);
 }
 
 .Nav .Nav__item .Nav__arrow {
-  fill: $color-g-400;
+  fill: $color-v-100;
   width: 16px;
   position: absolute;
   left: 2px;
@@ -135,7 +144,6 @@
 .Nav .Nav__top-item {
   height: 3rem;
   margin-bottom: 1rem;
-  transition: none;
 
   .Nav__icon {
     position: absolute;

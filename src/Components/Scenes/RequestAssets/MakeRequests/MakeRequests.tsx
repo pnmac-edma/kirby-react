@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import SnackBar from '../../../Presentational/SnackBar/SnackBar';
 import {
   makeRequestsFetch,
-  setClearSelectedAssets
+  setClearSelectedAssetsAndEmployees
 } from '../../../../State/RequestAsset/actions';
 
 const tableStyles = makeStyles(theme => ({
@@ -36,11 +36,10 @@ const MakeRequests = () => {
     isLoading,
     justification,
     notificationMessage,
-    selectedEmployees,
-    selectedAssets
+    selectedEmployees
   } = useSelector(({ requestAssets }: any) => requestAssets);
-  const searchedInput = useSelector(
-    ({ searchResult }: any) => searchResult.searchedInput
+  const { selected, searchedInput } = useSelector(
+    ({ searchResult }: any) => searchResult
   );
   const dispatch = useDispatch();
 
@@ -58,7 +57,7 @@ const MakeRequests = () => {
   // depending on what we do with redux store saving into session
   // storage we might be able to get rid of this useEffect and action
   useEffect(() => {
-    dispatch(setClearSelectedAssets());
+    dispatch(setClearSelectedAssetsAndEmployees());
   }, [dispatch]);
 
   return (
@@ -68,9 +67,7 @@ const MakeRequests = () => {
         variant="contained"
         color="primary"
         disabled={
-          !selectedAssets.length ||
-          !selectedEmployees.length ||
-          !justification.length
+          !selected.length || !selectedEmployees.length || !justification.length
         }
         onClick={() => {
           dispatch(makeRequestsFetch());

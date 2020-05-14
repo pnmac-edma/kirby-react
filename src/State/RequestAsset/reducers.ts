@@ -66,10 +66,11 @@ const requestAssetsReducers = (
         justification: action.payload
       };
     }
-    case types.SET_CLEAR_SELECTED_ASSETS: {
+    case types.SET_CLEAR_SELECTED_ASSETS_AND_EMPLOYEES: {
       return {
         ...state,
-        selectedAssets: []
+        selectedAssets: [],
+        selectedEmployees: []
       };
     }
     case types.SET_TOGGLE_ASSET_CHECKBOX: {

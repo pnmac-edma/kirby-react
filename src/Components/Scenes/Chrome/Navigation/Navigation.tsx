@@ -5,7 +5,6 @@ import axios from 'axios';
 import { makeStyles, Drawer, List } from '@material-ui/core';
 import PageWrapper from '../PageWrapper/PageWrapper';
 import color from '@edma/design-tokens/js/color';
-import UserGroupListItem from '../../SideNavigation/UserGroupListItem/UserGroupListItem';
 import DashboardListItem from '../../SideNavigation/DashboardListItem/DashboardListItem';
 import SearchAssetsListItem from '../../SideNavigation/SearchAssetsListItem/SearchAssetsListItem';
 import GovernanceListItem from '../../SideNavigation/GovernanceListItem/GovernanceListItem';
@@ -13,6 +12,7 @@ import HydrationListItem from '../../SideNavigation/HydrationListItem/HydrationL
 import RequestListItem from '../../SideNavigation/RequestListItem/RequestListItem';
 import AwsAthenaListItem from '../../SideNavigation/AwsAthenaListItem/AwsAthenaListItem';
 import AvatarListItem from '../../SideNavigation/AvatarListItem/AvatarListItem';
+import MenuToggleListItem from '../../SideNavigation/MenuToggleListItem/MenuToggleListItem';
 import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
 import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
 import { useQuery } from '../../../../Hooks/customHooks';
@@ -39,21 +39,22 @@ const useStyles = makeStyles(theme => ({
   drawerOpen: {
     overflowY: 'auto',
     overflowX: 'hidden',
-    color: color.g400,
-    backgroundColor: color.black,
     borderRight: 'none',
     width: navWidth,
+    backgroundColor: color.v700,
+    background: `linear-gradient(0deg, ${color.b500} 0%, ${color.v700} 40%, ${color.v700} 100%)`,
+    color: color.v100,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
-    }),
-    transitionDelay: '200ms'
+    })
   },
   drawerClose: {
     overflow: 'hidden',
-    color: color.g400,
-    backgroundColor: color.black,
     borderRight: 'none',
+    backgroundColor: color.v700,
+    background: `linear-gradient(0deg, ${color.b500} 0%, ${color.v700} 40%, ${color.v700} 100%)`,
+    color: color.v100,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -84,6 +85,10 @@ const Navigation = () => {
   const samlResponse = useQuery('SAMLResponse');
   const closeDrawer = () => {
     setOpen(!open);
+  };
+
+  const openDrawer = () => {
+    setOpen(true);
   };
 
   useEffect(() => {
@@ -123,8 +128,6 @@ const Navigation = () => {
       {apiError === null && (
         <>
           <Drawer
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
             variant="permanent"
             className={clsx('Nav', classes.drawer, {
               'Nav--is-open': open,
@@ -141,24 +144,27 @@ const Navigation = () => {
             open={open}
           >
             <List className={classes.customList}>
-              <UserGroupListItem />
-              <DashboardListItem closeDrawer={closeDrawer} />
-              <SearchAssetsListItem />
-              <GovernanceListItem
+              <MenuToggleListItem
+                closeAllArrows={open}
+                toggleDrawer={closeDrawer}
+              />
+              <DashboardListItem
                 closeAllArrows={open}
                 closeDrawer={closeDrawer}
+              />
+              <SearchAssetsListItem closeAllArrows={open} />
+              <GovernanceListItem
+                closeAllArrows={open}
+                openDrawer={openDrawer}
               />
               <HydrationListItem
                 closeAllArrows={open}
-                closeDrawer={closeDrawer}
+                openDrawer={openDrawer}
               />
-              <RequestListItem
-                closeAllArrows={open}
-                closeDrawer={closeDrawer}
-              />
-              <AwsAthenaListItem />
+              <RequestListItem closeAllArrows={open} openDrawer={openDrawer} />
+              <AwsAthenaListItem closeAllArrows={open} />
             </List>
-            <AvatarListItem />
+            <AvatarListItem closeAllArrows={open} closeDrawer={closeDrawer} />
           </Drawer>
           <main>
             <PageWrapper />
