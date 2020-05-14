@@ -34,3 +34,11 @@ code {
   display: flex;
   flex-direction: column;
 }
+
+.kirbyLogoText {
+  fill: $color-black;
+}
+
+.dark .kirbyLogoText {
+  fill: $color-white;
+}
