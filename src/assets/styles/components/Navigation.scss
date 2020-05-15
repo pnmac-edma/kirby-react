@@ -89,8 +89,10 @@
 
 .Nav .Nav__item.Nav__item--is-open,
 .Nav .Nav__item.Nav__item--is-active,
+.Nav .Nav__nested-item.Nav__item--is-active,
 .dark .Nav .Nav__item.Nav__item--is-open,
-.dark .Nav .Nav__item.Nav__item--is-active {
+.dark .Nav .Nav__item.Nav__item--is-active,
+.dark .Nav .Nav__nested-item.Nav__item--is-active {
   color: $color-white;
 
   .Nav__icon path,

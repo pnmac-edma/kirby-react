@@ -94,6 +94,8 @@ const RequestListItem = ({
       className={clsx(
         openIconThree
           ? clsx('Nav__item', 'Nav__item--is-open')
+          : activeLink.pathname.includes('requests')
+          ? clsx('Nav__item', 'Nav__item--is-active')
           : clsx('Nav__item')
       )}
       button
