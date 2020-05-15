@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Navigation = ({ node }: NavigationProps) => {
+const Navigation = () => {
   const classes = useStyles();
 
   const [isRedirecting, setIsRedirecting] = useState(true);
@@ -208,7 +208,3 @@ const Navigation = ({ node }: NavigationProps) => {
 };
 
 export default Navigation;
-
-interface NavigationProps {
-  node: any; // Reference to top level node / element in the collapsible component.
-}
