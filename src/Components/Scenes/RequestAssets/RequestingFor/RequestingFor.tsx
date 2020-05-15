@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestingFor = () => {
+const RequestingFor = ({ isMultiple, dropDownText }: RequestingForProps) => {
   const classes = useStyles();
 
   const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
@@ -57,13 +57,13 @@ const RequestingFor = () => {
   return (
     <>
       <Typography variant="overline" className={classes.menuStyle}>
-        Requesting For
+        {dropDownText}
       </Typography>
       <Select
         // className={('basic-multi-select', classes.table)} // NOTE: not sure if 'basic-multi-select' is needed
         className={classes.table}
         filterOption={createFilter({ ignoreAccents: false })}
-        isMulti
+        isMulti={isMultiple}
         placeholder={'Select name(s) from the list'}
         styles={customReactSelectStyles}
         components={{ MenuList: EmployeesList }}
@@ -75,3 +75,8 @@ const RequestingFor = () => {
 };
 
 export default RequestingFor;
+
+interface RequestingForProps {
+  isMultiple: boolean;
+  dropDownText: string;
+}

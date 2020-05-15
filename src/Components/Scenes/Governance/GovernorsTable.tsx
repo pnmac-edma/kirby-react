@@ -46,9 +46,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
   }
 
   const render = (
-    <>
-      <RequestingForContainer />
-    </>
+    <RequestingForContainer isMultiple={false} dropDownText={`Governor Name`} />
   );
 
   return (
