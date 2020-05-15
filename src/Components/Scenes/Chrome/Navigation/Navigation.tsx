@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import axios from 'axios';
@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Navigation = () => {
+const Navigation = ({ node }: NavigationProps) => {
   const classes = useStyles();
 
   const [isRedirecting, setIsRedirecting] = useState(true);
@@ -94,6 +94,25 @@ const Navigation = () => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const nav: any = useRef();
+
+  const handleClick = (e: any) => {
+    if (nav?.current?.contains(e.target)) {
+      // Inside click
+      return;
+    }
+    // Outside click
+    closeDrawer();
+  };
+
+  useEffect(() => {
+    // Listen for clicks outside of this component
+    document.addEventListener('mousedown', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  });
 
   useEffect(() => {
     axios.interceptors.response.use(
@@ -132,6 +151,7 @@ const Navigation = () => {
       {apiError === null && (
         <>
           <Drawer
+            ref={nav}
             variant="permanent"
             className={clsx('Nav', classes.drawer, {
               'Nav--is-open': open,
@@ -188,3 +208,7 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+interface NavigationProps {
+  node: any; // Reference to top level node / element in the collapsible component.
+}
