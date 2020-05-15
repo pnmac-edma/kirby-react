@@ -17,7 +17,8 @@ const Modal = props => {
     openModal,
     handleModalToggle,
     handleRemoveSelected,
-    handleOpenNotification
+    handleOpenNotification,
+    footerButtonText
   } = props;
 
   return (
@@ -46,7 +47,7 @@ const Modal = props => {
             }}
             autoFocus
           >
-            Confirm & Remove
+            {footerButtonText}
           </Button>
         </DialogActions>
       </Dialog>

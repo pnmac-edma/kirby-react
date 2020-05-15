@@ -81,6 +81,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
           handleModalToggle={setIsModalOpenForRemove}
           handleRemoveSelected={setRemoveGovernors}
           handleOpenNotification={handleOpenNotification}
+          footerButtonText={'Yes, Remove Govenor'}
         />
       )}
       <TableWrapper
@@ -98,6 +99,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
           handleModalToggle={setIsModalOpen}
           handleRemoveSelected={setGovernorsRequestFetch}
           handleOpenNotification={handleOpenNotification}
+          footerButtonText={'Add Governor'}
         />
       )}
     </>
