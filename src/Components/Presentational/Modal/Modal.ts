@@ -23,7 +23,7 @@ const Modal = props => {
   return (
     <React.Fragment>
       <Dialog
-        maxWidth="md"
+        fullWidth={true}
         open={openModal}
         aria-labelledby="responsive-dialog-title"
       >
