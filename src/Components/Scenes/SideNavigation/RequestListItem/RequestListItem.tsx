@@ -14,10 +14,10 @@ import color from '@edma/design-tokens/js/color';
 import { Link, useLocation } from 'react-router-dom';
 
 const requestListItem = makeStyles(theme => ({
-  newInbox: {
+  notificationText: {
     color: color.c300
   },
-  newRequestCircle: {
+  notificationDot: {
     position: 'absolute',
     top: '8px',
     left: '32px',
@@ -69,7 +69,12 @@ const RequestListItem = ({
         {label === 'Inbox' ? (
           <>
             {label}
-            <span className={classes.newInbox}> (3 new)</span>
+            <span className={classes.notificationText}> (5 new)</span>
+          </>
+        ) : label === 'Sent' ? (
+          <>
+            {label}
+            <span className={classes.notificationText}> (2 updates)</span>
           </>
         ) : (
           label
@@ -96,7 +101,7 @@ const RequestListItem = ({
     >
       <ArrowDropDown className="Nav__arrow" />
       <InboxOutlined className="Nav__icon" />
-      <div className={classes.newRequestCircle}></div>
+      <div className={classes.notificationDot}></div>
       <ListItemText className="Nav__text">Requests</ListItemText>
     </ListItem>
   );
