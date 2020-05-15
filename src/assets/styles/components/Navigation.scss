@@ -47,9 +47,7 @@
 
 .Nav .Nav__item,
 .Nav .Nav__nested-item {
-  &:hover,
-  &.Nav__item--is-open,
-  &.Nav__item--is-active {
+  &:hover {
     color: $color-white;
 
     .Nav__icon path,
@@ -87,6 +85,19 @@
 
 .dark .Nav .Nav__item:hover:before {
   background: $color-g-50;
+}
+
+.Nav .Nav__item.Nav__item--is-open,
+.Nav .Nav__item.Nav__item--is-active,
+.dark .Nav .Nav__item.Nav__item--is-open,
+.dark .Nav .Nav__item.Nav__item--is-active {
+  color: $color-white;
+
+  .Nav__icon path,
+  .Nav__arrow path {
+    fill: $color-white;
+    transition: all 0.2s ease-in-out;
+  }
 }
 
 .Nav .Nav__nested-item .Nav__text {
