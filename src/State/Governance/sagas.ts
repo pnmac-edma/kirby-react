@@ -14,7 +14,8 @@ import {
 import {
   getDomainOwner,
   getUserEmail,
-  getCreatedByEmail
+  getCreatedByEmail,
+  getRequestedFor
 } from '../../Selectors/sagaSelectors';
 
 export function* workDomainOwners() {
@@ -170,8 +171,8 @@ export function* workDeleteGovernors() {
   }
 }
 
-export function* workAddGovernors(action: any) {
-  const { userEmail } = action;
+export function* workAddGovernors() {
+  const userEmail = yield select(getRequestedFor);
   const createdByEmail = yield select(getCreatedByEmail);
   try {
     const response = yield call(addGovernors, userEmail, createdByEmail);

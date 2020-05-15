@@ -199,15 +199,11 @@ interface DeleteGovernorsRequestFailureAction {
   message: any;
 }
 
-export const addGovernorsRequestFetch = (
-  userEmail: string
-): AddGovernorsRequestFetchAction => ({
-  type: types.ADD_GOVERNORS_REQUEST_FETCH,
-  userEmail
+export const addGovernorsRequestFetch = (): AddGovernorsRequestFetchAction => ({
+  type: types.ADD_GOVERNORS_REQUEST_FETCH
 });
 interface AddGovernorsRequestFetchAction {
   type: typeof types.ADD_GOVERNORS_REQUEST_FETCH;
-  userEmail: string;
 }
 export const addGovernorsRequestSuccess = (
   message: string
