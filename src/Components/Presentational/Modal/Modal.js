@@ -17,13 +17,14 @@ const Modal = props => {
     openModal,
     handleModalToggle,
     handleRemoveSelected,
-    handleOpenNotification
+    handleOpenNotification,
+    footerButtonText
   } = props;
 
   return (
     <React.Fragment>
       <Dialog
-        maxWidth="md"
+        fullWidth={true}
         open={openModal}
         aria-labelledby="responsive-dialog-title"
       >
@@ -46,7 +47,7 @@ const Modal = props => {
             }}
             autoFocus
           >
-            Confirm & Remove
+            {footerButtonText}
           </Button>
         </DialogActions>
       </Dialog>
