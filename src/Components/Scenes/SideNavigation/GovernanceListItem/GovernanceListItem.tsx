@@ -62,6 +62,8 @@ const GovernanceListItem = ({
       className={clsx(
         openIconOne
           ? clsx('Nav__item', 'Nav__item--is-open')
+          : activeLink.pathname.includes('governance')
+          ? clsx('Nav__item', 'Nav__item--is-active')
           : clsx('Nav__item')
       )}
     >

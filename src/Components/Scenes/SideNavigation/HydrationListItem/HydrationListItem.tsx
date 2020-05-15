@@ -90,6 +90,8 @@ const HydrationListItem = ({
       className={clsx(
         openIconTwo
           ? clsx('Nav__item', 'Nav__item--is-open')
+          : activeLink.pathname.includes('hydration')
+          ? clsx('Nav__item', 'Nav__item--is-active')
           : clsx('Nav__item')
       )}
     >
