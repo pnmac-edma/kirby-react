@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TableWrapper from '../../Presentational/Table/TableWrapper';
+import RequestingForContainer from '../RequestAssets/RequestingFor/RequestingFor';
 import Modal from '../../Presentational/Modal/Modal';
 import {
   governorsRequestFetch,
   deleteGovernorsRequestFetch,
   addGovernorsRequestFetch
 } from '../../../State/Governance/actions';
-import { TextField } from '@material-ui/core/';
 import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
@@ -15,8 +15,6 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
     (state: any) => state.governance
   );
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
   const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,8 +29,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
   }, [dispatch]);
 
   const setRemoveGovernors = () => dispatch(deleteGovernorsRequestFetch());
-  const setGovernorsRequestFetch = () =>
-    dispatch(addGovernorsRequestFetch(userName, userEmail));
+  const setGovernorsRequestFetch = () => dispatch(addGovernorsRequestFetch());
   let removeGovernor;
   if (governors !== null) {
     removeGovernor = governors.reduce((acc: any, governor: any) => {
@@ -49,20 +46,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
   }
 
   const render = (
-    <>
-      <TextField
-        label="User Name"
-        fullWidth
-        helperText="Please provide username"
-        onChange={e => setUserName(e.target.value)}
-      />
-      <TextField
-        label="User Email"
-        fullWidth
-        helperText="Please provide useremail"
-        onChange={e => setUserEmail(e.target.value)}
-      />
-    </>
+    <RequestingForContainer isMultiple={false} dropDownText={`Governor Name`} />
   );
 
   return (
@@ -81,6 +65,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
           handleModalToggle={setIsModalOpenForRemove}
           handleRemoveSelected={setRemoveGovernors}
           handleOpenNotification={handleOpenNotification}
+          footerButtonText={'Yes, Remove Govenor'}
         />
       )}
       <TableWrapper
@@ -98,6 +83,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
           handleModalToggle={setIsModalOpen}
           handleRemoveSelected={setGovernorsRequestFetch}
           handleOpenNotification={handleOpenNotification}
+          footerButtonText={'Add Governor'}
         />
       )}
     </>

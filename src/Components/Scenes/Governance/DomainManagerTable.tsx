@@ -88,6 +88,7 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
           handleModalToggle={setIsModalOpenForRemove}
           handleRemoveSelected={setRemoveDomainManager}
           handleOpenNotification={handleOpenNotification}
+          footerButtonText={'Yes, Remove Owner'}
         />
       )}
       <TableWrapper
@@ -106,6 +107,7 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
           handleModalToggle={setIsModalOpen}
           handleRemoveSelected={setGovernorsRequestFetch}
           handleOpenNotification={handleOpenNotification}
+          footerButtonText={'Add Manager'}
         />
       )}
     </>
