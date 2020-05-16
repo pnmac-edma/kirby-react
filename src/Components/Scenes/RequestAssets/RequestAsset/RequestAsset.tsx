@@ -52,6 +52,7 @@ const RequestAsset = () => {
   const [notification, setNotification] = React.useState(false);
 
   const { openModal } = useSelector(({ requestAssets }: any) => requestAssets);
+  const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
   const dispatch = useDispatch();
 
   const handleOpenNotification = () => {
@@ -75,7 +76,11 @@ const RequestAsset = () => {
           </Typography>
           <RequestedBy />
           <Divider className={classes.dividerStyle} />
-          <RequestingFor isMultiple={true} dropDownText={`Requesting For`} />
+          <RequestingFor
+            isMultiple={true}
+            dropDownText={`Requesting For`}
+            data={employees}
+          />
         </div>
       </div>
       <div className={classes.sideTable}>

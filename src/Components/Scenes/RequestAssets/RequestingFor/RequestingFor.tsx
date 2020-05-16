@@ -21,10 +21,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestingFor = ({ isMultiple, dropDownText }: RequestingForProps) => {
+const RequestingFor = ({
+  isMultiple,
+  dropDownText,
+  data
+}: RequestingForProps) => {
   const classes = useStyles();
-
-  const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
   const dispatch = useDispatch();
 
   const theme = useTheme();
@@ -53,7 +55,7 @@ const RequestingFor = ({ isMultiple, dropDownText }: RequestingForProps) => {
       background: theme.palette.type === 'light' ? color.white : color.black
     })
   };
-
+  console.log(data);
   return (
     <>
       <Typography variant="overline" className={classes.menuStyle}>
@@ -67,8 +69,8 @@ const RequestingFor = ({ isMultiple, dropDownText }: RequestingForProps) => {
         placeholder={'Select name(s) from the list'}
         styles={customReactSelectStyles}
         components={{ MenuList: EmployeesList }}
-        options={employees}
-        onChange={val => dispatch(handleSelectedEmployees(val))}
+        options={data}
+        // onChange={val => dispatch(handleSelectedEmployees(val))}
       />
     </>
   );
@@ -79,4 +81,5 @@ export default RequestingFor;
 interface RequestingForProps {
   isMultiple: boolean;
   dropDownText: string;
+  data: any;
 }

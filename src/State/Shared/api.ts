@@ -7,10 +7,10 @@ import * as types from './types';
 export const getDomains = (): Promise<types.GetDomainsResponse> => {
   const request = constructRequest(
     config.apiUrl,
-    `${config.apiPath}/data/`,
+    `${config.apiPath}/data`,
     HttpMethods.GET,
     {
-      params: { domain: 'domains' }
+      params: { dropdown: 'domains' }
     }
   );
 

@@ -6,6 +6,7 @@ import viewRequestsSagas from './ViewRequests/sagas';
 import authFlowSagas from './AuthFlow/sagas';
 import hydrationSagas from './Hydration/sagas';
 import governaceSagas from './Governance/sagas';
+import sharedSagas from './Shared/sagas';
 import searchResultReducer from './SearchResult/reducers';
 import requestAssetsReducer from './RequestAsset/reducers';
 import viewRequestsReducer from './ViewRequests/reducers';
@@ -14,6 +15,7 @@ import hydrationReducer from './Hydration/reducers';
 import jobCalendarReducer from './JobCalendar/reducers';
 import chromeReducer from './Chrome/reducers';
 import governanceReducer from './Governance/reducers';
+import sharedReducer from './Shared/reducers';
 
 function* rootSaga() {
   yield all([
@@ -22,7 +24,8 @@ function* rootSaga() {
     viewRequestsSagas(),
     authFlowSagas(),
     hydrationSagas(),
-    governaceSagas()
+    governaceSagas(),
+    sharedSagas()
   ]);
 }
 
@@ -34,7 +37,8 @@ const rootReducer = combineReducers({
   hydration: hydrationReducer,
   jobCalendar: jobCalendarReducer,
   chrome: chromeReducer,
-  governance: governanceReducer
+  governance: governanceReducer,
+  shared: sharedReducer
 });
 
 export { rootReducer, rootSaga };
