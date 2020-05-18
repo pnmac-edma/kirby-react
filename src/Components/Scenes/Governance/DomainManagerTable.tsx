@@ -8,7 +8,6 @@ import {
   addDomainOwnersRequestFetch,
   setSelectedGovernor
 } from '../../../State/Governance/actions';
-import { setSelectedDomainValues } from '../../../State/Shared/actions';
 import { TextField } from '@material-ui/core';
 import SnackBar from '../../Presentational/Modal/SnackBar';
 import RequestingForContainer from '../RequestAssets/RequestingFor/RequestingFor';
