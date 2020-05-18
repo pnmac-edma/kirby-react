@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import RequestTableTitle from '../RequestTableTitle/RequestTableTitle';
 import { transformRequests } from '../../../../State/helpers';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
@@ -18,6 +19,8 @@ const SentRequests = () => {
   const userEmail = useSelector(({ currentUser }: any) => currentUser.EmpEmail);
   const userRole = useSelector(({ currentUser }: any) => currentUser.role);
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const columns = [
     {
@@ -63,9 +66,10 @@ const SentRequests = () => {
           dispatch(setToggleSentAllCheckbox(selected, data))
         }
         footerButtonText={footerButtonText}
-        setFirstColLink={(e: React.ChangeEvent, id: number) =>
-          console.log(`request ${id} clicked`)
-        }
+        setFirstColLink={(e: React.ChangeEvent, id: number) => {
+          const urlWithId = `/requests/${id}`;
+          history.push(urlWithId);
+        }}
         setFooterButtonClick={() => console.log('footer button clicked')}
       />
     </>

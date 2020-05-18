@@ -7,8 +7,6 @@ import { transformRequests } from '../../../../State/helpers';
 import {
   approverRequestsFetch,
   governanceRequestsFetch
-  // setToggleViewCheckbox,
-  // setToggleViewAllCheckbox
 } from '../../../../State/ViewRequests/actions';
 
 const RequestsInbox = () => {
@@ -54,7 +52,7 @@ const RequestsInbox = () => {
         columns={columns}
         data={reqs}
         setFirstColLink={(e: React.ChangeEvent, id: number) => {
-          const urlWithId = `/requests/${id}`;
+          const urlWithId = `/requests/${id}/approve`;
           history.push(urlWithId);
         }}
       />
