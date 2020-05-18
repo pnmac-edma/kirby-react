@@ -7,14 +7,13 @@ import {
   domainOwnersRequestFetch,
   addDomainOwnersRequestFetch
 } from '../../../State/Governance/actions';
-import { TextField } from '@material-ui/core';
+import { setSelectedDomainValues } from '../../../State/Shared/actions';
+import { handleSelectedEmployees } from '../../../State/RequestAsset/actions';
 import SnackBar from '../../Presentational/Modal/SnackBar';
 import RequestingForContainer from '../RequestAssets/RequestingFor/RequestingFor';
 
 const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
-  const [domain, setDomain] = useState('');
-  const [owneremail, setOwnerEmail] = useState('');
   const {
     domainOwners,
     setSelectedRemoveRowId,
@@ -42,7 +41,7 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const setRemoveDomainManager = () =>
     dispatch(deleteDomainOwnersRequestFetch());
   const setGovernorsRequestFetch = () =>
-    dispatch(addDomainOwnersRequestFetch(domain, owneremail));
+    dispatch(addDomainOwnersRequestFetch());
   let removeManager;
   if (domainOwners !== null) {
     removeManager = domainOwners.reduce((acc: any, manager: any) => {
@@ -64,11 +63,13 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
         isMultiple={false}
         dropDownText={`Manager Name`}
         data={employees}
+        handleChange={handleSelectedEmployees}
       />
       <RequestingForContainer
         isMultiple={false}
         dropDownText={`Domain`}
         data={domains}
+        handleChange={setSelectedDomainValues}
       />
     </>
   );

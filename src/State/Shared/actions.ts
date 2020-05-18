@@ -28,3 +28,14 @@ interface GetDomainsRequestFailureAction {
   type: typeof types.GET_DOMAINS_REQUEST_FAILURE;
   message: string;
 }
+
+export const setSelectedDomainValues = (
+  domainValue: any
+): SetSelectedDomainValues => ({
+  type: types.SET_SELECTED_DOMAIN_VALUES,
+  domainValue
+});
+interface SetSelectedDomainValues {
+  type: typeof types.SET_SELECTED_DOMAIN_VALUES;
+  domainValue: any;
+}

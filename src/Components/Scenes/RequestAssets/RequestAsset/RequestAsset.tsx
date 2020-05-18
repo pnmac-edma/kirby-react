@@ -11,6 +11,7 @@ import SnackBar from '../../../Presentational/SnackBar/SnackBar';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import MakeRequests from '../MakeRequests/MakeRequests';
 import { getEmployeesFetch } from '../../../../State/RequestAsset/actions';
+import { handleSelectedEmployees } from '../../../../State/RequestAsset/actions';
 
 const useStyles = makeStyles(theme => ({
   flexStructure: {
@@ -80,6 +81,7 @@ const RequestAsset = () => {
             isMultiple={true}
             dropDownText={`Requesting For`}
             data={employees}
+            handleChange={handleSelectedEmployees}
           />
         </div>
       </div>

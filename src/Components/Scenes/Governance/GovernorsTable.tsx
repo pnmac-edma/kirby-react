@@ -8,6 +8,7 @@ import {
   deleteGovernorsRequestFetch,
   addGovernorsRequestFetch
 } from '../../../State/Governance/actions';
+import { handleSelectedEmployees } from '../../../State/RequestAsset/actions';
 import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
@@ -51,6 +52,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
       isMultiple={false}
       dropDownText={`Governor Name`}
       data={employees}
+      handleChange={handleSelectedEmployees}
     />
   );
 

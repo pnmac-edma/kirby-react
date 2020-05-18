@@ -1,7 +1,8 @@
 import * as types from './types';
 
 export const initialState = {
-  domains: null
+  domains: null,
+  setSelectedDomainValues: null
 };
 
 const sharedReducer = (state = initialState, action: any) => {
@@ -18,6 +19,8 @@ const sharedReducer = (state = initialState, action: any) => {
       );
       return { ...state, domains: newDomains };
     }
+    case types.SET_SELECTED_DOMAIN_VALUES:
+      return { ...state, setSelectedDomainValues: action.domainValue };
     default:
       return state;
   }
