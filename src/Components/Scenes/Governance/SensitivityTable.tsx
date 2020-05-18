@@ -90,6 +90,7 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
           handleModalToggle={setIsModalOpenForRemove}
           handleRemoveSelected={setRemoveSensitivityLevel}
           handleOpenNotification={handleOpenNotification}
+          footerButtonText={'Yes, Remove Sensitivity'}
         />
       )}
       <TableWrapper
@@ -108,6 +109,7 @@ const SensitivityTable = ({ isModalOpen, setIsModalOpen }: any) => {
           handleModalToggle={setIsModalOpen}
           handleRemoveSelected={setGovernorsRequestFetch}
           handleOpenNotification={handleOpenNotification}
+          footerButtonText={'Add Sensitivity Level'}
         />
       )}
     </>

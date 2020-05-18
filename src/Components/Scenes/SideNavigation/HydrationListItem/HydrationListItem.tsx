@@ -1,15 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import {
+  makeStyles,
   List,
   ListItem,
   Collapse,
   ListItemText,
   Tooltip
 } from '@material-ui/core';
+import { color } from '@edma/design-tokens/';
 import { ArrowDropDown } from '@material-ui/icons/';
 import { ReactComponent as DropIcon } from '@edma/design-tokens/img/dropIcon.svg';
 import { Link, useLocation } from 'react-router-dom';
+
+const hydrationListItem = makeStyles(theme => ({
+  notificationText: {
+    color: color.c300
+  },
+  notificationDot: {
+    position: 'absolute',
+    top: '8px',
+    left: '32px',
+    height: '8px',
+    width: '8px',
+    borderRadius: '50%',
+    backgroundColor: color.c300
+  }
+}));
 
 const HydrationListItem = ({
   closeAllArrows,
@@ -18,6 +35,8 @@ const HydrationListItem = ({
 }: HydrationListItemProps) => {
   const [openIconTwo, setOpenIconTwo] = useState(false);
   const activeLink = useLocation();
+
+  const classes = hydrationListItem();
 
   const clickActions = () => {
     setOpenIconTwo(!openIconTwo);
@@ -44,7 +63,16 @@ const HydrationListItem = ({
             : 'Nav__nested-item'
         }
       >
-        <ListItemText className="Nav__text" primary={label} />
+        <ListItemText className="Nav__text">
+          {label === 'View Jobs' ? (
+            <>
+              {label}
+              <span className={classes.notificationText}> (3 updates)</span>
+            </>
+          ) : (
+            label
+          )}
+        </ListItemText>
       </ListItem>
     )
   );
@@ -62,11 +90,14 @@ const HydrationListItem = ({
       className={clsx(
         openIconTwo
           ? clsx('Nav__item', 'Nav__item--is-open')
+          : activeLink.pathname.includes('hydration')
+          ? clsx('Nav__item', 'Nav__item--is-active')
           : clsx('Nav__item')
       )}
     >
       <ArrowDropDown className="Nav__arrow" />
       <DropIcon className="Nav__icon" />
+      <div className={classes.notificationDot}></div>
       <ListItemText className="Nav__text" primary="Hydration" />
     </ListItem>
   );

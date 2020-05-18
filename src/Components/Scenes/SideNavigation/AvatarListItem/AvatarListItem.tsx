@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     width: 'inherit',
     padding: theme.spacing(2),
-    color: color.b100
+    color: theme.palette.type === 'light' ? color.b100 : color.g300
   },
   avatar: {
     color: color.black,

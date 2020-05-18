@@ -75,7 +75,7 @@ const RequestAsset = () => {
           </Typography>
           <RequestedBy />
           <Divider className={classes.dividerStyle} />
-          <RequestingFor />
+          <RequestingFor isMultiple={true} dropDownText={`Requesting For`} />
         </div>
       </div>
       <div className={classes.sideTable}>

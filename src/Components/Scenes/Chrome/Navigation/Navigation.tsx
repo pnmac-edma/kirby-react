@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import axios from 'axios';
-import { makeStyles, Drawer, List } from '@material-ui/core';
+import { makeStyles, SwipeableDrawer, List } from '@material-ui/core';
 import PageWrapper from '../PageWrapper/PageWrapper';
 import color from '@edma/design-tokens/js/color';
 import DashboardListItem from '../../SideNavigation/DashboardListItem/DashboardListItem';
@@ -18,6 +18,7 @@ import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
 import { useQuery } from '../../../../Hooks/customHooks';
 import config from '../../../../config/config';
 import { authenticateFetch } from '../../../../State/AuthFlow/actions';
+import { getEmployeesFetch } from '../../../../State/RequestAsset/actions';
 
 const navWidth = 250;
 
@@ -41,9 +42,12 @@ const useStyles = makeStyles(theme => ({
     overflowX: 'hidden',
     borderRight: 'none',
     width: navWidth,
-    backgroundColor: color.v700,
-    background: `linear-gradient(0deg, ${color.b500} 0%, ${color.v700} 40%, ${color.v700} 100%)`,
-    color: color.v100,
+    backgroundColor: theme.palette.type === 'light' ? color.v700 : color.black,
+    background:
+      theme.palette.type === 'light'
+        ? `linear-gradient(0deg, ${color.b500} 0%, ${color.v700} 40%, ${color.v700} 100%)`
+        : color.black,
+    color: theme.palette.type === 'light' ? color.v100 : color.g300,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -52,9 +56,12 @@ const useStyles = makeStyles(theme => ({
   drawerClose: {
     overflow: 'hidden',
     borderRight: 'none',
-    backgroundColor: color.v700,
-    background: `linear-gradient(0deg, ${color.b500} 0%, ${color.v700} 40%, ${color.v700} 100%)`,
-    color: color.v100,
+    backgroundColor: theme.palette.type === 'light' ? color.v700 : color.black,
+    background:
+      theme.palette.type === 'light'
+        ? `linear-gradient(0deg, ${color.b500} 0%, ${color.v700} 40%, ${color.v700} 100%)`
+        : color.black,
+    color: theme.palette.type === 'light' ? color.v100 : color.g300,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -95,6 +102,25 @@ const Navigation = () => {
     setOpen(!open);
   };
 
+  const nav: any = useRef();
+
+  const handleClick = (e: any) => {
+    if (nav?.current?.contains(e.target)) {
+      // Inside click
+      return;
+    }
+    // Outside click
+    closeDrawer();
+  };
+
+  useEffect(() => {
+    // Listen for clicks outside of this component
+    document.addEventListener('mousedown', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  });
+
   useEffect(() => {
     axios.interceptors.response.use(
       response => {
@@ -127,11 +153,18 @@ const Navigation = () => {
     }
   }, [samlResponse, dispatch, sessionToken]);
 
+  useEffect(() => {
+    if (sessionToken) {
+      dispatch(getEmployeesFetch());
+    }
+  }, [dispatch, sessionToken]);
+
   return !isRedirecting ? (
     <div className={classes.root}>
       {apiError === null && (
         <>
-          <Drawer
+          <SwipeableDrawer
+            ref={nav}
             variant="permanent"
             className={clsx('Nav', classes.drawer, {
               'Nav--is-open': open,
@@ -146,6 +179,8 @@ const Navigation = () => {
               })
             }}
             open={open}
+            onClose={closeDrawer}
+            onOpen={openDrawer}
           >
             <List className={classes.customList}>
               <MenuToggleListItem
@@ -175,7 +210,7 @@ const Navigation = () => {
               <AwsAthenaListItem closeAllArrows={open} />
             </List>
             <AvatarListItem closeAllArrows={open} closeDrawer={closeDrawer} />
-          </Drawer>
+          </SwipeableDrawer>
           <main>
             <PageWrapper />
           </main>
