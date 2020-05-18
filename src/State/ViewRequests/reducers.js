@@ -1,6 +1,7 @@
 import * as types from './types';
 
 export const initialState = {
+  message: '',
   inboundRequests: [], // for elevated users, this would be approver or governance requests
   outboundRequests: [], // stores all user requests
   selectedRequests: [],
@@ -77,18 +78,13 @@ const viewRequestsReducer = (state = initialState, action) => {
       };
     }
     case types.REQ_DECISION_REQUEST_FETCH: {
-      // TODO: maybe add req decision loading status
-      return { ...state };
+      return { ...state, message: '' };
     }
     case types.REQ_DECISION_REQUEST_SUCCESS: {
-      console.log(action.response);
-      // TODO: add message for snackbar notification
-      return { ...state };
+      return { ...state, message: action.response.message };
     }
     case types.REQ_DECISION_REQUEST_FAILURE: {
-      console.log(action.error);
-      // TODO: add message for snackbar notification
-      return { ...state };
+      return { ...state, message: action.error.message };
     }
     case types.SET_TOGGLE_VIEW_CHECKBOX: {
       return {

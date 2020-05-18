@@ -32,7 +32,7 @@ const RequestsInbox = () => {
     },
     {
       name: 'Sensitivity',
-      property: 'sensitivity'
+      property: 'requestsensitivity'
     },
     {
       name: 'Date Requested',

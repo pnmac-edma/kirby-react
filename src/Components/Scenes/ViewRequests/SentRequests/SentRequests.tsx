@@ -7,6 +7,7 @@ import RequestTableTitle from '../RequestTableTitle/RequestTableTitle';
 import { transformRequests } from '../../../../State/helpers';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
 import Modal from '../../../Presentational/Modal/Modal';
+import SnackBar from '../../../Presentational/Modal/SnackBar';
 import {
   setToggleSentCheckbox,
   setToggleSentAllCheckbox,
@@ -15,6 +16,9 @@ import {
 } from '../../../../State/ViewRequests/actions';
 
 const useStyles = makeStyles(theme => ({
+  removeDescription: {
+    marginTop: 0
+  },
   listItemText: {
     display: 'list-item',
     textTransform: 'capitalize',
@@ -28,15 +32,15 @@ const SentRequests = () => {
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [notification, setNotification] = useState(false);
 
-  const { outboundRequests, isLoading, selectedSentRequests } = useSelector(
-    ({ viewRequests }: any) => viewRequests
-  );
+  const {
+    message,
+    outboundRequests,
+    isLoading,
+    selectedSentRequests
+  } = useSelector(({ viewRequests }: any) => viewRequests);
   const userEmail = useSelector(({ currentUser }: any) => currentUser.EmpEmail);
   const userRole = useSelector(({ currentUser }: any) => currentUser.role);
   const dispatch = useDispatch();
-
-  const handleOpenNotification = () => setNotification(true);
-  const handleCloseNotification = () => setNotification(false);
 
   const columns = [
     {
@@ -74,12 +78,28 @@ const SentRequests = () => {
     return arr;
   }, []);
 
+  const render = (
+    <>
+      <p className={classes.removeDescription}>
+        Are you sure that you want to cancel the following requests? This action
+        cannot be undone.
+      </p>
+      {removeItemList}
+    </>
+  );
+
   useEffect(() => {
     dispatch(userRequestsFetch(userEmail));
-  }, [dispatch, userEmail]);
+  }, [dispatch, message, userEmail]);
 
   return (
     <>
+      <SnackBar
+        message={message}
+        notification={notification}
+        handleOpenNotification={() => setNotification(true)}
+        handleCloseNotification={() => setNotification(false)}
+      />
       <RequestTableTitle title="Sent Requests" />
       <TableWrapper
         isLoading={isLoading}
@@ -101,13 +121,14 @@ const SentRequests = () => {
       {isModalOpenForRemove && (
         <Modal
           modalTitle={'Cancel Requests'}
-          render={removeItemList}
+          render={render}
           openModal={isModalOpenForRemove}
           handleModalToggle={() => setIsModalOpenForRemove(false)}
           handleRemoveSelected={() =>
             dispatch(reqDecisionRequestFetch('Cancelled', selectedSentRequests))
           }
-          handleOpenNotification={handleOpenNotification}
+          handleOpenNotification={() => setNotification(true)}
+          footerButtonText={'Confirm Cancellation'}
         />
       )}
     </>
