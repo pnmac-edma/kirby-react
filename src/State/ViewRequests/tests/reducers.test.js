@@ -16,6 +16,7 @@ describe('ViewRequests Reducers', () => {
   beforeEach(() => {
     // reset to the initial state to avoid any conflicts
     nextState = {
+      message: '',
       inboundRequests: [],
       outboundRequests: [],
       selectedRequests: [],
