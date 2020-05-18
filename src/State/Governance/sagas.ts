@@ -17,6 +17,7 @@ import {
   getCreatedByEmail,
   getRequestedFor
 } from '../../Selectors/sagaSelectors';
+import store from '../../setupStore.js';
 
 export function* workDomainOwners() {
   try {
@@ -55,8 +56,9 @@ export function* workDeleteDomainOwners() {
   }
 }
 
-export function* workAddDomainOwners(action: any) {
-  const { domain, ownerEmail } = action;
+export function* workAddDomainOwners() {
+  const domain = store.getState().shared.setSelectedDomainValues.label;
+  const ownerEmail = store.getState().governance.selectedGovernor.label;
   const createdByEmail = yield select(getCreatedByEmail);
   try {
     const response = yield call(

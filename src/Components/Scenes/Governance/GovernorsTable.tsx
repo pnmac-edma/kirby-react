@@ -6,7 +6,8 @@ import Modal from '../../Presentational/Modal/Modal';
 import {
   governorsRequestFetch,
   deleteGovernorsRequestFetch,
-  addGovernorsRequestFetch
+  addGovernorsRequestFetch,
+  setSelectedGovernor
 } from '../../../State/Governance/actions';
 import SnackBar from '../../Presentational/Modal/SnackBar';
 
@@ -14,6 +15,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const { governors, setSelectedRemoveRowId, message } = useSelector(
     (state: any) => state.governance
   );
+  const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
   const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
@@ -46,7 +48,12 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
   }
 
   const render = (
-    <RequestingForContainer isMultiple={false} dropDownText={`Governor Name`} />
+    <RequestingForContainer
+      isMultiple={false}
+      dropDownText={`Governor Name`}
+      data={employees}
+      handleChange={setSelectedGovernor}
+    />
   );
 
   return (

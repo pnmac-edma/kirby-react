@@ -3,6 +3,7 @@ import { initialState as hydration } from './Hydration/reducers';
 import { initialState as jobCalendar } from './JobCalendar/reducers';
 import { initialState as chrome } from './Chrome/reducers';
 import { initialState as governance } from './Governance/reducers';
+import { initialState as shared } from './Shared/reducers';
 
 const initialState = {
   // TODO: Replace Stub Data (role and EmpEmail) with Real Data
@@ -44,7 +45,8 @@ const initialState = {
   hydration,
   jobCalendar,
   chrome,
-  governance
+  governance,
+  shared
 };
 
 export default initialState;
