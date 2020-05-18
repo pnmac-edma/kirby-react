@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import RequestTableTitle from '../RequestTableTitle/RequestTableTitle';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
 import {
@@ -15,6 +16,8 @@ const ArchivedRequests = () => {
   );
   const { archivedRequests } = useSelector((state: any) => state.viewRequests);
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const columns = [
     {
@@ -45,9 +48,10 @@ const ArchivedRequests = () => {
       <TableWrapper
         columns={columns}
         data={archivedRequests}
-        setFirstColLink={(e: React.TouchEvent, id: number) =>
-          console.log(`request ${id} clicked`)
-        }
+        setFirstColLink={(e: React.ChangeEvent, id: number) => {
+          const urlWithId = `/requests/${id}`;
+          history.push(urlWithId);
+        }}
         selected={selected}
         setToggleCheckbox={(selected: Array<number>, id: number) =>
           dispatch(setToggleArchivedCheckbox(selected, id))

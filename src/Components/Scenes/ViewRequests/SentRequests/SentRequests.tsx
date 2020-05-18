@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { ListItem } from '@material-ui/core';
 import weight from '@edma/design-tokens/js/weight';
@@ -41,6 +42,8 @@ const SentRequests = () => {
   const userEmail = useSelector(({ currentUser }: any) => currentUser.EmpEmail);
   const userRole = useSelector(({ currentUser }: any) => currentUser.role);
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const columns = [
     {
@@ -113,10 +116,11 @@ const SentRequests = () => {
           dispatch(setToggleSentAllCheckbox(selected, data))
         }
         footerButtonText={footerButtonText}
-        setFirstColLink={(e: React.ChangeEvent, id: number) =>
-          console.log(`request ${id} clicked`)
-        }
         setFooterButtonClick={() => setIsModalOpenForRemove(true)}
+        setFirstColLink={(e: React.ChangeEvent, id: number) => {
+          const urlWithId = `/requests/${id}`;
+          history.push(urlWithId);
+        }}
       />
       {isModalOpenForRemove && (
         <Modal
