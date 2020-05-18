@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Divider, Typography } from '@material-ui/core';
 import { WarningRounded } from '@material-ui/icons';
@@ -93,6 +93,7 @@ const ApproveRequest = () => {
   const history = useHistory();
 
   const { id } = useParams();
+  const isApprovePath = useLocation().pathname.includes('approve');
   const reqs = transformRequests(inboundRequests, userRole);
   const currentRequest = reqs.find(
     (request: any) => request.Id.toString() === id
@@ -156,32 +157,34 @@ const ApproveRequest = () => {
         </Typography>
         <Typography className={classes.title}>{justification}</Typography>
         <br />
-        <div>
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              dispatch(reqDecisionRequestFetch('Approved', [id]));
-              history.push('/requests');
-              // TODO: create snackbar notification on RequestsInbox page
-            }}
-          >
-            Approve
-          </Button>
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              dispatch(reqDecisionRequestFetch('Rejected', [id]));
-              history.push('/requests');
-              // TODO: create snackbar notification on RequestsInbox page
-            }}
-          >
-            Reject
-          </Button>
-        </div>
+        {isApprovePath && (
+          <div>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                dispatch(reqDecisionRequestFetch('Approved', [id]));
+                history.push('/requests');
+                // TODO: create snackbar notification on RequestsInbox page
+              }}
+            >
+              Approve
+            </Button>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="secondary"
+              onClick={() => {
+                dispatch(reqDecisionRequestFetch('Rejected', [id]));
+                history.push('/requests');
+                // TODO: create snackbar notification on RequestsInbox page
+              }}
+            >
+              Reject
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
