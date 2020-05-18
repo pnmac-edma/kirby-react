@@ -24,11 +24,15 @@ const RequestsInbox = () => {
   const columns = [
     {
       name: 'Request',
-      property: 'databasename'
-    }, // placeholder for name property
+      property: 'requesttype'
+    },
     {
       name: 'Description',
       property: 'description'
+    },
+    {
+      name: 'Sensitivity',
+      property: 'sensitivity'
     },
     {
       name: 'Date Requested',
