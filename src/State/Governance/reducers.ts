@@ -6,7 +6,8 @@ export const initialState = {
   sensitivity: null,
   domainOwners: null,
   isLoading: false,
-  message: ''
+  message: '',
+  selectedGovernor: null
 };
 
 const governanceReducer = (state = initialState, action: any) => {
@@ -49,6 +50,8 @@ const governanceReducer = (state = initialState, action: any) => {
       return { ...state, message: '' };
     case types.ADD_GOVERNORS_REQUEST_SUCCESS:
       return { ...state, message: action.message.message };
+    case types.SET_SELECTED_GOVERNOR:
+      return { ...state, selectedGovernor: action.governorValue };
     default:
       return state;
   }

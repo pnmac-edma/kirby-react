@@ -58,7 +58,7 @@ export function* workDeleteDomainOwners() {
 
 export function* workAddDomainOwners() {
   const domain = store.getState().shared.setSelectedDomainValues.label;
-  const ownerEmail = store.getState().requestAssets.selectedEmployees.label;
+  const ownerEmail = store.getState().governance.selectedGovernor.label;
   const createdByEmail = yield select(getCreatedByEmail);
   try {
     const response = yield call(

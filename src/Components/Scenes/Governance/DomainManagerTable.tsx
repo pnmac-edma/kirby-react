@@ -5,10 +5,10 @@ import Modal from '../../Presentational/Modal/Modal';
 import {
   deleteDomainOwnersRequestFetch,
   domainOwnersRequestFetch,
-  addDomainOwnersRequestFetch
+  addDomainOwnersRequestFetch,
+  setSelectedGovernor
 } from '../../../State/Governance/actions';
 import { setSelectedDomainValues } from '../../../State/Shared/actions';
-import { handleSelectedEmployees } from '../../../State/RequestAsset/actions';
 import SnackBar from '../../Presentational/Modal/SnackBar';
 import RequestingForContainer from '../RequestAssets/RequestingFor/RequestingFor';
 
@@ -63,7 +63,7 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
         isMultiple={false}
         dropDownText={`Manager Name`}
         data={employees}
-        handleChange={handleSelectedEmployees}
+        handleChange={setSelectedGovernor}
       />
       <RequestingForContainer
         isMultiple={false}

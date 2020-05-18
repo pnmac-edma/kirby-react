@@ -31,11 +31,11 @@ interface GetDomainsRequestFailureAction {
 
 export const setSelectedDomainValues = (
   domainValue: any
-): SetSelectedDomainValues => ({
+): SetSelectedDomainValuesAction => ({
   type: types.SET_SELECTED_DOMAIN_VALUES,
   domainValue
 });
-interface SetSelectedDomainValues {
+interface SetSelectedDomainValuesAction {
   type: typeof types.SET_SELECTED_DOMAIN_VALUES;
   domainValue: any;
 }

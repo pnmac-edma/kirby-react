@@ -227,3 +227,14 @@ interface SetRemoveSelectedRow {
   type: typeof types.SET_REMOVE_SELECTED_ROW;
   Id: number;
 }
+
+export const setSelectedGovernor = (
+  governorValue: any
+): SetSelectedGovernorAction => ({
+  type: types.SET_SELECTED_GOVERNOR,
+  governorValue
+});
+interface SetSelectedGovernorAction {
+  type: typeof types.SET_SELECTED_GOVERNOR;
+  governorValue: any;
+}
