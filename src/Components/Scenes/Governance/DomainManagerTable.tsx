@@ -76,12 +76,14 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   return (
     <>
-      <SnackBar
-        message={message}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-      />
+      {message.length > 0 && (
+        <SnackBar
+          message={message}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+        />
+      )}
       {isModalOpenForRemove && (
         <Modal
           modalTitle={'Remove Sensitivity Level'}

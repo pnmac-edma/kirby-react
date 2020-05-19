@@ -18,16 +18,13 @@ export const getDomainOwners = (): Promise<types.DomainOwnersResponse> => {
     .then(error => error);
 };
 
-export const deleteDomainOwners = (
-  domain: any,
-  owneremail: any
-): Promise<void> => {
+export const deleteDomainOwners = (id_: Number): Promise<void> => {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/governance/owners/`,
     HttpMethods.DELETE,
     {
-      params: { domain, owneremail }
+      params: { id_ }
     }
   );
 
@@ -117,13 +114,13 @@ export const getGovernors = (): Promise<types.GovernorsResponse> => {
     .then(error => error);
 };
 
-export const deleteGovernors = (useremail: string): Promise<void> => {
+export const deleteGovernors = (id_: Number): Promise<void> => {
   const request = constructRequest(
     config.apiUrl,
     `${config.apiPath}/governance/users`,
     HttpMethods.DELETE,
     {
-      params: { useremail }
+      params: { id_ }
     }
   );
   return axios(request)

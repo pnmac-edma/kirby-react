@@ -14,8 +14,7 @@ import {
 import {
   getDomainOwner,
   getUserEmail,
-  getCreatedByEmail,
-  getRequestedFor
+  getCreatedByEmail
 } from '../../Selectors/sagaSelectors';
 import store from '../../setupStore.js';
 
@@ -34,11 +33,7 @@ export function* workDomainOwners() {
 export function* workDeleteDomainOwners() {
   const domain = yield select(getDomainOwner);
   try {
-    const response = yield call(
-      deleteDomainOwners,
-      domain[0].domain,
-      domain[0].owneremail
-    );
+    const response = yield call(deleteDomainOwners, domain[0].Id);
     const responseForGetDomainOwners = yield call(getDomainOwners);
     yield put({
       type: types.DELETE_DOMAIN_OWNERS_REQUEST_SUCCESS,
@@ -158,14 +153,14 @@ export function* workGovernors() {
 export function* workDeleteGovernors() {
   const userEmail = yield select(getUserEmail);
   try {
-    const response = yield call(deleteGovernors, userEmail[0].useremail);
+    const response = yield call(deleteGovernors, userEmail[0].Id);
     const responseForGetGovernors = yield call(getGovernors);
     yield put({
       type: types.DELETE_GOVERNORS_REQUEST_SUCCESS,
       message: response
     });
     yield put({
-      type: types.GOVERNORS_REQUEST_FETCH,
+      type: types.GOVERNORS_REQUEST_SUCCESS,
       governors: responseForGetGovernors
     });
   } catch (error) {
@@ -174,14 +169,14 @@ export function* workDeleteGovernors() {
 }
 
 export function* workAddGovernors() {
-  const userEmail = yield select(getRequestedFor);
+  const userEmail = store.getState().governance.selectedGovernor.email;
   const createdByEmail = yield select(getCreatedByEmail);
   try {
     const response = yield call(addGovernors, userEmail, createdByEmail);
     const responseForGetGovernors = yield call(getGovernors);
     yield put({ type: types.ADD_GOVERNORS_REQUEST_SUCCESS, message: response });
     yield put({
-      type: types.GOVERNORS_REQUEST_FETCH,
+      type: types.GOVERNORS_REQUEST_SUCCESS,
       governors: responseForGetGovernors
     });
   } catch (error) {
