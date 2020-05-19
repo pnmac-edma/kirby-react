@@ -8,7 +8,7 @@ import {
   addDomainOwnersRequestFetch,
   setSelectedGovernor
 } from '../../../State/Governance/actions';
-import { setSelectedDomainValues } from '../../../State/Shared/actions';
+import { TextField } from '@material-ui/core';
 import SnackBar from '../../Presentational/Modal/SnackBar';
 import RequestingForContainer from '../RequestAssets/RequestingFor/RequestingFor';
 
@@ -20,9 +20,9 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
     isLoading,
     message
   } = useSelector((state: any) => state.governance);
-  const { domains } = useSelector((state: any) => state.shared);
   const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
   const [notification, setNotification] = useState(false);
+  const [domain, setDomain] = useState('');
   const dispatch = useDispatch();
 
   const handleOpenNotification = () => setNotification(true);
@@ -41,7 +41,7 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const setRemoveDomainManager = () =>
     dispatch(deleteDomainOwnersRequestFetch());
   const setGovernorsRequestFetch = () =>
-    dispatch(addDomainOwnersRequestFetch());
+    dispatch(addDomainOwnersRequestFetch(domain));
   let removeManager;
   if (domainOwners !== null) {
     removeManager = domainOwners.reduce((acc: any, manager: any) => {
@@ -59,17 +59,17 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   const render = (
     <>
+      <TextField
+        label="Domain"
+        fullWidth
+        helperText="Type or select a domain from the list"
+        onChange={e => setDomain(e.target.value)}
+      />
       <RequestingForContainer
         isMultiple={false}
         dropDownText={`Manager Name`}
         data={employees}
         handleChange={setSelectedGovernor}
-      />
-      <RequestingForContainer
-        isMultiple={false}
-        dropDownText={`Domain`}
-        data={domains}
-        handleChange={setSelectedDomainValues}
       />
     </>
   );

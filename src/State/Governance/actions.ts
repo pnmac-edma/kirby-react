@@ -43,11 +43,15 @@ interface DeleteDomainOwnersFailureAction {
   message: any;
 }
 
-export const addDomainOwnersRequestFetch = (): AddDomainOwnersRequestFetchAction => ({
-  type: types.ADD_DOMAIN_OWNERS_REQUEST_FETCH
+export const addDomainOwnersRequestFetch = (
+  domain: string
+): AddDomainOwnersRequestFetchAction => ({
+  type: types.ADD_DOMAIN_OWNERS_REQUEST_FETCH,
+  domain
 });
 interface AddDomainOwnersRequestFetchAction {
   type: typeof types.ADD_DOMAIN_OWNERS_REQUEST_FETCH;
+  domain: string;
 }
 export const addDomainOwnersRequestSuccess = (
   message: string
