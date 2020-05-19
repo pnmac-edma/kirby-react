@@ -121,10 +121,10 @@ const ApproveRequest = () => {
       <div className={classes.sidebar}>
         <div className={classes.sidebarPosition}>
           <Typography variant="h2" className={classes.heading}>
-            Add Destination
+            Add Database
           </Typography>
           <Typography variant="overline" className={classes.menuStyle}>
-            Destination Name
+            Database Name
           </Typography>
           <Typography className={classes.title}>{databasename}</Typography>
           <Divider className={classes.dividerStyle} />
