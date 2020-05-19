@@ -46,7 +46,7 @@ const SourceNodeWidget = ({ node }) => {
         style={{
           position: 'absolute',
           top: height / 2 - 8,
-          left: size - 8
+          left: size - 4
         }}
       >
         <PortWidget name="right" node={node} />
