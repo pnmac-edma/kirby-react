@@ -44,17 +44,14 @@ interface DeleteDomainOwnersFailureAction {
 }
 
 export const addDomainOwnersRequestFetch = (
-  domain: string,
-  ownerEmail: string
+  domain: string
 ): AddDomainOwnersRequestFetchAction => ({
   type: types.ADD_DOMAIN_OWNERS_REQUEST_FETCH,
-  domain,
-  ownerEmail
+  domain
 });
 interface AddDomainOwnersRequestFetchAction {
   type: typeof types.ADD_DOMAIN_OWNERS_REQUEST_FETCH;
   domain: string;
-  ownerEmail: string;
 }
 export const addDomainOwnersRequestSuccess = (
   message: string
@@ -233,4 +230,15 @@ export const setRemoveSelectedRow = (Id: number): SetRemoveSelectedRow => ({
 interface SetRemoveSelectedRow {
   type: typeof types.SET_REMOVE_SELECTED_ROW;
   Id: number;
+}
+
+export const setSelectedGovernor = (
+  governorValue: any
+): SetSelectedGovernorAction => ({
+  type: types.SET_SELECTED_GOVERNOR,
+  governorValue
+});
+interface SetSelectedGovernorAction {
+  type: typeof types.SET_SELECTED_GOVERNOR;
+  governorValue: any;
 }

@@ -1,11 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Select, { createFilter } from 'react-select';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import EmployeesList from './EmployeesList';
 import { Typography } from '@material-ui/core';
 import { color, font, fontSize } from '@edma/design-tokens';
-import { handleSelectedEmployees } from '../../../../State/RequestAsset/actions';
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -21,10 +20,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestingFor = ({ isMultiple, dropDownText }: RequestingForProps) => {
+const RequestingFor = ({
+  isMultiple,
+  dropDownText,
+  data,
+  handleChange
+}: RequestingForProps) => {
   const classes = useStyles();
-
-  const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
   const dispatch = useDispatch();
 
   const theme = useTheme();
@@ -67,8 +69,8 @@ const RequestingFor = ({ isMultiple, dropDownText }: RequestingForProps) => {
         placeholder={'Select name(s) from the list'}
         styles={customReactSelectStyles}
         components={{ MenuList: EmployeesList }}
-        options={employees}
-        onChange={val => dispatch(handleSelectedEmployees(val))}
+        options={data}
+        onChange={val => dispatch(handleChange(val))}
       />
     </>
   );
@@ -79,4 +81,6 @@ export default RequestingFor;
 interface RequestingForProps {
   isMultiple: boolean;
   dropDownText: string;
+  data: any;
+  handleChange: Function;
 }

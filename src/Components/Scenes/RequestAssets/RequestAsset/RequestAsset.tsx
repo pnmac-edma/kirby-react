@@ -11,6 +11,7 @@ import SnackBar from '../../../Presentational/SnackBar/SnackBar';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import MakeRequests from '../MakeRequests/MakeRequests';
 import { getEmployeesFetch } from '../../../../State/RequestAsset/actions';
+import { handleSelectedEmployees } from '../../../../State/RequestAsset/actions';
 
 const useStyles = makeStyles(theme => ({
   flexStructure: {
@@ -52,6 +53,7 @@ const RequestAsset = () => {
   const [notification, setNotification] = React.useState(false);
 
   const { openModal } = useSelector(({ requestAssets }: any) => requestAssets);
+  const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
   const dispatch = useDispatch();
 
   const handleOpenNotification = () => {
@@ -75,7 +77,12 @@ const RequestAsset = () => {
           </Typography>
           <RequestedBy />
           <Divider className={classes.dividerStyle} />
-          <RequestingFor isMultiple={true} dropDownText={`Requesting For`} />
+          <RequestingFor
+            isMultiple={true}
+            dropDownText={`Requesting For`}
+            data={employees}
+            handleChange={handleSelectedEmployees}
+          />
         </div>
       </div>
       <div className={classes.sideTable}>

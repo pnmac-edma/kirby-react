@@ -54,6 +54,7 @@
 .Tile__chip.MuiChip-root {
   height: 22px;
   transition: none;
+  margin-right: 8px;
 
   & span {
     padding: 0 8px;
@@ -62,7 +63,6 @@
 
 .Tile__statusIcon {
   position: absolute;
-  right: 8px;
 }
 
 .Tile__statusIcon.Tile__statusIcon--warning {
@@ -146,6 +146,15 @@
 
       &:hover {
         box-shadow: 0 0 0 10px rgba($color-g-200, 0.5);
+      }
+
+      &:before {
+        content: '';
+        width: 42px;
+        height: 81px;
+        position: absolute;
+        top: -2.3rem;
+        left: -1rem;
       }
     }
   }

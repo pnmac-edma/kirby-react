@@ -5,22 +5,24 @@ import Modal from '../../Presentational/Modal/Modal';
 import {
   deleteDomainOwnersRequestFetch,
   domainOwnersRequestFetch,
-  addDomainOwnersRequestFetch
+  addDomainOwnersRequestFetch,
+  setSelectedGovernor
 } from '../../../State/Governance/actions';
 import { TextField } from '@material-ui/core';
 import SnackBar from '../../Presentational/Modal/SnackBar';
+import RequestingForContainer from '../RequestAssets/RequestingFor/RequestingFor';
 
 const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const [isModalOpenForRemove, setIsModalOpenForRemove] = useState(false);
-  const [domain, setDomain] = useState('');
-  const [owneremail, setOwnerEmail] = useState('');
   const {
     domainOwners,
     setSelectedRemoveRowId,
     isLoading,
     message
   } = useSelector((state: any) => state.governance);
+  const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
   const [notification, setNotification] = useState(false);
+  const [domain, setDomain] = useState('');
   const dispatch = useDispatch();
 
   const handleOpenNotification = () => setNotification(true);
@@ -39,7 +41,7 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const setRemoveDomainManager = () =>
     dispatch(deleteDomainOwnersRequestFetch());
   const setGovernorsRequestFetch = () =>
-    dispatch(addDomainOwnersRequestFetch(domain, owneremail));
+    dispatch(addDomainOwnersRequestFetch(domain));
   let removeManager;
   if (domainOwners !== null) {
     removeManager = domainOwners.reduce((acc: any, manager: any) => {
@@ -58,16 +60,16 @@ const DomainManagerTable = ({ isModalOpen, setIsModalOpen }: any) => {
   const render = (
     <>
       <TextField
-        label="User Name"
+        label="Domain"
         fullWidth
-        helperText="Please provide username"
+        helperText="Type or select a domain from the list"
         onChange={e => setDomain(e.target.value)}
       />
-      <TextField
-        label="Owner Email"
-        fullWidth
-        helperText="Please provide useremail"
-        onChange={e => setOwnerEmail(e.target.value)}
+      <RequestingForContainer
+        isMultiple={false}
+        dropDownText={`Manager Name`}
+        data={employees}
+        handleChange={setSelectedGovernor}
       />
     </>
   );
