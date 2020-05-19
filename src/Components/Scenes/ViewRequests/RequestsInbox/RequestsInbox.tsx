@@ -40,6 +40,20 @@ const RequestsInbox = () => {
 
   const reqs = transformRequests(inboundRequests, userRole);
 
+  const generateRequestTypeString = (id: number) => {
+    const currentRequest = reqs.find((request: any) => request.Id === id);
+
+    // TODO: the request type values might change in the api so
+    //       these values might need changing
+    if (currentRequest.requesttype === 'Access') {
+      return 'access-database';
+    } else if (currentRequest.requesttype === 'Database') {
+      return 'add-database';
+    } else if (currentRequest.requesttype === 'Job') {
+      return 'new-job';
+    }
+  };
+
   useEffect(() => {
     if (userRole.governance) {
       dispatch(governanceRequestsFetch());
@@ -56,7 +70,8 @@ const RequestsInbox = () => {
         columns={columns}
         data={reqs}
         setFirstColLink={(e: React.ChangeEvent, id: number) => {
-          const urlWithId = `/requests/${id}/approve`;
+          const requestTypeParam = generateRequestTypeString(id);
+          const urlWithId = `/requests/${id}/${requestTypeParam}`;
           history.push(urlWithId);
         }}
       />

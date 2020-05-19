@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ApproveRequest = () => {
+const RequestDetailsDatabase = () => {
   const classes = useStyles();
 
   const { inboundRequests } = useSelector(
@@ -101,7 +101,7 @@ const ApproveRequest = () => {
 
   // NOTE: after going to approve request page and approve/rejecting request
   //       and being redirected to requests page, the following lines of code
-  //       prevents erroring out; unsure why ApproveRequest gets re-rendered
+  //       prevents erroring out; unsure why RequestDetailsDatabase gets re-rendered
   if (!currentRequest) {
     return null;
   }
@@ -109,11 +109,10 @@ const ApproveRequest = () => {
   const { requestdata } = currentRequest;
   const {
     databasename,
-    description,
     domain,
     justification,
-    owner,
-    sensitivity
+    sensitivity,
+    schedule
   } = requestdata;
 
   return (
@@ -121,7 +120,7 @@ const ApproveRequest = () => {
       <div className={classes.sidebar}>
         <div className={classes.sidebarPosition}>
           <Typography variant="h2" className={classes.heading}>
-            Add Database
+            New Job
           </Typography>
           <Typography variant="overline" className={classes.menuStyle}>
             Database Name
@@ -136,22 +135,18 @@ const ApproveRequest = () => {
           </Typography>
           <Divider className={classes.dividerStyle} />
           <Typography variant="overline" className={classes.menuStyle}>
-            Domain
+            Requested By
           </Typography>
           <Typography className={classes.title}>{domain}</Typography>
           <Divider className={classes.dividerStyle} />
           <Typography variant="overline" className={classes.menuStyle}>
-            Manager
+            Schedule
           </Typography>
-          <Typography className={classes.title}>{owner}</Typography>
+          <Typography className={classes.title}>{schedule}</Typography>
         </div>
       </div>
       <div className={classes.sideTable}>
-        <Typography variant="overline" className={classes.menuStyle}>
-          Description
-        </Typography>
-        <Typography className={classes.title}>{description}</Typography>
-        <br />
+        {/* TODO: add data for Sources/Transforms/Database once data is in api */}
         <Typography variant="overline" className={classes.menuStyle}>
           Justification
         </Typography>
@@ -159,18 +154,6 @@ const ApproveRequest = () => {
         <br />
         {isApprovePath && (
           <div>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                dispatch(reqDecisionRequestFetch('Approved', [id]));
-                history.push('/requests');
-                // TODO: create snackbar notification on RequestsInbox page
-              }}
-            >
-              Approve
-            </Button>
             <Button
               className={classes.button}
               variant="contained"
@@ -183,6 +166,18 @@ const ApproveRequest = () => {
             >
               Reject
             </Button>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                dispatch(reqDecisionRequestFetch('Approved', [id]));
+                history.push('/requests');
+                // TODO: create snackbar notification on RequestsInbox page
+              }}
+            >
+              Approve
+            </Button>
           </div>
         )}
       </div>
@@ -190,4 +185,4 @@ const ApproveRequest = () => {
   );
 };
 
-export default ApproveRequest;
+export default RequestDetailsDatabase;
