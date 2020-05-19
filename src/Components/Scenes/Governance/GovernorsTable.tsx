@@ -12,7 +12,7 @@ import {
 import SnackBar from '../../Presentational/Modal/SnackBar';
 
 const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
-  const { governors, setSelectedRemoveRowId, message } = useSelector(
+  const { governors, setSelectedRemoveRowId, isLoading, message } = useSelector(
     (state: any) => state.governance
   );
   const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
@@ -58,12 +58,14 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
 
   return (
     <>
-      <SnackBar
-        message={message}
-        notification={notification}
-        handleOpenNotification={handleOpenNotification}
-        handleCloseNotification={handleCloseNotification}
-      />
+      {message.length > 0 && (
+        <SnackBar
+          message={message}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+        />
+      )}
       {isModalOpenForRemove && (
         <Modal
           modalTitle={'Remove Govenor'}
@@ -76,6 +78,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
         />
       )}
       <TableWrapper
+        isLoading={isLoading}
         setTitleText={() => titleText}
         columns={columns}
         data={governors}
