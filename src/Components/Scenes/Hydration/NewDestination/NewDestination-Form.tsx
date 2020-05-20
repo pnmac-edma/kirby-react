@@ -44,7 +44,7 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
   const { errors, touched, values } = (useFormikContext() as unknown) as {
     errors: InitialErrorTypes;
     touched: InitialTouchedTypes;
-    values: any;
+    values: InitialValuesTypes;
   };
 
   return (
@@ -59,7 +59,7 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
           <Field
             name={`${prefixForApp}name`}
             className={classes.textfield}
-            error={touched.name}
+            error={errors.name ? touched.name : false}
             helperText={touched.name ? errors.name : null}
             label="Destination Name"
             variant="outlined"
@@ -73,6 +73,8 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
               id="sensitivity"
               name={`${prefixForApp}sensitivity`}
               label="Sensitivity"
+              error={errors.sensitivity ? touched.sensitivity : false}
+              helperText={touched.sensitivity ? errors.sensitivity : null}
               type="select"
               as={Select}
             >
@@ -93,6 +95,8 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
               id="domain"
               name={`${prefixForApp}domain`}
               label="Domain"
+              error={errors.domain ? touched.domain : false}
+              helperText={touched.domain ? errors.domain : null}
               type="select"
               as={Select}
             >
@@ -112,7 +116,7 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
             name={`${prefixForApp}description`}
             className={classes.textfield}
             label="Description"
-            error={touched.description}
+            error={errors.description ? touched.description : false}
             helperText={touched.description ? errors.description : null}
             variant="outlined"
             rows="3"
@@ -127,7 +131,7 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
             name={`${prefixForApp}justification`}
             className={classes.textfield}
             label="Justification"
-            error={touched.justification}
+            error={errors.justification ? touched.justification : false}
             helperText={touched.justification ? errors.justification : null}
             variant="outlined"
             rows="3"
