@@ -59,7 +59,7 @@ const Search = () => {
                 margin="dense"
                 id="name"
                 label="Start Typing..."
-                helperText="Find and request access to data in Kirby."
+                helperText="Find and request access to databases in Kirby."
                 type="text"
                 fullWidth
                 value={value}

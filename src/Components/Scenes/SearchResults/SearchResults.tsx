@@ -72,10 +72,10 @@ const SearchResults = () => {
   const footerButtonText = 'Request Access';
 
   const numOfDestinations = searchResult
-    ? `${searchResult.results.length} Destination${
+    ? `${searchResult.results.length} Database${
         searchResult.results.length !== 1 ? 's' : ''
       }`
-    : '0 Destinations';
+    : '0 Databases';
 
   useEffect(() => {
     if (params) {
