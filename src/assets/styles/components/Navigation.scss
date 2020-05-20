@@ -11,12 +11,20 @@
 // </Nav>
 
 .Nav {
-  position: relative;
+  position: absolute !important;
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
   height: 100vh;
   color: $color-v-100;
+
+  .Nav--is-open {
+    box-shadow: $shadow-2;
+  }
+
+  & ~ main .Page-container {
+    margin-left: 56px;
+  }
 
   &:hover,
   &.Nav--is-open {
@@ -42,6 +50,18 @@
     width: 48px;
     height: 48px;
     font-size: 14px;
+  }
+
+  @media screen and (min-width: $breakpoint-1) {
+    position: relative !important;
+
+    & ~ main .Page-container {
+      margin-left: 0;
+    }
+
+    .Nav--is-open {
+      box-shadow: none;
+    }
   }
 }
 

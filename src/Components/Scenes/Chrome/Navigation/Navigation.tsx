@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import axios from 'axios';
 import { makeStyles, SwipeableDrawer, List } from '@material-ui/core';
 import PageWrapper from '../PageWrapper/PageWrapper';
-import color from '@edma/design-tokens/js/color';
+import { color } from '@edma/design-tokens';
 import DashboardListItem from '../../SideNavigation/DashboardListItem/DashboardListItem';
 import SearchAssetsListItem from '../../SideNavigation/SearchAssetsListItem/SearchAssetsListItem';
 import GovernanceListItem from '../../SideNavigation/GovernanceListItem/GovernanceListItem';
@@ -117,9 +117,7 @@ const Navigation = () => {
   useEffect(() => {
     // Listen for clicks outside of this component
     document.addEventListener('mousedown', handleClick);
-    return () => {
-      document.removeEventListener('mousedown', handleClick);
-    };
+    return () => document.removeEventListener('mousedown', handleClick);
   });
 
   useEffect(() => {
