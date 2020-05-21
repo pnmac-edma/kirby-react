@@ -55,6 +55,14 @@ const SentRequests = () => {
       property: 'description'
     },
     {
+      name: 'Approver',
+      property: 'approver'
+    },
+    {
+      name: 'Sensitivity',
+      property: 'sensitivity'
+    },
+    {
       name: 'Status',
       property: 'requeststatus'
     },
