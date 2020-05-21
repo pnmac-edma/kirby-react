@@ -77,7 +77,7 @@ const TableWrapper = ({
   const [order, setOrder] = useState(orderInitialValues);
   const [orderBy, setOrderBy] = useState(columns[0].property);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
   const [isFilterClick, setIsFilterClick] = useState(false);
   const [filterForm, setFilterForm, resetForm] = useForm(filterInitialValues);
   const [
