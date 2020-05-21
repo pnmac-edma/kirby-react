@@ -3,18 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import RequestTableTitle from '../RequestTableTitle/RequestTableTitle';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
+import SnackBar from '../../../Presentational/Modal/SnackBar';
 import { transformRequests } from '../../../../State/helpers';
 import {
   approverRequestsFetch,
-  governanceRequestsFetch
+  governanceRequestsFetch,
+  setIsRequestInboxNotification
 } from '../../../../State/ViewRequests/actions';
+import { generateRequestTypeString } from '../../../../State/ViewRequests/helpers';
 
 const RequestsInbox = () => {
-  const { inboundRequests, isLoading } = useSelector(
-    ({ viewRequests }: any) => viewRequests
-  );
+  const {
+    inboundRequests,
+    isLoading,
+    isRequestInboxNotification
+  } = useSelector(({ viewRequests }: any) => viewRequests);
   const userEmail = useSelector(({ currentUser }: any) => currentUser.EmpEmail);
   const userRole = useSelector(({ currentUser }: any) => currentUser.role);
+  const { message } = useSelector(({ viewRequests }: any) => viewRequests);
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -40,20 +46,6 @@ const RequestsInbox = () => {
 
   const reqs = transformRequests(inboundRequests, userRole);
 
-  const generateRequestTypeString = (id: number) => {
-    const currentRequest = reqs.find((request: any) => request.Id === id);
-
-    // TODO: the request type values might change in the api so
-    //       these values might need changing
-    if (currentRequest.requesttype === 'Access') {
-      return 'access-database';
-    } else if (currentRequest.requesttype === 'Database') {
-      return 'add-database';
-    } else if (currentRequest.requesttype === 'Job') {
-      return 'new-job';
-    }
-  };
-
   useEffect(() => {
     if (userRole.governance) {
       dispatch(governanceRequestsFetch());
@@ -64,14 +56,24 @@ const RequestsInbox = () => {
 
   return (
     <>
+      <SnackBar
+        message={message}
+        notification={isRequestInboxNotification}
+        handleOpenNotification={() =>
+          dispatch(setIsRequestInboxNotification(true))
+        }
+        handleCloseNotification={() =>
+          dispatch(setIsRequestInboxNotification(false))
+        }
+      />
       <RequestTableTitle title="Requests Inbox" />
       <TableWrapper
         isLoading={isLoading}
         columns={columns}
         data={reqs}
         setFirstColLink={(e: React.ChangeEvent, id: number) => {
-          const requestTypeParam = generateRequestTypeString(id);
-          const urlWithId = `/requests/${id}/${requestTypeParam}`;
+          const requestTypeParam = generateRequestTypeString(reqs, id);
+          const urlWithId = `/requests/${id}/${requestTypeParam}/approve`;
           history.push(urlWithId);
         }}
       />

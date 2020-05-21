@@ -15,6 +15,7 @@ import {
   reqDecisionRequestFetch,
   userRequestsFetch
 } from '../../../../State/ViewRequests/actions';
+import { generateRequestTypeString } from '../../../../State/ViewRequests/helpers';
 
 const useStyles = makeStyles(theme => ({
   removeDescription: {
@@ -126,7 +127,8 @@ const SentRequests = () => {
         footerButtonText={footerButtonText}
         setFooterButtonClick={() => setIsModalOpenForRemove(true)}
         setFirstColLink={(e: React.ChangeEvent, id: number) => {
-          const urlWithId = `/requests/${id}`;
+          const requestTypeParam = generateRequestTypeString(reqs, id);
+          const urlWithId = `/requests/${id}/${requestTypeParam}`;
           history.push(urlWithId);
         }}
       />

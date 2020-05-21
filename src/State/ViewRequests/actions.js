@@ -79,6 +79,11 @@ export const getArchivedRequests = () => {
   };
 };
 
+export const setIsRequestInboxNotification = value => ({
+  type: types.SET_IS_REQUEST_INBOX_NOTIFICATION,
+  value
+});
+
 export const reqDecisionRequestFetch = (decision, ids) => ({
   type: types.REQ_DECISION_REQUEST_FETCH,
   decision,
