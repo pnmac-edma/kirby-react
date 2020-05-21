@@ -17,6 +17,7 @@ describe('ViewRequests Reducers', () => {
     // reset to the initial state to avoid any conflicts
     nextState = {
       message: '',
+      isRequestInboxNotification: false,
       inboundRequests: [],
       outboundRequests: [],
       selectedRequests: [],

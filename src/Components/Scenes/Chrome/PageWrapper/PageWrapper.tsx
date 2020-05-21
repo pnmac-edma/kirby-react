@@ -47,7 +47,7 @@ const PageWrapper = () => {
   const hydrationFormikRef = useRef(null);
 
   return (
-    <div className={classes.pageContainer}>
+    <div className={`${classes.pageContainer} Page-container`}>
       {curPath === '/hydration/new-job' ? (
         <AppBar hydration hydrationFormikRef={hydrationFormikRef} />
       ) : curPath === '/' ? (

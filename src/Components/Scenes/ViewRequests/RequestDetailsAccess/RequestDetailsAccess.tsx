@@ -6,7 +6,10 @@ import { Button, Divider, Typography } from '@material-ui/core';
 import { WarningRounded } from '@material-ui/icons';
 import { color, font, fontSize } from '@edma/design-tokens';
 import { transformRequests } from '../../../../State/helpers';
-import { reqDecisionRequestFetch } from '../../../../State/ViewRequests/actions';
+import {
+  setIsRequestInboxNotification,
+  reqDecisionRequestFetch
+} from '../../../../State/ViewRequests/actions';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -106,14 +109,14 @@ const RequestDetailsAccess = () => {
     return null;
   }
 
-  const { requestdata } = currentRequest;
   const {
     databasename,
-    justification,
-    requestedby,
-    requestedfor,
-    sensitivity
-  } = requestdata;
+    createdbyemail,
+    approver,
+    requestdata,
+    requestsensitivity
+  } = currentRequest;
+  const { justification } = requestdata.access[0];
 
   return (
     <div className={classes.flexStructure}>
@@ -131,18 +134,18 @@ const RequestDetailsAccess = () => {
             Sensitivity
           </Typography>
           <Typography className={classes.title}>
-            {sensitivityIcon(sensitivity)} {sensitivity}
+            {sensitivityIcon(requestsensitivity)} {requestsensitivity}
           </Typography>
           <Divider className={classes.dividerStyle} />
           <Typography variant="overline" className={classes.menuStyle}>
             Requested By
           </Typography>
-          <Typography className={classes.title}>{requestedby}</Typography>
+          <Typography className={classes.title}>{createdbyemail}</Typography>
           <Divider className={classes.dividerStyle} />
           <Typography variant="overline" className={classes.menuStyle}>
             Requested For
           </Typography>
-          <Typography className={classes.title}>{requestedfor}</Typography>
+          <Typography className={classes.title}>{approver}</Typography>
         </div>
       </div>
       <div className={classes.sideTable}>
@@ -159,6 +162,7 @@ const RequestDetailsAccess = () => {
               color="secondary"
               onClick={() => {
                 dispatch(reqDecisionRequestFetch('Rejected', [id]));
+                dispatch(setIsRequestInboxNotification(true));
                 history.push('/requests');
                 // TODO: create snackbar notification on RequestsInbox page
               }}
@@ -171,6 +175,7 @@ const RequestDetailsAccess = () => {
               color="primary"
               onClick={() => {
                 dispatch(reqDecisionRequestFetch('Approved', [id]));
+                dispatch(setIsRequestInboxNotification(true));
                 history.push('/requests');
                 // TODO: create snackbar notification on RequestsInbox page
               }}

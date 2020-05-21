@@ -13,7 +13,7 @@ const TableWrapperNotFoundFilter = ({
   return (
     <TableBody>
       <TableRow>
-        <TableCell colSpan={5}>
+        <TableCell colSpan={7}>
           We couldn't find anything matching search Term{' '}
           <strong>{searchedInput}</strong> filter <strong>{filterTerm}</strong>{' '}
           in the lake
