@@ -8,7 +8,8 @@ import { transformRequests } from '../../../../State/helpers';
 import {
   approverRequestsFetch,
   governanceRequestsFetch,
-  setIsRequestInboxNotification
+  setIsRequestInboxNotification,
+  setRequestListType
 } from '../../../../State/ViewRequests/actions';
 import { generateRequestTypeString } from '../../../../State/ViewRequests/helpers';
 
@@ -74,6 +75,7 @@ const RequestsInbox = () => {
         setFirstColLink={(e: React.ChangeEvent, id: number) => {
           const requestTypeParam = generateRequestTypeString(reqs, id);
           const urlWithId = `/requests/${id}/${requestTypeParam}/approve`;
+          dispatch(setRequestListType('inbound'));
           history.push(urlWithId);
         }}
       />

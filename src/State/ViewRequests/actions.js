@@ -100,6 +100,11 @@ export const reqDecisionRequestFailure = error => ({
   error
 });
 
+export const setRequestListType = requestListType => ({
+  type: types.SET_REQUEST_LIST_TYPE,
+  requestListType
+});
+
 export const setToggleViewCheckbox = (selected, id) => ({
   type: types.SET_TOGGLE_VIEW_CHECKBOX,
   selected,
