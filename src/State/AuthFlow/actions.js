@@ -20,3 +20,17 @@ export const authenticateFailure = error => {
     payload: error
   };
 };
+
+export const userEvaluateFetch = () => ({
+  type: types.USER_EVALUATE_FETCH
+});
+
+export const userEvaluateSuccess = response => ({
+  type: types.USER_EVALUATE_SUCCESS,
+  response
+});
+
+export const userEvaluateFailure = error => ({
+  type: types.USER_EVALUATE_FAILURE,
+  error
+});

@@ -119,7 +119,7 @@ const RequestListItem = ({
       )}
       <Collapse in={openIconThree} timeout="auto" unmountOnExit>
         <List component="div" disablePadding onClick={closeDrawer}>
-          {currentRole.governance || currentRole.approver
+          {currentRole.isGovernor || currentRole.isApprover
             ? requestListItemText
             : [requestListItemText[1]]}
         </List>

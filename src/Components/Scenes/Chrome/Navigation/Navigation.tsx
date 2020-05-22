@@ -16,7 +16,10 @@ import MenuToggleListItem from '../../SideNavigation/MenuToggleListItem/MenuTogg
 import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
 import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
 import { useQuery } from '../../../../Hooks/customHooks';
-import { authenticateFetch } from '../../../../State/AuthFlow/actions';
+import {
+  authenticateFetch,
+  userEvaluateFetch
+} from '../../../../State/AuthFlow/actions';
 import { getEmployeesFetch } from '../../../../State/RequestAsset/actions';
 import { getDomainsRequestFetch } from '../../../../State/Shared/actions';
 import config from '../../../../config/config';
@@ -156,6 +159,7 @@ const Navigation = () => {
     if (sessionToken) {
       dispatch(getEmployeesFetch());
       dispatch(getDomainsRequestFetch());
+      dispatch(userEvaluateFetch());
     }
   }, [dispatch, sessionToken]);
 

@@ -2,10 +2,7 @@ import axios from 'axios';
 import { constructRequest } from '../helpers';
 import config from '../../config/config';
 import { HttpMethods } from '../../Models/enums';
-
-// TODO: load from the env config once implemented
-// NOTE: authenicate still uses the older API. Do not change
-// const BASE_URL = 'https://e6b8r4dht6.execute-api.us-west-2.amazonaws.com/dev';
+import store from '../../setupStore';
 
 export function authenticate(token) {
   const requestBody = {
@@ -25,5 +22,21 @@ export function authenticate(token) {
     .then(response => {
       return response.data;
     })
+    .then(error => error);
+}
+
+export function postUserEvaluate() {
+  const currentUserEmail = store.getState().currentUser.EmpEmail;
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/users/evaluate`,
+    HttpMethods.POST,
+    {
+      params: { email: currentUserEmail }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
     .then(error => error);
 }
