@@ -203,3 +203,37 @@ interface NewDestinationRequestFailure {
   type: typeof types.NEW_DESTINATION_REQUEST_FAILURE;
   message: Object;
 }
+
+export const databaseCheckRequestFetch = (
+  value: string
+): DatabaseCheckRequestFetchAction => ({
+  type: types.DATABASE_CHECK_REQUEST_FETCH,
+  value
+});
+interface DatabaseCheckRequestFetchAction {
+  type: typeof types.DATABASE_CHECK_REQUEST_FETCH;
+  value: string;
+}
+
+export const databaseCheckRequestSuccess = (
+  isDatabaseNameExists: boolean
+): DatabaseCheckRequestSuccessAction => ({
+  type: types.DATABASE_CHECK_REQUEST_SUCCESS,
+  isDatabaseNameExists
+});
+interface DatabaseCheckRequestSuccessAction {
+  type: typeof types.DATABASE_CHECK_REQUEST_SUCCESS;
+  isDatabaseNameExists: boolean;
+}
+
+export const databaseCheckRequestFailure = (
+  message: string
+): DatabaseCheckRequestFailureAction => ({
+  type: types.DATABASE_CHECK_REQUEST_FAILURE,
+  message
+});
+
+interface DatabaseCheckRequestFailureAction {
+  type: typeof types.DATABASE_CHECK_REQUEST_FAILURE;
+  message: string;
+}

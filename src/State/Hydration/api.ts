@@ -50,12 +50,12 @@ export const getDestinationsDropdown = () => {
 };
 
 export const newDestination = (
-  name,
-  sensitivity,
-  domain,
-  description,
-  justification,
-  createdbyemail
+  name: string,
+  sensitivity: string,
+  domain: string,
+  description: string,
+  justification: string,
+  createdbyemail: string
 ) => {
   const request = constructRequest(
     config.apiUrl,
@@ -71,6 +71,21 @@ export const newDestination = (
         sensitivity
       },
       headers: { 'Content-Type': 'application/json' }
+    }
+  );
+
+  return axios(request)
+    .then(response => response.data)
+    .then(error => error);
+};
+
+export const databaseCheck = (name: any) => {
+  const request = constructRequest(
+    config.apiUrl,
+    `${config.apiPath}/assets/databases/check`,
+    HttpMethods.GET,
+    {
+      params: { name }
     }
   );
 

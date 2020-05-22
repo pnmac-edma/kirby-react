@@ -4,7 +4,8 @@ import {
   getSourceTiles,
   getDestinations,
   getDestinationsDropdown,
-  newDestination
+  newDestination,
+  databaseCheck
 } from './api';
 import { getCreatedByEmail } from '../../Selectors/sagaSelectors';
 
@@ -75,6 +76,16 @@ export function* workNewDestination(action: any) {
   }
 }
 
+export function* workDatabaseCheck(action: any) {
+  const { value } = action;
+  try {
+    const response = yield call(databaseCheck, value);
+    yield put({ type: types.DATABASE_CHECK_REQUEST_SUCCESS, name: response });
+  } catch (error) {
+    yield put({ type: types.DATABASE_CHECK_REQUEST_FAILURE });
+  }
+}
+
 export default function* watchHydration() {
   yield takeEvery(types.SOURCE_TILES_REQUESTS_FETCH, workSourceTiles);
   yield takeEvery(types.DESTINATIONS_REQUEST_FETCH, workDestinations);
@@ -83,4 +94,5 @@ export default function* watchHydration() {
     workDestinationsDropDown
   );
   yield takeEvery(types.NEW_DESTINATION_REQUEST_FETCH, workNewDestination);
+  yield takeEvery(types.DATABASE_CHECK_REQUEST_FETCH, workDatabaseCheck);
 }

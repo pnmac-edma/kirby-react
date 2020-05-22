@@ -13,7 +13,10 @@ export const initialState = {
     sources: {},
     destinations: {},
     destinationDropdowns: {}
-  }
+  },
+  newDestinationMessage: '',
+  isDatabaseNameExists: false,
+  notificationForDatabase: false
 };
 
 const hydrationReducer = (state = initialState, action: any) => {
@@ -118,10 +121,13 @@ const hydrationReducer = (state = initialState, action: any) => {
     case types.DESTINATIONS_DROPDOWN_REQUEST_FAILURE:
       return { ...state };
     case types.NEW_DESTINATION_REQUEST_FETCH:
+      return { ...state, newDestinationMessage: '' };
+    case types.NEW_DESTINATION_REQUEST_SUCCESS:
+      return { ...state, newDestinationMessage: action.newDestination.message };
+    case types.DATABASE_CHECK_REQUEST_FETCH:
       return { ...state };
-    case types.NEW_DESTINATION_REQUEST_SUCCESS: {
-      console.log('this reducer', action);
-      return { ...state };
+    case types.DATABASE_CHECK_REQUEST_SUCCESS: {
+      return { ...state, isDatabaseNameExists: action.name };
     }
     default:
       return state;
