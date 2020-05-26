@@ -13,7 +13,8 @@ import {
   setToggleSentCheckbox,
   setToggleSentAllCheckbox,
   reqDecisionRequestFetch,
-  userRequestsFetch
+  userRequestsFetch,
+  setRequestListType
 } from '../../../../State/ViewRequests/actions';
 import { generateRequestTypeString } from '../../../../State/ViewRequests/helpers';
 
@@ -129,6 +130,7 @@ const SentRequests = () => {
         setFirstColLink={(e: React.ChangeEvent, id: number) => {
           const requestTypeParam = generateRequestTypeString(reqs, id);
           const urlWithId = `/requests/${id}/${requestTypeParam}`;
+          dispatch(setRequestListType('outbound'));
           history.push(urlWithId);
         }}
       />
