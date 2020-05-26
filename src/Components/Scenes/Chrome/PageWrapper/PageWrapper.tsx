@@ -41,6 +41,9 @@ const PageWrapper = () => {
   const isSearchClicked = useSelector(
     ({ searchResult }: any) => searchResult.isSearchClicked
   );
+  const requestListType = useSelector(
+    ({ viewRequests }: any) => viewRequests.requestListType
+  );
 
   const curPath = useLocation().pathname;
 
@@ -81,13 +84,28 @@ const PageWrapper = () => {
         <Route path="/requests/sent" component={SentRequests} />
         <Route
           path="/requests/:id/add-database"
-          component={RequestDetailsDatabase}
+          render={props => (
+            <RequestDetailsDatabase
+              {...props}
+              requestListType={requestListType}
+            />
+          )}
         />
         <Route
           path="/requests/:id/access-database"
-          component={RequestDetailsAccess}
+          render={props => (
+            <RequestDetailsAccess
+              {...props}
+              requestListType={requestListType}
+            />
+          )}
         />
-        <Route path="/requests/:id/new-job" component={RequestDetailsJob} />
+        <Route
+          path="/requests/:id/new-job"
+          render={props => (
+            <RequestDetailsJob {...props} requestListType={requestListType} />
+          )}
+        />
         {/* Governors Pages */}
         <Route path="/governance/governors" component={Governance} />
         <Route path="/governance/sensitivity-levels" component={Governance} />

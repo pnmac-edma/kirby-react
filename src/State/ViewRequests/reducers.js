@@ -2,6 +2,7 @@ import * as types from './types';
 
 export const initialState = {
   isRequestInboxNotification: false,
+  requestListType: '',
   message: '',
   inboundRequests: [], // for elevated users, this would be approver or governance requests
   outboundRequests: [], // stores all user requests
@@ -80,6 +81,9 @@ const viewRequestsReducer = (state = initialState, action) => {
     }
     case types.SET_IS_REQUEST_INBOX_NOTIFICATION: {
       return { ...state, isRequestInboxNotification: action.value };
+    }
+    case types.SET_REQUEST_LIST_TYPE: {
+      return { ...state, requestListType: action.requestListType };
     }
     case types.REQ_DECISION_REQUEST_FETCH: {
       return { ...state, message: '' };

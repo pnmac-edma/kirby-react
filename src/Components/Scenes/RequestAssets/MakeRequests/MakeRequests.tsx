@@ -63,6 +63,14 @@ const MakeRequests = () => {
   return (
     <>
       <Button
+        onClick={() => history.push(urlWithParams)}
+        className={`${classes.secondaryButton} ${classes.button}`}
+        variant="contained"
+        color="secondary"
+      >
+        Cancel
+      </Button>
+      <Button
         className={classes.button}
         variant="contained"
         color="primary"
@@ -75,14 +83,6 @@ const MakeRequests = () => {
         }}
       >
         Submit Request
-      </Button>
-      <Button
-        onClick={() => history.push(urlWithParams)}
-        className={`${classes.secondaryButton} ${classes.button}`}
-        variant="contained"
-        color="secondary"
-      >
-        Cancel
       </Button>
       {!isLoading ? (
         <SnackBar

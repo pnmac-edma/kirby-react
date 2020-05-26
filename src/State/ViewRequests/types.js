@@ -36,6 +36,8 @@ export const SET_TOGGLE_ARCHIVED_ALL_CHECKBOX =
 export const SET_IS_REQUEST_INBOX_NOTIFICATION =
   'SET_IS_REQUEST_INBOX_NOTIFICATION';
 
+export const SET_REQUEST_LIST_TYPE = 'SET_REQUEST_LIST_TYPE';
+
 // actions pertaining to filtering incoming request data
 export const GET_ARCHIVED_REQUESTS = 'GET_ARCHIVED_REQUESTS';
 

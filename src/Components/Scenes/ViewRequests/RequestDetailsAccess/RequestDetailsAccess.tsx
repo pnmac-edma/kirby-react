@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Divider, Typography } from '@material-ui/core';
 import { WarningRounded } from '@material-ui/icons';
@@ -72,10 +72,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RequestDetailsAccess = () => {
+const RequestDetailsAccess = ({
+  requestListType
+}: RequestDetailsAccessProps) => {
   const classes = useStyles();
 
-  const { inboundRequests } = useSelector(
+  const { inboundRequests, outboundRequests, archivedRequests } = useSelector(
     ({ viewRequests }: any) => viewRequests
   );
   const userRole = useSelector(({ currentUser }: any) => currentUser.role);
@@ -95,9 +97,25 @@ const RequestDetailsAccess = () => {
 
   const history = useHistory();
 
+  const generateCorrectRequestList = () => {
+    if (requestListType === 'inbound') {
+      return inboundRequests;
+    } else if (requestListType === 'outbound') {
+      return outboundRequests;
+    } else if (requestListType === 'archived') {
+      return archivedRequests;
+    }
+  };
+
   const { id } = useParams();
   const isApprovePath = useLocation().pathname.includes('approve');
-  const reqs = transformRequests(inboundRequests, userRole);
+  const correctRequestList = generateCorrectRequestList();
+
+  if (!correctRequestList) {
+    return <Redirect to="/requests" />;
+  }
+
+  const reqs = transformRequests(correctRequestList, userRole);
   const currentRequest = reqs.find(
     (request: any) => request.Id.toString() === id
   );
@@ -190,3 +208,7 @@ const RequestDetailsAccess = () => {
 };
 
 export default RequestDetailsAccess;
+
+interface RequestDetailsAccessProps {
+  requestListType: string;
+}
