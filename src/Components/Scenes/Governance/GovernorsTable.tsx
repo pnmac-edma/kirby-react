@@ -39,7 +39,7 @@ const GovernorsTable = ({ isModalOpen, setIsModalOpen }: any) => {
         acc.push(
           <p key={governor.Id}>
             Are you sure that you want to remove{' '}
-            <strong>{governor.governor}</strong> from the Governance group?
+            <strong>{governor.useremail}</strong> from the Governance group?
           </p>
         );
       }

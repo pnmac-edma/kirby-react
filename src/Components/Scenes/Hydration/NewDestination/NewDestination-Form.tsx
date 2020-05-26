@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, useFormikContext } from 'formik';
 import {
@@ -14,10 +14,11 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import {
   setIsDestinationModalOpen,
-  newDestinationRequestFetch
+  newDestinationRequestFetch,
+  databaseCheckRequestFetch
 } from '../../../../State/Hydration/actions';
 import mockSensitivity from '../../../../State/__mockData__/mockSensitivity.json';
-import mockDomains from '../../../../State/__mockData__/mockDomains.json';
+import SnackBar from '../../../Presentational/Modal/SnackBar';
 
 const styles = makeStyles(theme => ({
   gridContainer: {
@@ -36,19 +37,38 @@ const styles = makeStyles(theme => ({
 const NewDestinationForm = (props: NewDestinationFormProps) => {
   const { isAppForm } = props;
   const classes = styles();
-  const isDestinationModalOpen = useSelector(
-    ({ hydration }: any) => hydration.isDestinationModalOpen
+  const { isDestinationModalOpen, newDestinationMessage } = useSelector(
+    ({ hydration }: any) => hydration
   );
+  const { domains } = useSelector(({ shared }: any) => shared);
   const dispatch = useDispatch();
   const prefixForApp = isAppForm ? 'destinationsCreate.' : '';
-  const { errors, touched, values } = (useFormikContext() as unknown) as {
+  const {
+    errors,
+    touched,
+    values,
+    isValid
+  } = (useFormikContext() as unknown) as {
     errors: InitialErrorTypes;
     touched: InitialTouchedTypes;
     values: InitialValuesTypes;
+    isValid: any;
   };
+
+  const [notification, setNotification] = useState(false);
+  const handleOpenNotification = () => setNotification(true);
+  const handleCloseNotification = () => setNotification(false);
 
   return (
     <>
+      {newDestinationMessage.length > 0 && (
+        <SnackBar
+          message={newDestinationMessage}
+          notification={notification}
+          handleOpenNotification={handleOpenNotification}
+          handleCloseNotification={handleCloseNotification}
+        />
+      )}
       <Typography variant="h2">New Destination</Typography>
       <Typography variant="body1">
         New destinations are made available within their respective domains, and
@@ -63,6 +83,9 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
             helperText={touched.name ? errors.name : null}
             label="Destination Name"
             variant="outlined"
+            onBlur={(e: any) => {
+              dispatch(databaseCheckRequestFetch(e.target.value));
+            }}
             as={TextField}
           />
         </Grid>
@@ -100,9 +123,9 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
               type="select"
               as={Select}
             >
-              {mockDomains.map((domain, i) => (
-                <MenuItem key={`${i}-${domain}`} value={domain}>
-                  {domain}
+              {domains.map((domain: any, i: any) => (
+                <MenuItem key={domain.Id} value={domain.domain}>
+                  {domain.domain}
                 </MenuItem>
               ))}
             </Field>
@@ -160,7 +183,11 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => dispatch(newDestinationRequestFetch(values))}
+            onClick={() => {
+              dispatch(newDestinationRequestFetch(values));
+              handleOpenNotification();
+            }}
+            disabled={!isValid}
           >
             Add Destination
           </Button>
