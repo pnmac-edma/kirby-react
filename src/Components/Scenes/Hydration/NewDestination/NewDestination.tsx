@@ -23,9 +23,11 @@ const NewDestination = () => {
     <Formik
       initialValues={destinationInitialState}
       validationSchema={NewDestinationValidationSchema}
+      enableReinitialize
       onSubmit={(values, { setSubmitting }) => {
-        setSubmitting(false);
+        setSubmitting(true);
       }}
+      validateOnMount
     >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>

@@ -6,7 +6,7 @@ export default Yup.object({
     .oneOf(['Sensitive', 'Very Sensitive', 'Not Sensitive', 'Confidential'])
     .required(),
   domain: Yup.string()
-    .oneOf(['Retail', 'Capital Market', 'Servicing'])
+    .oneOf(['data', 'sales', 'marketing', 'retail', 'operation'])
     .required(),
   description: Yup.string().required(),
   justification: Yup.string().required()
