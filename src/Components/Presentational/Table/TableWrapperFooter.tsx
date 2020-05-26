@@ -50,7 +50,7 @@ const TableWrapperFooter = ({
           <TableCell>{children}</TableCell>
           <TableCell>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 50]}
+              rowsPerPageOptions={[25, 50, 100]}
               component="div"
               count={count}
               rowsPerPage={rowsPerPage}
