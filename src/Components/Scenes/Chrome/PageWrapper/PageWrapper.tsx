@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, useLocation } from 'react-router-dom';
+import { Redirect, Route, useLocation } from 'react-router-dom';
 // @ts-ignore
 import { AnimatedSwitch } from 'react-router-transition';
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,6 +35,32 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const GovernorRoute = ({ component: Component, role, ...rest }: any) => (
+  <Route
+    {...rest}
+    render={props =>
+      role.isGovernor ? <Component {...props} /> : <Redirect to="/" />
+    }
+  />
+);
+
+const GovernorOrApproverRoute = ({
+  component: Component,
+  role,
+  ...rest
+}: any) => (
+  <Route
+    {...rest}
+    render={props =>
+      role.isGovernor || role.isApprover ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
+    }
+  />
+);
+
 const PageWrapper = () => {
   const classes = useStyles();
 
@@ -49,7 +75,6 @@ const PageWrapper = () => {
   const curPath = useLocation().pathname;
 
   const hydrationFormikRef = useRef(null);
-  console.log(role.isGovernor);
 
   return (
     <div className={`${classes.pageContainer} Page-container`}>
@@ -81,7 +106,18 @@ const PageWrapper = () => {
         />
         <Route path="/hydration/view-jobs" component={ViewJobs} />
         {/* requests pages */}
+        <GovernorOrApproverRoute
+          exact
+          path="/requests"
+          role={role}
+          component={RequestsInbox}
+        />
         <Route path="/requests/sent" component={SentRequests} />
+        <GovernorOrApproverRoute
+          path="/requests/archive"
+          role={role}
+          component={ArchivedRequests}
+        />
         <Route
           path="/requests/:id/add-database"
           render={props => (
@@ -106,23 +142,22 @@ const PageWrapper = () => {
             <RequestDetailsJob {...props} requestListType={requestListType} />
           )}
         />
-        {(role.isGovernor || role.isApprover) && (
-          <>
-            <Route exact path="/requests" component={RequestsInbox} />
-            <Route path="/requests/archive" component={ArchivedRequests} />
-          </>
-        )}
         {/* Governors Pages */}
-        {role.isGovernor && (
-          <>
-            <Route path="/governance/governors" component={Governance} />
-            <Route
-              path="/governance/sensitivity-levels"
-              component={Governance}
-            />
-            <Route path="/governance/business-owners" component={Governance} />
-          </>
-        )}
+        <GovernorRoute
+          path="/governance/governors"
+          role={role}
+          component={Governance}
+        />
+        <GovernorRoute
+          path="/governance/sensitivity-levels"
+          role={role}
+          component={Governance}
+        />
+        <GovernorRoute
+          path="/governance/business-owners"
+          role={role}
+          component={Governance}
+        />
       </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}

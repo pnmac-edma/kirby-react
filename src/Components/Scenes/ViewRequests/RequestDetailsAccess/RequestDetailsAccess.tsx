@@ -97,6 +97,7 @@ const RequestDetailsAccess = ({
 
   const history = useHistory();
 
+  // TODO: move this to an outside function because it is being used in 2 other places
   const generateCorrectRequestList = () => {
     if (
       requestListType === 'inbound' &&
