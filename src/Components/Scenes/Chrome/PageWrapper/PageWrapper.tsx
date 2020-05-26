@@ -44,10 +44,12 @@ const PageWrapper = () => {
   const requestListType = useSelector(
     ({ viewRequests }: any) => viewRequests.requestListType
   );
+  const role = useSelector(({ currentUser }: any) => currentUser.role);
 
   const curPath = useLocation().pathname;
 
   const hydrationFormikRef = useRef(null);
+  console.log(role.isGovernor);
 
   return (
     <div className={`${classes.pageContainer} Page-container`}>
@@ -79,8 +81,6 @@ const PageWrapper = () => {
         />
         <Route path="/hydration/view-jobs" component={ViewJobs} />
         {/* requests pages */}
-        <Route exact path="/requests" component={RequestsInbox} />
-        <Route path="/requests/archive" component={ArchivedRequests} />
         <Route path="/requests/sent" component={SentRequests} />
         <Route
           path="/requests/:id/add-database"
@@ -106,10 +106,23 @@ const PageWrapper = () => {
             <RequestDetailsJob {...props} requestListType={requestListType} />
           )}
         />
+        {(role.isGovernor || role.isApprover) && (
+          <>
+            <Route exact path="/requests" component={RequestsInbox} />
+            <Route path="/requests/archive" component={ArchivedRequests} />
+          </>
+        )}
         {/* Governors Pages */}
-        <Route path="/governance/governors" component={Governance} />
-        <Route path="/governance/sensitivity-levels" component={Governance} />
-        <Route path="/governance/business-owners" component={Governance} />
+        {role.isGovernor && (
+          <>
+            <Route path="/governance/governors" component={Governance} />
+            <Route
+              path="/governance/sensitivity-levels"
+              component={Governance}
+            />
+            <Route path="/governance/business-owners" component={Governance} />
+          </>
+        )}
       </AnimatedSwitch>
 
       {isSearchClicked ? <SearchContainer /> : null}

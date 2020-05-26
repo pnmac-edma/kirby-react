@@ -93,11 +93,17 @@ const RequestDetailsJob = ({ requestListType }: RequestDetailsJobProps) => {
   const history = useHistory();
 
   const generateCorrectRequestList = () => {
-    if (requestListType === 'inbound') {
+    if (
+      requestListType === 'inbound' &&
+      (userRole.isGovernor || userRole.isApprover)
+    ) {
       return inboundRequests;
     } else if (requestListType === 'outbound') {
       return outboundRequests;
-    } else if (requestListType === 'archived') {
+    } else if (
+      requestListType === 'archived' &&
+      (userRole.isGovernor || userRole.isApprover)
+    ) {
       return archivedRequests;
     }
     return null;

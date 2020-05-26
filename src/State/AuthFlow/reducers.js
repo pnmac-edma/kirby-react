@@ -19,6 +19,7 @@ const authReducer = (state = initialState.currentUser, action) => {
       return { ...state };
     }
     case types.USER_EVALUATE_SUCCESS: {
+      // TODO: uncomment this for production;
       // const { governance, approver } = action.response;
       return {
         ...state

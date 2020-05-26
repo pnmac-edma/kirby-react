@@ -91,6 +91,7 @@ const Navigation = () => {
   const sessionToken = useSelector(
     ({ currentUser }: any) => currentUser.SessionToken
   );
+  const role = useSelector(({ currentUser }: any) => currentUser.role);
   const dispatch = useDispatch();
 
   const samlResponse = useQuery('SAMLResponse');
@@ -196,11 +197,13 @@ const Navigation = () => {
                 closeDrawer={closeDrawer}
               />
               <SearchAssetsListItem closeAllArrows={open} />
-              <GovernanceListItem
-                closeAllArrows={open}
-                openDrawer={openDrawer}
-                closeDrawer={closeDrawer}
-              />
+              {role.isGovernor && (
+                <GovernanceListItem
+                  closeAllArrows={open}
+                  openDrawer={openDrawer}
+                  closeDrawer={closeDrawer}
+                />
+              )}
               <HydrationListItem
                 closeAllArrows={open}
                 openDrawer={openDrawer}
