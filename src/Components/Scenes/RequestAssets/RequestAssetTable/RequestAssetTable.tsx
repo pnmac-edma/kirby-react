@@ -18,6 +18,7 @@ const RequestAssetTable = () => {
 
   const columns = [
     { name: 'Name', property: 'databasename' },
+    { name: 'Sensitivity', property: 'sensitivity' },
     { name: 'Date Created', property: 'createddate' }
   ];
 
