@@ -12,33 +12,44 @@ import {
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    width: 250
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    width: '100%'
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
+    width: '100%',
     marginTop: theme.spacing(1)
   },
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    display: 'block',
+    width: '100%'
   }
 }));
 
 interface TableWrapperFilterProps {
   filter: Array<string> | null;
   filterForm: any;
+  anchorEl: any;
+  isFilterClick: boolean;
   setFilterForm: Function;
+  setIsFilterClick: Function;
   setSelectedFilters: Function;
+  setAnchorEl: Function;
 }
 
 const TableWrapperFilter = ({
   filter,
   filterForm,
+  anchorEl,
+  setAnchorEl,
+  setIsFilterClick,
+  isFilterClick,
   setFilterForm,
   setSelectedFilters
 }: TableWrapperFilterProps) => {
@@ -64,6 +75,12 @@ const TableWrapperFilter = ({
     }
   );
 
+  const handleClick = () => {
+    setAnchorEl(null);
+    setIsFilterClick(!isFilterClick);
+    setSelectedFilters();
+  };
+
   return (
     <>
       <form className={classes.root} autoComplete="off">
@@ -72,6 +89,7 @@ const TableWrapperFilter = ({
           <Select
             name="filterBy"
             value={filterForm.filterBy}
+            defaultValue="Name"
             onChange={e => setFilterForm('filterBy', e.target.value)}
           >
             {filterByOptions}
@@ -81,6 +99,7 @@ const TableWrapperFilter = ({
           <InputLabel htmlFor="that">That</InputLabel>
           <Select
             name="filterType"
+            displayEmpty
             value={filterForm.filterType}
             onChange={e => setFilterForm('filterType', e.target.value)}
           >
@@ -89,6 +108,7 @@ const TableWrapperFilter = ({
         </FormControl>
         <TextField
           id="filter-term"
+          autoFocus
           label="Filter Term"
           className={classes.textField}
           margin="normal"
@@ -105,9 +125,9 @@ const TableWrapperFilter = ({
             !filterForm.filterBy ||
             !filterForm.filterType
           }
-          onClick={() => setSelectedFilters()}
+          onClick={handleClick}
         >
-          Submit
+          Add Filter
         </Button>
       </form>
     </>

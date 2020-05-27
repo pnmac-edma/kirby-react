@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toolbar, Typography } from '@material-ui/core';
+import { Menu, Toolbar, Typography } from '@material-ui/core';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import TableWrapperFilterChip from './TableWrapperFilterChip';
 import TableWrapperFilter from './TableWrapperFilter';
@@ -29,7 +29,9 @@ interface TableWrapperHeaderProps {
   setFilterForm: Function;
   selectedFilters: any;
   isFilterClick: boolean;
+  anchorEl: any;
   setIsFilterClick: Function;
+  setAnchorEl: Function;
   setSelectedFilters: Function;
   removeFilter: Function;
 }
@@ -41,11 +43,26 @@ const TableWrapperHeader = ({
   setFilterForm,
   selectedFilters,
   isFilterClick,
+  anchorEl,
   setIsFilterClick,
+  setAnchorEl,
   setSelectedFilters,
   removeFilter
 }: TableWrapperHeaderProps) => {
   const classes = useStyles();
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setIsFilterClick(!isFilterClick);
+  };
+
+  let anchorPos;
+  let anchorY;
+
+  if (anchorEl) {
+    anchorPos = anchorEl.getBoundingClientRect();
+    anchorY = anchorPos.y;
+  }
 
   return (
     <>
@@ -56,8 +73,10 @@ const TableWrapperHeader = ({
           </Typography>
           {filter && (
             <TableWrapperFilterChip
+              anchorEl={anchorEl}
               isFilterClick={isFilterClick}
               selectedFilters={selectedFilters}
+              setAnchorEl={setAnchorEl}
               setIsFilterClick={setIsFilterClick}
               removeFilter={removeFilter}
             />
@@ -66,14 +85,34 @@ const TableWrapperHeader = ({
       )}
 
       {isFilterClick ? (
-        <Toolbar>
-          <TableWrapperFilter
-            filter={filter}
-            filterForm={filterForm}
-            setSelectedFilters={setSelectedFilters}
-            setFilterForm={setFilterForm}
-          />
-        </Toolbar>
+        <Menu
+          id="filters"
+          keepMounted
+          anchorEl={anchorEl}
+          open={isFilterClick}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right'
+          }}
+          transformOrigin={{
+            vertical: anchorY - 300,
+            horizontal: 'right'
+          }}
+        >
+          <Toolbar>
+            <TableWrapperFilter
+              filter={filter}
+              filterForm={filterForm}
+              setSelectedFilters={setSelectedFilters}
+              setFilterForm={setFilterForm}
+              setAnchorEl={setAnchorEl}
+              anchorEl={anchorEl}
+              isFilterClick={isFilterClick}
+              setIsFilterClick={setIsFilterClick}
+            />
+          </Toolbar>
+        </Menu>
       ) : null}
     </>
   );

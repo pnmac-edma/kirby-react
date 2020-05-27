@@ -3,10 +3,11 @@ import { Tooltip, IconButton, Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CloseIcon from '@material-ui/icons/Close';
+import { color } from '@edma/design-tokens';
 
 const useStyles = makeStyles(theme => ({
   spacer: {
-    // flexGrow: 2,
+    flexGrow: 2,
     display: 'flex',
     justifyContent: 'flex-end',
     flexWrap: 'wrap'
@@ -15,25 +16,37 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(0.5)
   },
   filterToggle: {
-    padding: '0px',
-    marginLeft: theme.spacing(0.5)
+    marginRight: -16,
+
+    '&:hover': {
+      color: theme.palette.type === 'light' ? color.black : color.white
+    }
   }
 }));
 
 interface TableWrapperFilterChipProps {
   selectedFilters: any;
   isFilterClick: boolean;
+  anchorEl: any;
   setIsFilterClick: Function;
+  setAnchorEl: Function;
   removeFilter: Function;
 }
 
 const TableWrapperFilterChip = ({
   selectedFilters,
   isFilterClick,
+  anchorEl,
   setIsFilterClick,
+  setAnchorEl,
   removeFilter
 }: TableWrapperFilterChipProps) => {
   const classes = useStyles();
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+    setIsFilterClick(!isFilterClick);
+  };
 
   const chips = selectedFilters.map(
     ({ filterBy, filterType, filterTerm }: any, i: number) => {
@@ -55,7 +68,7 @@ const TableWrapperFilterChip = ({
         <IconButton
           className={classes.filterToggle}
           aria-label="filter list"
-          onClick={() => setIsFilterClick(!isFilterClick)}
+          onClick={handleClick}
         >
           {isFilterClick ? <CloseIcon /> : <FilterListIcon />}
         </IconButton>

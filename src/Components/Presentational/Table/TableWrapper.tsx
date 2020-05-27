@@ -66,8 +66,8 @@ const TableWrapper = ({
   const classes = useStyles();
 
   const filterInitialValues = !filter || {
-    filterBy: '',
-    filterType: '',
+    filterBy: columns[0].name,
+    filterType: 'Contains',
     filterTerm: ''
   };
   const orderInitialValues = columns.reduce((acc, column) => {
@@ -79,6 +79,7 @@ const TableWrapper = ({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
   const [isFilterClick, setIsFilterClick] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [filterForm, setFilterForm, resetForm] = useForm(filterInitialValues);
   const [
     selectedFilters,
@@ -135,10 +136,12 @@ const TableWrapper = ({
           filter={filter}
           filterForm={filterForm}
           isFilterClick={isFilterClick}
+          anchorEl={anchorEl}
           removeFilter={removeFilter}
           selectedFilters={selectedFilters}
           setFilterForm={setFilterForm}
           setIsFilterClick={setIsFilterClick}
+          setAnchorEl={setAnchorEl}
           setSelectedFilters={setSelectedFilters}
           setTitleText={setTitleText}
         />
