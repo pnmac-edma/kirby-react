@@ -52,8 +52,9 @@ const RequestAsset = () => {
 
   const [notification, setNotification] = React.useState(false);
 
-  const { openModal } = useSelector(({ requestAssets }: any) => requestAssets);
-  const { employees } = useSelector(({ requestAssets }: any) => requestAssets);
+  const { employees, openModal } = useSelector(
+    ({ requestAssets }: any) => requestAssets
+  );
   const dispatch = useDispatch();
 
   const handleOpenNotification = () => {

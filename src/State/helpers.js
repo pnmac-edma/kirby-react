@@ -1,3 +1,5 @@
+import React from 'react';
+import { WarningRounded } from '@material-ui/icons';
 import store from '../setupStore';
 import aws4 from 'aws4';
 
@@ -29,7 +31,7 @@ export const transformRequests = (requests, role) => {
 
 /* constructs a request object to be passed to axios
  * TODO: add typing for this function and get rid of the notes below
- * url: the base url of the API (pulled from the config in most ways)
+ * url: the base url of the API (pulled from the config)
  * path: the specific path to be appended to the host (e.g. /users/requests)
  * method: HTTP Method
  * optionalConfig: {
@@ -80,4 +82,27 @@ export const constructRequest = (url, path, method, optionalConfig = {}) => {
   delete signedRequest.headers['Host'];
   delete signedRequest.headers['Content-Length'];
   return request;
+};
+
+// maps sensitivity property from data to the proper icon and text
+export const generateSensitivity = sensitivity => {
+  if (sensitivity === 'sensitive') {
+    return (
+      <div className="sensitivity">
+        <WarningRounded className="sensitivity-sensitive" />
+        Sensitive
+      </div>
+    );
+  }
+  if (sensitivity === 'confidential') {
+    return (
+      <div className="sensitivity">
+        <WarningRounded color="error" />; Confidential
+      </div>
+    );
+  }
+  if (sensitivity === 'non-sensitive') {
+    return <div className="sensitivity">Not Sensitive</div>;
+  }
+  return null;
 };

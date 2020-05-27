@@ -62,7 +62,7 @@ const SentRequests = () => {
     },
     {
       name: 'Sensitivity',
-      property: 'sensitivity'
+      property: 'requestsensitivity'
     },
     {
       name: 'Status',

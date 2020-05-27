@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Divider, Typography } from '@material-ui/core';
-import { WarningRounded } from '@material-ui/icons';
 import { color, font, fontSize } from '@edma/design-tokens';
 import { transformRequests } from '../../../../State/helpers';
 import { reqDecisionRequestFetch } from '../../../../State/ViewRequests/actions';
+import { generateSensitivity } from '../../../../State/helpers';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -80,18 +80,6 @@ const RequestDetailsDatabase = ({
   const userRole = useSelector(({ currentUser }: any) => currentUser.role);
   const dispatch = useDispatch();
 
-  const sensitivityIcon = (sensitivity: string) => {
-    if (sensitivity === 'Sensitive') {
-      return (
-        <WarningRounded className="Tile__statusIcon Tile__statusIcon--warning" />
-      );
-    }
-    if (sensitivity === 'Confidential') {
-      return <WarningRounded color="error" />;
-    }
-    return null;
-  };
-
   const history = useHistory();
 
   const generateCorrectRequestList = () => {
@@ -156,9 +144,9 @@ const RequestDetailsDatabase = ({
           <Typography variant="overline" className={classes.menuStyle}>
             Sensitivity
           </Typography>
-          <Typography className={classes.title}>
-            {sensitivityIcon(sensitivity)} {sensitivity}
-          </Typography>
+          <div className="MuiTypography-body1">
+            {generateSensitivity(sensitivity)}
+          </div>
           <Divider className={classes.dividerStyle} />
           <Typography variant="overline" className={classes.menuStyle}>
             Domain

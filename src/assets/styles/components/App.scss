@@ -42,3 +42,12 @@ code {
 .dark .kirbyLogoText {
   fill: $color-white;
 }
+
+.sensitivity {
+  display: flex;
+  align-items: center;
+}
+
+.sensitivity-sensitive {
+  color: $color-y-400;
+}

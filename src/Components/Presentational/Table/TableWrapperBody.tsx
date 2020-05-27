@@ -14,6 +14,7 @@ import { stableSort, getSorting } from '../../../Utilities/utils';
 import { Column, Datum } from './types';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { setRemoveSelectedRow } from '../../../State/Governance/actions';
+import { generateSensitivity } from '../../../State/helpers';
 
 const tableStyles = makeStyles(theme => ({
   cell: {
@@ -70,8 +71,9 @@ const TableWrapperBody = ({
 }: TableWrapperBodyProps) => {
   const classes = tableStyles();
   const dispatch = useDispatch();
+
   const getCellProps = (datum: Datum, col: Column, i: number) => {
-    let className, onClickFunc;
+    let className, customRender, onClickFunc;
     if (i === 0) {
       className = `${classes.firstCol} ${
         setFirstColLink ? classes.firstColLink : ''
@@ -91,7 +93,10 @@ const TableWrapperBody = ({
           pending: classes.statusPending
         } as any)[datum[col.property].toLowerCase()] || null;
     }
-    return [className, onClickFunc];
+    if (col.name.toLowerCase() === 'sensitivity') {
+      customRender = generateSensitivity(datum[col.property]);
+    }
+    return [className, customRender, onClickFunc];
   };
 
   const sortedSlicedRequests = stableSort(
@@ -140,7 +145,7 @@ const TableWrapperBody = ({
   };
 
   const createRowCells = (datum: Datum, col: Column, i: number) => {
-    const [className, onClickFunc] = getCellProps(datum, col, i);
+    const [className, customRender, onClickFunc] = getCellProps(datum, col, i);
     return (
       <TableCell
         key={i}
@@ -148,7 +153,7 @@ const TableWrapperBody = ({
         align="left"
         onClick={onClickFunc}
       >
-        {datum[col.property]}
+        {customRender ? customRender : datum[col.property]}
       </TableCell>
     );
   };
