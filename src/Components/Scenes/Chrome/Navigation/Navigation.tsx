@@ -16,7 +16,10 @@ import MenuToggleListItem from '../../SideNavigation/MenuToggleListItem/MenuTogg
 import ExpiredAuth from '../../../Presentational/ErrorSplashes/ExpiredAuth';
 import BadRequest from '../../../Presentational/ErrorSplashes/BadRequest';
 import { useQuery } from '../../../../Hooks/customHooks';
-import { authenticateFetch } from '../../../../State/AuthFlow/actions';
+import {
+  authenticateFetch,
+  userEvaluateFetch
+} from '../../../../State/AuthFlow/actions';
 import { getEmployeesFetch } from '../../../../State/RequestAsset/actions';
 import { getDomainsRequestFetch } from '../../../../State/Shared/actions';
 import config from '../../../../config/config';
@@ -88,6 +91,7 @@ const Navigation = () => {
   const sessionToken = useSelector(
     ({ currentUser }: any) => currentUser.SessionToken
   );
+  const role = useSelector(({ currentUser }: any) => currentUser.role);
   const dispatch = useDispatch();
 
   const samlResponse = useQuery('SAMLResponse');
@@ -156,6 +160,7 @@ const Navigation = () => {
     if (sessionToken) {
       dispatch(getEmployeesFetch());
       dispatch(getDomainsRequestFetch());
+      dispatch(userEvaluateFetch());
     }
   }, [dispatch, sessionToken]);
 
@@ -192,11 +197,13 @@ const Navigation = () => {
                 closeDrawer={closeDrawer}
               />
               <SearchAssetsListItem closeAllArrows={open} />
-              <GovernanceListItem
-                closeAllArrows={open}
-                openDrawer={openDrawer}
-                closeDrawer={closeDrawer}
-              />
+              {role.isGovernor && (
+                <GovernanceListItem
+                  closeAllArrows={open}
+                  openDrawer={openDrawer}
+                  closeDrawer={closeDrawer}
+                />
+              )}
               <HydrationListItem
                 closeAllArrows={open}
                 openDrawer={openDrawer}

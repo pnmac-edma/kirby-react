@@ -97,14 +97,22 @@ const RequestDetailsAccess = ({
 
   const history = useHistory();
 
+  // TODO: move this to an outside function because it is being used in 2 other places
   const generateCorrectRequestList = () => {
-    if (requestListType === 'inbound') {
+    if (
+      requestListType === 'inbound' &&
+      (userRole.isGovernor || userRole.isApprover)
+    ) {
       return inboundRequests;
     } else if (requestListType === 'outbound') {
       return outboundRequests;
-    } else if (requestListType === 'archived') {
+    } else if (
+      requestListType === 'archived' &&
+      (userRole.isGovernor || userRole.isApprover)
+    ) {
       return archivedRequests;
     }
+    return null;
   };
 
   const { id } = useParams();
@@ -172,7 +180,7 @@ const RequestDetailsAccess = ({
         </Typography>
         <Typography className={classes.title}>{justification}</Typography>
         <br />
-        {isApprovePath && (
+        {isApprovePath && (userRole.isGovernor || userRole.isApprover) && (
           <div>
             <Button
               className={classes.button}

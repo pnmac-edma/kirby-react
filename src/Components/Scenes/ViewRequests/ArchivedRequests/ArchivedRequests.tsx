@@ -3,17 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import RequestTableTitle from '../RequestTableTitle/RequestTableTitle';
 import TableWrapper from '../../../Presentational/Table/TableWrapper';
-import {
-  setToggleArchivedCheckbox,
-  setToggleArchivedAllCheckbox,
-  archivedRequestsFetch
-} from '../../../../State/ViewRequests/actions';
+import { archivedRequestsFetch } from '../../../../State/ViewRequests/actions';
 
 const ArchivedRequests = () => {
   const userEmail = useSelector(({ currentUser }: any) => currentUser.EmpEmail);
-  const selected = useSelector(
-    ({ viewRequests }: any) => viewRequests.selectedArchivedRequests
-  );
   const { archivedRequests } = useSelector((state: any) => state.viewRequests);
   const dispatch = useDispatch();
 
@@ -52,13 +45,6 @@ const ArchivedRequests = () => {
           const urlWithId = `/requests/${id}`;
           history.push(urlWithId);
         }}
-        selected={selected}
-        setToggleCheckbox={(selected: Array<number>, id: number) =>
-          dispatch(setToggleArchivedCheckbox(selected, id))
-        }
-        setToggleAllCheckbox={(selected: Array<number>, data: Array<number>) =>
-          dispatch(setToggleArchivedAllCheckbox(selected, data))
-        }
       />
     </>
   );
