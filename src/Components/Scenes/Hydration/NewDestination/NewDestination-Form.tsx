@@ -9,7 +9,8 @@ import {
   MenuItem,
   Select,
   Typography,
-  TextField
+  TextField,
+  FormHelperText
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -31,15 +32,28 @@ const styles = makeStyles(theme => ({
     '& div': {
       maxWidth: '100%'
     }
+  },
+  root: {
+    margin: 4,
+    '&$error': {
+      color: 'rgba(180, 60, 0, 0.87)'
+    }
+  },
+  error: {
+    '&.MuiFormHelperText-root.Mui-error': {
+      color: 'rgba(180, 60, 0, 0.87)'
+    }
   }
 }));
 
 const NewDestinationForm = (props: NewDestinationFormProps) => {
   const { isAppForm } = props;
   const classes = styles();
-  const { isDestinationModalOpen, newDestinationMessage } = useSelector(
-    ({ hydration }: any) => hydration
-  );
+  const {
+    isDestinationModalOpen,
+    newDestinationMessage,
+    isDatabaseNameExists
+  } = useSelector(({ hydration }: any) => hydration);
   const { domains } = useSelector(({ shared }: any) => shared);
   const dispatch = useDispatch();
   const prefixForApp = isAppForm ? 'destinationsCreate.' : '';
@@ -58,7 +72,7 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
   const [notification, setNotification] = useState(false);
   const handleOpenNotification = () => setNotification(true);
   const handleCloseNotification = () => setNotification(false);
-
+  console.log('isDatabaseNameExists', isDatabaseNameExists);
   return (
     <>
       {newDestinationMessage.length > 0 && (
@@ -97,7 +111,6 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
               name={`${prefixForApp}sensitivity`}
               label="Sensitivity"
               error={errors.sensitivity ? touched.sensitivity : false}
-              helperText={touched.sensitivity ? errors.sensitivity : null}
               type="select"
               as={Select}
             >
@@ -107,6 +120,9 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
                 </MenuItem>
               ))}
             </Field>
+            <FormHelperText style={{ color: 'red' }}>
+              {touched.sensitivity ? errors.sensitivity : null}
+            </FormHelperText>
           </FormControl>
         </Grid>
       </Grid>
@@ -119,7 +135,6 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
               name={`${prefixForApp}domain`}
               label="Domain"
               error={errors.domain ? touched.domain : false}
-              helperText={touched.domain ? errors.domain : null}
               type="select"
               as={Select}
             >
@@ -129,6 +144,9 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
                 </MenuItem>
               ))}
             </Field>
+            <FormHelperText style={{ color: 'red' }}>
+              {touched.domain ? errors.domain : null}
+            </FormHelperText>
           </FormControl>
         </Grid>
       </Grid>
