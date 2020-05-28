@@ -1,5 +1,11 @@
 import React from 'react';
-import { Paper, TableCell, TableRow, TableBody } from '@material-ui/core';
+import {
+  Paper,
+  Table,
+  TableCell,
+  TableRow,
+  TableBody
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -10,8 +16,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column'
   },
   table: {
-    minWidth: 6,
-    width: '100%'
+    minWidth: 6
   },
   tableWrapper: {
     flexGrow: 1,
@@ -34,14 +39,16 @@ const TableWrapperNotFound = ({ searchedInput }: TableWrapperNotFoundProps) => {
   return (
     <Paper className={classes.paper}>
       <div className={classes.tableWrapper}>
-        <TableBody className={classes.tableBody}>
-          <TableRow>
-            <TableCell colSpan={5}>
-              We couldn't find anything matching{' '}
-              <strong>'{searchedInput}'</strong>
-            </TableCell>
-          </TableRow>
-        </TableBody>
+        <Table className={classes.table} size="medium" stickyHeader>
+          <TableBody className={classes.tableBody}>
+            <TableRow>
+              <TableCell colSpan={5}>
+                We couldn't find anything matching{' '}
+                <strong>'{searchedInput}'</strong>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     </Paper>
   );
