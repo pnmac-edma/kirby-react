@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, useFormikContext } from 'formik';
+import * as Yup from 'yup';
 import {
   Button,
   FormControl,
@@ -61,18 +62,51 @@ const NewDestinationForm = (props: NewDestinationFormProps) => {
     errors,
     touched,
     values,
-    isValid
+    isValid,
+    setFieldError
   } = (useFormikContext() as unknown) as {
     errors: InitialErrorTypes;
     touched: InitialTouchedTypes;
     values: InitialValuesTypes;
     isValid: any;
+    setFieldError: any;
   };
 
   const [notification, setNotification] = useState(false);
   const handleOpenNotification = () => setNotification(true);
   const handleCloseNotification = () => setNotification(false);
-  console.log('isDatabaseNameExists', isDatabaseNameExists);
+  console.log(
+    'isDatabaseNameExists',
+    isDatabaseNameExists,
+    'this is error',
+    errors
+  );
+
+  if (isDatabaseNameExists) {
+    // setFieldError(errors.name, 'sdsd')
+  }
+
+  // const GET_JSON = {
+  //   method: 'GET',
+  //   headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json'
+  //   }
+  // }
+
+  // Yup.addMethod(Yup.string, 'phone', function (message) {
+  //   return this
+  //     .test({
+  //       name: 'name',
+  //       exclusive: true,
+  //       message: message || 'must be a phone number',  // expect an i18n message to be passed in
+  //       test: async function (value) {
+  //         const response = await fetch(`/validators/phone?value=${value}`, GET_JSON)
+  //         const json:ValidationResponse = await response.json()
+  //         return json.valid
+  //       }
+  //     })
+  // })
   return (
     <>
       {newDestinationMessage.length > 0 && (
@@ -244,3 +278,8 @@ interface InitialValuesTypes {
   descrition: string;
   justification: string;
 }
+
+type ValidationResponse = {
+  valid: boolean;
+  transform?: string;
+};
