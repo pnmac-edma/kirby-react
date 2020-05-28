@@ -26,9 +26,10 @@ const RequestAssetTable = () => {
 
   const footerButtonText = `Remove ${selectedAssets.length} selected`;
 
-  const selectedResults = searchResult.results.filter(({ Id }: any) =>
-    selected.includes(Id)
-  );
+  const selectedResults =
+    searchResult && searchResult.results
+      ? searchResult.results.filter(({ Id }: any) => selected.includes(Id))
+      : [];
 
   return (
     <TableWrapper
